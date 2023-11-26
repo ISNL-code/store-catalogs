@@ -1,0 +1,25 @@
+import { ACCESS_TOKEN_KEY } from 'constants/constants';
+import ModalWindow from 'components/atoms/ModalWindow/ModalWindow';
+
+export default function Logout({ setAuth, string, close }) {
+    return (
+        <>
+            <ModalWindow
+                type={'warning'}
+                title={string?.logout}
+                text={string?.do_want_to_logout}
+                actionTitle={string?.logout}
+                secondaryTitle={string?.cancel}
+                secondaryAction={() => close()}
+                closeAction={() => close()}
+                primaryAction={() => {
+                    localStorage.removeItem(ACCESS_TOKEN_KEY);
+                    setAuth(false);
+                    close();
+                }}
+            >
+                <></>
+            </ModalWindow>
+        </>
+    );
+}
