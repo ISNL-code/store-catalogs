@@ -15,6 +15,9 @@ import ExtraColorsButton from 'components/atoms/ColorIndicatorButton/ExtraColors
 import CollapseButton from 'components/molecules/ToolsButtons/СollapseButton';
 import { useDevice } from 'hooks/useDevice';
 import { CatalogContextInterface } from 'types';
+import CardItem from 'components/atoms/Sections/CardItem';
+import Grid from '@mui/material/Unstable_Grid2';
+import PromoTags from 'components/atoms/PromoTags/PromoTags';
 
 interface ShownModelInterface {
     price: string;
@@ -53,207 +56,220 @@ function SampleNextArrow(props) {
     );
 }
 
-const CatalogCard = ({
-    modelsVariants,
-    name,
-    productID,
-    imgWidth,
-    imgHeight,
-    currency,
-    setProductsList,
-    cropX,
-    withCart,
-    withFavorites,
-    withShare,
-    promoTags,
-}) => {
-    const { xs, sx, ls, l } = useDevice();
+const CatalogCard = ({ modelsVariants, name, productID, currency, setProductsList, promoTags }) => {
+    const { xxxs, s, sm, sx, mx, ls, l } = useDevice();
     const navigate = useNavigate();
     const { store, auth, setOpenModalType }: CatalogContextInterface = useOutletContext();
     const colorsBoxRef = useRef(null);
     const { storeCode, storeName } = useParams();
     const [shownModel, setShownModel] = useState<ShownModelInterface | null>(null);
     const [isExpanded, setIsExpanded] = useState(false);
-    const { xxxs } = useDevice();
 
     useEffect(() => {
         if (!modelsVariants?.length) return;
         setShownModel(modelsVariants.find(variant => variant.selected));
     }, [modelsVariants]);
 
-    const getWidth = () => {
-        if (xs) return '100%'; //475
-        if (sx) return '49%';
-        if (ls) return '32.5%'; //1240
-        if (l) return '24.25%'; //1480
-        return '19.4%';
+    const getGridValue = () => {
+        if (s) return 12;
+        if (sx) return 6;
+        if (ls) return 4;
+        if (l) return 3;
+        return 2;
     };
 
     return (
-        <Card
-            bottomLeftButtons={isExpanded ? [<CollapseButton collapse={setIsExpanded} isShown={withCart} />] : []}
-            bottomButtons={
-                isExpanded
-                    ? []
-                    : [
-                          <CartButton isShown={withCart} />,
-                          <ShareButton
-                              isShown={withShare}
-                              path={`${WEB_URL}/catalog/${storeCode}/${storeName}/details/${productID}/model/${shownModel?.SKU?.replaceAll(
-                                  '/',
-                                  '_'
-                              )}`}
-                              text=""
-                          />,
-                      ]
-            }
-            topRightButtons={[<FavoritesButton isShown={withFavorites} />]}
-            promoTags={promoTags}
-            getWidth={getWidth}
-        >
-            <Box
-                sx={{
-                    display: 'flex',
-                    cursor: 'pointer',
-                    backgroundColor: '#fff',
-                }}
-                onClick={() => {
-                    navigate(
-                        `/catalog/${storeCode}/${storeName}/details/${productID}/model/${shownModel?.SKU?.replaceAll(
-                            '/',
-                            '_'
-                        )}`
-                    );
-                }}
-            >
-                <Box
-                    sx={{
-                        width: '100%',
-                    }}
-                >
-                    <Slider dots={true} nextArrow={<SampleNextArrow />} prevArrow={<SamplePrevArrow />} lazyLoad={true}>
-                        {shownModel?.images?.map(({ imageUrl }, idx) => {
-                            if (imageUrl.includes('.mp4')) return null;
-                            return (
-                                <Image
-                                    key={idx}
-                                    width={imgWidth}
-                                    height={imgHeight}
-                                    imgUrl={`https://images.weserv.nl/?url=${imageUrl}&q=45`}
-                                    cropX={cropX}
-                                />
-                            );
-                        })}
-                    </Slider>
+        <Grid p={1} xs={getGridValue()}>
+            <CardItem>
+                {store?.additionalStoreSettings?.promo && (
+                    <Box
+                        sx={{
+                            position: 'absolute',
+                            top: 10,
+                            left: 10,
+                            zIndex: 1,
+                            display: 'flex',
+                            flexDirection: 'column',
+                            gap: 0.5,
+                        }}
+                    >
+                        {promoTags?.map(el => (
+                            <PromoTags key={el.id} value={el.code} size={20} selected={true} disabled={true} />
+                        ))}
+                    </Box>
+                )}
+                <Box sx={{ position: 'absolute', top: 10, right: 10, zIndex: 1, display: 'flex', gap: 0.5 }}>
+                    <FavoritesButton isShown={store?.additionalStoreSettings?.favorites} />
                 </Box>
-            </Box>
-            <Box>
                 <Box
-                    ref={colorsBoxRef}
                     sx={{
                         display: 'flex',
-                        justifyContent: 'center',
-
-                        flexWrap: isExpanded ? 'wrap' : 'nowrap',
-                        backgroundColor: '#f8f8f8',
-                        height: isExpanded ? '110px' : '54px',
-                        py: 1,
-                        px: 0.2,
-                        borderTop: '1px solid #00000013',
-                        transition: 'height 250ms cubic-bezier(0, 0.4, 0.2, 1)',
+                        cursor: 'pointer',
+                        backgroundColor: '#fff',
+                    }}
+                    onClick={() => {
+                        navigate(
+                            `/catalog/${storeCode}/${storeName}/details/${productID}/model/${shownModel?.SKU?.replaceAll(
+                                '/',
+                                '_'
+                            )}`
+                        );
                     }}
                 >
                     <Box
                         sx={{
-                            maxWidth: '290px',
-                            display: 'flex',
-                            justifyContent: 'center',
-                            gap: 0.5,
-                            rowGap: 0,
-                            flexWrap: isExpanded ? 'wrap' : 'nowrap',
+                            width: '100%',
                         }}
                     >
-                        {modelsVariants?.map((model, idx) => {
-                            const selected = model?.id === shownModel?.id;
-                            if (!isExpanded && idx > 6) return null;
-                            if (!isExpanded && idx === 6 && modelsVariants.length > 7)
+                        <Slider
+                            dots={true}
+                            nextArrow={<SampleNextArrow />}
+                            prevArrow={<SamplePrevArrow />}
+                            lazyLoad={true}
+                        >
+                            {shownModel?.images?.map(({ imageUrl }, idx) => {
+                                if (imageUrl.includes('.mp4')) return null;
                                 return (
-                                    <ExtraColorsButton
+                                    <Image
                                         key={idx}
-                                        action={e => {
-                                            e.stopPropagation();
-                                            setIsExpanded(true);
-                                        }}
-                                        size={xxxs ? 30 : 33}
-                                        sum={modelsVariants.length - 6}
+                                        width={store?.productImagesOptions?.width}
+                                        height={store?.productImagesOptions?.height}
+                                        imgUrl={`https://images.weserv.nl/?url=${imageUrl}&q=45`}
+                                        cropY={store?.productImagesOptions?.cropY}
                                     />
                                 );
-                            return (
-                                <ColorIndicatorButton
-                                    key={idx}
-                                    action={e => {
-                                        e.stopPropagation();
-                                        if (selected) return;
-                                        setProductsList(prev =>
-                                            prev.map(el => {
-                                                if (el.id === productID) {
-                                                    return {
-                                                        ...el,
-                                                        variants: el.variants.map(variant => {
-                                                            if (variant.id === model.id)
-                                                                return { ...variant, selected: true };
-                                                            return { ...variant, selected: false };
-                                                        }),
-                                                    };
-                                                }
-                                                return el;
-                                            })
-                                        );
-                                    }}
-                                    selected={selected}
-                                    color={model.colorCode}
-                                    size={33}
-                                />
-                            );
-                        })}
+                            })}
+                        </Slider>
                     </Box>
                 </Box>
-                <Box
-                    sx={{
-                        backgroundColor: '#f8f8f8',
-                        borderTop: '1px solid #f0f0f0',
-                        height: isExpanded ? 0 : '60px',
-                        transition: 'height 250ms cubic-bezier(0, 0.4, 0.2, 1)',
-                        overflow: 'hidden',
-                    }}
-                >
-                    <Box p={1.25} pt={1}>
-                        <Typography
-                            variant="h4"
+                <Box>
+                    <Box
+                        sx={{
+                            height: 54,
+                            overflow: 'visible',
+                            backgroundColor: '#f8f8f8',
+                            zIndex: 1,
+                        }}
+                    >
+                        <Box
+                            ref={colorsBoxRef}
                             sx={{
-                                height: '25px',
-                                fontWeight: 600,
+                                display: 'flex',
+                                justifyContent: 'center',
+                                flexWrap: isExpanded ? 'wrap' : 'nowrap',
+                                backgroundColor: '#f8f8f8',
+                                height: isExpanded ? '95px' : '54px',
+                                pt: 1,
+                                px: 0.2,
+                                borderTop: '1px solid #00000013',
+
+                                transition: 'height 250ms cubic-bezier(0, 0.4, 0.2, 1)',
                             }}
                         >
-                            {name}
-                        </Typography>
-
-                        {store?.mainStoreSettings?.prices && (
-                            <Typography
-                                variant="h4"
+                            <Box
                                 sx={{
-                                    color: '#757575',
-                                    fontWeight: 500,
+                                    backgroundColor: '#f8f8f8',
+                                    display: 'flex',
+                                    justifyContent: 'center',
+                                    gap: 0.5,
+                                    rowGap: 0,
+                                    flexWrap: isExpanded ? 'wrap' : 'nowrap',
                                 }}
                             >
-                                {currency}
-                                {shownModel?.price}
+                                {modelsVariants?.map((model, idx) => {
+                                    const selected = model?.id === shownModel?.id;
+                                    if (!isExpanded && idx > 6) return null;
+                                    if (!isExpanded && idx === 6 && modelsVariants.length > 7)
+                                        return (
+                                            <ExtraColorsButton
+                                                key={idx}
+                                                action={e => {
+                                                    e.stopPropagation();
+                                                    setIsExpanded(true);
+                                                }}
+                                                size={xxxs ? 30 : 33}
+                                                sum={modelsVariants.length - 6}
+                                            />
+                                        );
+                                    return (
+                                        <ColorIndicatorButton
+                                            key={idx}
+                                            action={e => {
+                                                e.stopPropagation();
+                                                if (selected) return;
+                                                setProductsList(prev =>
+                                                    prev.map(el => {
+                                                        if (el.id === productID) {
+                                                            return {
+                                                                ...el,
+                                                                variants: el.variants.map(variant => {
+                                                                    if (variant.id === model.id)
+                                                                        return { ...variant, selected: true };
+                                                                    return { ...variant, selected: false };
+                                                                }),
+                                                            };
+                                                        }
+                                                        return el;
+                                                    })
+                                                );
+                                            }}
+                                            selected={selected}
+                                            color={model.colorCode}
+                                            size={33}
+                                        />
+                                    );
+                                })}
+                            </Box>
+                        </Box>
+                        <Box sx={{ ml: 1, mb: 4 }}>
+                            <CollapseButton collapse={setIsExpanded} isShown={isExpanded} />
+                        </Box>
+                    </Box>
+
+                    <Box onClick={e => e.stopPropagation()}>
+                        <Box
+                            sx={{
+                                display: 'flex',
+                                flexDirection: 'column',
+                                gap: 1,
+                            }}
+                        >
+                            <Typography p={1} variant="h4" sx={{ height: 35 }}>
+                                {!isExpanded && name}
                             </Typography>
-                        )}
+
+                            <Box
+                                px={1}
+                                pb={0.5}
+                                sx={{
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'space-between',
+                                }}
+                            >
+                                {store?.mainStoreSettings?.prices && (
+                                    <Typography variant="h4" sx={{ color: 'gray' }}>
+                                        {!isExpanded && currency}
+                                        {!isExpanded && shownModel?.price}
+                                    </Typography>
+                                )}
+                                <Box sx={{ display: 'flex', gap: 0.5 }}>
+                                    <CartButton isShown={store?.additionalStoreSettings?.cart} />
+                                    <ShareButton
+                                        isShown={store?.additionalStoreSettings?.promo}
+                                        path={`${WEB_URL}/catalog/${storeCode}/${storeName}/details/${productID}/model/${shownModel?.SKU?.replaceAll(
+                                            '/',
+                                            '_'
+                                        )}`}
+                                        text=""
+                                    />
+                                </Box>
+                            </Box>
+                        </Box>
                     </Box>
                 </Box>
-            </Box>
-        </Card>
+            </CardItem>
+        </Grid>
     );
 };
 

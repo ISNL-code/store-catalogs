@@ -39,7 +39,6 @@ const StoreCards = ({ data, dataFavorite, setStoreToApprove }: StoreCardsInterfa
         <Grid xs={12} container>
             {data?.map(item => (
                 <Grid
-                    container
                     p={1}
                     key={item.id}
                     xs={getGridValue()}

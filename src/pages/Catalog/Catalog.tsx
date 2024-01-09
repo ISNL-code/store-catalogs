@@ -13,6 +13,7 @@ import BackButton from 'components/atoms/Buttons/BackButton';
 import SkuSearch from 'components/molecules/ToolsButtons/SkuSearch';
 import { CatalogContextInterface } from 'types';
 import TransitionBox from 'components/atoms/Transitions/TransitionBox';
+import Grid from '@mui/material/Unstable_Grid2';
 
 const Catalog = () => {
     const {
@@ -70,14 +71,7 @@ const Catalog = () => {
 
             {productsList?.length ? (
                 <TransitionBox dependency={loading}>
-                    <Box
-                        sx={{
-                            display: 'flex',
-                            flexWrap: 'wrap',
-                            gap: 1,
-                            rowGap: 2,
-                        }}
-                    >
+                    <Grid xs={12} container>
                         {productsList?.map(product => {
                             return (
                                 <CatalogCard
@@ -85,19 +79,13 @@ const Catalog = () => {
                                     modelsVariants={product.variants}
                                     name={product.name}
                                     productID={product.id}
-                                    imgHeight={store?.productImagesOptions?.height}
-                                    imgWidth={store?.productImagesOptions?.width}
                                     currency={getCurrencySymbol(store?.currency)}
                                     setProductsList={setProductsList}
-                                    cropX={store?.productImagesOptions?.cropX}
-                                    withCart={store?.additionalStoreSettings?.cart}
-                                    withFavorites={store?.additionalStoreSettings?.favorites}
-                                    withShare={store?.mainStoreSettings?.productShare}
                                     promoTags={product?.promoTags}
                                 />
                             );
                         })}
-                    </Box>
+                    </Grid>
                 </TransitionBox>
             ) : !productsList?.length && !loadProducts && !loading ? (
                 <>

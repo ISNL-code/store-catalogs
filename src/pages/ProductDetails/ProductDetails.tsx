@@ -9,7 +9,7 @@ import { useDevice } from 'hooks/useDevice';
 import { useIsMount } from 'hooks/useIsMount';
 import { useEffect, useState } from 'react';
 import { useOutletContext, useParams } from 'react-router-dom';
-import { ProductVariantInterface } from 'types';
+import { CatalogContextInterface, ProductVariantInterface } from 'types';
 import ModelDetails from './ModelDetails';
 import ModelSwiper from './ModelSwiper';
 
@@ -31,7 +31,8 @@ interface SelectedVarianInterface {
 
 const ProductDetails = () => {
     const mount = useIsMount();
-    const { store, lang, headerHeight, instrumentalBarHeight, footerHeight }: any = useOutletContext();
+    const { store, lang, headerHeight, instrumentalBarHeight, footerHeight }: CatalogContextInterface =
+        useOutletContext();
     const { modelSKU, storeCode, storeName, productId } = useParams();
     const [productDetails, setProductDetails] = useState<LoadedProductInterface | null>(null);
     const [selectedVariant, setSelectedVariant] = useState<SelectedVarianInterface | undefined | null>(null);
@@ -117,7 +118,7 @@ const ProductDetails = () => {
                         color="#ccc"
                         size={35}
                         orientation="down"
-                        isShown={store?.withShare}
+                        isShown={store?.mainStoreSettings?.productShare}
                     />
                 )}
             />

@@ -18,6 +18,7 @@ const CardItem = ({ children }) => {
                 transition: 'all .3s ease-in-out',
                 '&:hover': {
                     transform: 'scale(1.01)',
+                    boxShadow: '0 0 3px 3px #00000037',
                 },
                 height: '100%',
             }}

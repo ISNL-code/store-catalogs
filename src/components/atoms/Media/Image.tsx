@@ -3,7 +3,7 @@ import { useDevice } from 'hooks/useDevice';
 
 import { useEffect, useRef, useState } from 'react';
 
-const Image = ({ width, height, imgUrl, cropX = 0 }) => {
+const Image = ({ width, height, imgUrl, cropY = 0 }) => {
     const { xxs, xs, s, sm, sx, slx, m, mx, ls, l } = useDevice();
     const [imgHeight, setImgHeight] = useState<number>(0);
     const [screenWidth, setScreenWidth] = useState(0);
@@ -53,7 +53,7 @@ const Image = ({ width, height, imgUrl, cropX = 0 }) => {
             ref={ref}
             sx={{
                 width: '100%',
-                height: imgHeight - cropX,
+                height: imgHeight - cropY,
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',

@@ -10,7 +10,15 @@ const FavoritesButton = ({ isShown }: FavoriteButtonInterface) => {
         return (
             <Box>
                 <Box>
-                    <IconButton size="small">
+                    <IconButton
+                        size="small"
+                        sx={{
+                            border: '1px solid #ed6c02',
+                            backgroundColor: '#fff',
+                            width: '33px',
+                            height: '33px',
+                        }}
+                    >
                         <FavoriteBorderIcon color="warning" />
                     </IconButton>
                 </Box>
