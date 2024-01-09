@@ -3,7 +3,7 @@ export interface CatalogContextInterface {
     string: any;
     store: StoreInterface;
     categoriesList: {};
-    productsList: {};
+    productsList: LoadedProductListInterface[];
     setProductsList;
     loadProducts: boolean;
     loadMoreProducts: boolean;
@@ -40,7 +40,7 @@ export interface StoresContextInterface {
     setSortedStores;
     auth: boolean;
     setFilteredStores;
-    filteredStores: {}[];
+    filteredByTypeStores: {}[];
     setOpenModalType;
     openModalType: string | null;
     setStoreToApprove;
@@ -48,7 +48,6 @@ export interface StoresContextInterface {
     setFavoriteStores;
     storesList: StoreInterface[];
     updateFavoritesRes;
-    storesData;
     loadStores: boolean;
     loadFavoritesStores: boolean;
 }
@@ -86,26 +85,15 @@ export interface StoreInterface {
         user: string;
     };
     //add
-    imgUrl: string; //require
-    description: string; //require
-    imgHeight: number; //require
-    imgWidth: number; //require
-    cropX: number | null;
-    cropY: number | null;
-    withCart: boolean;
-    withFilters: boolean;
-    withFavorites: boolean;
-    withSKUSearch: boolean;
-    withSizes: boolean;
-    withContacts: boolean;
-    withPrices: boolean;
-    addedFavorite: boolean;
-    withShare: boolean;
-    sizesTable: string | null;
-    private: boolean;
-    approvedUsers: {}[];
-    key_password: string | null;
-    productTypes: { id: number; code: string }[];
+    mainImage: string;
+    descriptions: any;
+    productImagesOptions: any;
+    mainStoreSettings: any;
+    additionalStoreSettings: any;
+    dataBaseStoreSettings: any;
+    securityStoreSettings: any;
+    storeProductTypes: any;
+    description: any;
     contacts: {
         managers: [
             {
@@ -314,7 +302,7 @@ export interface CategoryInterface {
     children: ChildCategoryInterface[];
 }
 
-export interface ProductListInterface {
+export interface ProductCardInterface {
     id: number;
     productShipeable: boolean;
     available: boolean;
@@ -357,4 +345,13 @@ export interface ProductListInterface {
     type: string | number | null;
     canBePurchased: boolean;
     owner: string | number | null;
+}
+
+export interface LoadedProductListInterface {
+    id: number;
+    variants: ProductVariantInterface[];
+    promoTags: any[];
+    name: string;
+    price: string;
+    langIsNotSupported: boolean;
 }

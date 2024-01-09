@@ -22,7 +22,6 @@ const Header = ({
     setLang,
     auth,
     withCart,
-    storeLanguages,
     withFavorites,
     withContacts,
     logo,
@@ -113,13 +112,7 @@ const Header = ({
                         />
                     )}
                     {!sx && <ProfileButton string={string} headerHeight={headerHeight} />}
-                    <LanguageButton
-                        setLang={setLang}
-                        string={string}
-                        lang={lang}
-                        storeLanguages={storeLanguages}
-                        setOpenModalType={setOpenModalType}
-                    />
+                    <LanguageButton setLang={setLang} string={string} lang={lang} setOpenModalType={setOpenModalType} />
                 </Box>
             </Box>
         </Box>

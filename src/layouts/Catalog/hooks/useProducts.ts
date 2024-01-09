@@ -1,15 +1,7 @@
 import { useProductsApi } from 'api/useProductsApi';
 import { useIsMount } from 'hooks/useIsMount';
 import { useEffect, useState } from 'react';
-import { ProductVariantInterface } from 'types';
-
-interface LoadedProductListInterface {
-    id: number;
-    variants: ProductVariantInterface[];
-    promoTags: any[];
-    name: string;
-    price: string;
-}
+import { LoadedProductListInterface, ProductVariantInterface } from 'types';
 
 export const useProducts = ({ store, lang, queryCategories }) => {
     const mount = useIsMount();
@@ -115,6 +107,7 @@ export const useProducts = ({ store, lang, queryCategories }) => {
     useEffect(() => {
         if (mount) return;
         setPage(_ => 0);
+
         setTimeout(() => {
             updateProducts();
         }, 0);

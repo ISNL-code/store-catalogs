@@ -140,7 +140,6 @@ const CatalogCard = ({
                                     width={imgWidth}
                                     height={imgHeight}
                                     imgUrl={`https://images.weserv.nl/?url=${imageUrl}&q=45`}
-                                    padding="0"
                                     cropX={cropX}
                                 />
                             );
@@ -239,7 +238,7 @@ const CatalogCard = ({
                             {name}
                         </Typography>
 
-                        {store?.withPrices && (
+                        {store?.mainStoreSettings?.prices && (
                             <Typography
                                 variant="h4"
                                 sx={{

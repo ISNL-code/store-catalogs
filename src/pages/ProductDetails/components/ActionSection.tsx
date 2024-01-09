@@ -11,7 +11,7 @@ const ActionSection = ({ isShown }) => {
     if (isShown)
         return (
             <Box mb={0.5} sx={{ display: 'flex', gap: 1 }}>
-                {store?.withCart && (
+                {store?.additionalStoreSettings?.cart && (
                     <Button
                         sx={{
                             cursor: 'pointer',
@@ -28,7 +28,7 @@ const ActionSection = ({ isShown }) => {
                         {string?.add_to}
                     </Button>
                 )}
-                {store?.withFavorites && (
+                {store?.additionalStoreSettings?.favorites && (
                     <Button
                         sx={{
                             cursor: 'pointer',

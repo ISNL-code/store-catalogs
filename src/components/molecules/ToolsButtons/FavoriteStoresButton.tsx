@@ -6,6 +6,7 @@ import { Box, IconButton } from '@mui/material';
 import { useStoresApi } from 'api/useStoresApi';
 import { useOutletContext } from 'react-router-dom';
 import { StoresContextInterface } from 'types';
+import { STORES_DATA } from 'dataBase/STORES';
 
 interface FavoriteStoresButtonInterface {
     storeCode: string;
@@ -13,7 +14,7 @@ interface FavoriteStoresButtonInterface {
 }
 
 const FavoriteStoresButton = ({ storeCode, isFavorite }: FavoriteStoresButtonInterface) => {
-    const { auth, setOpenModalType, setFavoriteStores, updateFavoritesRes, storesData }: StoresContextInterface =
+    const { auth, setOpenModalType, setFavoriteStores, updateFavoritesRes, lang }: StoresContextInterface =
         useOutletContext();
     const { mutateAsync: addStoreToFavorites } = useStoresApi().useAddStoreToFavorite();
     const { mutateAsync: deleteStoreToFavorites } = useStoresApi().useDeleteStoreToFavorite();
@@ -44,8 +45,13 @@ const FavoriteStoresButton = ({ storeCode, isFavorite }: FavoriteStoresButtonInt
                                 updateFavoritesRes().then(res => {
                                     if (!res) return;
                                     setFavoriteStores([
-                                        ...res?.data?.data.map(el => {
-                                            return { ...el, ...storesData.find(item => item.code === el.code) };
+                                        ...res?.data?.data.map(item => {
+                                            const addStoreData = STORES_DATA?.find(el => el.code === item.code);
+                                            const description =
+                                                addStoreData?.descriptions.find(el => el.language === lang) ||
+                                                addStoreData?.descriptions.find(el => el.language === 'en');
+
+                                            return { ...item, ...addStoreData, description };
                                         }),
                                     ]);
                                 })
@@ -63,8 +69,13 @@ const FavoriteStoresButton = ({ storeCode, isFavorite }: FavoriteStoresButtonInt
                                 updateFavoritesRes().then(res => {
                                     if (!res) return;
                                     setFavoriteStores([
-                                        ...res?.data?.data.map(el => {
-                                            return { ...el, ...storesData.find(item => item.code === el.code) };
+                                        ...res?.data?.data.map(item => {
+                                            const addStoreData = STORES_DATA?.find(el => el.code === item.code);
+                                            const description =
+                                                addStoreData?.descriptions.find(el => el.language === lang) ||
+                                                addStoreData?.descriptions.find(el => el.language === 'en');
+
+                                            return { ...item, ...addStoreData, description };
                                         }),
                                     ]);
                                 })

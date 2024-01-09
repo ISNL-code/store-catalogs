@@ -5,12 +5,10 @@ import CheckIcon from '@mui/icons-material/Check';
 import { Backdrop, Box, Divider, List, ListItemText, MenuItem, SwipeableDrawer, Typography } from '@mui/material';
 import { useDevice } from 'hooks/useDevice';
 import FilterButton from 'components/molecules/ToolsButtons/FilterButton';
-import { useProductsTypesApi } from 'api/useProductsTypesApi';
-import { useIsMount } from 'hooks/useIsMount';
+import { PRODUCT_TYPES } from 'dataBase//PRODUCT_TYPES';
 
 const FilterTypes = () => {
-    const mount = useIsMount();
-    const { string, setFilteredStores }: any = useOutletContext();
+    const { string, setFilteredByTypeStores, lang }: any = useOutletContext();
     const [queryTypes, setQueryTypes] = useState<any>([]);
 
     const { s } = useDevice();
@@ -19,8 +17,6 @@ const FilterTypes = () => {
         left: false,
     });
     const [showFilters, setShowFilters] = useState(false);
-
-    const productTypes = useProductsTypesApi().useGetAllProductsTypes;
 
     const toggleDrawer = (anchor, open) => event => {
         if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -31,7 +27,7 @@ const FilterTypes = () => {
     };
 
     useEffect(() => {
-        setFilteredStores(queryTypes);
+        setFilteredByTypeStores(queryTypes);
     }, [queryTypes]);
 
     const TypeItem = ({ title, id }) => {
@@ -110,8 +106,8 @@ const FilterTypes = () => {
     const getProductTypes = types => {
         return types?.map(el => {
             return (
-                <Fragment key={el.id}>
-                    <TypeItem title={el.description.name} id={el.id} />
+                <Fragment key={el.code}>
+                    <TypeItem title={el?.description?.name} id={el?.code} />
                 </Fragment>
             );
         });
@@ -191,7 +187,18 @@ const FilterTypes = () => {
                         </Box>
                         <Divider />
                         <Box sx={{ width: anchor === 'top' ? '100vw' : '400px' }} role="presentation">
-                            {showFilters && <List>{getProductTypes(productTypes)}</List>}
+                            {showFilters && (
+                                <List>
+                                    {getProductTypes(
+                                        PRODUCT_TYPES.map(el => {
+                                            return {
+                                                code: el.code,
+                                                description: el.descriptions.find(el => el.language === lang),
+                                            };
+                                        })
+                                    )}
+                                </List>
+                            )}
                         </Box>
                         {s && (
                             <Box

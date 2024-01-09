@@ -11,6 +11,7 @@ import { useCategory } from './hooks/useCategory';
 import { useProducts } from './hooks/useProducts';
 import Modals from 'layouts/Modals';
 import { StoreInterface } from 'types';
+import { STORES_DATA } from 'dataBase/STORES';
 
 export default function MainCatalog({ lang, setLang, auth, setAuth }) {
     const [openModalType, setOpenModalType] = useState<string | null>(null);
@@ -18,16 +19,16 @@ export default function MainCatalog({ lang, setLang, auth, setAuth }) {
     const { sx, l } = useDevice();
     const { currentLanguage } = useGetLanguage({ lang: lang?.code });
     const [scrollPosition, setScrollPosition] = useState(0);
-    const [storeLanguages, setStoreLanguages] = useState(null);
     const [queryCategories, setQueryCategories] = useState<string[] | []>([]);
     const [store, setStore] = useState<StoreInterface | null>(null);
+    const [supportedLanguage, setSupportedLanguage] = useState({ code: 'en' });
     const headerHeight = 50;
     const footerHeight = sx ? 70 : 0;
     const instrumentalBarHeight = 36;
     const appXPadding = l ? 2 : 4;
-    const getStoreByID = useStoresApi().useGetStoresList;
     const { data: storeDataRes, remove: removeStoreData } = useStoresApi().useGetStoreByCode({ code: storeCode });
     const { categoriesList } = useCategory({ lang, store: storeCode });
+
     const {
         loadProducts,
         loadMoreProducts,
@@ -41,7 +42,7 @@ export default function MainCatalog({ lang, setLang, auth, setAuth }) {
         totalPages,
         setProductsList,
     } = useProducts({
-        lang,
+        lang: supportedLanguage,
         store: storeCode,
         queryCategories,
     });
@@ -55,11 +56,14 @@ export default function MainCatalog({ lang, setLang, auth, setAuth }) {
 
     useEffect(() => {
         if (!storeDataRes) return;
-        setStore({ ...storeDataRes.data, ...getStoreByID.find(el => el.code === storeCode) });
-        setStoreLanguages(storeDataRes.data.supportedLanguages);
-        if (storeDataRes.data.supportedLanguages.map(el => el.code).includes(lang.code)) return;
-        setOpenModalType('language-warning');
+        setStore({ ...storeDataRes.data, ...STORES_DATA.find(el => el.code === storeCode) });
     }, [storeDataRes]);
+
+    useEffect(() => {
+        setSupportedLanguage(
+            store?.supportedLanguages?.find(el => el.code === lang.code) ? { code: lang.code } : { code: 'en' }
+        );
+    }, [lang]);
 
     const handleCategoriesQuery = (data, checked, root, rootID) => {
         window.scrollTo({
@@ -154,14 +158,13 @@ export default function MainCatalog({ lang, setLang, auth, setAuth }) {
                 lang={lang}
                 setLang={setLang}
                 auth={auth}
-                withCart={store?.withCart}
-                withFavorites={store?.withFavorites}
-                withContacts={store?.withContacts}
+                withCart={store?.additionalStoreSettings?.cart}
+                withFavorites={store?.additionalStoreSettings?.favorites}
+                withContacts={store?.mainStoreSettings?.contacts}
                 logo={store?.logo?.path}
                 storeHeaderName={store?.name}
                 setOpenModalType={setOpenModalType}
                 openModalType={openModalType}
-                storeLanguages={storeLanguages}
             />
             <Box
                 px={appXPadding}
@@ -212,8 +215,8 @@ export default function MainCatalog({ lang, setLang, auth, setAuth }) {
                 string={currentLanguage?.string}
                 auth={auth}
                 isShown={!!sx}
-                withCart={store?.withCart}
-                withShare={store?.withShare}
+                withCart={store?.additionalStoreSettings?.cart}
+                withShare={store?.mainStoreSettings?.productShare}
                 setOpenModalType={setOpenModalType}
                 openModalType={openModalType}
                 headerHeight={headerHeight}

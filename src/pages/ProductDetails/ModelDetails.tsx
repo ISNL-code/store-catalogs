@@ -19,15 +19,17 @@ const ModelDetails = ({ productDetails, selectedVariant, setSelectedVariant }) =
                 <TitleDetails productDetails={productDetails} />
             </Box>
             <Box>
-                <ActionSection isShown={store?.withCart || store?.withFavorites} />
+                <ActionSection
+                    isShown={store?.additionalStoreSettings?.cart || store?.additionalStoreSettings?.favorites}
+                />
             </Box>
-            {store?.withPrices && (
+            {store?.mainStoreSettings?.prices && (
                 <Box sx={{ display: 'flex', gap: 1 }}>
                     <Box sx={{ width: '100%' }}>
-                        <PriceDetails productDetails={productDetails} isShown={store?.withPrices} />
+                        <PriceDetails productDetails={productDetails} isShown={store?.mainStoreSettings?.prices} />
                     </Box>
                     <Box sx={{ width: '100%' }}>
-                        <ArticleDetails isShown={store?.withPrices} />
+                        <ArticleDetails isShown={store?.mainStoreSettings?.prices} />
                     </Box>
                 </Box>
             )}
@@ -38,9 +40,9 @@ const ModelDetails = ({ productDetails, selectedVariant, setSelectedVariant }) =
                     setSelectedVariant={setSelectedVariant}
                 />
             </Box>
-            {store?.withSizes && (
+            {store?.mainStoreSettings?.sizes && (
                 <Box>
-                    <SizesDetails productDetails={productDetails} isShown={store?.withSizes} />
+                    <SizesDetails productDetails={productDetails} isShown={store?.mainStoreSettings?.sizes} />
                 </Box>
             )}
             <Box mb={1}>

@@ -11,10 +11,11 @@ import EmptyPage from 'components/atoms/EmptyPage/EmptyPage';
 import FilterCategories from 'components/organisms/Filters/FilterCategories';
 import BackButton from 'components/atoms/Buttons/BackButton';
 import SkuSearch from 'components/molecules/ToolsButtons/SkuSearch';
+import { CatalogContextInterface } from 'types';
+import TransitionBox from 'components/atoms/Transitions/TransitionBox';
 
 const Catalog = () => {
     const {
-        string,
         store,
         productsList,
         scrollPosition,
@@ -23,7 +24,7 @@ const Catalog = () => {
         setProductsList,
         instrumentalBarHeight,
         headerHeight,
-    }: any = useOutletContext();
+    }: CatalogContextInterface = useOutletContext();
     const [showTopBtn, setShowTopBtn] = useState(false);
     const [loading, setLoading] = useState(true);
 
@@ -61,43 +62,43 @@ const Catalog = () => {
                 StartSlot={() => <BackButton nav="/" action={() => {}} />}
                 EndSlot={() => (
                     <Box sx={{ display: 'flex', gap: 0.75 }}>
-                        {store?.withSKUSearch && <SkuSearch />}
-                        <FilterCategories isShown={store?.withFilters} />
+                        {store?.mainStoreSettings?.skuSearch && <SkuSearch />}
+                        <FilterCategories isShown={store?.mainStoreSettings?.categories} />
                     </Box>
                 )}
             />
 
             {productsList?.length ? (
-                <Box
-                    sx={{
-                        display: 'flex',
-                        flexWrap: 'wrap',
-                        gap: 1,
-                        rowGap: 2,
-                        opacity: loading ? 0 : 1,
-                        transition: 'opacity 750ms cubic-bezier(0.4, 0, 0.2, 1)',
-                    }}
-                >
-                    {productsList?.map(product => {
-                        return (
-                            <CatalogCard
-                                key={product.id}
-                                modelsVariants={product.variants}
-                                name={product.name}
-                                productID={product.id}
-                                imgHeight={store?.imgHeight}
-                                imgWidth={store?.imgWidth}
-                                currency={getCurrencySymbol(store?.currency)}
-                                setProductsList={setProductsList}
-                                cropX={store?.cropX}
-                                withCart={store?.withCart}
-                                withFavorites={store?.withFavorites}
-                                withShare={store?.withShare}
-                                promoTags={product?.promoTags}
-                            />
-                        );
-                    })}
-                </Box>
+                <TransitionBox dependency={loading}>
+                    <Box
+                        sx={{
+                            display: 'flex',
+                            flexWrap: 'wrap',
+                            gap: 1,
+                            rowGap: 2,
+                        }}
+                    >
+                        {productsList?.map(product => {
+                            return (
+                                <CatalogCard
+                                    key={product.id}
+                                    modelsVariants={product.variants}
+                                    name={product.name}
+                                    productID={product.id}
+                                    imgHeight={store?.productImagesOptions?.height}
+                                    imgWidth={store?.productImagesOptions?.width}
+                                    currency={getCurrencySymbol(store?.currency)}
+                                    setProductsList={setProductsList}
+                                    cropX={store?.productImagesOptions?.cropX}
+                                    withCart={store?.additionalStoreSettings?.cart}
+                                    withFavorites={store?.additionalStoreSettings?.favorites}
+                                    withShare={store?.mainStoreSettings?.productShare}
+                                    promoTags={product?.promoTags}
+                                />
+                            );
+                        })}
+                    </Box>
+                </TransitionBox>
             ) : !productsList?.length && !loadProducts && !loading ? (
                 <>
                     <InstrumentalSubHeader StartSlot={() => <BackButton nav="/" action={() => {}} />} />

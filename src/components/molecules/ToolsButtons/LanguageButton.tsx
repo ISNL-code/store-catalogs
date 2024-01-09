@@ -7,7 +7,15 @@ const LanguageButton = ({
     setLang,
     string,
     lang,
-    storeLanguages = [{ code: 'ua' }, { code: 'en' }, { code: 'pl' }, { code: 'cz' }, { code: 'ru' }],
+    storeLanguages = [
+        { code: 'ua' },
+        { code: 'en' },
+        { code: 'pl' },
+        { code: 'cz' },
+        { code: 'ru' },
+        { code: 'es' },
+        { code: 'fr' },
+    ],
     setOpenModalType = _ => {},
 }) => {
     const [anchorElLang, setAnchorElLang] = useState(null);
@@ -51,6 +59,12 @@ const LanguageButton = ({
                 )}
                 {lang?.code === 'ru' && (
                     <img style={{ height: 20 }} src={require(`assets/img/flags/ru.png`)} alt="Broken Img" />
+                )}
+                {lang?.code === 'fr' && (
+                    <img style={{ height: 20 }} src={require(`assets/img/flags/fr.png`)} alt="Broken Img" />
+                )}
+                {lang?.code === 'es' && (
+                    <img style={{ height: 20 }} src={require(`assets/img/flags/es.png`)} alt="Broken Img" />
                 )}
             </Box>
         );
@@ -109,6 +123,12 @@ const LanguageButton = ({
 
                                 case 'ru':
                                     currentLabel = string?.russian;
+                                    break;
+                                case 'es':
+                                    currentLabel = string?.spanish;
+                                    break;
+                                case 'fr':
+                                    currentLabel = string?.french;
                                     break;
                                 default:
                                     currentLabel = string?.ukrainian;

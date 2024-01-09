@@ -2,9 +2,8 @@ import { Box } from '@mui/material';
 import { useDevice } from 'hooks/useDevice';
 
 import { useEffect, useRef, useState } from 'react';
-import Gradient from '../Gradient/Gradient';
 
-const Image = ({ width, height, imgUrl, padding = '0', cropX = 0 }) => {
+const Image = ({ width, height, imgUrl, cropX = 0 }) => {
     const { xxs, xs, s, sm, sx, slx, m, mx, ls, l } = useDevice();
     const [imgHeight, setImgHeight] = useState<number>(0);
     const [screenWidth, setScreenWidth] = useState(0);
@@ -62,7 +61,7 @@ const Image = ({ width, height, imgUrl, padding = '0', cropX = 0 }) => {
                 cursor: 'pointer',
             }}
         >
-            <img src={imgUrl} style={{ width: '100%', padding: padding }} alt="img" />
+            <img src={imgUrl} style={{ width: '100%' }} alt="img" />
         </Box>
     );
 };

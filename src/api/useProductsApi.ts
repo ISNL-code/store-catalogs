@@ -11,7 +11,8 @@ export const useProductsApi = () => {
             () =>
                 get({
                     url: `/v2/products?store=${store}&lang=${lang}&available=true&count=${count}&page=${page}&categoryIds=${categories}`,
-                })
+                }),
+            { enabled: !!lang }
         );
     };
 

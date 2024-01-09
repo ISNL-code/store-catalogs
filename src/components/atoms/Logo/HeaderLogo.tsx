@@ -4,7 +4,7 @@ import { useDevice } from 'hooks/useDevice';
 
 const HeaderLogo = ({ title, path, font = 'Roboto', imgUrl, headerHeight }) => {
     const navigate = useNavigate();
-    const { xxs, xxxxs } = useDevice();
+    const { xxs, xs } = useDevice();
     return (
         <Box
             sx={{
@@ -14,16 +14,25 @@ const HeaderLogo = ({ title, path, font = 'Roboto', imgUrl, headerHeight }) => {
                 position: 'relative',
                 opacity: !imgUrl ? 0 : 1,
                 transition: 'opacity 500ms cubic-bezier(0.4, 0, 0.2, 1)',
+                gap: 1,
             }}
             onClick={() => {
                 navigate(path);
             }}
         >
-            <img src={imgUrl} style={{ height: xxs ? headerHeight - 12 : headerHeight - 3 }} alt="img" />
-
-            <Typography sx={{ fontFamily: font, fontSize: xxxxs ? 16 : xxs ? 22 : 26, fontWeight: 700 }}>
-                {title}
-            </Typography>
+            <img
+                src={imgUrl}
+                style={{
+                    height: xxs ? headerHeight - 12 : headerHeight - 6,
+                    border: '1px solid #ccc',
+                    borderRadius: 8,
+                    padding: '0 2px',
+                }}
+                alt="img"
+            />
+            {!xxs && (
+                <Typography sx={{ fontFamily: font, fontSize: 22, fontWeight: 700, lineHeight: 1 }}>{title}</Typography>
+            )}
         </Box>
     );
 };

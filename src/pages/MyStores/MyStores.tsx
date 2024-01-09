@@ -1,9 +1,7 @@
-import { Box, Typography } from '@mui/material';
+import { Box } from '@mui/material';
 import InstrumentalSubHeader from 'components/organisms/InstrumentalSubHeader/InstrumentalSubHeader';
-import { Navigate, useNavigate, useOutletContext } from 'react-router-dom';
-import { useStoresApi } from 'api/useStoresApi';
+import { useNavigate, useOutletContext } from 'react-router-dom';
 import ScrollButton from 'components/atoms/Buttons/ScrollButton';
-import StoreCard from 'components/organisms/Cards/StoreCard';
 import { useEffect, useState } from 'react';
 import EmptyPage from 'components/atoms/EmptyPage/EmptyPage';
 import { useIsMount } from 'hooks/useIsMount';
@@ -11,13 +9,15 @@ import BackButton from 'components/atoms/Buttons/BackButton';
 import { StoresContextInterface } from 'types';
 import HeaderSearchButton from 'components/molecules/ToolsButtons/HeaderSearchButton';
 import FilterTypes from 'components/organisms/Filters/FilterTypes';
+import TransitionBox from 'components/atoms/Transitions/TransitionBox';
+import StoreCards from 'components/organisms/Cards/StoreCards';
 
 const MyStores = () => {
     const {
         auth,
         setOpenModalType,
         sortedStores,
-        filteredStores,
+        filteredByTypeStores,
         setScrollPosition,
         scrollPosition,
         instrumentalBarHeight,
@@ -71,17 +71,13 @@ const MyStores = () => {
         }, 150);
     }, [loading]);
 
-    const forRenderStores = favoritesStores
+    const filteredStores = favoritesStores
         ?.filter(store => store.name.toLocaleLowerCase().includes(sortedStores.toLocaleLowerCase()))
-        .filter(store => {
-            if (!filteredStores.length) return true;
-            const filteredStore = store.productTypes.some(({ id }) => {
-                return filteredStores.find(el => {
-                    return Number(el) === Number(id);
-                });
-            });
-            return filteredStore;
-        });
+        .filter(el =>
+            filteredByTypeStores.length
+                ? el.storeProductTypes.find(item => filteredByTypeStores.includes(item?.code))
+                : true
+        );
 
     if (!auth) return null;
 
@@ -98,35 +94,14 @@ const MyStores = () => {
                 )}
             />
 
-            {forRenderStores?.length ? (
-                <Box
-                    sx={{
-                        display: 'flex',
-                        flexWrap: 'wrap',
-                        gap: 1,
-                        rowGap: 2,
-                        opacity: loading ? 0 : 1,
-                        transition: 'opacity 250ms cubic-bezier(0.4, 0, 0.2, 1)',
-                    }}
-                >
-                    {forRenderStores?.map(store => {
-                        return (
-                            <StoreCard
-                                key={store?.id}
-                                imgUrl={store?.imgUrl}
-                                logo={store?.logo?.path}
-                                name={store?.name}
-                                description={store?.description}
-                                storeId={store?.id}
-                                locked={store?.private}
-                                setStoreToApprove={setStoreToApprove}
-                                storeCode={store?.code}
-                                isFavorite={true}
-                                supportedLanguages={store?.supportedLanguages?.map(el => el.code)}
-                            />
-                        );
-                    })}
-                </Box>
+            {filteredStores?.length ? (
+                <TransitionBox dependency={loading}>
+                    <StoreCards
+                        data={filteredStores}
+                        dataFavorite={favoritesStores}
+                        setStoreToApprove={setStoreToApprove}
+                    />
+                </TransitionBox>
             ) : (
                 <EmptyPage />
             )}

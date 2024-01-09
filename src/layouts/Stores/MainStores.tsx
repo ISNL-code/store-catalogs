@@ -9,6 +9,7 @@ import { useEffect, useState } from 'react';
 import Modals from 'layouts/Modals';
 import { StoreInterface } from 'types';
 import { useStoresApi } from 'api/useStoresApi';
+import { STORES_DATA } from 'dataBase/STORES';
 
 export default function MainStores({ lang, setLang, auth, setAuth }) {
     const [openModalType, setOpenModalType] = useState<string | null>(null);
@@ -17,14 +18,13 @@ export default function MainStores({ lang, setLang, auth, setAuth }) {
     const { sx, l } = useDevice();
     const { currentLanguage } = useGetLanguage({ lang: lang?.code });
     const [sortedStores, setSortedStores] = useState<string>('');
-    const [filteredStores, setFilteredStores] = useState<string[] | []>([]);
+    const [filteredByTypeStores, setFilteredByTypeStores] = useState<string[] | []>([]);
     const [scrollPosition, setScrollPosition] = useState(0);
     const headerHeight = 50;
     const footerHeight = sx ? 70 : 0;
     const instrumentalBarHeight = 36;
     const appXPadding = l ? 2 : 4;
     const [storesList, setStoresList] = useState<StoreInterface[] | null>(null);
-    const storesData = useStoresApi().useGetStoresList;
     const { data: storesDataRes, isFetching: loadStores } = useStoresApi().useGetAllStores();
 
     const { refetch: updateFavoritesRes, isFetching: loadFavoritesStores } = useStoresApi().useGetAllFavoritesStores({
@@ -33,25 +33,42 @@ export default function MainStores({ lang, setLang, auth, setAuth }) {
 
     useEffect(() => {
         if (!auth) return setFavoriteStores(null);
-        console.log('first');
+
         updateFavoritesRes().then(res => {
             if (!res) return;
+
             setFavoriteStores([
-                ...res?.data?.data.map(el => {
-                    return { ...el, ...storesData.find(item => item.code === el.code) };
+                ...res?.data?.data.map(item => {
+                    const addStoreData = STORES_DATA?.find(el => el.code === item.code);
+                    const description =
+                        addStoreData?.descriptions.find(el => el.language === lang.code) ||
+                        addStoreData?.descriptions.find(el => el.language === 'en');
+                    return {
+                        ...item,
+                        ...addStoreData,
+                        description,
+                    };
                 }),
             ]);
         });
-    }, [auth]);
+    }, [auth, lang]);
 
     useEffect(() => {
         if (!storesDataRes) return;
         setStoresList(
-            storesDataRes.data.map((item, index) => {
-                return { ...item, ...storesData[index] };
+            storesDataRes.data.map(item => {
+                const addStoreData = STORES_DATA?.find(el => el.code === item.code);
+                const description =
+                    addStoreData?.descriptions.find(el => el.language === lang.code) ||
+                    addStoreData?.descriptions.find(el => el.language === 'en');
+                return {
+                    ...item,
+                    ...addStoreData,
+                    description,
+                };
             })
         );
-    }, [storesDataRes]);
+    }, [storesDataRes, lang]);
 
     return (
         <Box
@@ -91,8 +108,8 @@ export default function MainStores({ lang, setLang, auth, setAuth }) {
                         appXPadding: appXPadding,
                         setSortedStores: setSortedStores,
                         auth: auth,
-                        setFilteredStores: setFilteredStores,
-                        filteredStores: filteredStores,
+                        setFilteredByTypeStores: setFilteredByTypeStores,
+                        filteredByTypeStores: filteredByTypeStores,
                         setOpenModalType,
                         openModalType: openModalType,
                         setStoreToApprove: setStoreToApprove,
@@ -100,7 +117,6 @@ export default function MainStores({ lang, setLang, auth, setAuth }) {
                         setFavoriteStores,
                         storesList,
                         updateFavoritesRes,
-                        storesData,
                         loadStores,
                         loadFavoritesStores,
                     }}

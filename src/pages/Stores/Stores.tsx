@@ -2,18 +2,19 @@ import { Box } from '@mui/material';
 import ScrollButton from 'components/atoms/Buttons/ScrollButton';
 import EmptyPage from 'components/atoms/EmptyPage/EmptyPage';
 import InstrumentalSubHeader from 'components/organisms/InstrumentalSubHeader/InstrumentalSubHeader';
-import StoreCard from 'components/organisms/Cards/StoreCard';
 import { useEffect, useState } from 'react';
 import { useOutletContext } from 'react-router-dom';
 import FilterTypes from 'components/organisms/Filters/FilterTypes';
 import { StoresContextInterface } from 'types';
 import Loader from 'components/atoms/Loader/Loader';
 import HeaderSearchButton from 'components/molecules/ToolsButtons/HeaderSearchButton';
+import StoreCards from 'components/organisms/Cards/StoreCards';
+import TransitionBox from 'components/atoms/Transitions/TransitionBox';
 
 const Stores = () => {
     const {
         sortedStores,
-        filteredStores,
+        filteredByTypeStores,
         setScrollPosition,
         scrollPosition,
         instrumentalBarHeight,
@@ -56,17 +57,13 @@ const Stores = () => {
         }, 250);
     }, [loading, loadStores]);
 
-    const forRenderStores = storesList
+    const filteredStores = storesList
         ?.filter(store => store.name.toLocaleLowerCase().includes(sortedStores.toLocaleLowerCase()))
-        .filter(store => {
-            if (!filteredStores.length) return true;
-            const filteredStore = store.productTypes.some(({ id }) => {
-                return filteredStores.find(el => {
-                    return Number(el) === Number(id);
-                });
-            });
-            return filteredStore;
-        });
+        .filter(el =>
+            filteredByTypeStores.length
+                ? el.storeProductTypes.find(item => filteredByTypeStores.includes(item?.code))
+                : true
+        );
 
     return (
         <Box pb={1}>
@@ -82,36 +79,15 @@ const Stores = () => {
                 )}
             />
 
-            {forRenderStores?.length ? (
-                <Box
-                    sx={{
-                        display: 'flex',
-                        flexWrap: 'wrap',
-                        gap: 1,
-                        rowGap: 2,
-                        opacity: loading ? 0 : 1,
-                        transition: 'opacity 750ms cubic-bezier(0.4, 0, 0.2, 1)',
-                    }}
-                >
-                    {forRenderStores?.map(store => {
-                        return (
-                            <StoreCard
-                                key={store.id}
-                                imgUrl={store.imgUrl}
-                                logo={store?.logo?.path}
-                                name={store.name}
-                                description={store.description}
-                                storeId={store.id}
-                                locked={store.private}
-                                setStoreToApprove={setStoreToApprove}
-                                storeCode={store.code}
-                                isFavorite={!!favoritesStores?.find(el => el.code === store?.code)}
-                                supportedLanguages={store.supportedLanguages?.map(el => el.code)}
-                            />
-                        );
-                    })}
-                </Box>
-            ) : !forRenderStores?.length && !loadStores && !loading ? (
+            {filteredStores?.length ? (
+                <TransitionBox dependency={loading}>
+                    <StoreCards
+                        data={filteredStores}
+                        dataFavorite={favoritesStores}
+                        setStoreToApprove={setStoreToApprove}
+                    />
+                </TransitionBox>
+            ) : !filteredStores?.length && !loadStores && !loading ? (
                 <EmptyPage isShown />
             ) : (
                 <Loader position="fixed" />

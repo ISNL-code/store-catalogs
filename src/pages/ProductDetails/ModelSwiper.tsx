@@ -60,8 +60,8 @@ const ModelSwiper = ({ images, selectedVariant }) => {
                                         <Gradient dest="top" />
                                         <Gradient dest="bottom" />
                                         <Image
-                                            width={store?.imgWidth}
-                                            height={store?.imgHeight}
+                                            width={store?.productImagesOptions.width}
+                                            height={store?.productImagesOptions.height}
                                             imgUrl={`https://images.weserv.nl/?url=${imageUrl}&q=45`}
                                         />
                                     </Box>

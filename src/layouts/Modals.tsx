@@ -4,7 +4,6 @@ import Register from 'pages/Login/Register';
 import ForgotPassword from 'pages/Login/ForgotPassword';
 import RegisterWarning from 'pages/Login/RegisterWarning';
 import StoreSecretKey from 'pages/Login/StoreSecretKey';
-import LanguageWarning from 'components/organisms/Forms/LanguageWarning';
 
 interface ModalsInterface {
     string;
@@ -18,9 +17,6 @@ interface ModalsInterface {
 const Modals = ({ string, setAuth, lang, openModalType, setOpenModalType, storeToApprove }: ModalsInterface) => {
     return (
         <>
-            {openModalType === 'language-warning' && (
-                <LanguageWarning string={string} close={() => setOpenModalType(null)} />
-            )}
             {openModalType === 'login' && (
                 <Login
                     setAuth={setAuth}
