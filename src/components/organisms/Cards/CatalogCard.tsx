@@ -1,5 +1,4 @@
 import { Box, IconButton, Typography } from '@mui/material';
-import Card from 'components/atoms/Sections/Card';
 import Image from 'components/atoms/Media/Image';
 import ShareButton from 'components/molecules/ToolsButtons/ShareButton';
 import { WEB_URL } from 'constants/constants';

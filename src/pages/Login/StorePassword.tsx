@@ -37,7 +37,7 @@ export default function StorePassword({ setAuth, string, close, setOpenModalType
                 primaryAction={() => {
                     setValidate(true);
                     if (!/\S+@\S+\.\S+/.test(username) || !username.length || password.length < 8) return;
-                    loginCustomer({ username, password })
+                    loginCustomer({ username, password, storeCode: 'DEFAULT' })
                         .then(res => {
                             localStorage.setItem(ACCESS_TOKEN_KEY, JSON.stringify(res.data.token));
                             if (res.data.token) setAuth(true);

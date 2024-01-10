@@ -4,12 +4,12 @@ import CloseIcon from '@mui/icons-material/Close';
 const ModalWindow = ({
     children,
     type,
-    primaryAction,
+    primaryAction = () => {},
     title,
     text,
-    actionTitle,
-    secondaryTitle,
-    secondaryAction,
+    actionTitle = '',
+    secondaryTitle = null,
+    secondaryAction = () => {},
     closeAction,
 }) => {
     const headerColor = () => {
@@ -110,7 +110,7 @@ const ModalWindow = ({
                             {children}
                         </Box>
                     )}
-                    <Box px={2} pb={1.5} sx={{ display: 'flex', justifyContent: 'flex-end', gap: 1 }}>
+                    {/* <Box px={2} pb={1.5} sx={{ display: 'flex', justifyContent: 'flex-end', gap: 1 }}>
                         {secondaryAction && (
                             <Button
                                 variant="outlined"
@@ -129,7 +129,7 @@ const ModalWindow = ({
                         >
                             {actionTitle}
                         </Button>
-                    </Box>
+                    </Box> */}
                 </Box>
             </Box>
         </Box>

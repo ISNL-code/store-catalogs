@@ -24,7 +24,6 @@ export default function ForgotPasswordForm({ string, close, setOpenModalType }) 
                     text={string?.an_email_with_a_link_has_been_sent_to_your_email}
                     actionTitle={string?.login}
                     secondaryTitle={null}
-                    secondaryAction={null}
                     closeAction={() => {
                         close();
                     }}
@@ -48,7 +47,6 @@ export default function ForgotPasswordForm({ string, close, setOpenModalType }) 
                 }
                 actionTitle={string?.reset_password}
                 secondaryTitle={null}
-                secondaryAction={null}
                 closeAction={() => {
                     setOpenModalType(null);
                 }}

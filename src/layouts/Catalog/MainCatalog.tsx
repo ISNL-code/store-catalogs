@@ -158,13 +158,11 @@ export default function MainCatalog({ lang, setLang, auth, setAuth }) {
                 lang={lang}
                 setLang={setLang}
                 auth={auth}
-                withCart={store?.additionalStoreSettings?.cart}
-                withFavorites={store?.additionalStoreSettings?.favorites}
-                withContacts={store?.mainStoreSettings?.contacts}
                 logo={store?.logo?.path}
                 storeHeaderName={store?.name}
                 setOpenModalType={setOpenModalType}
                 openModalType={openModalType}
+                store={store}
             />
             <Box
                 px={appXPadding}
@@ -199,7 +197,6 @@ export default function MainCatalog({ lang, setLang, auth, setAuth }) {
                         handleCategoriesQuery: handleCategoriesQuery,
                         setOpenModalType: setOpenModalType,
                         openModalType: openModalType,
-                        contacts: store?.contacts,
                     }}
                 />
             </Box>

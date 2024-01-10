@@ -1,4 +1,4 @@
-import { Box, IconButton, Paper } from '@mui/material';
+import { Box } from '@mui/material';
 import Gradient from 'components/atoms/Gradient/Gradient';
 import Image from 'components/atoms/Media/Image';
 import { Fragment, useEffect, useState } from 'react';
@@ -10,7 +10,7 @@ import FullScreenSwiper from './FullScreenSwiper';
 const ModelSwiper = ({ images, selectedVariant }) => {
     const { store, headerHeight, instrumentalBarHeight, footerHeight }: CatalogContextInterface = useOutletContext();
     const [fullScreenMode, setFullScreenMode] = useState<boolean>(false);
-    const { sm } = useDevice();
+    const { sm, sx } = useDevice();
     const [slide, setSlide] = useState(0);
     const [imagesList, setImagesList] = useState<{ imageUrl: string }[] | []>([]);
 
@@ -32,11 +32,10 @@ const ModelSwiper = ({ images, selectedVariant }) => {
                 }}
             >
                 <Box
-                    px={2}
                     pb={1}
                     sx={{
                         display: 'flex',
-                        flexDirection: sm ? 'row' : 'column',
+                        flexDirection: sx ? 'row' : 'column',
                         gap: 0.75,
                     }}
                 >
@@ -47,7 +46,7 @@ const ModelSwiper = ({ images, selectedVariant }) => {
                                 <Box
                                     sx={{
                                         borderRadius: 4,
-                                        minWidth: imagesList.length > 1 ? '60%' : '100%',
+                                        minWidth: imagesList.length < 1 ? '100%' : sm ? '65%' : '40%',
                                         position: 'relative',
                                         overflow: 'hidden',
                                     }}

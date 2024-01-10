@@ -28,13 +28,13 @@ export const useProductsApi = () => {
         );
     };
 
-    const useGetProductBySku = ({ sku }) => {
+    const useGetProductBySku = ({ sku, storeCode }) => {
         return useQuery(
             ['get-product-by-sku'],
 
             () =>
                 get({
-                    url: `v2/products?variantSku=${sku}&count=8`,
+                    url: `v2/products?variantSku=${sku}&count=20&store=${storeCode}`,
                 }),
             { enabled: !!sku }
         );

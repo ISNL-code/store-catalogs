@@ -7,6 +7,11 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'en',
             string: {
+                call_back_messageA:
+                    'Hello! If you have questions, comments or need assistance, please contact us. We are ready to help you with your choice, provide you with additional information about the product or help you place your order.',
+
+                call_back_messageB: 'You can contact us in any messenger available or by phone.',
+                call_back_messageC: 'Thank you for your interest in our online catalogue!',
                 languages: 'Languages',
                 back_to_stores: 'Back to stores',
                 ok: 'Ok',
@@ -230,6 +235,11 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'fr',
             string: {
+                call_back_messageA:
+                    'Hello! If you have questions, comments or need assistance, please contact us. We are ready to help you with your choice, provide you with additional information about the product or help you place your order.',
+
+                call_back_messageB: 'You can contact us in any messenger available or by phone.',
+                call_back_messageC: 'Thank you for your interest in our online catalogue!',
                 languages: 'Languages',
                 back_to_stores: 'Back to stores',
                 ok: 'Ok',
@@ -453,6 +463,11 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'es',
             string: {
+                call_back_messageA:
+                    'Hello! If you have questions, comments or need assistance, please contact us. We are ready to help you with your choice, provide you with additional information about the product or help you place your order.',
+
+                call_back_messageB: 'You can contact us in any messenger available or by phone.',
+                call_back_messageC: 'Thank you for your interest in our online catalogue!',
                 languages: 'Languages',
                 back_to_stores: 'Back to stores',
                 ok: 'Ok',
@@ -676,6 +691,10 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'ua',
             string: {
+                call_back_messageA:
+                    'Привіт! Якщо у вас є запитання, коментарі або потрібна допомога, зв’яжіться з нами. Ми готові допомогти вам з вибором, надати додаткову інформацію про товар або допомогти оформити замовлення.',
+                call_back_messageB: 'Ви можете зв’язатися з нами в будь-якому доступному месенджері або по телефону.',
+                call_back_messageC: 'Дякуємо за інтерес до нашого онлайн-каталогу!',
                 languages: 'Мови',
                 back_to_stores: 'Повернутися до магазинiв',
                 ok: 'Ок',
@@ -902,6 +921,11 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'pl',
             string: {
+                call_back_messageA:
+                    'Cześć! Jeśli masz pytania, uwagi lub potrzebujesz pomocy, skontaktuj się z nami. Chętnie pomożemy w dokonaniu wyboru, udzielimy dodatkowych informacji o produkcie lub pomożemy w złożeniu zamówienia.',
+                call_back_messageB:
+                    'Można się z nami skontaktować w dowolnym komunikatorze dostępnym lub telefonicznie.',
+                call_back_messageC: 'Dziękujemy za zainteresowanie naszym katalogiem online!',
                 languages: 'Języki',
                 back_to_stores: 'Wróć do sklepów',
                 ok: 'Ok',
@@ -1126,6 +1150,10 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'cz',
             string: {
+                call_back_messageA:
+                    'Ahoj! Pokud máte dotazy, připomínky nebo potřebujete pomoc, kontaktujte nás. Jsme připraveni vám pomoci s výběrem, poskytnout doplňující informace o produktu nebo pomoci s objednávkou.',
+                call_back_messageB: 'Můžete nás kontaktovat v jakémkoli uvedeném messengeru nebo telefonicky.',
+
                 languages: 'Jazyky',
                 back_to_stores: 'Vraťte se do obchodů',
                 ok: 'Ok',
@@ -1349,6 +1377,11 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'ru',
             string: {
+                call_back_messageA:
+                    'Привет! Если у вас есть вопросы, комментарии или нужна помощь, пожалуйста, обратитесь к нам. Мы готовы помочь вам с выбором, предоставить вам дополнительную информацию о продукте или помочь с оформлением заказа.',
+                call_back_messageB: 'Вы можете связаться с нами в любом доступном мессенджере или по телефону.',
+                call_back_messageC: 'Спасибо за ваш интерес к нашему интернет-каталогу!',
+
                 languages: 'Языки',
                 back_to_stores: 'Вернуться к магазинам',
                 ok: 'Ок',

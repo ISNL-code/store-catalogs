@@ -1,7 +1,9 @@
 import { Box, Typography } from '@mui/material';
+import Grid from '@mui/material/Unstable_Grid2';
 import { useProductsApi } from 'api/useProductsApi';
 import BackButton from 'components/atoms/Buttons/BackButton';
 import Loader from 'components/atoms/Loader/Loader';
+import TransitionBox from 'components/atoms/Transitions/TransitionBox';
 import ShareButton from 'components/molecules/ToolsButtons/ShareButton';
 import InstrumentalSubHeader from 'components/organisms/InstrumentalSubHeader/InstrumentalSubHeader';
 import { WEB_URL } from 'constants/constants';
@@ -96,6 +98,15 @@ const ProductDetails = () => {
 
     const { xxs, xs, s, sm, sx, m, mx, ls, l, lx, slx, lxx, lxxx } = useDevice();
 
+    const swiperGrid = () => {
+        if (sx) return 12;
+        return 4;
+    };
+    const detailsGrid = () => {
+        if (sx) return 12;
+        return 8;
+    };
+
     return (
         <>
             {loadProduct && <Loader />}
@@ -122,63 +133,44 @@ const ProductDetails = () => {
                     />
                 )}
             />
-            <Box
-                mt={-10}
-                pt={10}
-                sx={{
-                    width: '100%',
-                    display: 'flex',
-                    flexDirection: sm ? 'column' : 'row',
-                    justifyContent: 'center',
-                    position: 'relative',
-                    gap: sm ? 1 : 2,
-                    opacity: loading ? 0 : 1,
-                    transition: 'opacity 250ms cubic-bezier(0, 0.2, 0.5, 1)',
-                }}
-            >
-                <Box
-                    mt={-10}
-                    pt={10}
-                    mx={-2}
-                    sx={{
-                        width: sm ? '100vw' : m ? '300px' : ls ? '350px' : '475px',
-                        height: 'auto',
-                        overflowY: sm ? 'scroll' : 'auto',
-
-                        '&::-webkit-scrollbar': {
-                            display: 'none',
-                        },
-                    }}
-                >
-                    <ModelSwiper images={selectedVariant?.images} selectedVariant={selectedVariant} />
-                </Box>
-                <Box
-                    sx={{
-                        position: 'sticky',
-                        width: m ? '100%' : '50%',
-                        height: 'fit-content',
-                        border: m ? 'none' : '1px solid #ececec',
-                        borderRadius: m ? 0 : 2,
-                        padding: m ? 0 : 4,
-                        marginBottom: 1,
-                        paddingTop: sm ? 0 : m ? 1 : 4,
-                        paddingBottom: 0,
-                        overflow: sm ? 'visible' : 'auto',
-                        maxHeight: sm
-                            ? ''
-                            : `calc(100vh - ${headerHeight}px - ${instrumentalBarHeight}px - ${footerHeight}px - 16px)`,
-                        '&::-webkit-scrollbar': {
-                            display: m ? 'none' : '',
-                        },
-                    }}
-                >
-                    <ModelDetails
-                        productDetails={productDetails}
-                        selectedVariant={selectedVariant}
-                        setSelectedVariant={setSelectedVariant}
-                    />
-                </Box>
-            </Box>
+            <TransitionBox dependency={loading}>
+                <Grid container xs={12} px={ls ? 0 : 30}>
+                    <Grid
+                        mt={-10}
+                        pt={10}
+                        xs={swiperGrid()}
+                        sx={{
+                            overflow: 'scroll',
+                            '&::-webkit-scrollbar': {
+                                display: 'none',
+                            },
+                        }}
+                    >
+                        <ModelSwiper images={selectedVariant?.images} selectedVariant={selectedVariant} />
+                    </Grid>
+                    <Grid
+                        xs={detailsGrid()}
+                        sx={{
+                            height: '100%',
+                            overflow: 'scroll',
+                            maxHeight: sx
+                                ? ''
+                                : `calc(100vh - ${headerHeight}px - ${instrumentalBarHeight}px - ${footerHeight}px - 16px)`,
+                            '&::-webkit-scrollbar': {
+                                display: m ? 'none' : '',
+                            },
+                        }}
+                    >
+                        <Box p={sx ? 0 : 2}>
+                            <ModelDetails
+                                productDetails={productDetails}
+                                selectedVariant={selectedVariant}
+                                setSelectedVariant={setSelectedVariant}
+                            />
+                        </Box>
+                    </Grid>
+                </Grid>
+            </TransitionBox>
         </>
     );
 };

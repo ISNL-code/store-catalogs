@@ -94,18 +94,20 @@ export interface StoreInterface {
     securityStoreSettings: any;
     storeProductTypes: any;
     description: any;
-    contacts: {
-        managers: [
-            {
-                id: number;
-                first_name: string | null;
-                last_name: string | null;
-                email: string | null;
-                phone_number: string | null;
-                telegram: string | null;
-            }
-        ];
-    } | null;
+    managers: [
+        {
+            firstName: string;
+            lastName: string;
+            emailAddress: string;
+            contacts: {
+                phone: string;
+                viber: string;
+                whatsapp: string;
+                telegram: string;
+                emailAddress: string;
+            };
+        }
+    ];
 }
 
 export interface ItemDescriptionInterface {

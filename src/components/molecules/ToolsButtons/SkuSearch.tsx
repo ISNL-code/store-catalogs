@@ -18,7 +18,7 @@ const SkuSearch = () => {
         data: productSkuRes,
         refetch: findSku,
         isFetching: loadMatched,
-    } = useProductsApi().useGetProductBySku({ sku: query });
+    } = useProductsApi().useGetProductBySku({ sku: query, storeCode });
     const inputRef = useRef<HTMLInputElement>(null);
     const { appXPadding, string, headerHeight }: any = useOutletContext();
 

@@ -14,6 +14,7 @@ import SkuSearch from 'components/molecules/ToolsButtons/SkuSearch';
 import { CatalogContextInterface } from 'types';
 import TransitionBox from 'components/atoms/Transitions/TransitionBox';
 import Grid from '@mui/material/Unstable_Grid2';
+import CallBackButton from 'components/atoms/Buttons/CallBackButton';
 
 const Catalog = () => {
     const {
@@ -59,6 +60,7 @@ const Catalog = () => {
         <Box pb={1}>
             {showTopBtn && <ScrollButton />}
             {loading && <Loader />}
+            {store?.mainStoreSettings?.contacts && <CallBackButton />}
             <InstrumentalSubHeader
                 StartSlot={() => <BackButton nav="/" action={() => {}} />}
                 EndSlot={() => (

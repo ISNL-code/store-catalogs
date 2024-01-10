@@ -18,8 +18,10 @@ import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { ACCESS_TOKEN_KEY } from 'constants/constants';
 import ModalWindow from 'components/atoms/ModalWindow/ModalWindow';
 import Loader from 'components/atoms/Loader/Loader';
+import { useParams } from 'react-router-dom';
 
 export default function Register({ setAuth, lang, string, close, setOpenModalType }) {
+    const { storeCode } = useParams();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
@@ -51,7 +53,6 @@ export default function Register({ setAuth, lang, string, close, setOpenModalTyp
                 text={''}
                 actionTitle={string?.register}
                 secondaryTitle={null}
-                secondaryAction={null}
                 closeAction={() => {
                     close();
                     setError(false);
@@ -77,6 +78,7 @@ export default function Register({ setAuth, lang, string, close, setOpenModalTyp
                         country: country,
                         phone: phoneNumber,
                         lang,
+                        storeCode: storeCode || 'DEFAULT',
                     })
                         .then(res => {
                             localStorage.setItem(ACCESS_TOKEN_KEY, JSON.stringify(res.data.token));

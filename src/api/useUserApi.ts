@@ -15,6 +15,7 @@ export const useUserApi = () => {
                 country,
                 phone,
                 lang,
+                storeCode,
             }: {
                 emailAddress: string;
                 firstName: string;
@@ -24,9 +25,10 @@ export const useUserApi = () => {
                 country: string;
                 phone: string;
                 lang: string;
+                storeCode: string;
             }) => {
                 return post({
-                    url: `v1/customer/register`,
+                    url: `v1/customer/register?store=${storeCode}`,
                     body: {
                         billing: {
                             country: country,
@@ -61,9 +63,9 @@ export const useUserApi = () => {
     };
 
     const useCustomerLogin = () =>
-        useMutation(({ password, username }: { password: string; username: string }) => {
+        useMutation(({ password, username, storeCode }: { password: string; username: string; storeCode: string }) => {
             return post({
-                url: `v1/customer/login/`,
+                url: `v1/customer/login?store=${storeCode}`,
                 body: {
                     password: password,
                     username: username,

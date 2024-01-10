@@ -1,4 +1,4 @@
-import { Box, Divider, IconButton, Typography } from '@mui/material';
+import { Box, IconButton, Typography } from '@mui/material';
 import { TelegramIcon } from 'assets/svg/telega.js';
 import { ViberIcon } from 'assets/svg/Viber_icon-icons.com_66792.js';
 import { WhatsAppIcon } from 'assets/svg/whatsapp.js';
@@ -10,9 +10,10 @@ import { useEffect } from 'react';
 import InstrumentalSubHeader from 'components/organisms/InstrumentalSubHeader/InstrumentalSubHeader';
 import BackButton from 'components/atoms/Buttons/BackButton';
 import { useDevice } from 'hooks/useDevice';
+import { CatalogContextInterface } from 'types';
 
 const ContactsPage = () => {
-    const { contacts }: any = useOutletContext();
+    const { store }: CatalogContextInterface = useOutletContext();
     const { sm, mx } = useDevice();
 
     useEffect(() => {
@@ -25,7 +26,7 @@ const ContactsPage = () => {
     return (
         <Box sx={{ display: 'flex', width: '100%', justifyContent: 'center', gap: 3, flexWrap: 'wrap' }}>
             <InstrumentalSubHeader StartSlot={() => <BackButton nav={-1} action={() => {}} />} />
-            {contacts.managers.map(manager => {
+            {store?.managers.map(manager => {
                 return (
                     <Box
                         my={1}
@@ -52,7 +53,7 @@ const ContactsPage = () => {
                                 alignItems: sm ? 'center' : 'start',
                             }}
                         >
-                            {(manager.first_name || manager.last_name) && (
+                            {(manager.firstName || manager.lastName) && (
                                 <Box
                                     sx={{
                                         display: 'flex',
@@ -72,14 +73,14 @@ const ContactsPage = () => {
                                         }}
                                     >
                                         <PersonIcon color="disabled" />
-                                        {manager.first_name && (
+                                        {manager.firstName && (
                                             <Typography variant={sm ? 'h3' : 'h2'} sx={{ fontWeight: 700 }}>
-                                                {manager.first_name}
+                                                {manager.firstName}
                                             </Typography>
                                         )}
-                                        {manager.last_name && (
+                                        {manager.lastName && (
                                             <Typography variant={sm ? 'h3' : 'h2'} sx={{ fontWeight: 700 }}>
-                                                {manager.last_name}
+                                                {manager.lastName}
                                             </Typography>
                                         )}
                                     </Box>
@@ -96,13 +97,12 @@ const ContactsPage = () => {
                                     gap: sm ? 1.5 : 2,
                                     justifyContent: 'start',
                                     flexDirection: 'column',
-                                    borderTop:
-                                        sm && (manager.first_name || manager.last_name) ? '1px solid #ccc' : 'none',
+                                    borderTop: sm && (manager.lastName || manager.lastName) ? '1px solid #ccc' : 'none',
                                     borderLeft:
-                                        !sm && (manager.first_name || manager.last_name) ? '1px solid #ccc' : 'none',
+                                        !sm && (manager.lastName || manager.lastName) ? '1px solid #ccc' : 'none',
                                 }}
                             >
-                                {manager.phone_number && (
+                                {manager.contacts?.phone && (
                                     <Box
                                         sx={{
                                             display: 'flex',
@@ -112,7 +112,7 @@ const ContactsPage = () => {
                                         }}
                                     >
                                         <Box>
-                                            <a href={`tel:${manager.phone_number}`} target="_blank" rel="noreferrer">
+                                            <a href={`tel:${manager.contacts?.phone}`} target="_blank" rel="noreferrer">
                                                 <IconButton
                                                     size="small"
                                                     sx={{
@@ -125,11 +125,11 @@ const ContactsPage = () => {
                                                 </IconButton>
                                             </a>
                                         </Box>
-                                        <Typography variant={sm ? 'h4' : 'h3'}>{manager.phone_number}</Typography>
+                                        <Typography variant={sm ? 'h4' : 'h3'}>{manager.contacts?.phone}</Typography>
                                     </Box>
                                 )}
 
-                                {manager.whatsapp && (
+                                {manager.contacts?.whatsapp && (
                                     <Box
                                         sx={{
                                             display: 'flex',
@@ -140,17 +140,17 @@ const ContactsPage = () => {
                                     >
                                         <Box>
                                             <a
-                                                href={`https://wa.me/${manager.whatsapp}`}
+                                                href={`https://wa.me/${manager.contacts?.whatsapp}`}
                                                 target="_blank"
                                                 rel="noreferrer"
                                             >
                                                 <Box sx={{ width: 35, height: 35 }}>{WhatsAppIcon()}</Box>
                                             </a>
                                         </Box>
-                                        <Typography variant={sm ? 'h4' : 'h3'}>{manager.whatsapp}</Typography>
+                                        <Typography variant={sm ? 'h4' : 'h3'}>{manager.contacts?.whatsapp}</Typography>
                                     </Box>
                                 )}
-                                {manager.viber && (
+                                {manager.contacts?.viber && (
                                     <Box
                                         sx={{
                                             display: 'flex',
@@ -161,17 +161,20 @@ const ContactsPage = () => {
                                     >
                                         <Box>
                                             <a
-                                                href={`viber://chat?number=${manager.viber.replaceAll('+', '%2B')}`}
+                                                href={`viber://chat?number=${manager.contacts?.viber.replaceAll(
+                                                    '+',
+                                                    '%2B'
+                                                )}`}
                                                 target="_blank"
                                                 rel="noreferrer"
                                             >
                                                 <Box sx={{ width: 35, height: 35 }}>{ViberIcon()}</Box>
                                             </a>
                                         </Box>
-                                        <Typography variant={sm ? 'h4' : 'h3'}>{manager.viber}</Typography>
+                                        <Typography variant={sm ? 'h4' : 'h3'}>{manager.contacts?.viber}</Typography>
                                     </Box>
                                 )}
-                                {manager.telegram && (
+                                {manager.contacts?.telegram && (
                                     <Box
                                         sx={{
                                             display: 'flex',
@@ -182,17 +185,19 @@ const ContactsPage = () => {
                                     >
                                         <Box>
                                             <a
-                                                href={`https://t.me/@${manager.telegram}`}
+                                                href={`https://t.me/@${manager.contacts?.telegram}`}
                                                 target="_blank"
                                                 rel="noreferrer"
                                             >
                                                 <Box sx={{ width: 35, height: 35 }}>{TelegramIcon()}</Box>
                                             </a>
                                         </Box>
-                                        <Typography variant={sm ? 'h4' : 'h3'}>@{manager.telegram}</Typography>
+                                        <Typography variant={sm ? 'h4' : 'h3'}>
+                                            @{manager.contacts?.telegram}
+                                        </Typography>
                                     </Box>
                                 )}
-                                {manager.email && (
+                                {manager.contacts?.emailAddress && (
                                     <Box
                                         sx={{
                                             display: 'flex',
@@ -202,7 +207,11 @@ const ContactsPage = () => {
                                         }}
                                     >
                                         <Box>
-                                            <a href={`mailto:${manager.email}`} target="_blank" rel="noreferrer">
+                                            <a
+                                                href={`mailto:${manager.contacts?.emailAddress}`}
+                                                target="_blank"
+                                                rel="noreferrer"
+                                            >
                                                 <IconButton
                                                     size="small"
                                                     sx={{
@@ -215,7 +224,9 @@ const ContactsPage = () => {
                                                 </IconButton>
                                             </a>
                                         </Box>
-                                        <Typography variant={sm ? 'h4' : 'h3'}>{manager.email}</Typography>
+                                        <Typography variant={sm ? 'h4' : 'h3'}>
+                                            {manager.contacts?.emailAddress}
+                                        </Typography>
                                     </Box>
                                 )}
                             </Box>

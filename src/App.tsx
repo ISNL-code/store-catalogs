@@ -12,7 +12,7 @@ import Catalog from 'layouts/Catalog/MainCatalog';
 import ProductDetailsPage from 'pages/ProductDetails/ProductDetails';
 import FavoritesPage from 'pages/Favorites/Favorites';
 import CartPage from 'pages/Cart/Cart';
-import ContactsPage from 'pages/Contacts/ContactsPage';
+import ContactsManagePage from 'pages/Contacts/ContactsManagePage';
 import { useUserApi } from 'api/useUserApi';
 
 const App = () => {
@@ -64,7 +64,10 @@ const App = () => {
                                 element={<Catalog lang={lang} setLang={setLang} auth={auth} setAuth={setAuth} />}
                             >
                                 <Route path={'/catalog/:storeCode/:storeName'} element={<CatalogPage />} />
-                                <Route path={'/catalog/:storeCode/:storeName/contacts'} element={<ContactsPage />} />
+                                <Route
+                                    path={'/catalog/:storeCode/:storeName/contacts'}
+                                    element={<ContactsManagePage />}
+                                />
                                 <Route
                                     path={'/catalog/:storeCode/:storeName/details/:productId/model/:modelSKU'}
                                     element={<ProductDetailsPage />}

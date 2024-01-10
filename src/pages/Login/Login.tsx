@@ -3,12 +3,15 @@ import DialogActions from '@mui/material/DialogActions';
 import { InputAdornment, TextField, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import { useUserApi } from 'api/useUserApi';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { ACCESS_TOKEN_KEY } from 'constants/constants';
 import ModalWindow from 'components/atoms/ModalWindow/ModalWindow';
 import Loader from 'components/atoms/Loader/Loader';
+import { Navigate, useParams } from 'react-router-dom';
+import { useFormik } from 'formik';
+import loginFormValidations from 'Validation/loginFormValidations';
 
 export default function Login({ setAuth, string, close, setOpenModalType }) {
     const [username, setUsername] = useState('');
@@ -17,37 +20,46 @@ export default function Login({ setAuth, string, close, setOpenModalType }) {
     const [error, setError] = useState(false);
     const [passwordVisible, setPasswordVisible] = useState(false);
     const { mutateAsync: loginCustomer, isLoading } = useUserApi().useCustomerLogin();
+    const { storeCode } = useParams();
+
+    const formik = useFormik({
+        initialValues: { password: '', username: '' },
+        validationSchema: loginFormValidations,
+        onSubmit: values => {
+            console.log(values);
+            // loginCustomer({ username, password, storeCode: storeCode || 'DEFAULT' })
+            //     .then(res => {
+            //         if (res.data.token) {
+            //             localStorage.setItem(ACCESS_TOKEN_KEY, JSON.stringify(res.data.token));
+            //             setAuth(true);
+            //             setOpenModalType(null);
+            //         }
+            //     })
+            //     .catch(() => {
+            //         setError(true);
+            //     });
+        },
+    });
+
+    useEffect(() => {
+        formik.setValues({ password, username });
+    }, [password, username]);
 
     return (
-        <>
+        <form
+            onSubmit={e => {
+                e.preventDefault();
+                formik.handleSubmit();
+            }}
+        >
             {isLoading && <Loader />}
             <ModalWindow
                 type={''}
                 title={string?.login}
                 text={''}
-                actionTitle={string?.login}
-                secondaryTitle={string?.register}
-                secondaryAction={() => {
-                    setOpenModalType('register');
-                }}
                 closeAction={() => {
                     close();
                     setError(false);
-                }}
-                primaryAction={() => {
-                    setValidate(true);
-                    if (!/\S+@\S+\.\S+/.test(username) || !username.length || password.length < 8) return;
-                    loginCustomer({ username, password })
-                        .then(res => {
-                            if (res.data.token) {
-                                localStorage.setItem(ACCESS_TOKEN_KEY, JSON.stringify(res.data.token));
-                                setAuth(true);
-                                setOpenModalType(null);
-                            }
-                        })
-                        .catch(() => {
-                            setError(true);
-                        });
                 }}
             >
                 {error && (
@@ -63,7 +75,7 @@ export default function Login({ setAuth, string, close, setOpenModalType }) {
                     onChange={e => {
                         setUsername(e.target.value);
                     }}
-                    value={username}
+                    value={username || ''}
                     margin="dense"
                     id="name"
                     label={string?.email}
@@ -74,15 +86,8 @@ export default function Login({ setAuth, string, close, setOpenModalType }) {
                             color: '#898B9B',
                         },
                     }}
-                    error={validate && (!/\S+@\S+\.\S+/.test(username) || !username.length)}
-                    helperText={
-                        validate &&
-                        (username.length < 1
-                            ? string?.enter_email
-                            : !/\S+@\S+\.\S+/.test(username)
-                            ? string?.enter_valid_email
-                            : '')
-                    }
+                    error={!!(formik.errors.username && formik.touched.username)}
+                    helperText={formik.errors.username && string[formik.errors.username]}
                 />
                 <TextField
                     size="small"
@@ -101,15 +106,8 @@ export default function Login({ setAuth, string, close, setOpenModalType }) {
                             color: '#898B9B',
                         },
                     }}
-                    error={validate && password.length < 8}
-                    helperText={
-                        validate &&
-                        (password.length < 1
-                            ? string?.enter_password
-                            : password.length < 8
-                            ? string?.password_length_min_8_symbols
-                            : '')
-                    }
+                    error={!!(formik.errors.password && formik.touched.password)}
+                    helperText={formik.errors.password && string[formik.errors.password]}
                     InputProps={{
                         endAdornment: (
                             <InputAdornment
@@ -132,7 +130,21 @@ export default function Login({ setAuth, string, close, setOpenModalType }) {
                         {string?.forgot_password}
                     </Button>
                 </DialogActions>
+                <Box mt={1} px={2} pb={1.5} sx={{ display: 'flex', justifyContent: 'flex-end', gap: 1 }}>
+                    <Button
+                        variant="outlined"
+                        onClick={() => {
+                            setOpenModalType('register');
+                        }}
+                    >
+                        {string?.register}
+                    </Button>
+
+                    <Button variant="contained" type="submit">
+                        {string?.login}
+                    </Button>
+                </Box>
             </ModalWindow>
-        </>
+        </form>
     );
 }
