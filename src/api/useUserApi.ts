@@ -63,7 +63,7 @@ export const useUserApi = () => {
     };
 
     const useCustomerLogin = () =>
-        useMutation(({ password, username, storeCode }: { password: string; username: string; storeCode: string }) => {
+        useMutation(({ password, username, storeCode }: { password: string; username: string; storeCode: any }) => {
             return post({
                 url: `v1/customer/login?store=${storeCode}`,
                 body: {
@@ -74,9 +74,9 @@ export const useUserApi = () => {
         });
 
     const useResetCustomerPassword = () =>
-        useMutation(({ username }: { username: string }) => {
+        useMutation(({ username, storeCode }: { username: string; storeCode: any }) => {
             return post({
-                url: `v1/customer/password/reset/request/`,
+                url: `v1/customer/password/reset/request?store=${storeCode}`,
                 body: {
                     returnUrl: '',
                     username: username,

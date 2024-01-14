@@ -2,42 +2,66 @@ import Button from '@mui/material/Button';
 import DialogActions from '@mui/material/DialogActions';
 import { TextField, Typography } from '@mui/material';
 import { Box } from '@mui/system';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useUserApi } from 'api/useUserApi';
 import Loader from 'components/atoms/Loader/Loader';
 import ModalWindow from 'components/atoms/ModalWindow/ModalWindow';
+import { useFormik } from 'formik';
+import emailFormValidations from 'Validation/emailFormValidations';
+import { useParams } from 'react-router-dom';
 
 export default function ForgotPasswordForm({ string, close, setOpenModalType }) {
     const [successReset, setSuccessReset] = useState(false);
     const [username, setUsername] = useState('');
-    const [validate, setValidate] = useState(false);
     const [error, setError] = useState(false);
+    const { storeCode } = useParams();
 
     const { mutateAsync: resetPassword, isLoading } = useUserApi().useResetCustomerPassword();
+
+    const formik = useFormik({
+        initialValues: { username: '' },
+        validationSchema: emailFormValidations,
+        onSubmit: values => {
+            resetPassword({ username: values.username, storeCode })
+                .then(() => {
+                    setSuccessReset(true);
+                })
+                .catch(() => setError(true));
+        },
+    });
+
+    useEffect(() => {
+        formik.setValues({ username });
+    }, [username]);
 
     if (successReset)
         return (
             <>
+                {isLoading && <Loader />}
                 <ModalWindow
                     type={'success'}
                     title={string?.sended}
                     text={string?.an_email_with_a_link_has_been_sent_to_your_email}
-                    actionTitle={string?.login}
-                    secondaryTitle={null}
                     closeAction={() => {
                         close();
                     }}
-                    primaryAction={() => {
-                        setOpenModalType('login');
-                    }}
                 >
-                    <></>
+                    <Box mt={2} pb={1.5} sx={{ display: 'flex', justifyContent: 'flex-end', gap: 1 }}>
+                        <Button variant="contained" onClick={() => setOpenModalType('login')}>
+                            {string?.login}
+                        </Button>
+                    </Box>
                 </ModalWindow>
             </>
         );
 
     return (
-        <>
+        <form
+            onSubmit={e => {
+                e.preventDefault();
+                formik.handleSubmit();
+            }}
+        >
             {isLoading && <Loader />}
             <ModalWindow
                 type={'warning'}
@@ -45,19 +69,8 @@ export default function ForgotPasswordForm({ string, close, setOpenModalType }) 
                 text={
                     string?.please_enter_your_email_address_you_will_receive_a_link_to_create_a_new_password_via_email
                 }
-                actionTitle={string?.reset_password}
-                secondaryTitle={null}
                 closeAction={() => {
-                    setOpenModalType(null);
-                }}
-                primaryAction={() => {
-                    setValidate(true);
-                    if (!/\S+@\S+\.\S+/.test(username) || !username.length) return;
-                    resetPassword({ username })
-                        .then(() => {
-                            setSuccessReset(true);
-                        })
-                        .catch(() => setError(true));
+                    close();
                 }}
             >
                 {error && (
@@ -85,15 +98,8 @@ export default function ForgotPasswordForm({ string, close, setOpenModalType }) 
                         },
                         mt: 4,
                     }}
-                    error={validate && (!/\S+@\S+\.\S+/.test(username) || !username.length)}
-                    helperText={
-                        validate &&
-                        (username.length < 1
-                            ? string?.enter_email
-                            : !/\S+@\S+\.\S+/.test(username)
-                            ? string?.enter_valid_email
-                            : '')
-                    }
+                    error={!!(formik.errors.username && formik.touched.username)}
+                    helperText={formik.errors.username && string[formik.errors.username]}
                 />
 
                 <DialogActions sx={{ justifyContent: 'center', flexDirection: 'column' }}>
@@ -105,7 +111,12 @@ export default function ForgotPasswordForm({ string, close, setOpenModalType }) 
                         {string?.login}
                     </Button>
                 </DialogActions>
+                <Box mt={2} pb={1.5} sx={{ display: 'flex', justifyContent: 'flex-end', gap: 1 }}>
+                    <Button variant="contained" type="submit">
+                        {string?.reset_password}
+                    </Button>
+                </Box>
             </ModalWindow>
-        </>
+        </form>
     );
 }

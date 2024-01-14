@@ -12,13 +12,15 @@ import {
 } from '@mui/material';
 import { Box } from '@mui/system';
 import { useUserApi } from 'api/useUserApi';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { ACCESS_TOKEN_KEY } from 'constants/constants';
 import ModalWindow from 'components/atoms/ModalWindow/ModalWindow';
 import Loader from 'components/atoms/Loader/Loader';
 import { useParams } from 'react-router-dom';
+import { useFormik } from 'formik';
+import registerFormValidation from 'Validation/registerFormValidation';
 
 export default function Register({ setAuth, lang, string, close, setOpenModalType }) {
     const { storeCode } = useParams();
@@ -29,7 +31,6 @@ export default function Register({ setAuth, lang, string, close, setOpenModalTyp
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [country, setCountry] = useState('UA');
-    const [validate, setValidate] = useState(false);
     const [error, setError] = useState(false);
     const countryList = [
         { code: 'CZ', country: string?.czechia },
@@ -44,50 +45,57 @@ export default function Register({ setAuth, lang, string, close, setOpenModalTyp
 
     const { mutateAsync: register, isLoading } = useUserApi().useCustomerRegister();
 
+    const formik = useFormik({
+        initialValues: {
+            password: '',
+            username: '',
+            phoneNumber: '',
+            confirmPassword: '',
+            firstName: '',
+            lastName: '',
+            country: '',
+        },
+        validationSchema: registerFormValidation,
+        onSubmit: values => {
+            register({
+                emailAddress: values.username,
+                firstName: values.firstName,
+                lastName: values.lastName,
+                password: values.password,
+                username: values.username,
+                country: values.country,
+                phone: values.phoneNumber,
+                lang,
+                storeCode: storeCode || 'DEFAULT',
+            })
+                .then(res => {
+                    localStorage.setItem(ACCESS_TOKEN_KEY, JSON.stringify(res.data.token));
+                    if (res.data.token) setAuth(true);
+                    setOpenModalType(null);
+                })
+                .catch(err => {
+                    setError(true);
+                });
+        },
+    });
+
+    useEffect(() => {
+        formik.setValues({ password, username, phoneNumber, confirmPassword, firstName, lastName, country });
+    }, [password, username, phoneNumber, confirmPassword, firstName, lastName, country]);
+
     return (
-        <>
+        <form
+            onSubmit={e => {
+                e.preventDefault();
+                formik.handleSubmit();
+            }}
+        >
             {isLoading && <Loader />}
             <ModalWindow
-                type={''}
                 title={string?.register}
-                text={''}
-                actionTitle={string?.register}
-                secondaryTitle={null}
                 closeAction={() => {
                     close();
                     setError(false);
-                }}
-                primaryAction={() => {
-                    setValidate(true);
-                    if (
-                        !/\S+@\S+\.\S+/.test(username) ||
-                        !username.length ||
-                        password.length < 8 ||
-                        password !== confirmPassword ||
-                        !firstName ||
-                        !lastName ||
-                        !phoneNumber
-                    )
-                        return;
-                    register({
-                        emailAddress: username,
-                        firstName: firstName,
-                        lastName: lastName,
-                        password: password,
-                        username: username,
-                        country: country,
-                        phone: phoneNumber,
-                        lang,
-                        storeCode: storeCode || 'DEFAULT',
-                    })
-                        .then(res => {
-                            localStorage.setItem(ACCESS_TOKEN_KEY, JSON.stringify(res.data.token));
-                            if (res.data.token) setAuth(true);
-                            setOpenModalType(null);
-                        })
-                        .catch(err => {
-                            setError(true);
-                        });
                 }}
             >
                 {error && (
@@ -114,15 +122,8 @@ export default function Register({ setAuth, lang, string, close, setOpenModalTyp
                             color: '#898B9B',
                         },
                     }}
-                    error={validate && (!/\S+@\S+\.\S+/.test(username) || !username.length)}
-                    helperText={
-                        validate &&
-                        (username.length < 1
-                            ? string?.enter_email
-                            : !/\S+@\S+\.\S+/.test(username)
-                            ? string?.enter_valid_email
-                            : '')
-                    }
+                    error={!!(formik.errors.username && formik.touched.username)}
+                    helperText={formik.errors.username && string[formik.errors.username]}
                 />
                 <TextField
                     size="small"
@@ -141,15 +142,6 @@ export default function Register({ setAuth, lang, string, close, setOpenModalTyp
                             color: '#898B9B',
                         },
                     }}
-                    error={validate && password.length < 8}
-                    helperText={
-                        validate &&
-                        (password.length < 1
-                            ? string?.enter_password
-                            : password.length < 8
-                            ? string?.password_length_min_8_symbols
-                            : '')
-                    }
                     InputProps={{
                         endAdornment: (
                             <InputAdornment
@@ -161,6 +153,8 @@ export default function Register({ setAuth, lang, string, close, setOpenModalTyp
                             </InputAdornment>
                         ),
                     }}
+                    error={!!(formik.errors.password && formik.touched.password)}
+                    helperText={formik.errors.password && string[formik.errors.password]}
                 />
                 <TextField
                     size="small"
@@ -179,8 +173,6 @@ export default function Register({ setAuth, lang, string, close, setOpenModalTyp
                             color: '#898B9B',
                         },
                     }}
-                    error={validate && password !== confirmPassword}
-                    helperText={validate && password !== confirmPassword ? string?.passwords_do_not_match : ''}
                     InputProps={{
                         endAdornment: (
                             <InputAdornment
@@ -192,6 +184,8 @@ export default function Register({ setAuth, lang, string, close, setOpenModalTyp
                             </InputAdornment>
                         ),
                     }}
+                    error={!!(formik.errors.confirmPassword && formik.touched.confirmPassword)}
+                    helperText={formik.errors.confirmPassword && string[formik.errors.confirmPassword]}
                 />
                 <TextField
                     size="small"
@@ -210,8 +204,8 @@ export default function Register({ setAuth, lang, string, close, setOpenModalTyp
                             color: '#898B9B',
                         },
                     }}
-                    error={validate && !firstName}
-                    helperText={validate && !firstName ? string?.enter_first_name : ''}
+                    error={!!(formik.errors.firstName && formik.touched.firstName)}
+                    helperText={formik.errors.firstName && string[formik.errors.firstName]}
                 />
                 <TextField
                     size="small"
@@ -230,8 +224,8 @@ export default function Register({ setAuth, lang, string, close, setOpenModalTyp
                             color: '#898B9B',
                         },
                     }}
-                    error={validate && !lastName}
-                    helperText={validate && !lastName ? string?.enter_last_name : ''}
+                    error={!!(formik.errors.lastName && formik.touched.lastName)}
+                    helperText={formik.errors.lastName && string[formik.errors.lastName]}
                 />
                 <TextField
                     size="small"
@@ -256,14 +250,8 @@ export default function Register({ setAuth, lang, string, close, setOpenModalTyp
                             color: '#898B9B',
                         },
                     }}
-                    error={validate && (!phoneNumber || phoneNumber.length < 7)}
-                    helperText={
-                        validate
-                            ? phoneNumber.length < 7 && phoneNumber
-                                ? string?.phone_length_minimum_7_characters
-                                : string?.enter_phone_number
-                            : ''
-                    }
+                    error={!!(formik.errors.phoneNumber && formik.touched.phoneNumber)}
+                    helperText={formik.errors.phoneNumber && string[formik.errors.phoneNumber]}
                 />
                 <FormControl fullWidth sx={{ minWidth: 250, mt: 1 }} size="small">
                     <InputLabel sx={{ color: '#696666' }} id="country-label">
@@ -294,7 +282,12 @@ export default function Register({ setAuth, lang, string, close, setOpenModalTyp
                         {string?.already_registered}
                     </Button>
                 </DialogActions>
+                <Box mt={1} pb={1.5} sx={{ display: 'flex', justifyContent: 'flex-end', gap: 1 }}>
+                    <Button variant="contained" type="submit">
+                        {string?.register}
+                    </Button>
+                </Box>
             </ModalWindow>
-        </>
+        </form>
     );
 }

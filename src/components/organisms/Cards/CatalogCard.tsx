@@ -144,7 +144,7 @@ const CatalogCard = ({ modelsVariants, name, productID, currency, setProductsLis
                 <Box>
                     <Box
                         sx={{
-                            height: 54,
+                            height: 40,
                             overflow: 'visible',
                             backgroundColor: '#f8f8f8',
                             zIndex: 1,
@@ -157,7 +157,7 @@ const CatalogCard = ({ modelsVariants, name, productID, currency, setProductsLis
                                 justifyContent: 'center',
                                 flexWrap: isExpanded ? 'wrap' : 'nowrap',
                                 backgroundColor: '#f8f8f8',
-                                height: isExpanded ? '95px' : '54px',
+                                height: isExpanded ? '95px' : '40px',
                                 pt: 1,
                                 px: 0.2,
                                 borderTop: '1px solid #00000013',
@@ -220,7 +220,7 @@ const CatalogCard = ({ modelsVariants, name, productID, currency, setProductsLis
                                 })}
                             </Box>
                         </Box>
-                        <Box sx={{ ml: 1, mb: 4 }}>
+                        <Box sx={{ ml: 1, mt: -1.5 }}>
                             <CollapseButton collapse={setIsExpanded} isShown={isExpanded} />
                         </Box>
                     </Box>

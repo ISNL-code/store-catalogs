@@ -1,8 +1,8 @@
-import { Box, TextField, Typography } from '@mui/material';
+import { Box, Button, TextField, Typography } from '@mui/material';
 import { useStoresApi } from 'api/useStoresApi';
 import ModalWindow from 'components/atoms/ModalWindow/ModalWindow';
 import { useState } from 'react';
-import { useNavigate, useOutletContext, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const StoreSecretKey = ({ string, setOpenModalType, close, storeToApprove }) => {
     const [storeKey, setStoreKey] = useState('');
@@ -17,23 +17,8 @@ const StoreSecretKey = ({ string, setOpenModalType, close, storeToApprove }) => 
             type={''}
             title={string?.enter_store_key}
             text={string?.this_catalog_is_private_in_order_to_enter_you_must_enter_the_key}
-            actionTitle={string?.approve}
-            secondaryTitle={string?.close}
-            secondaryAction={() => {
-                close();
-            }}
             closeAction={() => {
                 close();
-            }}
-            primaryAction={() => {
-                setValidate(true);
-
-                if (!storeKey.length) return;
-                const valid = enterStoreKey({ storeKey, storeCode: storeToApprove.code });
-
-                if (!valid) return setError(string?.wrong_key);
-
-                navigate(`/catalog/${storeToApprove.code}/${storeToApprove.name.toLowerCase().replaceAll(' ', '-')}`);
             }}
         >
             <Box mt={1}>
@@ -63,6 +48,34 @@ const StoreSecretKey = ({ string, setOpenModalType, close, storeToApprove }) => 
                     error={validate && !storeKey.length}
                     helperText={validate && (storeKey.length < 1 ? string?.enter_email : '')}
                 />
+            </Box>
+            <Box mt={1} pb={1.5} sx={{ display: 'flex', justifyContent: 'flex-end', gap: 1 }}>
+                <Button
+                    variant="outlined"
+                    onClick={() => {
+                        close();
+                    }}
+                >
+                    {string?.cancel}
+                </Button>
+
+                <Button
+                    variant="contained"
+                    onClick={() => {
+                        setValidate(true);
+
+                        if (!storeKey.length) return;
+                        const valid = enterStoreKey({ storeKey, storeCode: storeToApprove.code });
+
+                        if (!valid) return setError(string?.wrong_key);
+
+                        navigate(
+                            `/catalog/${storeToApprove.code}/${storeToApprove.name.toLowerCase().replaceAll(' ', '-')}`
+                        );
+                    }}
+                >
+                    {string?.approve}
+                </Button>
             </Box>
         </ModalWindow>
     );

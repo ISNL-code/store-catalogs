@@ -5,6 +5,7 @@ import BackButton from 'components/atoms/Buttons/BackButton';
 import Loader from 'components/atoms/Loader/Loader';
 import TransitionBox from 'components/atoms/Transitions/TransitionBox';
 import ShareButton from 'components/molecules/ToolsButtons/ShareButton';
+import SkuSearch from 'components/molecules/ToolsButtons/SkuSearch';
 import InstrumentalSubHeader from 'components/organisms/InstrumentalSubHeader/InstrumentalSubHeader';
 import { WEB_URL } from 'constants/constants';
 import { useDevice } from 'hooks/useDevice';
@@ -75,12 +76,12 @@ const ProductDetails = () => {
             top: 0,
             behavior: 'auto',
         });
-    }, [productRes]);
+    }, [productRes, modelSKU]);
 
     useEffect(() => {
         if (mount) return;
         updateModel();
-    }, [lang]);
+    }, [lang, modelSKU]);
 
     useEffect(() => {
         if (loadProduct) return;
@@ -96,7 +97,7 @@ const ProductDetails = () => {
         setSelectedVariant(productDetails?.variants?.find(product => product.sku === modelSKU));
     }, [productDetails]);
 
-    const { xxs, xs, s, sm, sx, m, mx, ls, l, lx, slx, lxx, lxxx } = useDevice();
+    const { sx, m, ls } = useDevice();
 
     const swiperGrid = () => {
         if (sx) return 12;
@@ -120,17 +121,20 @@ const ProductDetails = () => {
                     </Box>
                 )}
                 EndSlot={() => (
-                    <ShareButton
-                        path={`${WEB_URL}/catalog/${storeCode}/${storeName}/details/${productId}/model/${modelSKU?.replaceAll(
-                            '/',
-                            '_'
-                        )}`}
-                        text=""
-                        color="#ccc"
-                        size={35}
-                        orientation="down"
-                        isShown={store?.mainStoreSettings?.productShare}
-                    />
+                    <Box sx={{ display: 'flex', gap: 0.75 }}>
+                        {store?.mainStoreSettings?.skuSearch && <SkuSearch />}
+                        <ShareButton
+                            path={`${WEB_URL}/catalog/${storeCode}/${storeName}/details/${productId}/model/${modelSKU?.replaceAll(
+                                '/',
+                                '_'
+                            )}`}
+                            text=""
+                            color="#ccc"
+                            size={35}
+                            orientation="down"
+                            isShown={store?.mainStoreSettings?.productShare}
+                        />
+                    </Box>
                 )}
             />
             <TransitionBox dependency={loading}>

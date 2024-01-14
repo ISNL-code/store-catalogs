@@ -14,30 +14,28 @@ import { useFormik } from 'formik';
 import loginFormValidations from 'Validation/loginFormValidations';
 
 export default function Login({ setAuth, string, close, setOpenModalType }) {
+    const { storeCode } = useParams();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const [validate, setValidate] = useState(false);
     const [error, setError] = useState(false);
     const [passwordVisible, setPasswordVisible] = useState(false);
     const { mutateAsync: loginCustomer, isLoading } = useUserApi().useCustomerLogin();
-    const { storeCode } = useParams();
 
     const formik = useFormik({
         initialValues: { password: '', username: '' },
         validationSchema: loginFormValidations,
         onSubmit: values => {
-            console.log(values);
-            // loginCustomer({ username, password, storeCode: storeCode || 'DEFAULT' })
-            //     .then(res => {
-            //         if (res.data.token) {
-            //             localStorage.setItem(ACCESS_TOKEN_KEY, JSON.stringify(res.data.token));
-            //             setAuth(true);
-            //             setOpenModalType(null);
-            //         }
-            //     })
-            //     .catch(() => {
-            //         setError(true);
-            //     });
+            loginCustomer({ ...values, storeCode: storeCode })
+                .then(res => {
+                    if (res.data.token) {
+                        localStorage.setItem(ACCESS_TOKEN_KEY, JSON.stringify(res.data.token));
+                        setAuth(true);
+                        setOpenModalType(null);
+                    }
+                })
+                .catch(() => {
+                    setError(true);
+                });
         },
     });
 
@@ -54,9 +52,7 @@ export default function Login({ setAuth, string, close, setOpenModalType }) {
         >
             {isLoading && <Loader />}
             <ModalWindow
-                type={''}
                 title={string?.login}
-                text={''}
                 closeAction={() => {
                     close();
                     setError(false);
@@ -121,7 +117,7 @@ export default function Login({ setAuth, string, close, setOpenModalType }) {
                     }}
                 />
 
-                <DialogActions sx={{ justifyContent: 'center', flexDirection: 'column' }}>
+                {/* <DialogActions sx={{ justifyContent: 'center', flexDirection: 'column' }}>
                     <Button
                         onClick={() => {
                             setOpenModalType('forgot-password');
@@ -129,8 +125,8 @@ export default function Login({ setAuth, string, close, setOpenModalType }) {
                     >
                         {string?.forgot_password}
                     </Button>
-                </DialogActions>
-                <Box mt={1} px={2} pb={1.5} sx={{ display: 'flex', justifyContent: 'flex-end', gap: 1 }}>
+                </DialogActions> */}
+                <Box mt={1} pb={1.5} sx={{ display: 'flex', justifyContent: 'flex-end', gap: 1 }}>
                     <Button
                         variant="outlined"
                         onClick={() => {

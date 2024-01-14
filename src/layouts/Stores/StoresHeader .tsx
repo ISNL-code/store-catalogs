@@ -7,7 +7,6 @@ import { useDevice } from 'hooks/useDevice';
 import LogoutIcon from '@mui/icons-material/Logout';
 import MainHeaderLogo from 'components/atoms/Logo/MainHeaderLogo';
 import StoreIcon from '@mui/icons-material/Store';
-import ProfileButton from 'components/molecules/ToolsButtons/ProfileButton';
 
 const Header = ({
     headerHeight,
@@ -74,7 +73,6 @@ const Header = ({
                             isActive={['logout'].includes(openModalType)}
                         />
                     )}
-                    {!sx && <ProfileButton string={string} headerHeight={headerHeight} />}
                     <LanguageButton setLang={setLang} string={string} lang={lang} />
                 </Box>
             </Box>

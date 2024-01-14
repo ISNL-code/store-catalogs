@@ -1,17 +1,7 @@
 import { Box, Button, IconButton, Typography } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 
-const ModalWindow = ({
-    children,
-    type,
-    primaryAction = () => {},
-    title,
-    text,
-    actionTitle = '',
-    secondaryTitle = null,
-    secondaryAction = () => {},
-    closeAction,
-}) => {
+const ModalWindow = ({ children, type = '', title, text = '', closeAction = () => {} }) => {
     const headerColor = () => {
         if (type === 'warning') return 'linear-gradient(to right , #ed6c02 40%, #f08c52 65%, #ffb388);';
         if (type === 'error') return 'linear-gradient(to right , #ed2502 40%, #f07252 65%, #ffa088);';
@@ -27,7 +17,7 @@ const ModalWindow = ({
                 display: 'flex',
                 justifyContent: 'center',
                 position: 'fixed',
-                zIndex: 2000,
+                zIndex: 1299,
                 left: 0,
                 top: 0,
                 backgroundColor: 'rgba(131, 131, 131, 0.863)',
@@ -110,26 +100,6 @@ const ModalWindow = ({
                             {children}
                         </Box>
                     )}
-                    {/* <Box px={2} pb={1.5} sx={{ display: 'flex', justifyContent: 'flex-end', gap: 1 }}>
-                        {secondaryAction && (
-                            <Button
-                                variant="outlined"
-                                onClick={() => {
-                                    secondaryAction();
-                                }}
-                            >
-                                {secondaryTitle}
-                            </Button>
-                        )}
-                        <Button
-                            variant="contained"
-                            onClick={() => {
-                                primaryAction();
-                            }}
-                        >
-                            {actionTitle}
-                        </Button>
-                    </Box> */}
                 </Box>
             </Box>
         </Box>

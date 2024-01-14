@@ -4,7 +4,6 @@ import StoreIcon from '@mui/icons-material/Store';
 import PermIdentityIcon from '@mui/icons-material/PermIdentity';
 import AddBusinessIcon from '@mui/icons-material/AddBusiness';
 import LogoutIcon from '@mui/icons-material/Logout';
-import ProfileButton from 'components/molecules/ToolsButtons/ProfileButton';
 
 const menuHeight = '70px';
 
@@ -70,7 +69,6 @@ const MobileMenu = ({
                             isActive={['logout'].includes(openModalType)}
                         />
                     )}
-                    <ProfileButton string={string} headerHeight={headerHeight} menuHeight={menuHeight} />
                 </Box>
             </Box>
         );
