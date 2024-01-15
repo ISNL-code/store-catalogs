@@ -40,12 +40,13 @@ const ProductDetails = () => {
     const [productDetails, setProductDetails] = useState<LoadedProductInterface | null>(null);
     const [selectedVariant, setSelectedVariant] = useState<SelectedVarianInterface | undefined | null>(null);
     const [loading, setLoading] = useState(true);
+    const [supportedLanguage, setSupportedLanguage] = useState<any>();
 
     const {
         data: productRes,
         isFetching: loadProduct,
         refetch: updateModel,
-    } = useProductsApi().useGetProductByID({ id: productId, lang: lang, store: storeCode });
+    } = useProductsApi().useGetProductByID({ id: productId, lang: supportedLanguage, store: storeCode });
 
     useEffect(() => {
         if (!productRes) return;
@@ -96,6 +97,12 @@ const ProductDetails = () => {
 
         setSelectedVariant(productDetails?.variants?.find(product => product.sku === modelSKU));
     }, [productDetails]);
+
+    useEffect(() => {
+        if (!store?.supportedLanguages) return;
+        console.log(store?.supportedLanguages);
+        setSupportedLanguage(store?.supportedLanguages?.find(el => el.code === lang) ? lang : 'en');
+    }, [lang, store?.supportedLanguages]);
 
     const { sx, m, ls } = useDevice();
 

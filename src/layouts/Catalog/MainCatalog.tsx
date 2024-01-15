@@ -21,7 +21,7 @@ export default function MainCatalog({ lang, setLang, auth, setAuth }) {
     const [scrollPosition, setScrollPosition] = useState(0);
     const [queryCategories, setQueryCategories] = useState<string[] | []>([]);
     const [store, setStore] = useState<StoreInterface | null>(null);
-    const [supportedLanguage, setSupportedLanguage] = useState({ code: 'en' });
+    const [supportedLanguage, setSupportedLanguage] = useState<any>();
     const headerHeight = 50;
     const footerHeight = sx ? 70 : 0;
     const instrumentalBarHeight = 36;
@@ -60,10 +60,11 @@ export default function MainCatalog({ lang, setLang, auth, setAuth }) {
     }, [storeDataRes]);
 
     useEffect(() => {
+        if (!store?.supportedLanguages) return;
         setSupportedLanguage(
             store?.supportedLanguages?.find(el => el.code === lang.code) ? { code: lang.code } : { code: 'en' }
         );
-    }, [lang]);
+    }, [lang, store?.supportedLanguages]);
 
     const handleCategoriesQuery = (data, checked, root, rootID) => {
         window.scrollTo({

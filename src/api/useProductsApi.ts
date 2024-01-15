@@ -7,7 +7,6 @@ export const useProductsApi = () => {
     const useGetAllProducts = ({ store, lang, count, page, categories }) => {
         return useQuery(
             ['get-all-products'],
-
             () =>
                 get({
                     url: `/v2/products?store=${store}&lang=${lang}&available=true&count=${count}&page=${page}&categoryIds=${categories}`,
@@ -17,14 +16,14 @@ export const useProductsApi = () => {
     };
 
     const useGetProductByID = ({ id, lang, store }) => {
+        console.log(lang);
         return useQuery(
             ['get-product-by-id'],
-
             () =>
                 get({
                     url: `/v2/products/?lang=${lang}&store=${store}&productIds=${id}`,
                 }),
-            { enabled: !!store }
+            { enabled: !!store || !!lang }
         );
     };
 
