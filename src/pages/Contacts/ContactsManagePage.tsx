@@ -31,19 +31,7 @@ const ContactsManagePage = () => {
     return (
         <>
             <InstrumentalSubHeader StartSlot={() => <BackButton nav={-1} action={() => {}} />} />
-            <CardItem withHover={false}>
-                <Grid xs={12} p={4} sx={{ display: 'flex', flexDirection: 'column', gap: 1, flexWrap: 'wrap' }}>
-                    <Typography variant="h4" sx={{ py: 0.25, fontWeight: 400 }}>
-                        {string?.call_back_messageA}
-                    </Typography>
-                    <Typography variant="h4" sx={{ py: 0.25, fontWeight: 700 }}>
-                        {string?.call_back_messageB}
-                    </Typography>
-                    <Typography variant="h4" sx={{ py: 0.25, fontWeight: 400 }}>
-                        {string?.call_back_messageC}
-                    </Typography>
-                </Grid>
-            </CardItem>
+
             {store?.managers.map((manager, idx) => {
                 return (
                     <Grid key={idx} container xs={12} my={2}>
@@ -182,7 +170,7 @@ const ContactsManagePage = () => {
                                                 </a>
                                             </Box>
                                             <Typography variant={sm ? 'h4' : 'h3'}>
-                                                @{manager.contacts?.telegram}
+                                                {manager.contacts?.telegram?.replaceAll('https://t.me/', '')}
                                             </Typography>
                                         </Box>
                                     )}
@@ -224,6 +212,19 @@ const ContactsManagePage = () => {
                     </Grid>
                 );
             })}
+            <Box>
+                <Grid xs={12} p={4} sx={{ display: 'flex', flexDirection: 'column', gap: 1, flexWrap: 'wrap' }}>
+                    <Typography variant="h4" sx={{ py: 0.25, fontWeight: 400 }}>
+                        {string?.call_back_messageA}
+                    </Typography>
+                    <Typography variant="h4" sx={{ py: 0.25, fontWeight: 700 }}>
+                        {string?.call_back_messageB}
+                    </Typography>
+                    <Typography variant="h4" sx={{ py: 0.25, fontWeight: 400 }}>
+                        {string?.call_back_messageC}
+                    </Typography>
+                </Grid>
+            </Box>
         </>
     );
 };
