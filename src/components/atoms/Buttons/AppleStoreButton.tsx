@@ -10,6 +10,7 @@ const AppleStoreButton = () => {
     return (
         <Box
             sx={{
+                display: 'flex',
                 zIndex: 1000,
                 position: 'fixed',
                 left: '80px',
@@ -24,7 +25,7 @@ const AppleStoreButton = () => {
                 justifyContent: 'center',
                 cursor: 'pointer',
                 boxShadow:
-                    ' 0px 3px 5px -1px rgb(0 0 0 / 20%), 0px 6px 10px 0px rgb(0 0 0 / 14%), 0px 1px 18px 0px rgb(0 0 0 / 12%)',
+                    '0px 3px 5px -1px rgb(0 0 0 / 20%), 0px 6px 10px 0px rgb(0 0 0 / 14%), 0px 1px 18px 0px rgb(0 0 0 / 12%)',
             }}
             onClick={() => {}}
         >
