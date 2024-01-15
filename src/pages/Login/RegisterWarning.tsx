@@ -3,7 +3,7 @@ import ModalWindow from 'components/atoms/ModalWindow/ModalWindow';
 import { useNavigate, useOutletContext, useParams } from 'react-router-dom';
 
 const RegisterWarning = ({ string, setOpenModalType, close }) => {
-    const { storeCode, storeName } = useParams();
+    const { storeCode, storeName, modelSKU } = useParams();
     const navigate = useNavigate();
     return (
         <ModalWindow
@@ -11,6 +11,7 @@ const RegisterWarning = ({ string, setOpenModalType, close }) => {
             title={string?.you_need_to_login}
             text={string?.in_order_to_use_this_option_you_must_log_in_or_register}
             closeAction={() => {
+                if (modelSKU) return close();
                 navigate(storeCode ? `/catalog/${storeCode}/${storeName}` : '/');
                 close();
             }}
@@ -19,6 +20,7 @@ const RegisterWarning = ({ string, setOpenModalType, close }) => {
                 <Button
                     variant="outlined"
                     onClick={() => {
+                        if (modelSKU) return close();
                         navigate(storeCode ? `/catalog/${storeCode}/${storeName}` : '/');
                         close();
                     }}
