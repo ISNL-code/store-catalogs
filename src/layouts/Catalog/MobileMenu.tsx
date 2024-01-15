@@ -85,7 +85,7 @@ const MobileMenu = ({
                             isActive={['logout'].includes(openModalType)}
                         />
                     )}
-                    <ProfileButton string={string} headerHeight={headerHeight} menuHeight={menuHeight} />
+                    {/* <ProfileButton string={string} headerHeight={headerHeight} menuHeight={menuHeight} /> */}
                 </Box>
             </Box>
         );

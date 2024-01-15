@@ -51,7 +51,7 @@ const MobileMenu = ({
                         badgeCount={favoritesCount}
                     />
 
-                    {!auth && (
+                    {/* {!auth && (
                         <MobileNavButton
                             title={string?.login}
                             icon={p => <PermIdentityIcon {...p} />}
@@ -59,8 +59,8 @@ const MobileMenu = ({
                             action={() => setOpenModalType('login')}
                             isActive={['login', 'register', 'forgot-password'].includes(openModalType)}
                         />
-                    )}
-                    {auth && (
+                    )} */}
+                    {/* {auth && (
                         <MobileNavButton
                             title={string?.logout}
                             icon={p => <LogoutIcon {...p} />}
@@ -68,7 +68,7 @@ const MobileMenu = ({
                             action={() => setOpenModalType('logout')}
                             isActive={['logout'].includes(openModalType)}
                         />
-                    )}
+                    )} */}
                 </Box>
             </Box>
         );

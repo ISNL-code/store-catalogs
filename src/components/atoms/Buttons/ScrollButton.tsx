@@ -1,11 +1,20 @@
 import { Fab } from '@mui/material';
 import NorthIcon from '@mui/icons-material/North';
+import { useDevice } from 'hooks/useDevice';
 
 const ScrollButton = () => {
+    const { sx } = useDevice();
+
     return (
         <Fab
             size="medium"
-            sx={{ zIndex: 50, position: 'fixed', left: 26, bottom: 100, backgroundColor: '#ffffff57' }}
+            sx={{
+                zIndex: 50,
+                position: 'fixed',
+                left: sx ? '24px' : '40px',
+                bottom: sx ? 150 : 50,
+                backgroundColor: '#ffffff89',
+            }}
             onClick={() => {
                 window.scrollTo({
                     top: 0,

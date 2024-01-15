@@ -14,8 +14,8 @@ const CallBackButton = () => {
             sx={{
                 zIndex: 1000,
                 position: 'fixed',
-                right: s ? '24px' : '64px',
-                bottom: s ? 80 : 25,
+                right: sx ? '24px' : '40px',
+                bottom: sx ? 150 : 50,
                 width: 'fit-content',
                 border: sx ? 'none' : '1px solid #1976d2',
                 backgroundColor: sx ? 'none' : '#1976d2df',

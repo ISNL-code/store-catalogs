@@ -27,7 +27,7 @@ export default function MainCatalog({ lang, setLang, auth, setAuth }) {
     const instrumentalBarHeight = 36;
     const appXPadding = l ? 2 : 4;
     const { data: storeDataRes, remove: removeStoreData } = useStoresApi().useGetStoreByCode({ code: storeCode });
-    const { categoriesList } = useCategory({ lang, store: storeCode });
+    const { categoriesList } = useCategory({ lang: supportedLanguage, store: storeCode });
 
     const {
         loadProducts,

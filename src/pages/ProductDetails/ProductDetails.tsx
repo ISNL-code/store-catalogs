@@ -100,7 +100,7 @@ const ProductDetails = () => {
 
     useEffect(() => {
         if (!store?.supportedLanguages) return;
-        console.log(store?.supportedLanguages);
+
         setSupportedLanguage(store?.supportedLanguages?.find(el => el.code === lang) ? lang : 'en');
     }, [lang, store?.supportedLanguages]);
 

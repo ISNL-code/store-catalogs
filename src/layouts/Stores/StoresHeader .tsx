@@ -53,7 +53,7 @@ const Header = ({
                         clearSort={() => setSortedStores('')}
                         badgeCount={favoritesCount}
                     />
-                    {!auth && (
+                    {/* {!auth && (
                         <HeaderNavButton
                             title={string?.login}
                             icon={() => <PermIdentityIcon />}
@@ -62,8 +62,8 @@ const Header = ({
                             action={() => setOpenModalType('login')}
                             isActive={['login', 'register', 'forgot-password'].includes(openModalType)}
                         />
-                    )}
-                    {auth && (
+                    )} */}
+                    {/* {auth && (
                         <HeaderNavButton
                             title={string?.logout}
                             isShown={!sx}
@@ -72,7 +72,7 @@ const Header = ({
                             action={() => setOpenModalType('logout')}
                             isActive={['logout'].includes(openModalType)}
                         />
-                    )}
+                    )} */}
                     <LanguageButton setLang={setLang} string={string} lang={lang} />
                 </Box>
             </Box>

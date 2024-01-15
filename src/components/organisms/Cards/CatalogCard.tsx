@@ -144,7 +144,7 @@ const CatalogCard = ({ modelsVariants, name, productID, currency, setProductsLis
                 <Box>
                     <Box
                         sx={{
-                            height: 40,
+                            height: 45,
                             overflow: 'visible',
                             backgroundColor: '#f8f8f8',
                             zIndex: 1,
@@ -157,7 +157,7 @@ const CatalogCard = ({ modelsVariants, name, productID, currency, setProductsLis
                                 justifyContent: 'center',
                                 flexWrap: isExpanded ? 'wrap' : 'nowrap',
                                 backgroundColor: '#f8f8f8',
-                                height: isExpanded ? '95px' : '40px',
+                                height: isExpanded ? '95px' : '45px',
                                 pt: 1,
                                 px: 0.2,
                                 borderTop: '1px solid #00000013',
@@ -233,7 +233,12 @@ const CatalogCard = ({ modelsVariants, name, productID, currency, setProductsLis
                                 gap: 1,
                             }}
                         >
-                            <Typography p={1} variant="h4" sx={{ height: 35 }}>
+                            <Typography
+                                px={1}
+                                py={0.25}
+                                variant="h4"
+                                sx={{ height: 30, fontSize: 14, fontWeight: 500 }}
+                            >
                                 {!isExpanded && name}
                             </Typography>
 

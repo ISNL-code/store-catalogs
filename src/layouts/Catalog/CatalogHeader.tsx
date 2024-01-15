@@ -69,7 +69,7 @@ const Header = ({
                     />
                 </Box>
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                    <HeaderNavButton title={string?.stores} path={`/`} icon={() => <StoreIcon />} />
+                    {/* <HeaderNavButton title={string?.stores} path={`/`} icon={() => <StoreIcon />} /> */}
 
                     <HeaderNavButton
                         title={string?.catalog}
@@ -115,7 +115,7 @@ const Header = ({
                             isActive={['logout'].includes(openModalType)}
                         />
                     )}
-                    {!sx && <ProfileButton string={string} headerHeight={headerHeight} />}
+                    {/* {!sx && <ProfileButton string={string} headerHeight={headerHeight} />} */}
                     <LanguageButton setLang={setLang} string={string} lang={lang} setOpenModalType={setOpenModalType} />
                 </Box>
             </Box>

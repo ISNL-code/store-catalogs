@@ -101,7 +101,7 @@ const LanguageButton = ({
                 MenuListProps={{
                     'aria-labelledby': 'lang-menu',
                 }}
-                sx={{ zIndex: 2010, position: 'absolute', top: 0, right: 0 }}
+                sx={{ zIndex: 5000, position: 'fixed', top: 0, right: 0 }}
             >
                 <Box sx={{ width: 200 }}>
                     <Box>
