@@ -86,7 +86,7 @@ const StoreCards = ({ data, dataFavorite, setStoreToApprove }: StoreCardsInterfa
                                     />
 
                                     <ShareButton
-                                        path={`${WEB_URL}/catalog/${item?.code}/${item?.name
+                                        path={`${item?.webUrl}/catalog/${item?.code}/${item?.name
                                             ?.toLowerCase()
                                             .replaceAll(' ', '-')}`}
                                         text=""

@@ -261,7 +261,9 @@ const CatalogCard = ({ modelsVariants, name, productID, currency, setProductsLis
                                     <CartButton isShown={store?.additionalStoreSettings?.cart} />
                                     <ShareButton
                                         isShown={store?.additionalStoreSettings?.promo}
-                                        path={`${WEB_URL}/catalog/${storeCode}/${storeName}/details/${productID}/model/${shownModel?.SKU?.replaceAll(
+                                        path={`${
+                                            store?.webUrl
+                                        }/catalog/${storeCode}/${storeName}/details/${productID}/model/${shownModel?.SKU?.replaceAll(
                                             '/',
                                             '_'
                                         )}`}
