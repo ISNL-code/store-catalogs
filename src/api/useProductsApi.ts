@@ -16,13 +16,14 @@ export const useProductsApi = () => {
     };
 
     const useGetProductByID = ({ id, lang, store }) => {
+        console.log(lang);
         return useQuery(
             ['get-product-by-id'],
             () =>
                 get({
                     url: `/v2/products/?lang=${lang}&store=${store}&productIds=${id}`,
                 }),
-            { enabled: !!store || !!lang }
+            { enabled: !!lang }
         );
     };
 

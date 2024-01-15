@@ -33,9 +33,12 @@ const Catalog = () => {
     useEffect(() => {
         if (loadProducts) return;
 
-        setTimeout(() => {
-            setLoading(false);
-        }, 150);
+        setTimeout(
+            () => {
+                setLoading(false);
+            },
+            productsList?.length ? 0 : 1000
+        );
     }, [loadProducts, loading]);
 
     useEffect(() => {

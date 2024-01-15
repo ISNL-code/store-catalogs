@@ -82,7 +82,7 @@ const ProductDetails = () => {
     useEffect(() => {
         if (mount) return;
         updateModel();
-    }, [lang, modelSKU]);
+    }, [lang, supportedLanguage, modelSKU]);
 
     useEffect(() => {
         if (loadProduct) return;
@@ -137,7 +137,7 @@ const ProductDetails = () => {
                             )}`}
                             text=""
                             color="#ccc"
-                            size={35}
+                            size={30}
                             orientation="down"
                             isShown={store?.mainStoreSettings?.productShare}
                         />
