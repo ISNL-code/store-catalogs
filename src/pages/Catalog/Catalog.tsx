@@ -15,6 +15,8 @@ import { CatalogContextInterface } from 'types';
 import TransitionBox from 'components/atoms/Transitions/TransitionBox';
 import Grid from '@mui/material/Unstable_Grid2';
 import CallBackButton from 'components/atoms/Buttons/CallBackButton';
+import AppleStoreButton from 'components/atoms/Buttons/AppleStoreButton';
+import PlayMarketButton from 'components/atoms/Buttons/PlayMarketButton';
 
 const Catalog = () => {
     const {
@@ -28,6 +30,8 @@ const Catalog = () => {
         headerHeight,
     }: CatalogContextInterface = useOutletContext();
     const [showTopBtn, setShowTopBtn] = useState(false);
+    const [showMobileStoresButton, setShowMobileStoresButton] = useState(true);
+
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -43,10 +47,12 @@ const Catalog = () => {
 
     useEffect(() => {
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 1200) {
+            if (window.scrollY > 500) {
                 setShowTopBtn(true);
+                setShowMobileStoresButton(false);
             } else {
                 setShowTopBtn(false);
+                setShowMobileStoresButton(true);
             }
         });
 
@@ -62,6 +68,12 @@ const Catalog = () => {
     return (
         <Box pb={1}>
             {showTopBtn && <ScrollButton />}
+            {showMobileStoresButton && (
+                <>
+                    <AppleStoreButton />
+                    <PlayMarketButton />
+                </>
+            )}
             {loading && <Loader />}
             {store?.mainStoreSettings?.contacts && <CallBackButton />}
             <InstrumentalSubHeader

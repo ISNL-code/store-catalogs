@@ -39,6 +39,12 @@ const ShareButton = ({ orientation = 'up', path, text, size, color, isShown }: S
                         handleOpen();
                     }}
                     onClick={() => setOpen(!open)}
+                    onBlur={() => {
+                        handleClose();
+                    }}
+                    onPointerLeave={() => {
+                        handleClose();
+                    }}
                 >
                     <Box>
                         <IconButton
@@ -55,6 +61,12 @@ const ShareButton = ({ orientation = 'up', path, text, size, color, isShown }: S
                     </Box>
 
                     <Box
+                        onPointerLeave={() => {
+                            handleClose();
+                        }}
+                        onBlur={() => {
+                            handleClose();
+                        }}
                         onMouseLeave={() => {
                             handleClose();
                         }}
@@ -66,8 +78,8 @@ const ShareButton = ({ orientation = 'up', path, text, size, color, isShown }: S
                             height: open ? 210 : 0,
                             transition: 'height 250ms cubic-bezier(0.4, 0, 0.2, 1)',
                             overflow: 'hidden',
-                            position: 'fixed',
-                            top: orientation === 'down' ? 80 : 'none',
+                            position: 'absolute',
+                            top: orientation === 'down' ? 40 : 'none',
                             bottom: orientation === 'down' ? 'none' : 40,
                             zIndex: 1000,
                         }}
