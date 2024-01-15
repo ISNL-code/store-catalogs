@@ -133,7 +133,7 @@ export const STORES_DATA = [
             favorites: true,
             promo: true,
             video: false,
-            tableSizes: false,
+            tableSizes: true,
             callback: true,
             platformAvailable: true,
             appleStore: true,

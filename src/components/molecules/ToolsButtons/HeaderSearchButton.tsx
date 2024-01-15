@@ -43,8 +43,8 @@ const HeaderSearchButton = () => {
                             borderRadius: '50%',
                             backgroundColor: 'red',
                             position: 'absolute',
-                            top: 7,
-                            right: 11,
+                            top: 5,
+                            right: 5,
                             zIndex: 1,
                         }}
                     ></Box>

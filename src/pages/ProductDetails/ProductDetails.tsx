@@ -131,7 +131,9 @@ const ProductDetails = () => {
                     <Box sx={{ display: 'flex', gap: 0.75 }}>
                         {store?.mainStoreSettings?.skuSearch && <SkuSearch />}
                         <ShareButton
-                            path={`${WEB_URL}/catalog/${storeCode}/${storeName}/details/${productId}/model/${modelSKU?.replaceAll(
+                            path={`${
+                                store?.webUrl
+                            }/catalog/${storeCode}/${storeName}/details/${productId}/model/${modelSKU?.replaceAll(
                                 '/',
                                 '_'
                             )}`}
@@ -160,6 +162,8 @@ const ProductDetails = () => {
                         <ModelSwiper images={selectedVariant?.images} selectedVariant={selectedVariant} />
                     </Grid>
                     <Grid
+                        px={2}
+                        pt={2}
                         xs={detailsGrid()}
                         sx={{
                             height: '100%',

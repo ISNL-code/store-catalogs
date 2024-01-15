@@ -55,7 +55,6 @@ export interface StoresContextInterface {
 export interface StoreInterface {
     id: number;
     code: string;
-    webUrl: string;
     name: string;
     defaultLanguage: string;
     currency: string;
@@ -86,6 +85,7 @@ export interface StoreInterface {
         user: string;
     };
     //add
+    webUrl: string;
     mainImage: string;
     descriptions: any;
     productImagesOptions: any;

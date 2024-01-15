@@ -7,7 +7,7 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { CatalogContextInterface } from 'types';
 
 const ActionSection = ({ isShown }) => {
-    const { store, string }: CatalogContextInterface = useOutletContext();
+    const { store, string, setOpenModalType, auth }: CatalogContextInterface = useOutletContext();
     if (isShown)
         return (
             <Box mb={0.5} sx={{ display: 'flex', gap: 1 }}>
@@ -19,7 +19,9 @@ const ActionSection = ({ isShown }) => {
                             width: '100%',
                         }}
                         variant="contained"
-                        onClick={() => {}}
+                        onClick={() => {
+                            if (!auth) return setOpenModalType('register-warning');
+                        }}
                         color="primary"
                         endIcon={
                             false ? <ShoppingCartIcon fontSize="small" /> : <AddShoppingCartIcon fontSize="small" />
@@ -36,7 +38,9 @@ const ActionSection = ({ isShown }) => {
                             width: '100%',
                         }}
                         variant="contained"
-                        onClick={() => {}}
+                        onClick={() => {
+                            if (!auth) return setOpenModalType('register-warning');
+                        }}
                         color="warning"
                         endIcon={false ? <FavoriteIcon fontSize="small" /> : <FavoriteBorderIcon fontSize="small" />}
                     >

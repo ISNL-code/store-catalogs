@@ -13,7 +13,7 @@ const ScrollButton = () => {
                 position: 'fixed',
                 left: sx ? '24px' : '40px',
                 bottom: sx ? 150 : 50,
-                backgroundColor: '#ffffff89',
+                backgroundColor: '#ffffffbe',
             }}
             onClick={() => {
                 window.scrollTo({

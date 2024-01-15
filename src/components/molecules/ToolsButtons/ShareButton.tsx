@@ -39,12 +39,6 @@ const ShareButton = ({ orientation = 'up', path, text, size, color, isShown }: S
                         handleOpen();
                     }}
                     onClick={() => setOpen(!open)}
-                    onBlur={() => {
-                        handleClose();
-                    }}
-                    onPointerLeave={() => {
-                        handleClose();
-                    }}
                 >
                     <Box>
                         <IconButton
@@ -61,12 +55,6 @@ const ShareButton = ({ orientation = 'up', path, text, size, color, isShown }: S
                     </Box>
 
                     <Box
-                        onPointerLeave={() => {
-                            handleClose();
-                        }}
-                        onBlur={() => {
-                            handleClose();
-                        }}
                         onMouseLeave={() => {
                             handleClose();
                         }}

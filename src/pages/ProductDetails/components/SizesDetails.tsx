@@ -3,12 +3,11 @@ import DetailsSection from 'components/atoms/Sections/DetailsSection';
 import SizesIndicatorButton from 'components/atoms/SizesIndicatorButton/SizesIndicatorButton';
 import { useOutletContext } from 'react-router-dom';
 import StraightenIcon from '@mui/icons-material/Straighten';
-import { useEffect, useRef, useState } from 'react';
 import { useDevice } from 'hooks/useDevice';
+import { CatalogContextInterface } from 'types';
 
 const SizesDetails = ({ productDetails, isShown }) => {
-    const { string }: any = useOutletContext();
-    const [isOpenTable, setIsOpenTable] = useState(false);
+    const { string, store }: CatalogContextInterface = useOutletContext();
     const { sm } = useDevice();
 
     if (isShown)
@@ -36,34 +35,34 @@ const SizesDetails = ({ productDetails, isShown }) => {
                                     />
                                 ))}
                             </Box>
-                            <Box
-                                sx={{
-                                    display: 'flex',
-                                    flexDirection: 'column',
-                                    alignItems: 'center',
-                                    gap: 0.25,
-                                    mt: 0.5,
-                                }}
-                            >
-                                <IconButton
-                                    onClick={() => {
-                                        setIsOpenTable(!isOpenTable);
-                                    }}
-                                    size="small"
+                            {store?.additionalStoreSettings?.tableSizes && (
+                                <Box
                                     sx={{
-                                        border: '1px solid #1976d2',
-                                        borderRadius: '8px',
+                                        display: 'flex',
+                                        flexDirection: 'column',
+                                        alignItems: 'center',
+                                        gap: 0.25,
+                                        mt: 0.5,
                                     }}
                                 >
-                                    <Typography
-                                        variant="subtitle1"
-                                        sx={{ color: '#1976d2', textTransform: 'uppercase' }}
+                                    <IconButton
+                                        onClick={() => {}}
+                                        size="small"
+                                        sx={{
+                                            border: '1px solid #1976d2',
+                                            borderRadius: '8px',
+                                        }}
                                     >
-                                        {string?.sizes_table}
-                                    </Typography>
-                                    <StraightenIcon color="primary" fontSize="small" />
-                                </IconButton>
-                            </Box>
+                                        <Typography
+                                            variant="subtitle1"
+                                            sx={{ color: '#1976d2', textTransform: 'uppercase' }}
+                                        >
+                                            {string?.sizes_table}
+                                        </Typography>
+                                        <StraightenIcon color="primary" fontSize="small" />
+                                    </IconButton>
+                                </Box>
+                            )}
                         </Box>
                     </DetailsSection>
                 </Box>
