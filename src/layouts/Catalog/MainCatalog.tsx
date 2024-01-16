@@ -27,23 +27,32 @@ export default function MainCatalog({ lang, setLang, auth, setAuth }) {
     const instrumentalBarHeight = 36;
     const appXPadding = l ? 2 : 4;
     const { data: storeDataRes, remove: removeStoreData } = useStoresApi().useGetStoreByCode({ code: storeCode });
-    const { categoriesList } = useCategory({ lang: supportedLanguage, store: storeCode });
 
     const {
         loadProducts,
         loadMoreProducts,
         clearProductsRes,
         updateProducts,
-        page,
-        setPage,
+        currentProductsPage,
+        handleSetProductsPage,
         productsList,
-        totalCount,
-        currentCount,
-        totalPages,
+        totalProductsCount,
+        productCountPerPage,
+        totalProductsPages,
         setProductsList,
     } = useProducts({
         lang: supportedLanguage,
         store: storeCode,
+        queryCategories,
+        setQueryCategories,
+    });
+
+    const { categoriesList, handleCategoriesQuery } = useCategory({
+        lang: supportedLanguage,
+        store: storeCode,
+        currentProductsPage,
+        handleSetProductsPage,
+        setQueryCategories,
         queryCategories,
     });
 
@@ -65,84 +74,6 @@ export default function MainCatalog({ lang, setLang, auth, setAuth }) {
             store?.supportedLanguages?.find(el => el.code === lang.code) ? { code: lang.code } : { code: 'en' }
         );
     }, [lang, store?.supportedLanguages]);
-
-    const handleCategoriesQuery = (data, checked, root, rootID) => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'auto',
-        });
-        if (root) {
-            if (checked) {
-                if (page > 0) {
-                    setPage(_ => 0);
-                    setQueryCategories(queryCategories.filter(el => !data.find(item => el !== item)));
-                    return;
-                }
-                if (page === 0) {
-                    setQueryCategories(queryCategories.filter(el => !data.find(item => el !== item)));
-                    return;
-                }
-                return;
-            }
-            if (!checked) {
-                if (!queryCategories.length && page > 0) {
-                    setPage(_ => 0);
-                    setQueryCategories(data);
-                    return;
-                }
-                if (!queryCategories.length && page === 0) {
-                    setQueryCategories(data);
-                    return;
-                }
-                if (page > 0) {
-                    setPage(_ => 0);
-                    setQueryCategories([...queryCategories, ...data]);
-                    return;
-                }
-                if (page === 0) {
-                    setQueryCategories([...queryCategories, ...data]);
-                    return;
-                }
-                return;
-            }
-        }
-        if (!root) {
-            if (checked) {
-                if (page > 0) {
-                    setPage(_ => 0);
-                    setQueryCategories(queryCategories.filter(el => el !== data && el !== rootID));
-                    return;
-                }
-                if (page === 0) {
-                    setQueryCategories(queryCategories.filter(el => el !== data && el !== rootID));
-                    return;
-                }
-                return;
-            }
-            if (!checked) {
-                if (!queryCategories.length && page > 0) {
-                    setPage(_ => 0);
-                    setQueryCategories([data]);
-                    return;
-                }
-                if (!queryCategories.length && page === 0) {
-                    setQueryCategories([data]);
-                    return;
-                }
-                if (page > 0) {
-                    setPage(_ => 0);
-                    setQueryCategories([...queryCategories, data]);
-                    return;
-                }
-                if (page === 0) {
-                    setQueryCategories([...queryCategories, data]);
-                    return;
-                }
-                return;
-            }
-            return;
-        }
-    };
 
     return (
         <Box
@@ -187,11 +118,11 @@ export default function MainCatalog({ lang, setLang, auth, setAuth }) {
                         headerHeight: headerHeight,
                         footerHeight: footerHeight,
                         appXPadding: appXPadding,
-                        currentCount: currentCount,
-                        totalCount: totalCount,
-                        totalPages: totalPages,
-                        setPage: setPage,
-                        page: page,
+                        productCountPerPage: productCountPerPage,
+                        totalProductsCount: totalProductsCount,
+                        totalProductsPages: totalProductsPages,
+                        handleSetProductsPage: handleSetProductsPage,
+                        currentProductsPage: currentProductsPage,
                         auth: auth,
                         queryCategories: queryCategories,
                         setQueryCategories: setQueryCategories,

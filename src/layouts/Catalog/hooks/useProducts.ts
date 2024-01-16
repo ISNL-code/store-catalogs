@@ -3,10 +3,10 @@ import { useIsMount } from 'hooks/useIsMount';
 import { useEffect, useState } from 'react';
 import { LoadedProductListInterface, ProductVariantInterface } from 'types';
 
-export const useProducts = ({ store, lang, queryCategories }) => {
+export const useProducts = ({ store, lang, queryCategories, setQueryCategories }) => {
     const mount = useIsMount();
     const count = 25;
-    const [page, setPage] = useState(0);
+    const [currentProductsPage, setCurrentProductsPage] = useState(0);
     const [productsList, setProductsList] = useState<LoadedProductListInterface[] | [] | null>(null);
     const [totalCount, setTotalCount] = useState(0);
     const [currentCount, setCurrentCount] = useState(0);
@@ -22,7 +22,7 @@ export const useProducts = ({ store, lang, queryCategories }) => {
         store: store,
         lang: lang?.code,
         count: count,
-        page: page,
+        page: currentProductsPage,
         categories: queryCategories,
     });
 
@@ -33,7 +33,7 @@ export const useProducts = ({ store, lang, queryCategories }) => {
 
     useEffect(() => {
         if (!productsRes) return;
-        if (page) return;
+        if (currentProductsPage) return;
         setProductsList(
             productsRes.data.products?.map(product => {
                 return {
@@ -64,13 +64,13 @@ export const useProducts = ({ store, lang, queryCategories }) => {
             })
         );
         setTotalCount(productsRes.data.recordsTotal);
-        setCurrentCount(productsRes.data.number * (page + 1));
+        setCurrentCount(productsRes.data.number * (currentProductsPage + 1));
         setTotalPages(productsRes.data?.totalPages);
     }, [productsRes]);
 
     useEffect(() => {
         if (mount) return;
-        if (!page) return;
+        if (!currentProductsPage) return;
         updateProducts().then(res => {
             setProductsList(prev => {
                 const prevData = prev ? [...prev] : [];
@@ -99,19 +99,23 @@ export const useProducts = ({ store, lang, queryCategories }) => {
                 ];
             });
             setTotalCount(res?.data?.data?.recordsTotal);
-            setCurrentCount(res?.data?.data?.number * (page + 1));
+            setCurrentCount(res?.data?.data?.number * (currentProductsPage + 1));
             setTotalPages(res?.data?.data?.totalPages);
         });
-    }, [page]);
+    }, [currentProductsPage]);
 
     useEffect(() => {
         if (mount) return;
-        setPage(_ => 0);
-
+        setCurrentProductsPage(_ => 0);
+        setQueryCategories([]);
         setTimeout(() => {
             updateProducts();
         }, 0);
     }, [lang]);
+
+    const handleSetProductsPage = val => {
+        setCurrentProductsPage(_ => val);
+    };
 
     return {
         productsRes,
@@ -119,12 +123,12 @@ export const useProducts = ({ store, lang, queryCategories }) => {
         loadMoreProducts,
         clearProductsRes,
         updateProducts,
-        page,
-        setPage,
+        currentProductsPage,
+        handleSetProductsPage,
         productsList,
-        totalCount,
-        currentCount,
-        totalPages,
+        totalProductsCount: totalCount,
+        productCountPerPage: currentCount,
+        totalProductsPages: totalPages,
         setProductsList,
     };
 };

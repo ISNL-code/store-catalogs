@@ -17,6 +17,7 @@ import Grid from '@mui/material/Unstable_Grid2';
 import CallBackButton from 'components/atoms/Buttons/CallBackButton';
 import AppleStoreButton from 'components/atoms/Buttons/AppleStoreButton';
 import PlayMarketButton from 'components/atoms/Buttons/PlayMarketButton';
+import PaginationButton from 'components/atoms/Buttons/PaginationButton';
 
 const Catalog = () => {
     const {
@@ -28,6 +29,11 @@ const Catalog = () => {
         setProductsList,
         instrumentalBarHeight,
         headerHeight,
+        handleSetProductsPage,
+        totalProductsCount,
+        currentProductsPage,
+        totalProductsPages,
+        productCountPerPage,
     }: CatalogContextInterface = useOutletContext();
     const [showTopBtn, setShowTopBtn] = useState(false);
     const [showMobileStoresButton, setShowMobileStoresButton] = useState(true);
@@ -112,7 +118,17 @@ const Catalog = () => {
             ) : (
                 <Loader position="fixed" />
             )}
-            {!!productsList?.length && !loading && <LoadMoreButton />}
+            {!!productsList?.length && !loading && (
+                <PaginationButton
+                    setCurrentPage={handleSetProductsPage}
+                    totalCount={totalProductsCount}
+                    loadProducts={loadProducts}
+                    productsList={productsList}
+                    page={currentProductsPage}
+                    totalPages={totalProductsPages}
+                    countPerPage={productCountPerPage}
+                />
+            )}
         </Box>
     );
 };

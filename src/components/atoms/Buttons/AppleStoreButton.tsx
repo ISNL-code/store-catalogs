@@ -10,10 +10,10 @@ const AppleStoreButton = () => {
             <Box
                 sx={{
                     display: 'flex',
-                    zIndex: 1000,
+                    zIndex: 2000,
                     position: 'fixed',
                     left: sx ? '80px' : '95px',
-                    bottom: sx ? 150 : 50,
+                    bottom: sx ? 80 : 20,
                     width: 48,
                     height: 48,
                     border: '1px solid #ccc',

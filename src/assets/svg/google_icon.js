@@ -34,8 +34,8 @@ export const GoogleIcon = () => {
                     y2="19.5506"
                     gradientUnits="userSpaceOnUse"
                 >
-                    <stop stop-color="#00C3FF" />
-                    <stop offset="1" stop-color="#1BE2FA" />
+                    <stop stopColor="#00C3FF" />
+                    <stop offset="1" stopColor="#1BE2FA" />
                 </linearGradient>
                 <linearGradient
                     id="paint1_linear_87_8320"
@@ -45,8 +45,8 @@ export const GoogleIcon = () => {
                     y2="15.8176"
                     gradientUnits="userSpaceOnUse"
                 >
-                    <stop stop-color="#FFCE00" />
-                    <stop offset="1" stop-color="#FFEA00" />
+                    <stop stopColor="#FFCE00" />
+                    <stop offset="1" stopColor="#FFEA00" />
                 </linearGradient>
                 <linearGradient
                     id="paint2_linear_87_8320"
@@ -56,8 +56,8 @@ export const GoogleIcon = () => {
                     y2="17.8937"
                     gradientUnits="userSpaceOnUse"
                 >
-                    <stop stop-color="#DE2453" />
-                    <stop offset="1" stop-color="#FE3944" />
+                    <stop stopColor="#DE2453" />
+                    <stop offset="1" stopColor="#FE3944" />
                 </linearGradient>
                 <linearGradient
                     id="paint3_linear_87_8320"
@@ -67,8 +67,8 @@ export const GoogleIcon = () => {
                     y2="13.7365"
                     gradientUnits="userSpaceOnUse"
                 >
-                    <stop stop-color="#11D574" />
-                    <stop offset="1" stop-color="#01F176" />
+                    <stop stopColor="#11D574" />
+                    <stop offset="1" stopColor="#01F176" />
                 </linearGradient>
             </defs>
         </svg>

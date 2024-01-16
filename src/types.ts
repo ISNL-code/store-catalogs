@@ -14,11 +14,11 @@ export interface CatalogContextInterface {
     headerHeight: number;
     footerHeight: number;
     appXPadding: number;
-    currentCount: number;
-    totalCount: number;
-    totalPages: number;
-    setPage;
-    page: number;
+    productCountPerPage: number;
+    totalProductsCount: number;
+    totalProductsPages: number;
+    handleSetProductsPage: (val) => void;
+    currentProductsPage: number;
     auth: boolean;
     queryCategories: string[];
     setQueryCategories;

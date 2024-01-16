@@ -12,10 +12,10 @@ const CallBackButton = () => {
     return (
         <Box
             sx={{
-                zIndex: 1000,
+                zIndex: 2000,
                 position: 'fixed',
                 right: sx ? '24px' : '40px',
-                bottom: sx ? 150 : 50,
+                bottom: sx ? 80 : 20,
                 width: 'fit-content',
                 border: sx ? 'none' : '1px solid #1976d2',
                 backgroundColor: sx ? 'none' : '#1976d2df',

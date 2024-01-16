@@ -38,18 +38,16 @@ const StoreCards = ({ data, dataFavorite, setStoreToApprove }: StoreCardsInterfa
     return (
         <Grid xs={12} container>
             {data?.map(item => (
-                <Grid
-                    p={1}
-                    key={item.id}
-                    xs={getGridValue()}
-                    onClick={() => {
-                        const approved = checkStoreAuth(item);
-                        if (!approved) return;
-                        navigate(`/catalog/${item?.code}/${item?.name.toLowerCase().replaceAll(' ', '-')}`);
-                    }}
-                >
+                <Grid p={1} key={item.id} xs={getGridValue()}>
                     <CardItem>
-                        <Box sx={{ display: 'flex', width: '100%', borderBottom: '1px solid #ccc' }}>
+                        <Box
+                            onClick={() => {
+                                const approved = checkStoreAuth(item);
+                                if (!approved) return;
+                                navigate(`/catalog/${item?.code}/${item?.name.toLowerCase().replaceAll(' ', '-')}`);
+                            }}
+                            sx={{ display: 'flex', width: '100%', borderBottom: '1px solid #ccc', cursor: 'pointer' }}
+                        >
                             <Box sx={{ width: '70%', borderRight: '1px solid #ccc' }}>
                                 <Image width={4} height={3} imgUrl={item.mainImage} />
                             </Box>
