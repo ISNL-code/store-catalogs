@@ -1,7 +1,6 @@
 import { Box, IconButton, Typography } from '@mui/material';
 import Image from 'components/atoms/Media/Image';
 import ShareButton from 'components/molecules/ToolsButtons/ShareButton';
-import { WEB_URL } from 'constants/constants';
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate, useOutletContext, useParams } from 'react-router-dom';
 import ColorIndicatorButton from 'components/atoms/ColorIndicatorButton/ColorIndicatorButton';
@@ -55,10 +54,10 @@ function SampleNextArrow(props) {
     );
 }
 
-const CatalogCard = ({ modelsVariants, name, productID, currency, setProductsList, promoTags }) => {
-    const { xxxs, s, sm, sx, mx, ls, l } = useDevice();
+const CatalogCard = ({ modelsVariants, name, productId, currency, setProductsList, promoTags }) => {
+    const { xxxs, s, sx, ls, l } = useDevice();
     const navigate = useNavigate();
-    const { store, auth, setOpenModalType }: CatalogContextInterface = useOutletContext();
+    const { store, cart, currentUserData }: CatalogContextInterface = useOutletContext();
     const colorsBoxRef = useRef(null);
     const { storeCode, storeName } = useParams();
     const [shownModel, setShownModel] = useState<ShownModelInterface | null>(null);
@@ -97,7 +96,10 @@ const CatalogCard = ({ modelsVariants, name, productID, currency, setProductsLis
                         ))}
                     </Box>
                 )}
-                <Box sx={{ position: 'absolute', top: 10, right: 10, zIndex: 1, display: 'flex', gap: 0.5 }}>
+                <Box
+                    sx={{ position: 'absolute', top: 10, right: 10, zIndex: 1, display: 'flex', gap: 0.5 }}
+                    onClick={() => {}}
+                >
                     <FavoritesButton isShown={store?.additionalStoreSettings?.favorites} />
                 </Box>
                 <Box
@@ -108,7 +110,7 @@ const CatalogCard = ({ modelsVariants, name, productID, currency, setProductsLis
                     }}
                     onClick={() => {
                         navigate(
-                            `/catalog/${storeCode}/${storeName}/details/${productID}/model/${shownModel?.SKU?.replaceAll(
+                            `/catalog/${storeCode}/${storeName}/details/${productId}/model/${shownModel?.SKU?.replaceAll(
                                 '/',
                                 '_'
                             )}`
@@ -198,7 +200,7 @@ const CatalogCard = ({ modelsVariants, name, productID, currency, setProductsLis
                                                 if (selected) return;
                                                 setProductsList(prev =>
                                                     prev.map(el => {
-                                                        if (el.id === productID) {
+                                                        if (el.id === productId) {
                                                             return {
                                                                 ...el,
                                                                 variants: el.variants.map(variant => {
@@ -258,12 +260,22 @@ const CatalogCard = ({ modelsVariants, name, productID, currency, setProductsLis
                                     </Typography>
                                 )}
                                 <Box sx={{ display: 'flex', gap: 0.5 }}>
-                                    <CartButton isShown={store?.additionalStoreSettings?.cart} />
+                                    <CartButton
+                                        selected={cart?.cartItems?.find(item => item.SKU === shownModel?.SKU)}
+                                        isShown={store?.additionalStoreSettings?.cart}
+                                        action={() => {
+                                            cart?.handleSetCartItems({
+                                                SKU: shownModel?.SKU,
+                                                storeCode,
+                                                userId: currentUserData?.id,
+                                            });
+                                        }}
+                                    />
                                     <ShareButton
                                         isShown={store?.additionalStoreSettings?.promo}
                                         path={`${
                                             store?.webUrl
-                                        }/catalog/${storeCode}/${storeName}/details/${productID}/model/${shownModel?.SKU?.replaceAll(
+                                        }/catalog/${storeCode}/${storeName}/details/${productId}/model/${shownModel?.SKU?.replaceAll(
                                             '/',
                                             '_'
                                         )}`}

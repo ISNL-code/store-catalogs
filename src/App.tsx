@@ -14,6 +14,7 @@ import FavoritesPage from 'pages/Favorites/Favorites';
 import CartPage from 'pages/Cart/Cart';
 import ContactsManagePage from 'pages/Contacts/ContactsManagePage';
 import { useUserApi } from 'api/useUserApi';
+import { UserDataInterface } from 'types';
 
 const App = () => {
     const token = localStorage.getItem(ACCESS_TOKEN_KEY);
@@ -21,6 +22,7 @@ const App = () => {
     const [lang, setLang] = useState({ code: 'ua', label: 'Ukraine' });
     const [auth, setAuth] = useState<boolean | null>(false);
     const { refetch: updateUserData } = useUserApi().useGetUserData({ auth });
+    const [currentUserData, setCurrentUserData] = useState<UserDataInterface | any>(null);
 
     useEffect(() => {
         if (token) {
@@ -30,6 +32,7 @@ const App = () => {
                     localStorage.removeItem(ACCESS_TOKEN_KEY);
                 } else {
                     setAuth(true);
+                    setCurrentUserData(res?.data?.data);
                 }
             });
         }
@@ -61,7 +64,15 @@ const App = () => {
                             </Route>
                             <Route
                                 path={'/catalog'}
-                                element={<Catalog lang={lang} setLang={setLang} auth={auth} setAuth={setAuth} />}
+                                element={
+                                    <Catalog
+                                        lang={lang}
+                                        setLang={setLang}
+                                        auth={auth}
+                                        setAuth={setAuth}
+                                        currentUserData={currentUserData}
+                                    />
+                                }
                             >
                                 <Route path={'/catalog/:storeCode/:storeName'} element={<CatalogPage />} />
                                 <Route

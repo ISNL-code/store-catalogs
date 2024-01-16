@@ -11,7 +11,7 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import StoreIcon from '@mui/icons-material/Store';
 import GridViewIcon from '@mui/icons-material/GridView';
 import ProfileButton from 'components/molecules/ToolsButtons/ProfileButton';
-import { StoreInterface } from 'types';
+import { StoreInterface, useAddToCartDataInterface } from 'types';
 
 interface HeaderInterface {
     headerHeight;
@@ -25,6 +25,7 @@ interface HeaderInterface {
     setOpenModalType;
     openModalType;
     store: StoreInterface | null;
+    cart: useAddToCartDataInterface;
 }
 
 const Header = ({
@@ -39,6 +40,7 @@ const Header = ({
     setOpenModalType,
     openModalType,
     store,
+    cart,
 }: HeaderInterface) => {
     const location = useLocation();
     const { sx } = useDevice();
@@ -69,7 +71,7 @@ const Header = ({
                     />
                 </Box>
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                    {/* <HeaderNavButton title={string?.stores} path={`/`} icon={() => <StoreIcon />} /> */}
+                    <HeaderNavButton title={string?.stores} path={`/`} icon={() => <StoreIcon />} />
 
                     <HeaderNavButton
                         title={string?.catalog}
@@ -93,6 +95,7 @@ const Header = ({
                             path={`/catalog/${storeCode}/${storeName}/cart`}
                             icon={() => <ShoppingCartIcon />}
                             isShown={!sx}
+                            badgeCount={cart?.cartItems?.length}
                         />
                     )}
 

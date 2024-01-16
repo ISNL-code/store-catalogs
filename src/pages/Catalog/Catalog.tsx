@@ -101,7 +101,7 @@ const Catalog = () => {
                                     key={product.id}
                                     modelsVariants={product.variants}
                                     name={product.name}
-                                    productID={product.id}
+                                    productId={product.id}
                                     currency={getCurrencySymbol(store?.currency)}
                                     setProductsList={setProductsList}
                                     promoTags={product?.promoTags}

@@ -53,12 +53,6 @@ export const useStoresApi = () => {
         );
     };
 
-    // const useGetStoreByID = code => {
-    //     const { data, remove } = useGetStoreByCode({ code });
-
-    //     return { ...data?.data, ...useGetStoresList.find(store => store.code === code) } as any;
-    // };
-
     const useEnterStoreKey = ({ storeKey, storeCode }) => {
         const checkedStore =
             STORES_DATA.find(el => el.code === storeCode)?.securityStoreSettings?.securityKey === storeKey;

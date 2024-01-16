@@ -17,7 +17,7 @@ const CardItem = ({ children, withHover = true }) => {
                 boxShadow: '0 0 3px 2px #00000037',
                 transition: 'all .3s ease-in-out',
                 '&:hover': {
-                    transform: withHover ? 'scale(1.01)' : '',
+                    transform: withHover ? 'scale(1.005)' : '',
                     boxShadow: withHover ? '0 0 3px 3px #00000037' : '',
                 },
                 height: '100%',

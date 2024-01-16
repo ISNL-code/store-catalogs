@@ -25,6 +25,13 @@ export interface CatalogContextInterface {
     handleCategoriesQuery;
     setOpenModalType;
     openModalType: string | null;
+    cart: useAddToCartDataInterface;
+    currentUserData: UserDataInterface | null;
+}
+
+export interface useAddToCartDataInterface {
+    cartItems: any[];
+    handleSetCartItems: (data: any) => void;
 }
 
 export interface StoresContextInterface {
@@ -109,6 +116,47 @@ export interface StoreInterface {
             };
         }
     ];
+}
+
+export interface UserDataInterface {
+    id: number;
+    emailAddress: string;
+    billing: {
+        postalCode: string | null;
+        countryCode: string | null;
+        firstName: string;
+        lastName: string;
+        bilstateOther: string | null;
+        company: string | null;
+        phone: string | null;
+        address: string | null;
+        city: string | null;
+        stateProvince: string | null;
+        billingAddress: boolean;
+        latitude: string | null;
+        longitude: string | null;
+        zone: string | null;
+        country: string;
+    };
+    delivery: null;
+    gender: string;
+    language: string;
+    firstName: string;
+    lastName: string;
+    provider: null;
+    storeCode: null;
+    userName: string;
+    rating: number;
+    ratingCount: number;
+    attributes: [];
+    groups: [
+        {
+            name: 'CUSTOMER';
+            type: 'CUSTOMER';
+            id: number;
+        }
+    ];
+    favoriteStores: [];
 }
 
 export interface ItemDescriptionInterface {

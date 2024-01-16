@@ -12,20 +12,23 @@ import { useProducts } from './hooks/useProducts';
 import Modals from 'layouts/Modals';
 import { StoreInterface } from 'types';
 import { STORES_DATA } from 'dataBase/STORES';
+import { useFavoritesProductsApi } from 'api/useFavoritesProductsApi';
+import { useAddToCart } from './hooks/useAddToCart';
 
-export default function MainCatalog({ lang, setLang, auth, setAuth }) {
+export default function MainCatalog({ lang, setLang, auth, setAuth, currentUserData }) {
+    const { sx, l } = useDevice();
+    const headerHeight = 50;
+    const footerHeight = sx ? 70 : 0;
+    const instrumentalBarHeight = 36;
+    const appXPadding = l ? 2 : 4;
     const [openModalType, setOpenModalType] = useState<string | null>(null);
     const { storeCode } = useParams();
-    const { sx, l } = useDevice();
     const { currentLanguage } = useGetLanguage({ lang: lang?.code });
     const [scrollPosition, setScrollPosition] = useState(0);
     const [queryCategories, setQueryCategories] = useState<string[] | []>([]);
     const [store, setStore] = useState<StoreInterface | null>(null);
     const [supportedLanguage, setSupportedLanguage] = useState<any>();
-    const headerHeight = 50;
-    const footerHeight = sx ? 70 : 0;
-    const instrumentalBarHeight = 36;
-    const appXPadding = l ? 2 : 4;
+
     const { data: storeDataRes, remove: removeStoreData } = useStoresApi().useGetStoreByCode({ code: storeCode });
 
     const {
@@ -55,6 +58,8 @@ export default function MainCatalog({ lang, setLang, auth, setAuth }) {
         setQueryCategories,
         queryCategories,
     });
+
+    const cart = useAddToCart({ auth });
 
     useEffect(() => {
         return () => {
@@ -95,6 +100,7 @@ export default function MainCatalog({ lang, setLang, auth, setAuth }) {
                 setOpenModalType={setOpenModalType}
                 openModalType={openModalType}
                 store={store}
+                cart={cart}
             />
             <Box
                 px={appXPadding}
@@ -129,6 +135,8 @@ export default function MainCatalog({ lang, setLang, auth, setAuth }) {
                         handleCategoriesQuery: handleCategoriesQuery,
                         setOpenModalType: setOpenModalType,
                         openModalType: openModalType,
+                        cart: cart,
+                        currentUserData,
                     }}
                 />
             </Box>
@@ -148,7 +156,7 @@ export default function MainCatalog({ lang, setLang, auth, setAuth }) {
                 withShare={store?.mainStoreSettings?.productShare}
                 setOpenModalType={setOpenModalType}
                 openModalType={openModalType}
-                headerHeight={headerHeight}
+                cart={cart}
             />
         </Box>
     );

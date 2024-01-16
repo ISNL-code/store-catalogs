@@ -1,13 +1,16 @@
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
 import { Box, IconButton } from '@mui/material';
 import { useOutletContext } from 'react-router-dom';
 import { CatalogContextInterface } from 'types';
 
 interface CartButtonInterface {
     isShown: boolean;
+    action;
+    selected;
 }
 
-const CartButton = ({ isShown }: CartButtonInterface) => {
+const CartButton = ({ isShown, action, selected }: CartButtonInterface) => {
     const { setOpenModalType, auth }: CatalogContextInterface = useOutletContext();
     if (isShown)
         return (
@@ -15,12 +18,23 @@ const CartButton = ({ isShown }: CartButtonInterface) => {
                 <Box>
                     <IconButton
                         size="small"
-                        sx={{ border: '1px solid #1976d2', backgroundColor: '#fff', width: '33px', height: '33px' }}
+                        sx={{
+                            border: selected ? '1px solid green' : '1px solid #1976d2',
+                            backgroundColor: selected ? 'green' : '#fff',
+                            width: '33px',
+                            height: '33px',
+                            '&:hover': { backgroundColor: selected ? 'green' : '#fff' },
+                        }}
                         onClick={() => {
                             if (!auth) return setOpenModalType('register-warning');
+                            action();
                         }}
                     >
-                        <AddShoppingCartIcon color="primary" fontSize="small" />
+                        {selected ? (
+                            <ShoppingCartCheckoutIcon sx={{ color: 'white' }} />
+                        ) : (
+                            <AddShoppingCartIcon sx={{ color: '#1976d2' }} fontSize="small" />
+                        )}
                     </IconButton>
                 </Box>
             </Box>

@@ -19,7 +19,7 @@ const MobileMenu = ({
     withShare,
     openModalType,
     setOpenModalType,
-    headerHeight,
+    cart,
 }) => {
     const { storeCode, storeName } = useParams();
 
@@ -65,6 +65,7 @@ const MobileMenu = ({
                             path={`/catalog/${storeCode}/${storeName}/cart`}
                             title={string?.cart}
                             icon={p => <ShoppingCartIcon {...p} />}
+                            badgeCount={cart?.cartItems?.length}
                         />
                     )}
                     {!auth && (

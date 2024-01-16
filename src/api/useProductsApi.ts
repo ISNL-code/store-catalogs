@@ -16,7 +16,6 @@ export const useProductsApi = () => {
     };
 
     const useGetProductByID = ({ id, lang, store }) => {
-        console.log(lang);
         return useQuery(
             ['get-product-by-id'],
             () =>
