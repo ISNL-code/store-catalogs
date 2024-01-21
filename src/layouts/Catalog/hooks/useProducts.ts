@@ -16,7 +16,6 @@ export const useProducts = ({ store, lang, queryCategories, setQueryCategories }
         data: productsRes,
         isFetching: loadProducts,
         isLoading: loadMoreProducts,
-        remove: clearProductsRes,
         refetch: updateProducts,
     } = useProductsApi().useGetAllProducts({
         store: store,
@@ -32,7 +31,7 @@ export const useProducts = ({ store, lang, queryCategories, setQueryCategories }
     }, [queryCategories]);
 
     useEffect(() => {
-        if (!productsRes) return;
+        if (!productsRes || loadProducts) return setProductsList([]);
         if (currentProductsPage) return;
         setProductsList(
             productsRes.data.products?.map(product => {
@@ -48,7 +47,7 @@ export const useProducts = ({ store, lang, queryCategories, setQueryCategories }
                                 price: variant.inventory[0]?.price,
                                 images: variant.images,
                                 colorCode: variant.variation.optionValue.code,
-                                SKU: variant.sku,
+                                sku: variant.sku,
                             };
                         }),
                     name: product.description.name,
@@ -89,7 +88,7 @@ export const useProducts = ({ store, lang, queryCategories, setQueryCategories }
                                         price: variant.inventory[0]?.price,
                                         images: variant.images,
                                         colorCode: variant.variation.optionValue.code,
-                                        SKU: variant.sku,
+                                        sku: variant.sku,
                                     };
                                 }),
                             name: product.description.name,
@@ -121,7 +120,6 @@ export const useProducts = ({ store, lang, queryCategories, setQueryCategories }
         productsRes,
         loadProducts,
         loadMoreProducts,
-        clearProductsRes,
         updateProducts,
         currentProductsPage,
         handleSetProductsPage,

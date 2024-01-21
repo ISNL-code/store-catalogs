@@ -109,7 +109,7 @@ export default function Register({ setAuth, lang, string, close, setOpenModalTyp
                 <TextField
                     size="small"
                     onChange={e => {
-                        setUsername(e.target.value);
+                        setUsername(e.target.value.trim());
                     }}
                     value={username}
                     margin="dense"
@@ -190,7 +190,7 @@ export default function Register({ setAuth, lang, string, close, setOpenModalTyp
                 <TextField
                     size="small"
                     onChange={e => {
-                        setFirstName(e.target.value);
+                        setFirstName(e.target.value.trim());
                     }}
                     value={firstName}
                     margin="dense"
@@ -210,7 +210,7 @@ export default function Register({ setAuth, lang, string, close, setOpenModalTyp
                 <TextField
                     size="small"
                     onChange={e => {
-                        setLastName(e.target.value);
+                        setLastName(e.target.value.trim());
                     }}
                     value={lastName}
                     margin="dense"
@@ -241,7 +241,7 @@ export default function Register({ setAuth, lang, string, close, setOpenModalTyp
                             e.target.value.includes('0') ||
                             e.target.value.length < 1
                         )
-                            setPhoneNumber(e.target.value);
+                            setPhoneNumber(e.target.value.trim());
                     }}
                     type="tel"
                     variant="outlined"

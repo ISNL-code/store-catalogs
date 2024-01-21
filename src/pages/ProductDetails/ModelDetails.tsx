@@ -20,6 +20,7 @@ const ModelDetails = ({ productDetails, selectedVariant, setSelectedVariant }) =
             </Box>
             <Box>
                 <ActionSection
+                    selectedVariant={selectedVariant}
                     isShown={store?.additionalStoreSettings?.cart || store?.additionalStoreSettings?.favorites}
                 />
             </Box>

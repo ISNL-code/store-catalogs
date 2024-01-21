@@ -12,8 +12,13 @@ const BackButton = ({ nav, action }) => {
                 backgroundColor: '#fff',
                 ml: '2px',
                 border: '1px solid rgba(0, 0, 0, 0.120)',
+                zIndex: 2000,
             }}
             onClick={() => {
+                navigate(nav);
+                action();
+            }}
+            onTouchEnd={() => {
                 navigate(nav);
                 action();
             }}

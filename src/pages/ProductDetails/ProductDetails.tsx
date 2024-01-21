@@ -15,6 +15,7 @@ import { useOutletContext, useParams } from 'react-router-dom';
 import { CatalogContextInterface, ProductVariantInterface } from 'types';
 import ModelDetails from './ModelDetails';
 import ModelSwiper from './ModelSwiper';
+import { scrollToTopNewPage } from 'helpers/scroll';
 
 interface LoadedProductInterface {
     id?: number;
@@ -34,22 +35,22 @@ interface SelectedVarianInterface {
 
 const ProductDetails = () => {
     const mount = useIsMount();
-    const { store, lang, headerHeight, instrumentalBarHeight, footerHeight }: CatalogContextInterface =
+    const { store, headerHeight, instrumentalBarHeight, footerHeight, supportedLanguage }: CatalogContextInterface =
         useOutletContext();
-    const { modelSKU, storeCode, storeName, productId } = useParams();
+    const { modelSku, storeCode, storeName, productId } = useParams();
     const [productDetails, setProductDetails] = useState<LoadedProductInterface | null>(null);
     const [selectedVariant, setSelectedVariant] = useState<SelectedVarianInterface | undefined | null>(null);
     const [loading, setLoading] = useState(true);
-    const [supportedLanguage, setSupportedLanguage] = useState<any>();
 
     const {
         data: productRes,
         isFetching: loadProduct,
         refetch: updateModel,
-    } = useProductsApi().useGetProductByID({ id: productId, lang: supportedLanguage, store: storeCode });
+    } = useProductsApi().useGetProductByID({ id: productId, lang: supportedLanguage, storeCode });
 
     useEffect(() => {
-        if (!productRes) return;
+        if (!productRes || loadProduct) return;
+
         const product = productRes.data.products[0];
 
         setProductDetails({
@@ -73,16 +74,13 @@ const ProductDetails = () => {
                     })
                     .sort((a, b) => a.code - b.code) || [],
         });
-        window.scrollTo({
-            top: 0,
-            behavior: 'auto',
-        });
-    }, [productRes, modelSKU]);
+        scrollToTopNewPage();
+    }, [productRes, modelSku]);
 
     useEffect(() => {
         if (mount) return;
         updateModel();
-    }, [lang, supportedLanguage, modelSKU]);
+    }, [supportedLanguage]);
 
     useEffect(() => {
         if (loadProduct) return;
@@ -94,15 +92,9 @@ const ProductDetails = () => {
 
     useEffect(() => {
         if (!productDetails) return;
-
-        setSelectedVariant(productDetails?.variants?.find(product => product.sku === modelSKU));
+        console.log(productDetails);
+        setSelectedVariant(productDetails?.variants?.find(product => product.sku === modelSku?.replaceAll('_', '/')));
     }, [productDetails]);
-
-    useEffect(() => {
-        if (!store?.supportedLanguages) return;
-
-        setSupportedLanguage(store?.supportedLanguages?.find(el => el.code === lang) ? lang : 'en');
-    }, [lang, store?.supportedLanguages]);
 
     const { sx, m, ls } = useDevice();
 
@@ -115,15 +107,16 @@ const ProductDetails = () => {
         return 8;
     };
 
+    if (!productDetails) return <Loader />;
+
     return (
         <>
-            {loadProduct && <Loader />}
             <InstrumentalSubHeader
                 StartSlot={() => <BackButton nav={`/catalog/${storeCode}/${storeName}`} action={() => {}} />}
                 CentralSlot={() => (
                     <Box sx={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
                         <Typography sx={{ backgroundColor: '#fff', padding: 0.5, px: 2, borderRadius: 50 }}>
-                            {modelSKU?.replaceAll('_', '/')}
+                            {modelSku?.replaceAll('_', '/')}
                         </Typography>
                     </Box>
                 )}
@@ -133,7 +126,7 @@ const ProductDetails = () => {
                         <ShareButton
                             path={`${
                                 store?.webUrl
-                            }/catalog/${storeCode}/${storeName}/details/${productId}/model/${modelSKU?.replaceAll(
+                            }/catalog/${storeCode}/${storeName}/details/${productId}/model/${modelSku?.replaceAll(
                                 '/',
                                 '_'
                             )}`}

@@ -10,7 +10,7 @@ export const useCategoriesApi = () => {
             ['get-all-product-categories'],
             //get function
             () => get({ url: `/v1/category?lang=${lang}&store=${store}&count=1000&page=0` }),
-            { enabled: !!store }
+            { enabled: !!store && !!lang }
         );
     };
 

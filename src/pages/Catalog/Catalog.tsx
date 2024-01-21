@@ -47,7 +47,7 @@ const Catalog = () => {
             () => {
                 setLoading(false);
             },
-            productsList?.length ? 0 : 1000
+            productsList?.length ? 500 : 1500
         );
     }, [loadProducts, loading]);
 
@@ -92,7 +92,7 @@ const Catalog = () => {
                 )}
             />
 
-            {productsList?.length ? (
+            {productsList?.length && !loadProducts ? (
                 <TransitionBox dependency={loading}>
                     <Grid xs={12} container>
                         {productsList?.map(product => {

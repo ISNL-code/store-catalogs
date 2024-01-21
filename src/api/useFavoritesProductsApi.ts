@@ -16,17 +16,17 @@ export const useFavoritesProductsApi = () => {
     // };
 
     const useAddProductToFavorite = () =>
-        useMutation(({ storeCode }: any) => {
+        useMutation(({ storeCode, data }: any) => {
             return post({
-                url: `v2/auth/favoriteProducts?store=${storeCode}`,
-                body: { attributes: [{ id: 0, name: 'name', variant: true }], productId: 0, variantId: 0 },
+                url: `v1/auth/favoriteProducts?store=${storeCode}`,
+                body: { ...data },
             });
         });
 
     const useDeleteProductToFavorite = () =>
         useMutation(({ storeCode }: any) => {
             return remove({
-                url: `v1/auth/favoriteStores/${storeCode}`,
+                url: `v2/auth/favoriteProducts?store=${storeCode}`,
             });
         });
 

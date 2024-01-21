@@ -69,7 +69,7 @@ export default function Login({ setAuth, string, close, setOpenModalType }) {
                 <TextField
                     size="small"
                     onChange={e => {
-                        setUsername(e.target.value);
+                        setUsername(e.target.value.trim());
                     }}
                     value={username || ''}
                     margin="dense"

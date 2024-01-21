@@ -1,13 +1,18 @@
 import { Box, Button } from '@mui/material';
-import { useOutletContext } from 'react-router-dom';
-import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import { useOutletContext, useParams } from 'react-router-dom';
+import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import { CatalogContextInterface } from 'types';
 
-const ActionSection = ({ isShown }) => {
-    const { store, string, setOpenModalType, auth }: CatalogContextInterface = useOutletContext();
+const ActionSection = ({ isShown, selectedVariant }) => {
+    const { storeCode } = useParams();
+    const { store, string, setOpenModalType, auth, cart }: CatalogContextInterface = useOutletContext();
+
+    const selectedToCart = cart?.cartItems?.find(item => item.sku === selectedVariant?.sku);
+    const selectedToFavorites = false;
+
     if (isShown)
         return (
             <Box mb={0.5} sx={{ display: 'flex', gap: 1 }}>
@@ -21,13 +26,23 @@ const ActionSection = ({ isShown }) => {
                         variant="contained"
                         onClick={() => {
                             if (!auth) return setOpenModalType('register-warning');
+                            cart?.handleSetCartItems({
+                                sku: selectedVariant?.sku,
+                                storeCode,
+                                userId: selectedVariant?.id,
+                                productId: selectedVariant?.productId,
+                            });
                         }}
-                        color="primary"
+                        color={selectedToCart ? 'success' : 'primary'}
                         endIcon={
-                            false ? <ShoppingCartIcon fontSize="small" /> : <AddShoppingCartIcon fontSize="small" />
+                            selectedToCart ? (
+                                <ShoppingCartCheckoutIcon fontSize="small" />
+                            ) : (
+                                <AddShoppingCartIcon fontSize="small" />
+                            )
                         }
                     >
-                        {string?.add_to}
+                        {selectedToCart ? string?.added : string?.add_to}
                     </Button>
                 )}
                 {store?.additionalStoreSettings?.favorites && (

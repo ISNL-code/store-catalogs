@@ -1,29 +1,47 @@
+import { CART_KEY } from 'constants/constants';
+import { useIsMount } from 'hooks/useIsMount';
 import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { useAddToCartDataInterface } from 'types';
 
 interface useAddToCartParamsInterface {
     auth: boolean;
+    loadingUser: boolean;
 }
 
-export const useAddToCart = ({ auth }: useAddToCartParamsInterface): useAddToCartDataInterface => {
+export const useAddToCart = ({ auth, loadingUser }: useAddToCartParamsInterface): useAddToCartDataInterface => {
+    const { storeCode } = useParams();
+    const mount = useIsMount();
     const [cartItems, setCartItems] = useState<any[]>([]);
 
     useEffect(() => {
+        if (loadingUser) return;
+
         if (!auth) return setCartItems([]);
+        setCartItems(JSON.parse(localStorage.getItem(storeCode + CART_KEY) as string) || []);
     }, [auth]);
 
     useEffect(() => {
-        console.log(cartItems);
+        if (loadingUser) return;
+
+        if (mount) return;
+        if (cartItems.length) {
+            localStorage.setItem(storeCode + CART_KEY, JSON.stringify(cartItems));
+        } else if (auth) localStorage.removeItem(storeCode + CART_KEY);
     }, [cartItems]);
 
     const handleSetCartItems = data => {
-        if (!auth) return setCartItems([]);
-        if (cartItems.find(item => item?.SKU === data?.SKU)) {
-            setCartItems(prev => prev.filter(item => item.SKU !== data?.SKU));
+        if (!auth) return;
+        if (cartItems?.find(item => item?.sku === data?.sku)) {
+            setCartItems(prev => prev.filter(item => item.sku !== data?.sku));
         } else {
             setCartItems(prev => [...prev, data]);
         }
     };
 
-    return { cartItems, handleSetCartItems };
+    const handleClearCart = () => {
+        setCartItems([]);
+    };
+
+    return { cartItems, handleSetCartItems, handleClearCart };
 };

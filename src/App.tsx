@@ -19,9 +19,9 @@ import { UserDataInterface } from 'types';
 const App = () => {
     const token = localStorage.getItem(ACCESS_TOKEN_KEY);
     const mount = useIsMount();
-    const [lang, setLang] = useState({ code: 'ua', label: 'Ukraine' });
+    const [lang, setLang] = useState<any>({ code: 'ua', label: 'Ukraine' });
     const [auth, setAuth] = useState<boolean | null>(false);
-    const { refetch: updateUserData } = useUserApi().useGetUserData({ auth });
+    const { refetch: updateUserData, isFetching } = useUserApi().useGetUserData({ auth, lang: lang?.code });
     const [currentUserData, setCurrentUserData] = useState<UserDataInterface | any>(null);
 
     useEffect(() => {
@@ -39,14 +39,21 @@ const App = () => {
     }, []);
 
     useEffect(() => {
-        const savedLanguage = JSON.parse(localStorage.getItem('my-lang') as string);
-        if (!savedLanguage) return;
+        const getLang = localStorage.getItem('my-lang-cocktail');
+
+        if (!getLang) {
+            localStorage.removeItem('my-lang-cocktail');
+            setLang({ code: 'ua', label: 'Ukraine' });
+            return;
+        }
+        const savedLanguage = JSON.parse(getLang);
+
         setLang(savedLanguage);
     }, []);
 
     useEffect(() => {
         if (mount) return;
-        localStorage.setItem('my-lang', JSON.stringify(lang));
+        localStorage.setItem('my-lang-cocktail', JSON.stringify(lang));
     }, [lang, mount]);
 
     return (
@@ -70,7 +77,7 @@ const App = () => {
                                         setLang={setLang}
                                         auth={auth}
                                         setAuth={setAuth}
-                                        currentUserData={currentUserData}
+                                        userData={{ currentUserData, isFetching }}
                                     />
                                 }
                             >
@@ -80,10 +87,11 @@ const App = () => {
                                     element={<ContactsManagePage />}
                                 />
                                 <Route
-                                    path={'/catalog/:storeCode/:storeName/details/:productId/model/:modelSKU'}
+                                    path={'/catalog/:storeCode/:storeName/details/:productId/model/:modelSku'}
                                     element={<ProductDetailsPage />}
                                 />
                                 <Route path={'/catalog/:storeCode/:storeName/cart'} element={<CartPage />} />
+
                                 <Route path={'/catalog/:storeCode/:storeName/favorites'} element={<FavoritesPage />} />
                             </Route>
                             <Route path="*" element={<Navigate to="/" replace />} />

@@ -2,7 +2,7 @@ import { Box } from '@mui/material';
 import MobileNavButton from 'components/atoms/Buttons/MobileNavButton';
 import PermIdentityIcon from '@mui/icons-material/PermIdentity';
 import LogoutIcon from '@mui/icons-material/Logout';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import GridViewIcon from '@mui/icons-material/GridView';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
@@ -21,6 +21,7 @@ const MobileMenu = ({
     setOpenModalType,
     cart,
 }) => {
+    const navigate = useNavigate();
     const { storeCode, storeName } = useParams();
 
     if (isShown)
@@ -55,9 +56,13 @@ const MobileMenu = ({
                     />
                     {withShare && (
                         <MobileNavButton
-                            path={`/catalog/${storeCode}/${storeName}/favorites`}
                             title={string?.favorites}
                             icon={p => <FavoriteIcon {...p} />}
+                            action={() => {
+                                if (auth) {
+                                    navigate(`/catalog/${storeCode}/${storeName}/cart`);
+                                } else setOpenModalType('login');
+                            }}
                         />
                     )}
                     {withCart && (
@@ -66,6 +71,11 @@ const MobileMenu = ({
                             title={string?.cart}
                             icon={p => <ShoppingCartIcon {...p} />}
                             badgeCount={cart?.cartItems?.length}
+                            action={() => {
+                                if (auth) {
+                                    navigate(`/catalog/${storeCode}/${storeName}/cart`);
+                                } else setOpenModalType('login');
+                            }}
                         />
                     )}
                     {!auth && (

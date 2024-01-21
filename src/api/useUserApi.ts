@@ -47,18 +47,14 @@ export const useUserApi = () => {
             }
         );
 
-    const useGetUserData = ({ auth }) => {
+    const useGetUserData = ({ auth, lang }) => {
         return useQuery(
             ['get-user-profile'],
 
             () =>
                 get({
                     url: `v1/auth/customer/profile`,
-                }),
-            {
-                enabled: auth,
-                retry: false,
-            }
+                })
         );
     };
 

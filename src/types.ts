@@ -27,11 +27,14 @@ export interface CatalogContextInterface {
     openModalType: string | null;
     cart: useAddToCartDataInterface;
     currentUserData: UserDataInterface | null;
+    loadingUserData: boolean;
+    supportedLanguage: string;
 }
 
 export interface useAddToCartDataInterface {
     cartItems: any[];
     handleSetCartItems: (data: any) => void;
+    handleClearCart: () => void;
 }
 
 export interface StoresContextInterface {

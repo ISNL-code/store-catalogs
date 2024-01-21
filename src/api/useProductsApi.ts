@@ -15,14 +15,25 @@ export const useProductsApi = () => {
         );
     };
 
-    const useGetProductByID = ({ id, lang, store }) => {
+    const useGetProductByID = ({ id, lang, storeCode }) => {
         return useQuery(
             ['get-product-by-id'],
             () =>
                 get({
-                    url: `/v2/products/?lang=${lang}&store=${store}&productIds=${id}`,
+                    url: `/v2/products/?lang=${lang}&store=${storeCode}&productIds=${id}&count=1000`,
                 }),
             { enabled: !!lang }
+        );
+    };
+
+    const useGetProductByIDForCart = ({ id, lang, storeCode }) => {
+        return useQuery(
+            ['for-cart-get-product-by-id'],
+            () =>
+                get({
+                    url: `/v2/products/?lang=${lang}&store=${storeCode}&productIds=${id}&count=1000`,
+                }),
+            { enabled: false }
         );
     };
 
@@ -42,5 +53,6 @@ export const useProductsApi = () => {
         useGetAllProducts,
         useGetProductBySku,
         useGetProductByID,
+        useGetProductByIDForCart,
     };
 };

@@ -4,7 +4,7 @@ import HeaderLogo from 'components/atoms/Logo/HeaderLogo';
 import LanguageButton from 'components/molecules/ToolsButtons/LanguageButton';
 import PermIdentityIcon from '@mui/icons-material/PermIdentity';
 import { useDevice } from 'hooks/useDevice';
-import { useLocation, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import LogoutIcon from '@mui/icons-material/Logout';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
@@ -42,6 +42,7 @@ const Header = ({
     store,
     cart,
 }: HeaderInterface) => {
+    const navigate = useNavigate();
     const location = useLocation();
     const { sx } = useDevice();
     const { storeCode, storeName } = useParams();
@@ -84,18 +85,26 @@ const Header = ({
                     {store?.additionalStoreSettings?.favorites && (
                         <HeaderNavButton
                             title={string?.favorites}
-                            path={`/catalog/${storeCode}/${storeName}/favorites`}
                             icon={() => <FavoriteIcon />}
                             isShown={!sx}
+                            action={() => {
+                                if (auth) {
+                                    navigate(`/catalog/${storeCode}/${storeName}/cart`);
+                                } else setOpenModalType('login');
+                            }}
                         />
                     )}
                     {store?.additionalStoreSettings?.cart && (
                         <HeaderNavButton
                             title={string?.cart}
-                            path={`/catalog/${storeCode}/${storeName}/cart`}
                             icon={() => <ShoppingCartIcon />}
                             isShown={!sx}
                             badgeCount={cart?.cartItems?.length}
+                            action={() => {
+                                if (auth) {
+                                    navigate(`/catalog/${storeCode}/${storeName}/cart`);
+                                } else setOpenModalType('login');
+                            }}
                         />
                     )}
 

@@ -15,7 +15,7 @@ import { STORES_DATA } from 'dataBase/STORES';
 import { useFavoritesProductsApi } from 'api/useFavoritesProductsApi';
 import { useAddToCart } from './hooks/useAddToCart';
 
-export default function MainCatalog({ lang, setLang, auth, setAuth, currentUserData }) {
+export default function MainCatalog({ lang, setLang, auth, setAuth, userData }) {
     const { sx, l } = useDevice();
     const headerHeight = 50;
     const footerHeight = sx ? 70 : 0;
@@ -29,12 +29,13 @@ export default function MainCatalog({ lang, setLang, auth, setAuth, currentUserD
     const [store, setStore] = useState<StoreInterface | null>(null);
     const [supportedLanguage, setSupportedLanguage] = useState<any>();
 
-    const { data: storeDataRes, remove: removeStoreData } = useStoresApi().useGetStoreByCode({ code: storeCode });
+    const { data: storeDataRes, isFetching: loadStore } = useStoresApi().useGetStoreByCode({
+        code: storeCode,
+    });
 
     const {
         loadProducts,
         loadMoreProducts,
-        clearProductsRes,
         updateProducts,
         currentProductsPage,
         handleSetProductsPage,
@@ -59,24 +60,17 @@ export default function MainCatalog({ lang, setLang, auth, setAuth, currentUserD
         queryCategories,
     });
 
-    const cart = useAddToCart({ auth });
+    const cart = useAddToCart({ auth, loadingUser: userData?.isFetching });
 
     useEffect(() => {
-        return () => {
-            removeStoreData();
-            clearProductsRes();
-        };
-    }, []);
-
-    useEffect(() => {
-        if (!storeDataRes) return;
+        if (!storeDataRes || loadStore) return;
         setStore({ ...storeDataRes.data, ...STORES_DATA.find(el => el.code === storeCode) });
     }, [storeDataRes]);
 
     useEffect(() => {
         if (!store?.supportedLanguages) return;
         setSupportedLanguage(
-            store?.supportedLanguages?.find(el => el.code === lang.code) ? { code: lang.code } : { code: 'en' }
+            store?.supportedLanguages?.find(el => el.code === lang?.code) ? { code: lang?.code } : { code: 'en' }
         );
     }, [lang, store?.supportedLanguages]);
 
@@ -109,39 +103,54 @@ export default function MainCatalog({ lang, setLang, auth, setAuth, currentUserD
             >
                 <Outlet
                     context={{
+                        //main data
                         lang: lang?.code,
-                        string: currentLanguage.string as string,
+                        supportedLanguage: supportedLanguage?.code,
+                        string: currentLanguage?.string,
+                        scrollPosition: scrollPosition,
+                        setScrollPosition: setScrollPosition,
+                        setOpenModalType: setOpenModalType,
+                        openModalType: openModalType,
+
+                        //store data
                         store,
-                        categoriesList,
+
+                        //user data
+                        currentUserData: userData.currentUser,
+                        loadingUserData: userData.isFetching,
+
+                        //products data
                         productsList: productsList,
                         setProductsList: setProductsList,
                         loadProducts: loadProducts,
                         loadMoreProducts: loadMoreProducts,
                         updateProducts: updateProducts,
-                        scrollPosition: scrollPosition,
-                        setScrollPosition: setScrollPosition,
-                        instrumentalBarHeight: instrumentalBarHeight,
-                        headerHeight: headerHeight,
-                        footerHeight: footerHeight,
-                        appXPadding: appXPadding,
                         productCountPerPage: productCountPerPage,
                         totalProductsCount: totalProductsCount,
                         totalProductsPages: totalProductsPages,
                         handleSetProductsPage: handleSetProductsPage,
                         currentProductsPage: currentProductsPage,
-                        auth: auth,
+
+                        //categories data
+                        categoriesList,
                         queryCategories: queryCategories,
                         setQueryCategories: setQueryCategories,
                         handleCategoriesQuery: handleCategoriesQuery,
-                        setOpenModalType: setOpenModalType,
-                        openModalType: openModalType,
+
+                        //css data
+                        instrumentalBarHeight: instrumentalBarHeight,
+                        headerHeight: headerHeight,
+                        footerHeight: footerHeight,
+                        appXPadding: appXPadding,
+                        auth: auth,
+
+                        //cart & favorites
                         cart: cart,
-                        currentUserData,
                     }}
                 />
             </Box>
             <Modals
-                string={currentLanguage.string as string}
+                string={currentLanguage?.string as string}
                 setAuth={setAuth}
                 lang={lang?.code}
                 openModalType={openModalType}

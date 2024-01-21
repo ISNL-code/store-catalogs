@@ -16,12 +16,14 @@ import { CatalogContextInterface } from 'types';
 import CardItem from 'components/atoms/Sections/CardItem';
 import Grid from '@mui/material/Unstable_Grid2';
 import PromoTags from 'components/atoms/PromoTags/PromoTags';
+import { useFavoritesProductsApi } from 'api/useFavoritesProductsApi';
 
 interface ShownModelInterface {
     price: string;
     images: { imageUrl: string }[];
     id: number;
-    SKU: string;
+    sku: string;
+    productId: number;
 }
 
 function SamplePrevArrow(props) {
@@ -63,6 +65,9 @@ const CatalogCard = ({ modelsVariants, name, productId, currency, setProductsLis
     const [shownModel, setShownModel] = useState<ShownModelInterface | null>(null);
     const [isExpanded, setIsExpanded] = useState(false);
 
+    const { mutateAsync: addToFavorites } = useFavoritesProductsApi().useAddProductToFavorite();
+    const { mutateAsync: deleteFromFavorite } = useFavoritesProductsApi().useDeleteProductToFavorite();
+
     useEffect(() => {
         if (!modelsVariants?.length) return;
         setShownModel(modelsVariants.find(variant => variant.selected));
@@ -98,7 +103,17 @@ const CatalogCard = ({ modelsVariants, name, productId, currency, setProductsLis
                 )}
                 <Box
                     sx={{ position: 'absolute', top: 10, right: 10, zIndex: 1, display: 'flex', gap: 0.5 }}
-                    onClick={() => {}}
+                    onClick={() => {
+                        // addToFavorites({
+                        //     storeCode,
+                        //     data: {
+                        //         productId: productId,
+                        //         variantId: shownModel?.id,
+                        //         attributes: [{ id: 0, name: 'SIZE', variant: true }],
+                        //     },
+                        // });
+                        // deleteFromFavorite();
+                    }}
                 >
                     <FavoritesButton isShown={store?.additionalStoreSettings?.favorites} />
                 </Box>
@@ -110,7 +125,7 @@ const CatalogCard = ({ modelsVariants, name, productId, currency, setProductsLis
                     }}
                     onClick={() => {
                         navigate(
-                            `/catalog/${storeCode}/${storeName}/details/${productId}/model/${shownModel?.SKU?.replaceAll(
+                            `/catalog/${storeCode}/${storeName}/details/${productId}/model/${shownModel?.sku?.replaceAll(
                                 '/',
                                 '_'
                             )}`
@@ -261,13 +276,14 @@ const CatalogCard = ({ modelsVariants, name, productId, currency, setProductsLis
                                 )}
                                 <Box sx={{ display: 'flex', gap: 0.5 }}>
                                     <CartButton
-                                        selected={cart?.cartItems?.find(item => item.SKU === shownModel?.SKU)}
+                                        selected={cart?.cartItems?.find(item => item.sku === shownModel?.sku)}
                                         isShown={store?.additionalStoreSettings?.cart}
                                         action={() => {
                                             cart?.handleSetCartItems({
-                                                SKU: shownModel?.SKU,
+                                                sku: shownModel?.sku,
                                                 storeCode,
                                                 userId: currentUserData?.id,
+                                                productId: shownModel?.productId,
                                             });
                                         }}
                                     />
@@ -275,7 +291,7 @@ const CatalogCard = ({ modelsVariants, name, productId, currency, setProductsLis
                                         isShown={store?.additionalStoreSettings?.promo}
                                         path={`${
                                             store?.webUrl
-                                        }/catalog/${storeCode}/${storeName}/details/${productId}/model/${shownModel?.SKU?.replaceAll(
+                                        }/catalog/${storeCode}/${storeName}/details/${productId}/model/${shownModel?.sku?.replaceAll(
                                             '/',
                                             '_'
                                         )}`}
