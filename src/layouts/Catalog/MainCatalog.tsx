@@ -14,6 +14,8 @@ import { StoreInterface } from 'types';
 import { STORES_DATA } from 'dataBase/STORES';
 import { useFavoritesProductsApi } from 'api/useFavoritesProductsApi';
 import { useAddToCart } from './hooks/useAddToCart';
+import { useFavorites } from './hooks/useFavorites';
+import { useAddToFavorites } from './hooks/useAddToFavorites';
 
 export default function MainCatalog({ lang, setLang, auth, setAuth, userData }) {
     const { sx, l } = useDevice();
@@ -51,6 +53,25 @@ export default function MainCatalog({ lang, setLang, auth, setAuth, userData }) 
         setQueryCategories,
     });
 
+    // const {
+    //     favoritesRes,
+    //     updateFavorites,
+    //     loadFavorites,
+    //     loadMoreFavorites,
+    //     currentFavoritesPage,
+    //     handleSetFavoritesPage,
+    //     favoritesList,
+    //     totalProductsCount: totalCount,
+    //     productCountPerPage: currentCount,
+    //     totalProductsPages: totalPages,
+    //     setFavoritesList,
+    // } = useFavorites({
+    //     lang: supportedLanguage,
+    //     queryCategories,
+    //     setQueryCategories,
+    //     store,
+    // });
+
     const { categoriesList, handleCategoriesQuery } = useCategory({
         lang: supportedLanguage,
         store: storeCode,
@@ -61,10 +82,11 @@ export default function MainCatalog({ lang, setLang, auth, setAuth, userData }) 
     });
 
     const cart = useAddToCart({ auth, loadingUser: userData?.isFetching });
+    const favorites = useAddToFavorites({ auth, loadingUser: userData?.isFetching });
 
     useEffect(() => {
         if (!storeDataRes || loadStore) return;
-        setStore({ ...storeDataRes.data, ...STORES_DATA.find(el => el.code === storeCode) });
+        setStore({ ...STORES_DATA.find(el => el.code === storeCode), ...storeDataRes.data });
     }, [storeDataRes]);
 
     useEffect(() => {
@@ -95,6 +117,8 @@ export default function MainCatalog({ lang, setLang, auth, setAuth, userData }) 
                 openModalType={openModalType}
                 store={store}
                 cart={cart}
+                favorites={favorites}
+                // favoritesList={favoritesList}
             />
             <Box
                 px={appXPadding}
@@ -131,6 +155,11 @@ export default function MainCatalog({ lang, setLang, auth, setAuth, userData }) 
                         handleSetProductsPage: handleSetProductsPage,
                         currentProductsPage: currentProductsPage,
 
+                        //  favorites
+                        // favoritesList,
+                        // updateFavorites,
+                        // loadFavorites,
+
                         //categories data
                         categoriesList,
                         queryCategories: queryCategories,
@@ -146,6 +175,7 @@ export default function MainCatalog({ lang, setLang, auth, setAuth, userData }) 
 
                         //cart & favorites
                         cart: cart,
+                        favorites: favorites,
                     }}
                 />
             </Box>
@@ -166,6 +196,8 @@ export default function MainCatalog({ lang, setLang, auth, setAuth, userData }) 
                 setOpenModalType={setOpenModalType}
                 openModalType={openModalType}
                 cart={cart}
+                favorites={favorites}
+                // favoritesList={favoritesList}
             />
         </Box>
     );

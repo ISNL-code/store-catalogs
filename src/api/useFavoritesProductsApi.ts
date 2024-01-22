@@ -4,16 +4,16 @@ import useApi from './useApi';
 export const useFavoritesProductsApi = () => {
     const { get, post, remove } = useApi();
 
-    // const useGetAllFavoritesProducts = ({ store, lang, count, page, categories }) => {
-    //     return useQuery(
-    //         ['get-all-products'],
-    //         () =>
-    //             get({
-    //                 url: `/v2/products?store=${store}&lang=${lang}&available=true&count=${count}&page=${page}&categoryIds=${categories}`,
-    //             }),
-    //         { enabled: !!lang }
-    //     );
-    // };
+    const useGetAllFavoritesProducts = ({ lang, count, page, storeCode }) => {
+        return useQuery(
+            ['get-all-favorites-products'],
+            () =>
+                get({
+                    url: `/v1/auth/favoriteProducts?lang=${lang}&count=${count}&page=${page}&store=${storeCode}`,
+                }),
+            { enabled: !!lang }
+        );
+    };
 
     const useAddProductToFavorite = () =>
         useMutation(({ storeCode, data }: any) => {
@@ -24,15 +24,15 @@ export const useFavoritesProductsApi = () => {
         });
 
     const useDeleteProductToFavorite = () =>
-        useMutation(({ storeCode }: any) => {
+        useMutation(({ variantId }: any) => {
             return remove({
-                url: `v2/auth/favoriteProducts?store=${storeCode}`,
+                url: `v1/auth/favoriteProducts/${variantId}`,
             });
         });
 
     return {
-        // useGetAllFavoritesProducts,
         useAddProductToFavorite,
         useDeleteProductToFavorite,
+        useGetAllFavoritesProducts,
     };
 };

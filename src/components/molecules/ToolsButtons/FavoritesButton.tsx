@@ -1,13 +1,15 @@
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 import { Box, IconButton } from '@mui/material';
 import { useOutletContext } from 'react-router-dom';
 import { CatalogContextInterface } from 'types';
 
 interface FavoriteButtonInterface {
     isShown: boolean;
+    selected: boolean;
 }
 
-const FavoritesButton = ({ isShown }: FavoriteButtonInterface) => {
+const FavoritesButton = ({ isShown, selected }: FavoriteButtonInterface) => {
     const { setOpenModalType, auth }: CatalogContextInterface = useOutletContext();
 
     if (isShown)
@@ -26,7 +28,7 @@ const FavoritesButton = ({ isShown }: FavoriteButtonInterface) => {
                             if (!auth) return setOpenModalType('register-warning');
                         }}
                     >
-                        <FavoriteBorderIcon color="warning" />
+                        {selected ? <FavoriteIcon color="warning" /> : <FavoriteBorderIcon color="warning" />}
                     </IconButton>
                 </Box>
             </Box>

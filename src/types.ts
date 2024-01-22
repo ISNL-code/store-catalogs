@@ -26,15 +26,25 @@ export interface CatalogContextInterface {
     setOpenModalType;
     openModalType: string | null;
     cart: useAddToCartDataInterface;
+    favorites: useAddToFavoriteDataInterface;
     currentUserData: UserDataInterface | null;
     loadingUserData: boolean;
     supportedLanguage: string;
+    favoritesList: FavoritesProductsInterface[];
+    updateFavorites;
+    loadFavorites: boolean;
 }
 
 export interface useAddToCartDataInterface {
     cartItems: any[];
     handleSetCartItems: (data: any) => void;
     handleClearCart: () => void;
+}
+
+export interface useAddToFavoriteDataInterface {
+    favoriteItems: any[];
+    handleSetFavoriteItems: (data: any) => void;
+    handleClearFavorites: () => void;
 }
 
 export interface StoresContextInterface {
@@ -408,4 +418,11 @@ export interface LoadedProductListInterface {
     name: string;
     price: string;
     langIsNotSupported: boolean;
+}
+
+export interface FavoritesProductsInterface {
+    attributes: any[];
+    favoriteProductId: number;
+    variantId: number;
+    product: LoadedProductListInterface;
 }

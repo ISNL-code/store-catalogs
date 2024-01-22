@@ -9,20 +9,20 @@ import FavoritesButton from 'components/molecules/ToolsButtons/FavoritesButton';
 import Slider from 'react-slick';
 import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
-import ExtraColorsButton from 'components/atoms/ColorIndicatorButton/ExtraColorsButton';
 import CollapseButton from 'components/molecules/ToolsButtons/СollapseButton';
 import { useDevice } from 'hooks/useDevice';
 import { CatalogContextInterface } from 'types';
 import CardItem from 'components/atoms/Sections/CardItem';
 import Grid from '@mui/material/Unstable_Grid2';
 import PromoTags from 'components/atoms/PromoTags/PromoTags';
-// import { useFavoritesProductsApi } from 'api/useFavoritesProductsApi';
+import { useFavoritesProductsApi } from 'api/useFavoritesProductsApi';
 
 interface ShownModelInterface {
     price: string;
     images: { imageUrl: string }[];
     id: number;
     sku: string;
+    colorCode: string;
     productId: number;
 }
 
@@ -56,36 +56,19 @@ function SampleNextArrow(props) {
     );
 }
 
-const CatalogCard = ({ modelsVariants, name, productId, currency, setProductsList, promoTags }) => {
+const CatalogFavoriteCard = ({ modelsVariants, name, productId, currency, promoTags }) => {
     const { xxxs, s, sx, ls, l } = useDevice();
     const navigate = useNavigate();
-    const {
-        store,
-        cart,
-        favorites,
-        currentUserData,
-        favoritesList,
-    }: // updateFavorites,
-    // loadFavorites,
-    // auth,
-    CatalogContextInterface = useOutletContext();
+    const { store, cart, currentUserData, favorites }: CatalogContextInterface = useOutletContext();
     const colorsBoxRef = useRef(null);
     const { storeCode, storeName } = useParams();
     const [shownModel, setShownModel] = useState<ShownModelInterface | null>(null);
     const [isExpanded, setIsExpanded] = useState(false);
-    const [favorite, setFavorite] = useState<any>(null);
-
-    // const { mutateAsync: addToFavorites } = useFavoritesProductsApi().useAddProductToFavorite();
-    // const { mutateAsync: deleteFromFavorite } = useFavoritesProductsApi().useDeleteProductToFavorite();
 
     useEffect(() => {
         if (!modelsVariants?.length) return;
         setShownModel(modelsVariants.find(variant => variant.selected));
     }, [modelsVariants]);
-
-    useEffect(() => {
-        setFavorite(favoritesList?.find(el => el?.variantId === shownModel?.id));
-    }, [favoritesList, shownModel]);
 
     const getGridValue = () => {
         if (s) return 12;
@@ -124,7 +107,7 @@ const CatalogCard = ({ modelsVariants, name, productId, currency, setProductsLis
                             userId: currentUserData?.id,
                             productId: shownModel?.productId,
                         });
-                        // if (loadFavorites || !auth) return;
+                        // if (loadFavorites) return;
 
                         // if (favorite) {
                         //     if (!favorite?.favoriteProductId) return;
@@ -227,49 +210,7 @@ const CatalogCard = ({ modelsVariants, name, productId, currency, setProductsLis
                                     flexWrap: isExpanded ? 'wrap' : 'nowrap',
                                 }}
                             >
-                                {modelsVariants?.map((model, idx) => {
-                                    const selected = model?.id === shownModel?.id;
-                                    if (!isExpanded && idx > 6) return null;
-                                    if (!isExpanded && idx === 6 && modelsVariants.length > 7)
-                                        return (
-                                            <ExtraColorsButton
-                                                key={idx}
-                                                action={e => {
-                                                    e.stopPropagation();
-                                                    setIsExpanded(true);
-                                                }}
-                                                size={xxxs ? 30 : 33}
-                                                sum={modelsVariants.length - 6}
-                                            />
-                                        );
-                                    return (
-                                        <ColorIndicatorButton
-                                            key={idx}
-                                            action={e => {
-                                                e.stopPropagation();
-                                                if (selected) return;
-                                                setProductsList(prev =>
-                                                    prev.map(el => {
-                                                        if (el.id === productId) {
-                                                            return {
-                                                                ...el,
-                                                                variants: el.variants.map(variant => {
-                                                                    if (variant.id === model.id)
-                                                                        return { ...variant, selected: true };
-                                                                    return { ...variant, selected: false };
-                                                                }),
-                                                            };
-                                                        }
-                                                        return el;
-                                                    })
-                                                );
-                                            }}
-                                            selected={selected}
-                                            color={model.colorCode}
-                                            size={33}
-                                        />
-                                    );
-                                })}
+                                <ColorIndicatorButton color={shownModel?.colorCode} size={33} />
                             </Box>
                         </Box>
                         <Box sx={{ ml: 1, mt: -1.5 }}>
@@ -342,4 +283,4 @@ const CatalogCard = ({ modelsVariants, name, productId, currency, setProductsLis
     );
 };
 
-export default CatalogCard;
+export default CatalogFavoriteCard;

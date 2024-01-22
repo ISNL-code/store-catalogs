@@ -92,7 +92,7 @@ const ProductDetails = () => {
 
     useEffect(() => {
         if (!productDetails) return;
-        console.log(productDetails);
+
         setSelectedVariant(productDetails?.variants?.find(product => product.sku === modelSku?.replaceAll('_', '/')));
     }, [productDetails]);
 
@@ -112,7 +112,7 @@ const ProductDetails = () => {
     return (
         <>
             <InstrumentalSubHeader
-                StartSlot={() => <BackButton nav={`/catalog/${storeCode}/${storeName}`} action={() => {}} />}
+                StartSlot={() => <BackButton nav={-1} action={() => {}} />}
                 CentralSlot={() => (
                     <Box sx={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
                         <Typography sx={{ backgroundColor: '#fff', padding: 0.5, px: 2, borderRadius: 50 }}>

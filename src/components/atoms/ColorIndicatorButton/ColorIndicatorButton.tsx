@@ -2,8 +2,8 @@ import { Box, Typography } from '@mui/material';
 import CheckIcon from '@mui/icons-material/Check';
 
 interface ColorIndicatorInterface {
-    action;
-    selected;
+    action?;
+    selected?;
     color;
     size;
     checkedSize?: 'small' | 'large' | 'medium';
@@ -13,9 +13,9 @@ interface ColorIndicatorInterface {
 }
 
 const ColorIndicatorButton = ({
-    action,
+    action = () => {},
     selected,
-    color,
+    color = true,
     size,
     checkedSize = 'small',
     button = false,

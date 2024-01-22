@@ -20,6 +20,8 @@ const MobileMenu = ({
     openModalType,
     setOpenModalType,
     cart,
+    favorites,
+    // favoritesList,
 }) => {
     const navigate = useNavigate();
     const { storeCode, storeName } = useParams();
@@ -56,11 +58,13 @@ const MobileMenu = ({
                     />
                     {withShare && (
                         <MobileNavButton
+                            path={`/catalog/${storeCode}/${storeName}/favorites`}
                             title={string?.favorites}
                             icon={p => <FavoriteIcon {...p} />}
+                            badgeCount={favorites?.favoriteItems?.length}
                             action={() => {
                                 if (auth) {
-                                    navigate(`/catalog/${storeCode}/${storeName}/cart`);
+                                    navigate(`/catalog/${storeCode}/${storeName}/favorites`);
                                 } else setOpenModalType('login');
                             }}
                         />

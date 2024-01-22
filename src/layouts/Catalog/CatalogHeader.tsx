@@ -11,7 +11,12 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import StoreIcon from '@mui/icons-material/Store';
 import GridViewIcon from '@mui/icons-material/GridView';
 import ProfileButton from 'components/molecules/ToolsButtons/ProfileButton';
-import { StoreInterface, useAddToCartDataInterface } from 'types';
+import {
+    FavoritesProductsInterface,
+    StoreInterface,
+    useAddToCartDataInterface,
+    useAddToFavoriteDataInterface,
+} from 'types';
 
 interface HeaderInterface {
     headerHeight;
@@ -26,6 +31,8 @@ interface HeaderInterface {
     openModalType;
     store: StoreInterface | null;
     cart: useAddToCartDataInterface;
+    favorites: useAddToFavoriteDataInterface;
+    // favoritesList: FavoritesProductsInterface[] | [] | null;
 }
 
 const Header = ({
@@ -41,7 +48,9 @@ const Header = ({
     openModalType,
     store,
     cart,
-}: HeaderInterface) => {
+    favorites,
+}: // favoritesList,
+HeaderInterface) => {
     const navigate = useNavigate();
     const location = useLocation();
     const { sx } = useDevice();
@@ -89,9 +98,10 @@ const Header = ({
                             isShown={!sx}
                             action={() => {
                                 if (auth) {
-                                    navigate(`/catalog/${storeCode}/${storeName}/cart`);
+                                    navigate(`/catalog/${storeCode}/${storeName}/favorites`);
                                 } else setOpenModalType('login');
                             }}
+                            badgeCount={favorites?.favoriteItems?.length}
                         />
                     )}
                     {store?.additionalStoreSettings?.cart && (
