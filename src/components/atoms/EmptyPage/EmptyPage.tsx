@@ -1,6 +1,7 @@
 import { Box, Typography } from '@mui/material';
 import { useOutletContext } from 'react-router-dom';
 import SearchIcon from '@mui/icons-material/Search';
+import { useEffect, useState } from 'react';
 
 const EmptyPage = ({ isShown = true }) => {
     const {
@@ -18,6 +19,15 @@ const EmptyPage = ({ isShown = true }) => {
         footerHeight: number;
         loadProducts;
     } = useOutletContext();
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        setTimeout(() => {
+            setLoading(false);
+        }, 100);
+    }, []);
+
+    if (loading) return <></>;
 
     if (isShown)
         return (

@@ -41,14 +41,11 @@ const Catalog = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        if (loadProducts) return;
+        if (loadProducts || !productsList) return;
 
-        setTimeout(
-            () => {
-                setLoading(false);
-            },
-            productsList?.length ? 500 : 1500
-        );
+        setTimeout(() => {
+            setLoading(false);
+        }, 500);
     }, [loadProducts, loading]);
 
     useEffect(() => {
@@ -110,7 +107,7 @@ const Catalog = () => {
                         })}
                     </Grid>
                 </TransitionBox>
-            ) : !productsList?.length && !loadProducts && !loading ? (
+            ) : !productsList?.length && productsList && !loadProducts && !loading ? (
                 <>
                     <InstrumentalSubHeader StartSlot={() => <BackButton nav="/" action={() => {}} />} />
                     <EmptyPage isShown />;
@@ -118,7 +115,7 @@ const Catalog = () => {
             ) : (
                 <Loader position="fixed" />
             )}
-            {!!productsList?.length && !loading && (
+            {!!productsList?.length && productsList && !loading && !loadProducts && (
                 <PaginationButton
                     setCurrentPage={handleSetProductsPage}
                     totalCount={totalProductsCount}

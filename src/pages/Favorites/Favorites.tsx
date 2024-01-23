@@ -1,4 +1,4 @@
-import { Box } from '@mui/material';
+import { Box, Button } from '@mui/material';
 import Loader from 'components/atoms/Loader/Loader';
 import { useEffect, useState } from 'react';
 import { useNavigate, useOutletContext, useParams } from 'react-router-dom';
@@ -18,6 +18,7 @@ import PlayMarketButton from 'components/atoms/Buttons/PlayMarketButton';
 import CatalogFavoriteCard from 'components/organisms/Cards/CatalogFavoriteCard';
 import { useIsMount } from 'hooks/useIsMount';
 import { useProductsApi } from 'api/useProductsApi';
+import DeleteModal from 'components/organisms/Modals/DeleteModal';
 
 const Favorites = () => {
     const { store, favorites, supportedLanguage, auth, string }: CatalogContextInterface = useOutletContext();
@@ -29,6 +30,7 @@ const Favorites = () => {
     const [loading, setLoading] = useState(true);
     const [productIds, setProductIds] = useState<string[] | any[]>([]);
     const [favoriteProducts, setFavoriteProducts] = useState<ProductVariantInterface[] | any[]>([]);
+    const [isOpenModal, setIsOpenModal] = useState(false);
 
     const { isFetching: loadProducts, refetch: updateFavoriteProductsRes } = useProductsApi().useGetProductByIDForCart({
         id: productIds,
@@ -102,6 +104,17 @@ const Favorites = () => {
 
     return (
         <Box pb={1}>
+            {isOpenModal && (
+                <DeleteModal
+                    string={string}
+                    title={string?.clear_favorites}
+                    close={() => setIsOpenModal(false)}
+                    text={string?.approve_favorites_clear}
+                    action={() => {
+                        favorites?.handleClearFavorites();
+                    }}
+                />
+            )}
             {showTopBtn && <ScrollButton />}
             {showMobileStoresButton && (
                 <>
@@ -111,7 +124,21 @@ const Favorites = () => {
             )}
             {loading && <Loader />}
             {store?.mainStoreSettings?.contacts && <CallBackButton />}
-            <InstrumentalSubHeader StartSlot={() => <BackButton nav={-1} action={() => {}} />} />
+            <InstrumentalSubHeader
+                StartSlot={() => <BackButton nav={-1} action={() => {}} />}
+                EndSlot={() => (
+                    <Button
+                        variant="outlined"
+                        color="error"
+                        sx={{ backgroundColor: 'white' }}
+                        onClick={() => {
+                            setIsOpenModal(true);
+                        }}
+                    >
+                        {string?.clear_favorites}
+                    </Button>
+                )}
+            />
 
             {favoriteProducts?.length && !loadProducts ? (
                 <TransitionBox dependency={loading}>

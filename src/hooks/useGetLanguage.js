@@ -7,6 +7,8 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'en',
             string: {
+                approve_favorites_clear: 'Approve favorites clear',
+                clear_favorites: 'Clear favorites',
                 approve_clear_cart: 'Approve clear cart',
                 not_required: 'Not required',
                 excluding_delivery: 'Excluding delivery',
@@ -96,7 +98,6 @@ export const useGetLanguage = ({ lang }) => {
                 colors: 'Colors',
                 color: 'Color',
                 sizes: 'Sizes',
-
                 contacts: 'Contacts',
                 name: 'Name',
                 no_results: 'No results',
@@ -124,6 +125,8 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'fr',
             string: {
+                approve_favorites_clear: 'Approuver la suppression des favoris',
+                clear_favorites: 'Effacer les favoris',
                 approve_clear_cart: 'Approuver l`effacement du panier',
                 not_required: 'Non requis',
                 excluding_delivery: 'Hors livraison',
@@ -242,6 +245,8 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'es',
             string: {
+                approve_favorites_clear: 'Aprobar favoritos claros',
+                clear_favorites: 'Borrar favoritos',
                 approve_clear_cart: 'Aprobar borrar carrito',
                 not_required: 'No requerido',
                 excluding_delivery: 'Excluyendo entrega',
@@ -358,6 +363,8 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'ua',
             string: {
+                approve_favorites_clear: 'Схвалити видалення вибраного',
+                clear_favorites: 'Очистити вибране',
                 approve_clear_cart: 'Підтвердьте, щоб очистити кошик',
                 not_required: 'Не обов`язково',
                 excluding_delivery: 'Без доставки',
@@ -475,6 +482,8 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'pl',
             string: {
+                approve_favorites_clear: 'Zatwierdź ulubione jasne',
+                clear_favorites: 'Wyczyść ulubione',
                 approve_clear_cart: 'Zatwierdź wyczyszczenie koszyka',
                 not_required: 'Nie wymagane',
                 excluding_delivery: 'Z wyłączeniem dostawy',
@@ -593,6 +602,8 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'cz',
             string: {
+                approve_favorites_clear: 'Schválit oblíbené je jasné',
+                clear_favorites: 'Vymazat oblíbené',
                 approve_clear_cart: 'Schválit přehledný košík',
                 not_required: 'Není požadováno',
                 excluding_delivery: 'S výjimkou doručení',
@@ -709,6 +720,8 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'ru',
             string: {
+                approve_favorites_clear: 'Одобрить очистить избранно',
+                clear_favorites: 'Очистить избранное',
                 approve_clear_cart: 'Одобрить очистку корзины',
                 not_required: 'Не обязательно',
                 excluding_delivery: 'Без доставки',

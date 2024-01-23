@@ -56,7 +56,7 @@ export default function MainStores({ lang, setLang, auth, setAuth }) {
     useEffect(() => {
         if (!storesDataRes) return;
         setStoresList(
-            storesDataRes.data.map(item => {
+            storesDataRes?.data?.map(item => {
                 const addStoreData = STORES_DATA?.find(el => el.code === item.code);
                 const description =
                     addStoreData?.descriptions.find(el => el.language === lang.code) ||
