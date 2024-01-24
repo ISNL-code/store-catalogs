@@ -77,10 +77,9 @@ const Catalog = () => {
                     <PlayMarketButton />
                 </>
             )}
-            {loading && <Loader />}
+            {loadProducts && <Loader />}
             {store?.mainStoreSettings?.contacts && <CallBackButton />}
             <InstrumentalSubHeader
-                StartSlot={() => <BackButton nav="/" action={() => {}} />}
                 EndSlot={() => (
                     <Box sx={{ display: 'flex', gap: 0.75 }}>
                         {store?.mainStoreSettings?.skuSearch && <SkuSearch />}
@@ -113,7 +112,7 @@ const Catalog = () => {
                     <EmptyPage isShown />;
                 </>
             ) : (
-                <Loader position="fixed" />
+                <>{!loading && <Loader position="fixed" />}</>
             )}
             {!!productsList?.length && productsList && !loading && !loadProducts && (
                 <PaginationButton

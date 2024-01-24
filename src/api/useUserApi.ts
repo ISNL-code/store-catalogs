@@ -54,7 +54,8 @@ export const useUserApi = () => {
             () =>
                 get({
                     url: `v1/auth/customer/profile`,
-                })
+                }),
+            { enabled: false }
         );
     };
 

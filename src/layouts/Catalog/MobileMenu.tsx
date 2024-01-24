@@ -21,7 +21,6 @@ const MobileMenu = ({
     setOpenModalType,
     cart,
     favorites,
-    // favoritesList,
 }) => {
     const navigate = useNavigate();
     const { storeCode, storeName } = useParams();

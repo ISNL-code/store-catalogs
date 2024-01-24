@@ -8,15 +8,9 @@ import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import LogoutIcon from '@mui/icons-material/Logout';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import StoreIcon from '@mui/icons-material/Store';
 import GridViewIcon from '@mui/icons-material/GridView';
 import ProfileButton from 'components/molecules/ToolsButtons/ProfileButton';
-import {
-    FavoritesProductsInterface,
-    StoreInterface,
-    useAddToCartDataInterface,
-    useAddToFavoriteDataInterface,
-} from 'types';
+import { StoreInterface, useAddToCartDataInterface, useAddToFavoriteDataInterface } from 'types';
 
 interface HeaderInterface {
     headerHeight;
@@ -32,7 +26,6 @@ interface HeaderInterface {
     store: StoreInterface | null;
     cart: useAddToCartDataInterface;
     favorites: useAddToFavoriteDataInterface;
-    // favoritesList: FavoritesProductsInterface[] | [] | null;
 }
 
 const Header = ({
@@ -49,8 +42,7 @@ const Header = ({
     store,
     cart,
     favorites,
-}: // favoritesList,
-HeaderInterface) => {
+}: HeaderInterface) => {
     const navigate = useNavigate();
     const location = useLocation();
     const { sx } = useDevice();
@@ -81,8 +73,6 @@ HeaderInterface) => {
                     />
                 </Box>
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                    <HeaderNavButton title={string?.stores} path={`/`} icon={() => <StoreIcon />} />
-
                     <HeaderNavButton
                         title={string?.catalog}
                         path={`/catalog/${storeCode}/${storeName}`}
@@ -138,7 +128,15 @@ HeaderInterface) => {
                         />
                     )}
                     {/* {!sx && <ProfileButton string={string} headerHeight={headerHeight} />} */}
-                    <LanguageButton setLang={setLang} string={string} lang={lang} setOpenModalType={setOpenModalType} />
+                    <LanguageButton
+                        setLang={setLang}
+                        string={string}
+                        lang={lang}
+                        setOpenModalType={setOpenModalType}
+                        storeLanguages={store?.supportedLanguages?.map(el => {
+                            return { code: el?.code };
+                        })}
+                    />
                 </Box>
             </Box>
         </Box>

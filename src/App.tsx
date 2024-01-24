@@ -63,13 +63,6 @@ const App = () => {
                     {
                         <>
                             <Route
-                                path={'/'}
-                                element={<Main lang={lang} setLang={setLang} auth={auth} setAuth={setAuth} />}
-                            >
-                                <Route path={'/'} element={<StoresPage />} />
-                                <Route path={'/my-stores'} element={<MyStoresPage />} />
-                            </Route>
-                            <Route
                                 path={'/catalog'}
                                 element={
                                     <Catalog
@@ -94,7 +87,7 @@ const App = () => {
 
                                 <Route path={'/catalog/:storeCode/:storeName/favorites'} element={<FavoritesPage />} />
                             </Route>
-                            <Route path="*" element={<Navigate to="/" replace />} />
+                            <Route path="*" element={<Navigate to="/catalog" replace />} />
                         </>
                     }
                 </Routes>
