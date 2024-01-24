@@ -1,5 +1,5 @@
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
-import { Box, IconButton } from '@mui/material';
+import { IconButton } from '@mui/material';
 
 interface CartButtonInterface {
     isShown: boolean;

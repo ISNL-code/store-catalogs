@@ -1,4 +1,4 @@
-import { Box, Button, IconButton, Typography } from '@mui/material';
+import { Box, IconButton, Typography } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 
 const ModalWindow = ({ children, type = '', title, text = '', closeAction = () => {} }) => {

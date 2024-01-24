@@ -9,7 +9,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import GridViewIcon from '@mui/icons-material/GridView';
-import ProfileButton from 'components/molecules/ToolsButtons/ProfileButton';
+// import ProfileButton from 'components/molecules/ToolsButtons/ProfileButton';
 import { StoreInterface, useAddToCartDataInterface, useAddToFavoriteDataInterface } from 'types';
 
 interface HeaderInterface {

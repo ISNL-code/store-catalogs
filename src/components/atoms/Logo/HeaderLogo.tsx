@@ -4,7 +4,7 @@ import { useDevice } from 'hooks/useDevice';
 
 const HeaderLogo = ({ title, path, font = 'Roboto', imgUrl, headerHeight }) => {
     const navigate = useNavigate();
-    const { xxs, xs } = useDevice();
+    const { xxs } = useDevice();
     return (
         <Box
             sx={{

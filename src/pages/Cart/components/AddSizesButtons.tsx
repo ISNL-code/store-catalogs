@@ -4,8 +4,6 @@ import { Box, Fab, TextField, Typography } from '@mui/material';
 import SizesIndicatorButton from 'components/atoms/SizesIndicatorButton/SizesIndicatorButton';
 import { useOutletContext } from 'react-router-dom';
 import { useState } from 'react';
-import { PreviewRounded } from '@mui/icons-material';
-import EmptyPage from 'components/atoms/EmptyPage/EmptyPage';
 
 const AddSizesButtons = ({ sizes }) => {
     const { string }: any = useOutletContext();

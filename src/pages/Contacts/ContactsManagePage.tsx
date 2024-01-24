@@ -17,7 +17,7 @@ import CardItem from 'components/atoms/Sections/CardItem';
 
 const ContactsManagePage = () => {
     const { store, string }: CatalogContextInterface = useOutletContext();
-    const { sm, mx } = useDevice();
+    const { sm } = useDevice();
 
     useEffect(() => {
         window.scrollTo({

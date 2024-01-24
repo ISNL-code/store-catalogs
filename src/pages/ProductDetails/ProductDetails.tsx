@@ -7,7 +7,6 @@ import TransitionBox from 'components/atoms/Transitions/TransitionBox';
 import ShareButton from 'components/molecules/ToolsButtons/ShareButton';
 import SkuSearch from 'components/molecules/ToolsButtons/SkuSearch';
 import InstrumentalSubHeader from 'components/organisms/InstrumentalSubHeader/InstrumentalSubHeader';
-import { WEB_URL } from 'constants/constants';
 import { useDevice } from 'hooks/useDevice';
 import { useIsMount } from 'hooks/useIsMount';
 import { useEffect, useState } from 'react';
@@ -75,11 +74,13 @@ const ProductDetails = () => {
                     .sort((a, b) => a.code - b.code) || [],
         });
         scrollToTopNewPage();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [productRes, modelSku]);
 
     useEffect(() => {
         if (mount) return;
         updateModel();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [supportedLanguage]);
 
     useEffect(() => {
@@ -88,12 +89,14 @@ const ProductDetails = () => {
         setTimeout(() => {
             setLoading(false);
         }, 250);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [loadProduct]);
 
     useEffect(() => {
         if (!productDetails) return;
 
         setSelectedVariant(productDetails?.variants?.find(product => product.sku === modelSku?.replaceAll('_', '/')));
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [productDetails]);
 
     const { sx, m, ls } = useDevice();

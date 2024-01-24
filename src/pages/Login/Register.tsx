@@ -81,6 +81,7 @@ export default function Register({ setAuth, lang, string, close, setOpenModalTyp
 
     useEffect(() => {
         formik.setValues({ password, username, phoneNumber, confirmPassword, firstName, lastName, country });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [password, username, phoneNumber, confirmPassword, firstName, lastName, country]);
 
     return (

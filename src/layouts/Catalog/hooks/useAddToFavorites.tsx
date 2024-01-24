@@ -21,7 +21,7 @@ export const useAddToFavorites = ({
         if (loadingUser) return;
 
         if (!auth) return setFavoriteItems([]);
-        setFavoriteItems(JSON.parse(localStorage.getItem(storeCode + FAVORITE_KEY) as string) || []);
+        setFavoriteItems(JSON.parse(localStorage.getItem(storeCode + FAVORITE_KEY) as string) || []); // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [auth]);
 
     useEffect(() => {
@@ -30,7 +30,7 @@ export const useAddToFavorites = ({
         if (mount) return;
         if (favoriteItems.length) {
             localStorage.setItem(storeCode + FAVORITE_KEY, JSON.stringify(favoriteItems));
-        } else if (auth) localStorage.removeItem(storeCode + FAVORITE_KEY);
+        } else if (auth) localStorage.removeItem(storeCode + FAVORITE_KEY); // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [favoriteItems]);
 
     const handleSetFavoriteItems = data => {

@@ -59,33 +59,16 @@ function SampleNextArrow(props) {
 const CatalogCard = ({ modelsVariants, name, productId, currency, setProductsList, promoTags }) => {
     const { xxxs, s, sx, ls, l } = useDevice();
     const navigate = useNavigate();
-    const {
-        store,
-        cart,
-        favorites,
-        currentUserData,
-        favoritesList,
-    }: // updateFavorites,
-    // loadFavorites,
-    // auth,
-    CatalogContextInterface = useOutletContext();
+    const { store, cart, favorites, currentUserData }: CatalogContextInterface = useOutletContext();
     const colorsBoxRef = useRef(null);
     const { storeCode, storeName } = useParams();
     const [shownModel, setShownModel] = useState<ShownModelInterface | null>(null);
     const [isExpanded, setIsExpanded] = useState(false);
-    const [favorite, setFavorite] = useState<any>(null);
-
-    // const { mutateAsync: addToFavorites } = useFavoritesProductsApi().useAddProductToFavorite();
-    // const { mutateAsync: deleteFromFavorite } = useFavoritesProductsApi().useDeleteProductToFavorite();
 
     useEffect(() => {
         if (!modelsVariants?.length) return;
         setShownModel(modelsVariants.find(variant => variant.selected));
     }, [modelsVariants]);
-
-    useEffect(() => {
-        setFavorite(favoritesList?.find(el => el?.variantId === shownModel?.id));
-    }, [favoritesList, shownModel]);
 
     const getGridValue = () => {
         if (s) return 12;
@@ -124,27 +107,6 @@ const CatalogCard = ({ modelsVariants, name, productId, currency, setProductsLis
                             userId: currentUserData?.id,
                             productId: shownModel?.productId,
                         });
-                        // if (loadFavorites || !auth) return;
-
-                        // if (favorite) {
-                        //     if (!favorite?.favoriteProductId) return;
-                        //     setFavorite(null);
-                        //     return deleteFromFavorite({ storeCode, variantId: favorite?.favoriteProductId }).then(_ => {
-                        //         updateFavorites();
-                        //     });
-                        // } else {
-                        //     setFavorite(true);
-                        //     addToFavorites({
-                        //         storeCode,
-                        //         data: {
-                        //             productId: productId,
-                        //             variantId: shownModel?.id,
-                        //             attributes: [],
-                        //         },
-                        //     }).then(_ => {
-                        //         updateFavorites();
-                        //     });
-                        // }
                     }}
                 >
                     <FavoritesButton

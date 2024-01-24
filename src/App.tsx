@@ -1,7 +1,4 @@
 import { ThemeProvider } from '@mui/material';
-import Main from 'layouts/Stores/MainStores';
-import StoresPage from 'pages/Stores/Stores';
-import MyStoresPage from 'pages/MyStores/MyStores';
 import { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Navigate, Route, Routes } from 'react-router-dom';
 import mainTheme from 'theme/mainTheme';
@@ -35,7 +32,7 @@ const App = () => {
                     setCurrentUserData(res?.data?.data);
                 }
             });
-        }
+        } // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     useEffect(() => {

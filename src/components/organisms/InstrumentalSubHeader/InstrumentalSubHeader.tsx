@@ -1,6 +1,5 @@
 import { Box } from '@mui/material';
-import { borderBottom } from '@mui/system';
-import React, { ReactComponentElement, ReactNode } from 'react';
+import { ReactNode } from 'react';
 import { useOutletContext } from 'react-router-dom';
 
 interface InstrumentalBarInterface {

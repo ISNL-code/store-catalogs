@@ -1,7 +1,7 @@
 import { useProductsApi } from 'api/useProductsApi';
 import { useIsMount } from 'hooks/useIsMount';
 import { useEffect, useState } from 'react';
-import { LoadedProductListInterface, ProductVariantInterface } from 'types';
+import { LoadedProductListInterface } from 'types';
 
 export const useProducts = ({ store, lang, queryCategories, setQueryCategories }) => {
     const mount = useIsMount();
@@ -27,7 +27,7 @@ export const useProducts = ({ store, lang, queryCategories, setQueryCategories }
 
     useEffect(() => {
         if (mount) return;
-        updateProducts();
+        updateProducts(); // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [queryCategories]);
 
     useEffect(() => {
@@ -64,7 +64,7 @@ export const useProducts = ({ store, lang, queryCategories, setQueryCategories }
         );
         setTotalCount(productsRes.data.recordsTotal);
         setCurrentCount(productsRes.data.number * (currentProductsPage + 1));
-        setTotalPages(productsRes.data?.totalPages);
+        setTotalPages(productsRes.data?.totalPages); // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [productsRes]);
 
     useEffect(() => {
@@ -100,7 +100,7 @@ export const useProducts = ({ store, lang, queryCategories, setQueryCategories }
             setTotalCount(res?.data?.data?.recordsTotal);
             setCurrentCount(res?.data?.data?.number * (currentProductsPage + 1));
             setTotalPages(res?.data?.data?.totalPages);
-        });
+        }); // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [currentProductsPage]);
 
     useEffect(() => {
@@ -109,7 +109,7 @@ export const useProducts = ({ store, lang, queryCategories, setQueryCategories }
         setQueryCategories([]);
         setTimeout(() => {
             updateProducts();
-        }, 0);
+        }, 0); // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [lang]);
 
     const handleSetProductsPage = val => {

@@ -5,30 +5,10 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import { CatalogContextInterface } from 'types';
-import { useFavoritesProductsApi } from 'api/useFavoritesProductsApi';
-// import { useEffect, useState } from 'react';
 
 const ActionSection = ({ isShown, selectedVariant }) => {
     const { storeCode } = useParams();
-    const {
-        store,
-        string,
-        setOpenModalType,
-        auth,
-        cart,
-        favorites,
-    }: // favoritesList,
-    // updateFavorites,
-    // loadFavorites,
-    CatalogContextInterface = useOutletContext();
-    // const [favorite, setFavorite] = useState<any>(null);
-
-    const { mutateAsync: addToFavorites } = useFavoritesProductsApi().useAddProductToFavorite();
-    const { mutateAsync: deleteFromFavorite } = useFavoritesProductsApi().useDeleteProductToFavorite();
-
-    // useEffect(() => {
-    //     setFavorite(favoritesList?.find(el => el?.variantId === selectedVariant?.id));
-    // }, [favoritesList, selectedVariant]);
+    const { store, string, setOpenModalType, auth, cart, favorites }: CatalogContextInterface = useOutletContext();
 
     const selectedToCart = cart?.cartItems?.find(item => item.sku === selectedVariant?.sku);
     const selectedToFavorite = favorites?.favoriteItems?.find(item => item.sku === selectedVariant?.sku);
@@ -81,29 +61,6 @@ const ActionSection = ({ isShown, selectedVariant }) => {
                                 userId: selectedVariant?.id,
                                 productId: selectedVariant?.productId,
                             });
-                            // if (loadFavorites) return;
-
-                            // if (favorite) {
-                            //     if (!favorite?.favoriteProductId) return;
-                            //     setFavorite(null);
-                            //     return deleteFromFavorite({ storeCode, variantId: favorite?.favoriteProductId }).then(
-                            //         _ => {
-                            //             updateFavorites();
-                            //         }
-                            //     );
-                            // } else {
-                            //     setFavorite(true);
-                            //     addToFavorites({
-                            //         storeCode,
-                            //         data: {
-                            //             productId: selectedVariant?.productId,
-                            //             variantId: selectedVariant?.id,
-                            //             attributes: [],
-                            //         },
-                            //     }).then(_ => {
-                            //         updateFavorites();
-                            //     });
-                            // }
                         }}
                         color="warning"
                         endIcon={

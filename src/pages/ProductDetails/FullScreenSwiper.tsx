@@ -3,7 +3,7 @@ import Slider from 'react-slick';
 import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import ClearIcon from '@mui/icons-material/Clear';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 
 function SamplePrevArrow(props) {
     const { onClick } = props;
@@ -137,6 +137,7 @@ const FullScreenSwiper = ({ images, setFullScreen, fullScreenMode, slide }) => {
                                         cursor: 'default',
                                         maxWidth: '100vw',
                                     }}
+                                    alt="img"
                                 />
                             </Box>
                         );

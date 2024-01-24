@@ -1,5 +1,4 @@
 import { Box, Typography } from '@mui/material';
-import CheckIcon from '@mui/icons-material/Check';
 
 interface ExtraColorsButtonInterface {
     action;

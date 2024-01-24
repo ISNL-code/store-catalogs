@@ -1,4 +1,4 @@
-import { Outlet, useNavigate, useParams } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 import Header from './CatalogHeader';
@@ -12,9 +12,7 @@ import { useProducts } from './hooks/useProducts';
 import Modals from 'layouts/Modals';
 import { StoreInterface } from 'types';
 import { STORES_DATA } from 'dataBase/STORES';
-import { useFavoritesProductsApi } from 'api/useFavoritesProductsApi';
 import { useAddToCart } from './hooks/useAddToCart';
-import { useFavorites } from './hooks/useFavorites';
 import { useAddToFavorites } from './hooks/useAddToFavorites';
 import { STORE_CODE } from 'constants/constants';
 
@@ -68,7 +66,7 @@ export default function MainCatalog({ lang, setLang, auth, setAuth, userData }) 
 
     useEffect(() => {
         if (!storeDataRes || loadStore) return;
-        setStore({ ...STORES_DATA.find(el => el.code === STORE_CODE), ...storeDataRes.data });
+        setStore({ ...STORES_DATA.find(el => el.code === STORE_CODE), ...storeDataRes.data }); // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [storeDataRes]);
 
     useEffect(() => {
@@ -79,7 +77,7 @@ export default function MainCatalog({ lang, setLang, auth, setAuth, userData }) 
     }, [lang, store?.supportedLanguages]);
 
     useEffect(() => {
-        navigate(`${STORE_CODE}/${store?.name.toLowerCase().replaceAll(' ', '-')}`);
+        navigate(`${STORE_CODE}/${store?.name.toLowerCase().replaceAll(' ', '-')}`); // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [store]);
 
     return (

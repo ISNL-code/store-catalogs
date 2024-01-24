@@ -1,5 +1,4 @@
 import Button from '@mui/material/Button';
-import DialogActions from '@mui/material/DialogActions';
 import { InputAdornment, TextField, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import { useUserApi } from 'api/useUserApi';
@@ -9,7 +8,7 @@ import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { ACCESS_TOKEN_KEY } from 'constants/constants';
 import ModalWindow from 'components/atoms/ModalWindow/ModalWindow';
 import Loader from 'components/atoms/Loader/Loader';
-import { Navigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useFormik } from 'formik';
 import loginFormValidations from 'Validation/loginFormValidations';
 
@@ -41,6 +40,7 @@ export default function Login({ setAuth, string, close, setOpenModalType }) {
 
     useEffect(() => {
         formik.setValues({ password, username });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [password, username]);
 
     return (

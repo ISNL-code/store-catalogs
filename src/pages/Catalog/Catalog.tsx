@@ -6,7 +6,6 @@ import { useOutletContext } from 'react-router-dom';
 import { getCurrencySymbol } from 'helpers/getCurrencySymbol';
 import ScrollButton from 'components/atoms/Buttons/ScrollButton';
 import InstrumentalSubHeader from 'components/organisms/InstrumentalSubHeader/InstrumentalSubHeader';
-import LoadMoreButton from 'components/atoms/Buttons/LoadMoreButton';
 import EmptyPage from 'components/atoms/EmptyPage/EmptyPage';
 import FilterCategories from 'components/organisms/Filters/FilterCategories';
 import BackButton from 'components/atoms/Buttons/BackButton';
@@ -45,7 +44,7 @@ const Catalog = () => {
 
         setTimeout(() => {
             setLoading(false);
-        }, 500);
+        }, 500); // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [loadProducts, loading]);
 
     useEffect(() => {
@@ -65,7 +64,7 @@ const Catalog = () => {
                 behavior: 'auto',
             });
             setScrollPosition(0);
-        }, 150);
+        }, 150); // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (
@@ -77,7 +76,7 @@ const Catalog = () => {
                     <PlayMarketButton />
                 </>
             )}
-            {loadProducts && <Loader />}
+            {/* {loadProducts && <Loader />} */}
             {store?.mainStoreSettings?.contacts && <CallBackButton />}
             <InstrumentalSubHeader
                 EndSlot={() => (

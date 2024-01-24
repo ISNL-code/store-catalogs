@@ -4,15 +4,13 @@ import EmptyPage from 'components/atoms/EmptyPage/EmptyPage';
 import InstrumentalSubHeader from 'components/organisms/InstrumentalSubHeader/InstrumentalSubHeader';
 import { useIsMount } from 'hooks/useIsMount';
 import { Fragment, useEffect, useState } from 'react';
-import { scrollToTopNewPage } from 'helpers/scroll';
 import { useNavigate, useOutletContext, useParams } from 'react-router-dom';
 import { CatalogContextInterface, ProductVariantInterface } from 'types';
 import Loader from 'components/atoms/Loader/Loader';
-import TransitionBox from 'components/atoms/Transitions/TransitionBox';
 import Grid from '@mui/material/Unstable_Grid2';
 import Image from 'components/atoms/Media/Image';
 import { useDevice } from 'hooks/useDevice';
-import { Box, Button, Fab, TextField, Typography } from '@mui/material';
+import { Box, Button, TextField, Typography } from '@mui/material';
 import { getCurrencySymbol } from 'helpers/getCurrencySymbol';
 import AddSizesButtons from './components/AddSizesButtons';
 import AddButtons from './components/AddButtons';
@@ -58,12 +56,12 @@ const Cart = () => {
                 };
             });
             setCartProducts(data);
-        });
+        }); // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [productIds, supportedLanguage]);
 
     useEffect(() => {
         if (mount) return;
-        if (!auth) navigate(`/catalog/${storeCode}/${storeName}`);
+        if (!auth) navigate(`/catalog/${storeCode}/${storeName}`); // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [auth]);
 
     const [loading, setLoading] = useState(true);

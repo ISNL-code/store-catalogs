@@ -50,7 +50,7 @@ const SkuSearch = () => {
             setMatchedSku([]);
             return;
         }
-        findSku();
+        findSku(); // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [query]);
 
     const debouncedChangeHandler = useMemo(() => debounce(setQuery, 1000), []);

@@ -18,7 +18,7 @@ export const useAddToCart = ({ auth, loadingUser }: useAddToCartParamsInterface)
         if (loadingUser) return;
 
         if (!auth) return setCartItems([]);
-        setCartItems(JSON.parse(localStorage.getItem(storeCode + CART_KEY) as string) || []);
+        setCartItems(JSON.parse(localStorage.getItem(storeCode + CART_KEY) as string) || []); // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [auth]);
 
     useEffect(() => {
@@ -27,7 +27,7 @@ export const useAddToCart = ({ auth, loadingUser }: useAddToCartParamsInterface)
         if (mount) return;
         if (cartItems.length) {
             localStorage.setItem(storeCode + CART_KEY, JSON.stringify(cartItems));
-        } else if (auth) localStorage.removeItem(storeCode + CART_KEY);
+        } else if (auth) localStorage.removeItem(storeCode + CART_KEY); // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [cartItems]);
 
     const handleSetCartItems = data => {

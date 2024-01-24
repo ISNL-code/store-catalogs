@@ -15,7 +15,6 @@ import { CatalogContextInterface } from 'types';
 import CardItem from 'components/atoms/Sections/CardItem';
 import Grid from '@mui/material/Unstable_Grid2';
 import PromoTags from 'components/atoms/PromoTags/PromoTags';
-import { useFavoritesProductsApi } from 'api/useFavoritesProductsApi';
 
 interface ShownModelInterface {
     price: string;
@@ -57,7 +56,7 @@ function SampleNextArrow(props) {
 }
 
 const CatalogFavoriteCard = ({ modelsVariants, name, productId, currency, promoTags }) => {
-    const { xxxs, s, sx, ls, l } = useDevice();
+    const { s, sx, ls, l } = useDevice();
     const navigate = useNavigate();
     const { store, cart, currentUserData, favorites }: CatalogContextInterface = useOutletContext();
     const colorsBoxRef = useRef(null);

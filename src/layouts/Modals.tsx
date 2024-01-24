@@ -4,7 +4,6 @@ import Register from 'pages/Login/Register';
 import ForgotPassword from 'pages/Login/ForgotPassword';
 import RegisterWarning from 'pages/Login/RegisterWarning';
 import StoreSecretKey from 'pages/Login/StoreSecretKey';
-import { useEffect, useState } from 'react';
 
 interface ModalsInterface {
     string;

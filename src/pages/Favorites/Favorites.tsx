@@ -6,9 +6,7 @@ import { getCurrencySymbol } from 'helpers/getCurrencySymbol';
 import ScrollButton from 'components/atoms/Buttons/ScrollButton';
 import InstrumentalSubHeader from 'components/organisms/InstrumentalSubHeader/InstrumentalSubHeader';
 import EmptyPage from 'components/atoms/EmptyPage/EmptyPage';
-import FilterCategories from 'components/organisms/Filters/FilterCategories';
 import BackButton from 'components/atoms/Buttons/BackButton';
-import SkuSearch from 'components/molecules/ToolsButtons/SkuSearch';
 import { CatalogContextInterface, ProductVariantInterface } from 'types';
 import TransitionBox from 'components/atoms/Transitions/TransitionBox';
 import Grid from '@mui/material/Unstable_Grid2';
@@ -84,12 +82,13 @@ const Favorites = () => {
                 };
             });
             setFavoriteProducts(data);
-        });
+        }); // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [productIds, supportedLanguage]);
 
     useEffect(() => {
         if (mount) return;
         if (!auth) navigate(`/catalog/${storeCode}/${storeName}`);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [auth]);
 
     useEffect(() => {
@@ -99,6 +98,18 @@ const Favorites = () => {
             setLoading(false);
         }, 1000);
     }, [loadProducts, loading]);
+
+    useEffect(() => {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 500) {
+                setShowTopBtn(true);
+                setShowMobileStoresButton(false);
+            } else {
+                setShowTopBtn(false);
+                setShowMobileStoresButton(true);
+            }
+        });
+    }, []);
 
     if (loading) return <Loader />;
 

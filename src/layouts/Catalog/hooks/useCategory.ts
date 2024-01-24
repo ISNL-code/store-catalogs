@@ -36,7 +36,7 @@ export const useCategory = ({
 
     useEffect(() => {
         if (mount) return;
-        updateCategories();
+        updateCategories(); // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [lang]);
 
     const handleCategoriesQuery = (data, checked, root, rootID) => {
