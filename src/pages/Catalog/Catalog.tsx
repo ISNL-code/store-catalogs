@@ -8,7 +8,6 @@ import ScrollButton from 'components/atoms/Buttons/ScrollButton';
 import InstrumentalSubHeader from 'components/organisms/InstrumentalSubHeader/InstrumentalSubHeader';
 import EmptyPage from 'components/atoms/EmptyPage/EmptyPage';
 import FilterCategories from 'components/organisms/Filters/FilterCategories';
-import BackButton from 'components/atoms/Buttons/BackButton';
 import SkuSearch from 'components/molecules/ToolsButtons/SkuSearch';
 import { CatalogContextInterface } from 'types';
 import TransitionBox from 'components/atoms/Transitions/TransitionBox';
