@@ -94,7 +94,14 @@ const CatalogCard = ({ modelsVariants, name, productId, currency, setProductsLis
                         }}
                     >
                         {promoTags?.map(el => (
-                            <PromoTags key={el.id} value={el.code} size={20} selected={true} disabled={true} />
+                            <PromoTags
+                                key={el.id}
+                                value={el.name || el.code}
+                                code={el.code}
+                                size={20}
+                                selected={true}
+                                disabled={true}
+                            />
                         ))}
                     </Box>
                 )}

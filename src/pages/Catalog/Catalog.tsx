@@ -44,7 +44,7 @@ const Catalog = () => {
 
         setTimeout(() => {
             setLoading(false);
-        }, 500); // eslint-disable-next-line react-hooks/exhaustive-deps
+        }, 100); // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [loadProducts, loading]);
 
     useEffect(() => {
@@ -76,7 +76,7 @@ const Catalog = () => {
                     <PlayMarketButton />
                 </>
             )}
-            {/* {loadProducts && <Loader />} */}
+            {((loadProducts && !productsList?.length) || loading) && <Loader />}
             {store?.mainStoreSettings?.contacts && <CallBackButton />}
             <InstrumentalSubHeader
                 EndSlot={() => (
@@ -87,7 +87,7 @@ const Catalog = () => {
                 )}
             />
 
-            {productsList?.length && !loadProducts ? (
+            {productsList?.length ? (
                 <TransitionBox dependency={loading}>
                     <Grid xs={12} container>
                         {productsList?.map(product => {
@@ -105,15 +105,11 @@ const Catalog = () => {
                         })}
                     </Grid>
                 </TransitionBox>
-            ) : !productsList?.length && productsList && !loadProducts && !loading ? (
-                <>
-                    <InstrumentalSubHeader StartSlot={() => <BackButton nav="/" action={() => {}} />} />
-                    <EmptyPage isShown />;
-                </>
             ) : (
-                <>{!loading && <Loader position="fixed" />}</>
+                <>{!loadProducts && !loading && <EmptyPage isShown />}</>
             )}
-            {!!productsList?.length && productsList && !loading && !loadProducts && (
+
+            {!!productsList?.length && productsList && !loading && (
                 <PaginationButton
                     setCurrentPage={handleSetProductsPage}
                     totalCount={totalProductsCount}

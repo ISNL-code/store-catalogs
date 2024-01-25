@@ -55,7 +55,7 @@ const PaginationButton = ({
                         textTransform: 'capitalize',
                     }}
                     variant="contained"
-                    onClick={() => setCurrentPage(1)}
+                    onClick={() => setCurrentPage(page + 1)}
                     color="primary"
                     disabled={!productsList?.length || totalPages === page + 1}
                 >

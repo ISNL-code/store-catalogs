@@ -6,7 +6,6 @@ import Image from 'components/atoms/Media/Image';
 import LanguagesView from 'components/molecules/LanguagesView';
 import FavoriteStoresButton from 'components/molecules/ToolsButtons/FavoriteStoresButton';
 import ShareButton from 'components/molecules/ToolsButtons/ShareButton';
-import { WEB_URL } from 'constants/constants';
 import { useNavigate, useOutletContext } from 'react-router-dom';
 import { useDevice } from 'hooks/useDevice';
 

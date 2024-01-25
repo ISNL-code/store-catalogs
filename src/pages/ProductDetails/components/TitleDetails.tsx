@@ -22,7 +22,14 @@ const TitleDetails = ({ productDetails }) => {
                 {store?.additionalStoreSettings?.promo && (
                     <Box sx={{ display: 'flex', gap: 0.5 }}>
                         {productDetails?.promo.map(el => (
-                            <PromoTags key={el.id} value={el.code} size={15} selected={true} disabled={true} />
+                            <PromoTags
+                                key={el.id}
+                                value={el.name}
+                                size={15}
+                                selected={true}
+                                disabled={true}
+                                code={el?.code}
+                            />
                         ))}
                     </Box>
                 )}

@@ -55,8 +55,8 @@ export const useProducts = ({ store, lang, queryCategories, setQueryCategories }
                     promoTags:
                         product.options
                             .find(({ code }) => code === 'PROMO')
-                            ?.optionValues.map(({ code, id }) => {
-                                return { code, id };
+                            ?.optionValues.map(({ code, id, description }) => {
+                                return { code, id, name: description?.name };
                             })
                             .sort((a, b) => a.code - b.code) || [],
                 };
@@ -93,6 +93,13 @@ export const useProducts = ({ store, lang, queryCategories, setQueryCategories }
                                 }),
                             name: product.description.name,
                             price: product.finalPrice,
+                            promoTags:
+                                product.options
+                                    .find(({ code }) => code === 'PROMO')
+                                    ?.optionValues.map(({ code, id, description }) => {
+                                        return { code, id, name: description?.name };
+                                    })
+                                    .sort((a, b) => a.code - b.code) || [],
                         };
                     }),
                 ];

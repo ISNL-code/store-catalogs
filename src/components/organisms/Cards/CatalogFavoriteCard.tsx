@@ -93,7 +93,14 @@ const CatalogFavoriteCard = ({ modelsVariants, name, productId, currency, promoT
                         }}
                     >
                         {promoTags?.map(el => (
-                            <PromoTags key={el.id} value={el.code} size={20} selected={true} disabled={true} />
+                            <PromoTags
+                                key={el.id}
+                                value={el.name}
+                                size={20}
+                                selected={true}
+                                disabled={true}
+                                code={el?.code}
+                            />
                         ))}
                     </Box>
                 )}
@@ -141,12 +148,12 @@ const CatalogFavoriteCard = ({ modelsVariants, name, productId, currency, promoT
                         backgroundColor: '#fff',
                     }}
                     onClick={() => {
-                        navigate(
-                            `/catalog/${storeCode}/${storeName}/details/${productId}/model/${shownModel?.sku?.replaceAll(
+                        navigate({
+                            pathname: `/catalog/${storeCode}/${storeName}/details/${productId}/model/${shownModel?.sku?.replaceAll(
                                 '/',
                                 '_'
-                            )}`
-                        );
+                            )}`,
+                        });
                     }}
                 >
                     <Box

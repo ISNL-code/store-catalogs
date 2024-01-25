@@ -61,8 +61,8 @@ const ProductDetails = () => {
             promo:
                 product?.options
                     .find(({ code }) => code === 'PROMO')
-                    ?.optionValues.map(({ code, id }) => {
-                        return { code, id };
+                    ?.optionValues.map(({ code, id, description }) => {
+                        return { code, id, name: description?.name };
                     })
                     .sort((a, b) => a.code - b.code) || [],
             sizes:
@@ -115,7 +115,7 @@ const ProductDetails = () => {
     return (
         <>
             <InstrumentalSubHeader
-                StartSlot={() => <BackButton nav={-1} action={() => {}} />}
+                StartSlot={() => <BackButton nav={`/catalog/${storeCode}/${storeName}`} action={() => {}} />}
                 CentralSlot={() => (
                     <Box sx={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
                         <Typography sx={{ backgroundColor: '#fff', padding: 0.5, px: 2, borderRadius: 50 }}>

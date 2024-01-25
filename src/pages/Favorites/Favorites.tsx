@@ -75,8 +75,8 @@ const Favorites = () => {
                         products
                             .find(el => el.variants.map(({ sku }) => sku).includes(sku))
                             ?.options.find(({ code }) => code === 'PROMO')
-                            ?.optionValues.map(({ code, id }) => {
-                                return { code, id };
+                            ?.optionValues.map(({ code, id, description }) => {
+                                return { code, id, name: description?.name };
                             })
                             .sort((a, b) => a.code - b.code) || [],
                 };
@@ -115,6 +115,13 @@ const Favorites = () => {
 
     return (
         <Box pb={1}>
+            {showTopBtn && <ScrollButton />}
+            {showMobileStoresButton && (
+                <>
+                    <AppleStoreButton />
+                    <PlayMarketButton />
+                </>
+            )}
             {isOpenModal && (
                 <DeleteModal
                     string={string}
@@ -125,13 +132,6 @@ const Favorites = () => {
                         favorites?.handleClearFavorites();
                     }}
                 />
-            )}
-            {showTopBtn && <ScrollButton />}
-            {showMobileStoresButton && (
-                <>
-                    <AppleStoreButton />
-                    <PlayMarketButton />
-                </>
             )}
             {loading && <Loader />}
             {store?.mainStoreSettings?.contacts && <CallBackButton />}
@@ -151,7 +151,7 @@ const Favorites = () => {
                 )}
             />
 
-            {favoriteProducts?.length && !loadProducts ? (
+            {favoriteProducts?.length ? (
                 <TransitionBox dependency={loading}>
                     <Grid xs={12} container>
                         {favoriteProducts?.map(product => {
@@ -168,13 +168,8 @@ const Favorites = () => {
                         })}
                     </Grid>
                 </TransitionBox>
-            ) : !favoriteProducts?.length && !loadProducts && !loading ? (
-                <>
-                    <InstrumentalSubHeader StartSlot={() => <BackButton nav="/" action={() => {}} />} />
-                    <EmptyPage isShown />;
-                </>
             ) : (
-                <Loader position="fixed" />
+                <>{!loading && <EmptyPage isShown />}</>
             )}
         </Box>
     );
