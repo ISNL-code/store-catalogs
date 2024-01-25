@@ -77,8 +77,11 @@ export default function MainCatalog({ lang, setLang, auth, setAuth, userData }) 
     }, [lang, store?.supportedLanguages]);
 
     useEffect(() => {
+        if (!store?.name) return;
         navigate(`${STORE_CODE}/${store?.name.toLowerCase().replaceAll(' ', '-')}`); // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [store]);
+
+    if (!store) return <></>;
 
     return (
         <Box
