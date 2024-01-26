@@ -1,4 +1,4 @@
-import { Outlet, useNavigate } from 'react-router-dom';
+import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 import Header from './CatalogHeader';
@@ -17,6 +17,7 @@ import { useAddToFavorites } from './hooks/useAddToFavorites';
 import { STORE_CODE } from 'constants/constants';
 
 export default function MainCatalog({ lang, setLang, auth, setAuth, userData }) {
+    const { storeName } = useParams();
     const navigate = useNavigate();
     const { sx, l } = useDevice();
     const headerHeight = 50;
@@ -77,7 +78,7 @@ export default function MainCatalog({ lang, setLang, auth, setAuth, userData }) 
     }, [lang, store?.supportedLanguages]);
 
     useEffect(() => {
-        if (!store?.name) return;
+        if (!store?.name || storeName) return;
         navigate(`${STORE_CODE}/${store?.name.toLowerCase().replaceAll(' ', '-')}`); // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [store]);
 

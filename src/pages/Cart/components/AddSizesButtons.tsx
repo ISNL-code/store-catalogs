@@ -3,12 +3,25 @@ import AddIcon from '@mui/icons-material/Add';
 import { Box, Fab, TextField, Typography } from '@mui/material';
 import SizesIndicatorButton from 'components/atoms/SizesIndicatorButton/SizesIndicatorButton';
 import { useOutletContext } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { OrderDataInterface } from '../Cart';
 
-const AddSizesButtons = ({ sizes }) => {
+const AddSizesButtons = ({
+    sizes,
+    productPrice,
+    orderData,
+    setOrderData,
+    productData,
+}: {
+    sizes;
+    productPrice;
+    orderData: OrderDataInterface;
+    setOrderData;
+    productData;
+}) => {
     const { string }: any = useOutletContext();
     const [selectedSize, setSelectedSizes] = useState<any>([]);
-    console.log(selectedSize);
+
     return (
         <>
             <Box sx={{ borderTop: '1px solid #ccc', borderBottom: '1px solid #ccc' }}>
@@ -16,23 +29,47 @@ const AddSizesButtons = ({ sizes }) => {
                     {string?.select_sizes}:
                 </Typography>
                 <Box mb={1} sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
-                    {sizes?.optionValues?.map(el => (
-                        <Box
-                            onClick={() => {
-                                if (selectedSize?.find(({ id }) => id === el.id)) {
-                                    setSelectedSizes(prev => prev.filter(({ id }) => id !== el.id));
-                                } else {
-                                    setSelectedSizes(prev => [...prev, { ...el, quantity: 1 }]);
-                                }
-                            }}
-                        >
-                            <SizesIndicatorButton
-                                size={35}
-                                label={el?.description?.name}
-                                selected={selectedSize?.find(item => item.id === el.id)}
-                            />
-                        </Box>
-                    ))}
+                    {sizes?.optionValues
+                        ?.sort((a, b) => a?.description?.name - b?.description?.name)
+                        ?.map(el => (
+                            <Box
+                                key={el?.id}
+                                onClick={() => {
+                                    if (selectedSize?.find(({ id }) => id === el.id)) {
+                                        setSelectedSizes(prev => prev.filter(({ id }) => id !== el.id));
+                                        setOrderData(prev => {
+                                            return {
+                                                ...prev,
+                                                productsList: prev?.productsList?.filter?.(({ id }) => el?.id !== id),
+                                            };
+                                        });
+                                    } else {
+                                        setSelectedSizes(prev => [...prev, { ...el, quantity: 1 }]);
+                                        setOrderData(prev => {
+                                            return {
+                                                ...prev,
+                                                productsList: [
+                                                    ...prev.productsList,
+                                                    {
+                                                        sizeId: el?.id,
+                                                        colorId: productData?.id,
+                                                        sku: productData?.productSku,
+                                                        quantity: 1,
+                                                        price: productPrice,
+                                                    },
+                                                ],
+                                            };
+                                        });
+                                    }
+                                }}
+                            >
+                                <SizesIndicatorButton
+                                    size={35}
+                                    label={el?.description?.name}
+                                    selected={selectedSize?.find(item => item.id === el.id)}
+                                />
+                            </Box>
+                        ))}
                 </Box>
             </Box>
             <Box>
@@ -40,7 +77,7 @@ const AddSizesButtons = ({ sizes }) => {
                     selectedSize
                         ?.sort((a, b) => a.description?.name - b.description?.name)
                         .map(el => (
-                            <Box sx={{ display: 'flex', gap: 3, my: 1 }}>
+                            <Box sx={{ display: 'flex', gap: 3, my: 1 }} key={el?.id}>
                                 <Box>
                                     <SizesIndicatorButton size={35} label={el?.description?.name} disabled />
                                 </Box>
@@ -80,6 +117,16 @@ const AddSizesButtons = ({ sizes }) => {
                                                         return { ...item, quantity: item.quantity + 1 };
                                                     return item;
                                                 });
+                                            });
+                                            setOrderData(prev => {
+                                                return {
+                                                    ...prev,
+                                                    productsList: prev.productsList.map(item => {
+                                                        if (item.sizeId === el.id)
+                                                            return { ...item, quantity: item.quantity + 1 };
+                                                        return item;
+                                                    }),
+                                                };
                                             });
                                         }}
                                     >
