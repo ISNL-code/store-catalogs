@@ -50,6 +50,7 @@ const Cart = () => {
     const [productIds, setProductIds] = useState<string[] | any[]>([]);
     const [cartProducts, setCartProducts] = useState<ProductVariantInterface[] | any[]>([]);
     const [isOpenModal, setIsOpenModal] = useState(false);
+    const [finalPrice, setFinalPrice] = useState(0);
     const [orderData, setOrderData] = useState({
         final_price: 0,
         productsList: [] as ProductListInterface[],
@@ -89,12 +90,18 @@ const Cart = () => {
                     ...products
                         .find(el => el.variants.map(({ sku }) => sku).includes(sku))
                         ?.variants?.filter(el => el.sku === sku)[0],
-                    productSku: products.find(el => el.variants.map(({ sku }) => sku).includes(sku)).sku,
+                    productSku: products.find(el => el.variants.map(({ sku }) => sku).includes(sku))?.sku,
                     sizes: {
                         ...products
                             .find(el => el.variants.map(({ sku }) => sku).includes(sku))
 
                             ?.options?.find(el => el.code === 'SIZE'),
+                    },
+                    color: {
+                        ...products
+                            .find(el => el.variants.map(({ sku }) => sku).includes(sku))
+
+                            ?.options?.find(el => el.code === 'COLOR'),
                     },
                     name: products.find(el => el.variants.map(({ sku }) => sku).includes(sku))?.description?.name,
                 };
@@ -109,14 +116,15 @@ const Cart = () => {
     }, [auth]);
 
     useEffect(() => {
-        setOrderData(prev => {
-            return {
-                ...prev,
-                final_price: prev?.productsList.reduce((acc, el) => Number(el.price) * Number(el.quantity) + acc, 0),
-            };
-        });
+        if (!orderData.productsList.length) return;
+        setFinalPrice(
+            orderData?.productsList.reduce(
+                (acc, el) => Number((el.price as string).replaceAll(',', '')) * Number(el.quantity) + acc,
+                0
+            )
+        );
     }, [orderData.productsList]);
-    console.log(orderData);
+
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -127,11 +135,9 @@ const Cart = () => {
         }, 1000);
     }, [loadProducts, loading]);
 
-    if (loading) return <Loader />;
-
     return (
         <>
-            {loadCreateOrder && <Loader />}
+            {(loadCreateOrder || loading) && <Loader />}
             {isOpenModal && (
                 <DeleteModal
                     string={string}
@@ -180,7 +186,7 @@ const Cart = () => {
                                             width={store?.productImagesOptions?.width}
                                             height={store?.productImagesOptions?.height}
                                             cropY={store?.productImagesOptions?.cropY}
-                                            imgUrl={el?.images[0]?.imageUrl}
+                                            imgUrl={el?.images ? el?.images[0]?.imageUrl : ''}
                                         />
                                     </Grid>
                                     <Grid
@@ -202,11 +208,16 @@ const Cart = () => {
                                                 sizes={el?.sizes}
                                                 orderData={orderData}
                                                 setOrderData={setOrderData}
-                                                productPrice={el?.inventory[0]?.price}
+                                                productPrice={el?.inventory ? el?.inventory[0]?.price : '0'}
                                                 productData={el}
                                             />
                                         ) : (
-                                            <AddButtons />
+                                            <AddButtons
+                                                orderData={orderData}
+                                                setOrderData={setOrderData}
+                                                productPrice={el?.inventory ? el?.inventory[0]?.price : '0'}
+                                                productData={el}
+                                            />
                                         )}
                                     </Grid>
                                 </Grid>
@@ -214,11 +225,16 @@ const Cart = () => {
                         })}
                     </Grid>
                     <Grid my={2} p={xs ? 0 : 1} xs={sx ? 12 : 4}>
-                        <ConfirmCoupon createOrder={createOrder} orderData={orderData} setOrderData={setOrderData} />
+                        <ConfirmCoupon
+                            createOrder={createOrder}
+                            orderData={orderData}
+                            setOrderData={setOrderData}
+                            finalPrice={finalPrice}
+                        />
                     </Grid>
                 </Grid>
             ) : (
-                <EmptyPage />
+                <>{!loading && <EmptyPage />}</>
             )}
         </>
     );

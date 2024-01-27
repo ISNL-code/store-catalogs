@@ -40,7 +40,9 @@ const AddSizesButtons = ({
                                         setOrderData(prev => {
                                             return {
                                                 ...prev,
-                                                productsList: prev?.productsList?.filter?.(({ id }) => el?.id !== id),
+                                                productsList: prev?.productsList?.filter?.(
+                                                    ({ sizeId }) => el?.id !== sizeId
+                                                ),
                                             };
                                         });
                                     } else {
@@ -52,7 +54,7 @@ const AddSizesButtons = ({
                                                     ...prev.productsList,
                                                     {
                                                         sizeId: el?.id,
-                                                        colorId: productData?.id,
+                                                        colorId: productData?.color?.optionValues[0]?.id,
                                                         sku: productData?.productSku,
                                                         quantity: 1,
                                                         price: productPrice,
@@ -91,6 +93,16 @@ const AddSizesButtons = ({
                                                         return { ...item, quantity: item.quantity - 1 };
                                                     return item;
                                                 });
+                                            });
+                                            setOrderData(prev => {
+                                                return {
+                                                    ...prev,
+                                                    productsList: prev.productsList.map(item => {
+                                                        if (item.sizeId === el.id && item.quantity > 1)
+                                                            return { ...item, quantity: item.quantity - 1 };
+                                                        return item;
+                                                    }),
+                                                };
                                             });
                                         }}
                                     >

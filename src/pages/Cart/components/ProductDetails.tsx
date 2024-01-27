@@ -44,7 +44,7 @@ const ProductDetails = ({ data }) => {
                 <Typography>{string?.price}:</Typography>
                 <Typography variant="h3" sx={{ color: 'gray' }}>
                     {getCurrencySymbol(store?.currency)}
-                    {data?.inventory[0]?.price}
+                    {data?.inventory ? data?.inventory[0]?.price : '0'}
                 </Typography>
             </Box>
             <Box sx={{ display: 'flex', gap: 1 }}>

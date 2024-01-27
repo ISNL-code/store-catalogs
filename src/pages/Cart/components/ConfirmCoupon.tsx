@@ -11,10 +11,12 @@ const ConfirmCoupon = ({
     createOrder,
     orderData,
     setOrderData,
+    finalPrice,
 }: {
     createOrder;
     orderData: OrderDataInterface;
     setOrderData;
+    finalPrice;
 }) => {
     const { storeCode } = useParams();
     const { string, store }: CatalogContextInterface = useOutletContext();
@@ -108,7 +110,7 @@ const ConfirmCoupon = ({
                         </Typography>
                     </Box>
                     <Typography variant="h2" sx={{ color: 'gray' }}>
-                        {getCurrencySymbol(store?.currency)} {orderData?.final_price}
+                        {getCurrencySymbol(store?.currency)} {Number(finalPrice).toFixed(2)}
                     </Typography>
                 </Grid>
                 <Grid xs={12}>
@@ -137,6 +139,7 @@ const ConfirmCoupon = ({
                                             quantity: item?.quantity,
                                         };
                                     }),
+                                    amount: Number(finalPrice).toFixed(2),
                                     order: {
                                         shippingQuote: '',
                                         currency: store?.currency,
@@ -145,7 +148,7 @@ const ConfirmCoupon = ({
                                             transactionType: 'CAPTURE',
                                             paymentModule: 'moneyorder',
                                             paymentToken: null,
-                                            amount: orderData.final_price,
+                                            amount: finalPrice,
                                         },
                                         delivery: {
                                             address: orderData.delivery.address,
