@@ -9,7 +9,7 @@ export const useProductsApi = () => {
             ['get-all-products'],
             () =>
                 get({
-                    url: `/v2/products?store=${store}&lang=${lang}&available=true&count=${count}&page=${page}&categoryIds=${categories}`,
+                    url: `/v2/products?store=${store}&lang=${lang}&count=${count}&page=${page}&origin=customer&available=true`,
                 }),
             { enabled: !!lang }
         );
@@ -20,7 +20,7 @@ export const useProductsApi = () => {
             ['get-product-by-id'],
             () =>
                 get({
-                    url: `/v2/products/?lang=${lang}&store=${storeCode}&productIds=${id}&count=1000`,
+                    url: `/v2/products/?lang=${lang}&store=${storeCode}&productIds=${id}&origin=customer&count=1000`,
                 }),
             { enabled: !!lang }
         );
@@ -31,7 +31,7 @@ export const useProductsApi = () => {
             ['for-cart-get-product-by-id'],
             () =>
                 get({
-                    url: `/v2/products/?lang=${lang}&store=${storeCode}&productIds=${id}&count=1000`,
+                    url: `/v2/products/?lang=${lang}&store=${storeCode}&productIds=${id}&count=1000&origin=customer`,
                 }),
             { enabled: false }
         );
