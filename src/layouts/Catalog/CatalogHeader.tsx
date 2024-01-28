@@ -5,7 +5,6 @@ import LanguageButton from 'components/molecules/ToolsButtons/LanguageButton';
 import PermIdentityIcon from '@mui/icons-material/PermIdentity';
 import { useDevice } from 'hooks/useDevice';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
-import LogoutIcon from '@mui/icons-material/Logout';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import GridViewIcon from '@mui/icons-material/GridView';

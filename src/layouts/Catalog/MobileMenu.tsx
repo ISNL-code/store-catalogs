@@ -1,7 +1,6 @@
 import { Box } from '@mui/material';
 import MobileNavButton from 'components/atoms/Buttons/MobileNavButton';
 import PermIdentityIcon from '@mui/icons-material/PermIdentity';
-import LogoutIcon from '@mui/icons-material/Logout';
 import { useNavigate, useParams } from 'react-router-dom';
 import GridViewIcon from '@mui/icons-material/GridView';
 import FavoriteIcon from '@mui/icons-material/Favorite';

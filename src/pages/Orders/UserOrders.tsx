@@ -15,7 +15,7 @@ import Loader from 'components/atoms/Loader/Loader';
 
 const UserOrders = () => {
     const { handleGetStatusParams } = useGetStatusParams();
-    const { sx, s } = useDevice();
+    const { s } = useDevice();
     const { storeCode, storeName } = useParams();
     const { string }: CatalogContextInterface = useOutletContext();
     const [orderData, setOrderData] = useState<OrderInterFace | any>(null);
@@ -40,7 +40,7 @@ const UserOrders = () => {
                 };
             })
         );
-    }, [customerOrdersRes]);
+    }, [customerOrdersRes, loadingOrders]);
 
     return (
         <>
@@ -129,7 +129,10 @@ const UserOrders = () => {
                                 xs={12}
                                 container
                                 sx={{
-                                    height: isOpenDetails.open && isOpenDetails?.id == order?.id ? 'auto' : 0,
+                                    height:
+                                        isOpenDetails.open && String(isOpenDetails?.id) === String(order?.id)
+                                            ? 'auto'
+                                            : 0,
                                     overflow: 'hidden',
                                 }}
                             >
