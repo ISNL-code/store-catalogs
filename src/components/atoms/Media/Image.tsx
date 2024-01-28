@@ -2,7 +2,6 @@ import { Box, CircularProgress } from '@mui/material';
 import { useDevice } from 'hooks/useDevice';
 
 import { useEffect, useRef, useState } from 'react';
-import Loader from '../Loader/Loader';
 
 const Image = ({ width, height, imgUrl, cropY = 0 }) => {
     const { xxs, xs, s, sm, sx, slx, m, mx, ls, l } = useDevice();
