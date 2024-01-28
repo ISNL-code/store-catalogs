@@ -1,7 +1,8 @@
-import { Box } from '@mui/material';
+import { Box, CircularProgress } from '@mui/material';
 import { useDevice } from 'hooks/useDevice';
 
 import { useEffect, useRef, useState } from 'react';
+import Loader from '../Loader/Loader';
 
 const Image = ({ width, height, imgUrl, cropY = 0 }) => {
     const { xxs, xs, s, sm, sx, slx, m, mx, ls, l } = useDevice();
@@ -59,8 +60,12 @@ const Image = ({ width, height, imgUrl, cropY = 0 }) => {
                 justifyContent: 'center',
                 overflow: 'hidden',
                 cursor: 'pointer',
+                position: 'relative',
             }}
         >
+            <Box sx={{ position: 'absolute', zIndex: -1, height: '100%', display: 'flex', alignItems: 'center' }}>
+                <CircularProgress size={35} thickness={2} sx={{ color: '#757575' }} />
+            </Box>
             <img src={imgUrl} style={{ width: '100%' }} alt="img" />
         </Box>
     );
