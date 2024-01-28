@@ -1,4 +1,4 @@
-import { Box } from '@mui/material';
+import { Box, CircularProgress } from '@mui/material';
 import { useDevice } from 'hooks/useDevice';
 
 import { useEffect, useRef, useState } from 'react';
