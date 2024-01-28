@@ -2,7 +2,7 @@ import { useMutation, useQuery } from '@tanstack/react-query';
 import useApi from './useApi';
 
 export const useUserApi = () => {
-    const { post, get } = useApi();
+    const { post, get, patch } = useApi();
 
     const useCustomerRegister = () =>
         useMutation(
@@ -104,11 +104,34 @@ export const useUserApi = () => {
             }
         );
 
+    const useCustomerProfileUpdate = () =>
+        useMutation(({ data }: any) => {
+            return patch({
+                url: `v1/auth/customer/`,
+                body: {
+                    ...data,
+                },
+            });
+        });
+
+    const useGetCustomersOrders = ({ storeCode }) => {
+        return useQuery(
+            ['get-customers-orders'],
+
+            () =>
+                get({
+                    url: `v1/auth/orders?store=${storeCode}&count=1000`,
+                })
+        );
+    };
+
     return {
         useCustomerRegister,
         useCustomerLogin,
         useGetUserData,
         useResetCustomerPassword,
         useUpdateCustomerPassword,
+        useCustomerProfileUpdate,
+        useGetCustomersOrders,
     };
 };

@@ -106,6 +106,7 @@ export default function MainCatalog({ lang, setLang, auth, setAuth, userData }) 
                 store={store}
                 cart={cart}
                 favorites={favorites}
+                user={userData}
             />
             <Box
                 px={appXPadding}
@@ -127,7 +128,7 @@ export default function MainCatalog({ lang, setLang, auth, setAuth, userData }) 
                         store,
 
                         //user data
-                        currentUserData: userData.currentUser,
+                        currentUserData: userData.currentUserData,
                         loadingUserData: userData.isFetching,
 
                         //products data
@@ -179,6 +180,9 @@ export default function MainCatalog({ lang, setLang, auth, setAuth, userData }) 
                 openModalType={openModalType}
                 cart={cart}
                 favorites={favorites}
+                headerHeight={headerHeight}
+                store={store}
+                user={userData}
             />
         </Box>
     );

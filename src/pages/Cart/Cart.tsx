@@ -17,6 +17,7 @@ import DeleteModal from 'components/organisms/Modals/DeleteModal';
 import ConfirmCoupon from './components/ConfirmCoupon';
 import ProductDetails from './components/ProductDetails';
 import { useCartApi } from 'api/useCartApi';
+import SuccessOrderingPage from 'components/atoms/SuccessOrdering/SuccessOrderingPage';
 
 interface ProductListInterface {
     sizeId: number | null;
@@ -51,6 +52,7 @@ const Cart = () => {
     const [cartProducts, setCartProducts] = useState<ProductVariantInterface[] | any[]>([]);
     const [isOpenModal, setIsOpenModal] = useState(false);
     const [finalPrice, setFinalPrice] = useState(0);
+    const [successOrdering, setSuccessOrdering] = useState(false);
     const [orderData, setOrderData] = useState({
         final_price: 0,
         productsList: [] as ProductListInterface[],
@@ -116,7 +118,7 @@ const Cart = () => {
     }, [auth]);
 
     useEffect(() => {
-        if (!orderData.productsList.length) return;
+        if (!orderData.productsList.length) return setFinalPrice(0);
         setFinalPrice(
             orderData?.productsList.reduce(
                 (acc, el) => Number((el.price as string).replaceAll(',', '')) * Number(el.quantity) + acc,
@@ -134,6 +136,14 @@ const Cart = () => {
             setLoading(false);
         }, 1000);
     }, [loadProducts, loading]);
+
+    if (successOrdering)
+        return (
+            <>
+                <InstrumentalSubHeader StartSlot={() => <BackButton nav={-1} action={() => {}} />} />
+                <SuccessOrderingPage />
+            </>
+        );
 
     return (
         <>
@@ -153,6 +163,7 @@ const Cart = () => {
                 StartSlot={() => <BackButton nav={-1} action={() => {}} />}
                 EndSlot={() => (
                     <Button
+                        disabled={!cartProducts?.length}
                         variant="outlined"
                         color="error"
                         sx={{ backgroundColor: 'white' }}
@@ -230,6 +241,7 @@ const Cart = () => {
                             orderData={orderData}
                             setOrderData={setOrderData}
                             finalPrice={finalPrice}
+                            setSuccessOrdering={setSuccessOrdering}
                         />
                     </Grid>
                 </Grid>

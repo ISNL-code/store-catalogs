@@ -12,6 +12,8 @@ import CartPage from 'pages/Cart/Cart';
 import ContactsManagePage from 'pages/Contacts/ContactsManagePage';
 import { useUserApi } from 'api/useUserApi';
 import { UserDataInterface } from 'types';
+import UserProfile from 'pages/Profile/UserProfile';
+import UserOrders from 'pages/Orders/UserOrders';
 
 const App = () => {
     const token = localStorage.getItem(ACCESS_TOKEN_KEY);
@@ -83,6 +85,10 @@ const App = () => {
                                 <Route path={'/catalog/:storeCode/:storeName/cart'} element={<CartPage />} />
 
                                 <Route path={'/catalog/:storeCode/:storeName/favorites'} element={<FavoritesPage />} />
+
+                                <Route path={'/catalog/:storeCode/:storeName/profile'} element={<UserProfile />} />
+
+                                <Route path={'/catalog/:storeCode/:storeName/orders'} element={<UserOrders />} />
                             </Route>
                             <Route path="*" element={<Navigate to="/catalog" replace />} />
                         </>

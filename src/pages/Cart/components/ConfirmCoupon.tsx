@@ -6,20 +6,27 @@ import { useOutletContext, useParams } from 'react-router-dom';
 import { CatalogContextInterface } from 'types';
 import { getCurrencySymbol } from 'helpers/getCurrencySymbol';
 import { OrderDataInterface } from '../Cart';
+import { useState } from 'react';
 
 const ConfirmCoupon = ({
     createOrder,
     orderData,
-    setOrderData,
     finalPrice,
+    setSuccessOrdering,
 }: {
     createOrder;
     orderData: OrderDataInterface;
     setOrderData;
     finalPrice;
+    setSuccessOrdering;
 }) => {
     const { storeCode } = useParams();
-    const { string, store }: CatalogContextInterface = useOutletContext();
+    const { string, store, supportedLanguage, currentUserData, cart }: CatalogContextInterface = useOutletContext();
+    const [firstName, setFirstName] = useState(currentUserData?.delivery?.firstName || '');
+    const [lastName, setLastName] = useState(currentUserData?.delivery?.lastName || '');
+    const [phone, setPhone] = useState(currentUserData?.delivery?.phone || '');
+    const [city, setCity] = useState(currentUserData?.delivery?.city || '');
+    const [address, setAddress] = useState(currentUserData?.delivery?.address || '');
 
     return (
         <CardItem withHover={false}>
@@ -32,6 +39,10 @@ const ConfirmCoupon = ({
                 </Grid>
                 <Grid xs={12}>
                     <TextField
+                        value={firstName || ''}
+                        onChange={e => {
+                            setFirstName(e?.target?.value);
+                        }}
                         InputLabelProps={{ shrink: true }}
                         fullWidth
                         size="small"
@@ -45,6 +56,10 @@ const ConfirmCoupon = ({
                 </Grid>
                 <Grid xs={12}>
                     <TextField
+                        value={lastName || ''}
+                        onChange={e => {
+                            setLastName(e?.target?.value);
+                        }}
                         InputLabelProps={{ shrink: true }}
                         fullWidth
                         size="small"
@@ -58,6 +73,10 @@ const ConfirmCoupon = ({
                 </Grid>
                 <Grid xs={12}>
                     <TextField
+                        value={phone || ''}
+                        onChange={e => {
+                            setPhone(e?.target?.value);
+                        }}
                         InputLabelProps={{ shrink: true }}
                         fullWidth
                         size="small"
@@ -71,6 +90,10 @@ const ConfirmCoupon = ({
                 </Grid>
                 <Grid xs={12}>
                     <TextField
+                        value={city || ''}
+                        onChange={e => {
+                            setCity(e?.target?.value);
+                        }}
                         InputLabelProps={{ shrink: true }}
                         fullWidth
                         size="small"
@@ -84,6 +107,10 @@ const ConfirmCoupon = ({
                 </Grid>
                 <Grid xs={12}>
                     <TextField
+                        value={address || ''}
+                        onChange={e => {
+                            setAddress(e?.target?.value);
+                        }}
                         InputLabelProps={{ shrink: true }}
                         fullWidth
                         size="small"
@@ -115,10 +142,12 @@ const ConfirmCoupon = ({
                 </Grid>
                 <Grid xs={12}>
                     <Button
+                        disabled={!orderData?.productsList?.length}
                         variant="contained"
                         sx={{ width: '100%' }}
                         onClick={() => {
                             createOrder({
+                                lang: supportedLanguage,
                                 storeCode,
                                 data: {
                                     shoppingCartItems: orderData.productsList.map(item => {
@@ -164,8 +193,8 @@ const ConfirmCoupon = ({
                                 },
                             })
                                 .then(() => {
-                                    // navigate('/gallery/my-orders');
-                                    // clearCart();
+                                    setSuccessOrdering(true);
+                                    cart?.handleClearCart();
                                 })
                                 .catch(err => console.log(err));
                         }}

@@ -5,9 +5,9 @@ export const useCartApi = () => {
     const { post } = useApi();
 
     const useCreateOrder = () =>
-        useMutation(({ storeCode, data }: any) => {
+        useMutation(({ storeCode, data, lang }: any) => {
             return post({
-                url: `v1/auth/order/cart?$store=${storeCode}`,
+                url: `v1/auth/order/cart?$store=${storeCode}&lang=${lang}`,
                 body: { ...data },
             });
         });

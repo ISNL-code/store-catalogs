@@ -12,7 +12,7 @@ interface LoaderInterface {
 
 const Loader = ({
     height = '90vh',
-    zIndex = 3000,
+    zIndex = 1999,
     title = '',
     defaultHeight,
     position = 'absolute',

@@ -9,7 +9,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import GridViewIcon from '@mui/icons-material/GridView';
-// import ProfileButton from 'components/molecules/ToolsButtons/ProfileButton';
+import ProfileButton from 'components/molecules/ToolsButtons/ProfileButton';
 import { StoreInterface, useAddToCartDataInterface, useAddToFavoriteDataInterface } from 'types';
 
 interface HeaderInterface {
@@ -26,6 +26,7 @@ interface HeaderInterface {
     store: StoreInterface | null;
     cart: useAddToCartDataInterface;
     favorites: useAddToFavoriteDataInterface;
+    user;
 }
 
 const Header = ({
@@ -42,6 +43,7 @@ const Header = ({
     store,
     cart,
     favorites,
+    user,
 }: HeaderInterface) => {
     const navigate = useNavigate();
     const location = useLocation();
@@ -117,17 +119,14 @@ const Header = ({
                             isActive={['login', 'register', 'forgot-password'].includes(openModalType)}
                         />
                     )}
-                    {auth && (
-                        <HeaderNavButton
-                            title={string?.logout}
-                            isShown={!sx}
-                            icon={() => <LogoutIcon />}
-                            clearSort={() => {}}
-                            action={() => setOpenModalType('logout')}
-                            isActive={['logout'].includes(openModalType)}
+                    {!sx && auth && (
+                        <ProfileButton
+                            string={string}
+                            headerHeight={headerHeight}
+                            user={user}
+                            setOpenModalType={setOpenModalType}
                         />
                     )}
-                    {/* {!sx && <ProfileButton string={string} headerHeight={headerHeight} />} */}
                     <LanguageButton
                         setLang={setLang}
                         string={string}

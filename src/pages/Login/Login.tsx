@@ -1,5 +1,5 @@
 import Button from '@mui/material/Button';
-import { InputAdornment, TextField, Typography } from '@mui/material';
+import { DialogActions, InputAdornment, TextField, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import { useUserApi } from 'api/useUserApi';
 import { useEffect, useState } from 'react';
@@ -117,7 +117,7 @@ export default function Login({ setAuth, string, close, setOpenModalType }) {
                     }}
                 />
 
-                {/* <DialogActions sx={{ justifyContent: 'center', flexDirection: 'column' }}>
+                <DialogActions sx={{ justifyContent: 'center', flexDirection: 'column' }}>
                     <Button
                         onClick={() => {
                             setOpenModalType('forgot-password');
@@ -125,7 +125,7 @@ export default function Login({ setAuth, string, close, setOpenModalType }) {
                     >
                         {string?.forgot_password}
                     </Button>
-                </DialogActions> */}
+                </DialogActions>
                 <Box mt={1} pb={1.5} sx={{ display: 'flex', justifyContent: 'flex-end', gap: 1 }}>
                     <Button
                         variant="outlined"

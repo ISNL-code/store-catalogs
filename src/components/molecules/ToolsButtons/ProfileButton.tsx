@@ -3,13 +3,15 @@ import { Backdrop, Box, IconButton, ListItemText, MenuItem, SwipeableDrawer, Typ
 import SwiperButton from 'components/atoms/Elements/SwiperButton';
 import { useDevice } from 'hooks/useDevice';
 import { Fragment, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import PermIdentityIcon from '@mui/icons-material/PermIdentity';
+import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
+import LogoutIcon from '@mui/icons-material/Logout';
 
-const ProfileButton = ({ string, headerHeight, menuHeight = '' }) => {
+const ProfileButton = ({ string, headerHeight, menuHeight = '', user, setOpenModalType }) => {
     const navigate = useNavigate();
-    const location = useLocation();
+    const { storeCode, storeName } = useParams();
     const [state, setState] = useState({
-        top: false,
         right: false,
         bottom: false,
     });
@@ -76,7 +78,8 @@ const ProfileButton = ({ string, headerHeight, menuHeight = '' }) => {
                             slotProps={{
                                 backdrop: {
                                     sx: {
-                                        backgroundColor: 'rgba(131, 131, 131, 0.863)',
+                                        backgroundColor: 'rgba(255, 255, 255, 0)',
+                                        pointerEvents: 'none',
                                     },
                                 },
                             }}
@@ -88,11 +91,13 @@ const ProfileButton = ({ string, headerHeight, menuHeight = '' }) => {
                                               borderTopLeftRadius: 20,
                                               borderTopRightRadius: 20,
                                           },
+                                          zIndex: 2000,
                                       }
                                     : {
                                           '.MuiPaper-root': {
                                               mt: `${headerHeight}px`,
                                           },
+                                          zIndex: 2000,
                                       }
                             }
                         >
@@ -100,28 +105,67 @@ const ProfileButton = ({ string, headerHeight, menuHeight = '' }) => {
                             <MenuItem
                                 sx={{
                                     cursor: 'pointer',
+                                    minWidth: 200,
+                                    borderBottom: '1px solid #ccc',
                                 }}
                             >
-                                <ListItemText>
-                                    <Typography>Item</Typography>
+                                <ListItemText onClick={toggleDrawer(anchor, false)}>
+                                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, py: 1 }}>
+                                        <Typography color="gray" variant="h4">
+                                            {user?.currentUserData?.emailAddress}
+                                        </Typography>
+                                    </Box>
                                 </ListItemText>
                             </MenuItem>
                             <MenuItem
                                 sx={{
                                     cursor: 'pointer',
+                                    minWidth: 200,
+                                }}
+                                onClick={() => {
+                                    navigate(`/catalog/${storeCode}/${storeName}/profile`);
+                                    setState({ right: false, bottom: false });
                                 }}
                             >
-                                <ListItemText>
-                                    <Typography>Item</Typography>
+                                <ListItemText onClick={toggleDrawer(anchor, false)}>
+                                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                                        <PermIdentityIcon />
+                                        <Typography variant="h4">{string?.profile}</Typography>
+                                    </Box>
                                 </ListItemText>
                             </MenuItem>
                             <MenuItem
                                 sx={{
                                     cursor: 'pointer',
+                                    minWidth: 200,
+                                }}
+                                onClick={() => {
+                                    setState({ right: false, bottom: false });
+                                    navigate(`/catalog/${storeCode}/${storeName}/orders`);
                                 }}
                             >
-                                <ListItemText>
-                                    <Typography>Item</Typography>
+                                <ListItemText onClick={toggleDrawer(anchor, false)}>
+                                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                                        <AttachMoneyIcon />
+                                        <Typography variant="h4">{string?.orders}</Typography>
+                                    </Box>
+                                </ListItemText>
+                            </MenuItem>
+                            <MenuItem
+                                sx={{
+                                    cursor: 'pointer',
+                                    minWidth: 200,
+                                }}
+                                onClick={() => {
+                                    setOpenModalType('logout');
+                                    toggleDrawer(anchor, true);
+                                }}
+                            >
+                                <ListItemText onClick={toggleDrawer(anchor, false)}>
+                                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                                        <LogoutIcon />
+                                        <Typography variant="h4">{string?.logout}</Typography>
+                                    </Box>
                                 </ListItemText>
                             </MenuItem>
                         </SwipeableDrawer>

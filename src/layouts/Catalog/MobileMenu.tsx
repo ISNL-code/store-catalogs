@@ -6,7 +6,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import GridViewIcon from '@mui/icons-material/GridView';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-// import ProfileButton from 'components/molecules/ToolsButtons/ProfileButton';
+import ProfileButton from 'components/molecules/ToolsButtons/ProfileButton';
 
 const menuHeight = '70px';
 
@@ -21,6 +21,9 @@ const MobileMenu = ({
     setOpenModalType,
     cart,
     favorites,
+    headerHeight,
+    store,
+    user,
 }) => {
     const navigate = useNavigate();
     const { storeCode, storeName } = useParams();
@@ -90,16 +93,16 @@ const MobileMenu = ({
                             isActive={['login', 'register', 'forgot-password'].includes(openModalType)}
                         />
                     )}
+
                     {auth && (
-                        <MobileNavButton
-                            title={string?.logout}
-                            icon={p => <LogoutIcon {...p} />}
-                            clearSort={() => {}}
-                            action={() => setOpenModalType('logout')}
-                            isActive={['logout'].includes(openModalType)}
+                        <ProfileButton
+                            string={string}
+                            headerHeight={headerHeight}
+                            menuHeight={menuHeight}
+                            user={user}
+                            setOpenModalType={setOpenModalType}
                         />
                     )}
-                    {/* <ProfileButton string={string} headerHeight={headerHeight} menuHeight={menuHeight} /> */}
                 </Box>
             </Box>
         );

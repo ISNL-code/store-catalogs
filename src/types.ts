@@ -151,7 +151,23 @@ export interface UserDataInterface {
         zone: string | null;
         country: string;
     };
-    delivery: null;
+    delivery: {
+        postalCode: null | string;
+        countryCode: null | string;
+        firstName: string;
+        lastName: string;
+        bilstateOther: null | string;
+        company: null | string;
+        phone: string;
+        address: string;
+        city: string;
+        stateProvince: null | string;
+        billingAddress: boolean;
+        latitude: null | string;
+        longitude: null | string;
+        zone: null | string;
+        country: null | string;
+    };
     gender: string;
     language: string;
     firstName: string;
@@ -425,4 +441,103 @@ export interface FavoritesProductsInterface {
     favoriteProductId: number;
     variantId: number;
     product: LoadedProductListInterface;
+}
+
+export interface OrderInterFace {
+    id: number;
+    totals: {
+        id: number;
+        title: null;
+        text: null;
+        code: string;
+        order: number;
+        module: string;
+        value: number;
+    }[];
+    attributes: any[];
+    paymentType: string;
+    paymentModule: string;
+    shippingModule: null;
+    previousOrderStatus: null;
+    orderStatus: string;
+    creditCard: null;
+    datePurchased: string;
+    currency: string;
+    customerAgreed: boolean;
+    confirmedAddress: true;
+    comments: null;
+    customer: {
+        id: number;
+        emailAddress: string;
+        billing: {
+            postalCode: null | string;
+            countryCode: null | string;
+            firstName: string;
+            lastName: string;
+            bilstateOther: null | string;
+            company: string;
+            phone: string;
+            address: null | string;
+            city: null | string;
+            stateProvince: null | string;
+            billingAddress: boolean;
+            latitude: null | string;
+            longitude: null | string;
+            zone: null | string;
+            country: StaticRange;
+        };
+        delivery: AddressInterface;
+        gender: string;
+        language: string;
+        firstName: string;
+        lastName: string;
+        provider: null | string;
+        storeCode: null | string;
+        userName: string;
+        rating: number;
+        ratingCount: number;
+        attributes: any[];
+        groups: [
+            {
+                name: 'CUSTOMER';
+                type: 'CUSTOMER';
+                id: string;
+            }
+        ];
+        favoriteStores: [];
+    };
+    products: ProductCardInterface[];
+    billing: {
+        postalCode: null;
+        countryCode: null;
+        firstName: string;
+        lastName: string;
+        bilstateOther: null;
+        company: string;
+        phone: string;
+        address: null;
+        city: null;
+        stateProvince: null;
+        billingAddress: boolean;
+        latitude: null;
+        longitude: null;
+        zone: null;
+        country: string;
+        email: string;
+        countryName: null;
+        provinceName: null;
+    };
+    delivery: AddressInterface;
+    store: StoreInterface;
+    total: {
+        id: number;
+        title: null | string;
+        text: null | string;
+        code: string;
+        order: number;
+        module: string;
+        value: number;
+    };
+    tax: null;
+    shipping: null;
 }

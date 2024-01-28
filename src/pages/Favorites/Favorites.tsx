@@ -139,6 +139,7 @@ const Favorites = () => {
                 StartSlot={() => <BackButton nav={-1} action={() => {}} />}
                 EndSlot={() => (
                     <Button
+                        disabled={!favoriteProducts?.length}
                         variant="outlined"
                         color="error"
                         sx={{ backgroundColor: 'white' }}
