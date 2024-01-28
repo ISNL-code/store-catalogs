@@ -61,6 +61,9 @@ const Image = ({ width, height, imgUrl, cropY = 0 }) => {
                 cursor: 'pointer',
             }}
         >
+            <Box sx={{ position: 'absolute', zIndex: -1, height: '100%', display: 'flex', alignItems: 'center' }}>
+                <CircularProgress size={35} thickness={2} sx={{ color: '#757575' }} />
+            </Box>
             <img src={imgUrl} style={{ width: '100%' }} alt="img" />
         </Box>
     );
