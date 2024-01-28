@@ -3,7 +3,7 @@ import AddIcon from '@mui/icons-material/Add';
 import { Box, Fab, TextField, Typography } from '@mui/material';
 import SizesIndicatorButton from 'components/atoms/SizesIndicatorButton/SizesIndicatorButton';
 import { useOutletContext } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { OrderDataInterface } from '../Cart';
 
 const AddSizesButtons = ({
