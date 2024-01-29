@@ -7,6 +7,7 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'en',
             string: {
+                no_categories_available: 'No categories available',
                 back_to_shopping: 'Back To Shopping',
                 order_sent_successfully: 'Order Sent Successfully',
                 deleted_by_owner: 'Deleted By Owner',
@@ -144,6 +145,7 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'fr',
             string: {
+                no_categories_available: 'Aucune catégorie disponible',
                 back_to_shopping: 'Retour aux achats',
                 order_sent_successfully: 'Commande envoyée avec succès',
                 deleted_by_owner: 'Supprimé par le propriétaire',
@@ -283,6 +285,7 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'es',
             string: {
+                no_categories_available: 'No hay categorías disponibles',
                 back_to_shopping: 'Volver a comprar',
                 order_sent_successfully: 'Pedido enviado con éxito',
                 deleted_by_owner: 'Eliminado por el propietario',
@@ -420,6 +423,7 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'ua',
             string: {
+                no_categories_available: 'Немає доступних категорій',
                 back_to_shopping: 'Назад до покупок',
                 order_sent_successfully: 'Замовлення успішно відправлено',
                 deleted_by_owner: 'Видалено власником',
@@ -558,6 +562,7 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'pl',
             string: {
+                no_categories_available: 'Brak dostępnych kategorii',
                 back_to_shopping: 'Powrót do zakupów',
                 order_sent_successfully: 'Zamówienie zostało wysłane pomyślnie',
                 deleted_by_owner: 'Usunięte przez właściciela',
@@ -697,6 +702,7 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'cz',
             string: {
+                no_categories_available: 'Nejsou k dispozici žádné kategorie',
                 back_to_shopping: 'Zpět na nákupy',
                 order_sent_successfully: 'Objednávka byla úspěšně odeslána',
                 deleted_by_owner: 'Smazáno vlastníkem',
@@ -833,6 +839,7 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'ru',
             string: {
+                no_categories_available: 'Нет доступных категорий',
                 back_to_shopping: 'Вернуться к покупкам',
                 order_sent_successfully: 'Заказ успешно отправлен',
                 deleted_by_owner: 'Удален владельцем',

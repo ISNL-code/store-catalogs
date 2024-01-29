@@ -12,7 +12,7 @@ const FilterCategories = ({ isShown }) => {
     const { s } = useDevice();
     const [state, setState] = useState({
         top: false,
-        left: false,
+        right: false,
     });
     const [showFilters, setShowFilters] = useState(false);
 
@@ -156,7 +156,7 @@ const FilterCategories = ({ isShown }) => {
 
     return (
         <Box>
-            {[s ? 'top' : 'left'].map(anchor => (
+            {[s ? 'top' : 'right'].map(anchor => (
                 <Fragment key={anchor}>
                     <Box sx={{ position: 'relative' }}>
                         <FilterButton isShown={true} action={toggleDrawer(anchor, true)} />
@@ -206,7 +206,7 @@ const FilterCategories = ({ isShown }) => {
                                 size="small"
                                 sx={{ borderRadius: '16px' }}
                                 onClick={() => {
-                                    setState({ top: false, left: false });
+                                    setState({ top: false, right: false });
                                 }}
                             >
                                 {string?.ready}
@@ -228,7 +228,15 @@ const FilterCategories = ({ isShown }) => {
                         </Box>
 
                         <Box sx={{ width: anchor === 'top' ? '100vw' : '400px' }} role="presentation">
-                            {showFilters && <List>{getCategories(categoriesList)}</List>}
+                            {categoriesList?.length ? (
+                                showFilters && <List>{getCategories(categoriesList)}</List>
+                            ) : (
+                                <Box p={1} sx={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
+                                    <Typography variant="h4" sx={{ color: 'gray' }}>
+                                        {string?.no_categories_available}
+                                    </Typography>
+                                </Box>
+                            )}
                         </Box>
                         {s && (
                             <Box
