@@ -137,6 +137,12 @@ const Cart = () => {
         }, 1000);
     }, [loadProducts, loading]);
 
+    useEffect(() => {
+        if (mount) return;
+        if (!auth) navigate(`/catalog/${storeCode}/${storeName}`);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [auth, mount]);
+
     if (successOrdering)
         return (
             <>

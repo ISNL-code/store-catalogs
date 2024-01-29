@@ -11,8 +11,6 @@ import { CatalogContextInterface, ProductVariantInterface } from 'types';
 import TransitionBox from 'components/atoms/Transitions/TransitionBox';
 import Grid from '@mui/material/Unstable_Grid2';
 import CallBackButton from 'components/atoms/Buttons/CallBackButton';
-import AppleStoreButton from 'components/atoms/Buttons/AppleStoreButton';
-import PlayMarketButton from 'components/atoms/Buttons/PlayMarketButton';
 import CatalogFavoriteCard from 'components/organisms/Cards/CatalogFavoriteCard';
 import { useIsMount } from 'hooks/useIsMount';
 import { useProductsApi } from 'api/useProductsApi';
@@ -24,7 +22,6 @@ const Favorites = () => {
     const navigate = useNavigate();
     const mount = useIsMount();
     const [showTopBtn, setShowTopBtn] = useState(false);
-    const [showMobileStoresButton, setShowMobileStoresButton] = useState(true);
     const [loading, setLoading] = useState(true);
     const [productIds, setProductIds] = useState<string[] | any[]>([]);
     const [favoriteProducts, setFavoriteProducts] = useState<ProductVariantInterface[] | any[]>([]);
@@ -89,7 +86,7 @@ const Favorites = () => {
         if (mount) return;
         if (!auth) navigate(`/catalog/${storeCode}/${storeName}`);
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [auth]);
+    }, [auth, mount]);
 
     useEffect(() => {
         if (loadProducts) return;
@@ -103,10 +100,8 @@ const Favorites = () => {
         window.addEventListener('scroll', () => {
             if (window.scrollY > 500) {
                 setShowTopBtn(true);
-                setShowMobileStoresButton(false);
             } else {
                 setShowTopBtn(false);
-                setShowMobileStoresButton(true);
             }
         });
     }, []);
@@ -116,12 +111,6 @@ const Favorites = () => {
     return (
         <Box pb={1}>
             {showTopBtn && <ScrollButton />}
-            {showMobileStoresButton && (
-                <>
-                    <AppleStoreButton />
-                    <PlayMarketButton />
-                </>
-            )}
             {isOpenModal && (
                 <DeleteModal
                     string={string}
