@@ -81,7 +81,7 @@ export const STORES_DATA = [
                     phone: '+380983080085',
                     viber: '+380983080085',
                     whatsapp: '+380983080085',
-                    telegram: 'https://t.me/@Albertobiniopt',
+                    telegram: 'Albertobiniopt',
                 },
             },
         ],
