@@ -232,12 +232,7 @@ const CatalogFavoriteCard = ({ modelsVariants, name, productId, currency, promoT
                                 gap: 1,
                             }}
                         >
-                            <Typography
-                                px={1}
-                                py={0.25}
-                                variant="h4"
-                                sx={{ height: 30, fontSize: 14, fontWeight: 500 }}
-                            >
+                            <Typography px={1} py={0.5} variant="h4" sx={{ height: 30, fontSize: 14, fontWeight: 500 }}>
                                 {!isExpanded && name}
                             </Typography>
 

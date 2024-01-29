@@ -241,7 +241,7 @@ const CatalogCard = ({ modelsVariants, name, productId, currency, setProductsLis
                                 })}
                             </Box>
                         </Box>
-                        <Box sx={{ ml: 1, mt: -1.5 }}>
+                        <Box sx={{ ml: 1, mt: -0.25 }}>
                             <CollapseButton collapse={setIsExpanded} isShown={isExpanded} />
                         </Box>
                     </Box>
@@ -254,12 +254,7 @@ const CatalogCard = ({ modelsVariants, name, productId, currency, setProductsLis
                                 gap: 1,
                             }}
                         >
-                            <Typography
-                                px={1}
-                                py={0.25}
-                                variant="h4"
-                                sx={{ height: 30, fontSize: 14, fontWeight: 500 }}
-                            >
+                            <Typography px={1} py={0.5} variant="h4" sx={{ height: 40, fontSize: 14, fontWeight: 500 }}>
                                 {!isExpanded && name}
                             </Typography>
 

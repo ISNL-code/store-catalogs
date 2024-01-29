@@ -71,11 +71,11 @@ const Catalog = () => {
             {showTopBtn && <ScrollButton />}
             {showMobileStoresButton && (
                 <>
-                    <AppleStoreButton />
-                    <PlayMarketButton />
+                    {store?.additionalStoreSettings?.appleStore && <AppleStoreButton />}
+                    {store?.additionalStoreSettings?.playMarket && <PlayMarketButton />}
                 </>
             )}
-            {((loadProducts && !productsList?.length) || loading) && <Loader />}
+            {((loadProducts && !productsList?.length) || loading) && <Loader position="fixed" />}
             {store?.mainStoreSettings?.contacts && <CallBackButton />}
             <InstrumentalSubHeader
                 EndSlot={() => (
