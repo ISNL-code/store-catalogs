@@ -38,7 +38,7 @@ const MobileMenu = ({
                     bottom: 0,
                     width: '100%',
                     background: '#000',
-                    zIndex: 4000,
+                    zIndex: 3999,
                 }}
             >
                 <Box
@@ -59,7 +59,6 @@ const MobileMenu = ({
                     />
                     {withShare && (
                         <MobileNavButton
-                            path={`/catalog/${storeCode}/${storeName}/favorites`}
                             title={string?.favorites}
                             icon={p => <FavoriteIcon {...p} />}
                             badgeCount={favorites?.favoriteItems?.length}
@@ -72,7 +71,6 @@ const MobileMenu = ({
                     )}
                     {withCart && (
                         <MobileNavButton
-                            path={`/catalog/${storeCode}/${storeName}/cart`}
                             title={string?.cart}
                             icon={p => <ShoppingCartIcon {...p} />}
                             badgeCount={cart?.cartItems?.length}

@@ -17,6 +17,8 @@ const PaginationButton = ({
     const { sx } = useDevice();
     const ref = useRef(null);
 
+    if (productsList?.length < 12) return null;
+
     return (
         <>
             {loadProducts && <Loader position="fixed" />}

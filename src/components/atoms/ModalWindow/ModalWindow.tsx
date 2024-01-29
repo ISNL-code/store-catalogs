@@ -17,10 +17,10 @@ const ModalWindow = ({ children, type = '', title, text = '', closeAction = () =
                 display: 'flex',
                 justifyContent: 'center',
                 position: 'fixed',
-                zIndex: 1299,
+                zIndex: 4000,
                 left: 0,
                 top: 0,
-                backgroundColor: 'rgba(131, 131, 131, 0.863)',
+                backgroundColor: '#cccccc0',
             }}
             onClick={e => {
                 e.stopPropagation();
@@ -57,6 +57,7 @@ const ModalWindow = ({ children, type = '', title, text = '', closeAction = () =
                         display: 'flex',
                         flexDirection: 'column',
                         justifyContent: 'space-between',
+                        boxShadow: '0 0 3px 2px #0000003e',
                     }}
                 >
                     <Box
