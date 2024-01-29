@@ -1,12 +1,15 @@
 import { Box } from '@mui/material';
 import { GoogleIcon } from 'assets/svg/google_icon';
 import { useDevice } from 'hooks/useDevice';
+import { useOutletContext } from 'react-router-dom';
+import { CatalogContextInterface } from 'types';
 
 const PlayMarketButton = () => {
     const { s, sx } = useDevice();
+    const { store }: CatalogContextInterface = useOutletContext();
 
     return (
-        <a href="https://play.google.com/store/apps">
+        <a href={store?.appStoreUrl}>
             <Box
                 sx={{
                     display: 'flex',

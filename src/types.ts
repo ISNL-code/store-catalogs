@@ -106,6 +106,8 @@ export interface StoreInterface {
     };
     //add
     webUrl: string;
+    appStoreUrl: string;
+    playMarketUrl: string;
     mainImage: string;
     descriptions: any;
     productImagesOptions: any;
