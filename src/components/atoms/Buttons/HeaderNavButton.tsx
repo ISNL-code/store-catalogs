@@ -12,6 +12,7 @@ interface HeaderNavButtonInterface {
     action?;
     title?;
     badgeCount?: number;
+    protectedPath?: boolean;
 }
 
 const HeaderNavButton = ({
@@ -23,6 +24,7 @@ const HeaderNavButton = ({
     action,
     title = '',
     badgeCount = 0,
+    protectedPath = false,
 }: HeaderNavButtonInterface) => {
     const navigate = useNavigate();
     const location = useLocation();
@@ -41,9 +43,9 @@ const HeaderNavButton = ({
                         }}
                         color={active || isActive ? `primary` : 'default'}
                         onClick={() => {
-                            if (!path) return action();
+                            if (action) action();
                             clearSort();
-                            navigate(path);
+                            if (!protectedPath && path) navigate(path);
                         }}
                     >
                         <Badge

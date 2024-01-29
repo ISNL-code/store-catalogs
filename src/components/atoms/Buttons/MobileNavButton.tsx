@@ -11,6 +11,7 @@ interface MobileNavButtonInterface {
     action?;
     isActive?;
     badgeCount?: number;
+    protectedPath?: boolean;
 }
 
 const MobileNavButton = ({
@@ -22,6 +23,7 @@ const MobileNavButton = ({
     action,
     isActive,
     badgeCount,
+    protectedPath = false,
 }: MobileNavButtonInterface) => {
     const navigate = useNavigate();
     const location = useLocation();
@@ -37,7 +39,7 @@ const MobileNavButton = ({
                         action();
                     }
                     if (!path) return;
-                    navigate(path);
+                    if (!protectedPath) navigate(path);
                     clearSort();
                 }}
                 size="small"
