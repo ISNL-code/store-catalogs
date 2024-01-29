@@ -273,7 +273,7 @@ const CatalogCard = ({ modelsVariants, name, productId, currency, setProductsLis
                                 }}
                             >
                                 {store?.mainStoreSettings?.prices && (
-                                    <Typography variant="h4" sx={{ color: 'gray' }}>
+                                    <Typography variant="h4" sx={{ color: 'gray', my: 0.5 }}>
                                         {!isExpanded && currency}
                                         {!isExpanded && shownModel?.price}
                                     </Typography>
