@@ -161,6 +161,7 @@ const Favorites = () => {
             ) : (
                 <>{!loading && <EmptyPage isShown />}</>
             )}
+            {favoriteProducts?.length <= 12 && <Box sx={{ height: 50 }}></Box>}
         </Box>
     );
 };

@@ -84,6 +84,7 @@ const Header = ({
 
                     {store?.additionalStoreSettings?.favorites && (
                         <HeaderNavButton
+                            path={`/catalog/${storeCode}/${storeName}/favorites`}
                             title={string?.favorites}
                             icon={() => <FavoriteIcon />}
                             isShown={!sx}
@@ -93,10 +94,12 @@ const Header = ({
                                 } else setOpenModalType('login');
                             }}
                             badgeCount={favorites?.favoriteItems?.length}
+                            protectedPath={!auth}
                         />
                     )}
                     {store?.additionalStoreSettings?.cart && (
                         <HeaderNavButton
+                            path={`/catalog/${storeCode}/${storeName}/cart`}
                             title={string?.cart}
                             icon={() => <ShoppingCartIcon />}
                             isShown={!sx}
@@ -106,6 +109,7 @@ const Header = ({
                                     navigate(`/catalog/${storeCode}/${storeName}/cart`);
                                 } else setOpenModalType('login');
                             }}
+                            protectedPath={!auth}
                         />
                     )}
 
