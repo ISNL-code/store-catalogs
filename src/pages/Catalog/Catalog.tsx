@@ -109,6 +109,8 @@ const Catalog = () => {
             )}
 
             {productsList?.length <= 12 ? (
+                <Box sx={{ height: 50 }}></Box>
+            ) : (
                 !!productsList?.length &&
                 productsList &&
                 !loading && (
@@ -122,8 +124,6 @@ const Catalog = () => {
                         countPerPage={productCountPerPage}
                     />
                 )
-            ) : (
-                <Box sx={{ height: 50 }}></Box>
             )}
         </Box>
     );
