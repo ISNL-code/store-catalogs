@@ -170,7 +170,7 @@ const ContactsManagePage = () => {
                                                 </a>
                                             </Box>
                                             <Typography variant={sm ? 'h4' : 'h3'}>
-                                                {manager.contacts?.telegram?.replaceAll('https://t.me/', '')}
+                                                @{manager.contacts?.telegram?.replaceAll('https://t.me/', '')}
                                             </Typography>
                                         </Box>
                                     )}
