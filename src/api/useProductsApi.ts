@@ -9,7 +9,9 @@ export const useProductsApi = () => {
             ['get-all-products'],
             () =>
                 get({
-                    url: `/v2/products?store=${store}&lang=${lang}&count=${count}&page=${page}&origin=customer&available=true`,
+                    url: `/v2/products?store=${store}&lang=${lang}&count=${count}&page=${page}${
+                        categories.length ? '' : '&origin=customer'
+                    }&available=true${categories?.length ? '&categoryIds=' + categories : ''}`,
                 }),
             { enabled: !!lang }
         );
