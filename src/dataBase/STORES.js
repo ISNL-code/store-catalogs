@@ -73,10 +73,10 @@ export const STORES_DATA = [
             {
                 firstName: 'Elena',
                 lastName: '',
-                emailAddress: '',
+                emailAddress: 'lena@admin.com',
                 options: { manager: true },
                 contacts: {
-                    emailAddress: '',
+                    emailAddress: 'lena@admin.com',
                     phone: '+380983080085',
                     viber: '+380983080085',
                     whatsapp: '+380983080085',
