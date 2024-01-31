@@ -21,7 +21,7 @@ interface ShareButtonInterface {
 
 const ShareButton = ({ orientation = 'up', path, text, size, color, isShown }: ShareButtonInterface) => {
     const [open, setOpen] = useState(false);
-    const handleOpen = () => setOpen(true);
+
     const handleClose = () => setOpen(false);
     if (isShown)
         return (
