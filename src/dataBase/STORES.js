@@ -53,14 +53,13 @@ export const STORES_DATA = [
             favorites: true,
             promo: true,
             video: false,
-            tableSizes: false,
-            callback: false,
+            tableSizes: true,
+            callback: true,
             platformAvailable: true,
             appleStore: false,
             playMarket: false,
-            analytics: true,
         },
-        dataBaseStoreSettings: { users: 5, products: 200, productModels: 10, photos: 10, videos: 1 },
+        dataBaseStoreSettings: { users: 5, products: 50, productModels: 5, photos: 5, videos: 1 },
         securityStoreSettings: { private: false, securityKey: null },
         storeProductTypes: [
             {

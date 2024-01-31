@@ -1,9 +1,9 @@
 export const USERS_DATA = [
     {
-        emailAddress: 'alb.sales@mail.com',
+        emailAddress: '',
         options: { manager: true },
         contacts: {
-            emailAddress: 'alb.sales@mail.com',
+            emailAddress: '',
             phone: '+380983080085',
             viber: '+380983080085',
             whatsapp: '+380983080085',
