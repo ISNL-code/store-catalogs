@@ -52,7 +52,8 @@ export const useCategory = ({
                     return;
                 }
                 if (currentProductsPage === 0) {
-                    setQueryCategories(queryCategories.filter(el => !data.find(item => el !== item)));
+                    console.log(data, checked, root, rootID);
+                    setQueryCategories(queryCategories.filter(el => !data.find(item => el === item)));
                     return;
                 }
                 return;
