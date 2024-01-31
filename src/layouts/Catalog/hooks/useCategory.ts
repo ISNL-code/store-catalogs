@@ -52,7 +52,7 @@ export const useCategory = ({
                     return;
                 }
                 if (currentProductsPage === 0) {
-                    setQueryCategories(queryCategories.filter(el => !data.find(item => el !== item)));
+                    setQueryCategories(queryCategories.filter(el => !data.find(item => el === item)));
                     return;
                 }
                 return;

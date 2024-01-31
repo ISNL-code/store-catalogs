@@ -81,7 +81,7 @@ const ProductDetails = () => {
         if (mount) return;
         updateModel();
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [supportedLanguage]);
+    }, [supportedLanguage, productId]);
 
     useEffect(() => {
         if (loadProduct) return;
