@@ -25,13 +25,13 @@ const SizesDetails = ({ productDetails, isShown }) => {
                                     alignItems: 'center',
                                 }}
                             >
-                                {productDetails?.sizes?.map(({ code, id }) => (
+                                {productDetails?.sizes?.map(({ code, id, name }) => (
                                     <SizesIndicatorButton
                                         key={id}
                                         size={sm ? 34 : 38}
                                         selected={false}
-                                        label={code}
                                         disabled={true}
+                                        label={name || code}
                                     />
                                 ))}
                             </Box>

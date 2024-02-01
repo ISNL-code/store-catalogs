@@ -68,8 +68,8 @@ const ProductDetails = () => {
             sizes:
                 product?.options
                     .find(({ code }) => code === 'SIZE')
-                    ?.optionValues.map(({ code, id }) => {
-                        return { code, id };
+                    ?.optionValues.map(({ code, id, description }) => {
+                        return { code, id, name: description?.name };
                     })
                     .sort((a, b) => a.code - b.code) || [],
         });
