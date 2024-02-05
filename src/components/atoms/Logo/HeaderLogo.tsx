@@ -4,7 +4,7 @@ import { useDevice } from 'hooks/useDevice';
 
 const HeaderLogo = ({ title, path, font = 'Roboto', imgUrl, headerHeight }) => {
     const navigate = useNavigate();
-    const { xxs } = useDevice();
+    const { xxxs, xxs } = useDevice();
     return (
         <Box
             sx={{
@@ -31,7 +31,9 @@ const HeaderLogo = ({ title, path, font = 'Roboto', imgUrl, headerHeight }) => {
                 alt="img"
             />
 
-            <Typography sx={{ fontFamily: font, fontSize: 20, fontWeight: 700, lineHeight: 1 }}>{title}</Typography>
+            <Typography sx={{ fontFamily: font, fontSize: xxxs ? 18 : 20, fontWeight: 700, lineHeight: 1 }}>
+                {title}
+            </Typography>
         </Box>
     );
 };
