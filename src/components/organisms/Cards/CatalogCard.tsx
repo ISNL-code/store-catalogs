@@ -57,7 +57,7 @@ function SampleNextArrow(props) {
 }
 
 const CatalogCard = ({ modelsVariants, name, productId, currency, setProductsList, promoTags }) => {
-    const { xxxs, s, sx, ls, l } = useDevice();
+    const { s, sx, ls, l } = useDevice();
     const navigate = useNavigate();
     const { store, cart, favorites, currentUserData }: CatalogContextInterface = useOutletContext();
     const colorsBoxRef = useRef(null);
