@@ -116,13 +116,6 @@ const ProductDetails = () => {
         <>
             <InstrumentalSubHeader
                 StartSlot={() => <BackButton nav={`/catalog/${storeCode}/${storeName}`} action={() => {}} />}
-                CentralSlot={() => (
-                    <Box sx={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
-                        <Typography sx={{ backgroundColor: '#fff', padding: 0.5, px: 2, borderRadius: 50 }}>
-                            {modelSku?.replaceAll('_', '/')}
-                        </Typography>
-                    </Box>
-                )}
                 EndSlot={() => (
                     <Box sx={{ display: 'flex', gap: 0.75 }}>
                         {store?.mainStoreSettings?.skuSearch && <SkuSearch />}
@@ -158,7 +151,7 @@ const ProductDetails = () => {
                         <ModelSwiper images={selectedVariant?.images} selectedVariant={selectedVariant} />
                     </Grid>
                     <Grid
-                        px={2}
+                        px={sx ? 0 : 2}
                         pt={2}
                         xs={detailsGrid()}
                         sx={{
