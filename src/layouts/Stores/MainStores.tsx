@@ -85,9 +85,6 @@ export default function MainStores({ lang, setLang, auth, setAuth }) {
                 lang={lang}
                 setLang={setLang}
                 setSortedStores={setSortedStores}
-                auth={auth}
-                setOpenModalType={setOpenModalType}
-                openModalType={openModalType}
                 favoritesCount={favoritesStores?.length}
             />
             <Box

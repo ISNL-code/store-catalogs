@@ -3,7 +3,7 @@ import { useDevice } from 'hooks/useDevice';
 import { useNavigate } from 'react-router-dom';
 import { LiaGlassMartiniAltSolid } from 'react-icons/lia';
 
-const MainHeaderLogo = ({ headerHeight }) => {
+const StoresHeaderLogo = ({ headerHeight }) => {
     const navigate = useNavigate();
     const { xxs } = useDevice();
     return (
@@ -54,4 +54,4 @@ const MainHeaderLogo = ({ headerHeight }) => {
     );
 };
 
-export default MainHeaderLogo;
+export default StoresHeaderLogo;

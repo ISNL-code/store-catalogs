@@ -17,7 +17,7 @@ const HeaderLogo = ({ title, path, font = 'Roboto', imgUrl, headerHeight }) => {
                 gap: 1,
             }}
             onClick={() => {
-                navigate(path);
+                navigate('/');
             }}
         >
             <img
