@@ -49,7 +49,8 @@ export const useProducts = ({ store, lang, queryCategories, setQueryCategories }
                                 colorCode: variant.variation.optionValue.code,
                                 sku: variant.sku,
                             };
-                        }),
+                        })
+                        .filter(variant => variant?.images.length),
                     name: product.description.name,
                     price: product.finalPrice,
                     promoTags:
@@ -90,7 +91,8 @@ export const useProducts = ({ store, lang, queryCategories, setQueryCategories }
                                         colorCode: variant.variation.optionValue.code,
                                         sku: variant.sku,
                                     };
-                                }),
+                                })
+                                .filter(variant => variant?.images.length),
                             name: product.description.name,
                             price: product.finalPrice,
                             promoTags:

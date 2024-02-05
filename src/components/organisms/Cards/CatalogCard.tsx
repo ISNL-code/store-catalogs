@@ -154,7 +154,7 @@ const CatalogCard = ({ modelsVariants, name, productId, currency, setProductsLis
                                         key={idx}
                                         width={store?.productImagesOptions?.width}
                                         height={store?.productImagesOptions?.height}
-                                        imgUrl={`https://images.weserv.nl/?url=${imageUrl}&q=45`}
+                                        imgUrl={`https://images.weserv.nl/?url=${imageUrl}&q=75`}
                                         cropY={store?.productImagesOptions?.cropY}
                                     />
                                 );
