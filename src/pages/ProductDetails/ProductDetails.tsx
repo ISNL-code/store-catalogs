@@ -57,7 +57,9 @@ const ProductDetails = () => {
             details: product?.description.description,
             price: product?.finalPrice,
             id: product?.id,
-            variants: product?.variants.sort((a, b) => a.sortOrder - b.sortOrder),
+            variants: product?.variants
+                .sort((a, b) => a.sortOrder - b.sortOrder)
+                .filter(variant => variant?.images.length),
             promo:
                 product?.options
                     .find(({ code }) => code === 'PROMO')
