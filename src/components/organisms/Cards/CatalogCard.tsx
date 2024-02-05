@@ -191,7 +191,7 @@ const CatalogCard = ({ modelsVariants, name, productId, currency, setProductsLis
                                     backgroundColor: '#f8f8f8',
                                     display: 'flex',
                                     justifyContent: 'center',
-                                    gap: 0.5,
+                                    gap: 0.4,
                                     rowGap: 0,
                                     flexWrap: isExpanded ? 'wrap' : 'nowrap',
                                 }}
@@ -207,7 +207,7 @@ const CatalogCard = ({ modelsVariants, name, productId, currency, setProductsLis
                                                     e.stopPropagation();
                                                     setIsExpanded(true);
                                                 }}
-                                                size={xxxs ? 30 : 33}
+                                                size={30}
                                                 sum={modelsVariants.length - 6}
                                             />
                                         );
@@ -235,7 +235,7 @@ const CatalogCard = ({ modelsVariants, name, productId, currency, setProductsLis
                                             }}
                                             selected={selected}
                                             color={model.colorCode}
-                                            size={33}
+                                            size={30}
                                         />
                                     );
                                 })}

@@ -1,26 +1,12 @@
 import { Box } from '@mui/material';
 import HeaderNavButton from 'components/atoms/Buttons/HeaderNavButton';
 import LanguageButton from 'components/molecules/ToolsButtons/LanguageButton';
-import PermIdentityIcon from '@mui/icons-material/PermIdentity';
 import AddBusinessIcon from '@mui/icons-material/AddBusiness';
 import { useDevice } from 'hooks/useDevice';
-import LogoutIcon from '@mui/icons-material/Logout';
-import MainHeaderLogo from 'components/atoms/Logo/MainHeaderLogo';
+import StoresHeaderLogo from 'components/atoms/Logo/StoresHeaderLogo';
 import StoreIcon from '@mui/icons-material/Store';
 
-const Header = ({
-    headerHeight,
-    appXPadding,
-    string,
-    lang,
-    setLang,
-    setSortedStores,
-
-    auth,
-    setOpenModalType,
-    openModalType,
-    favoritesCount,
-}) => {
+const Header = ({ headerHeight, appXPadding, string, lang, setLang, setSortedStores, favoritesCount }) => {
     const { sx } = useDevice();
 
     return (
@@ -40,7 +26,7 @@ const Header = ({
         >
             <Box sx={{ height: headerHeight, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                 <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <MainHeaderLogo headerHeight={headerHeight} />
+                    <StoresHeaderLogo headerHeight={headerHeight} />
                 </Box>
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
                     <HeaderNavButton title={string?.stores} path={`/`} icon={() => <StoreIcon />} isShown={!sx} />
@@ -53,26 +39,7 @@ const Header = ({
                         clearSort={() => setSortedStores('')}
                         badgeCount={favoritesCount}
                     />
-                    {/* {!auth && (
-                        <HeaderNavButton
-                            title={string?.login}
-                            icon={() => <PermIdentityIcon />}
-                            isShown={!sx}
-                            clearSort={() => {}}
-                            action={() => setOpenModalType('login')}
-                            isActive={['login', 'register', 'forgot-password'].includes(openModalType)}
-                        />
-                    )} */}
-                    {/* {auth && (
-                        <HeaderNavButton
-                            title={string?.logout}
-                            isShown={!sx}
-                            icon={() => <LogoutIcon />}
-                            clearSort={() => {}}
-                            action={() => setOpenModalType('logout')}
-                            isActive={['logout'].includes(openModalType)}
-                        />
-                    )} */}
+
                     <LanguageButton setLang={setLang} string={string} lang={lang} />
                 </Box>
             </Box>
