@@ -1,4 +1,4 @@
-import { Box, Typography } from '@mui/material';
+import { Box } from '@mui/material';
 import Grid from '@mui/material/Unstable_Grid2';
 import { useProductsApi } from 'api/useProductsApi';
 import BackButton from 'components/atoms/Buttons/BackButton';
