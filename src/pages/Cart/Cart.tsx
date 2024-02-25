@@ -10,7 +10,7 @@ import Loader from 'components/atoms/Loader/Loader';
 import Grid from '@mui/material/Unstable_Grid2';
 import Image from 'components/atoms/Media/Image';
 import { useDevice } from 'hooks/useDevice';
-import { Button } from '@mui/material';
+import { Box, Button } from '@mui/material';
 import AddSizesButtons from './components/AddSizesButtons';
 import AddButtons from './components/AddButtons';
 import DeleteModal from 'components/organisms/Modals/DeleteModal';
@@ -182,8 +182,8 @@ const Cart = () => {
                 )}
             />
             {cartProducts?.length ? (
-                <Grid xs={12} container>
-                    <Grid xs={sx ? 12 : 8} sx={{ rowGap: 4 }} container>
+                <Grid xs={12} container sx={{ position: 'relative' }}>
+                    <Grid xs={sx ? 12 : 8} sx={{ rowGap: !xs ? 0 : 2 }} container>
                         {cartProducts.map(el => {
                             return (
                                 <Grid
@@ -197,8 +197,20 @@ const Cart = () => {
                                         boxShadow: xs ? '0 0 3px 1px #00000037' : '',
                                     }}
                                     key={el.id}
+                                    p={xs ? 0 : 1}
                                 >
-                                    <Grid xs={xs ? 12 : 6} sx={{ maxWidth: 450, ml: 'auto' }}>
+                                    <Grid
+                                        xs={xs ? 12 : 6}
+                                        sx={{
+                                            maxWidth: 450,
+                                            ml: 'auto',
+                                            border: !xs ? '1px solid #ccc' : '',
+                                            boxShadow: '0 0 2px 1.5px #00000037',
+                                            borderTopLeftRadius: xs ? '' : 24,
+                                            borderBottomLeftRadius: xs ? '' : 24,
+                                            overflow: 'hidden',
+                                        }}
+                                    >
                                         <Image
                                             width={store?.productImagesOptions?.width}
                                             height={store?.productImagesOptions?.height}
@@ -211,12 +223,16 @@ const Cart = () => {
                                         py={1}
                                         xs={xs ? 12 : 6}
                                         sx={{
+                                            border: !xs ? '1px solid #ccc' : '',
+                                            borderLeft: !xs ? 'none' : '',
                                             maxWidth: 450,
                                             display: 'flex',
                                             flexDirection: 'column',
                                             gap: sx ? 1 : 2,
-                                            border: '1px solid #f1f1f1',
                                             backgroundColor: '#fafafa',
+                                            boxShadow: '0 0 2px 1.5px #00000037',
+                                            borderTopRightRadius: xs ? '' : 24,
+                                            borderBottomRightRadius: xs ? '' : 24,
                                         }}
                                     >
                                         <ProductDetails data={el} />
@@ -241,14 +257,16 @@ const Cart = () => {
                             );
                         })}
                     </Grid>
-                    <Grid my={2} p={xs ? 0 : 1} xs={sx ? 12 : 4}>
-                        <ConfirmCoupon
-                            createOrder={createOrder}
-                            orderData={orderData}
-                            setOrderData={setOrderData}
-                            finalPrice={finalPrice}
-                            setSuccessOrdering={setSuccessOrdering}
-                        />
+                    <Grid mb={2} mt={xs ? 2 : 0} p={xs ? 0 : 1} xs={sx ? 12 : 4}>
+                        <Box sx={{ position: 'sticky', top: 100 }}>
+                            <ConfirmCoupon
+                                createOrder={createOrder}
+                                orderData={orderData}
+                                setOrderData={setOrderData}
+                                finalPrice={finalPrice}
+                                setSuccessOrdering={setSuccessOrdering}
+                            />
+                        </Box>
                     </Grid>
                 </Grid>
             ) : (

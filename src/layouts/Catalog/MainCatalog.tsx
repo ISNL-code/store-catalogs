@@ -62,8 +62,8 @@ export default function MainCatalog({ lang, setLang, auth, setAuth, userData }) 
         queryCategories,
     });
 
-    const cart = useAddToCart({ auth, loadingUser: userData?.isFetching });
-    const favorites = useAddToFavorites({ auth, loadingUser: userData?.isFetching });
+    const cart = useAddToCart({ auth, loadingUser: userData?.isFetching, storeName });
+    const favorites = useAddToFavorites({ auth, loadingUser: userData?.isFetching, storeName });
 
     useEffect(() => {
         if (!storeDataRes || loadStore) return;
@@ -85,11 +85,7 @@ export default function MainCatalog({ lang, setLang, auth, setAuth, userData }) 
     if (!store) return <></>;
 
     return (
-        <Box
-            sx={{
-                overflow: 'hidden',
-            }}
-        >
+        <Box>
             <CssBaseline />
 
             <Header
@@ -108,6 +104,7 @@ export default function MainCatalog({ lang, setLang, auth, setAuth, userData }) 
                 favorites={favorites}
                 user={userData}
             />
+
             <Box
                 px={appXPadding}
                 pt={1}
