@@ -7,11 +7,13 @@ import { useAddToFavoriteDataInterface } from 'types';
 interface useAddToFavoritesParamsInterface {
     auth: boolean;
     loadingUser: boolean;
+    storeName?: string;
 }
 
 export const useAddToFavorites = ({
     auth,
     loadingUser,
+    storeName,
 }: useAddToFavoritesParamsInterface): useAddToFavoriteDataInterface => {
     const { storeCode } = useParams();
     const mount = useIsMount();
@@ -22,7 +24,7 @@ export const useAddToFavorites = ({
 
         if (!auth) return setFavoriteItems([]);
         setFavoriteItems(JSON.parse(localStorage.getItem(storeCode + FAVORITE_KEY) as string) || []); // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [auth]);
+    }, [auth, storeName]);
 
     useEffect(() => {
         if (loadingUser) return;
