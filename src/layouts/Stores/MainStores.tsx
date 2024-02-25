@@ -51,6 +51,7 @@ export default function MainStores({ lang, setLang, auth, setAuth }) {
                 }),
             ]);
         });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [auth, lang]);
 
     useEffect(() => {
