@@ -46,6 +46,7 @@ const Stores = () => {
             });
             setScrollPosition(0);
         }, 150);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     useEffect(() => {
@@ -55,6 +56,7 @@ const Stores = () => {
         setTimeout(() => {
             setLoading(false);
         }, 250);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [loading, loadStores]);
 
     const filteredStores = storesList

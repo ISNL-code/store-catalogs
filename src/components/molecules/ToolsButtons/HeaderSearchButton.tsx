@@ -24,7 +24,11 @@ const HeaderSearchButton = () => {
         setShowSearch(false);
     }, [location]);
 
-    const debouncedChangeHandler = useMemo(() => debounce(setSortedStores, 0), []); // eslint-disable-next-line react-hooks/exhaustive-deps
+    const debouncedChangeHandler = useMemo(
+        () => debounce(setSortedStores, 0),
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        []
+    );
 
     return (
         <>

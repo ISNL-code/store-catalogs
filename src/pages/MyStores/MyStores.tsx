@@ -63,6 +63,7 @@ const MyStores = () => {
             });
             setScrollPosition(0);
         }, 150);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     useEffect(() => {
@@ -71,6 +72,7 @@ const MyStores = () => {
         setTimeout(() => {
             setLoading(false);
         }, 150);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [loading]);
 
     const filteredStores = favoritesStores
