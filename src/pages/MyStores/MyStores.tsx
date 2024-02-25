@@ -36,11 +36,13 @@ const MyStores = () => {
         return function cleanup() {
             setOpenModalType(null);
         };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [auth]);
 
     useEffect(() => {
         if (mount) return;
         if (!auth && !openModalType) navigate('/');
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [openModalType]);
 
     const listener = () => {

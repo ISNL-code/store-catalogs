@@ -53,7 +53,7 @@ const SkuSearch = () => {
         findSku(); // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [query]);
 
-    const debouncedChangeHandler = useMemo(() => debounce(setQuery, 1000), []);
+    const debouncedChangeHandler = useMemo(() => debounce(setQuery, 1000), []); // eslint-disable-next-line react-hooks/exhaustive-deps
 
     return (
         <>

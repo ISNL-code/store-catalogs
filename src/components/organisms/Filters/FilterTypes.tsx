@@ -28,6 +28,7 @@ const FilterTypes = () => {
 
     useEffect(() => {
         setFilteredByTypeStores(queryTypes);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [queryTypes]);
 
     const TypeItem = ({ title, id }) => {
