@@ -7,9 +7,14 @@ import { useAddToCartDataInterface } from 'types';
 interface useAddToCartParamsInterface {
     auth: boolean;
     loadingUser: boolean;
+    storeName?: string;
 }
 
-export const useAddToCart = ({ auth, loadingUser }: useAddToCartParamsInterface): useAddToCartDataInterface => {
+export const useAddToCart = ({
+    auth,
+    loadingUser,
+    storeName,
+}: useAddToCartParamsInterface): useAddToCartDataInterface => {
     const { storeCode } = useParams();
     const mount = useIsMount();
     const [cartItems, setCartItems] = useState<any[]>([]);
@@ -19,7 +24,7 @@ export const useAddToCart = ({ auth, loadingUser }: useAddToCartParamsInterface)
 
         if (!auth) return setCartItems([]);
         setCartItems(JSON.parse(localStorage.getItem(storeCode + CART_KEY) as string) || []); // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [auth]);
+    }, [auth, storeName]);
 
     useEffect(() => {
         if (loadingUser) return;
