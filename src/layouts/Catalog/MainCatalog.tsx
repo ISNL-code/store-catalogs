@@ -12,9 +12,7 @@ import { useProducts } from './hooks/useProducts';
 import Modals from 'layouts/Modals';
 import { StoreInterface } from 'types';
 import { STORES_DATA } from 'dataBase/STORES';
-import { useFavoritesProductsApi } from 'api/useFavoritesProductsApi';
 import { useAddToCart } from './hooks/useAddToCart';
-import { useFavorites } from './hooks/useFavorites';
 import { useAddToFavorites } from './hooks/useAddToFavorites';
 
 export default function MainCatalog({ lang, setLang, auth, setAuth, userData }) {
@@ -24,7 +22,7 @@ export default function MainCatalog({ lang, setLang, auth, setAuth, userData }) 
     const instrumentalBarHeight = 36;
     const appXPadding = l ? 2 : 4;
     const [openModalType, setOpenModalType] = useState<string | null>(null);
-    const { storeCode } = useParams();
+    const { storeCode, storeName } = useParams();
     const { currentLanguage } = useGetLanguage({ lang: lang?.code });
     const [scrollPosition, setScrollPosition] = useState(0);
     const [queryCategories, setQueryCategories] = useState<string[] | []>([]);
@@ -87,6 +85,7 @@ export default function MainCatalog({ lang, setLang, auth, setAuth, userData }) 
     useEffect(() => {
         if (!storeDataRes || loadStore) return;
         setStore({ ...STORES_DATA.find(el => el.code === storeCode), ...storeDataRes.data });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [storeDataRes]);
 
     useEffect(() => {
