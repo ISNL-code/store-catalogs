@@ -268,10 +268,22 @@ const CatalogCard = ({ modelsVariants, name, productId, currency, setProductsLis
                                 }}
                             >
                                 {store?.mainStoreSettings?.prices && (
-                                    <Typography variant="h4" sx={{ color: 'gray' }}>
-                                        {!isExpanded && currency}
-                                        {!isExpanded && shownModel?.price}
-                                    </Typography>
+                                    <Box sx={{ display: 'flex' }}>
+                                        <Typography
+                                            variant="h4"
+                                            sx={{ color: '#505050', textDecoration: 'line-through' }}
+                                        >
+                                            {!isExpanded && currency}
+                                            {!isExpanded && Number(shownModel?.price) * 140}
+                                        </Typography>
+                                        <Typography variant="h3" sx={{ color: '#747474' }}>
+                                            /
+                                        </Typography>
+                                        <Typography variant="h3" sx={{ color: 'red' }}>
+                                            {!isExpanded && currency}
+                                            {!isExpanded && Number(shownModel?.price) * 90}
+                                        </Typography>
+                                    </Box>
                                 )}
                                 <Box sx={{ display: 'flex', gap: 0.5 }}>
                                     <CartButton
