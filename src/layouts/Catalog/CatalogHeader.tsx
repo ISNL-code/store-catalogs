@@ -124,6 +124,7 @@ const Header = ({
                     )}
                     {!sx && auth && (
                         <ProfileButton
+                            store={store}
                             string={string}
                             headerHeight={headerHeight}
                             user={user}
