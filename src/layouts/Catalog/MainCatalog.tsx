@@ -127,6 +127,8 @@ export default function MainCatalog({ lang, setLang, auth, setAuth, userData }) 
                         //user data
                         currentUserData: userData.currentUserData,
                         loadingUserData: userData.isFetching,
+                        updateUserData: userData.updateUserData,
+                        setCurrentUserData: userData.setCurrentUserData,
 
                         //products data
                         productsList: productsList,

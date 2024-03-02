@@ -29,6 +29,8 @@ export interface CatalogContextInterface {
     favorites: useAddToFavoriteDataInterface;
     currentUserData: UserDataInterface | null;
     loadingUserData: boolean;
+    updateUserData: any;
+    setCurrentUserData: any;
     supportedLanguage: string;
     favoritesList: FavoritesProductsInterface[];
     updateFavorites;
