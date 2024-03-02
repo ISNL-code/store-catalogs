@@ -97,6 +97,7 @@ const MobileMenu = ({
 
                     {auth && (
                         <ProfileButton
+                            store={store}
                             string={string}
                             headerHeight={headerHeight}
                             menuHeight={menuHeight}

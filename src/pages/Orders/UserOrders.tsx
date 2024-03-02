@@ -293,7 +293,7 @@ const UserOrders = () => {
                     </Grid>
                 );
             })}
-            {!orderData?.length && orderData && <EmptyPage isShown />}
+            {!orderData?.length && !loadingOrders && <EmptyPage isShown />}
         </>
     );
 };
