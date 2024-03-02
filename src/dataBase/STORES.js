@@ -71,6 +71,19 @@ export const STORES_DATA = [
         ],
         managers: [
             {
+                firstName: 'Manager',
+                lastName: '',
+                emailAddress: 'lena@admin.com',
+                options: { manager: true },
+                contacts: {
+                    emailAddress: '',
+                    phone: '+380730812483',
+                    viber: '+380730812483',
+                    whatsapp: '+380730812483',
+                    telegram: '',
+                },
+            },
+            {
                 firstName: 'Natalia',
                 lastName: '',
                 emailAddress: 'lena@admin.com',

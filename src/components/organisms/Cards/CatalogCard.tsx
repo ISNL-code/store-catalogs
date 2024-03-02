@@ -105,6 +105,7 @@ const CatalogCard = ({ modelsVariants, name, productId, currency, setProductsLis
                         ))}
                     </Box>
                 )}
+
                 <Box
                     sx={{ position: 'absolute', top: 10, right: 10, zIndex: 1, display: 'flex', gap: 0.5 }}
                     onClick={() => {
@@ -285,7 +286,7 @@ const CatalogCard = ({ modelsVariants, name, productId, currency, setProductsLis
                                         </Typography>
                                     </Box>
                                 )}
-                                <Box sx={{ display: 'flex', gap: 0.5 }}>
+                                <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
                                     <CartButton
                                         selected={cart?.cartItems?.find(item => item.sku === shownModel?.sku)}
                                         isShown={store?.additionalStoreSettings?.cart}
@@ -298,6 +299,21 @@ const CatalogCard = ({ modelsVariants, name, productId, currency, setProductsLis
                                             });
                                         }}
                                     />
+                                    <Box
+                                        px={1}
+                                        sx={{
+                                            border: '1px solid #ccc',
+                                            height: '20px',
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            backgroundColor: '#fff',
+                                            borderRadius: '16px',
+                                        }}
+                                    >
+                                        <Typography variant="h6" sx={{ color: 'gray' }}>
+                                            {shownModel?.sku}
+                                        </Typography>
+                                    </Box>
                                     <ShareButton
                                         isShown={store?.additionalStoreSettings?.promo}
                                         path={`${
