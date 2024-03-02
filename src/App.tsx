@@ -69,7 +69,7 @@ const App = () => {
                                         setLang={setLang}
                                         auth={auth}
                                         setAuth={setAuth}
-                                        userData={{ currentUserData, isFetching }}
+                                        userData={{ currentUserData, isFetching, updateUserData, setCurrentUserData }}
                                     />
                                 }
                             >

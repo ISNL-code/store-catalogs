@@ -7,11 +7,11 @@ import { useDevice } from 'hooks/useDevice';
 import { CatalogContextInterface } from 'types';
 import { useUserApi } from 'api/useUserApi';
 import Loader from 'components/atoms/Loader/Loader';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const UserProfile = () => {
     const { sx } = useDevice();
-    const { string, currentUserData }: CatalogContextInterface = useOutletContext();
+    const { string, currentUserData, updateUserData, setCurrentUserData }: CatalogContextInterface = useOutletContext();
     const { storeCode, storeName } = useParams();
     const { mutateAsync: updateProfile, isLoading } = useUserApi().useCustomerProfileUpdate();
     const [firstName, setFirstName] = useState(currentUserData?.delivery?.firstName);
@@ -19,6 +19,15 @@ const UserProfile = () => {
     const [phone, setPhone] = useState(currentUserData?.delivery?.phone);
     const [city, setCity] = useState(currentUserData?.delivery?.city);
     const [address, setAddress] = useState(currentUserData?.delivery?.address);
+
+    useEffect(() => {
+        if (!currentUserData) return;
+        setFirstName(currentUserData?.delivery?.firstName);
+        setLastName(currentUserData?.delivery?.lastName);
+        setPhone(currentUserData?.delivery?.phone);
+        setCity(currentUserData?.delivery?.city);
+        setAddress(currentUserData?.delivery?.address);
+    }, [currentUserData]);
 
     return (
         <>
@@ -41,7 +50,7 @@ const UserProfile = () => {
                                         address,
                                     },
                                 },
-                            });
+                            }).then(_ => updateUserData().then(res => setCurrentUserData(res?.data?.data)));
                         }}
                     >
                         {string?.update}
