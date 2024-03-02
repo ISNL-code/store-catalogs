@@ -35,7 +35,7 @@ const App = () => {
                 }
             });
         } // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [token]);
 
     useEffect(() => {
         const getLang = localStorage.getItem('my-lang-cocktail');
