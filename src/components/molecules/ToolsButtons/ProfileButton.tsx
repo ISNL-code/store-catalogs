@@ -8,7 +8,7 @@ import PermIdentityIcon from '@mui/icons-material/PermIdentity';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import LogoutIcon from '@mui/icons-material/Logout';
 
-const ProfileButton = ({ string, headerHeight, menuHeight = '', user, setOpenModalType }) => {
+const ProfileButton = ({ string, headerHeight, menuHeight = '', user, setOpenModalType, store }) => {
     const navigate = useNavigate();
     const { storeCode, storeName } = useParams();
     const [state, setState] = useState({
@@ -134,23 +134,25 @@ const ProfileButton = ({ string, headerHeight, menuHeight = '', user, setOpenMod
                                     </Box>
                                 </ListItemText>
                             </MenuItem>
-                            <MenuItem
-                                sx={{
-                                    cursor: 'pointer',
-                                    minWidth: 200,
-                                }}
-                                onClick={() => {
-                                    setState({ right: false, bottom: false });
-                                    navigate(`/catalog/${storeCode}/${storeName}/orders`);
-                                }}
-                            >
-                                <ListItemText onClick={toggleDrawer(anchor, false)}>
-                                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                                        <AttachMoneyIcon />
-                                        <Typography variant="h4">{string?.orders}</Typography>
-                                    </Box>
-                                </ListItemText>
-                            </MenuItem>
+                            {store?.additionalStoreSettings?.cart && (
+                                <MenuItem
+                                    sx={{
+                                        cursor: 'pointer',
+                                        minWidth: 200,
+                                    }}
+                                    onClick={() => {
+                                        setState({ right: false, bottom: false });
+                                        navigate(`/catalog/${storeCode}/${storeName}/orders`);
+                                    }}
+                                >
+                                    <ListItemText onClick={toggleDrawer(anchor, false)}>
+                                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                                            <AttachMoneyIcon />
+                                            <Typography variant="h4">{string?.orders}</Typography>
+                                        </Box>
+                                    </ListItemText>
+                                </MenuItem>
+                            )}
                             <MenuItem
                                 sx={{
                                     cursor: 'pointer',
