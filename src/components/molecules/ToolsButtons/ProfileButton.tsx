@@ -79,7 +79,6 @@ const ProfileButton = ({ string, headerHeight, menuHeight = '', user, setOpenMod
                                 backdrop: {
                                     sx: {
                                         backgroundColor: 'rgba(255, 255, 255, 0)',
-                                        pointerEvents: 'none',
                                     },
                                 },
                             }}

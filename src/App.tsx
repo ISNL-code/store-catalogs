@@ -35,7 +35,7 @@ const App = () => {
                 }
             });
         } // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [token]);
 
     useEffect(() => {
         const getLang = localStorage.getItem('my-lang-cocktail');
@@ -69,7 +69,7 @@ const App = () => {
                                         setLang={setLang}
                                         auth={auth}
                                         setAuth={setAuth}
-                                        userData={{ currentUserData, isFetching }}
+                                        userData={{ currentUserData, isFetching, updateUserData, setCurrentUserData }}
                                     />
                                 }
                             >
