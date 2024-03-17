@@ -1,5 +1,5 @@
 import { Box, IconButton, Typography } from '@mui/material';
-import Image from 'components/atoms/Media/Image';
+// import Image from 'components/atoms/Media/Image';
 import ShareButton from 'components/molecules/ToolsButtons/ShareButton';
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate, useOutletContext, useParams } from 'react-router-dom';
