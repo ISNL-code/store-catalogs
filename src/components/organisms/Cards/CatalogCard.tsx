@@ -151,13 +151,14 @@ const CatalogCard = ({ modelsVariants, name, productId, currency, setProductsLis
                             {shownModel?.images?.map(({ imageUrl }, idx) => {
                                 if (imageUrl.includes('.mp4')) return null;
                                 return (
-                                    <Image
-                                        key={idx}
-                                        width={store?.productImagesOptions?.width}
-                                        height={store?.productImagesOptions?.height}
-                                        imgUrl={`https://images.weserv.nl/?url=${imageUrl}&q=75`}
-                                        cropY={store?.productImagesOptions?.cropY}
-                                    />
+                                    <img src={imageUrl} style={{ width: '100%' }} alt="broken img" />
+                                    // <Image
+                                    //     key={idx}
+                                    //     width={store?.productImagesOptions?.width}
+                                    //     height={store?.productImagesOptions?.height}
+                                    //     imgUrl={`https://images.weserv.nl/?url=${imageUrl}&q=75`}
+                                    //     cropY={store?.productImagesOptions?.cropY}
+                                    // />
                                 );
                             })}
                         </Slider>
