@@ -15,6 +15,7 @@ import { CatalogContextInterface } from 'types';
 import CardItem from 'components/atoms/Sections/CardItem';
 import Grid from '@mui/material/Unstable_Grid2';
 import PromoTags from 'components/atoms/PromoTags/PromoTags';
+import Image from 'components/atoms/Media/Image';
 // import { useFavoritesProductsApi } from 'api/useFavoritesProductsApi';
 
 interface ShownModelInterface {
@@ -139,7 +140,15 @@ const CatalogCard = ({ modelsVariants, name, productId, currency, setProductsLis
                         );
                     }}
                 >
-                    <Grid xs={12} ref={ref}>
+                    <Grid
+                        xs={12}
+                        ref={ref}
+                        sx={{
+                            height:
+                                ((ref?.current?.clientWidth as number) / store?.productImagesOptions?.width) *
+                                store?.productImagesOptions?.height,
+                        }}
+                    >
                         <Slider
                             dots={true}
                             nextArrow={<SampleNextArrow />}
@@ -150,26 +159,18 @@ const CatalogCard = ({ modelsVariants, name, productId, currency, setProductsLis
                                 if (imageUrl.includes('.mp4')) return null;
                                 return (
                                     <Grid
+                                        alignItems="center"
                                         xs={12}
-                                        alignContent="center"
                                         sx={{
                                             height:
                                                 ((ref?.current?.clientWidth as number) /
                                                     store?.productImagesOptions?.width) *
                                                 store?.productImagesOptions?.height,
+                                            display: 'flex !important',
+                                            alignItems: 'center',
                                         }}
                                     >
-                                        <img
-                                            key={idx}
-                                            src={imageUrl}
-                                            style={{
-                                                width: '100%',
-                                                height: '100%',
-                                                display: 'flex',
-                                                alignItems: 'center',
-                                            }}
-                                            alt="broken img"
-                                        />
+                                        <Image store={store} imgUrl={imageUrl} ref={ref} />
                                     </Grid>
                                 );
                             })}
