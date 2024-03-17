@@ -3,7 +3,7 @@ import BackButton from 'components/atoms/Buttons/BackButton';
 import EmptyPage from 'components/atoms/EmptyPage/EmptyPage';
 import InstrumentalSubHeader from 'components/organisms/InstrumentalSubHeader/InstrumentalSubHeader';
 import { useIsMount } from 'hooks/useIsMount';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useNavigate, useOutletContext, useParams } from 'react-router-dom';
 import { CatalogContextInterface, ProductVariantInterface } from 'types';
 import Loader from 'components/atoms/Loader/Loader';
@@ -43,6 +43,7 @@ export interface OrderDataInterface {
 }
 
 const Cart = () => {
+    const ref = useRef<HTMLInputElement>(null);
     const { sx, xs } = useDevice();
     const { storeCode, storeName } = useParams();
     const mount = useIsMount();
@@ -200,6 +201,7 @@ const Cart = () => {
                                     p={xs ? 0 : 1}
                                 >
                                     <Grid
+                                        ref={ref}
                                         xs={xs ? 12 : 6}
                                         sx={{
                                             maxWidth: 450,
@@ -212,10 +214,9 @@ const Cart = () => {
                                         }}
                                     >
                                         <Image
-                                            width={store?.productImagesOptions?.width}
-                                            height={store?.productImagesOptions?.height}
-                                            cropY={store?.productImagesOptions?.cropY}
+                                            store={store}
                                             imgUrl={el?.images ? el?.images[0]?.imageUrl : ''}
+                                            ref={ref}
                                         />
                                     </Grid>
                                     <Grid

@@ -48,13 +48,13 @@ const StoreCards = ({ data, dataFavorite, setStoreToApprove }: StoreCardsInterfa
                             sx={{ display: 'flex', width: '100%', borderBottom: '1px solid #ccc', cursor: 'pointer' }}
                         >
                             <Box sx={{ width: '70%', borderRight: '1px solid #ccc' }}>
-                                <Image width={4} height={3} imgUrl={item.mainImage} />
+                                {/* <Image width={4} height={3} imgUrl={item.mainImage} /> */}
                             </Box>
                             <Box
                                 p={0.5}
                                 sx={{ width: '30%', display: 'flex', alignItems: 'center', backgroundColor: 'white' }}
                             >
-                                <Image width={1} height={1} imgUrl={item?.logo?.path} />
+                                {/* <Image width={1} height={1} imgUrl={item?.logo?.path} /> */}
                             </Box>
                         </Box>
                         <Box onClick={e => e.stopPropagation()}>

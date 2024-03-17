@@ -1,4 +1,4 @@
-import { Box, IconButton, Typography } from '@mui/material';
+import { Box, IconButton, Typography, useForkRef } from '@mui/material';
 import Image from 'components/atoms/Media/Image';
 import ShareButton from 'components/molecules/ToolsButtons/ShareButton';
 import { useEffect, useRef, useState } from 'react';
@@ -56,6 +56,7 @@ function SampleNextArrow(props) {
 }
 
 const CatalogFavoriteCard = ({ modelsVariants, name, productId, currency, promoTags }) => {
+    const ref = useForkRef<HTMLInputElement>(null);
     const { s, sx, ls, l } = useDevice();
     const navigate = useNavigate();
     const { store, cart, currentUserData, favorites }: CatalogContextInterface = useOutletContext();
@@ -156,11 +157,7 @@ const CatalogFavoriteCard = ({ modelsVariants, name, productId, currency, promoT
                         });
                     }}
                 >
-                    <Box
-                        sx={{
-                            width: '100%',
-                        }}
-                    >
+                    <Grid xs={12} ref={ref}>
                         <Slider
                             dots={true}
                             nextArrow={<SampleNextArrow />}
@@ -170,17 +167,32 @@ const CatalogFavoriteCard = ({ modelsVariants, name, productId, currency, promoT
                             {shownModel?.images?.map(({ imageUrl }, idx) => {
                                 if (imageUrl.includes('.mp4')) return null;
                                 return (
-                                    <Image
-                                        key={idx}
-                                        width={store?.productImagesOptions?.width}
-                                        height={store?.productImagesOptions?.height}
-                                        imgUrl={`https://images.weserv.nl/?url=${imageUrl}&q=45`}
-                                        cropY={store?.productImagesOptions?.cropY}
-                                    />
+                                    <Grid
+                                        xs={12}
+                                        alignContent="center"
+                                        sx={{
+                                            height:
+                                                (((ref as any)?.current?.clientWidth as number) /
+                                                    store?.productImagesOptions?.width) *
+                                                store?.productImagesOptions?.height,
+                                        }}
+                                    >
+                                        <img
+                                            key={idx}
+                                            src={imageUrl}
+                                            style={{
+                                                width: '100%',
+                                                height: '100%',
+                                                display: 'flex',
+                                                alignItems: 'center',
+                                            }}
+                                            alt="broken img"
+                                        />
+                                    </Grid>
                                 );
                             })}
                         </Slider>
-                    </Box>
+                    </Grid>
                 </Box>
                 <Box>
                     <Box
@@ -252,14 +264,7 @@ const CatalogFavoriteCard = ({ modelsVariants, name, productId, currency, promoT
                                             sx={{ color: '#505050', textDecoration: 'line-through' }}
                                         >
                                             {!isExpanded && currency}
-                                            {!isExpanded && Number(shownModel?.price) * 140}
-                                        </Typography>
-                                        <Typography variant="h3" sx={{ color: '#747474' }}>
-                                            /
-                                        </Typography>
-                                        <Typography variant="h3" sx={{ color: 'red' }}>
-                                            {!isExpanded && currency}
-                                            {!isExpanded && Number(shownModel?.price) * 90}
+                                            {!isExpanded && Number(shownModel?.price)}
                                         </Typography>
                                     </Box>
                                 )}
