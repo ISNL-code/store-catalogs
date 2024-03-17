@@ -57,6 +57,7 @@ function SampleNextArrow(props) {
 }
 
 const CatalogCard = ({ modelsVariants, name, productId, currency, setProductsList, promoTags }) => {
+    const ref = useRef<HTMLInputElement>(null);
     const { s, sx, ls, l } = useDevice();
     const navigate = useNavigate();
     const { store, cart, favorites, currentUserData }: CatalogContextInterface = useOutletContext();
@@ -122,7 +123,9 @@ const CatalogCard = ({ modelsVariants, name, productId, currency, setProductsLis
                         selected={favorites?.favoriteItems?.find(item => item.sku === shownModel?.sku)}
                     />
                 </Box>
-                <Box
+                <Grid
+                    container
+                    xs={12}
                     sx={{
                         display: 'flex',
                         cursor: 'pointer',
@@ -137,10 +140,14 @@ const CatalogCard = ({ modelsVariants, name, productId, currency, setProductsLis
                         );
                     }}
                 >
-                    <Box
-                        sx={{
-                            width: '100%',
-                        }}
+                    <Grid
+                        xs={12}
+                        ref={ref}
+                        sx={
+                            {
+                                // height: ((ref?.current?.clientWidth as number) / 6) * 9,
+                            }
+                        }
                     >
                         <Slider
                             dots={true}
@@ -151,19 +158,28 @@ const CatalogCard = ({ modelsVariants, name, productId, currency, setProductsLis
                             {shownModel?.images?.map(({ imageUrl }, idx) => {
                                 if (imageUrl.includes('.mp4')) return null;
                                 return (
-                                    <img src={imageUrl} style={{ width: '100%' }} alt="broken img" />
-                                    // <Image
-                                    //     key={idx}
-                                    //     width={store?.productImagesOptions?.width}
-                                    //     height={store?.productImagesOptions?.height}
-                                    //     imgUrl={`https://images.weserv.nl/?url=${imageUrl}&q=75`}
-                                    //     cropY={store?.productImagesOptions?.cropY}
-                                    // />
+                                    <Grid
+                                        xs={12}
+                                        alignContent="center"
+                                        sx={{ height: ((ref?.current?.clientWidth as number) / 6) * 9 }}
+                                    >
+                                        <img
+                                            key={idx}
+                                            src={imageUrl}
+                                            style={{
+                                                width: '100%',
+                                                height: '100%',
+                                                display: 'flex',
+                                                alignItems: 'center',
+                                            }}
+                                            alt="broken img"
+                                        />
+                                    </Grid>
                                 );
                             })}
                         </Slider>
-                    </Box>
-                </Box>
+                    </Grid>
+                </Grid>
                 <Box>
                     <Box
                         sx={{
