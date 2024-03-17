@@ -161,7 +161,12 @@ const CatalogCard = ({ modelsVariants, name, productId, currency, setProductsLis
                                     <Grid
                                         xs={12}
                                         alignContent="center"
-                                        sx={{ height: ((ref?.current?.clientWidth as number) / 6) * 9 }}
+                                        sx={{
+                                            height:
+                                                ((ref?.current?.clientWidth as number) /
+                                                    store?.productImagesOptions?.width) *
+                                                store?.productImagesOptions?.height,
+                                        }}
                                     >
                                         <img
                                             key={idx}
@@ -185,7 +190,7 @@ const CatalogCard = ({ modelsVariants, name, productId, currency, setProductsLis
                         sx={{
                             height: 45,
                             overflow: 'visible',
-                            backgroundColor: '#f8f8f8',
+                            backgroundColor: '#fff',
                             zIndex: 1,
                         }}
                     >
@@ -195,18 +200,16 @@ const CatalogCard = ({ modelsVariants, name, productId, currency, setProductsLis
                                 display: 'flex',
                                 justifyContent: 'center',
                                 flexWrap: isExpanded ? 'wrap' : 'nowrap',
-                                backgroundColor: '#f8f8f8',
+                                backgroundColor: '#fff',
                                 height: isExpanded ? '95px' : '45px',
                                 pt: 1,
                                 px: 0.2,
-                                borderTop: '1px solid #00000013',
-
                                 transition: 'height 250ms cubic-bezier(0, 0.4, 0.2, 1)',
                             }}
                         >
                             <Box
                                 sx={{
-                                    backgroundColor: '#f8f8f8',
+                                    backgroundColor: '#fff',
                                     display: 'flex',
                                     justifyContent: 'center',
                                     gap: 0.4,

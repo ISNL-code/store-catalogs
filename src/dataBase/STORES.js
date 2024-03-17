@@ -5,7 +5,7 @@ export const STORES_DATA = [
         playMarketUrl: '',
         webUrl: 'https://alberto-bini-outlet.netlify.app',
         mainImage: require('./images/alb.jpeg'),
-        productImagesOptions: { width: 6, height: 8, cropX: 0, cropY: 20 },
+        productImagesOptions: { width: 6, height: 9, cropX: 0, cropY: 20 },
         descriptions: [
             {
                 language: 'ua',
