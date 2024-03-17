@@ -290,35 +290,13 @@ const CatalogCard = ({ modelsVariants, name, productId, currency, setProductsLis
                             >
                                 {store?.mainStoreSettings?.prices && (
                                     <Box sx={{ display: 'flex' }}>
-                                        <Typography
-                                            variant="h4"
-                                            sx={{ color: '#505050', textDecoration: 'line-through' }}
-                                        >
+                                        <Typography variant="h3" sx={{ color: '#505050' }}>
                                             {!isExpanded && currency}
-                                            {!isExpanded && Number(shownModel?.price) * 140}
-                                        </Typography>
-                                        <Typography variant="h3" sx={{ color: '#747474' }}>
-                                            /
-                                        </Typography>
-                                        <Typography variant="h3" sx={{ color: 'red' }}>
-                                            {!isExpanded && currency}
-                                            {!isExpanded && Number(shownModel?.price) * 90}
+                                            {!isExpanded && Number(shownModel?.price)}
                                         </Typography>
                                     </Box>
                                 )}
                                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-                                    <CartButton
-                                        selected={cart?.cartItems?.find(item => item.sku === shownModel?.sku)}
-                                        isShown={store?.additionalStoreSettings?.cart}
-                                        action={() => {
-                                            cart?.handleSetCartItems({
-                                                sku: shownModel?.sku,
-                                                storeCode,
-                                                userId: currentUserData?.id,
-                                                productId: shownModel?.productId,
-                                            });
-                                        }}
-                                    />
                                     <Box
                                         px={1}
                                         sx={{
@@ -334,6 +312,19 @@ const CatalogCard = ({ modelsVariants, name, productId, currency, setProductsLis
                                             {shownModel?.sku}
                                         </Typography>
                                     </Box>
+                                    <CartButton
+                                        selected={cart?.cartItems?.find(item => item.sku === shownModel?.sku)}
+                                        isShown={store?.additionalStoreSettings?.cart}
+                                        action={() => {
+                                            cart?.handleSetCartItems({
+                                                sku: shownModel?.sku,
+                                                storeCode,
+                                                userId: currentUserData?.id,
+                                                productId: shownModel?.productId,
+                                            });
+                                        }}
+                                    />
+
                                     <ShareButton
                                         isShown={store?.additionalStoreSettings?.promo}
                                         path={`${

@@ -10,16 +10,9 @@ const PriceDetails = ({ productDetails, isShown }) => {
         return (
             <DetailsSection label={string?.price}>
                 <Box sx={{ display: 'flex' }}>
-                    <Typography variant="h4" sx={{ color: '#505050', textDecoration: 'line-through' }}>
+                    <Typography variant="h3" sx={{ color: '#505050' }}>
                         {getCurrencySymbol(store?.currency)}
-                        {Number(productDetails?.price?.replace('$', '')?.replace('UAH', '')) * 140}
-                    </Typography>
-                    <Typography variant="h3" sx={{ color: '#747474' }}>
-                        /
-                    </Typography>
-                    <Typography variant="h3" sx={{ color: 'red' }}>
-                        {getCurrencySymbol(store?.currency)}
-                        {Number(productDetails?.price?.replace('$', '')?.replace('UAH', '')) * 90}
+                        {Number(productDetails?.price?.replace('$', '')?.replace('UAH', ''))}
                     </Typography>
                 </Box>
             </DetailsSection>
