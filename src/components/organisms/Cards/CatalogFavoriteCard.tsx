@@ -1,4 +1,4 @@
-import { Box, IconButton, Typography, useForkRef } from '@mui/material';
+import { Box, IconButton, Typography } from '@mui/material';
 import ShareButton from 'components/molecules/ToolsButtons/ShareButton';
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate, useOutletContext, useParams } from 'react-router-dom';
