@@ -9,11 +9,13 @@ const PriceDetails = ({ productDetails, isShown }) => {
     if (isShown)
         return (
             <DetailsSection label={string?.price}>
-                <Box sx={{ display: 'flex' }}>
-                    <Typography variant="h3" sx={{ color: '#505050' }}>
-                        {getCurrencySymbol(store?.currency)}
-                        {Number(productDetails?.price?.replace('$', '')?.replace('UAH', ''))}
-                    </Typography>
+                <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                    <Box>
+                        <Typography>
+                            {getCurrencySymbol(store?.currency)}
+                            {productDetails?.price?.replace('$', '')?.replace('UAH', '')}
+                        </Typography>
+                    </Box>
                 </Box>
             </DetailsSection>
         );
