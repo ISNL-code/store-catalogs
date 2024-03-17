@@ -1,9 +1,9 @@
 export const STORES_DATA = [
     {
-        code: 'ALBERTO_BINI_SALES',
+        code: 'ALBERTO_BINI',
         appStoreUrl: '',
         playMarketUrl: '',
-        webUrl: 'https://alberto-bini-outlet.netlify.app',
+        webUrl: 'https://alberto-bini.netlify.app',
         mainImage: require('./images/alb.jpeg'),
         productImagesOptions: { width: 6, height: 9, cropX: 0, cropY: 20 },
         descriptions: [
@@ -49,7 +49,7 @@ export const STORES_DATA = [
             productShare: true,
         },
         additionalStoreSettings: {
-            cart: false,
+            cart: true,
             favorites: true,
             promo: true,
             video: false,
@@ -58,6 +58,7 @@ export const STORES_DATA = [
             platformAvailable: true,
             appleStore: false,
             playMarket: false,
+            analytics: true,
         },
         dataBaseStoreSettings: { users: 5, products: 200, productModels: 10, photos: 10, videos: 1 },
         securityStoreSettings: { private: false, securityKey: null },
@@ -71,29 +72,16 @@ export const STORES_DATA = [
         ],
         managers: [
             {
-                firstName: 'Manager',
+                firstName: 'Elena',
                 lastName: '',
-                emailAddress: 'lena@admin.com',
+                emailAddress: 'alb-admin@mail.com',
                 options: { manager: true },
                 contacts: {
                     emailAddress: '',
-                    phone: '+380730812483',
-                    viber: '+380730812483',
-                    whatsapp: '+380730812483',
-                    telegram: '',
-                },
-            },
-            {
-                firstName: 'Natalia',
-                lastName: '',
-                emailAddress: 'lena@admin.com',
-                options: { manager: true },
-                contacts: {
-                    emailAddress: '',
-                    phone: '+380632325848',
-                    viber: '+380632325848',
-                    whatsapp: '+380632325848',
-                    telegram: '',
+                    phone: '+380983080085',
+                    viber: '+380983080085',
+                    whatsapp: '+380983080085',
+                    telegram: 'Albertobiniopt',
                 },
             },
         ],
