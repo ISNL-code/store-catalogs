@@ -49,8 +49,6 @@ const AddSizesButtons = ({
                                         } else {
                                             setSelectedSizes(prev => [...prev, { ...el, quantity: 1 }]);
                                             setOrderData(prev => {
-                                                console.log(productData);
-                                                console.log(productData?.color?.optionValues);
                                                 return {
                                                     ...prev,
                                                     productsList: [
