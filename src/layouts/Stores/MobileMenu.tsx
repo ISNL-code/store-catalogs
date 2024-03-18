@@ -1,9 +1,9 @@
 import { Box } from '@mui/material';
 import MobileNavButton from 'components/atoms/Buttons/MobileNavButton';
 import StoreIcon from '@mui/icons-material/Store';
-// import PermIdentityIcon from '@mui/icons-material/PermIdentity';
+import PermIdentityIcon from '@mui/icons-material/PermIdentity';
 import AddBusinessIcon from '@mui/icons-material/AddBusiness';
-// import LogoutIcon from '@mui/icons-material/Logout';
+import LogoutIcon from '@mui/icons-material/Logout';
 
 const menuHeight = '70px';
 

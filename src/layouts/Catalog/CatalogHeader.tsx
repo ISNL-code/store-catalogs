@@ -10,7 +10,6 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import GridViewIcon from '@mui/icons-material/GridView';
 import ProfileButton from 'components/molecules/ToolsButtons/ProfileButton';
 import { StoreInterface, useAddToCartDataInterface, useAddToFavoriteDataInterface } from 'types';
-import StoreIcon from '@mui/icons-material/Store';
 
 interface HeaderInterface {
     headerHeight;
@@ -75,7 +74,6 @@ const Header = ({
                     />
                 </Box>
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                    <HeaderNavButton title={string?.stores} path={`/`} icon={() => <StoreIcon />} />
                     <HeaderNavButton
                         title={string?.catalog}
                         path={`/catalog/${storeCode}/${storeName}`}
