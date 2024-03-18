@@ -1,11 +1,11 @@
 export const STORES_DATA = [
     {
-        code: 'ALBERTO_BINI',
+        code: 'ALBERTO_BINI_SALES',
         appStoreUrl: '',
         playMarketUrl: '',
-        webUrl: 'https://alberto-bini.netlify.app',
+        webUrl: 'https://alberto-bini-sales.netlify.app',
         mainImage: require('./images/alb.jpeg'),
-        productImagesOptions: { width: 6, height: 9, cropX: 0, cropY: 20 },
+        productImagesOptions: { width: 6, height: 8, cropX: 0, cropY: 20 },
         descriptions: [
             {
                 language: 'ua',
@@ -58,9 +58,8 @@ export const STORES_DATA = [
             platformAvailable: true,
             appleStore: false,
             playMarket: false,
-            analytics: true,
         },
-        dataBaseStoreSettings: { users: 5, products: 200, productModels: 10, photos: 10, videos: 1 },
+        dataBaseStoreSettings: { users: 5, products: 50, productModels: 5, photos: 5, videos: 1 },
         securityStoreSettings: { private: false, securityKey: null },
         storeProductTypes: [
             {
@@ -74,10 +73,10 @@ export const STORES_DATA = [
             {
                 firstName: 'Elena',
                 lastName: '',
-                emailAddress: 'alb-admin@mail.com',
+                emailAddress: 'lena@admin.com',
                 options: { manager: true },
                 contacts: {
-                    emailAddress: '',
+                    emailAddress: 'lena@admin.com',
                     phone: '+380983080085',
                     viber: '+380983080085',
                     whatsapp: '+380983080085',
