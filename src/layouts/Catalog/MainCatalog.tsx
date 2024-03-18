@@ -1,4 +1,4 @@
-import { Outlet, useNavigate, useParams } from 'react-router-dom';
+import { Outlet, useParams } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 import Header from './CatalogHeader';
@@ -14,17 +14,15 @@ import { StoreInterface } from 'types';
 import { STORES_DATA } from 'dataBase/STORES';
 import { useAddToCart } from './hooks/useAddToCart';
 import { useAddToFavorites } from './hooks/useAddToFavorites';
-import { STORE_CODE } from 'constants/constants';
 
 export default function MainCatalog({ lang, setLang, auth, setAuth, userData }) {
-    const { storeName } = useParams();
-    const navigate = useNavigate();
     const { sx, l } = useDevice();
     const headerHeight = 50;
     const footerHeight = sx ? 70 : 0;
     const instrumentalBarHeight = 36;
     const appXPadding = l ? 2 : 4;
     const [openModalType, setOpenModalType] = useState<string | null>(null);
+    const { storeCode, storeName } = useParams();
     const { currentLanguage } = useGetLanguage({ lang: lang?.code });
     const [scrollPosition, setScrollPosition] = useState(0);
     const [queryCategories, setQueryCategories] = useState<string[] | []>([]);
@@ -32,7 +30,7 @@ export default function MainCatalog({ lang, setLang, auth, setAuth, userData }) 
     const [supportedLanguage, setSupportedLanguage] = useState<any>();
 
     const { data: storeDataRes, isFetching: loadStore } = useStoresApi().useGetStoreByCode({
-        code: STORE_CODE,
+        code: storeCode,
     });
 
     const {
@@ -48,14 +46,33 @@ export default function MainCatalog({ lang, setLang, auth, setAuth, userData }) 
         setProductsList,
     } = useProducts({
         lang: supportedLanguage,
-        store: STORE_CODE,
+        store: storeCode,
         queryCategories,
         setQueryCategories,
     });
 
+    // const {
+    //     favoritesRes,
+    //     updateFavorites,
+    //     loadFavorites,
+    //     loadMoreFavorites,
+    //     currentFavoritesPage,
+    //     handleSetFavoritesPage,
+    //     favoritesList,
+    //     totalProductsCount: totalCount,
+    //     productCountPerPage: currentCount,
+    //     totalProductsPages: totalPages,
+    //     setFavoritesList,
+    // } = useFavorites({
+    //     lang: supportedLanguage,
+    //     queryCategories,
+    //     setQueryCategories,
+    //     store,
+    // });
+
     const { categoriesList, handleCategoriesQuery } = useCategory({
         lang: supportedLanguage,
-        store: STORE_CODE,
+        store: storeCode,
         currentProductsPage,
         handleSetProductsPage,
         setQueryCategories,
@@ -67,7 +84,8 @@ export default function MainCatalog({ lang, setLang, auth, setAuth, userData }) 
 
     useEffect(() => {
         if (!storeDataRes || loadStore) return;
-        setStore({ ...STORES_DATA.find(el => el.code === STORE_CODE), ...storeDataRes.data }); // eslint-disable-next-line react-hooks/exhaustive-deps
+        setStore({ ...STORES_DATA.find(el => el.code === storeCode), ...storeDataRes.data });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [storeDataRes]);
 
     useEffect(() => {
@@ -76,13 +94,6 @@ export default function MainCatalog({ lang, setLang, auth, setAuth, userData }) 
             store?.supportedLanguages?.find(el => el.code === lang?.code) ? { code: lang?.code } : { code: 'en' }
         );
     }, [lang, store?.supportedLanguages]);
-
-    useEffect(() => {
-        if (!store?.name || storeName) return;
-        navigate(`${STORE_CODE}/${store?.name.toLowerCase().replaceAll(' ', '-')}`); // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [store]);
-
-    if (!store) return <></>;
 
     return (
         <Box>
@@ -125,7 +136,7 @@ export default function MainCatalog({ lang, setLang, auth, setAuth, userData }) 
                         store,
 
                         //user data
-                        currentUserData: userData.currentUserData,
+                        currentUserData: userData.currentUser,
                         loadingUserData: userData.isFetching,
                         updateUserData: userData.updateUserData,
                         setCurrentUserData: userData.setCurrentUserData,
@@ -141,6 +152,11 @@ export default function MainCatalog({ lang, setLang, auth, setAuth, userData }) 
                         totalProductsPages: totalProductsPages,
                         handleSetProductsPage: handleSetProductsPage,
                         currentProductsPage: currentProductsPage,
+
+                        //  favorites
+                        // favoritesList,
+                        // updateFavorites,
+                        // loadFavorites,
 
                         //categories data
                         categoriesList,

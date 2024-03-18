@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { Box, IconButton, InputAdornment, TextField, Typography } from '@mui/material';
+import { Box, IconButton, InputAdornment, TextField } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import SearchIcon from '@mui/icons-material/Search';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
@@ -24,7 +24,11 @@ const HeaderSearchButton = () => {
         setShowSearch(false);
     }, [location]);
 
-    const debouncedChangeHandler = useMemo(() => debounce(setSortedStores, 0), []);
+    const debouncedChangeHandler = useMemo(
+        () => debounce(setSortedStores, 0),
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        []
+    );
 
     return (
         <>

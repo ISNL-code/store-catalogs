@@ -1,4 +1,7 @@
 import { ThemeProvider } from '@mui/material';
+import Main from 'layouts/Stores/MainStores';
+import StoresPage from 'pages/Stores/Stores';
+import MyStoresPage from 'pages/MyStores/MyStores';
 import { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Navigate, Route, Routes } from 'react-router-dom';
 import mainTheme from 'theme/mainTheme';
@@ -12,8 +15,6 @@ import CartPage from 'pages/Cart/Cart';
 import ContactsManagePage from 'pages/Contacts/ContactsManagePage';
 import { useUserApi } from 'api/useUserApi';
 import { UserDataInterface } from 'types';
-import UserProfile from 'pages/Profile/UserProfile';
-import UserOrders from 'pages/Orders/UserOrders';
 
 const App = () => {
     const token = localStorage.getItem(ACCESS_TOKEN_KEY);
@@ -62,6 +63,13 @@ const App = () => {
                     {
                         <>
                             <Route
+                                path={'/'}
+                                element={<Main lang={lang} setLang={setLang} auth={auth} setAuth={setAuth} />}
+                            >
+                                <Route path={'/'} element={<StoresPage />} />
+                                <Route path={'/my-stores'} element={<MyStoresPage />} />
+                            </Route>
+                            <Route
                                 path={'/catalog'}
                                 element={
                                     <Catalog
@@ -85,12 +93,8 @@ const App = () => {
                                 <Route path={'/catalog/:storeCode/:storeName/cart'} element={<CartPage />} />
 
                                 <Route path={'/catalog/:storeCode/:storeName/favorites'} element={<FavoritesPage />} />
-
-                                <Route path={'/catalog/:storeCode/:storeName/profile'} element={<UserProfile />} />
-
-                                <Route path={'/catalog/:storeCode/:storeName/orders'} element={<UserOrders />} />
                             </Route>
-                            <Route path="*" element={<Navigate to="/catalog" replace />} />
+                            <Route path="*" element={<Navigate to="/" replace />} />
                         </>
                     }
                 </Routes>
