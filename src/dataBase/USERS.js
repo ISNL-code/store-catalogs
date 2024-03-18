@@ -1,14 +1,13 @@
 export const USERS_DATA = [
     {
-        //alberto-bini
-        emailAddress: 'alb-admin@mail.com',
+        emailAddress: 'Kremen.katalog@gmail.com',
         options: { manager: true },
         contacts: {
-            emailAddress: 'alb-admin@mail.com',
-            phone: '+380983080085',
-            viber: '+380983080085',
-            whatsapp: '+380983080085',
-            telegram: 'Albertobiniopt',
+            emailAddress: 'Kremen.katalog@gmail.com',
+            phone: '+380660355716',
+            viber: '+380660355716',
+            whatsapp: '+380660355716',
+            telegram: '',
         },
     },
 ];
