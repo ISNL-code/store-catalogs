@@ -136,7 +136,7 @@ const ConfirmCoupon = ({
                         </Typography>
                     </Box>
                     <Typography variant="h2" sx={{ color: 'gray' }}>
-                        {getCurrencySymbol(store?.currency)} {Number(finalPrice).toFixed(2)}
+                        {getCurrencySymbol(store?.currency)} {Number(finalPrice * 80).toFixed(2)}
                     </Typography>
                 </Grid>
                 <Grid xs={12}>

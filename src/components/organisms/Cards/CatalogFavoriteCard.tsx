@@ -274,9 +274,17 @@ const CatalogFavoriteCard = ({ modelsVariants, name, productId, currency, promoT
                             >
                                 {store?.mainStoreSettings?.prices && (
                                     <Box sx={{ display: 'flex' }}>
-                                        <Typography variant="h3" sx={{ color: '#505050' }}>
+                                        <Typography
+                                            variant="h4"
+                                            sx={{ color: '#505050', textDecoration: 'line-through' }}
+                                        >
                                             {!isExpanded && currency}
-                                            {!isExpanded && Number(shownModel?.price)}
+                                            {!isExpanded && Number(shownModel?.price) * 140}
+                                        </Typography>
+                                        /
+                                        <Typography variant="h3" sx={{ color: 'red' }}>
+                                            {!isExpanded && currency}
+                                            {!isExpanded && Number(shownModel?.price) * 80}
                                         </Typography>
                                     </Box>
                                 )}
