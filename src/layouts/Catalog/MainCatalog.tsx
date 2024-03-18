@@ -80,7 +80,7 @@ export default function MainCatalog({ lang, setLang, auth, setAuth, userData }) 
     });
 
     const cart = useAddToCart({ auth, loadingUser: userData?.isFetching, storeName });
-    const favorites = useAddToFavorites({ auth, loadingUser: userData?.isFetching, storeName });
+    const favorites = useAddToFavorites({ loadingUser: userData?.isFetching, storeName });
 
     useEffect(() => {
         if (!storeDataRes || loadStore) return;
