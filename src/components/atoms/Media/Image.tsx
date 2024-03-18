@@ -1,6 +1,9 @@
+import { Typography } from '@mui/material';
 import Grid from '@mui/material/Unstable_Grid2';
+import PhotoCameraIcon from '@mui/icons-material/PhotoCamera';
+import { useOutletContext } from 'react-router-dom';
 
-const Image = ({ imgUrl, store, ref }) => {
+export default function Image({ imgUrl, store, ref }) {
     return (
         <Grid
             xs={12}
@@ -23,6 +26,14 @@ const Image = ({ imgUrl, store, ref }) => {
             />
         </Grid>
     );
-};
+}
 
-export default Image;
+export function EmptyImage() {
+    const { string }: any = useOutletContext();
+    return (
+        <>
+            <PhotoCameraIcon sx={{ fontSize: 56, opacity: 0.25, textAlign: 'center' }} />
+            <Typography sx={{ width: 150, textAlign: 'center', opacity: 0.25 }}>{string?.image_not_loaded}</Typography>
+        </>
+    );
+}
