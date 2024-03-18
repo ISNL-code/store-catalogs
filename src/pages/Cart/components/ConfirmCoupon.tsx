@@ -33,7 +33,7 @@ const ConfirmCoupon = ({
             <Box p={2} sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
                 <Grid mb={1} xs={12} sx={{ display: 'flex', alignItems: 'center', gap: 0.25 }}>
                     <Typography variant="h3">{string?.delivery_information}</Typography>
-                    <Typography variant="h6" sx={{ color: 'gray', textTransform: 'lowercase' }}>
+                    <Typography variant="h6" sx={{ color: 'red', textTransform: 'lowercase' }}>
                         ({string?.not_required})
                     </Typography>
                 </Grid>
@@ -132,7 +132,7 @@ const ConfirmCoupon = ({
                 >
                     <Box>
                         <Typography variant="h2">{string?.total}:</Typography>
-                        <Typography variant="h6" sx={{ color: 'gray', textTransform: 'lowercase' }}>
+                        <Typography variant="h6" sx={{ color: 'red', textTransform: 'lowercase' }}>
                             ({string?.excluding_delivery})
                         </Typography>
                     </Box>

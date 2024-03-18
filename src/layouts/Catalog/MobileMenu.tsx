@@ -64,9 +64,7 @@ const MobileMenu = ({
                             icon={p => <FavoriteIcon {...p} />}
                             badgeCount={favorites?.favoriteItems?.length}
                             action={() => {
-                                if (auth) {
-                                    navigate(`/catalog/${storeCode}/${storeName}/favorites`);
-                                } else setOpenModalType('login');
+                                navigate(`/catalog/${storeCode}/${storeName}/favorites`);
                             }}
                             protectedPath={!auth}
                         />

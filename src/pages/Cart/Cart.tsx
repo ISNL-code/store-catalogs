@@ -211,6 +211,7 @@ const Cart = () => {
                                             borderTopLeftRadius: xs ? '' : 24,
                                             borderBottomLeftRadius: xs ? '' : 24,
                                             overflow: 'hidden',
+                                            borderRight: 'none',
                                         }}
                                     >
                                         <Image
@@ -225,7 +226,7 @@ const Cart = () => {
                                         xs={xs ? 12 : 6}
                                         sx={{
                                             border: !xs ? '1px solid #ccc' : '',
-                                            borderLeft: !xs ? 'none' : '',
+                                            borderLeft: 'none',
                                             maxWidth: 450,
                                             display: 'flex',
                                             flexDirection: 'column',

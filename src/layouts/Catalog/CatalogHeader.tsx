@@ -89,9 +89,7 @@ const Header = ({
                             icon={() => <FavoriteIcon />}
                             isShown={!sx}
                             action={() => {
-                                if (auth) {
-                                    navigate(`/catalog/${storeCode}/${storeName}/favorites`);
-                                } else setOpenModalType('login');
+                                navigate(`/catalog/${storeCode}/${storeName}/favorites`);
                             }}
                             badgeCount={favorites?.favoriteItems?.length}
                             protectedPath={!auth}
