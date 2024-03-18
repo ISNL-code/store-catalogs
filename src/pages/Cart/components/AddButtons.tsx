@@ -17,7 +17,7 @@ const AddButtons = ({ productPrice, orderData, setOrderData, productData }) => {
                     ...prev.productsList,
                     {
                         sizeId: null,
-                        colorId: productData?.color?.optionValues ? productData?.color?.optionValues[0]?.id : null,
+                        colorId: productData?.id,
                         sku: productData?.productSku,
                         quantity: 1,
                         price: productPrice,
