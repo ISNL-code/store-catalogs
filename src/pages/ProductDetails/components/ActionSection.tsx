@@ -54,7 +54,6 @@ const ActionSection = ({ isShown, selectedVariant }) => {
                         }}
                         variant={selectedToFavorite ? 'contained' : 'outlined'}
                         onClick={() => {
-                            if (!auth) return setOpenModalType('register-warning');
                             favorites?.handleSetFavoriteItems({
                                 sku: selectedVariant?.sku,
                                 storeCode,
