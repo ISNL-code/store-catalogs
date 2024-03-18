@@ -70,7 +70,6 @@ const CatalogCard = ({ modelsVariants, name, productId, currency, setProductsLis
         if (!modelsVariants?.length) return;
         setShownModel(modelsVariants.find(variant => variant.selected));
     }, [modelsVariants]);
-    console.log(shownModel);
     const getGridValue = () => {
         if (s) return 12;
         if (sx) return 6;
