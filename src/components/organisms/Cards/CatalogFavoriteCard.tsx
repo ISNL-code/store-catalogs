@@ -14,7 +14,7 @@ import { CatalogContextInterface } from 'types';
 import CardItem from 'components/atoms/Sections/CardItem';
 import Grid from '@mui/material/Unstable_Grid2';
 import PromoTags from 'components/atoms/PromoTags/PromoTags';
-import Image from 'components/atoms/Media/Image';
+import Image, { EmptyImage } from 'components/atoms/Media/Image';
 
 interface ShownModelInterface {
     price: string;
@@ -148,32 +148,51 @@ const CatalogFavoriteCard = ({ modelsVariants, name, productId, currency, promoT
                                 store?.productImagesOptions?.height,
                         }}
                     >
-                        <Slider
-                            dots={true}
-                            nextArrow={<SampleNextArrow />}
-                            prevArrow={<SamplePrevArrow />}
-                            lazyLoad={true}
-                        >
-                            {shownModel?.images?.map(({ imageUrl }, idx) => {
-                                if (imageUrl.includes('.mp4')) return null;
-                                return (
-                                    <Grid
-                                        alignItems="center"
-                                        xs={12}
-                                        sx={{
-                                            height:
-                                                (((ref as any)?.current?.clientWidth as number) /
-                                                    store?.productImagesOptions?.width) *
-                                                store?.productImagesOptions?.height,
-                                            display: 'flex !important',
-                                            alignItems: 'center',
-                                        }}
-                                    >
-                                        <Image store={store} imgUrl={imageUrl} ref={ref} />
-                                    </Grid>
-                                );
-                            })}
-                        </Slider>
+                        {shownModel?.images?.length ? (
+                            <Slider
+                                dots={true}
+                                nextArrow={<SampleNextArrow />}
+                                prevArrow={<SamplePrevArrow />}
+                                lazyLoad={true}
+                            >
+                                {shownModel?.images?.map(({ imageUrl }, idx) => {
+                                    if (imageUrl.includes('.mp4')) return null;
+                                    return (
+                                        <Grid
+                                            alignItems="center"
+                                            xs={12}
+                                            sx={{
+                                                height:
+                                                    (((ref as any)?.current?.clientWidth as number) /
+                                                        store?.productImagesOptions?.width) *
+                                                    store?.productImagesOptions?.height,
+                                                display: 'flex !important',
+                                                alignItems: 'center',
+                                            }}
+                                        >
+                                            <Image store={store} imgUrl={imageUrl} ref={ref} />
+                                        </Grid>
+                                    );
+                                })}
+                            </Slider>
+                        ) : (
+                            <Grid
+                                xs={12}
+                                justifyContent="center"
+                                alignItems="center"
+                                sx={{
+                                    display: 'flex',
+                                    justifyContent: 'center',
+                                    alignItems: 'center',
+                                    flexDirection: 'column',
+                                    height:
+                                        ((ref?.current?.clientWidth as number) / store?.productImagesOptions?.width) *
+                                        store?.productImagesOptions?.height,
+                                }}
+                            >
+                                <EmptyImage />
+                            </Grid>
+                        )}
                     </Grid>
                 </Grid>
                 <Box>

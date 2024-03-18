@@ -29,49 +29,55 @@ const AddSizesButtons = ({
                     {string?.select_sizes}:
                 </Typography>
                 <Box mb={1} sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
-                    {sizes?.optionValues
-                        ?.sort((a, b) => a?.description?.name - b?.description?.name)
-                        ?.map(el => (
-                            <Box
-                                key={el?.id}
-                                onClick={() => {
-                                    if (selectedSize?.find(({ id }) => id === el.id)) {
-                                        setSelectedSizes(prev => prev.filter(({ id }) => id !== el.id));
-                                        setOrderData(prev => {
-                                            return {
-                                                ...prev,
-                                                productsList: prev?.productsList?.filter?.(
-                                                    ({ sizeId }) => el?.id !== sizeId
-                                                ),
-                                            };
-                                        });
-                                    } else {
-                                        setSelectedSizes(prev => [...prev, { ...el, quantity: 1 }]);
-                                        setOrderData(prev => {
-                                            return {
-                                                ...prev,
-                                                productsList: [
-                                                    ...prev.productsList,
-                                                    {
-                                                        sizeId: el?.id,
-                                                        colorId: productData?.color?.optionValues[0]?.id,
-                                                        sku: productData?.productSku,
-                                                        quantity: 1,
-                                                        price: productPrice,
-                                                    },
-                                                ],
-                                            };
-                                        });
-                                    }
-                                }}
-                            >
-                                <SizesIndicatorButton
-                                    size={35}
-                                    label={el?.description?.name}
-                                    selected={selectedSize?.find(item => item.id === el.id)}
-                                />
-                            </Box>
-                        ))}
+                    {sizes?.optionValues?.length ? (
+                        sizes?.optionValues
+                            ?.sort((a, b) => a?.description?.name - b?.description?.name)
+                            ?.map(el => (
+                                <Box
+                                    key={el?.id}
+                                    onClick={() => {
+                                        if (selectedSize?.find(({ id }) => id === el.id)) {
+                                            setSelectedSizes(prev => prev.filter(({ id }) => id !== el.id));
+                                            setOrderData(prev => {
+                                                return {
+                                                    ...prev,
+                                                    productsList: prev?.productsList?.filter?.(
+                                                        ({ sizeId }) => el?.id !== sizeId
+                                                    ),
+                                                };
+                                            });
+                                        } else {
+                                            setSelectedSizes(prev => [...prev, { ...el, quantity: 1 }]);
+                                            setOrderData(prev => {
+                                                return {
+                                                    ...prev,
+                                                    productsList: [
+                                                        ...prev.productsList,
+                                                        {
+                                                            sizeId: el?.id,
+                                                            colorId: productData?.color?.optionValues[0]?.id,
+                                                            sku: productData?.productSku,
+                                                            quantity: 1,
+                                                            price: productPrice,
+                                                        },
+                                                    ],
+                                                };
+                                            });
+                                        }
+                                    }}
+                                >
+                                    <SizesIndicatorButton
+                                        size={35}
+                                        label={el?.description?.name}
+                                        selected={selectedSize?.find(item => item.id === el.id)}
+                                    />
+                                </Box>
+                            ))
+                    ) : (
+                        <Typography variant="h4" sx={{ color: 'red' }}>
+                            {string?.no_available_sizes}
+                        </Typography>
+                    )}
                 </Box>
             </Box>
             <Box>
