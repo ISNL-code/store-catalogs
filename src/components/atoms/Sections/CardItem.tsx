@@ -12,7 +12,7 @@ const CardItem = ({ children, withHover = true }) => {
             sx={{
                 position: 'sticky',
                 top: 0,
-                backgroundColor: '#fafafa',
+                backgroundColor: '#fff',
                 borderRadius: 6,
                 overflow: 'hidden',
                 boxShadow: '0 0 2px 1.5px #00000037',

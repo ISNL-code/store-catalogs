@@ -1,7 +1,7 @@
 import { Box, Button } from '@mui/material';
 import Loader from 'components/atoms/Loader/Loader';
 import { useEffect, useState } from 'react';
-import { useNavigate, useOutletContext, useParams } from 'react-router-dom';
+import { useOutletContext, useParams } from 'react-router-dom';
 import { getCurrencySymbol } from 'helpers/getCurrencySymbol';
 import ScrollButton from 'components/atoms/Buttons/ScrollButton';
 import InstrumentalSubHeader from 'components/organisms/InstrumentalSubHeader/InstrumentalSubHeader';
@@ -17,9 +17,8 @@ import { useProductsApi } from 'api/useProductsApi';
 import DeleteModal from 'components/organisms/Modals/DeleteModal';
 
 const Favorites = () => {
-    const { store, favorites, supportedLanguage, auth, string }: CatalogContextInterface = useOutletContext();
-    const { storeCode, storeName } = useParams();
-    const navigate = useNavigate();
+    const { store, favorites, supportedLanguage, string }: CatalogContextInterface = useOutletContext();
+    const { storeCode } = useParams();
     const mount = useIsMount();
     const [showTopBtn, setShowTopBtn] = useState(false);
     const [loading, setLoading] = useState(true);
@@ -81,12 +80,6 @@ const Favorites = () => {
             setFavoriteProducts(data);
         }); // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [productIds, supportedLanguage]);
-
-    useEffect(() => {
-        if (mount) return;
-        if (!auth) navigate(`/catalog/${storeCode}/${storeName}`);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [auth, mount]);
 
     useEffect(() => {
         if (loadProducts) return;

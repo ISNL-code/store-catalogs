@@ -1,12 +1,14 @@
 import { Box, Button, Typography } from '@mui/material';
 import Grid from '@mui/material/Unstable_Grid2';
 import { getCurrencySymbol } from 'helpers/getCurrencySymbol';
-import { useOutletContext } from 'react-router-dom';
+import { useNavigate, useOutletContext, useParams } from 'react-router-dom';
 import { CatalogContextInterface } from 'types';
 
 const ProductDetails = ({ data }) => {
+    const navigate = useNavigate();
+    const { storeCode, storeName } = useParams();
     const { string, cart, store }: CatalogContextInterface = useOutletContext();
-
+    console.log(data);
     return (
         <>
             <Grid
@@ -23,7 +25,17 @@ const ProductDetails = ({ data }) => {
             >
                 <Box sx={{ display: 'flex', gap: 0.25, alignItems: 'center' }}>
                     <Typography>{string?.vendor_code}:</Typography>
-                    <Typography variant="h3" sx={{ color: 'gray', fontWeight: 700 }}>
+                    <Typography
+                        onClick={() => {
+                            navigate(
+                                `/catalog/${storeCode}/${storeName}/details/${
+                                    data?.productId
+                                }/model/${data?.sku?.replaceAll('/', '_')}`
+                            );
+                        }}
+                        variant="h3"
+                        sx={{ color: '#1976d2', fontWeight: 700, cursor: 'pointer' }}
+                    >
                         {data?.sku}
                     </Typography>
                 </Box>
