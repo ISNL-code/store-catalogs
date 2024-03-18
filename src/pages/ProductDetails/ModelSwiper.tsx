@@ -1,13 +1,14 @@
 import { Box } from '@mui/material';
 import Gradient from 'components/atoms/Gradient/Gradient';
 import Image from 'components/atoms/Media/Image';
-import { Fragment, useEffect, useState } from 'react';
+import { Fragment, useEffect, useRef, useState } from 'react';
 import { useOutletContext } from 'react-router-dom';
 import { useDevice } from 'hooks/useDevice';
 import { CatalogContextInterface } from 'types';
 import FullScreenSwiper from './FullScreenSwiper';
 
 const ModelSwiper = ({ images, selectedVariant }) => {
+    const ref = useRef<HTMLInputElement>(null);
     const { store, headerHeight, instrumentalBarHeight, footerHeight }: CatalogContextInterface = useOutletContext();
     const [fullScreenMode, setFullScreenMode] = useState<boolean>(false);
     const { sm, sx } = useDevice();
@@ -44,11 +45,14 @@ const ModelSwiper = ({ images, selectedVariant }) => {
                         return (
                             <Fragment key={idx}>
                                 <Box
+                                    ref={ref}
                                     sx={{
                                         borderRadius: 4,
                                         minWidth: imagesList.length < 1 ? '100%' : sm ? '65%' : '40%',
                                         position: 'relative',
                                         overflow: 'hidden',
+                                        display: 'flex',
+                                        alignItems: 'center',
                                     }}
                                     onClick={() => {
                                         setFullScreenMode(true);
@@ -58,11 +62,7 @@ const ModelSwiper = ({ images, selectedVariant }) => {
                                     <Box>
                                         <Gradient dest="top" />
                                         <Gradient dest="bottom" />
-                                        <Image
-                                            width={store?.productImagesOptions.width}
-                                            height={store?.productImagesOptions.height}
-                                            imgUrl={`https://images.weserv.nl/?url=${imageUrl}&q=45`}
-                                        />
+                                        <Image ref={ref} store={store} imgUrl={`${imageUrl}`} />
                                     </Box>
                                 </Box>
                             </Fragment>
