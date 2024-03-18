@@ -1,280 +1,340 @@
-import { useProductsApi } from 'api/useProductsApi';
-import BackButton from 'components/atoms/Buttons/BackButton';
-import EmptyPage from 'components/atoms/EmptyPage/EmptyPage';
-import InstrumentalSubHeader from 'components/organisms/InstrumentalSubHeader/InstrumentalSubHeader';
-import { useIsMount } from 'hooks/useIsMount';
+import { Box, IconButton, Typography } from '@mui/material';
+import ShareButton from 'components/molecules/ToolsButtons/ShareButton';
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate, useOutletContext, useParams } from 'react-router-dom';
-import { CatalogContextInterface, ProductVariantInterface } from 'types';
-import Loader from 'components/atoms/Loader/Loader';
-import Grid from '@mui/material/Unstable_Grid2';
-import Image from 'components/atoms/Media/Image';
+import ColorIndicatorButton from 'components/atoms/ColorIndicatorButton/ColorIndicatorButton';
+import CartButton from 'components/molecules/ToolsButtons/CartButton';
+import FavoritesButton from 'components/molecules/ToolsButtons/FavoritesButton';
+import Slider from 'react-slick';
+import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
+import ArrowRightIcon from '@mui/icons-material/ArrowRight';
+import ExtraColorsButton from 'components/atoms/ColorIndicatorButton/ExtraColorsButton';
+import CollapseButton from 'components/molecules/ToolsButtons/СollapseButton';
 import { useDevice } from 'hooks/useDevice';
-import { Box, Button } from '@mui/material';
-import AddSizesButtons from './components/AddSizesButtons';
-import AddButtons from './components/AddButtons';
-import DeleteModal from 'components/organisms/Modals/DeleteModal';
-import ConfirmCoupon from './components/ConfirmCoupon';
-import ProductDetails from './components/ProductDetails';
-import { useCartApi } from 'api/useCartApi';
-import SuccessOrderingPage from 'components/atoms/SuccessOrdering/SuccessOrderingPage';
+import { CatalogContextInterface } from 'types';
+import CardItem from 'components/atoms/Sections/CardItem';
+import Grid from '@mui/material/Unstable_Grid2';
+import PromoTags from 'components/atoms/PromoTags/PromoTags';
+import Image from 'components/atoms/Media/Image';
+// import { useFavoritesProductsApi } from 'api/useFavoritesProductsApi';
 
-interface ProductListInterface {
-    sizeId: number | null;
-    colorId: string;
+interface ShownModelInterface {
+    price: string;
+    images: { imageUrl: string }[];
+    id: number;
     sku: string;
-    quantity: string;
-    price: string | number;
+    productId: number;
 }
 
-export interface OrderDataInterface {
-    final_price: string | number;
-    productsList: ProductListInterface[];
-    delivery: {
-        address: string;
-        city: string;
-        postalCode: string;
-        country: string;
-        zone: string;
-        firstName: string;
-        lastName: string;
-        phone: string;
-    };
+function SamplePrevArrow(props) {
+    const { onClick } = props;
+    return (
+        <IconButton
+            onClick={e => {
+                e.stopPropagation();
+                onClick();
+            }}
+            sx={{ zIndex: 1000, position: 'absolute', bottom: 0, left: 0 }}
+        >
+            <ArrowLeftIcon />
+        </IconButton>
+    );
 }
 
-const Cart = () => {
+function SampleNextArrow(props) {
+    const { onClick } = props;
+    return (
+        <IconButton
+            onClick={e => {
+                e.stopPropagation();
+                onClick();
+            }}
+            sx={{ zIndex: 1000, position: 'absolute', bottom: 0, right: 0 }}
+        >
+            <ArrowRightIcon />
+        </IconButton>
+    );
+}
+
+const CatalogCard = ({ modelsVariants, name, productId, currency, setProductsList, promoTags }) => {
     const ref = useRef<HTMLInputElement>(null);
-    const { sx, xs } = useDevice();
-    const { storeCode, storeName } = useParams();
-    const mount = useIsMount();
+    const { s, sx, ls, l } = useDevice();
     const navigate = useNavigate();
-    const { auth, cart, supportedLanguage, store, string }: CatalogContextInterface = useOutletContext();
-    const [productIds, setProductIds] = useState<string[] | any[]>([]);
-    const [cartProducts, setCartProducts] = useState<ProductVariantInterface[] | any[]>([]);
-    const [isOpenModal, setIsOpenModal] = useState(false);
-    const [finalPrice, setFinalPrice] = useState(0);
-    const [successOrdering, setSuccessOrdering] = useState(false);
-    const [orderData, setOrderData] = useState({
-        final_price: 0,
-        productsList: [] as ProductListInterface[],
-        delivery: {
-            address: '',
-            city: '',
-            postalCode: '',
-            country: '',
-            zone: '',
-            firstName: '',
-            lastName: '',
-            phone: '',
-        },
-    });
-
-    const { isFetching: loadProducts, refetch: updateCartProductsRes } = useProductsApi().useGetProductByIDForCart({
-        id: productIds,
-        lang: supportedLanguage,
-        storeCode,
-    });
-
-    const { mutateAsync: createOrder, isLoading: loadCreateOrder } = useCartApi().useCreateOrder();
+    const { store, cart, favorites, currentUserData }: CatalogContextInterface = useOutletContext();
+    const colorsBoxRef = useRef(null);
+    const { storeCode, storeName } = useParams();
+    const [shownModel, setShownModel] = useState<ShownModelInterface | null>(null);
+    const [isExpanded, setIsExpanded] = useState(false);
 
     useEffect(() => {
-        if (!cart?.cartItems.length) return setCartProducts([]);
-        setProductIds(cart?.cartItems.map(el => el.productId));
-    }, [cart.cartItems]);
+        if (!modelsVariants?.length) return;
+        setShownModel(modelsVariants.find(variant => variant.selected));
+    }, [modelsVariants]);
 
-    useEffect(() => {
-        if (mount) return;
-        if (!productIds.length) return;
-        updateCartProductsRes().then(res => {
-            const products = res.data?.data.products;
-
-            const data = cart.cartItems.map(({ sku }) => {
-                return {
-                    ...products
-                        .find(el => el.variants.map(({ sku }) => sku).includes(sku))
-                        ?.variants?.filter(el => el.sku === sku)[0],
-                    productSku: products.find(el => el.variants.map(({ sku }) => sku).includes(sku))?.sku,
-                    sizes: {
-                        ...products
-                            .find(el => el.variants.map(({ sku }) => sku).includes(sku))
-
-                            ?.options?.find(el => el.code === 'SIZE'),
-                    },
-                    color: {
-                        ...products
-                            .find(el => el.variants.map(({ sku }) => sku).includes(sku))
-
-                            ?.options?.find(el => el.code === 'COLOR'),
-                    },
-                    name: products.find(el => el.variants.map(({ sku }) => sku).includes(sku))?.description?.name,
-                };
-            });
-            setCartProducts(data);
-        }); // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [productIds, supportedLanguage]);
-
-    useEffect(() => {
-        if (mount) return;
-        if (!auth) navigate(`/catalog/${storeCode}/${storeName}`); // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [auth]);
-
-    useEffect(() => {
-        if (!orderData.productsList.length) return setFinalPrice(0);
-        setFinalPrice(
-            orderData?.productsList.reduce(
-                (acc, el) => Number((el.price as string).replaceAll(',', '')) * Number(el.quantity) + acc,
-                0
-            )
-        );
-    }, [orderData.productsList]);
-
-    const [loading, setLoading] = useState(true);
-
-    useEffect(() => {
-        if (loadProducts) return;
-
-        setTimeout(() => {
-            setLoading(false);
-        }, 1000);
-    }, [loadProducts, loading]);
-
-    useEffect(() => {
-        if (mount) return;
-        if (!auth) navigate(`/catalog/${storeCode}/${storeName}`);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [auth, mount]);
-
-    if (successOrdering)
-        return (
-            <>
-                <InstrumentalSubHeader StartSlot={() => <BackButton nav={-1} action={() => {}} />} />
-                <SuccessOrderingPage />
-            </>
-        );
+    const getGridValue = () => {
+        if (s) return 12;
+        if (sx) return 6;
+        if (ls) return 4;
+        if (l) return 3;
+        return 2;
+    };
 
     return (
-        <>
-            {(loadCreateOrder || loading) && <Loader />}
-            {isOpenModal && (
-                <DeleteModal
-                    string={string}
-                    title={string?.clear_cart}
-                    close={() => setIsOpenModal(false)}
-                    text={string?.approve_clear_cart}
-                    action={() => {
-                        cart?.handleClearCart();
-                    }}
-                />
-            )}
-            <InstrumentalSubHeader
-                StartSlot={() => <BackButton nav={-1} action={() => {}} />}
-                EndSlot={() => (
-                    <Button
-                        disabled={!cartProducts?.length}
-                        variant="outlined"
-                        color="error"
-                        sx={{ backgroundColor: 'white' }}
-                        onClick={() => {
-                            setIsOpenModal(true);
+        <Grid p={1} xs={getGridValue()}>
+            <CardItem>
+                {store?.additionalStoreSettings?.promo && (
+                    <Box
+                        sx={{
+                            position: 'absolute',
+                            top: 10,
+                            left: 10,
+                            zIndex: 1,
+                            display: 'flex',
+                            flexDirection: 'column',
+                            gap: 0.5,
                         }}
                     >
-                        {string?.clear_cart}
-                    </Button>
-                )}
-            />
-            {cartProducts?.length ? (
-                <Grid xs={12} container sx={{ position: 'relative' }}>
-                    <Grid xs={sx ? 12 : 8} sx={{ rowGap: !xs ? 0 : 2 }} container>
-                        {cartProducts.map(el => {
-                            return (
-                                <Grid
-                                    container
-                                    xs={12}
-                                    sx={{
-                                        ml: 'auto',
-                                        border: xs ? '1px solid #ccc' : '',
-                                        borderRadius: xs ? 6 : 0,
-                                        overflow: 'hidden',
-                                        boxShadow: xs ? '0 0 3px 1px #00000037' : '',
-                                    }}
-                                    key={el.id}
-                                    p={xs ? 0 : 1}
-                                >
-                                    <Grid
-                                        ref={ref}
-                                        xs={xs ? 12 : 6}
-                                        sx={{
-                                            maxWidth: 450,
-                                            ml: 'auto',
-                                            border: !xs ? '1px solid #ccc' : '',
-                                            boxShadow: '0 0 2px 1.5px #00000037',
-                                            borderTopLeftRadius: xs ? '' : 24,
-                                            borderBottomLeftRadius: xs ? '' : 24,
-                                            overflow: 'hidden',
-                                        }}
-                                    >
-                                        <Image
-                                            store={store}
-                                            imgUrl={el?.images ? el?.images[0]?.imageUrl : ''}
-                                            ref={ref}
-                                        />
-                                    </Grid>
-                                    <Grid
-                                        px={sx ? 1 : 4}
-                                        py={1}
-                                        xs={xs ? 12 : 6}
-                                        sx={{
-                                            border: !xs ? '1px solid #ccc' : '',
-                                            borderLeft: !xs ? 'none' : '',
-                                            maxWidth: 450,
-                                            display: 'flex',
-                                            flexDirection: 'column',
-                                            gap: sx ? 1 : 2,
-                                            backgroundColor: '#fafafa',
-                                            boxShadow: '0 0 2px 1.5px #00000037',
-                                            borderTopRightRadius: xs ? '' : 24,
-                                            borderBottomRightRadius: xs ? '' : 24,
-                                        }}
-                                    >
-                                        <ProductDetails data={el} />
-                                        {store?.mainStoreSettings?.sizes ? (
-                                            <AddSizesButtons
-                                                sizes={el?.sizes}
-                                                orderData={orderData}
-                                                setOrderData={setOrderData}
-                                                productPrice={el?.inventory ? el?.inventory[0]?.price : '0'}
-                                                productData={el}
-                                            />
-                                        ) : (
-                                            <AddButtons
-                                                orderData={orderData}
-                                                setOrderData={setOrderData}
-                                                productPrice={el?.inventory ? el?.inventory[0]?.price : '0'}
-                                                productData={el}
-                                            />
-                                        )}
-                                    </Grid>
-                                </Grid>
-                            );
-                        })}
-                    </Grid>
-                    <Grid mb={2} mt={xs ? 2 : 0} p={xs ? 0 : 1} xs={sx ? 12 : 4}>
-                        <Box sx={{ position: 'sticky', top: 100 }}>
-                            <ConfirmCoupon
-                                createOrder={createOrder}
-                                orderData={orderData}
-                                setOrderData={setOrderData}
-                                finalPrice={finalPrice}
-                                setSuccessOrdering={setSuccessOrdering}
+                        {promoTags?.map(el => (
+                            <PromoTags
+                                key={el.id}
+                                value={el.name || el.code}
+                                code={el.code}
+                                size={20}
+                                selected={true}
+                                disabled={true}
                             />
-                        </Box>
+                        ))}
+                    </Box>
+                )}
+
+                <Box
+                    sx={{ position: 'absolute', top: 10, right: 10, zIndex: 1, display: 'flex', gap: 0.5 }}
+                    onClick={() => {
+                        favorites?.handleSetFavoriteItems({
+                            sku: shownModel?.sku,
+                            storeCode,
+                            userId: currentUserData?.id,
+                            productId: shownModel?.productId,
+                        });
+                    }}
+                >
+                    <FavoritesButton
+                        isShown={store?.additionalStoreSettings?.favorites}
+                        selected={favorites?.favoriteItems?.find(item => item.sku === shownModel?.sku)}
+                    />
+                </Box>
+                <Grid
+                    container
+                    xs={12}
+                    sx={{
+                        display: 'flex',
+                        cursor: 'pointer',
+                        backgroundColor: '#fff',
+                    }}
+                    onClick={() => {
+                        navigate(
+                            `/catalog/${storeCode}/${storeName}/details/${productId}/model/${shownModel?.sku?.replaceAll(
+                                '/',
+                                '_'
+                            )}`
+                        );
+                    }}
+                >
+                    <Grid
+                        xs={12}
+                        ref={ref}
+                        sx={{
+                            height:
+                                ((ref?.current?.clientWidth as number) / store?.productImagesOptions?.width) *
+                                store?.productImagesOptions?.height,
+                        }}
+                    >
+                        <Slider
+                            dots={true}
+                            nextArrow={<SampleNextArrow />}
+                            prevArrow={<SamplePrevArrow />}
+                            lazyLoad={true}
+                        >
+                            {shownModel?.images?.map(({ imageUrl }, idx) => {
+                                if (imageUrl.includes('.mp4')) return null;
+                                return (
+                                    <Grid
+                                        alignItems="center"
+                                        xs={12}
+                                        sx={{
+                                            height:
+                                                ((ref?.current?.clientWidth as number) /
+                                                    store?.productImagesOptions?.width) *
+                                                store?.productImagesOptions?.height,
+                                            display: 'flex !important',
+                                            alignItems: 'center',
+                                        }}
+                                    >
+                                        <Image store={store} imgUrl={imageUrl} ref={ref} />
+                                    </Grid>
+                                );
+                            })}
+                        </Slider>
                     </Grid>
                 </Grid>
-            ) : (
-                <>{!loading && <EmptyPage />}</>
-            )}
-        </>
+                <Box>
+                    <Box
+                        sx={{
+                            height: 45,
+                            overflow: 'visible',
+                            backgroundColor: '#fff',
+                            zIndex: 1,
+                        }}
+                    >
+                        <Box
+                            ref={colorsBoxRef}
+                            sx={{
+                                display: 'flex',
+                                justifyContent: 'center',
+                                flexWrap: isExpanded ? 'wrap' : 'nowrap',
+                                backgroundColor: '#fff',
+                                height: isExpanded ? '95px' : '45px',
+                                pt: 1,
+                                px: 0.2,
+                                transition: 'height 250ms cubic-bezier(0, 0.4, 0.2, 1)',
+                            }}
+                        >
+                            <Box
+                                sx={{
+                                    backgroundColor: '#fff',
+                                    display: 'flex',
+                                    justifyContent: 'center',
+                                    gap: 0.4,
+                                    rowGap: 0,
+                                    flexWrap: isExpanded ? 'wrap' : 'nowrap',
+                                }}
+                            >
+                                {modelsVariants?.map((model, idx) => {
+                                    const selected = model?.id === shownModel?.id;
+                                    if (!isExpanded && idx > 6) return null;
+                                    if (!isExpanded && idx === 6 && modelsVariants.length > 7)
+                                        return (
+                                            <ExtraColorsButton
+                                                key={idx}
+                                                action={e => {
+                                                    e.stopPropagation();
+                                                    setIsExpanded(true);
+                                                }}
+                                                size={30}
+                                                sum={modelsVariants.length - 6}
+                                            />
+                                        );
+                                    return (
+                                        <ColorIndicatorButton
+                                            key={idx}
+                                            action={e => {
+                                                e.stopPropagation();
+                                                if (selected) return;
+                                                setProductsList(prev =>
+                                                    prev.map(el => {
+                                                        if (el.id === productId) {
+                                                            return {
+                                                                ...el,
+                                                                variants: el.variants.map(variant => {
+                                                                    if (variant.id === model.id)
+                                                                        return { ...variant, selected: true };
+                                                                    return { ...variant, selected: false };
+                                                                }),
+                                                            };
+                                                        }
+                                                        return el;
+                                                    })
+                                                );
+                                            }}
+                                            selected={selected}
+                                            color={model.colorCode}
+                                            size={30}
+                                        />
+                                    );
+                                })}
+                            </Box>
+                        </Box>
+                        <Box sx={{ ml: 1, mt: -0.25 }}>
+                            <CollapseButton collapse={setIsExpanded} isShown={isExpanded} />
+                        </Box>
+                    </Box>
+
+                    <Box onClick={e => e.stopPropagation()}>
+                        <Box
+                            sx={{
+                                display: 'flex',
+                                flexDirection: 'column',
+                                gap: 1,
+                            }}
+                        >
+                            <Typography px={1} py={0.5} variant="h4" sx={{ height: 40, fontSize: 14, fontWeight: 500 }}>
+                                {!isExpanded && name}
+                            </Typography>
+
+                            <Box
+                                px={1}
+                                pb={0.5}
+                                sx={{
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'space-between',
+                                }}
+                            >
+                                {store?.mainStoreSettings?.prices && (
+                                    <Box sx={{ display: 'flex' }}>
+                                        <Typography variant="h3" sx={{ color: '#505050' }}>
+                                            {!isExpanded && currency}
+                                            {!isExpanded && Number(shownModel?.price)}
+                                        </Typography>
+                                    </Box>
+                                )}
+                                <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
+                                    <Box
+                                        px={1}
+                                        sx={{
+                                            border: '1px solid #ccc',
+                                            height: '20px',
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            backgroundColor: '#fff',
+                                            borderRadius: '16px',
+                                        }}
+                                    >
+                                        <Typography variant="h6" sx={{ color: 'gray' }}>
+                                            {shownModel?.sku}
+                                        </Typography>
+                                    </Box>
+                                    <CartButton
+                                        selected={cart?.cartItems?.find(item => item.sku === shownModel?.sku)}
+                                        isShown={store?.additionalStoreSettings?.cart}
+                                        action={() => {
+                                            cart?.handleSetCartItems({
+                                                sku: shownModel?.sku,
+                                                storeCode,
+                                                userId: currentUserData?.id,
+                                                productId: shownModel?.productId,
+                                            });
+                                        }}
+                                    />
+
+                                    <ShareButton
+                                        isShown={store?.additionalStoreSettings?.promo}
+                                        path={`${
+                                            store?.webUrl
+                                        }/catalog/${storeCode}/${storeName}/details/${productId}/model/${shownModel?.sku?.replaceAll(
+                                            '/',
+                                            '_'
+                                        )}`}
+                                        text=""
+                                    />
+                                </Box>
+                            </Box>
+                        </Box>
+                    </Box>
+                </Box>
+            </CardItem>
+        </Grid>
     );
 };
 
-export default Cart;
+export default CatalogCard;
