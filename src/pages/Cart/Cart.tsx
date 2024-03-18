@@ -272,7 +272,6 @@ const Cart = () => {
                             <ConfirmCoupon
                                 createOrder={createOrder}
                                 orderData={orderData}
-                                setOrderData={setOrderData}
                                 finalPrice={finalPrice}
                                 setSuccessOrdering={setSuccessOrdering}
                             />

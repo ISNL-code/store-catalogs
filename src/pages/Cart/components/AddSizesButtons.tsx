@@ -49,13 +49,15 @@ const AddSizesButtons = ({
                                         } else {
                                             setSelectedSizes(prev => [...prev, { ...el, quantity: 1 }]);
                                             setOrderData(prev => {
+                                                console.log(productData);
+                                                console.log(productData?.color?.optionValues);
                                                 return {
                                                     ...prev,
                                                     productsList: [
                                                         ...prev.productsList,
                                                         {
                                                             sizeId: el?.id,
-                                                            colorId: productData?.color?.optionValues[0]?.id,
+                                                            colorId: productData?.id,
                                                             sku: productData?.productSku,
                                                             quantity: 1,
                                                             price: productPrice,

@@ -178,7 +178,7 @@ const UserOrders = () => {
                                                 ({ id }) => id === item.variant
                                             )?.sku;
                                             const size = item.attributes.find(
-                                                item => item.attributeName === 'Size'
+                                                item => item.attributeName.toLowerCase() === 'size'
                                             )?.attributeValue;
                                             const price = item.product.variants.find(({ id }) => id === item.variant)
                                                 ?.inventory[0]?.prices[0]?.finalPrice;

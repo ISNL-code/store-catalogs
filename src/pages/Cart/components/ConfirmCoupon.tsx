@@ -16,7 +16,6 @@ const ConfirmCoupon = ({
 }: {
     createOrder;
     orderData: OrderDataInterface;
-    setOrderData;
     finalPrice;
     setSuccessOrdering;
 }) => {
