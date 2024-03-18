@@ -8,7 +8,7 @@ import { useNavigate, useOutletContext, useParams } from 'react-router-dom';
 import { CatalogContextInterface, ProductVariantInterface } from 'types';
 import Loader from 'components/atoms/Loader/Loader';
 import Grid from '@mui/material/Unstable_Grid2';
-import Image from 'components/atoms/Media/Image';
+import Image, { EmptyImage } from 'components/atoms/Media/Image';
 import { useDevice } from 'hooks/useDevice';
 import { Box, Button } from '@mui/material';
 import AddSizesButtons from './components/AddSizesButtons';
@@ -154,7 +154,7 @@ const Cart = () => {
 
     return (
         <>
-            {(loadCreateOrder || loading) && <Loader />}
+            {(loadCreateOrder || loading || loadProducts) && <Loader />}
             {isOpenModal && (
                 <DeleteModal
                     string={string}
@@ -212,13 +212,21 @@ const Cart = () => {
                                             borderBottomLeftRadius: xs ? '' : 24,
                                             overflow: 'hidden',
                                             borderRight: 'none',
+                                            display: 'flex',
+                                            flexDirection: 'column',
+                                            justifyContent: 'center',
+                                            alignItems: 'center',
                                         }}
                                     >
-                                        <Image
-                                            store={store}
-                                            imgUrl={el?.images ? el?.images[0]?.imageUrl : ''}
-                                            ref={ref}
-                                        />
+                                        {el?.images?.length ? (
+                                            <Image
+                                                store={store}
+                                                imgUrl={el?.images ? el?.images[0]?.imageUrl : ''}
+                                                ref={ref}
+                                            />
+                                        ) : (
+                                            <EmptyImage />
+                                        )}
                                     </Grid>
                                     <Grid
                                         px={sx ? 1 : 4}
@@ -272,7 +280,7 @@ const Cart = () => {
                     </Grid>
                 </Grid>
             ) : (
-                <>{!loading && <EmptyPage />}</>
+                <>{!(loading || loadProducts) && <EmptyPage />}</>
             )}
         </>
     );

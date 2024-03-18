@@ -7,6 +7,8 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'en',
             string: {
+                no_available_sizes: 'No available sizes',
+                image_not_loaded: 'Image not loaded',
                 no_categories_available: 'No categories available',
                 back_to_shopping: 'Back To Shopping',
                 order_sent_successfully: 'Order Sent Successfully',
@@ -145,6 +147,8 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'fr',
             string: {
+                no_available_sizes: 'Aucune taille disponible',
+                image_not_loaded: 'Image non chargée',
                 no_categories_available: 'Aucune catégorie disponible',
                 back_to_shopping: 'Retour aux achats',
                 order_sent_successfully: 'Commande envoyée avec succès',
@@ -285,6 +289,8 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'es',
             string: {
+                no_available_sizes: 'No hay tallas disponibles',
+                image_not_loaded: 'Imagen no cargada',
                 no_categories_available: 'No hay categorías disponibles',
                 back_to_shopping: 'Volver a comprar',
                 order_sent_successfully: 'Pedido enviado con éxito',
@@ -423,6 +429,8 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'ua',
             string: {
+                no_available_sizes: 'Немає доступних розмірів',
+                image_not_loaded: 'Зображення не завантажено',
                 no_categories_available: 'Немає доступних категорій',
                 back_to_shopping: 'Назад до покупок',
                 order_sent_successfully: 'Замовлення успішно відправлено',
@@ -562,6 +570,8 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'pl',
             string: {
+                no_available_sizes: 'Brak dostępnych rozmiarów',
+                image_not_loaded: 'Obraz nie został załadowany',
                 no_categories_available: 'Brak dostępnych kategorii',
                 back_to_shopping: 'Powrót do zakupów',
                 order_sent_successfully: 'Zamówienie zostało wysłane pomyślnie',
@@ -702,6 +712,8 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'cz',
             string: {
+                no_available_sizes: 'Žádné dostupné velikosti',
+                image_not_loaded: 'Obrázek není načten',
                 no_categories_available: 'Nejsou k dispozici žádné kategorie',
                 back_to_shopping: 'Zpět na nákupy',
                 order_sent_successfully: 'Objednávka byla úspěšně odeslána',
@@ -839,6 +851,8 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'ru',
             string: {
+                no_available_sizes: 'Нет доступных размеров',
+                image_not_loaded: 'Изображение не загружено',
                 no_categories_available: 'Нет доступных категорий',
                 back_to_shopping: 'Вернуться к покупкам',
                 order_sent_successfully: 'Заказ успешно отправлен',

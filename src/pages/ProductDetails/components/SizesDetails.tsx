@@ -25,15 +25,21 @@ const SizesDetails = ({ productDetails, isShown }) => {
                                     alignItems: 'center',
                                 }}
                             >
-                                {productDetails?.sizes?.map(({ code, id, name }) => (
-                                    <SizesIndicatorButton
-                                        key={id}
-                                        size={sm ? 34 : 38}
-                                        selected={false}
-                                        disabled={true}
-                                        label={name || code}
-                                    />
-                                ))}
+                                {productDetails?.sizes?.length ? (
+                                    productDetails?.sizes?.map(({ code, id, name }) => (
+                                        <SizesIndicatorButton
+                                            key={id}
+                                            size={sm ? 34 : 38}
+                                            selected={false}
+                                            disabled={true}
+                                            label={name || code}
+                                        />
+                                    ))
+                                ) : (
+                                    <Typography variant="h4" sx={{ color: 'red' }}>
+                                        {string?.no_available_sizes}
+                                    </Typography>
+                                )}
                             </Box>
                             {store?.additionalStoreSettings?.tableSizes && (
                                 <Box
