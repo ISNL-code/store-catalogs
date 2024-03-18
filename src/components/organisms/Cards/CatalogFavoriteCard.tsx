@@ -236,6 +236,8 @@ const CatalogFavoriteCard = ({ modelsVariants, name, productId, currency, promoT
                                 display: 'flex',
                                 flexDirection: 'column',
                                 gap: 1,
+                                borderTop: '1px solid #f0f0f0',
+                                backgroundColor: '#fafafa',
                             }}
                         >
                             <Typography px={1} py={0.5} variant="h4" sx={{ height: 40, fontSize: 14, fontWeight: 500 }}>
