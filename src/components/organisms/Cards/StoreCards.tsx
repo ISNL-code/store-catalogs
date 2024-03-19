@@ -3,9 +3,6 @@ import Grid from '@mui/material/Unstable_Grid2';
 import { Box, Typography } from '@mui/material';
 import CardItem from 'components/atoms/Sections/CardItem';
 import Image from 'components/atoms/Media/Image';
-import LanguagesView from 'components/molecules/LanguagesView';
-import FavoriteStoresButton from 'components/molecules/ToolsButtons/FavoriteStoresButton';
-import ShareButton from 'components/molecules/ToolsButtons/ShareButton';
 import { useNavigate, useOutletContext } from 'react-router-dom';
 import { useDevice } from 'hooks/useDevice';
 
