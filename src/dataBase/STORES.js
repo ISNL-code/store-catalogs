@@ -269,7 +269,7 @@ export const STORES_DATA = [
                 keyWords: 'UA description',
                 highlights: 'UA description',
                 metaDescription: 'UA description',
-                title: 'Магазин Ременів та Шкіряних Аксесуарів',
+                title: 'Магазин Ременів ',
             },
             {
                 language: 'en',
@@ -279,7 +279,7 @@ export const STORES_DATA = [
                 keyWords: 'EN description',
                 highlights: 'EN description',
                 metaDescription: 'EN description',
-                title: 'Belts and Leather Accessories Store',
+                title: 'Belts',
             },
             {
                 language: 'ru',
@@ -289,7 +289,7 @@ export const STORES_DATA = [
                 keyWords: 'RU description',
                 highlights: 'RU description',
                 metaDescription: 'RU description',
-                title: 'Магазин Ремней и Кожаных Аксессуаров',
+                title: 'Магазин Ремней ',
             },
         ],
         mainStoreSettings: {

@@ -15,6 +15,7 @@ import CartPage from 'pages/Cart/Cart';
 import ContactsManagePage from 'pages/Contacts/ContactsManagePage';
 import { useUserApi } from 'api/useUserApi';
 import { UserDataInterface } from 'types';
+import HomePage from 'pages/Home/HomePage';
 
 const App = () => {
     const token = localStorage.getItem(ACCESS_TOKEN_KEY);
@@ -66,7 +67,8 @@ const App = () => {
                                 path={'/'}
                                 element={<Main lang={lang} setLang={setLang} auth={auth} setAuth={setAuth} />}
                             >
-                                <Route path={'/'} element={<StoresPage />} />
+                                <Route path={'/'} element={<HomePage />} />
+                                <Route path={'/stores'} element={<StoresPage />} />
                                 <Route path={'/my-stores'} element={<MyStoresPage />} />
                             </Route>
                             <Route

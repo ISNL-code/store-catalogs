@@ -88,11 +88,7 @@ export default function MainStores({ lang, setLang, auth, setAuth }) {
                 setSortedStores={setSortedStores}
                 favoritesCount={favoritesStores?.length}
             />
-            <Box
-                px={appXPadding}
-                pt={1}
-                sx={{ mt: `${headerHeight + instrumentalBarHeight}px`, mb: `${footerHeight}px` }}
-            >
+            <Box px={appXPadding} pt={1} sx={{ mt: `${headerHeight}px`, mb: `${footerHeight}px` }}>
                 <Outlet
                     context={{
                         lang: lang?.code,

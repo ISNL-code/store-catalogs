@@ -23,7 +23,7 @@ const StoreCards = ({ data, dataFavorite, setStoreToApprove }: StoreCardsInterfa
         if (sm) return 12;
         if (mx) return 6;
         if (l) return 4;
-        return 3;
+        return 2.4;
     };
 
     const checkStoreAuth = store => {
@@ -47,8 +47,19 @@ const StoreCards = ({ data, dataFavorite, setStoreToApprove }: StoreCardsInterfa
                             }}
                             sx={{ display: 'flex', width: '100%', borderBottom: '1px solid #ccc', cursor: 'pointer' }}
                         >
-                            <Box sx={{ width: '70%', borderRight: '1px solid #ccc' }}>
-                                <Image store={{}} imgUrl={item?.mainImage} ref={{}} />
+                            <Box
+                                sx={{
+                                    width: '70%',
+                                    borderRight: '1px solid #ccc',
+                                    height: '160px',
+                                    overflow: 'hidden',
+                                }}
+                            >
+                                <Image
+                                    store={{ productImagesOptions: { height: 1, width: 1 } }}
+                                    imgUrl={item?.mainImage}
+                                    ref={{}}
+                                />
                             </Box>
                             <Box
                                 p={0.5}
@@ -61,7 +72,7 @@ const StoreCards = ({ data, dataFavorite, setStoreToApprove }: StoreCardsInterfa
                             <Box
                                 p={1}
                                 sx={{
-                                    borderBottom: '1px solid #ccc',
+                                    // borderBottom: '1px solid #ccc',
                                     display: 'flex',
                                     flexDirection: 'column',
                                     gap: 1,
@@ -72,7 +83,7 @@ const StoreCards = ({ data, dataFavorite, setStoreToApprove }: StoreCardsInterfa
                                     {item?.description?.title}
                                 </Typography>
                             </Box>
-                            <Box p={1} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                            {/* <Box p={1} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                                 <Box>
                                     <LanguagesView supportedLanguages={item?.supportedLanguages?.map(el => el.code)} />
                                 </Box>
@@ -90,7 +101,7 @@ const StoreCards = ({ data, dataFavorite, setStoreToApprove }: StoreCardsInterfa
                                         isShown={true}
                                     />
                                 </Box>
-                            </Box>
+                            </Box> */}
                         </Box>
                     </CardItem>
                 </Grid>

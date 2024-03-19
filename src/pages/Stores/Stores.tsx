@@ -72,14 +72,14 @@ const Stores = () => {
             {showTopBtn && <ScrollButton />}
             {loadFavoritesStores && <Loader type="linear" />}
             {loading && <Loader />}
-            <InstrumentalSubHeader
+            {/* <InstrumentalSubHeader
                 EndSlot={() => (
                     <Box sx={{ display: 'flex', gap: 0.75 }}>
                         <HeaderSearchButton />
                         <FilterTypes />
                     </Box>
                 )}
-            />
+            /> */}
 
             {filteredStores?.length ? (
                 <TransitionBox dependency={loading}>
