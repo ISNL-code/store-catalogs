@@ -75,7 +75,7 @@ const Header = ({
                     />
                 </Box>
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                    <HeaderNavButton title={string?.stores} path={`/`} icon={() => <StoreIcon />} />
+                    <HeaderNavButton title={string?.home} path={`/`} icon={() => <StoreIcon />} />
                     <HeaderNavButton
                         title={string?.catalog}
                         path={`/catalog/${storeCode}/${storeName}`}
