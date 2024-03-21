@@ -38,7 +38,7 @@ const StoreCards = ({ data, dataFavorite, setStoreToApprove }: StoreCardsInterfa
         <Grid xs={12} container sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
             {data?.map(item => (
                 <Box p={1} key={item.id}>
-                    <CardItem>
+                    <CardItem withHover={false}>
                         <Box
                             onClick={() => {
                                 const approved = checkStoreAuth(item);
@@ -78,7 +78,7 @@ const StoreCards = ({ data, dataFavorite, setStoreToApprove }: StoreCardsInterfa
                             <Box
                                 p={1}
                                 sx={{
-                                    borderBottom: '1px solid #ccc',
+                                    // borderBottom: '1px solid #ccc',
                                     display: 'flex',
                                     flexDirection: 'column',
                                     gap: 1,

@@ -11,15 +11,16 @@ const HomePage = () => {
         { name: 'START', price: '$19.99', rules: ['', '', '', '', '', ''] },
         { name: 'PRO', price: '$39.99', rules: ['', '', '', '', '', ''] },
         { name: 'UNLIM', price: '$69.99', rules: ['', '', '', '', '', ''] },
+        { name: 'Additional', price: '', rules: ['', '', '', '', '', ''] },
     ];
 
-    const { sm, mx, l } = useDevice();
+    const { sm, mx, l, sx } = useDevice();
 
     const getGridValue = () => {
         if (sm) return 12;
         if (mx) return 6;
-        if (l) return 4;
-        return 4;
+        if (l) return 6;
+        return 3;
     };
 
     return (
@@ -59,8 +60,30 @@ const HomePage = () => {
                     </Box>
                 </Grid>
             </Grid>
-
             <Grid
+                my={2}
+                xs={12}
+                sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    borderBottom: '1px solid #ccc',
+                    borderTop: '1px solid #ccc',
+                }}
+            >
+                <Box sx={{ maxWidth: 1480 }} p={1}>
+                    <Typography sx={{ fontSize: 32, fontWeight: 500 }}>Приклади:</Typography>
+                </Box>
+            </Grid>
+            <Grid xs={12} sx={{ display: 'flex', justifyContent: 'center' }} md={12} container>
+                <Box sx={{ width: '100%' }}>
+                    <Marquee style={{ display: 'flex' }} loop={0} speed={75}>
+                        <Stores />
+                    </Marquee>
+                </Box>
+            </Grid>
+            <Grid
+                mb={2}
                 xs={12}
                 container
                 sx={{
@@ -82,18 +105,19 @@ const HomePage = () => {
                         backgroundColor: '#fcfcfc',
                     }}
                 >
-                    <Box sx={{ maxWidth: 1240 }} p={1}>
+                    <Box sx={{ maxWidth: 1480 }} p={1}>
                         <Typography sx={{ fontSize: 32, fontWeight: 500 }}>Тарифи:</Typography>
                     </Box>
                 </Grid>
                 <Grid
+                    p={10}
                     xs={12}
                     container
                     sx={{
-                        background: `url(${require('./img/bcg.png')})`,
+                        background: sx ? '' : `url(${require('./img/bcg.png')})`,
                         backgroundRepeat: 'no-repeat',
                         backgroundSize: 'cover',
-                        backgroundPosition: 'center',
+                        // backgroundPosition: 'center',
                         display: 'flex',
                         justifyContent: 'center',
                         alignItems: 'center',
@@ -104,8 +128,8 @@ const HomePage = () => {
                         container
                         p={1}
                         sx={{
-                            maxWidth: 1240,
-                            minHeight: '530px',
+                            maxWidth: 1480,
+                            minHeight: '400px',
                             display: 'flex',
                             justifyContent: 'center',
                             alignItems: 'center',
@@ -122,7 +146,7 @@ const HomePage = () => {
                                     }}
                                 >
                                     <Box
-                                        p={2}
+                                        p={1.5}
                                         sx={{
                                             display: 'flex',
                                             justifyContent: 'space-between',
@@ -130,13 +154,15 @@ const HomePage = () => {
                                             borderBottom: '1px solid #ccc',
                                         }}
                                     >
-                                        <Typography sx={{ color: 'gray', fontSize: 28 }}>{name}</Typography>
-                                        <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                                            <Typography sx={{ fontSize: 32, color: 'red' }}>{price}</Typography>
-                                            <Typography sx={{ fontSize: 18, color: 'gray' }}>/мi</Typography>
-                                        </Box>
+                                        <Typography sx={{ color: 'gray', fontSize: 24 }}>{name}</Typography>
+                                        {price && (
+                                            <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                                                <Typography sx={{ fontSize: 28, color: 'red' }}>{price}</Typography>
+                                                <Typography sx={{ fontSize: 16, color: 'gray' }}>/мiсяць</Typography>
+                                            </Box>
+                                        )}
                                     </Box>
-                                    <Box p={2} sx={{ borderBottom: '1px solid #ccc' }}>
+                                    <Box p={1.5} sx={{ borderBottom: '1px solid #ccc' }}>
                                         {rules.map((el, idx) => (
                                             <Box key={idx} sx={{ display: 'flex', flexDirection: 'column', gap: 0.5 }}>
                                                 {idx < 3 || index === 2 ? (
@@ -178,7 +204,7 @@ const HomePage = () => {
                                             </Box>
                                         ))}
                                     </Box>
-                                    <Box p={2} sx={{ display: 'flex', justifyContent: 'center' }}>
+                                    <Box p={1.5} sx={{ display: 'flex', justifyContent: 'center' }}>
                                         <Button size="large" variant="outlined">
                                             Замовити
                                         </Button>
@@ -188,28 +214,6 @@ const HomePage = () => {
                         ))}
                     </Grid>
                 </Grid>
-            </Grid>
-            <Grid
-                my={2}
-                xs={12}
-                sx={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    borderBottom: '1px solid #ccc',
-                    borderTop: '1px solid #ccc',
-                }}
-            >
-                <Box sx={{ maxWidth: 1240 }} p={1}>
-                    <Typography sx={{ fontSize: 32, fontWeight: 500 }}>Приклади:</Typography>
-                </Box>
-            </Grid>
-            <Grid xs={12} sx={{ display: 'flex', justifyContent: 'center' }} md={12} container>
-                <Box sx={{ width: '100%' }}>
-                    <Marquee style={{ display: 'flex' }} loop={0} speed={75}>
-                        <Stores />
-                    </Marquee>
-                </Box>
             </Grid>
         </Grid>
     );
