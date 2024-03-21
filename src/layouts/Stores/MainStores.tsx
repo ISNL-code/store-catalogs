@@ -90,7 +90,7 @@ export default function MainStores({ lang, setLang, auth, setAuth }) {
                 setSortedStores={setSortedStores}
                 favoritesCount={favoritesStores?.length}
             />
-            <Box pt={1} sx={{ mt: `${headerHeight}px` }}>
+            <Box sx={{ mt: `${headerHeight}px` }}>
                 <Outlet
                     context={{
                         lang: lang?.code,
