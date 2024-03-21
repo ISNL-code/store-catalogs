@@ -3,11 +3,11 @@ import Grid from '@mui/material/Unstable_Grid2';
 import { Box, Typography } from '@mui/material';
 import CardItem from 'components/atoms/Sections/CardItem';
 import Image from 'components/atoms/Media/Image';
-import LanguagesView from 'components/molecules/LanguagesView';
-import FavoriteStoresButton from 'components/molecules/ToolsButtons/FavoriteStoresButton';
-import ShareButton from 'components/molecules/ToolsButtons/ShareButton';
+// import LanguagesView from 'components/molecules/LanguagesView';
+// import FavoriteStoresButton from 'components/molecules/ToolsButtons/FavoriteStoresButton';
+// import ShareButton from 'components/molecules/ToolsButtons/ShareButton';
 import { useNavigate, useOutletContext } from 'react-router-dom';
-import { useDevice } from 'hooks/useDevice';
+// import { useDevice } from 'hooks/useDevice';
 
 interface StoreCardsInterface {
     data: StoreInterface[];
@@ -17,14 +17,14 @@ interface StoreCardsInterface {
 
 const StoreCards = ({ data, dataFavorite, setStoreToApprove }: StoreCardsInterface) => {
     const { setOpenModalType }: CatalogContextInterface = useOutletContext();
-    const { sm, mx, l } = useDevice();
+    // const { sm, mx, l } = useDevice();
     const navigate = useNavigate();
-    const getGridValue = () => {
-        if (sm) return 12;
-        if (mx) return 6;
-        if (l) return 4;
-        return 2.4;
-    };
+    // const getGridValue = () => {
+    //     if (sm) return 12;
+    //     if (mx) return 6;
+    //     if (l) return 4;
+    //     return 2.4;
+    // };
 
     const checkStoreAuth = store => {
         if (store?.securityStoreSettings?.private) {

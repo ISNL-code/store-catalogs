@@ -133,7 +133,7 @@ const HomePage = () => {
                                         <Typography sx={{ color: 'gray', fontSize: 28 }}>{name}</Typography>
                                         <Box sx={{ display: 'flex', alignItems: 'center' }}>
                                             <Typography sx={{ fontSize: 32, color: 'red' }}>{price}</Typography>
-                                            <Typography sx={{ fontSize: 18, color: 'gray' }}>/мiсяць</Typography>
+                                            <Typography sx={{ fontSize: 18, color: 'gray' }}>/мi</Typography>
                                         </Box>
                                     </Box>
                                     <Box p={2} sx={{ borderBottom: '1px solid #ccc' }}>
@@ -206,7 +206,7 @@ const HomePage = () => {
             </Grid>
             <Grid xs={12} sx={{ display: 'flex', justifyContent: 'center' }} md={12} container>
                 <Box sx={{ width: '100%' }}>
-                    <Marquee style={{ display: 'flex' }} pauseOnHover loop={0} speed={75}>
+                    <Marquee style={{ display: 'flex' }} loop={0} speed={75}>
                         <Stores />
                     </Marquee>
                 </Box>
