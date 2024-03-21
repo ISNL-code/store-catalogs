@@ -11,10 +11,54 @@ const HomePage = () => {
     const [storesDetails, setStoresDetails] = useState(false);
 
     const PRICING = [
-        { name: 'START', price: '$19.99', rules: ['', '', '', '', '', ''] },
-        { name: 'PRO', price: '$39.99', rules: ['', '', '', '', '', ''] },
-        { name: 'UNLIM', price: '$69.99', rules: ['', '', '', '', '', ''] },
-        { name: 'Additional', price: '', rules: ['', '', '', '', '', ''] },
+        {
+            name: 'START',
+            price: '$19.99',
+            rules: [
+                { title: 'Основной функционал', available: true },
+                { title: 'Кабинет администратора', available: true },
+                { title: 'Администраторов: 1', available: true },
+                { title: 'Количество продуктов/моделей/фото: 50/5/5', available: true },
+                { title: 'Мови каталогу: ua, en, es, fr, pl, cz, ru', available: true },
+                { title: 'Google Analytics', available: false },
+                { title: 'Play Market', available: false },
+                { title: 'Apple Store', available: false },
+                { title: 'Кошик', available: false },
+                { title: 'Кастомизация Каталога', available: false },
+            ],
+        },
+        {
+            name: 'PRO',
+            price: '$39.99',
+            rules: [
+                { title: 'Основной функционал', available: true },
+                { title: 'Кабинет администратора', available: true },
+                { title: 'Администраторов: 5', available: true },
+                { title: 'Количество продуктов/моделей/фото: 200/10/10', available: true },
+                { title: 'Мови каталогу: ua, en, es, fr, pl, cz, ru', available: true },
+                { title: 'Google Analytics', available: true },
+                { title: 'Кошик', available: true },
+                { title: 'Play Market', available: false },
+                { title: 'Apple Store', available: false },
+                { title: 'Кастомизация Каталога', available: false },
+            ],
+        },
+        {
+            name: 'UNLIM',
+            price: '$99.99',
+            rules: [
+                { title: 'Основной функционал', available: true },
+                { title: 'Кабинет администратора', available: true },
+                { title: 'Администраторов: неограниченно', available: true },
+                { title: 'Количество продуктов/моделей/фото: неограниченно', available: true },
+                { title: 'Мови каталогу: ua, en, es, fr, pl, cz, ru, +...  ', available: true },
+                { title: 'Google Analytics', available: true },
+                { title: 'Кошик', available: true },
+                { title: 'Play Market', available: true },
+                { title: 'Apple Store', available: true },
+                { title: 'Кастомизация Каталога', available: true },
+            ],
+        },
     ];
 
     const TOOLS = [
@@ -87,7 +131,7 @@ const HomePage = () => {
     const getPRICINGGridValue = () => {
         if (sm) return 12;
         if (l) return 6;
-        return 3;
+        return 4;
     };
 
     const getTOOLSGridValue = () => {
@@ -380,8 +424,17 @@ const HomePage = () => {
                                     </Box>
                                     <Box p={1.5} sx={{}}>
                                         {rules.map((el, idx) => (
-                                            <Box key={idx} sx={{ display: 'flex', flexDirection: 'column', gap: 0.5 }}>
-                                                {idx < 3 || index === 2 ? (
+                                            <Box
+                                                key={idx}
+                                                sx={{
+                                                    display: 'flex',
+                                                    flexDirection: 'row',
+                                                    alignItems: 'center',
+                                                    gap: 0.5,
+                                                    mb: 0.75,
+                                                }}
+                                            >
+                                                {el?.available ? (
                                                     <Box
                                                         sx={{
                                                             width: 20,
@@ -418,7 +471,7 @@ const HomePage = () => {
                                                         />
                                                     </Box>
                                                 )}
-                                                <Typography>{el}</Typography>
+                                                <Typography>{el?.title}</Typography>
                                             </Box>
                                         ))}
                                     </Box>
