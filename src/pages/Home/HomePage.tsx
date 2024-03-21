@@ -110,14 +110,14 @@ const HomePage = () => {
                     </Box>
                 </Grid>
                 <Grid
-                    p={10}
+                    // p={10}
                     xs={12}
                     container
                     sx={{
                         background: sx ? '' : `url(${require('./img/bcg.png')})`,
                         backgroundRepeat: 'no-repeat',
                         backgroundSize: 'cover',
-                        // backgroundPosition: 'center',
+                        backgroundPosition: 'cover',
                         display: 'flex',
                         justifyContent: 'center',
                         alignItems: 'center',
