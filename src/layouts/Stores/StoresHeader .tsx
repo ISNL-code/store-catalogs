@@ -29,16 +29,16 @@ const Header = ({ headerHeight, appXPadding, string, lang, setLang, setSortedSto
                     <StoresHeaderLogo headerHeight={headerHeight} />
                 </Box>
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                    <HeaderNavButton title={string?.stores} path={`/`} icon={() => <StoreIcon />} isShown={!sx} />
+                    <HeaderNavButton title={string?.home} path={`/`} icon={() => <StoreIcon />} />
 
-                    <HeaderNavButton
+                    {/* <HeaderNavButton
                         title={string?.my_stores}
                         path="/my-stores"
                         icon={() => <AddBusinessIcon />}
                         isShown={!sx}
                         clearSort={() => setSortedStores('')}
                         badgeCount={favoritesCount}
-                    />
+                    /> */}
 
                     <LanguageButton setLang={setLang} string={string} lang={lang} />
                 </Box>
