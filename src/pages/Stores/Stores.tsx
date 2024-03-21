@@ -1,6 +1,6 @@
-// import { Box } from '@mui/material';
+import { Box } from '@mui/material';
 import ScrollButton from 'components/atoms/Buttons/ScrollButton';
-// import EmptyPage from 'components/atoms/EmptyPage/EmptyPage';
+import EmptyPage from 'components/atoms/EmptyPage/EmptyPage';
 // import InstrumentalSubHeader from 'components/organisms/InstrumentalSubHeader/InstrumentalSubHeader';
 import { useEffect, useState } from 'react';
 import { useOutletContext } from 'react-router-dom';
@@ -9,7 +9,7 @@ import { StoresContextInterface } from 'types';
 import Loader from 'components/atoms/Loader/Loader';
 // import HeaderSearchButton from 'components/molecules/ToolsButtons/HeaderSearchButton';
 import StoreCards from 'components/organisms/Cards/StoreCards';
-// import TransitionBox from 'components/atoms/Transitions/TransitionBox';
+import TransitionBox from 'components/atoms/Transitions/TransitionBox';
 
 const Stores = () => {
     const {
@@ -68,7 +68,7 @@ const Stores = () => {
         );
 
     return (
-        <>
+        <Box pb={1}>
             {showTopBtn && <ScrollButton />}
             {loadFavoritesStores && <Loader type="linear" />}
             {loading && <Loader />}
@@ -81,8 +81,20 @@ const Stores = () => {
                 )}
             /> */}
 
-            <StoreCards data={filteredStores} dataFavorite={favoritesStores} setStoreToApprove={setStoreToApprove} />
-        </>
+            {filteredStores?.length ? (
+                <TransitionBox dependency={loading}>
+                    <StoreCards
+                        data={filteredStores}
+                        dataFavorite={favoritesStores}
+                        setStoreToApprove={setStoreToApprove}
+                    />
+                </TransitionBox>
+            ) : !filteredStores?.length && !loadStores && !loading ? (
+                <EmptyPage isShown />
+            ) : (
+                <Loader position="fixed" />
+            )}
+        </Box>
     );
 };
 

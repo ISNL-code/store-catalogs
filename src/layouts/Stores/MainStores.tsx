@@ -2,7 +2,7 @@ import { Outlet } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 import Header from './StoresHeader ';
-import MobileMenu from './MobileMenu';
+// import MobileMenu from './MobileMenu';
 import { useGetLanguage } from 'hooks/useGetLanguage';
 import { useDevice } from 'hooks/useDevice';
 import { useEffect, useState } from 'react';
@@ -90,7 +90,7 @@ export default function MainStores({ lang, setLang, auth, setAuth }) {
                 setSortedStores={setSortedStores}
                 favoritesCount={favoritesStores?.length}
             />
-            <Box pt={1} sx={{ mt: `${headerHeight}px`, mb: `${footerHeight}px` }}>
+            <Box pt={1} sx={{ mt: `${headerHeight}px` }}>
                 <Outlet
                     context={{
                         lang: lang?.code,
@@ -126,7 +126,7 @@ export default function MainStores({ lang, setLang, auth, setAuth }) {
                 setOpenModalType={setOpenModalType}
                 storeToApprove={storeToApprove}
             />
-            <MobileMenu
+            {/* <MobileMenu
                 appXPadding={appXPadding}
                 string={currentLanguage?.string}
                 auth={auth}
@@ -136,7 +136,7 @@ export default function MainStores({ lang, setLang, auth, setAuth }) {
                 setOpenModalType={setOpenModalType}
                 favoritesCount={favoritesStores?.length}
                 headerHeight={headerHeight}
-            />
+            /> */}
         </Box>
     );
 }
