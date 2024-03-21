@@ -1,5 +1,5 @@
 import { Box } from '@mui/material';
-import ScrollButton from 'components/atoms/Buttons/ScrollButton';
+// import ScrollButton from 'components/atoms/Buttons/ScrollButton';
 import EmptyPage from 'components/atoms/EmptyPage/EmptyPage';
 // import InstrumentalSubHeader from 'components/organisms/InstrumentalSubHeader/InstrumentalSubHeader';
 import { useEffect, useState } from 'react';
@@ -69,7 +69,7 @@ const Stores = () => {
 
     return (
         <Box pb={1}>
-            {showTopBtn && <ScrollButton />}
+            {showTopBtn && <></>}
             {loadFavoritesStores && <Loader type="linear" />}
             {loading && <Loader />}
             {/* <InstrumentalSubHeader

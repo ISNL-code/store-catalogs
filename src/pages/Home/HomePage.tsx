@@ -15,8 +15,69 @@ const HomePage = () => {
     ];
 
     const TOOLS = [
-        { name: 'Для Власникiв', price: '', rules: ['', '', '', '', '', ''] },
-        { name: 'Для Замовникiв', price: '', rules: ['', '', '', '', '', ''] },
+        {
+            name: 'Для Власникiв',
+            price: '',
+            rules: [
+                {
+                    title: 'Увеличение доступности',
+                    description:
+                        'Электронный каталог делает продукцию доступной для клиентов в любое время и из любого места, что может привести к расширению аудитории и увеличению продаж.',
+                },
+                {
+                    title: 'Удобное управление',
+                    description:
+                        'Позволяет быстро и эффективно управлять ассортиментом товаров, обновлять информацию и фотографии, а также оперативно реагировать на изменения в спросе.',
+                },
+                ,
+                {
+                    title: 'Повышение эффективности продаж',
+                    description:
+                        'Интеграция функциональности корзины позволяет покупателям легко собирать заказы, что способствует увеличению конверсии и среднего чека.',
+                },
+                {
+                    title: 'Мультиязычность',
+                    description:
+                        'Поддержка нескольких языков упрощает работу с клиентами из разных стран, делая каталог более привлекательным для международной аудитории.',
+                },
+                {
+                    title: 'Использование внутри компании',
+                    description:
+                        'Каталог может служить не только инструментом продаж, но и средством внутренней коммуникации и координации для персонала, обеспечивая им быстрый доступ к актуальной информации о продукции.',
+                },
+            ],
+        },
+        {
+            name: 'Для Замовникiв',
+            price: '',
+            rules: [
+                {
+                    title: 'Удобство и доступность',
+                    description:
+                        'Позволяет покупателям искать и ознакомиться с ассортиментом товаров в любое удобное время и место через интернет.',
+                },
+                {
+                    title: 'Легкий поиск и сравнение',
+                    description:
+                        'Пользователи могут использовать удобные фильтры и поиск для быстрого нахождения интересующих товаров, а также сравнивать их характеристики и цены.',
+                },
+                {
+                    title: 'Удобство для сбора оптовых заказов',
+                    description:
+                        'Корзина позволяет покупателям удобно собирать оптовые заказы, добавляя необходимые товары в неё по мере необходимости, что упрощает процесс закупки крупными партиями товаров.',
+                },
+                {
+                    title: 'Мультиязычность',
+                    description:
+                        'Наличие нескольких языков делает каталог более доступным для широкой аудитории, что упрощает понимание информации о товарах и услугах.',
+                },
+                {
+                    title: 'Повышение уровня сервиса',
+                    description:
+                        'Электронный каталог обеспечивает возможность быстрого получения подробной информации о товарах, их наличии и ценах, что способствует принятию более осознанных решений о покупке.',
+                },
+            ],
+        },
     ];
 
     const { sm, l, sx } = useDevice();
@@ -75,18 +136,22 @@ const HomePage = () => {
                 </Grid>
             </Grid>
             <Grid
-                mb={2}
+                px={2}
                 xs={12}
                 sx={{
                     display: 'flex',
                     alignItems: 'center',
-                    justifyContent: 'center',
+                    justifyContent: sx ? 'flex-start' : 'center',
                     borderTop: '1px solid #ccc',
+                    maxWidth: 1600,
                 }}
             >
                 <Box sx={{}} p={1}>
-                    <Typography sx={{ fontSize: 32, fontWeight: 500 }}>Переваги:</Typography>
+                    <Typography sx={{ fontSize: 28, fontWeight: 500 }}>Переваги:</Typography>
                 </Box>
+                {/* <Button variant="contained" sx={{ ml: 'auto' }}>
+                    Детальнiше
+                </Button> */}
             </Grid>
             <Grid xs={12} container px={1} pb={2} sx={{ maxWidth: 1600 }}>
                 <Grid xs={12} container>
@@ -101,27 +166,35 @@ const HomePage = () => {
                                 }}
                             >
                                 <Box
-                                    p={1.5}
+                                    px={2}
+                                    py={0.75}
                                     sx={{
                                         width: '100%',
                                         display: 'flex',
                                         justifyContent: 'space-between',
                                         alignItems: 'center',
                                         borderBottom: '1px solid #ccc',
-                                        textAlign: 'center',
                                         backgroundColor: 'green',
                                         opacity: 0.8,
                                     }}
                                 >
                                     <Typography
-                                        sx={{ width: '100%', color: '#fff', fontSize: 24, textAlign: 'center' }}
+                                        sx={{ width: '100%', color: '#fff', fontSize: 20, textAlign: 'center' }}
                                     >
                                         {name}
                                     </Typography>
                                 </Box>
-                                <Box p={1.5} sx={{ borderBottom: '1px solid #ccc' }}>
+                                <Box p={1.5} sx={{ borderBottom: '1px solid #ccc', minHeight: 325 }}>
                                     {rules.map((el, idx) => (
-                                        <Box key={idx} sx={{ display: 'flex', flexDirection: 'column', gap: 0.5 }}>
+                                        <Box
+                                            key={idx}
+                                            sx={{
+                                                display: 'flex',
+                                                flexDirection: 'row',
+                                                gap: 0.5,
+                                                mb: 0.75,
+                                            }}
+                                        >
                                             <Box
                                                 sx={{
                                                     width: 20,
@@ -135,10 +208,21 @@ const HomePage = () => {
                                                     opacity: 0.8,
                                                 }}
                                             >
-                                                <CheckIcon sx={{ color: '#fff', fontSize: 14, fontWeight: 700 }} />
+                                                <CheckIcon
+                                                    sx={{
+                                                        p: 0.25,
+                                                        color: '#fff',
+                                                        fontSize: 10,
+                                                        fontWeight: 700,
+                                                        width: 20,
+                                                        height: 20,
+                                                    }}
+                                                />
                                             </Box>
 
-                                            <Typography>{el}</Typography>
+                                            <Typography sx={{ color: 'gray' }}>
+                                                <b style={{ color: '#000' }}>{el?.title}: </b> {el?.description}
+                                            </Typography>
                                         </Box>
                                     ))}
                                 </Box>
@@ -152,17 +236,31 @@ const HomePage = () => {
                 sx={{
                     display: 'flex',
                     alignItems: 'center',
-                    justifyContent: 'center',
+                    justifyContent: sx ? 'flex-start' : 'center',
                     borderTop: '1px solid #ccc',
                     backgroundColor: '#f5f5f5',
                 }}
             >
-                <Box sx={{ maxWidth: 1480 }} p={1}>
-                    <Typography sx={{ fontSize: 32, fontWeight: 500 }}>Приклади:</Typography>
+                <Box
+                    px={2}
+                    sx={{
+                        width: '100%',
+                        maxWidth: 1600,
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'space-between',
+                    }}
+                >
+                    <Box sx={{}} p={1}>
+                        <Typography sx={{ fontSize: 28, fontWeight: 500 }}>Приклади:</Typography>
+                    </Box>
+                    <Button variant="contained" sx={{ ml: 'auto' }}>
+                        Детальнiше
+                    </Button>
                 </Box>
             </Grid>
             <Grid
-                py={2}
+                pb={2}
                 xs={12}
                 sx={{ display: 'flex', justifyContent: 'center', backgroundColor: '#f5f5f5' }}
                 md={12}
@@ -186,18 +284,31 @@ const HomePage = () => {
                 }}
             >
                 <Grid
-                    mb={2}
                     xs={12}
                     sx={{
                         display: 'flex',
                         alignItems: 'center',
-                        justifyContent: 'center',
+                        justifyContent: sx ? 'flex-start' : 'center',
                         borderTop: '1px solid #ccc',
-                        backgroundColor: '#fcfcfc',
+                        backgroundColor: '#fff',
                     }}
                 >
-                    <Box sx={{ maxWidth: 1480 }} p={1}>
-                        <Typography sx={{ fontSize: 32, fontWeight: 500 }}>Тарифи:</Typography>
+                    <Box
+                        px={2}
+                        sx={{
+                            width: '100%',
+                            maxWidth: 1600,
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'space-between',
+                        }}
+                    >
+                        <Box sx={{}} p={1}>
+                            <Typography sx={{ fontSize: 28, fontWeight: 500 }}>Тарифи:</Typography>
+                        </Box>
+                        <Button variant="contained" sx={{ ml: 'auto' }}>
+                            Детальнiше
+                        </Button>
                     </Box>
                 </Grid>
                 <Grid
@@ -238,7 +349,8 @@ const HomePage = () => {
                                     }}
                                 >
                                     <Box
-                                        p={1.5}
+                                        px={2}
+                                        py={0.75}
                                         sx={{
                                             background: '#1976d2',
                                             display: 'flex',
@@ -248,12 +360,12 @@ const HomePage = () => {
                                             opacity: 0.8,
                                         }}
                                     >
-                                        <Typography sx={{ color: '#fff', fontSize: 24 }}>{name}</Typography>
+                                        <Typography sx={{ color: '#fff', fontSize: 20 }}>{name}</Typography>
                                         {price && (
                                             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                                                <Typography sx={{ fontSize: 28, color: '#fff' }}>{price}</Typography>
+                                                <Typography sx={{ fontSize: 24, color: '#fff' }}>{price}</Typography>
                                                 <Typography mb={1} sx={{ fontSize: 16, color: '#fff' }}>
-                                                    \ мiсяць
+                                                    / мiсяць
                                                 </Typography>
                                             </Box>
                                         )}
