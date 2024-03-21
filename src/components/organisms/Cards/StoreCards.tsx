@@ -20,7 +20,7 @@ const StoreCards = ({ data, dataFavorite, setStoreToApprove }: StoreCardsInterfa
         if (sm) return 12;
         if (mx) return 6;
         if (l) return 4;
-        return 2.4;
+        return 4;
     };
 
     const checkStoreAuth = store => {
@@ -32,10 +32,10 @@ const StoreCards = ({ data, dataFavorite, setStoreToApprove }: StoreCardsInterfa
     };
 
     return (
-        <Grid xs={12} container>
+        <Box sx={{ display: 'flex' }}>
             {data?.map(item => (
-                <Grid p={1} key={item.id} xs={getGridValue()}>
-                    <CardItem>
+                <Box p={1} key={item.id} sx={{ width: '400px' }}>
+                    <CardItem withHover={false}>
                         <Box
                             onClick={() => {
                                 const approved = checkStoreAuth(item);
@@ -48,7 +48,6 @@ const StoreCards = ({ data, dataFavorite, setStoreToApprove }: StoreCardsInterfa
                                 sx={{
                                     width: '70%',
                                     borderRight: '1px solid #ccc',
-                                    height: '160px',
                                     overflow: 'hidden',
                                 }}
                             >
@@ -101,9 +100,9 @@ const StoreCards = ({ data, dataFavorite, setStoreToApprove }: StoreCardsInterfa
                             </Box> */}
                         </Box>
                     </CardItem>
-                </Grid>
+                </Box>
             ))}
-        </Grid>
+        </Box>
     );
 };
 

@@ -1,140 +1,176 @@
-import { Box, Typography } from '@mui/material';
+import { Box, Button, Typography } from '@mui/material';
 import Grid from '@mui/material/Unstable_Grid2';
+import { useDevice } from 'hooks/useDevice';
 import Stores from 'pages/Stores/Stores';
+import CheckIcon from '@mui/icons-material/Check';
+import CloseIcon from '@mui/icons-material/Close';
+import Marquee from 'react-fast-marquee';
 
 const HomePage = () => {
+    const PRICING = [
+        { name: 'START', price: '$9.99', rules: ['', '', '', '', '', ''] },
+        { name: 'PRO', price: '$49.99', rules: ['', '', '', '', '', ''] },
+        { name: 'UNLIM', price: '$99.99', rules: ['', '', '', '', '', ''] },
+    ];
+
+    const { sm, mx, l } = useDevice();
+
+    const getGridValue = () => {
+        if (sm) return 12;
+        if (mx) return 6;
+        if (l) return 4;
+        return 4;
+    };
+
     return (
-        <Grid xs={12} container spacing={2}>
+        <Grid xs={12} container sx={{ display: 'flex', justifyContent: 'center' }}>
             <Grid
-                container
+                mb={1}
                 xs={12}
-                sx={{ position: 'relative', display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+                sx={{
+                    width: '100%',
+                    minHeight: '530px',
+                    background: `url(${require('./img/bcg.png')})`,
+                    backgroundRepeat: 'no-repeat',
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    position: 'relative',
+                }}
             >
                 <Grid
                     xs={12}
                     sx={{
-                        width: '100%',
-                        height: '510px',
-                        background: `url(${require('./img/bcg.png')})`,
-                        filter: 'blur(4px)',
-                        backgroundRepeat: 'no-repeat',
-                        backgroundSize: 'contain',
-                    }}
-                ></Grid>
-                <Grid
-                    xs={12}
-                    container
-                    sx={{
-                        position: 'absolute',
-                        top: '45%',
-                        left: '50%',
-                        transform: 'translate(-50%,-50%)',
-                        zIndex: 1,
-                        display: 'flex',
-                        flexDirection: 'column',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        gap: 2,
+                        backgroundColor: '#f0f0f0',
+                        maxWidth: '800px',
                     }}
                 >
-                    <Grid
-                        xs={2}
-                        sx={{
-                            p: 1,
-
-                            border: '1px solid #ccc',
-                            backgroundColor: 'white',
-                            borderRadius: 4,
-                            boxShadow: '0 0 10px 4px #969696',
-                            textAlign: 'center',
-                        }}
-                    >
-                        <Typography variant="h2" sx={{ color: '#000', lineHeight: 1.5 }}>
-                            Бизнес Каталог
+                    <Box p={2}>
+                        <Typography variant="h4" sx={{ color: '#000', lineHeight: 1.5 }}>
+                            Добро пожаловать в мир инновационных решений для производителей! Наш продукт представляет
+                            собой мощный инструмент, который поможет вам, как производителю, эффективно представить вашу
+                            продукцию в оптовом сегменте рынка. Мы понимаем, что для вас, как производителя, важно не
+                            только создать качественный продукт, но и обеспечить его эффективное продвижение на рынке.
+                            Наше программное обеспечение специально разработано для удовлетворения ваших потребностей в
+                            создании удобного и информативного интернет-каталога для оптовых продаж. С помощью нашего
+                            продукта вы сможете быстро и легко создать каталог, который выделит вашу продукцию среди
+                            конкурентов. Представьте ваш ассортимент с подробными описаниями, характеристиками,
+                            фотографиями и ценами, привлекая новых оптовых клиентов и увеличивая объемы продаж.
+                            Доверьтесь нашему продукту, чтобы сделать ваш бизнес еще более успешным и
+                            конкурентоспособным в оптовом сегменте рынка. Давайте вместе создадим каталог, который будет
+                            работать на вас, как на производителя, и приведет к росту вашего бизнеса!
                         </Typography>
-                    </Grid>
-                    <Grid
-                        xs={10}
-                        sx={{
-                            p: 2,
-                            px: 8,
-                            border: '1px solid #ccc',
-                            backgroundColor: 'white',
-                            borderRadius: 4,
-                            boxShadow: '0 0 10px 4px #969696',
-                        }}
-                    >
-                        <Box>
-                            <Typography variant="h4" sx={{ color: '#000', lineHeight: 1.5 }}>
-                                Добро пожаловать в мир инновационных решений для производителей! Наш продукт
-                                представляет собой мощный инструмент, который поможет вам, как производителю, эффективно
-                                представить вашу продукцию в оптовом сегменте рынка. Мы понимаем, что для вас, как
-                                производителя, важно не только создать качественный продукт, но и обеспечить его
-                                эффективное продвижение на рынке. Наше программное обеспечение специально разработано
-                                для удовлетворения ваших потребностей в создании удобного и информативного
-                                интернет-каталога для оптовых продаж. С помощью нашего продукта вы сможете быстро и
-                                легко создать каталог, который выделит вашу продукцию среди конкурентов. Представьте ваш
-                                ассортимент с подробными описаниями, характеристиками, фотографиями и ценами, привлекая
-                                новых оптовых клиентов и увеличивая объемы продаж. Доверьтесь нашему продукту, чтобы
-                                сделать ваш бизнес еще более успешным и конкурентоспособным в оптовом сегменте рынка.
-                                Давайте вместе создадим каталог, который будет работать на вас, как на производителя, и
-                                приведет к росту вашего бизнеса!
-                            </Typography>
-                        </Box>
-                    </Grid>
+                    </Box>
                 </Grid>
             </Grid>
 
-            <Grid xs={12} container>
-                <Grid py={2} xs={12} sx={{ textAlign: 'center' }}>
-                    <Typography sx={{ fontSize: 36, fontWeight: 700, color: 'gray' }}>Приклади:</Typography>
+            <Grid
+                xs={12}
+                container
+                sx={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    flexDirection: 'column',
+                }}
+            >
+                <Grid
+                    my={2}
+                    xs={12}
+                    sx={{ backgroundColor: '#f0f0f0', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                >
+                    <Box sx={{ maxWidth: 1240 }} p={1}>
+                        <Typography sx={{ fontSize: 32, fontWeight: 500 }}>Тарифи:</Typography>
+                    </Box>
                 </Grid>
-                <Grid px={10} container xs={12}>
-                    <Stores />
+                <Grid p={1} xs={12} container sx={{ maxWidth: 1240 }}>
+                    {PRICING.map(({ name, price, rules }, index) => (
+                        <Grid xs={getGridValue()} key={index} p={1}>
+                            <Box
+                                sx={{
+                                    width: '100%',
+                                    backgroundColor: 'white',
+                                    borderRadius: 4,
+                                    boxShadow: '0 0 2px 1px #969696',
+                                }}
+                            >
+                                <Box
+                                    p={2}
+                                    sx={{
+                                        display: 'flex',
+                                        justifyContent: 'space-between',
+                                        alignItems: 'center',
+                                        borderBottom: '1px solid #ccc',
+                                    }}
+                                >
+                                    <Typography sx={{ color: 'gray', fontSize: 28 }}>{name}</Typography>
+                                    <Typography sx={{ fontSize: 32, color: 'red' }}>{price}</Typography>
+                                </Box>
+                                <Box p={2} sx={{ borderBottom: '1px solid #ccc' }}>
+                                    {rules.map((el, idx) => (
+                                        <Box key={idx} sx={{ display: 'flex', flexDirection: 'column', gap: 0.5 }}>
+                                            {idx < 3 || index === 2 ? (
+                                                <Box
+                                                    sx={{
+                                                        width: 20,
+                                                        height: 20,
+                                                        display: 'flex',
+                                                        alignItems: 'center',
+                                                        justifyContent: 'center',
+                                                        border: '1px solid #ccc',
+                                                        backgroundColor: 'green',
+                                                        borderRadius: '50%',
+                                                    }}
+                                                >
+                                                    <CheckIcon sx={{ color: '#fff', fontSize: 14, fontWeight: 700 }} />
+                                                </Box>
+                                            ) : (
+                                                <Box
+                                                    sx={{
+                                                        width: 20,
+                                                        height: 20,
+                                                        display: 'flex',
+                                                        alignItems: 'center',
+                                                        justifyContent: 'center',
+                                                        border: '1px solid #ccc',
+                                                        backgroundColor: 'red',
+                                                        borderRadius: '50%',
+                                                    }}
+                                                >
+                                                    <CloseIcon sx={{ color: '#fff', fontSize: 14, fontWeight: 700 }} />
+                                                </Box>
+                                            )}
+                                            <Typography>{el}</Typography>
+                                        </Box>
+                                    ))}
+                                </Box>
+                                <Box p={2} sx={{ display: 'flex', justifyContent: 'center' }}>
+                                    <Button size="large" variant="outlined">
+                                        Замовити
+                                    </Button>
+                                </Box>
+                            </Box>
+                        </Grid>
+                    ))}
                 </Grid>
             </Grid>
-            <Grid xs={12} container>
-                <Grid py={2} xs={12} sx={{ textAlign: 'center' }}>
-                    <Typography sx={{ fontSize: 36, fontWeight: 700, color: 'gray' }}>Тарифи:</Typography>
-                </Grid>
-                <Grid px={10} container xs={12}>
-                    <Grid p={1} xs={4}>
-                        <Box
-                            sx={{
-                                border: '1px solid #ccc',
-                                width: '100%',
-                                height: '300px',
-                                backgroundColor: 'white',
-                                borderRadius: 4,
-                                boxShadow: '0 0 10px 1px #969696',
-                            }}
-                        ></Box>
-                    </Grid>
-                    <Grid p={1} xs={4}>
-                        <Box
-                            sx={{
-                                border: '1px solid #ccc',
-                                width: '100%',
-                                height: '300px',
-                                backgroundColor: 'white',
-                                borderRadius: 4,
-                                boxShadow: '0 0 10px 1px #969696',
-                            }}
-                        ></Box>
-                    </Grid>
-                    <Grid p={1} xs={4}>
-                        <Box
-                            sx={{
-                                border: '1px solid #ccc',
-                                width: '100%',
-                                height: '300px',
-                                backgroundColor: 'white',
-                                borderRadius: 4,
-                                boxShadow: '0 0 10px 1px #969696',
-                            }}
-                        ></Box>
-                    </Grid>
-                </Grid>
+            <Grid
+                my={2}
+                xs={12}
+                sx={{ backgroundColor: '#f0f0f0', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+            >
+                <Box sx={{ maxWidth: 1240 }} p={1}>
+                    <Typography sx={{ fontSize: 32, fontWeight: 500 }}>Приклади:</Typography>
+                </Box>
+            </Grid>
+            <Grid xs={12} sx={{ display: 'flex', justifyContent: 'center' }} md={12} container>
+                <Box sx={{ width: '100%' }}>
+                    <Marquee style={{ display: 'flex' }} pauseOnHover gradient>
+                        <Stores />
+                    </Marquee>
+                </Box>
             </Grid>
         </Grid>
     );

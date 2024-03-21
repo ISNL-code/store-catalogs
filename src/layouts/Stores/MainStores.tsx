@@ -57,17 +57,19 @@ export default function MainStores({ lang, setLang, auth, setAuth }) {
     useEffect(() => {
         if (!storesDataRes) return;
         setStoresList(
-            storesDataRes?.data?.map(item => {
-                const addStoreData = STORES_DATA?.find(el => el.code === item.code);
-                const description =
-                    addStoreData?.descriptions.find(el => el.language === lang.code) ||
-                    addStoreData?.descriptions.find(el => el.language === 'en');
-                return {
-                    ...item,
-                    ...addStoreData,
-                    description,
-                };
-            })
+            storesDataRes?.data
+                ?.filter(el => el.code !== 'DEFAULT')
+                .map(item => {
+                    const addStoreData = STORES_DATA?.find(el => el.code === item.code);
+                    const description =
+                        addStoreData?.descriptions.find(el => el.language === lang.code) ||
+                        addStoreData?.descriptions.find(el => el.language === 'en');
+                    return {
+                        ...item,
+                        ...addStoreData,
+                        description,
+                    };
+                })
         );
     }, [storesDataRes, lang]);
 
@@ -88,7 +90,7 @@ export default function MainStores({ lang, setLang, auth, setAuth }) {
                 setSortedStores={setSortedStores}
                 favoritesCount={favoritesStores?.length}
             />
-            <Box px={appXPadding} pt={1} sx={{ mt: `${headerHeight}px`, mb: `${footerHeight}px` }}>
+            <Box pt={1} sx={{ mt: `${headerHeight}px`, mb: `${footerHeight}px` }}>
                 <Outlet
                     context={{
                         lang: lang?.code,

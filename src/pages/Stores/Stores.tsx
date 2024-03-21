@@ -68,7 +68,7 @@ const Stores = () => {
         );
 
     return (
-        <Box pb={1}>
+        <>
             {showTopBtn && <ScrollButton />}
             {loadFavoritesStores && <Loader type="linear" />}
             {loading && <Loader />}
@@ -81,20 +81,8 @@ const Stores = () => {
                 )}
             /> */}
 
-            {filteredStores?.length ? (
-                <TransitionBox dependency={loading}>
-                    <StoreCards
-                        data={filteredStores}
-                        dataFavorite={favoritesStores}
-                        setStoreToApprove={setStoreToApprove}
-                    />
-                </TransitionBox>
-            ) : !filteredStores?.length && !loadStores && !loading ? (
-                <EmptyPage isShown />
-            ) : (
-                <Loader position="fixed" />
-            )}
-        </Box>
+            <StoreCards data={filteredStores} dataFavorite={favoritesStores} setStoreToApprove={setStoreToApprove} />
+        </>
     );
 };
 
