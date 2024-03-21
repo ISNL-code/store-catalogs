@@ -148,7 +148,7 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'fr',
             string: {
-                home: 'Home',
+                home: 'Maison',
                 no_available_sizes: 'Aucune taille disponible',
                 image_not_loaded: 'Image non chargée',
                 no_categories_available: 'Aucune catégorie disponible',
@@ -291,7 +291,7 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'es',
             string: {
-                home: 'Home',
+                home: 'Hogar',
                 no_available_sizes: 'No hay tallas disponibles',
                 image_not_loaded: 'Imagen no cargada',
                 no_categories_available: 'No hay categorías disponibles',
@@ -432,7 +432,7 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'ua',
             string: {
-                home: 'Home',
+                home: 'Головна',
                 no_available_sizes: 'Немає доступних розмірів',
                 image_not_loaded: 'Зображення не завантажено',
                 no_categories_available: 'Немає доступних категорій',
@@ -574,7 +574,7 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'pl',
             string: {
-                home: 'Home',
+                home: 'Dom',
                 no_available_sizes: 'Brak dostępnych rozmiarów',
                 image_not_loaded: 'Obraz nie został załadowany',
                 no_categories_available: 'Brak dostępnych kategorii',
@@ -717,7 +717,7 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'cz',
             string: {
-                home: 'Home',
+                home: 'Domov',
                 no_available_sizes: 'Žádné dostupné velikosti',
                 image_not_loaded: 'Obrázek není načten',
                 no_categories_available: 'Nejsou k dispozici žádné kategorie',
