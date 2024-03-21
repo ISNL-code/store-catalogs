@@ -29,13 +29,14 @@ const HomePage = () => {
 
     const getTOOLSGridValue = () => {
         if (sm) return 12;
-        return 5;
+        return 6;
     };
 
     return (
         <Grid xs={12} container sx={{ display: 'flex', justifyContent: 'center' }}>
             <Grid
-                pb={1}
+                py={2}
+                px={3}
                 container
                 xs={12}
                 sx={{
@@ -45,17 +46,24 @@ const HomePage = () => {
                     position: 'relative',
                     flexDirection: 'column',
                     background:
-                        'linear-gradient(217deg, #000000cc, rgba(0,0,0,0) 70.71%),linear-gradient(127deg, #353535cc, rgba(0,0,0,0) 70.71%),linear-gradient(336deg, #5e5e5ecc, rgba(0,0,255,0) 70.71%);',
+                        'url(https://www.etisalat.ae/content/dam/etisalat/business-images/smb/2023/business-online/business-online-portal/self-registration-desktop.png)',
+                    backgroundRepeat: 'no-repeat',
+                    backgroundPositionX: '100%',
+                    backgroundSize: 'cover',
                 }}
             >
                 <Grid
                     xs={12}
                     sx={{
-                        maxWidth: '800px',
+                        maxWidth: '1200px',
+                        backgroundColor: 'white',
+                        opacity: 0.75,
+                        borderRadius: 6,
+                        boxShadow: '0 0 5px 3px #fff',
                     }}
                 >
                     <Box p={4}>
-                        <Typography variant={sx ? 'h3' : 'h2'} sx={{ lineHeight: 1.1, color: 'white' }}>
+                        <Typography variant={sx ? 'h3' : 'h2'} sx={{ lineHeight: 1.1, color: '#000' }}>
                             Онлайн каталог товарів - це програмне рішення, яке дозволяє створювати електронні каталоги з
                             описом товарів. Воно надає інструменти для зручного додавання товарів, класифікації, опису,
                             фотографій та іншої важливої ​​інформації. Користувачі можуть організовувати товари в різні
@@ -76,73 +84,68 @@ const HomePage = () => {
                     borderTop: '1px solid #ccc',
                 }}
             >
-                <Box sx={{ maxWidth: 1480 }} p={1}>
+                <Box sx={{}} p={1}>
                     <Typography sx={{ fontSize: 32, fontWeight: 500 }}>Переваги:</Typography>
                 </Box>
             </Grid>
-            <Grid
-                xs={12}
-                container
-                pb={3}
-                px={2}
-                sx={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    gap: 2,
-                }}
-            >
-                {TOOLS.map(({ name, price, rules }, index) => (
-                    <Grid
-                        xs={getTOOLSGridValue()}
-                        key={index}
-                        sx={{
-                            backgroundColor: 'white',
-                            borderRadius: 4,
-                            boxShadow: '0 0 2px 1px green',
-                            overflow: 'hidden',
-                        }}
-                    >
-                        <Box
-                            p={1.5}
-                            sx={{
-                                width: '100%',
-                                display: 'flex',
-                                justifyContent: 'space-between',
-                                alignItems: 'center',
-                                borderBottom: '1px solid #ccc',
-                                textAlign: 'center',
-                                backgroundColor: 'green',
-                            }}
-                        >
-                            <Typography sx={{ width: '100%', color: '#fff', fontSize: 24, textAlign: 'center' }}>
-                                {name}
-                            </Typography>
-                        </Box>
-                        <Box p={1.5} sx={{ borderBottom: '1px solid #ccc' }}>
-                            {rules.map((el, idx) => (
-                                <Box key={idx} sx={{ display: 'flex', flexDirection: 'column', gap: 0.5 }}>
-                                    <Box
-                                        sx={{
-                                            width: 20,
-                                            height: 20,
-                                            display: 'flex',
-                                            alignItems: 'center',
-                                            justifyContent: 'center',
-                                            border: '1px solid #ccc',
-                                            backgroundColor: 'green',
-                                            borderRadius: '50%',
-                                        }}
+            <Grid xs={12} container px={1} pb={2} sx={{ maxWidth: 1600 }}>
+                <Grid xs={12} container>
+                    {TOOLS.map(({ name, price, rules }, index) => (
+                        <Grid xs={getTOOLSGridValue()} key={index} p={1} sx={{}}>
+                            <Box
+                                sx={{
+                                    backgroundColor: 'white',
+                                    borderRadius: 4,
+                                    boxShadow: '0 0 2px 1px green',
+                                    overflow: 'hidden',
+                                }}
+                            >
+                                <Box
+                                    p={1.5}
+                                    sx={{
+                                        width: '100%',
+                                        display: 'flex',
+                                        justifyContent: 'space-between',
+                                        alignItems: 'center',
+                                        borderBottom: '1px solid #ccc',
+                                        textAlign: 'center',
+                                        backgroundColor: 'green',
+                                        opacity: 0.8,
+                                    }}
+                                >
+                                    <Typography
+                                        sx={{ width: '100%', color: '#fff', fontSize: 24, textAlign: 'center' }}
                                     >
-                                        <CheckIcon sx={{ color: '#fff', fontSize: 14, fontWeight: 700 }} />
-                                    </Box>
-
-                                    <Typography>{el}</Typography>
+                                        {name}
+                                    </Typography>
                                 </Box>
-                            ))}
-                        </Box>
-                    </Grid>
-                ))}
+                                <Box p={1.5} sx={{ borderBottom: '1px solid #ccc' }}>
+                                    {rules.map((el, idx) => (
+                                        <Box key={idx} sx={{ display: 'flex', flexDirection: 'column', gap: 0.5 }}>
+                                            <Box
+                                                sx={{
+                                                    width: 20,
+                                                    height: 20,
+                                                    display: 'flex',
+                                                    alignItems: 'center',
+                                                    justifyContent: 'center',
+                                                    border: '1px solid #ccc',
+                                                    backgroundColor: 'green',
+                                                    borderRadius: '50%',
+                                                    opacity: 0.8,
+                                                }}
+                                            >
+                                                <CheckIcon sx={{ color: '#fff', fontSize: 14, fontWeight: 700 }} />
+                                            </Box>
+
+                                            <Typography>{el}</Typography>
+                                        </Box>
+                                    ))}
+                                </Box>
+                            </Box>
+                        </Grid>
+                    ))}
+                </Grid>
             </Grid>
             <Grid
                 xs={12}
@@ -216,7 +219,7 @@ const HomePage = () => {
                         container
                         p={1}
                         sx={{
-                            maxWidth: 1480,
+                            maxWidth: 1600,
                             minHeight: '480px',
                             display: 'flex',
                             justifyContent: 'center',
@@ -242,6 +245,7 @@ const HomePage = () => {
                                             justifyContent: 'space-between',
                                             alignItems: 'center',
                                             borderBottom: '1px solid #1976d2',
+                                            opacity: 0.8,
                                         }}
                                     >
                                         <Typography sx={{ color: '#fff', fontSize: 24 }}>{name}</Typography>
@@ -268,6 +272,7 @@ const HomePage = () => {
                                                             border: '1px solid #ccc',
                                                             backgroundColor: 'green',
                                                             borderRadius: '50%',
+                                                            opacity: 0.8,
                                                         }}
                                                     >
                                                         <CheckIcon
@@ -285,6 +290,7 @@ const HomePage = () => {
                                                             border: '1px solid #ccc',
                                                             backgroundColor: 'red',
                                                             borderRadius: '50%',
+                                                            opacity: 0.8,
                                                         }}
                                                     >
                                                         <CloseIcon
