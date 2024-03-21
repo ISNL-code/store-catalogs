@@ -5,8 +5,11 @@ import Stores from 'pages/Stores/Stores';
 import CheckIcon from '@mui/icons-material/Check';
 import CloseIcon from '@mui/icons-material/Close';
 import Marquee from 'react-fast-marquee';
+import { useState } from 'react';
 
 const HomePage = () => {
+    const [storesDetails, setStoresDetails] = useState(false);
+
     const PRICING = [
         { name: 'START', price: '$19.99', rules: ['', '', '', '', '', ''] },
         { name: 'PRO', price: '$39.99', rules: ['', '', '', '', '', ''] },
@@ -253,7 +256,7 @@ const HomePage = () => {
                     <Box sx={{}} p={1}>
                         <Typography sx={{ fontSize: 28, fontWeight: 500 }}>Приклади:</Typography>
                     </Box>
-                    <Button variant="contained" sx={{ ml: 'auto' }}>
+                    <Button onClick={() => setStoresDetails(!storesDetails)} variant="contained" sx={{ ml: 'auto' }}>
                         Детальнiше
                     </Button>
                 </Box>
@@ -265,11 +268,17 @@ const HomePage = () => {
                 md={12}
                 container
             >
-                <Box sx={{ width: '100%', backgroundColor: '#f5f5f5' }}>
-                    <Marquee style={{ display: 'flex' }} loop={0} speed={75}>
-                        <Stores />
-                    </Marquee>
-                </Box>
+                {!storesDetails ? (
+                    <Box sx={{ width: '100%', backgroundColor: '#f5f5f5' }}>
+                        <Marquee style={{ display: 'flex' }} loop={0} speed={75}>
+                            <Stores details={false} />
+                        </Marquee>
+                    </Box>
+                ) : (
+                    <Grid container mx={12} sx={{ width: '100%', backgroundColor: '#f5f5f5' }}>
+                        <Stores details />
+                    </Grid>
+                )}
             </Grid>
             <Grid
                 mb={2}
@@ -305,9 +314,9 @@ const HomePage = () => {
                         <Box sx={{}} p={1}>
                             <Typography sx={{ fontSize: 28, fontWeight: 500 }}>Тарифи:</Typography>
                         </Box>
-                        <Button variant="contained" sx={{ ml: 'auto' }}>
+                        {/* <Button variant="contained" sx={{ ml: 'auto' }}>
                             Детальнiше
-                        </Button>
+                        </Button> */}
                     </Box>
                 </Grid>
                 <Grid

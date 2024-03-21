@@ -11,14 +11,14 @@ import Loader from 'components/atoms/Loader/Loader';
 import StoreCards from 'components/organisms/Cards/StoreCards';
 import TransitionBox from 'components/atoms/Transitions/TransitionBox';
 
-const Stores = () => {
+const Stores = ({ details = false }) => {
     const {
         sortedStores,
         filteredByTypeStores,
-        setScrollPosition,
-        scrollPosition,
-        instrumentalBarHeight,
-        headerHeight,
+        // setScrollPosition,
+        // scrollPosition,
+        // instrumentalBarHeight,
+        // headerHeight,
         setStoreToApprove,
         favoritesStores,
         storesList,
@@ -37,15 +37,14 @@ const Stores = () => {
     };
 
     useEffect(() => {
-        window.addEventListener('scroll', listener);
-
-        setTimeout(() => {
-            window.scrollTo({
-                top: scrollPosition - (instrumentalBarHeight + headerHeight),
-                behavior: 'auto',
-            });
-            setScrollPosition(0);
-        }, 150);
+        // window.addEventListener('scroll', listener);
+        // setTimeout(() => {
+        //     window.scrollTo({
+        //         top: scrollPosition - (instrumentalBarHeight + headerHeight),
+        //         behavior: 'auto',
+        //     });
+        //     setScrollPosition(0);
+        // }, 150);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
@@ -83,11 +82,19 @@ const Stores = () => {
 
             {filteredStores?.length ? (
                 <TransitionBox dependency={loading}>
-                    <StoreCards
-                        data={filteredStores}
-                        dataFavorite={favoritesStores}
-                        setStoreToApprove={setStoreToApprove}
-                    />
+                    {details ? (
+                        <StoreCards
+                            data={filteredStores}
+                            dataFavorite={favoritesStores}
+                            setStoreToApprove={setStoreToApprove}
+                        />
+                    ) : (
+                        <StoreDetailsCards
+                            data={filteredStores}
+                            dataFavorite={favoritesStores}
+                            setStoreToApprove={setStoreToApprove}
+                        />
+                    )}
                 </TransitionBox>
             ) : !filteredStores?.length && !loadStores && !loading ? (
                 <EmptyPage isShown />
