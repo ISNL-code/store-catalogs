@@ -275,7 +275,7 @@ const HomePage = () => {
                         </Marquee>
                     </Box>
                 ) : (
-                    <Grid container mx={12} sx={{ width: '100%', backgroundColor: '#f5f5f5' }}>
+                    <Grid p={1} container xs={12} sx={{ width: '100%', maxWidth: 1600, backgroundColor: '#f5f5f5' }}>
                         <Stores details />
                     </Grid>
                 )}

@@ -10,6 +10,7 @@ import Loader from 'components/atoms/Loader/Loader';
 // import HeaderSearchButton from 'components/molecules/ToolsButtons/HeaderSearchButton';
 import StoreCards from 'components/organisms/Cards/StoreCards';
 import TransitionBox from 'components/atoms/Transitions/TransitionBox';
+import StoreDetailsCards from 'components/organisms/Cards/StoreDetailsCards';
 
 const Stores = ({ details = false }) => {
     const {
@@ -82,7 +83,7 @@ const Stores = ({ details = false }) => {
 
             {filteredStores?.length ? (
                 <TransitionBox dependency={loading}>
-                    {details ? (
+                    {!details ? (
                         <StoreCards
                             data={filteredStores}
                             dataFavorite={favoritesStores}
