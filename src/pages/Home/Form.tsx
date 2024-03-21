@@ -14,13 +14,20 @@ import { StyledTextField } from './StyledTextField';
 
 export default function Form({ values, isOpen = false, setIsOpen }) {
     const { string }: StoresContextInterface = useOutletContext();
-    const [formValues, setFormValues] = React.useState({});
+    const [formValues, setFormValues] = React.useState<any>({
+        subject: '',
+        plan: '',
+        name: '',
+        phone: '',
+        email: '',
+        comment: '',
+    });
     const [open, setOpen] = React.useState(isOpen);
 
     React.useEffect(() => {
         setOpen(isOpen);
-        console.log(formValues);
-    }, [isOpen, formValues]);
+        setFormValues({ ...formValues, ...values });
+    }, [isOpen, formValues, values]);
 
     // const handleClickOpen = () => {
     //     setOpen(true);
@@ -54,11 +61,13 @@ export default function Form({ values, isOpen = false, setIsOpen }) {
                         <InputLabel sx={{ color: '#898B9B' }}>Я хочу</InputLabel>
                         <StyledSelect
                             variant="outlined"
-                            value={'' || ''}
-                            label="Я хочу"
+                            value={formValues.subject || ''}
                             onChange={e => {
-                                setFormValues({});
+                                setFormValues(prev => {
+                                    return { ...prev, subject: e.target.value };
+                                });
                             }}
+                            label="Я хочу"
                             fullWidth
                         >
                             {['Замовити Каталог', 'Отримати Консультацiю', 'Замовити Зразок'].map((el, idx) => (
@@ -73,10 +82,12 @@ export default function Form({ values, isOpen = false, setIsOpen }) {
                         <InputLabel sx={{ color: '#898B9B' }}>Тариф</InputLabel>
                         <StyledSelect
                             variant="outlined"
-                            value={'' || ''}
                             label="Тариф"
+                            value={formValues.plan || ''}
                             onChange={e => {
-                                setFormValues({});
+                                setFormValues(prev => {
+                                    return { ...prev, plan: e.target.value };
+                                });
                             }}
                             fullWidth
                         >
@@ -89,9 +100,11 @@ export default function Form({ values, isOpen = false, setIsOpen }) {
                         {/* <FormHelperText>{formik.errors['role']}</FormHelperText> */}
                     </FormControl>
                     <StyledTextField
-                        value={'' || ''}
+                        value={formValues.name || ''}
                         onChange={e => {
-                            setFormValues({});
+                            setFormValues(prev => {
+                                return { ...prev, name: e.target.value };
+                            });
                         }}
                         label={string?.first_name}
                         size="small"
@@ -100,9 +113,11 @@ export default function Form({ values, isOpen = false, setIsOpen }) {
                         helperText={''}
                     />
                     <StyledTextField
-                        value={'' || ''}
+                        value={formValues.phone || ''}
                         onChange={e => {
-                            setFormValues({});
+                            setFormValues(prev => {
+                                return { ...prev, phone: e.target.value };
+                            });
                         }}
                         label={string?.phone_number}
                         size="small"
@@ -111,9 +126,11 @@ export default function Form({ values, isOpen = false, setIsOpen }) {
                         helperText={''}
                     />
                     <StyledTextField
-                        value={'' || ''}
+                        value={formValues.email || ''}
                         onChange={e => {
-                            setFormValues({});
+                            setFormValues(prev => {
+                                return { ...prev, email: e.target.value };
+                            });
                         }}
                         label="Email"
                         size="small"
@@ -123,9 +140,11 @@ export default function Form({ values, isOpen = false, setIsOpen }) {
                     />
 
                     <StyledTextField
-                        value={'' || ''}
+                        value={formValues.comment || ''}
                         onChange={e => {
-                            setFormValues({});
+                            setFormValues(prev => {
+                                return { ...prev, comment: e.target.value };
+                            });
                         }}
                         label={'Коментар'}
                         size="small"

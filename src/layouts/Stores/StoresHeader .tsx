@@ -1,13 +1,13 @@
 import { Box } from '@mui/material';
 import HeaderNavButton from 'components/atoms/Buttons/HeaderNavButton';
 import LanguageButton from 'components/molecules/ToolsButtons/LanguageButton';
-import AddBusinessIcon from '@mui/icons-material/AddBusiness';
-import { useDevice } from 'hooks/useDevice';
+// import AddBusinessIcon from '@mui/icons-material/AddBusiness';
+// import { useDevice } from 'hooks/useDevice';
 import StoresHeaderLogo from 'components/atoms/Logo/StoresHeaderLogo';
 import StoreIcon from '@mui/icons-material/Store';
 
 const Header = ({ headerHeight, appXPadding, string, lang, setLang, setSortedStores, favoritesCount }) => {
-    const { sx } = useDevice();
+    // const { sx } = useDevice();
 
     return (
         <Box
