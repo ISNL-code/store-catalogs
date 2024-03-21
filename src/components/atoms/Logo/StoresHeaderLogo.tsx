@@ -16,27 +16,7 @@ const StoresHeaderLogo = ({ headerHeight }) => {
                 <Typography
                     sx={{ fontFamily: 'Young Serif', fontSize: xxs ? 28 : 30, fontWeight: 600, color: '#DB4437' }}
                 >
-                    C
-                </Typography>
-                <Typography
-                    sx={{ fontFamily: 'Young Serif', fontSize: xxs ? 28 : 30, fontWeight: 600, color: '#4285F4' }}
-                >
-                    O
-                </Typography>
-                <Typography
-                    sx={{ fontFamily: 'Young Serif', fontSize: xxs ? 28 : 30, fontWeight: 600, color: '#FFA500' }}
-                >
-                    C
-                </Typography>
-                <Typography
-                    sx={{ fontFamily: 'Young Serif', fontSize: xxs ? 28 : 30, fontWeight: 600, color: '#673AB7' }}
-                >
-                    K
-                </Typography>
-                <Typography
-                    sx={{ fontFamily: 'Young Serif', fontSize: xxs ? 28 : 30, fontWeight: 600, color: '#0F9D58' }}
-                >
-                    T
+                    S
                 </Typography>
                 <Typography
                     sx={{ fontFamily: 'Young Serif', fontSize: xxs ? 28 : 30, fontWeight: 600, color: '#4285F4' }}
@@ -44,14 +24,40 @@ const StoresHeaderLogo = ({ headerHeight }) => {
                     A
                 </Typography>
                 <Typography
-                    sx={{ fontFamily: 'Young Serif', fontSize: xxs ? 28 : 30, fontWeight: 600, color: '#673AB7' }}
-                >
-                    I
-                </Typography>
-                <Typography
-                    sx={{ fontFamily: 'Young Serif', fontSize: xxs ? 28 : 30, fontWeight: 600, color: '#FFA500' }}
+                    sx={{ fontFamily: 'Young Serif', fontSize: xxs ? 28 : 30, fontWeight: 600, color: '#4285F4' }}
                 >
                     L
+                </Typography>
+                <Typography
+                    sx={{ fontFamily: 'Young Serif', fontSize: xxs ? 28 : 30, fontWeight: 600, color: '#4285F4' }}
+                >
+                    E
+                </Typography>
+                <Typography
+                    sx={{ fontFamily: 'Young Serif', fontSize: xxs ? 28 : 30, fontWeight: 600, color: '#4285F4' }}
+                >
+                    S
+                </Typography>
+                <Typography
+                    ml={1}
+                    sx={{ fontFamily: 'Young Serif', fontSize: xxs ? 28 : 30, fontWeight: 600, color: '#DB4437' }}
+                >
+                    N
+                </Typography>
+                <Typography
+                    sx={{ fontFamily: 'Young Serif', fontSize: xxs ? 28 : 30, fontWeight: 600, color: '#4285F4' }}
+                >
+                    E
+                </Typography>
+                <Typography
+                    sx={{ fontFamily: 'Young Serif', fontSize: xxs ? 28 : 30, fontWeight: 600, color: '#4285F4' }}
+                >
+                    S
+                </Typography>
+                <Typography
+                    sx={{ fontFamily: 'Young Serif', fontSize: xxs ? 28 : 30, fontWeight: 600, color: '#4285F4' }}
+                >
+                    T
                 </Typography>
             </Box>
         </Box>

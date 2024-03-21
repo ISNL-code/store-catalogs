@@ -6,9 +6,11 @@ import CheckIcon from '@mui/icons-material/Check';
 import CloseIcon from '@mui/icons-material/Close';
 import Marquee from 'react-fast-marquee';
 import { useState } from 'react';
+import Form from './Form';
 
 const HomePage = () => {
     const [storesDetails, setStoresDetails] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
 
     const PRICING = [
         {
@@ -141,6 +143,7 @@ const HomePage = () => {
 
     return (
         <Grid xs={12} container sx={{ display: 'flex', justifyContent: 'center' }}>
+            <Form values={{}} isOpen={isOpen} setIsOpen={setIsOpen} />
             <Grid
                 py={2}
                 px={3}
@@ -164,12 +167,20 @@ const HomePage = () => {
                     sx={{
                         maxWidth: '1200px',
                         backgroundColor: 'white',
-                        opacity: 0.75,
+                        opacity: 0.85,
                         borderRadius: 6,
                         boxShadow: '0 0 5px 3px #fff',
                     }}
                 >
-                    <Box p={4}>
+                    <Box
+                        p={4}
+                        sx={{
+                            display: 'flex',
+                            flexDirection: 'column',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                        }}
+                    >
                         <Typography variant={sx ? 'h3' : 'h2'} sx={{ lineHeight: 1.1, color: '#000' }}>
                             Онлайн каталог товарів - це програмне рішення, яке дозволяє створювати електронні каталоги з
                             описом товарів. Воно надає інструменти для зручного додавання товарів, класифікації, опису,
@@ -178,6 +189,16 @@ const HomePage = () => {
                             використовуються компаніями для створення віртуальних торгових каталогів,
                             інтернет-магазинів, представлення продукції на виставках та презентаціях.
                         </Typography>
+                        <Button
+                            onClick={() => {
+                                setIsOpen(!isOpen);
+                            }}
+                            sx={{ mt: 2 }}
+                            variant="contained"
+                            size="large"
+                        >
+                            Замовити
+                        </Button>
                     </Box>
                 </Grid>
             </Grid>
@@ -300,7 +321,12 @@ const HomePage = () => {
                     <Box sx={{}} p={1}>
                         <Typography sx={{ fontSize: 28, fontWeight: 500 }}>Приклади:</Typography>
                     </Box>
-                    <Button onClick={() => setStoresDetails(!storesDetails)} variant="contained" sx={{ ml: 'auto' }}>
+                    <Button
+                        size="large"
+                        onClick={() => setStoresDetails(!storesDetails)}
+                        variant="contained"
+                        sx={{ ml: 'auto' }}
+                    >
                         Детальнiше
                     </Button>
                 </Box>
@@ -479,7 +505,14 @@ const HomePage = () => {
                                         p={1.5}
                                         sx={{ display: 'flex', justifyContent: 'center', backgroundColor: '#eeeeee' }}
                                     >
-                                        <Button size="large" variant="outlined" sx={{ backgroundColor: '#fff' }}>
+                                        <Button
+                                            onClick={() => {
+                                                setIsOpen(!isOpen);
+                                            }}
+                                            size="large"
+                                            variant="outlined"
+                                            sx={{ backgroundColor: '#fff' }}
+                                        >
                                             Замовити
                                         </Button>
                                     </Box>
