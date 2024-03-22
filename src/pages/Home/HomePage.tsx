@@ -27,7 +27,7 @@ const HomePage = () => {
                 { title: string?.main_function, available: true },
                 { title: string?.admin_panel, available: true },
                 { title: `${string?.admin}: 1'`, available: true },
-                { title: `${string?.products_models_photo}: 30/5/5`, available: true },
+                { title: `${string?.products_models_photo}: 50/5/5`, available: true },
                 { title: `${string?.catalog_lang}: ua, en`, available: true },
                 { title: string?.cart, available: false },
                 { title: 'Google Analytics', available: false },
