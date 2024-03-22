@@ -15,6 +15,7 @@ const HomePage = () => {
     const { string }: StoresContextInterface = useOutletContext();
     const [storesDetails, setStoresDetails] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
+    const [plan, setPlan] = useState({ plan: '', subject: '' });
 
     const PRICING = [
         {
@@ -26,12 +27,13 @@ const HomePage = () => {
                 { title: `${string?.admin}: 1'`, available: true },
                 { title: `${string?.products_models_photo}: 50/5/5`, available: true },
                 { title: `${string?.catalog_lang}: ua, en, es, fr, pl, cz, ru,`, available: true },
+                { title: string?.cart, available: false },
                 { title: 'Google Analytics', available: false },
                 { title: 'Play Market', available: false },
                 { title: 'Apple Store', available: false },
-                { title: string?.cart, available: false },
                 { title: string?.customization, available: false },
             ],
+            values: { plan: 'Start', subject: string?.request_catalog },
         },
         {
             name: 'PRO',
@@ -42,12 +44,13 @@ const HomePage = () => {
                 { title: `${string?.admin}: 5`, available: true },
                 { title: `${string?.products_models_photo}: 200/10/10`, available: true },
                 { title: `${string?.catalog_lang}: ua, en, es, fr, pl, cz, ru,`, available: true },
+                { title: string?.cart, available: true },
                 { title: 'Google Analytics', available: true },
                 { title: 'Play Market', available: false },
                 { title: 'Apple Store', available: false },
-                { title: string?.cart, available: false },
                 { title: string?.customization, available: false },
             ],
+            values: { plan: 'Pro', subject: string?.request_catalog },
         },
         {
             name: 'UNLIM',
@@ -61,12 +64,13 @@ const HomePage = () => {
                     available: true,
                 },
                 { title: `${string?.catalog_lang}: ua, en, es, fr, pl, cz, ru, +`, available: true },
+                { title: string?.cart, available: true },
                 { title: 'Google Analytics', available: true },
                 { title: 'Play Market', available: true },
                 { title: 'Apple Store', available: true },
-                { title: string?.cart, available: true },
                 { title: string?.customization, available: true },
             ],
+            values: { plan: 'Unlim', subject: string?.request_catalog },
         },
     ];
 
@@ -140,7 +144,7 @@ const HomePage = () => {
 
     return (
         <Grid xs={12} container sx={{ display: 'flex', justifyContent: 'center' }}>
-            <Form values={{}} isOpen={isOpen} setIsOpen={setIsOpen} />
+            <Form values={{ ...plan }} isOpen={isOpen} setIsOpen={setIsOpen} setPlan={setPlan} />
             {<CallBackButton from="landing" />}
             <Grid
                 py={2}
@@ -404,7 +408,7 @@ const HomePage = () => {
                             alignItems: 'center',
                         }}
                     >
-                        {PRICING.map(({ name, price, rules }, index) => (
+                        {PRICING.map(({ name, price, rules, values }, index) => (
                             <Grid xs={getPRICINGGridValue()} key={index} p={1}>
                                 <Box
                                     sx={{
@@ -437,7 +441,28 @@ const HomePage = () => {
                                             </Box>
                                         )}
                                     </Box>
-                                    <Box p={1.5} sx={{}}>
+                                    <Box p={1.5} sx={{ position: 'relative' }}>
+                                        <Box
+                                            sx={{
+                                                display: 'flex',
+                                                alignItems: 'center',
+                                                justifyContent: 'center',
+
+                                                overflow: 'hidden',
+                                                position: 'absolute',
+                                                bottom: 10,
+                                                right: 10,
+                                                borderRadius: '50%',
+                                            }}
+                                        >
+                                            {index !== 2 && (
+                                                <img
+                                                    src={require('./img/free.png')}
+                                                    style={{ width: 140, height: 105 }}
+                                                    alt=""
+                                                />
+                                            )}
+                                        </Box>
                                         {rules.map((el, idx) => (
                                             <Box
                                                 key={idx}
@@ -492,15 +517,19 @@ const HomePage = () => {
                                     </Box>
                                     <Box
                                         p={1.5}
-                                        sx={{ display: 'flex', justifyContent: 'center', backgroundColor: '#eeeeee' }}
+                                        sx={{
+                                            display: 'flex',
+                                            justifyContent: 'center',
+                                            backgroundColor: '#eeeeee',
+                                        }}
                                     >
                                         <Button
                                             onClick={() => {
                                                 setIsOpen(!isOpen);
+                                                setPlan({ ...values });
                                             }}
                                             size="large"
-                                            variant="outlined"
-                                            sx={{ backgroundColor: '#fff' }}
+                                            variant="contained"
                                         >
                                             {string?.request}
                                         </Button>

@@ -11,8 +11,10 @@ import { StyledSelect } from './StyledSelect';
 import { StoresContextInterface } from 'types';
 import { useOutletContext } from 'react-router-dom';
 import { StyledTextField } from './StyledTextField';
+import { useFormik } from 'formik';
+import requestCatalogValidation from 'Validation/requestCatalogValidation';
 
-export default function Form({ values, isOpen = false, setIsOpen }) {
+export default function Form({ values, isOpen = false, setIsOpen, setPlan }) {
     const { string }: StoresContextInterface = useOutletContext();
     const [formValues, setFormValues] = React.useState<any>({
         subject: '',
@@ -27,14 +29,40 @@ export default function Form({ values, isOpen = false, setIsOpen }) {
     React.useEffect(() => {
         setOpen(isOpen);
         setFormValues({ ...formValues, ...values });
-    }, [isOpen, formValues, values]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [isOpen, values]);
 
-    // const handleClickOpen = () => {
-    //     setOpen(true);
-    // };
+    const formik = useFormik({
+        initialValues: {
+            subject: '',
+            plan: '',
+            name: '',
+            phone: '',
+            email: '',
+            comment: '',
+        },
+        validationSchema: requestCatalogValidation,
+        onSubmit: values => {
+            handleClose();
+        },
+    });
+
+    React.useEffect(() => {
+        formik.setValues(formValues);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [formValues]);
 
     const handleClose = () => {
         setIsOpen(false);
+        setFormValues({
+            subject: '',
+            plan: '',
+            name: '',
+            phone: '',
+            email: '',
+            comment: '',
+        });
+        setPlan({ subject: '', plan: '' });
     };
 
     return (
@@ -47,17 +75,18 @@ export default function Form({ values, isOpen = false, setIsOpen }) {
                     component: 'form',
                     onSubmit: (event: React.FormEvent<HTMLFormElement>) => {
                         event.preventDefault();
-                        const formData = new FormData(event.currentTarget);
-                        const formJson = Object.fromEntries((formData as any).entries());
-                        const email = formJson.email;
-                        console.log(email);
-                        handleClose();
+                        formik.handleSubmit();
                     },
                 }}
             >
-                <DialogTitle>{string?.request}:</DialogTitle>
+                <DialogTitle sx={{ fontSize: 24 }}>{string?.request}:</DialogTitle>
                 <DialogContent sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
-                    <FormControl error={false} fullWidth size="small" sx={{ mt: 1 }}>
+                    <FormControl
+                        error={Boolean(formik.errors.subject && formik.touched.subject)}
+                        fullWidth
+                        size="small"
+                        sx={{ mt: 1 }}
+                    >
                         <InputLabel sx={{ color: '#898B9B' }}>{string?.i_want}</InputLabel>
                         <StyledSelect
                             variant="outlined"
@@ -76,7 +105,6 @@ export default function Form({ values, isOpen = false, setIsOpen }) {
                                 </MenuItem>
                             ))}
                         </StyledSelect>
-                        {/* <FormHelperText>{formik.errors['role']}</FormHelperText> */}
                     </FormControl>
                     <FormControl error={false} fullWidth size="small" sx={{ mt: 1 }}>
                         <InputLabel sx={{ color: '#898B9B' }}>{string?.plan}</InputLabel>
@@ -97,7 +125,6 @@ export default function Form({ values, isOpen = false, setIsOpen }) {
                                 </MenuItem>
                             ))}
                         </StyledSelect>
-                        {/* <FormHelperText>{formik.errors['role']}</FormHelperText> */}
                     </FormControl>
                     <StyledTextField
                         value={formValues.name || ''}
@@ -122,7 +149,7 @@ export default function Form({ values, isOpen = false, setIsOpen }) {
                         label={string?.phone_number}
                         size="small"
                         fullWidth
-                        error={false}
+                        error={Boolean(formik.errors.phone && formik.touched.phone)}
                         helperText={''}
                     />
                     <StyledTextField

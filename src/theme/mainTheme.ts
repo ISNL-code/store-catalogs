@@ -25,7 +25,19 @@ const mainTheme = createTheme({
         caption: { fontSize: '12px', lineHeight: 1, fontWeight: 500, color: '#161616' },
     },
     components: {
-        MuiLink: {},
+        MuiFormHelperText: {
+            styleOverrides: {
+                root: {
+                    marginBottom: -12.5,
+                    marginLeft: 6,
+                    marginTop: 0.5,
+                    color: 'gray',
+                    fontSize: '12px',
+                    position: 'absolute',
+                    bottom: 0,
+                },
+            },
+        },
     },
 });
 
