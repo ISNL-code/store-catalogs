@@ -8,8 +8,11 @@ import Marquee from 'react-fast-marquee';
 import { useState } from 'react';
 import Form from './Form';
 import CallBackButton from 'components/atoms/Buttons/CallBackButton';
+import { StoresContextInterface } from 'types';
+import { useOutletContext } from 'react-router-dom';
 
 const HomePage = () => {
+    const { string }: StoresContextInterface = useOutletContext();
     const [storesDetails, setStoresDetails] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
 
@@ -18,112 +21,105 @@ const HomePage = () => {
             name: 'START',
             price: '$19.99',
             rules: [
-                { title: 'Основной функционал', available: true },
-                { title: 'Кабинет администратора', available: true },
-                { title: 'Администраторов: 1', available: true },
-                { title: 'Количество продуктов/моделей/фото: 50/5/5', available: true },
-                { title: 'Мови каталогу: ua, en, es, fr, pl, cz, ru', available: true },
+                { title: string?.main_function, available: true },
+                { title: string?.admin_panel, available: true },
+                { title: `${string?.admin}: 1'`, available: true },
+                { title: `${string?.products_models_photo}: 50/5/5`, available: true },
+                { title: `${string?.catalog_lang}: ua, en, es, fr, pl, cz, ru,`, available: true },
                 { title: 'Google Analytics', available: false },
                 { title: 'Play Market', available: false },
                 { title: 'Apple Store', available: false },
-                { title: 'Кошик', available: false },
-                { title: 'Кастомизация Каталога', available: false },
+                { title: string?.cart, available: false },
+                { title: string?.customization, available: false },
             ],
         },
         {
             name: 'PRO',
             price: '$39.99',
             rules: [
-                { title: 'Основной функционал', available: true },
-                { title: 'Кабинет администратора', available: true },
-                { title: 'Администраторов: 5', available: true },
-                { title: 'Количество продуктов/моделей/фото: 200/10/10', available: true },
-                { title: 'Мови каталогу: ua, en, es, fr, pl, cz, ru', available: true },
+                { title: string?.main_function, available: true },
+                { title: string?.admin_panel, available: true },
+                { title: `${string?.admin}: 5`, available: true },
+                { title: `${string?.products_models_photo}: 200/10/10`, available: true },
+                { title: `${string?.catalog_lang}: ua, en, es, fr, pl, cz, ru,`, available: true },
                 { title: 'Google Analytics', available: true },
-                { title: 'Кошик', available: true },
                 { title: 'Play Market', available: false },
                 { title: 'Apple Store', available: false },
-                { title: 'Кастомизация Каталога', available: false },
+                { title: string?.cart, available: false },
+                { title: string?.customization, available: false },
             ],
         },
         {
             name: 'UNLIM',
             price: '$99.99',
             rules: [
-                { title: 'Основной функционал', available: true },
-                { title: 'Кабинет администратора', available: true },
-                { title: 'Администраторов: неограниченно', available: true },
-                { title: 'Количество продуктов/моделей/фото: неограниченно', available: true },
-                { title: 'Мови каталогу: ua, en, es, fr, pl, cz, ru, +...  ', available: true },
+                { title: string?.main_function, available: true },
+                { title: string?.admin_panel, available: true },
+                { title: `${string?.admin}: ${string?.unlimited}`, available: true },
+                {
+                    title: `${string?.products_models_photo}: ${string?.unlimited}`,
+                    available: true,
+                },
+                { title: `${string?.catalog_lang}: ua, en, es, fr, pl, cz, ru, +`, available: true },
                 { title: 'Google Analytics', available: true },
-                { title: 'Кошик', available: true },
                 { title: 'Play Market', available: true },
                 { title: 'Apple Store', available: true },
-                { title: 'Кастомизация Каталога', available: true },
+                { title: string?.cart, available: true },
+                { title: string?.customization, available: true },
             ],
         },
     ];
 
     const TOOLS = [
         {
-            name: 'Для Власникiв',
+            name: string?.owners,
             price: '',
             rules: [
                 {
-                    title: 'Увеличение доступности',
-                    description:
-                        'Электронный каталог делает продукцию доступной для клиентов в любое время и из любого места, что может привести к расширению аудитории и увеличению продаж.',
+                    title: string?.owner_title_1,
+                    description: string?.owner_description_1,
                 },
                 {
-                    title: 'Удобное управление',
-                    description:
-                        'Позволяет быстро и эффективно управлять ассортиментом товаров, обновлять информацию и фотографии, а также оперативно реагировать на изменения в спросе.',
+                    title: string?.owner_title_2,
+                    description: string?.owner_description_2,
                 },
                 {
-                    title: 'Повышение эффективности продаж',
-                    description:
-                        'Интеграция функциональности корзины позволяет покупателям легко собирать заказы, что способствует увеличению конверсии и среднего чека.',
+                    title: string?.owner_title_3,
+                    description: string?.owner_description_3,
                 },
                 {
-                    title: 'Мультиязычность',
-                    description:
-                        'Поддержка нескольких языков упрощает работу с клиентами из разных стран, делая каталог более привлекательным для международной аудитории.',
+                    title: string?.owner_title_4,
+                    description: string?.owner_description_4,
                 },
                 {
-                    title: 'Использование внутри компании',
-                    description:
-                        'Каталог может служить не только инструментом продаж, но и средством внутренней коммуникации и координации для персонала, обеспечивая им быстрый доступ к актуальной информации о продукции.',
+                    title: string?.owner_title_5,
+                    description: string?.owner_description_5,
                 },
             ],
         },
         {
-            name: 'Для Замовникiв',
+            name: string?.customers,
             price: '',
             rules: [
                 {
-                    title: 'Удобство и доступность',
-                    description:
-                        'Позволяет покупателям искать и ознакомиться с ассортиментом товаров в любое удобное время и место через интернет.',
+                    title: string?.customer_title_1,
+                    description: string?.customer_description_1,
                 },
                 {
-                    title: 'Легкий поиск и сравнение',
-                    description:
-                        'Пользователи могут использовать удобные фильтры и поиск для быстрого нахождения интересующих товаров, а также сравнивать их характеристики и цены.',
+                    title: string?.customer_title_2,
+                    description: string?.customer_description_2,
                 },
                 {
-                    title: 'Удобство для сбора оптовых заказов',
-                    description:
-                        'Корзина позволяет покупателям удобно собирать оптовые заказы, добавляя необходимые товары в неё по мере необходимости, что упрощает процесс закупки крупными партиями товаров.',
+                    title: string?.customer_title_3,
+                    description: string?.customer_description_3,
                 },
                 {
-                    title: 'Мультиязычность',
-                    description:
-                        'Наличие нескольких языков делает каталог более доступным для широкой аудитории, что упрощает понимание информации о товарах и услугах.',
+                    title: string?.customer_title_4,
+                    description: string?.customer_description_4,
                 },
                 {
-                    title: 'Повышение уровня сервиса',
-                    description:
-                        'Электронный каталог обеспечивает возможность быстрого получения подробной информации о товарах, их наличии и ценах, что способствует принятию более осознанных решений о покупке.',
+                    title: string?.customer_title_5,
+                    description: string?.customer_description_5,
                 },
             ],
         },
@@ -184,13 +180,7 @@ const HomePage = () => {
                         }}
                     >
                         <Typography variant={sx ? 'h3' : 'h2'} sx={{ lineHeight: 1.1, color: '#000' }}>
-                            Онлайн каталог товарів - це програмне рішення, яке дозволяє створювати електронні каталоги з
-                            описом товарів. Воно надає Вам можливості для зручного додавання товарів, класифікації,
-                            опису, додавання фотографій та іншої важливої інформації. Користувачі можуть організовувати
-                            товари в різні категорії, налаштовувати зручні фільтри, здійснювати пошук для спрощення
-                            навігації. Часто використовуються компаніями для створення віртуальних торгових каталогів,
-                            візуалізація попередніх проектів, інтернет-магазинів, представлення продукції на виставках
-                            та презентаціях.
+                            {string?.hero_text}
                         </Typography>
                         <Button
                             onClick={() => {
@@ -200,29 +190,25 @@ const HomePage = () => {
                             variant="contained"
                             size="large"
                         >
-                            Замовити
+                            {string?.request}
                         </Button>
                     </Box>
                 </Grid>
             </Grid>
-            <Grid
+            <Box
                 px={2}
-                xs={12}
                 sx={{
+                    width: '100%',
+                    maxWidth: 1600,
                     display: 'flex',
                     alignItems: 'center',
-                    justifyContent: sx ? 'flex-start' : 'center',
-                    borderTop: '1px solid #ccc',
-                    maxWidth: 1600,
+                    justifyContent: 'space-between',
                 }}
             >
                 <Box sx={{}} p={1}>
-                    <Typography sx={{ fontSize: 28, fontWeight: 500 }}>Переваги:</Typography>
+                    <Typography sx={{ fontSize: 28, fontWeight: 500 }}>{string?.advantages}</Typography>
                 </Box>
-                {/* <Button variant="contained" sx={{ ml: 'auto' }}>
-                    Детальнiше
-                </Button> */}
-            </Grid>
+            </Box>
             <Grid xs={12} container px={1} pb={2} sx={{ maxWidth: 1600 }}>
                 <Grid xs={12} container>
                     {TOOLS.map(({ name, price, rules }, index) => (
@@ -330,7 +316,7 @@ const HomePage = () => {
                         variant="contained"
                         sx={{ ml: 'auto' }}
                     >
-                        Детальнiше
+                        {string?.show_all}
                     </Button>
                 </Box>
             </Grid>
@@ -385,7 +371,7 @@ const HomePage = () => {
                         }}
                     >
                         <Box sx={{}} p={1}>
-                            <Typography sx={{ fontSize: 28, fontWeight: 500 }}>Тарифи:</Typography>
+                            <Typography sx={{ fontSize: 28, fontWeight: 500 }}>{string?.price}</Typography>
                         </Box>
                         {/* <Button variant="contained" sx={{ ml: 'auto' }}>
                             Детальнiше
@@ -446,7 +432,7 @@ const HomePage = () => {
                                             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                                                 <Typography sx={{ fontSize: 24, color: '#fff' }}>{price}</Typography>
                                                 <Typography mb={1} sx={{ fontSize: 16, color: '#fff' }}>
-                                                    / мiсяць
+                                                    / {string?.month}
                                                 </Typography>
                                             </Box>
                                         )}
@@ -516,7 +502,7 @@ const HomePage = () => {
                                             variant="outlined"
                                             sx={{ backgroundColor: '#fff' }}
                                         >
-                                            Замовити
+                                            {string?.request}
                                         </Button>
                                     </Box>
                                 </Box>

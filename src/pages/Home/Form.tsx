@@ -55,10 +55,10 @@ export default function Form({ values, isOpen = false, setIsOpen }) {
                     },
                 }}
             >
-                <DialogTitle>Замовлення:</DialogTitle>
+                <DialogTitle>{string?.request}:</DialogTitle>
                 <DialogContent sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
                     <FormControl error={false} fullWidth size="small" sx={{ mt: 1 }}>
-                        <InputLabel sx={{ color: '#898B9B' }}>Я хочу</InputLabel>
+                        <InputLabel sx={{ color: '#898B9B' }}>{string?.i_want}</InputLabel>
                         <StyledSelect
                             variant="outlined"
                             value={formValues.subject || ''}
@@ -67,10 +67,10 @@ export default function Form({ values, isOpen = false, setIsOpen }) {
                                     return { ...prev, subject: e.target.value };
                                 });
                             }}
-                            label="Я хочу"
+                            label={string?.i_want}
                             fullWidth
                         >
-                            {['Замовити Каталог', 'Отримати Консультацiю', 'Замовити Зразок'].map((el, idx) => (
+                            {[string?.request_catalog, string?.consultation, string?.request_example].map((el, idx) => (
                                 <MenuItem key={idx} value={el}>
                                     {el}
                                 </MenuItem>
@@ -79,10 +79,10 @@ export default function Form({ values, isOpen = false, setIsOpen }) {
                         {/* <FormHelperText>{formik.errors['role']}</FormHelperText> */}
                     </FormControl>
                     <FormControl error={false} fullWidth size="small" sx={{ mt: 1 }}>
-                        <InputLabel sx={{ color: '#898B9B' }}>Тариф</InputLabel>
+                        <InputLabel sx={{ color: '#898B9B' }}>{string?.plan}</InputLabel>
                         <StyledSelect
                             variant="outlined"
-                            label="Тариф"
+                            label={string?.plan}
                             value={formValues.plan || ''}
                             onChange={e => {
                                 setFormValues(prev => {
@@ -132,7 +132,7 @@ export default function Form({ values, isOpen = false, setIsOpen }) {
                                 return { ...prev, email: e.target.value };
                             });
                         }}
-                        label="Email"
+                        label={string?.email}
                         size="small"
                         fullWidth
                         error={false}
@@ -146,7 +146,7 @@ export default function Form({ values, isOpen = false, setIsOpen }) {
                                 return { ...prev, comment: e.target.value };
                             });
                         }}
-                        label={'Коментар'}
+                        label={string?.comment}
                         size="small"
                         fullWidth
                         error={false}
