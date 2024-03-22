@@ -91,12 +91,10 @@ const Header = ({
                             icon={() => <FavoriteIcon />}
                             isShown={!sx}
                             action={() => {
-                                if (auth) {
-                                    navigate(`/catalog/${storeCode}/${storeName}/favorites`);
-                                } else setOpenModalType('login');
+                                navigate(`/catalog/${storeCode}/${storeName}/favorites`);
                             }}
                             badgeCount={favorites?.favoriteItems?.length}
-                            protectedPath={!auth}
+                            protectedPath={false}
                         />
                     )}
                     {store?.additionalStoreSettings?.cart && (
@@ -107,11 +105,9 @@ const Header = ({
                             isShown={!sx}
                             badgeCount={cart?.cartItems?.length}
                             action={() => {
-                                if (auth) {
-                                    navigate(`/catalog/${storeCode}/${storeName}/cart`);
-                                } else setOpenModalType('login');
+                                navigate(`/catalog/${storeCode}/${storeName}/cart`);
                             }}
-                            protectedPath={!auth}
+                            protectedPath={false}
                         />
                     )}
 

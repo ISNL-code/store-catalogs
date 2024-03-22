@@ -2,14 +2,13 @@ import { Box } from '@mui/system';
 import CardItem from 'components/atoms/Sections/CardItem';
 import Grid from '@mui/material/Unstable_Grid2';
 import { Button, TextField, Typography } from '@mui/material';
-import { useOutletContext, useParams } from 'react-router-dom';
+import { useOutletContext } from 'react-router-dom';
 import { CatalogContextInterface } from 'types';
 import { getCurrencySymbol } from 'helpers/getCurrencySymbol';
 import { OrderDataInterface } from '../Cart';
 import { useState } from 'react';
 
 const ConfirmCoupon = ({
-    createOrder,
     orderData,
     finalPrice,
     setSuccessOrdering,
@@ -19,8 +18,7 @@ const ConfirmCoupon = ({
     finalPrice;
     setSuccessOrdering;
 }) => {
-    const { storeCode } = useParams();
-    const { string, store, supportedLanguage, currentUserData, cart }: CatalogContextInterface = useOutletContext();
+    const { string, store, currentUserData, cart }: CatalogContextInterface = useOutletContext();
     const [firstName, setFirstName] = useState(currentUserData?.delivery?.firstName || '');
     const [lastName, setLastName] = useState(currentUserData?.delivery?.lastName || '');
     const [phone, setPhone] = useState(currentUserData?.delivery?.phone || '');
@@ -145,57 +143,9 @@ const ConfirmCoupon = ({
                         variant="contained"
                         sx={{ width: '100%' }}
                         onClick={() => {
-                            createOrder({
-                                lang: supportedLanguage,
-                                storeCode,
-                                data: {
-                                    shoppingCartItems: orderData.productsList.map(item => {
-                                        return {
-                                            attributes: [
-                                                {
-                                                    id: item?.sizeId,
-                                                    name: 'Size',
-                                                    variant: false,
-                                                },
-                                                {
-                                                    id: item.colorId,
-                                                    name: 'Color',
-                                                    variant: true,
-                                                },
-                                            ],
-                                            product: item?.sku,
-                                            quantity: item?.quantity,
-                                        };
-                                    }),
-                                    amount: Number(finalPrice).toFixed(2),
-                                    order: {
-                                        shippingQuote: '',
-                                        currency: store?.currency,
-                                        payment: {
-                                            paymentType: 'MONEYORDER',
-                                            transactionType: 'CAPTURE',
-                                            paymentModule: 'moneyorder',
-                                            paymentToken: null,
-                                            amount: finalPrice,
-                                        },
-                                        delivery: {
-                                            address: orderData.delivery.address,
-                                            city: orderData.delivery.city,
-                                            postalCode: orderData.delivery.postalCode,
-                                            country: orderData.delivery.country,
-                                            zone: orderData.delivery.zone,
-                                            firstName: orderData.delivery.firstName,
-                                            lastName: orderData.delivery.lastName,
-                                            phone: orderData.delivery.phone,
-                                        },
-                                    },
-                                },
-                            })
-                                .then(() => {
-                                    setSuccessOrdering(true);
-                                    cart?.handleClearCart();
-                                })
-                                .catch(err => console.log(err));
+                            setSuccessOrdering(true);
+                            cart?.handleClearCart();
+                            return;
                         }}
                     >
                         {string?.confirm_order}

@@ -8,7 +8,7 @@ import { CatalogContextInterface } from 'types';
 
 const ActionSection = ({ isShown, selectedVariant }) => {
     const { storeCode } = useParams();
-    const { store, string, setOpenModalType, auth, cart, favorites }: CatalogContextInterface = useOutletContext();
+    const { store, string, cart, favorites }: CatalogContextInterface = useOutletContext();
 
     const selectedToCart = cart?.cartItems?.find(item => item.sku === selectedVariant?.sku);
     const selectedToFavorite = favorites?.favoriteItems?.find(item => item.sku === selectedVariant?.sku);
@@ -25,7 +25,6 @@ const ActionSection = ({ isShown, selectedVariant }) => {
                         }}
                         variant={selectedToCart ? 'contained' : 'outlined'}
                         onClick={() => {
-                            if (!auth) return setOpenModalType('register-warning');
                             cart?.handleSetCartItems({
                                 sku: selectedVariant?.sku,
                                 storeCode,

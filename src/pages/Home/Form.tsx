@@ -13,6 +13,7 @@ import { useOutletContext } from 'react-router-dom';
 import { StyledTextField } from './StyledTextField';
 import { useFormik } from 'formik';
 import requestCatalogValidation from 'Validation/requestCatalogValidation';
+import { ACCESS_TOKEN_KEY } from 'constants/constants';
 
 export default function Form({ values, isOpen = false, setIsOpen, setPlan }) {
     const { string }: StoresContextInterface = useOutletContext();
@@ -65,6 +66,18 @@ export default function Form({ values, isOpen = false, setIsOpen, setPlan }) {
         setPlan({ subject: '', plan: '' });
     };
 
+    const handleSend = async event => {
+        Email.send({
+            Host: 'smtp.elasticemail.com',
+            Username: 'username',
+            Password: 'password',
+            To: 'them@website.com',
+            From: 'you@isp.com',
+            Subject: 'This is the subject',
+            Body: 'And this is the body',
+        }).then(message => alert(message));
+    };
+
     return (
         <React.Fragment>
             <Dialog
@@ -76,6 +89,7 @@ export default function Form({ values, isOpen = false, setIsOpen, setPlan }) {
                     onSubmit: (event: React.FormEvent<HTMLFormElement>) => {
                         event.preventDefault();
                         formik.handleSubmit();
+                        handleSend(event);
                     },
                 }}
             >
@@ -183,7 +197,13 @@ export default function Form({ values, isOpen = false, setIsOpen, setPlan }) {
                     />
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={handleClose}>{string?.cancel}</Button>
+                    <Button
+                        onClick={() => {
+                            handleClose();
+                        }}
+                    >
+                        {string?.cancel}
+                    </Button>
                     <Button type="submit">{string?.submit}</Button>
                 </DialogActions>
             </Dialog>

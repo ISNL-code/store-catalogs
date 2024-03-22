@@ -1,8 +1,6 @@
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
 import { Box, IconButton } from '@mui/material';
-import { useOutletContext } from 'react-router-dom';
-import { CatalogContextInterface } from 'types';
 
 interface CartButtonInterface {
     isShown: boolean;
@@ -11,7 +9,6 @@ interface CartButtonInterface {
 }
 
 const CartButton = ({ isShown, action, selected }: CartButtonInterface) => {
-    const { setOpenModalType, auth }: CatalogContextInterface = useOutletContext();
     if (isShown)
         return (
             <Box>
@@ -26,7 +23,6 @@ const CartButton = ({ isShown, action, selected }: CartButtonInterface) => {
                             '&:hover': { backgroundColor: selected ? 'green' : '#fff' },
                         }}
                         onClick={() => {
-                            if (!auth) return setOpenModalType('register-warning');
                             action();
                         }}
                     >

@@ -66,7 +66,7 @@ const MobileMenu = ({
                             action={() => {
                                 navigate(`/catalog/${storeCode}/${storeName}/favorites`);
                             }}
-                            protectedPath={!auth}
+                            protectedPath={false}
                         />
                     )}
                     {withCart && (
@@ -76,11 +76,9 @@ const MobileMenu = ({
                             icon={p => <ShoppingCartIcon {...p} />}
                             badgeCount={cart?.cartItems?.length}
                             action={() => {
-                                if (auth) {
-                                    navigate(`/catalog/${storeCode}/${storeName}/cart`);
-                                } else setOpenModalType('login');
+                                navigate(`/catalog/${storeCode}/${storeName}/cart`);
                             }}
-                            protectedPath={!auth}
+                            protectedPath={false}
                         />
                     )}
                     {!auth && (

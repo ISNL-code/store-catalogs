@@ -4,7 +4,7 @@ import EmptyPage from 'components/atoms/EmptyPage/EmptyPage';
 import InstrumentalSubHeader from 'components/organisms/InstrumentalSubHeader/InstrumentalSubHeader';
 import { useIsMount } from 'hooks/useIsMount';
 import { useEffect, useRef, useState } from 'react';
-import { useNavigate, useOutletContext, useParams } from 'react-router-dom';
+import { useOutletContext, useParams } from 'react-router-dom';
 import { CatalogContextInterface, ProductVariantInterface } from 'types';
 import Loader from 'components/atoms/Loader/Loader';
 import Grid from '@mui/material/Unstable_Grid2';
@@ -45,10 +45,9 @@ export interface OrderDataInterface {
 const Cart = () => {
     const ref = useRef<HTMLInputElement>(null);
     const { sx, xs } = useDevice();
-    const { storeCode, storeName } = useParams();
+    const { storeCode } = useParams();
     const mount = useIsMount();
-    const navigate = useNavigate();
-    const { auth, cart, supportedLanguage, store, string }: CatalogContextInterface = useOutletContext();
+    const { cart, supportedLanguage, store, string }: CatalogContextInterface = useOutletContext();
     const [productIds, setProductIds] = useState<string[] | any[]>([]);
     const [cartProducts, setCartProducts] = useState<ProductVariantInterface[] | any[]>([]);
     const [isOpenModal, setIsOpenModal] = useState(false);
@@ -114,11 +113,6 @@ const Cart = () => {
     }, [productIds, supportedLanguage]);
 
     useEffect(() => {
-        if (mount) return;
-        if (!auth) navigate(`/catalog/${storeCode}/${storeName}`); // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [auth]);
-
-    useEffect(() => {
         if (!orderData.productsList.length) return setFinalPrice(0);
         setFinalPrice(
             orderData?.productsList.reduce(
@@ -137,12 +131,6 @@ const Cart = () => {
             setLoading(false);
         }, 1000);
     }, [loadProducts, loading]);
-
-    useEffect(() => {
-        if (mount) return;
-        if (!auth) navigate(`/catalog/${storeCode}/${storeName}`);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [auth, mount]);
 
     if (successOrdering)
         return (

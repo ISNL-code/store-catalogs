@@ -10,11 +10,7 @@ interface useAddToCartParamsInterface {
     storeName?: string;
 }
 
-export const useAddToCart = ({
-    auth,
-    loadingUser,
-    storeName,
-}: useAddToCartParamsInterface): useAddToCartDataInterface => {
+export const useAddToCart = ({ loadingUser, storeName }: useAddToCartParamsInterface): useAddToCartDataInterface => {
     const { storeCode } = useParams();
     const mount = useIsMount();
     const [cartItems, setCartItems] = useState<any[]>([]);
@@ -22,9 +18,8 @@ export const useAddToCart = ({
     useEffect(() => {
         if (loadingUser) return;
 
-        if (!auth) return setCartItems([]);
         setCartItems(JSON.parse(localStorage.getItem(storeCode + CART_KEY) as string) || []); // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [auth, storeName]);
+    }, [storeName]);
 
     useEffect(() => {
         if (loadingUser) return;
@@ -32,11 +27,10 @@ export const useAddToCart = ({
         if (mount) return;
         if (cartItems.length) {
             localStorage.setItem(storeCode + CART_KEY, JSON.stringify(cartItems));
-        } else if (auth) localStorage.removeItem(storeCode + CART_KEY); // eslint-disable-next-line react-hooks/exhaustive-deps
+        } // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [cartItems]);
 
     const handleSetCartItems = data => {
-        if (!auth) return;
         if (cartItems?.find(item => item?.sku === data?.sku)) {
             setCartItems(prev => prev.filter(item => item.sku !== data?.sku));
         } else {

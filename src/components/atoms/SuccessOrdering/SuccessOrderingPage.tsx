@@ -26,7 +26,7 @@ const SuccessOrderingPage = ({ isShown = true }) => {
                 <Typography variant="h3">{string?.order_sent_successfully}</Typography>
                 <Button
                     onClick={() => {
-                        navigate(`catalog/${storeCode}/${storeName}`);
+                        navigate(`/catalog/${storeCode}/${storeName}`);
                     }}
                 >
                     {string?.back_to_shopping}
