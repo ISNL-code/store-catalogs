@@ -39,7 +39,7 @@ const HomePage = () => {
         },
         {
             name: 'PRO',
-            price: '$39.99',
+            price: '$49.99',
             rules: [
                 { title: string?.main_function, available: true },
                 { title: string?.admin_panel, available: true },
