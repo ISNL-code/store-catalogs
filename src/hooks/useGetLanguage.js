@@ -558,7 +558,7 @@ export const useGetLanguage = ({ lang }) => {
                 customization: `Кастомізація`,
                 owners: `Для Власника`,
                 customers: `Для Клієнта`,
-                request: `Запит`,
+                request: `Замовити`,
                 show_all: `Показати Всі`,
                 unlimited: `Необмежено`,
                 month: `Місяць`,
