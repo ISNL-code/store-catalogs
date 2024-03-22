@@ -22,13 +22,13 @@ const HomePage = () => {
     const PRICING = [
         {
             name: 'START',
-            price: '$19.99',
+            price: '$11.99',
             rules: [
                 { title: string?.main_function, available: true },
                 { title: string?.admin_panel, available: true },
                 { title: `${string?.admin}: 1'`, available: true },
-                { title: `${string?.products_models_photo}: 50/5/5`, available: true },
-                { title: `${string?.catalog_lang}: ua, en, es, fr, pl, cz, ru,`, available: true },
+                { title: `${string?.products_models_photo}: 30/5/5`, available: true },
+                { title: `${string?.catalog_lang}: ua, en`, available: true },
                 { title: string?.cart, available: false },
                 { title: 'Google Analytics', available: false },
                 { title: 'Play Market', available: false },
