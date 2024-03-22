@@ -5,7 +5,7 @@ import { PiMartiniLight } from 'react-icons/pi';
 
 const StoresHeaderLogo = ({ headerHeight }) => {
     const navigate = useNavigate();
-    const { xxs } = useDevice();
+    const { xs } = useDevice();
     return (
         <Box onClick={() => navigate('/')} sx={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}>
             <Box mt={2}>
@@ -14,42 +14,42 @@ const StoresHeaderLogo = ({ headerHeight }) => {
 
             <Box mt={1} sx={{ display: 'flex', gap: 0.15 }}>
                 <Typography
-                    sx={{ fontFamily: 'Young Serif', fontSize: xxs ? 24 : 30, fontWeight: 600, color: '#DB4437' }}
+                    sx={{ fontFamily: 'Young Serif', fontSize: xs ? 24 : 30, fontWeight: 600, color: '#DB4437' }}
                 >
                     C
                 </Typography>
                 <Typography
-                    sx={{ fontFamily: 'Young Serif', fontSize: xxs ? 24 : 30, fontWeight: 600, color: '#4285F4' }}
+                    sx={{ fontFamily: 'Young Serif', fontSize: xs ? 24 : 30, fontWeight: 600, color: '#4285F4' }}
                 >
                     O
                 </Typography>
                 <Typography
-                    sx={{ fontFamily: 'Young Serif', fontSize: xxs ? 24 : 30, fontWeight: 600, color: '#FFA500' }}
+                    sx={{ fontFamily: 'Young Serif', fontSize: xs ? 24 : 30, fontWeight: 600, color: '#FFA500' }}
                 >
                     C
                 </Typography>
                 <Typography
-                    sx={{ fontFamily: 'Young Serif', fontSize: xxs ? 24 : 30, fontWeight: 600, color: '#673AB7' }}
+                    sx={{ fontFamily: 'Young Serif', fontSize: xs ? 24 : 30, fontWeight: 600, color: '#673AB7' }}
                 >
                     K
                 </Typography>
                 <Typography
-                    sx={{ fontFamily: 'Young Serif', fontSize: xxs ? 24 : 30, fontWeight: 600, color: '#0F9D58' }}
+                    sx={{ fontFamily: 'Young Serif', fontSize: xs ? 24 : 30, fontWeight: 600, color: '#0F9D58' }}
                 >
                     T
                 </Typography>
                 <Typography
-                    sx={{ fontFamily: 'Young Serif', fontSize: xxs ? 24 : 30, fontWeight: 600, color: '#4285F4' }}
+                    sx={{ fontFamily: 'Young Serif', fontSize: xs ? 24 : 30, fontWeight: 600, color: '#4285F4' }}
                 >
                     A
                 </Typography>
                 <Typography
-                    sx={{ fontFamily: 'Young Serif', fontSize: xxs ? 24 : 30, fontWeight: 600, color: '#673AB7' }}
+                    sx={{ fontFamily: 'Young Serif', fontSize: xs ? 24 : 30, fontWeight: 600, color: '#673AB7' }}
                 >
                     I
                 </Typography>
                 <Typography
-                    sx={{ fontFamily: 'Young Serif', fontSize: xxs ? 24 : 30, fontWeight: 600, color: '#FFA500' }}
+                    sx={{ fontFamily: 'Young Serif', fontSize: xs ? 24 : 30, fontWeight: 600, color: '#FFA500' }}
                 >
                     L
                 </Typography>
