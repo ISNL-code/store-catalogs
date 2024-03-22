@@ -3,7 +3,7 @@ import PhoneCallbackIcon from '@mui/icons-material/PhoneCallback';
 import { useNavigate, useOutletContext, useParams } from 'react-router-dom';
 import { useDevice } from 'hooks/useDevice';
 
-const CallBackButton = () => {
+const CallBackButton = ({ from = 'catalog' }) => {
     const { storeCode, storeName } = useParams();
     const { string }: any = useOutletContext();
     const { sx, s } = useDevice();
@@ -27,7 +27,9 @@ const CallBackButton = () => {
                 cursor: 'pointer',
             }}
             onClick={() => {
-                navigate(`/catalog/${storeCode}/${storeName}/contacts`);
+                from === 'catalog'
+                    ? navigate(`/catalog/${storeCode}/${storeName}/contacts`)
+                    : navigate(`/catalog/land-contacts`);
             }}
         >
             {!sx && (

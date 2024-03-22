@@ -16,6 +16,7 @@ import ContactsManagePage from 'pages/Contacts/ContactsManagePage';
 import { useUserApi } from 'api/useUserApi';
 import { UserDataInterface } from 'types';
 import HomePage from 'pages/Home/HomePage';
+import LandingRequestContacts from 'pages/Contacts/LandingRequestContacts';
 
 const App = () => {
     const token = localStorage.getItem(ACCESS_TOKEN_KEY);
@@ -70,6 +71,7 @@ const App = () => {
                                 <Route path={'/'} element={<HomePage />} />
                                 <Route path={'/stores'} element={<StoresPage />} />
                                 <Route path={'/my-stores'} element={<MyStoresPage />} />
+                                <Route path={'/catalog/land-contacts'} element={<LandingRequestContacts />} />
                             </Route>
                             <Route
                                 path={'/catalog'}

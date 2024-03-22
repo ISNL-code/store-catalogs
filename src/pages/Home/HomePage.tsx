@@ -7,6 +7,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import Marquee from 'react-fast-marquee';
 import { useState } from 'react';
 import Form from './Form';
+import CallBackButton from 'components/atoms/Buttons/CallBackButton';
 
 const HomePage = () => {
     const [storesDetails, setStoresDetails] = useState(false);
@@ -144,6 +145,7 @@ const HomePage = () => {
     return (
         <Grid xs={12} container sx={{ display: 'flex', justifyContent: 'center' }}>
             <Form values={{}} isOpen={isOpen} setIsOpen={setIsOpen} />
+            {<CallBackButton from="landing" />}
             <Grid
                 py={2}
                 px={3}

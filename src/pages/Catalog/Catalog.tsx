@@ -16,6 +16,7 @@ import CallBackButton from 'components/atoms/Buttons/CallBackButton';
 import AppleStoreButton from 'components/atoms/Buttons/AppleStoreButton';
 import PlayMarketButton from 'components/atoms/Buttons/PlayMarketButton';
 import PaginationButton from 'components/atoms/Buttons/PaginationButton';
+import BackButton from 'components/atoms/Buttons/BackButton';
 
 const Catalog = () => {
     const {
@@ -78,6 +79,7 @@ const Catalog = () => {
             {((loadProducts && !productsList?.length) || loading) && <Loader position="fixed" />}
             {store?.mainStoreSettings?.contacts && <CallBackButton />}
             <InstrumentalSubHeader
+                StartSlot={() => <BackButton nav={'/'} action={() => {}} />}
                 EndSlot={() => (
                     <Box sx={{ display: 'flex', gap: 0.75 }}>
                         {store?.mainStoreSettings?.skuSearch && <SkuSearch />}
