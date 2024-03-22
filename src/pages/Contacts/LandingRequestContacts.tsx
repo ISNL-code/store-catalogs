@@ -11,12 +11,12 @@ import InstrumentalSubHeader from 'components/organisms/InstrumentalSubHeader/In
 import BackButton from 'components/atoms/Buttons/BackButton';
 import { useDevice } from 'hooks/useDevice';
 import { CatalogContextInterface } from 'types';
-import EmptyPage from 'components/atoms/EmptyPage/EmptyPage';
+// import EmptyPage from 'components/atoms/EmptyPage/EmptyPage';
 import Grid from '@mui/material/Unstable_Grid2';
 import CardItem from 'components/atoms/Sections/CardItem';
 
 const LandingRequestContacts = () => {
-    const { store, string }: CatalogContextInterface = useOutletContext();
+    const { string }: CatalogContextInterface = useOutletContext();
     const { sm } = useDevice();
 
     useEffect(() => {
