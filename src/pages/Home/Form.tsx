@@ -13,7 +13,7 @@ import { useOutletContext } from 'react-router-dom';
 import { StyledTextField } from './StyledTextField';
 import { useFormik } from 'formik';
 import requestCatalogValidation from 'Validation/requestCatalogValidation';
-import { ACCESS_TOKEN_KEY } from 'constants/constants';
+import axios from 'axios';
 
 export default function Form({ values, isOpen = false, setIsOpen, setPlan }) {
     const { string }: StoresContextInterface = useOutletContext();
@@ -45,6 +45,24 @@ export default function Form({ values, isOpen = false, setIsOpen, setPlan }) {
         validationSchema: requestCatalogValidation,
         onSubmit: values => {
             handleClose();
+            try {
+                const token = '6904212535:AAGvPEjkJds0aayd-oD1YVMbhLKeKt72yaE';
+                const chatId = '480774886'; // Узнайте ваш Chat ID, написав своему боту /myid
+                const url = `https://api.telegram.org/bot${token}/sendMessage`;
+
+                axios.post(url, {
+                    chat_id: chatId,
+                    text: `Привет, меня зовут ${values.name || '<Заказчик>'}, мои контакты: email:${
+                        values.email || '<не указан>'
+                    }, тел: ${values.phone || '<не указан>'}, я хочу ${values.subject} по тарифу ${
+                        values.plan || '<не указан>'
+                    }, комментарий: ${values.comment || '<не оставил>'}`,
+                });
+
+                console.log('Message sent successfully');
+            } catch (error) {
+                console.error('Error sending message:', error);
+            }
         },
     });
 
@@ -66,18 +84,6 @@ export default function Form({ values, isOpen = false, setIsOpen, setPlan }) {
         setPlan({ subject: '', plan: '' });
     };
 
-    const handleSend = async event => {
-        Email.send({
-            Host: 'smtp.elasticemail.com',
-            Username: 'username',
-            Password: 'password',
-            To: 'them@website.com',
-            From: 'you@isp.com',
-            Subject: 'This is the subject',
-            Body: 'And this is the body',
-        }).then(message => alert(message));
-    };
-
     return (
         <React.Fragment>
             <Dialog
@@ -89,7 +95,6 @@ export default function Form({ values, isOpen = false, setIsOpen, setPlan }) {
                     onSubmit: (event: React.FormEvent<HTMLFormElement>) => {
                         event.preventDefault();
                         formik.handleSubmit();
-                        handleSend(event);
                     },
                 }}
             >
