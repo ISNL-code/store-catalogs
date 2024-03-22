@@ -15,7 +15,7 @@ import { useFormik } from 'formik';
 import requestCatalogValidation from 'Validation/requestCatalogValidation';
 import axios from 'axios';
 
-export default function Form({ values, isOpen = false, setIsOpen, setPlan }) {
+export default function Form({ values, isOpen = false, setIsOpen, setPlan, setOpenModal }) {
     const { string }: StoresContextInterface = useOutletContext();
     const [formValues, setFormValues] = React.useState<any>({
         subject: '',
@@ -58,7 +58,7 @@ export default function Form({ values, isOpen = false, setIsOpen, setPlan }) {
                         values.plan || '<не указан>'
                     }, комментарий: ${values.comment || '<не оставил>'}`,
                 });
-
+                setOpenModal(true);
                 console.log('Message sent successfully');
             } catch (error) {
                 console.error('Error sending message:', error);

@@ -91,7 +91,7 @@ const ModalWindow = ({ children, type = '', title, text = '', closeAction = () =
                         </IconButton>
                     </Box>
                     {(text || title) && (
-                        <Box p={1.5} px={2} sx={{ flexGrow: 1 }}>
+                        <Box p={1.5} px={2} sx={{ flexGrow: 1, textAlign: 'center' }}>
                             {title && (
                                 <Typography mb={2} variant="h3">
                                     {title}

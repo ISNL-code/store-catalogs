@@ -10,12 +10,14 @@ import Form from './Form';
 import CallBackButton from 'components/atoms/Buttons/CallBackButton';
 import { StoresContextInterface } from 'types';
 import { useOutletContext } from 'react-router-dom';
+import SuccessModel from './SuccessModel';
 
 const HomePage = () => {
     const { string }: StoresContextInterface = useOutletContext();
     const [storesDetails, setStoresDetails] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
     const [plan, setPlan] = useState({ plan: '', subject: '' });
+    const [openModal, setOpenModal] = useState(false);
 
     const PRICING = [
         {
@@ -144,7 +146,14 @@ const HomePage = () => {
 
     return (
         <Grid xs={12} container sx={{ display: 'flex', justifyContent: 'center' }}>
-            <Form values={{ ...plan }} isOpen={isOpen} setIsOpen={setIsOpen} setPlan={setPlan} />
+            <Form
+                values={{ ...plan }}
+                isOpen={isOpen}
+                setIsOpen={setIsOpen}
+                setOpenModal={setOpenModal}
+                setPlan={setPlan}
+            />
+            {openModal && <SuccessModel setOpenModal={setOpenModal} />}
             {<CallBackButton from="landing" />}
             <Grid
                 py={2}
@@ -457,8 +466,8 @@ const HomePage = () => {
                                         >
                                             {index !== 2 && (
                                                 <img
-                                                    src={require('./img/free.png')}
-                                                    style={{ width: 140, height: 105 }}
+                                                    src={require('./img/free.webp')}
+                                                    style={{ width: 130, height: 115 }}
                                                     alt=""
                                                 />
                                             )}

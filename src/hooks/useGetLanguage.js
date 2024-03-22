@@ -7,6 +7,7 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'en',
             string: {
+                request_sended_successfully: 'The request has been sent successfully! We will contact you shortly.',
                 first_month_free: 'First month free',
                 home: 'Home',
                 hero_text: `An online product catalog is a software solution that allows creating electronic catalogs with product descriptions. It provides features for easy addition of products, classification, description, adding photos, and other important information. Users can organize products into different categories, set up convenient filters, perform searches to simplify navigation. It is often used by companies to create virtual trade catalogs, visualize preliminary projects, online stores, present products at exhibitions, and presentations.`,
@@ -188,6 +189,7 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'fr',
             string: {
+                request_sended_successfully: 'La demande a été envoyée avec succès! Nous vous contacterons sous peu.',
                 first_month_free: 'Premier mois gratuit',
                 home: 'Maison',
                 hero_text: `Le catalogue en ligne des produits est une solution logicielle qui permet de créer des catalogues électroniques avec des descriptions de produits. Il offre des fonctionnalités pour ajouter facilement des produits, les classer, les décrire, ajouter des photos et d'autres informations importantes. Les utilisateurs peuvent organiser les produits dans différentes catégories, configurer des filtres pratiques, effectuer des recherches pour simplifier la navigation. Il est souvent utilisé par les entreprises pour créer des catalogues commerciaux virtuels, visualiser des projets préliminaires, des boutiques en ligne, présenter des produits lors d'expositions et de présentations.`,
@@ -371,6 +373,8 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'es',
             string: {
+                request_sended_successfully:
+                    '¡La solicitud se ha enviado correctamente! Nos pondremos en contacto con usted pronto.',
                 first_month_free: 'Primer mes gratis',
                 hero_text: `El catálogo en línea de productos es una solución de software que permite crear catálogos electrónicos con descripciones de productos. Ofrece funcionalidades para agregar fácilmente productos, clasificarlos, describirlos, agregar fotos y otra información importante. Los usuarios pueden organizar los productos en diferentes categorías, configurar filtros prácticos, realizar búsquedas para simplificar la navegación. A menudo es utilizado por empresas para crear catálogos comerciales virtuales, visualizar proyectos preliminares, tiendas en línea, presentar productos en exposiciones y presentaciones.`,
                 main_function: `Función Principal`,
@@ -552,6 +556,7 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'ua',
             string: {
+                request_sended_successfully: 'Заявка надіслана успішно! Ми зв`яжемося з вами найближчим часом.',
                 first_month_free: 'Перший місяць безкоштовно',
                 hero_text: `Онлайн каталог товарів - це програмне рішення, яке дозволяє створювати електронні каталоги з описом товарів. Воно надає можливості для зручного додавання товарів, класифікації, опису, додавання фотографій та іншої важливої інформації. Користувачі можуть організовувати товари в різні категорії, налаштовувати зручні фільтри, здійснювати пошук для спрощення навігації. Часто використовується компаніями для створення віртуальних торгових каталогів, візуалізації попередніх проектів, інтернет-магазинів, представлення продукції на виставках і презентаціях.`,
                 main_function: `Основна Функціональність`,
@@ -734,6 +739,7 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'pl',
             string: {
+                request_sended_successfully: 'Wniosek został pomyślnie wysłany! Skontaktujemy się z Tobą wkrótce.',
                 first_month_free: 'Pierwszy miesiąc za darmo',
                 hero_text:
                     'Katalog online produktów to rozwiązanie programowe, które umożliwia tworzenie elektronicznych katalogów z opisem produktów. Zapewnia możliwości wygodnego dodawania produktów, klasyfikacji, opisu, dodawania zdjęć i innych ważnych informacji. Użytkownicy mogą organizować produkty w różnych kategoriach, dostosowywać wygodne filtry, przeprowadzać wyszukiwanie w celu ułatwienia nawigacji. Często używane przez firmy do tworzenia wirtualnych katalogów handlowych, wizualizacji projektów wstępnych, sklepów internetowych, prezentacji produktów na wystawach i prezentacjach.',
@@ -929,6 +935,7 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'cz',
             string: {
+                request_sended_successfully: 'Žádost byla úspěšně odeslána! Brzy se s vámi spojíme.',
                 first_month_free: 'První měsíc zdarma',
                 hero_text:
                     'Online katalog produktů je softwarové řešení, které umožňuje vytvářet elektronické katalogy s popisem produktů. Poskytuje vám možnosti pohodlného přidávání produktů, klasifikace, popisu, přidávání fotografií a dalších důležitých informací. Uživatelé mohou organizovat produkty do různých kategorií, nastavovat pohodlné filtry, provádět vyhledávání pro zjednodušení navigace. Často se používá firemními subjekty k vytváření virtuálních obchodních katalogů, vizualizace předběžných projektů, internetových obchodů, prezentace výrobků na výstavách a prezentacích.',
@@ -1121,6 +1128,7 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'ru',
             string: {
+                request_sended_successfully: 'Заявка отправлена успешно! Мы свяжемся с вами в ближайшее время.',
                 first_month_free: 'Первый месяц бесплатно',
                 hero_text:
                     'Онлайн каталог товаров – это программное решение, которое позволяет создавать электронные каталоги с описанием товаров. Оно предоставляет Вам возможности для удобного добавления товаров, классификации, описание, добавление фотографий и другой важной информации. Пользователи могут организовывать товары в разные категории, настраивать удобные фильтры, осуществлять поиск для упрощения навигации. Часто используются компаниями для создания виртуальных торговых каталогов, визуализации предварительных проектов, интернет-магазинов, представление продукции на выставках и презентациях.',
