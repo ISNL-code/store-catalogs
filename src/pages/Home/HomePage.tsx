@@ -174,6 +174,31 @@ const HomePage = () => {
                 }}
             >
                 <Grid
+                    mb={2}
+                    xs={12}
+                    sx={{
+                        maxWidth: '300px',
+                        backgroundColor: 'white',
+                        opacity: 0.85,
+                        borderRadius: 4,
+                        boxShadow: '0 0 5px 3px #fff',
+                    }}
+                >
+                    <Box
+                        p={1}
+                        sx={{
+                            display: 'flex',
+                            flexDirection: 'column',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                        }}
+                    >
+                        <Typography variant={'h1'} sx={{ lineHeight: 1.1, color: '#000' }}>
+                            {string?.online_catalog}
+                        </Typography>
+                    </Box>
+                </Grid>
+                <Grid
                     xs={12}
                     sx={{
                         maxWidth: '1200px',
@@ -184,7 +209,7 @@ const HomePage = () => {
                     }}
                 >
                     <Box
-                        p={4}
+                        p={3}
                         sx={{
                             display: 'flex',
                             flexDirection: 'column',
@@ -219,7 +244,7 @@ const HomePage = () => {
                 }}
             >
                 <Box sx={{}} p={1}>
-                    <Typography sx={{ fontSize: 28, fontWeight: 500 }}>{string?.advantages}</Typography>
+                    <Typography sx={{ fontSize: 28, fontWeight: 500 }}>{string?.main_advantages}</Typography>
                 </Box>
             </Box>
             <Grid xs={12} container px={1} pb={2} sx={{ maxWidth: 1600 }}>
@@ -386,9 +411,6 @@ const HomePage = () => {
                         <Box sx={{}} p={1}>
                             <Typography sx={{ fontSize: 28, fontWeight: 500 }}>{string?.price}</Typography>
                         </Box>
-                        {/* <Button variant="contained" sx={{ ml: 'auto' }}>
-                            Детальнiше
-                        </Button> */}
                     </Box>
                 </Grid>
                 <Grid

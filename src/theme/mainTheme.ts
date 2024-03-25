@@ -11,7 +11,7 @@ const mainTheme = createTheme({
             textTransform: 'capitalize',
         },
         // caption: { fontSize: '12px', lineHeight: 1.2, fontWeight: 500 },
-        // h1: { fontSize: '28px', lineHeight: 1.2, fontWeight: 600 },
+        h1: { fontSize: '28px', lineHeight: 1.2, fontWeight: 600 },
         h2: { fontSize: '24px', lineHeight: 1.1, fontWeight: 500, color: '#000' },
         h3: { fontSize: '18px', lineHeight: 1.1, fontWeight: 500, color: '#000' }, //
         h4: { fontSize: '16px', lineHeight: 1.1, fontWeight: 400, color: '#1D1D1D' }, //

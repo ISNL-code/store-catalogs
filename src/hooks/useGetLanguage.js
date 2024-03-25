@@ -7,6 +7,8 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'en',
             string: {
+                main_advantages: 'Main Advantages',
+                online_catalog: 'Online Catalog',
                 request_sended_successfully: 'The request has been sent successfully! We will contact you shortly.',
                 first_month_free: 'First month free',
                 home: 'Home',
@@ -189,6 +191,7 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'fr',
             string: {
+                online_catalog: 'Catalogue en ligne',
                 request_sended_successfully: 'La demande a été envoyée avec succès! Nous vous contacterons sous peu.',
                 first_month_free: 'Premier mois gratuit',
                 home: 'Maison',
@@ -373,6 +376,7 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'es',
             string: {
+                online_catalog: 'Catálogo en línea',
                 request_sended_successfully:
                     '¡La solicitud se ha enviado correctamente! Nos pondremos en contacto con usted pronto.',
                 first_month_free: 'Primer mes gratis',
@@ -556,6 +560,7 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'ua',
             string: {
+                online_catalog: 'Онлайн-каталог',
                 request_sended_successfully: 'Заявка надіслана успішно! Ми зв`яжемося з вами найближчим часом.',
                 first_month_free: 'Перший місяць безкоштовно',
                 hero_text: `Онлайн каталог товарів - це програмне рішення, яке дозволяє створювати електронні каталоги з описом товарів. Воно надає можливості для зручного додавання товарів, класифікації, опису, додавання фотографій та іншої важливої інформації. Користувачі можуть організовувати товари в різні категорії, налаштовувати зручні фільтри, здійснювати пошук для спрощення навігації. Часто використовується компаніями для створення віртуальних торгових каталогів, візуалізації попередніх проектів, інтернет-магазинів, представлення продукції на виставках і презентаціях.`,
@@ -739,6 +744,7 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'pl',
             string: {
+                online_catalog: 'Katalog online',
                 request_sended_successfully: 'Wniosek został pomyślnie wysłany! Skontaktujemy się z Tobą wkrótce.',
                 first_month_free: 'Pierwszy miesiąc za darmo',
                 hero_text:
@@ -935,6 +941,7 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'cz',
             string: {
+                online_catalog: 'Online katalog',
                 request_sended_successfully: 'Žádost byla úspěšně odeslána! Brzy se s vámi spojíme.',
                 first_month_free: 'První měsíc zdarma',
                 hero_text:
@@ -1128,6 +1135,7 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'ru',
             string: {
+                online_catalog: 'Онлайн-каталог',
                 request_sended_successfully: 'Заявка отправлена успешно! Мы свяжемся с вами в ближайшее время.',
                 first_month_free: 'Первый месяц бесплатно',
                 hero_text:

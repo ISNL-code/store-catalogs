@@ -15,10 +15,10 @@ const CallBackButton = ({ from = 'catalog' }) => {
                 zIndex: 2000,
                 position: 'fixed',
                 right: sx ? '24px' : '40px',
-                bottom: sx ? 80 : 20,
+                bottom: sx && from !== 'landing' ? 80 : 20,
                 width: 'fit-content',
-                border: sx ? 'none' : '1px solid #1976d2',
-                backgroundColor: sx ? 'none' : '#1976d2df',
+                border: sx ? 'none' : '1px solid green',
+                backgroundColor: sx ? 'none' : 'green',
                 borderRadius: 50,
                 p: s ? 0 : 0.25,
                 display: 'flex',
@@ -38,7 +38,7 @@ const CallBackButton = ({ from = 'catalog' }) => {
                 </Typography>
             )}
             <Fab
-                size={sx ? 'medium' : 'small'}
+                size={sx || from === 'landing' ? 'medium' : 'small'}
                 sx={{
                     backgroundColor: '#ffffff',
                     '@keyframes fadeIn': {
@@ -56,9 +56,10 @@ const CallBackButton = ({ from = 'catalog' }) => {
 
                     animation: `fadeIn 4s infinite ease`,
                     border: '1px solid #ccc',
+                    boxShadow: '0 0 5px 2px green',
                 }}
             >
-                <PhoneCallbackIcon color="primary" />
+                <PhoneCallbackIcon color="success" />
             </Fab>
         </Box>
     );
