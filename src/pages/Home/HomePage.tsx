@@ -201,7 +201,7 @@ const HomePage = () => {
                 <Grid
                     xs={12}
                     sx={{
-                        maxWidth: '1200px',
+                        maxWidth: '1560px',
                         backgroundColor: 'white',
                         opacity: 0.85,
                         borderRadius: 6,
@@ -346,10 +346,10 @@ const HomePage = () => {
                     }}
                 >
                     <Box sx={{}} p={1}>
-                        <Typography sx={{ fontSize: 28, fontWeight: 500 }}>Приклади:</Typography>
+                        <Typography sx={{ fontSize: 28, fontWeight: 500 }}>{string?.examples}</Typography>
                     </Box>
                     <Button
-                        size="large"
+                        size="medium"
                         onClick={() => setStoresDetails(!storesDetails)}
                         variant="contained"
                         sx={{ ml: 'auto' }}

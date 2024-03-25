@@ -7,6 +7,7 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'en',
             string: {
+                examples: 'Examples',
                 main_advantages: 'Main Advantages',
                 online_catalog: 'Online Catalog',
                 request_sended_successfully: 'The request has been sent successfully! We will contact you shortly.',
@@ -118,7 +119,7 @@ export const useGetLanguage = ({ lang }) => {
                 forgot_password: 'Forgot password?',
                 cart: 'Cart',
                 vendor_code: 'Product code',
-                price: 'Price',
+                price: 'Pricing',
                 logout: 'Logout',
                 submit: 'Submit',
                 ukraine: 'Ukraine',
@@ -191,6 +192,8 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'fr',
             string: {
+                examples: 'Exemples',
+                main_advantages: 'Principaux avantages',
                 online_catalog: 'Catalogue en ligne',
                 request_sended_successfully: 'La demande a été envoyée avec succès! Nous vous contacterons sous peu.',
                 first_month_free: 'Premier mois gratuit',
@@ -376,6 +379,8 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'es',
             string: {
+                examples: 'Ejemplos',
+                main_advantages: 'Principales ventajas',
                 online_catalog: 'Catálogo en línea',
                 request_sended_successfully:
                     '¡La solicitud se ha enviado correctamente! Nos pondremos en contacto con usted pronto.',
@@ -560,6 +565,8 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'ua',
             string: {
+                examples: 'Приклади',
+                main_advantages: 'Основні переваги',
                 online_catalog: 'Онлайн-каталог',
                 request_sended_successfully: 'Заявка надіслана успішно! Ми зв`яжемося з вами найближчим часом.',
                 first_month_free: 'Перший місяць безкоштовно',
@@ -744,6 +751,8 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'pl',
             string: {
+                examples: 'Przykłady',
+                main_advantages: 'Główne zalety',
                 online_catalog: 'Katalog online',
                 request_sended_successfully: 'Wniosek został pomyślnie wysłany! Skontaktujemy się z Tobą wkrótce.',
                 first_month_free: 'Pierwszy miesiąc za darmo',
@@ -941,6 +950,8 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'cz',
             string: {
+                examples: 'Příklady',
+                main_advantages: 'Hlavní výhody',
                 online_catalog: 'Online katalog',
                 request_sended_successfully: 'Žádost byla úspěšně odeslána! Brzy se s vámi spojíme.',
                 first_month_free: 'První měsíc zdarma',
@@ -1135,6 +1146,8 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'ru',
             string: {
+                examples: 'Примеры',
+                main_advantages: 'Основные преимущества',
                 online_catalog: 'Онлайн-каталог',
                 request_sended_successfully: 'Заявка отправлена успешно! Мы свяжемся с вами в ближайшее время.',
                 first_month_free: 'Первый месяц бесплатно',
