@@ -5,7 +5,7 @@ import Stores from 'pages/Stores/Stores';
 import CheckIcon from '@mui/icons-material/Check';
 import CloseIcon from '@mui/icons-material/Close';
 import Marquee from 'react-fast-marquee';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import Form from './Form';
 import CallBackButton from 'components/atoms/Buttons/CallBackButton';
 import { StoresContextInterface } from 'types';
