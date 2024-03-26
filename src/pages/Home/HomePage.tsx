@@ -19,7 +19,6 @@ const HomePage = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [plan, setPlan] = useState({ plan: '', subject: '' });
     const [openModal, setOpenModal] = useState(false);
-    const ref = useRef(null);
 
     const PRICING = [
         {
