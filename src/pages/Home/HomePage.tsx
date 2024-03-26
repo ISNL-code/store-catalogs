@@ -251,20 +251,20 @@ const HomePage = () => {
                     ))}
                 </Grid>
             </Grid> */}
-                <Box p={1} sx={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
-                    <Box sx={{ width: '100%', maxWidth: '1600px' }}>
+                <Box sx={{ width: '100% !important', display: 'flex', justifyContent: 'center' }}>
+                    <Box sx={{ width: '100% !important', maxWidth: '1600px' }}>
                         <Slider
-                            style={{ width: '100%', maxWidth: '1600px', display: 'flex' }}
+                            style={{ width: '100% !important', maxWidth: '1600px', display: 'flex' }}
                             dots={true}
                             infinite
                             speed={500}
                             slidesToShow={sm ? 1 : 2}
                             slidesToScroll={1}
                             touchThreshold={20}
-                            autoplay
+                            centerMode
                         >
                             {TOOLS.map(({ name, price, rules }, index) => (
-                                <Box p={1}>
+                                <Box px={2} pr={0.2}>
                                     <Box
                                         key={index}
                                         sx={{
@@ -272,7 +272,7 @@ const HomePage = () => {
                                             borderRadius: 4,
                                             boxShadow: '0 0 2px 1px green',
                                             overflow: 'hidden',
-                                            width: '100%',
+                                            // width: '100%',
                                         }}
                                     >
                                         <Box
