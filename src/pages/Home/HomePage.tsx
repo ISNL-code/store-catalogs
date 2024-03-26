@@ -11,7 +11,6 @@ import CallBackButton from 'components/atoms/Buttons/CallBackButton';
 import { StoresContextInterface } from 'types';
 import { useOutletContext } from 'react-router-dom';
 import SuccessModel from './SuccessModel';
-import Slider from 'react-slick';
 import Hero from './Hero';
 
 const HomePage = () => {
