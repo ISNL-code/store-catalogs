@@ -277,6 +277,7 @@ const HomePage = () => {
                             mobileFirst
                             pauseOnFocus
                             autoplay
+                            pauseOnHover
                         >
                             {TOOLS.map(({ name, price, rules }, index) => (
                                 <Box px={2} pr={0.2} sx={{ width: '100% !important' }}>
