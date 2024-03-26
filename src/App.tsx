@@ -17,7 +17,6 @@ import { useUserApi } from 'api/useUserApi';
 import { UserDataInterface } from 'types';
 import HomePage from 'pages/Home/HomePage';
 import LandingRequestContacts from 'pages/Contacts/LandingRequestContacts';
-import Slider from 'react-slick';
 
 const App = () => {
     const token = localStorage.getItem(ACCESS_TOKEN_KEY);
@@ -58,19 +57,7 @@ const App = () => {
         if (mount) return;
         localStorage.setItem('my-lang-cocktail', JSON.stringify(lang));
     }, [lang, mount]);
-    // return (
-    //     <Slider
-    //         style={{ height: 200, width: 200, border: '1px solid #000' }}
-    //         dots={true}
-    //         infinite
-    //         speed={500}
-    //         slidesToShow={1}
-    //         slidesToScroll={1}
-    //     >
-    //         <div style={{ height: 200, width: 200, border: '1px solid #000' }}>qwe</div>
-    //         <div style={{ height: 200, width: 200, border: '1px solid #000' }}>qwe</div>
-    //     </Slider>
-    // );
+
     return (
         <ThemeProvider theme={mainTheme}>
             <Router>

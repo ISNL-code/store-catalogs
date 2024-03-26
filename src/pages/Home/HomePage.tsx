@@ -141,10 +141,10 @@ const HomePage = () => {
         return 4;
     };
 
-    const getTOOLSGridValue = () => {
-        if (sm) return 12;
-        return 6;
-    };
+    // const getTOOLSGridValue = () => {
+    //     if (sm) return 12;
+    //     return 6;
+    // };
 
     return (
         <Grid>
@@ -261,6 +261,7 @@ const HomePage = () => {
                             slidesToShow={sm ? 1 : 2}
                             slidesToScroll={1}
                             touchThreshold={20}
+                            autoplay
                         >
                             {TOOLS.map(({ name, price, rules }, index) => (
                                 <Box p={1}>
