@@ -96,7 +96,7 @@ export default function MainCatalog({ lang, setLang, auth, setAuth, userData }) 
     }, [lang, store?.supportedLanguages]);
 
     return (
-        <Box>
+        <Box sx={{ overflow: 'hidden' }}>
             <CssBaseline />
 
             <Header

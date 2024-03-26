@@ -147,7 +147,7 @@ const HomePage = () => {
     // };
 
     return (
-        <Grid>
+        <Grid sx={{ width: '100%' }}>
             <Form
                 values={{ ...plan }}
                 isOpen={isOpen}
@@ -158,7 +158,15 @@ const HomePage = () => {
             {openModal && <SuccessModel setOpenModal={setOpenModal} />}
             {<CallBackButton from="landing" />}
             <Hero setIsOpen={setIsOpen} isOpen={isOpen} />
-            <Box sx={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', alignItems: 'center' }}>
+            <Box
+                sx={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    width: '100%',
+                }}
+            >
                 <Box
                     px={2}
                     sx={{
@@ -251,20 +259,27 @@ const HomePage = () => {
                     ))}
                 </Grid>
             </Grid> */}
-                <Box sx={{ width: '100% !important', display: 'flex', justifyContent: 'center' }}>
+                <Box sx={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
                     <Box sx={{ width: '100% !important', maxWidth: '1600px' }}>
                         <Slider
-                            style={{ width: '100% !important', maxWidth: '1600px', display: 'flex' }}
-                            dots={true}
+                            style={{
+                                width: '100% !important',
+                                maxWidth: '1600px',
+                                display: 'flex',
+                                overflow: 'hidden',
+                            }}
                             infinite
                             speed={500}
                             slidesToShow={sm ? 1 : 2}
                             slidesToScroll={1}
                             touchThreshold={20}
                             centerMode
+                            mobileFirst
+                            pauseOnFocus
+                            autoplay
                         >
                             {TOOLS.map(({ name, price, rules }, index) => (
-                                <Box px={2} pr={0.2}>
+                                <Box px={2} pr={0.2} sx={{ width: '100% !important' }}>
                                     <Box
                                         key={index}
                                         sx={{
@@ -272,7 +287,7 @@ const HomePage = () => {
                                             borderRadius: 4,
                                             boxShadow: '0 0 2px 1px green',
                                             overflow: 'hidden',
-                                            // width: '100%',
+                                            width: '100%',
                                         }}
                                     >
                                         <Box
