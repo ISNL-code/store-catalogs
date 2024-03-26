@@ -141,13 +141,8 @@ const HomePage = () => {
         return 4;
     };
 
-    // const getTOOLSGridValue = () => {
-    //     if (sm) return 12;
-    //     return 6;
-    // };
-
     return (
-        <Grid sx={{ width: '100%' }}>
+        <Grid xs={12} container>
             <Form
                 values={{ ...plan }}
                 isOpen={isOpen}
@@ -158,15 +153,7 @@ const HomePage = () => {
             {openModal && <SuccessModel setOpenModal={setOpenModal} />}
             {<CallBackButton from="landing" />}
             <Hero setIsOpen={setIsOpen} isOpen={isOpen} />
-            <Box
-                sx={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    width: '100%',
-                }}
-            >
+            <Grid xs={12} container sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                 <Box
                     px={2}
                     sx={{
@@ -178,19 +165,26 @@ const HomePage = () => {
                     }}
                 >
                     <Box sx={{}} p={1}>
-                        <Typography sx={{ fontSize: 28, fontWeight: 500 }}>{string?.main_advantages}</Typography>
+                        <Typography sx={{ fontSize: 24, fontWeight: 500 }}>{string?.main_advantages}</Typography>
                     </Box>
                 </Box>
-                {/* <Grid xs={12} container px={1} pb={2} sx={{ maxWidth: 1600 }}>
-                <Grid xs={12} container>
+                <Grid
+                    xs={12}
+                    container
+                    pl={1}
+                    pb={2}
+                    sx={{ maxWidth: 1600, display: 'flex', flexWrap: 'nowrap', overflow: 'scroll' }}
+                >
                     {TOOLS.map(({ name, price, rules }, index) => (
-                        <Grid xs={getTOOLSGridValue()} key={index} p={1} sx={{}}>
+                        <Box p={0.5}>
                             <Box
+                                key={index}
                                 sx={{
                                     backgroundColor: 'white',
                                     borderRadius: 4,
                                     boxShadow: '0 0 2px 1px green',
                                     overflow: 'hidden',
+                                    minWidth: 350,
                                 }}
                             >
                                 <Box
@@ -255,109 +249,10 @@ const HomePage = () => {
                                     ))}
                                 </Box>
                             </Box>
-                        </Grid>
+                        </Box>
                     ))}
                 </Grid>
-            </Grid> */}
-                <Box sx={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
-                    <Box sx={{ width: '100% !important', maxWidth: '1600px' }}>
-                        <Slider
-                            style={{
-                                width: '100% !important',
-                                maxWidth: '1600px',
-                                display: 'flex',
-                                overflow: 'hidden',
-                            }}
-                            infinite
-                            speed={500}
-                            slidesToShow={sm ? 1 : 2}
-                            slidesToScroll={1}
-                            touchThreshold={20}
-                            centerMode
-                            mobileFirst
-                            pauseOnFocus
-                            autoplay
-                            pauseOnHover
-                        >
-                            {TOOLS.map(({ name, price, rules }, index) => (
-                                <Box px={2} pr={0.2} sx={{ width: '100% !important' }}>
-                                    <Box
-                                        key={index}
-                                        sx={{
-                                            backgroundColor: 'white',
-                                            borderRadius: 4,
-                                            boxShadow: '0 0 2px 1px green',
-                                            overflow: 'hidden',
-                                            width: '100%',
-                                        }}
-                                    >
-                                        <Box
-                                            px={2}
-                                            py={0.75}
-                                            sx={{
-                                                display: 'flex',
-                                                justifyContent: 'space-between',
-                                                alignItems: 'center',
-                                                borderBottom: '1px solid #ccc',
-                                                backgroundColor: 'green',
-                                                opacity: 0.8,
-                                            }}
-                                        >
-                                            <Typography
-                                                sx={{ width: '100%', color: '#fff', fontSize: 20, textAlign: 'center' }}
-                                            >
-                                                {name}
-                                            </Typography>
-                                        </Box>
-                                        <Box p={1.5} sx={{ minHeight: sm ? 550 : 325 }}>
-                                            {rules.map((el, idx) => (
-                                                <Box
-                                                    key={idx}
-                                                    sx={{
-                                                        display: 'flex',
-                                                        flexDirection: 'row',
-                                                        gap: 0.5,
-                                                        mb: 0.75,
-                                                    }}
-                                                >
-                                                    <Box
-                                                        sx={{
-                                                            width: 20,
-                                                            height: 20,
-                                                            display: 'flex',
-                                                            alignItems: 'center',
-                                                            justifyContent: 'center',
-                                                            border: '1px solid #ccc',
-                                                            backgroundColor: 'green',
-                                                            borderRadius: '50%',
-                                                            opacity: 0.8,
-                                                        }}
-                                                    >
-                                                        <CheckIcon
-                                                            sx={{
-                                                                p: 0.25,
-                                                                color: '#fff',
-                                                                fontSize: 10,
-                                                                fontWeight: 700,
-                                                                width: 20,
-                                                                height: 20,
-                                                            }}
-                                                        />
-                                                    </Box>
-
-                                                    <Typography sx={{ color: 'gray' }}>
-                                                        <b style={{ color: '#000' }}>{el?.title}: </b> {el?.description}
-                                                    </Typography>
-                                                </Box>
-                                            ))}
-                                        </Box>
-                                    </Box>
-                                </Box>
-                            ))}
-                        </Slider>
-                    </Box>
-                </Box>
-            </Box>
+            </Grid>
             <Grid
                 xs={12}
                 sx={{
@@ -379,7 +274,7 @@ const HomePage = () => {
                     }}
                 >
                     <Box sx={{}} p={1}>
-                        <Typography sx={{ fontSize: 28, fontWeight: 500 }}>{string?.examples}</Typography>
+                        <Typography sx={{ fontSize: 24, fontWeight: 500 }}>{string?.examples}</Typography>
                     </Box>
                     <Button
                         size="medium"
@@ -442,7 +337,7 @@ const HomePage = () => {
                         }}
                     >
                         <Box sx={{}} p={1}>
-                            <Typography sx={{ fontSize: 28, fontWeight: 500 }}>{string?.price}</Typography>
+                            <Typography sx={{ fontSize: 24, fontWeight: 500 }}>{string?.price}</Typography>
                         </Box>
                     </Box>
                 </Grid>
