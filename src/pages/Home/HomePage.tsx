@@ -5,7 +5,7 @@ import Stores from 'pages/Stores/Stores';
 import CheckIcon from '@mui/icons-material/Check';
 import CloseIcon from '@mui/icons-material/Close';
 import Marquee from 'react-fast-marquee';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import Form from './Form';
 import CallBackButton from 'components/atoms/Buttons/CallBackButton';
 import { StoresContextInterface } from 'types';
@@ -19,6 +19,7 @@ const HomePage = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [plan, setPlan] = useState({ plan: '', subject: '' });
     const [openModal, setOpenModal] = useState(false);
+    const ref = useRef(null);
 
     const PRICING = [
         {
@@ -172,7 +173,15 @@ const HomePage = () => {
                     container
                     pl={1}
                     pb={2}
-                    sx={{ maxWidth: 1600, display: 'flex', flexWrap: 'nowrap', overflow: 'scroll' }}
+                    sx={{
+                        maxWidth: 1600,
+                        display: 'flex',
+                        flexWrap: 'nowrap',
+                        overflowX: 'scroll',
+                        '&::-webkit-scrollbar': {
+                            display: sm ? '' : 'none',
+                        },
+                    }}
                 >
                     {TOOLS.map(({ name, price, rules }, index) => (
                         <Box p={0.5}>
@@ -184,6 +193,7 @@ const HomePage = () => {
                                     boxShadow: '0 0 2px 1px green',
                                     overflow: 'hidden',
                                     minWidth: 350,
+                                    height: '100%',
                                 }}
                             >
                                 <Box
@@ -205,7 +215,7 @@ const HomePage = () => {
                                         {name}
                                     </Typography>
                                 </Box>
-                                <Box p={1.5} sx={{ borderBottom: '1px solid #ccc', minHeight: 325 }}>
+                                <Box p={1.5} sx={{ minHeight: 325 }}>
                                     {rules.map((el, idx) => (
                                         <Box
                                             key={idx}
