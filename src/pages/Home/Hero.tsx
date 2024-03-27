@@ -23,7 +23,6 @@ const Hero = ({ setIsOpen, isOpen }) => {
                     position: 'relative',
                     flexDirection: 'column',
                     background: `linear-gradient(89.7deg, rgb(0, 0, 0) 50.7%, rgb(23, 65, 65) 88.8%);`,
-
                     width: '100%',
                 }}
             >

@@ -142,48 +142,6 @@ const HomePage = () => {
 
     return (
         <>
-            <Grid xs={12} container sx={{ display: 'flex', gap: 1 }}>
-                <Grid
-                    xs={12}
-                    sx={{
-                        // width: '1000px',
-                        // height: '540px',
-                        border: '10px solid #000',
-                        borderRadius: 8,
-                        background: `linear-gradient(89.7deg, rgb(0, 0, 0) 50.7%, rgb(23, 65, 65) 88.8%);`,
-
-                        overflow: 'hidden',
-                    }}
-                >
-                    <Box sx={{ width: '100%', height: '100%' }}>
-                        <img style={{ width: '100%', height: '100%' }} src={require('./img/1.png')} alt="" />
-                    </Box>
-                </Grid>
-                {/* <Box
-                    sx={{
-                        width: '230px',
-                        height: '470px',
-                        border: '5px solid #000',
-                        borderRadius: 8,
-                        background: `linear-gradient(89.7deg, rgb(0, 0, 0) 50.7%, rgb(23, 65, 65) 88.8%);`,
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        overflow: 'hidden',
-                    }}
-                >
-                    <Box
-                        sx={{
-                            width: '220px',
-                            height: '460px',
-                            background: '#fff',
-                            backgroundImage: `url(${require('./img/11.png')})`,
-                            backgroundSize: 'cover',
-                            backgroundRepeat: 'no-repeat',
-                        }}
-                    ></Box>
-                </Box> */}
-            </Grid>
             <Grid xs={12} container>
                 <Form
                     values={{ ...plan }}
@@ -195,6 +153,45 @@ const HomePage = () => {
                 {openModal && <SuccessModel setOpenModal={setOpenModal} />}
                 {<CallBackButton from="landing" />}
                 <Hero setIsOpen={setIsOpen} isOpen={isOpen} />
+                <Grid
+                    p={1}
+                    xs={12}
+                    container
+                    sx={{ display: 'flex', gap: 1, flexWrap: 'nowrap', alignItems: 'flex-end' }}
+                >
+                    <Grid
+                        xs={10}
+                        sx={{
+                            border: '1vw solid #000',
+                            borderRadius: sm ? '12px' : '24px',
+                            background: `#fff`,
+                            overflow: 'hidden',
+                            height: 'fit-content',
+                            boxShadow: '0 0 5px 2px #d3d3d3',
+                        }}
+                    >
+                        <Box sx={{ width: '100%' }}>
+                            <img style={{ width: '100%' }} src={require('./img/1.png')} alt="" />
+                        </Box>
+                    </Grid>
+                    <Grid
+                        xs={2}
+                        sx={{
+                            boxShadow: '0 0 5px 2px #d3d3d3',
+                            border: '0.5vw solid #000',
+                            borderRadius: sm ? '8px' : '16px',
+                            background: `#000`,
+                            overflow: 'hidden',
+                            height: 'fit-content',
+                        }}
+                        ml={-2}
+                        mb={1}
+                    >
+                        <Box sx={{ width: '100%' }}>
+                            <img style={{ width: '100%' }} src={require('./img/11.png')} alt="" />
+                        </Box>
+                    </Grid>
+                </Grid>
                 <Grid xs={12} container sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                     <Box
                         px={2}
@@ -210,6 +207,7 @@ const HomePage = () => {
                             <Typography sx={{ fontSize: 24, fontWeight: 500 }}>{string?.main_advantages}</Typography>
                         </Box>
                     </Box>
+
                     <Grid
                         xs={12}
                         container
@@ -312,6 +310,7 @@ const HomePage = () => {
                         ))}
                     </Grid>
                 </Grid>
+
                 <Grid
                     xs={12}
                     sx={{
@@ -483,7 +482,7 @@ const HomePage = () => {
                                                     borderRadius: '50%',
                                                 }}
                                             >
-                                                {index !== 2 && (
+                                                {!index && (
                                                     <img
                                                         src={require('./img/free.webp')}
                                                         style={{ width: 130, height: 115 }}
