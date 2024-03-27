@@ -1,4 +1,4 @@
-import { Box, Button, Typography } from '@mui/material';
+import { Box, Button, IconButton, Typography } from '@mui/material';
 import Grid from '@mui/material/Unstable_Grid2';
 import { useDevice } from 'hooks/useDevice';
 import Stores from 'pages/Stores/Stores';
@@ -12,6 +12,9 @@ import { StoresContextInterface } from 'types';
 import { useOutletContext } from 'react-router-dom';
 import SuccessModel from './SuccessModel';
 import Hero from './Hero';
+import Slider from 'react-slick';
+import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
+import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 
 const HomePage = () => {
     const { string }: StoresContextInterface = useOutletContext();
@@ -132,6 +135,14 @@ const HomePage = () => {
         },
     ];
 
+    const SLIDES = [
+        { desc: '1', mob: '11', description: string?.view_descr_1 },
+        { desc: '2', mob: '22', description: string?.view_descr_2 },
+        { desc: '3', mob: '33', description: string?.view_descr_3 },
+        { desc: '4', mob: '44', description: string?.view_descr_4 },
+        { desc: '6', mob: '66', description: string?.view_descr_5 },
+    ];
+
     const { sm, l, sx } = useDevice();
 
     const getPRICINGGridValue = () => {
@@ -140,9 +151,61 @@ const HomePage = () => {
         return 4;
     };
 
+    function SamplePrevArrow(props) {
+        const { onClick } = props;
+        return (
+            <IconButton
+                onClick={e => {
+                    e.stopPropagation();
+                    onClick();
+                }}
+                sx={{
+                    zIndex: 1000,
+                    position: 'absolute',
+                    bottom: sm ? '10%' : '50%',
+                    left: '0',
+                    backgroundColor: '#fff',
+                    '&:hover': {
+                        backgroundColor: '#fff',
+                    },
+                    border: '1px solid #ccc',
+                }}
+                size="small"
+            >
+                <ArrowLeftIcon />
+            </IconButton>
+        );
+    }
+
+    function SampleNextArrow(props) {
+        const { onClick } = props;
+        return (
+            <IconButton
+                onClick={e => {
+                    e.stopPropagation();
+                    onClick();
+                }}
+                sx={{
+                    zIndex: 1000,
+                    position: 'absolute',
+                    bottom: sm ? '10%' : '50%',
+                    right: '0',
+                    backgroundColor: '#fff',
+                    '&:hover': {
+                        backgroundColor: '#fff',
+                    },
+                    border: '1px solid #ccc',
+                }}
+                size="small"
+            >
+                <ArrowRightIcon />
+            </IconButton>
+        );
+    }
+
     return (
         <>
-            <Grid xs={12} container>
+            <Box>
                 <Form
                     values={{ ...plan }}
                     isOpen={isOpen}
@@ -153,98 +216,137 @@ const HomePage = () => {
                 {openModal && <SuccessModel setOpenModal={setOpenModal} />}
                 {<CallBackButton from="landing" />}
                 <Hero setIsOpen={setIsOpen} isOpen={isOpen} />
-                <Grid
-                    xs={12}
-                    container
-                    sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: '#f5f5f5' }}
+
+                <Box
+                    sx={{
+                        backgroundColor: '#f5f5f5',
+                        overflow: 'hidden',
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        flexDirection: 'column',
+                    }}
                 >
                     <Box
                         px={2}
                         sx={{
-                            width: '100%',
                             maxWidth: 1600,
-                            display: 'flex',
-                            alignItems: 'center',
+                            width: '100%',
                         }}
                     >
-                        <Box sx={{}} p={1}>
-                            <Typography sx={{ fontSize: 24, fontWeight: 500 }}>Web and Mobile View</Typography>
+                        <Box p={1}>
+                            <Typography sx={{ fontSize: 24, fontWeight: 500 }}>{string?.web_mob_view}</Typography>
                         </Box>
                     </Box>
                     <Box
-                        py={2}
                         sx={{
+                            width: '100%',
                             display: 'flex',
                             justifyContent: 'center',
-                            alignItems: 'center',
-                            flexDirection: 'column',
-                            width: '100%',
-                            backgroundColor: '#f5f5f5',
                             borderBottom: '1px solid #ccc',
                         }}
                     >
-                        <Grid
-                            p={1}
-                            xs={12}
-                            container
-                            sx={{ display: 'flex', gap: 1, flexWrap: 'nowrap', alignItems: 'flex-end', maxWidth: 1200 }}
+                        <Slider
+                            nextArrow={<SampleNextArrow />}
+                            prevArrow={<SamplePrevArrow />}
+                            dots
+                            arrows
+                            style={{ maxWidth: 1200, width: '100vw' }}
+                            touchThreshold={20}
                         >
-                            <Grid
-                                xs={2}
-                                sx={{
-                                    boxShadow: '0 0 5px 2px #d3d3d3',
-                                    border: '0.5vw solid #000',
-                                    borderRadius: sm ? '8px' : '16px',
-                                    background: `#000`,
-                                    overflow: 'hidden',
-                                    height: 'fit-content',
-                                    zIndex: 1,
-                                }}
-                                mr={-2}
-                                mb={1}
-                            >
-                                <Box sx={{ width: '100%' }}>
-                                    <img style={{ width: '100%' }} src={require('./img/11.png')} alt="" />
+                            {SLIDES.map(el => (
+                                <Box
+                                    pb={2}
+                                    sx={{
+                                        display: 'flex',
+                                        justifyContent: 'center',
+                                        alignItems: 'center',
+                                        flexDirection: 'column',
+                                        backgroundColor: '#f5f5f5',
+                                    }}
+                                >
+                                    <Grid
+                                        p={1}
+                                        xs={12}
+                                        container
+                                        sx={{
+                                            display: 'flex',
+                                            gap: 1,
+                                            flexWrap: 'nowrap',
+                                            alignItems: 'flex-end',
+                                            // maxWidth: 1200,
+                                        }}
+                                    >
+                                        <Grid
+                                            xs={2}
+                                            sx={{
+                                                boxShadow: '0 0 5px 2px #d3d3d3',
+                                                border: '0.5vw solid #000',
+                                                borderRadius: sm ? '8px' : '16px',
+                                                background: `#000`,
+                                                overflow: 'hidden',
+                                                height: 'fit-content',
+                                                zIndex: 1,
+                                            }}
+                                            mr={-2}
+                                            mb={1}
+                                        >
+                                            {/* <Box sx={{ width: '100%' }}> */}
+                                            <img
+                                                style={{ width: '100%' }}
+                                                src={require(`./img/${el.mob}.png`)}
+                                                alt=""
+                                            />
+                                            {/* </Box> */}
+                                        </Grid>
+                                        <Grid
+                                            xs={10}
+                                            sx={{
+                                                border: '1vw solid #000',
+                                                borderRadius: sm ? '12px' : '24px',
+                                                background: `#fff`,
+                                                overflow: 'hidden',
+                                                height: 'fit-content',
+                                                boxShadow: '0 0 5px 2px #d3d3d3',
+                                            }}
+                                        >
+                                            <Box sx={{ width: '100%' }}>
+                                                <img
+                                                    style={{ width: '100%' }}
+                                                    src={require(`./img/${el.desc}.png`)}
+                                                    alt=""
+                                                />
+                                            </Box>
+                                        </Grid>
+                                    </Grid>
+                                    <Grid mt={-1} xs={12} sx={{ zIndex: 1, height: '100%' }}>
+                                        <Box
+                                            p={2}
+                                            sx={{
+                                                width: '100%',
+
+                                                display: 'flex',
+                                                justifyContent: 'center',
+                                            }}
+                                        >
+                                            <Typography
+                                                variant={sx ? 'h4' : 'h3'}
+                                                sx={{
+                                                    color: 'gray',
+                                                    textAlign: 'center',
+                                                    maxWidth: '90%',
+                                                    width: '1000px',
+                                                }}
+                                            >
+                                                {el?.description}
+                                            </Typography>
+                                        </Box>
+                                    </Grid>
                                 </Box>
-                            </Grid>
-                            <Grid
-                                xs={10}
-                                sx={{
-                                    border: '1vw solid #000',
-                                    borderRadius: sm ? '12px' : '24px',
-                                    background: `#fff`,
-                                    overflow: 'hidden',
-                                    height: 'fit-content',
-                                    boxShadow: '0 0 5px 2px #d3d3d3',
-                                }}
-                            >
-                                <Box sx={{ width: '100%' }}>
-                                    <img style={{ width: '100%' }} src={require('./img/1.png')} alt="" />
-                                </Box>
-                            </Grid>
-                        </Grid>
-                        <Grid mt={-1} xs={12} p={1} sx={{ zIndex: 1, height: '100%', maxWidth: '1000px' }}>
-                            <Box
-                                p={2}
-                                sx={
-                                    {
-                                        // backgroundColor: '#fff',
-                                        // border: '0.125vw solid #000',
-                                        // borderRadius: sm ? '8px' : '16px',
-                                        // boxShadow: '0 0 5px 2px #ccc',
-                                    }
-                                }
-                            >
-                                <Typography variant="h3" sx={{ color: 'gray', textAlign: 'center' }}>
-                                    Этот интерфейс удобен для клиентов благодаря четкому визуальному оформлению, простой
-                                    навигации и быстрому доступу к основным функциям. Он обеспечивает беспрепятственный
-                                    процесс совершения покупок с минимальным беспорядком, что позволяет покупателям
-                                    легко находить и покупать товары, которые им нравятся.
-                                </Typography>
-                            </Box>
-                        </Grid>
+                            ))}
+                        </Slider>
                     </Box>
-                </Grid>
+                </Box>
                 <Grid xs={12} container sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                     <Box
                         px={2}
@@ -256,7 +358,7 @@ const HomePage = () => {
                             justifyContent: 'space-between',
                         }}
                     >
-                        <Box sx={{}} p={1}>
+                        <Box p={1}>
                             <Typography sx={{ fontSize: 24, fontWeight: 500 }}>{string?.main_advantages}</Typography>
                         </Box>
                     </Box>
@@ -384,7 +486,7 @@ const HomePage = () => {
                             justifyContent: 'space-between',
                         }}
                     >
-                        <Box sx={{}} p={1}>
+                        <Box p={1}>
                             <Typography sx={{ fontSize: 24, fontWeight: 500 }}>{string?.examples}</Typography>
                         </Box>
                         <Button
@@ -453,7 +555,7 @@ const HomePage = () => {
                                 justifyContent: 'space-between',
                             }}
                         >
-                            <Box sx={{}} p={1}>
+                            <Box p={1}>
                                 <Typography sx={{ fontSize: 24, fontWeight: 500 }}>{string?.price}</Typography>
                             </Box>
                         </Box>
@@ -620,7 +722,7 @@ const HomePage = () => {
                         </Grid>
                     </Grid>
                 </Grid>
-            </Grid>
+            </Box>
         </>
     );
 };

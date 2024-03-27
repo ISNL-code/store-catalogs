@@ -7,6 +7,8 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'en',
             string: {
+                view_descr_1: 'Web and Mobile View',
+                web_mob_view: 'Web and Mobile View',
                 examples: 'Examples',
                 main_advantages: 'Main Advantages',
                 online_catalog_for_your_business: 'Online Catalog for your business',
@@ -192,6 +194,7 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'fr',
             string: {
+                web_mob_view: 'Vue Web et Mobile',
                 examples: 'Exemples',
                 main_advantages: 'Principaux avantages',
                 online_catalog_for_your_business: 'Catalogue en ligne pour votre entreprise',
@@ -379,6 +382,7 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'es',
             string: {
+                web_mob_view: 'Vista Web y Móvil',
                 examples: 'Ejemplos',
                 main_advantages: 'Principales ventajas',
                 online_catalog_for_your_business: 'Catálogo en línea para su negocio',
@@ -565,6 +569,7 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'ua',
             string: {
+                web_mob_view: 'Веб та Мобільний Перегляд',
                 examples: 'Приклади',
                 main_advantages: 'Основні переваги',
                 online_catalog_for_your_business: 'Онлайн-каталог для вашого бізнесу',
@@ -751,6 +756,7 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'pl',
             string: {
+                web_mob_view: 'Widok Webowy i Mobilny',
                 examples: 'Przykłady',
                 main_advantages: 'Główne zalety',
                 online_catalog_for_your_business: 'Katalog online dla Twojej firmy',
@@ -950,6 +956,7 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'cz',
             string: {
+                web_mob_view: 'Webové a Mobilní Zobrazení',
                 examples: 'Příklady',
                 main_advantages: 'Hlavní výhody',
                 online_catalog_for_your_business: 'Online katalog pro váš podnik',
@@ -1146,6 +1153,7 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'ru',
             string: {
+                web_mob_view: 'Веб и Мобильный Просмотр',
                 examples: 'Примеры',
                 main_advantages: 'Основные преимущества',
                 online_catalog_for_your_business: 'Онлайн-каталог для вашего бизнеса',
