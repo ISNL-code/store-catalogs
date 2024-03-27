@@ -141,198 +141,177 @@ const HomePage = () => {
     };
 
     return (
-        <Grid xs={12} container>
-            <Form
-                values={{ ...plan }}
-                isOpen={isOpen}
-                setIsOpen={setIsOpen}
-                setOpenModal={setOpenModal}
-                setPlan={setPlan}
-            />
-            {openModal && <SuccessModel setOpenModal={setOpenModal} />}
-            {<CallBackButton from="landing" />}
-            <Hero setIsOpen={setIsOpen} isOpen={isOpen} />
-            <Grid xs={12} container sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                <Box
-                    px={2}
-                    sx={{
-                        width: '100%',
-                        maxWidth: 1600,
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'space-between',
-                    }}
-                >
-                    <Box sx={{}} p={1}>
-                        <Typography sx={{ fontSize: 24, fontWeight: 500 }}>{string?.main_advantages}</Typography>
-                    </Box>
-                </Box>
+        <>
+            <Grid xs={12} container sx={{ display: 'flex', gap: 1 }}>
                 <Grid
                     xs={12}
-                    container
-                    pl={1}
-                    pb={2}
                     sx={{
-                        maxWidth: 1600,
-                        display: 'flex',
-                        flexWrap: 'nowrap',
-                        overflowX: 'scroll',
-                        '&::-webkit-scrollbar': {
-                            display: sm ? '' : 'none',
-                        },
+                        // width: '1000px',
+                        // height: '540px',
+                        border: '10px solid #000',
+                        borderRadius: 8,
+                        background: `linear-gradient(89.7deg, rgb(0, 0, 0) 50.7%, rgb(23, 65, 65) 88.8%);`,
+
+                        overflow: 'hidden',
                     }}
                 >
-                    {TOOLS.map(({ name, price, rules }, index) => (
-                        <Box p={0.5}>
-                            <Box
-                                key={index}
-                                sx={{
-                                    backgroundColor: 'white',
-                                    borderRadius: 4,
-                                    boxShadow: '0 0 2px 1px green',
-                                    overflow: 'hidden',
-                                    minWidth: 350,
-                                    height: '100%',
-                                }}
-                            >
+                    <Box sx={{ width: '100%', height: '100%' }}>
+                        <img style={{ width: '100%', height: '100%' }} src={require('./img/1.png')} alt="" />
+                    </Box>
+                </Grid>
+                {/* <Box
+                    sx={{
+                        width: '230px',
+                        height: '470px',
+                        border: '5px solid #000',
+                        borderRadius: 8,
+                        background: `linear-gradient(89.7deg, rgb(0, 0, 0) 50.7%, rgb(23, 65, 65) 88.8%);`,
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        overflow: 'hidden',
+                    }}
+                >
+                    <Box
+                        sx={{
+                            width: '220px',
+                            height: '460px',
+                            background: '#fff',
+                            backgroundImage: `url(${require('./img/11.png')})`,
+                            backgroundSize: 'cover',
+                            backgroundRepeat: 'no-repeat',
+                        }}
+                    ></Box>
+                </Box> */}
+            </Grid>
+            <Grid xs={12} container>
+                <Form
+                    values={{ ...plan }}
+                    isOpen={isOpen}
+                    setIsOpen={setIsOpen}
+                    setOpenModal={setOpenModal}
+                    setPlan={setPlan}
+                />
+                {openModal && <SuccessModel setOpenModal={setOpenModal} />}
+                {<CallBackButton from="landing" />}
+                <Hero setIsOpen={setIsOpen} isOpen={isOpen} />
+                <Grid xs={12} container sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                    <Box
+                        px={2}
+                        sx={{
+                            width: '100%',
+                            maxWidth: 1600,
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'space-between',
+                        }}
+                    >
+                        <Box sx={{}} p={1}>
+                            <Typography sx={{ fontSize: 24, fontWeight: 500 }}>{string?.main_advantages}</Typography>
+                        </Box>
+                    </Box>
+                    <Grid
+                        xs={12}
+                        container
+                        pl={1}
+                        pb={2}
+                        sx={{
+                            maxWidth: 1600,
+                            display: 'flex',
+                            flexWrap: 'nowrap',
+                            overflowX: 'scroll',
+                            '&::-webkit-scrollbar': {
+                                display: sm ? '' : 'none',
+                            },
+                        }}
+                    >
+                        {TOOLS.map(({ name, price, rules }, index) => (
+                            <Box p={0.5}>
                                 <Box
-                                    px={2}
-                                    py={0.5}
+                                    key={index}
                                     sx={{
-                                        width: '100%',
-                                        display: 'flex',
-                                        justifyContent: 'space-between',
-                                        alignItems: 'center',
-                                        borderBottom: '1px solid #00690053',
-                                        background: `green`,
-                                        opacity: 0.9,
+                                        backgroundColor: 'white',
+                                        borderRadius: 4,
+                                        boxShadow: '0 0 2px 1px green',
+                                        overflow: 'hidden',
+                                        minWidth: 350,
+                                        height: '100%',
                                     }}
                                 >
-                                    <Typography
-                                        sx={{ width: '100%', color: '#fff', fontSize: 20, textAlign: 'center' }}
+                                    <Box
+                                        px={2}
+                                        py={0.5}
+                                        sx={{
+                                            width: '100%',
+                                            display: 'flex',
+                                            justifyContent: 'space-between',
+                                            alignItems: 'center',
+                                            borderBottom: '1px solid #00690053',
+                                            background: `green`,
+                                            opacity: 0.9,
+                                        }}
                                     >
-                                        {name}
-                                    </Typography>
-                                </Box>
-                                <Box
-                                    p={1.5}
-                                    sx={{
-                                        // minHeight: 325,
-                                        display: 'flex',
-                                        flexDirection: 'column',
-                                        gap: 0.5,
-                                    }}
-                                >
-                                    {rules.map((el, idx) => (
-                                        <Box
-                                            key={idx}
-                                            sx={{
-                                                display: 'flex',
-                                                flexDirection: 'row',
-                                                gap: 0.5,
-                                                // mb: 0.75,
-                                            }}
+                                        <Typography
+                                            sx={{ width: '100%', color: '#fff', fontSize: 20, textAlign: 'center' }}
                                         >
+                                            {name}
+                                        </Typography>
+                                    </Box>
+                                    <Box
+                                        p={1.5}
+                                        sx={{
+                                            // minHeight: 325,
+                                            display: 'flex',
+                                            flexDirection: 'column',
+                                            gap: 0.5,
+                                        }}
+                                    >
+                                        {rules.map((el, idx) => (
                                             <Box
+                                                key={idx}
                                                 sx={{
-                                                    width: 20,
-                                                    height: 20,
                                                     display: 'flex',
-                                                    alignItems: 'center',
-                                                    justifyContent: 'center',
-                                                    border: '1px solid #ccc',
-                                                    backgroundColor: 'green',
-                                                    borderRadius: '50%',
-                                                    opacity: 0.8,
+                                                    flexDirection: 'row',
+                                                    gap: 0.5,
+                                                    // mb: 0.75,
                                                 }}
                                             >
-                                                <CheckIcon
+                                                <Box
                                                     sx={{
-                                                        p: 0.25,
-                                                        color: '#fff',
-                                                        fontSize: 10,
-                                                        fontWeight: 700,
-                                                        width: 18,
-                                                        height: 18,
+                                                        width: 20,
+                                                        height: 20,
+                                                        display: 'flex',
+                                                        alignItems: 'center',
+                                                        justifyContent: 'center',
+                                                        border: '1px solid #ccc',
+                                                        backgroundColor: 'green',
+                                                        borderRadius: '50%',
+                                                        opacity: 0.8,
                                                     }}
-                                                />
-                                            </Box>
+                                                >
+                                                    <CheckIcon
+                                                        sx={{
+                                                            p: 0.25,
+                                                            color: '#fff',
+                                                            fontSize: 10,
+                                                            fontWeight: 700,
+                                                            width: 18,
+                                                            height: 18,
+                                                        }}
+                                                    />
+                                                </Box>
 
-                                            <Typography sx={{ color: 'gray' }}>
-                                                <b style={{ color: '#000' }}>{el?.title}: </b> {el?.description}
-                                            </Typography>
-                                        </Box>
-                                    ))}
+                                                <Typography sx={{ color: 'gray' }}>
+                                                    <b style={{ color: '#000' }}>{el?.title}: </b> {el?.description}
+                                                </Typography>
+                                            </Box>
+                                        ))}
+                                    </Box>
                                 </Box>
                             </Box>
-                        </Box>
-                    ))}
-                </Grid>
-            </Grid>
-            <Grid
-                xs={12}
-                sx={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: sx ? 'flex-start' : 'center',
-                    borderTop: '1px solid #ccc',
-                    backgroundColor: '#f5f5f5',
-                }}
-            >
-                <Box
-                    px={2}
-                    sx={{
-                        width: '100%',
-                        maxWidth: 1600,
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'space-between',
-                    }}
-                >
-                    <Box sx={{}} p={1}>
-                        <Typography sx={{ fontSize: 24, fontWeight: 500 }}>{string?.examples}</Typography>
-                    </Box>
-                    <Button
-                        size="medium"
-                        onClick={() => setStoresDetails(!storesDetails)}
-                        variant="contained"
-                        sx={{ ml: 'auto' }}
-                    >
-                        {string?.show_all}
-                    </Button>
-                </Box>
-            </Grid>
-            <Grid
-                pb={2}
-                xs={12}
-                sx={{ display: 'flex', justifyContent: 'center', backgroundColor: '#f5f5f5' }}
-                md={12}
-                container
-            >
-                {!storesDetails ? (
-                    <Box sx={{ width: '100%', backgroundColor: '#f5f5f5', minHeight: 275 }}>
-                        <Marquee style={{ display: 'flex' }} loop={0} speed={75}>
-                            <Stores details={false} />
-                        </Marquee>
-                    </Box>
-                ) : (
-                    <Grid p={1} container xs={12} sx={{ width: '100%', maxWidth: 1600, backgroundColor: '#f5f5f5' }}>
-                        <Stores details />
+                        ))}
                     </Grid>
-                )}
-            </Grid>
-
-            <Grid
-                mb={2}
-                xs={12}
-                container
-                sx={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    flexDirection: 'column',
-                }}
-            >
+                </Grid>
                 <Grid
                     xs={12}
                     sx={{
@@ -340,7 +319,7 @@ const HomePage = () => {
                         alignItems: 'center',
                         justifyContent: sx ? 'flex-start' : 'center',
                         borderTop: '1px solid #ccc',
-                        backgroundColor: '#fff',
+                        backgroundColor: '#f5f5f5',
                     }}
                 >
                     <Box
@@ -354,171 +333,243 @@ const HomePage = () => {
                         }}
                     >
                         <Box sx={{}} p={1}>
-                            <Typography sx={{ fontSize: 24, fontWeight: 500 }}>{string?.price}</Typography>
+                            <Typography sx={{ fontSize: 24, fontWeight: 500 }}>{string?.examples}</Typography>
                         </Box>
+                        <Button
+                            size="medium"
+                            onClick={() => setStoresDetails(!storesDetails)}
+                            variant="contained"
+                            sx={{ ml: 'auto' }}
+                        >
+                            {string?.show_all}
+                        </Button>
                     </Box>
+                </Grid>
+                <Grid
+                    pb={2}
+                    xs={12}
+                    sx={{ display: 'flex', justifyContent: 'center', backgroundColor: '#f5f5f5' }}
+                    md={12}
+                    container
+                >
+                    {!storesDetails ? (
+                        <Box sx={{ width: '100%', backgroundColor: '#f5f5f5', minHeight: 275 }}>
+                            <Marquee style={{ display: 'flex' }} loop={0} speed={75}>
+                                <Stores details={false} />
+                            </Marquee>
+                        </Box>
+                    ) : (
+                        <Grid
+                            p={1}
+                            container
+                            xs={12}
+                            sx={{ width: '100%', maxWidth: 1600, backgroundColor: '#f5f5f5' }}
+                        >
+                            <Stores details />
+                        </Grid>
+                    )}
                 </Grid>
 
                 <Grid
-                    // p={10}
+                    mb={2}
                     xs={12}
                     container
                     sx={{
-                        background: sx ? '' : `url(${require('./img/bcg.png')})`,
-                        backgroundRepeat: 'no-repeat',
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'cover',
                         display: 'flex',
                         justifyContent: 'center',
                         alignItems: 'center',
-                        width: '100%',
+                        flexDirection: 'column',
                     }}
                 >
                     <Grid
                         xs={12}
-                        container
-                        p={1}
                         sx={{
-                            maxWidth: 1600,
-                            minHeight: '480px',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: sx ? 'flex-start' : 'center',
+                            borderTop: '1px solid #ccc',
+                            backgroundColor: '#fff',
+                        }}
+                    >
+                        <Box
+                            px={2}
+                            sx={{
+                                width: '100%',
+                                maxWidth: 1600,
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'space-between',
+                            }}
+                        >
+                            <Box sx={{}} p={1}>
+                                <Typography sx={{ fontSize: 24, fontWeight: 500 }}>{string?.price}</Typography>
+                            </Box>
+                        </Box>
+                    </Grid>
+
+                    <Grid
+                        // p={10}
+                        xs={12}
+                        container
+                        sx={{
+                            background: sx ? '' : `url(${require('./img/bcg.png')})`,
+                            backgroundRepeat: 'no-repeat',
+                            backgroundSize: 'cover',
+                            backgroundPosition: 'cover',
                             display: 'flex',
                             justifyContent: 'center',
                             alignItems: 'center',
+                            width: '100%',
                         }}
                     >
-                        {PRICING.map(({ name, price, rules, values }, index) => (
-                            <Grid xs={getPRICINGGridValue()} key={index} p={1}>
-                                <Box
-                                    sx={{
-                                        width: '100%',
-                                        backgroundColor: 'white',
-                                        borderRadius: 4,
-                                        boxShadow: '0 0 2px 1px #1976d2',
-                                        overflow: 'hidden',
-                                    }}
-                                >
+                        <Grid
+                            xs={12}
+                            container
+                            p={1}
+                            sx={{
+                                maxWidth: 1600,
+                                minHeight: '480px',
+                                display: 'flex',
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                            }}
+                        >
+                            {PRICING.map(({ name, price, rules, values }, index) => (
+                                <Grid xs={getPRICINGGridValue()} key={index} p={1}>
                                     <Box
-                                        px={2}
-                                        py={0.75}
                                         sx={{
-                                            background: '#1976d2',
-                                            display: 'flex',
-                                            justifyContent: 'space-between',
-                                            alignItems: 'center',
-                                            borderBottom: '1px solid #1976d2',
-                                            opacity: 0.8,
+                                            width: '100%',
+                                            backgroundColor: 'white',
+                                            borderRadius: 4,
+                                            boxShadow: '0 0 2px 1px #1976d2',
+                                            overflow: 'hidden',
                                         }}
                                     >
-                                        <Typography sx={{ color: '#fff', fontSize: 20 }}>{name}</Typography>
-                                        {price && (
-                                            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                                                <Typography sx={{ fontSize: 24, color: '#fff' }}>{price}</Typography>
-                                                <Typography mb={1} sx={{ fontSize: 16, color: '#fff' }}>
-                                                    / {string?.month}
-                                                </Typography>
-                                            </Box>
-                                        )}
-                                    </Box>
-                                    <Box p={1.5} sx={{ position: 'relative' }}>
                                         <Box
+                                            px={2}
+                                            py={0.75}
                                             sx={{
+                                                background: '#1976d2',
                                                 display: 'flex',
+                                                justifyContent: 'space-between',
                                                 alignItems: 'center',
-                                                justifyContent: 'center',
-
-                                                overflow: 'hidden',
-                                                position: 'absolute',
-                                                bottom: 10,
-                                                right: 10,
-                                                borderRadius: '50%',
+                                                borderBottom: '1px solid #1976d2',
+                                                opacity: 0.8,
                                             }}
                                         >
-                                            {index !== 2 && (
-                                                <img
-                                                    src={require('./img/free.webp')}
-                                                    style={{ width: 130, height: 115 }}
-                                                    alt=""
-                                                />
+                                            <Typography sx={{ color: '#fff', fontSize: 20 }}>{name}</Typography>
+                                            {price && (
+                                                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                                                    <Typography sx={{ fontSize: 24, color: '#fff' }}>
+                                                        {price}
+                                                    </Typography>
+                                                    <Typography mb={1} sx={{ fontSize: 16, color: '#fff' }}>
+                                                        / {string?.month}
+                                                    </Typography>
+                                                </Box>
                                             )}
                                         </Box>
-                                        {rules.map((el, idx) => (
+                                        <Box p={1.5} sx={{ position: 'relative' }}>
                                             <Box
-                                                key={idx}
                                                 sx={{
                                                     display: 'flex',
-                                                    flexDirection: 'row',
                                                     alignItems: 'center',
-                                                    gap: 0.5,
-                                                    mb: 0.75,
+                                                    justifyContent: 'center',
+
+                                                    overflow: 'hidden',
+                                                    position: 'absolute',
+                                                    bottom: 10,
+                                                    right: 10,
+                                                    borderRadius: '50%',
                                                 }}
                                             >
-                                                {el?.available ? (
-                                                    <Box
-                                                        sx={{
-                                                            width: 20,
-                                                            height: 20,
-                                                            display: 'flex',
-                                                            alignItems: 'center',
-                                                            justifyContent: 'center',
-                                                            border: '1px solid #ccc',
-                                                            backgroundColor: 'green',
-                                                            borderRadius: '50%',
-                                                            opacity: 0.8,
-                                                        }}
-                                                    >
-                                                        <CheckIcon
-                                                            sx={{ color: '#fff', fontSize: 14, fontWeight: 700 }}
-                                                        />
-                                                    </Box>
-                                                ) : (
-                                                    <Box
-                                                        sx={{
-                                                            width: 20,
-                                                            height: 20,
-                                                            display: 'flex',
-                                                            alignItems: 'center',
-                                                            justifyContent: 'center',
-                                                            border: '1px solid #ccc',
-                                                            backgroundColor: 'red',
-                                                            borderRadius: '50%',
-                                                            opacity: 0.8,
-                                                        }}
-                                                    >
-                                                        <CloseIcon
-                                                            sx={{ color: '#fff', fontSize: 14, fontWeight: 700 }}
-                                                        />
-                                                    </Box>
+                                                {index !== 2 && (
+                                                    <img
+                                                        src={require('./img/free.webp')}
+                                                        style={{ width: 130, height: 115 }}
+                                                        alt=""
+                                                    />
                                                 )}
-                                                <Typography>{el?.title}</Typography>
                                             </Box>
-                                        ))}
-                                    </Box>
-                                    <Box
-                                        p={1.5}
-                                        sx={{
-                                            display: 'flex',
-                                            justifyContent: 'center',
-                                            backgroundColor: '#eeeeee',
-                                        }}
-                                    >
-                                        <Button
-                                            onClick={() => {
-                                                setIsOpen(!isOpen);
-                                                setPlan({ ...values });
+                                            {rules.map((el, idx) => (
+                                                <Box
+                                                    key={idx}
+                                                    sx={{
+                                                        display: 'flex',
+                                                        flexDirection: 'row',
+                                                        alignItems: 'center',
+                                                        gap: 0.5,
+                                                        mb: 0.75,
+                                                    }}
+                                                >
+                                                    {el?.available ? (
+                                                        <Box
+                                                            sx={{
+                                                                width: 20,
+                                                                height: 20,
+                                                                display: 'flex',
+                                                                alignItems: 'center',
+                                                                justifyContent: 'center',
+                                                                border: '1px solid #ccc',
+                                                                backgroundColor: 'green',
+                                                                borderRadius: '50%',
+                                                                opacity: 0.8,
+                                                            }}
+                                                        >
+                                                            <CheckIcon
+                                                                sx={{ color: '#fff', fontSize: 14, fontWeight: 700 }}
+                                                            />
+                                                        </Box>
+                                                    ) : (
+                                                        <Box
+                                                            sx={{
+                                                                width: 20,
+                                                                height: 20,
+                                                                display: 'flex',
+                                                                alignItems: 'center',
+                                                                justifyContent: 'center',
+                                                                border: '1px solid #ccc',
+                                                                backgroundColor: 'red',
+                                                                borderRadius: '50%',
+                                                                opacity: 0.8,
+                                                            }}
+                                                        >
+                                                            <CloseIcon
+                                                                sx={{ color: '#fff', fontSize: 14, fontWeight: 700 }}
+                                                            />
+                                                        </Box>
+                                                    )}
+                                                    <Typography>{el?.title}</Typography>
+                                                </Box>
+                                            ))}
+                                        </Box>
+                                        <Box
+                                            p={1.5}
+                                            sx={{
+                                                display: 'flex',
+                                                justifyContent: 'center',
+                                                backgroundColor: '#eeeeee',
                                             }}
-                                            size="large"
-                                            variant="contained"
                                         >
-                                            {string?.request}
-                                        </Button>
+                                            <Button
+                                                onClick={() => {
+                                                    setIsOpen(!isOpen);
+                                                    setPlan({ ...values });
+                                                }}
+                                                size="large"
+                                                variant="contained"
+                                            >
+                                                {string?.request}
+                                            </Button>
+                                        </Box>
                                     </Box>
-                                </Box>
-                            </Grid>
-                        ))}
+                                </Grid>
+                            ))}
+                        </Grid>
                     </Grid>
                 </Grid>
             </Grid>
-        </Grid>
+        </>
     );
 };
 
