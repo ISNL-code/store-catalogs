@@ -569,7 +569,7 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'ua',
             string: {
-                web_mob_view: 'Веб та Мобільний Перегляд',
+                web_mob_view: 'Веб/Мобільний Огляд',
                 examples: 'Приклади',
                 main_advantages: 'Основні переваги',
                 online_catalog_for_your_business: 'Онлайн-каталог для вашого бізнесу',

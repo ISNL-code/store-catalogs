@@ -15,6 +15,8 @@ import Hero from './Hero';
 import Slider from 'react-slick';
 import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
+import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
+import StyledTooltip from './StyledTooltip';
 
 const HomePage = () => {
     const { string }: StoresContextInterface = useOutletContext();
@@ -141,6 +143,9 @@ const HomePage = () => {
         { desc: '3', mob: '33', description: string?.view_descr_3 },
         { desc: '4', mob: '44', description: string?.view_descr_4 },
         { desc: '6', mob: '66', description: string?.view_descr_5 },
+        { desc: '7', mob: '77', description: string?.view_descr_3 },
+        { desc: '8', mob: '88', description: string?.view_descr_4 },
+        { desc: '9', mob: '99', description: string?.view_descr_5 },
     ];
 
     const { sm, l, sx } = useDevice();
@@ -235,7 +240,7 @@ const HomePage = () => {
                         }}
                     >
                         <Box p={1}>
-                            <Typography sx={{ fontSize: 24, fontWeight: 500 }}>{string?.web_mob_view}</Typography>
+                            <Typography sx={{ fontSize: 22, fontWeight: 500 }}>{string?.web_mob_view}</Typography>
                         </Box>
                     </Box>
                     <Box
@@ -359,7 +364,7 @@ const HomePage = () => {
                         }}
                     >
                         <Box p={1}>
-                            <Typography sx={{ fontSize: 24, fontWeight: 500 }}>{string?.main_advantages}</Typography>
+                            <Typography sx={{ fontSize: 22, fontWeight: 500 }}>{string?.main_advantages}</Typography>
                         </Box>
                     </Box>
 
@@ -487,7 +492,7 @@ const HomePage = () => {
                         }}
                     >
                         <Box p={1}>
-                            <Typography sx={{ fontSize: 24, fontWeight: 500 }}>{string?.examples}</Typography>
+                            <Typography sx={{ fontSize: 22, fontWeight: 500 }}>{string?.examples}</Typography>
                         </Box>
                         <Button
                             size="medium"
@@ -556,7 +561,7 @@ const HomePage = () => {
                             }}
                         >
                             <Box p={1}>
-                                <Typography sx={{ fontSize: 24, fontWeight: 500 }}>{string?.price}</Typography>
+                                <Typography sx={{ fontSize: 22, fontWeight: 500 }}>{string?.price}</Typography>
                             </Box>
                         </Box>
                     </Grid>
@@ -611,10 +616,15 @@ const HomePage = () => {
                                                 opacity: 0.8,
                                             }}
                                         >
-                                            <Typography sx={{ color: '#fff', fontSize: 20 }}>{name}</Typography>
+                                            <Box sx={{ display: 'flex', gap: 0.5, color: '#fff' }}>
+                                                <Typography sx={{ color: '#fff', fontSize: 20 }}>{name}</Typography>
+                                                <StyledTooltip title="hello">
+                                                    <HelpOutlineIcon />
+                                                </StyledTooltip>
+                                            </Box>
                                             {price && (
                                                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                                                    <Typography sx={{ fontSize: 24, color: '#fff' }}>
+                                                    <Typography sx={{ fontSize: 22, color: '#fff' }}>
                                                         {price}
                                                     </Typography>
                                                     <Typography mb={1} sx={{ fontSize: 16, color: '#fff' }}>
