@@ -71,7 +71,7 @@ const Stores = ({ details = false }) => {
         <Box pb={1}>
             {showTopBtn && <></>}
             {loadFavoritesStores && <Loader type="linear" />}
-            {loading && <Loader />}
+            {loading && <Loader type="circular" />}
             {/* <InstrumentalSubHeader
                 EndSlot={() => (
                     <Box sx={{ display: 'flex', gap: 0.75 }}>

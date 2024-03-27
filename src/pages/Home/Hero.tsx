@@ -23,9 +23,7 @@ const Hero = ({ setIsOpen, isOpen }) => {
                     position: 'relative',
                     flexDirection: 'column',
                     background: `linear-gradient(89.7deg, rgb(0, 0, 0) 50.7%, rgb(23, 65, 65) 88.8%);`,
-                    // backgroundRepeat: 'no-repeat',
-                    // backgroundPositionX: 'center',
-                    // backgroundSize: 'cover',
+
                     width: '100%',
                 }}
             >
@@ -44,11 +42,7 @@ const Hero = ({ setIsOpen, isOpen }) => {
                     <Grid
                         xs={12}
                         sx={{
-                            // maxWidth: '375px',
-                            // backgroundColor: 'white',
-                            // opacity: 0.85,
                             borderRadius: 4,
-                            // boxShadow: '0 0 5px 3px #fff',
                         }}
                     >
                         <Box
@@ -73,10 +67,8 @@ const Hero = ({ setIsOpen, isOpen }) => {
                     <Box
                         sx={{
                             maxWidth: '610px',
-                            // backgroundColor: 'white',
-                            // opacity: 0.85,
+
                             borderRadius: 6,
-                            // boxShadow: '0 0 5px 3px #fff',
                         }}
                     >
                         <Box

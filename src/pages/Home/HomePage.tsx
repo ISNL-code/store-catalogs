@@ -197,15 +197,15 @@ const HomePage = () => {
                             >
                                 <Box
                                     px={2}
-                                    py={0.75}
+                                    py={0.5}
                                     sx={{
                                         width: '100%',
                                         display: 'flex',
                                         justifyContent: 'space-between',
                                         alignItems: 'center',
-                                        borderBottom: '1px solid #ccc',
-                                        backgroundColor: 'green',
-                                        opacity: 0.8,
+                                        borderBottom: '1px solid #00690053',
+                                        background: `green`,
+                                        opacity: 0.9,
                                     }}
                                 >
                                     <Typography
@@ -214,7 +214,15 @@ const HomePage = () => {
                                         {name}
                                     </Typography>
                                 </Box>
-                                <Box p={1.5} sx={{ minHeight: 325 }}>
+                                <Box
+                                    p={1.5}
+                                    sx={{
+                                        // minHeight: 325,
+                                        display: 'flex',
+                                        flexDirection: 'column',
+                                        gap: 0.5,
+                                    }}
+                                >
                                     {rules.map((el, idx) => (
                                         <Box
                                             key={idx}
@@ -222,7 +230,7 @@ const HomePage = () => {
                                                 display: 'flex',
                                                 flexDirection: 'row',
                                                 gap: 0.5,
-                                                mb: 0.75,
+                                                // mb: 0.75,
                                             }}
                                         >
                                             <Box
@@ -244,8 +252,8 @@ const HomePage = () => {
                                                         color: '#fff',
                                                         fontSize: 10,
                                                         fontWeight: 700,
-                                                        width: 20,
-                                                        height: 20,
+                                                        width: 18,
+                                                        height: 18,
                                                     }}
                                                 />
                                             </Box>
@@ -302,7 +310,7 @@ const HomePage = () => {
                 container
             >
                 {!storesDetails ? (
-                    <Box sx={{ width: '100%', backgroundColor: '#f5f5f5' }}>
+                    <Box sx={{ width: '100%', backgroundColor: '#f5f5f5', minHeight: 275 }}>
                         <Marquee style={{ display: 'flex' }} loop={0} speed={75}>
                             <Stores details={false} />
                         </Marquee>
