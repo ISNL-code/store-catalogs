@@ -9,7 +9,7 @@ export const useGetLanguage = ({ lang }) => {
             string: {
                 examples: 'Examples',
                 main_advantages: 'Main Advantages',
-                online_catalog: 'Online Catalog',
+                online_catalog_for_your_business: 'Online Catalog for your business',
                 request_sended_successfully: 'The request has been sent successfully! We will contact you shortly.',
                 first_month_free: 'First month free',
                 home: 'Home',
@@ -194,7 +194,7 @@ export const useGetLanguage = ({ lang }) => {
             string: {
                 examples: 'Exemples',
                 main_advantages: 'Principaux avantages',
-                online_catalog: 'Catalogue en ligne',
+                online_catalog_for_your_business: 'Catalogue en ligne pour votre entreprise',
                 request_sended_successfully: 'La demande a été envoyée avec succès! Nous vous contacterons sous peu.',
                 first_month_free: 'Premier mois gratuit',
                 home: 'Maison',
@@ -381,7 +381,7 @@ export const useGetLanguage = ({ lang }) => {
             string: {
                 examples: 'Ejemplos',
                 main_advantages: 'Principales ventajas',
-                online_catalog: 'Catálogo en línea',
+                online_catalog_for_your_business: 'Catálogo en línea para su negocio',
                 request_sended_successfully:
                     '¡La solicitud se ha enviado correctamente! Nos pondremos en contacto con usted pronto.',
                 first_month_free: 'Primer mes gratis',
@@ -567,7 +567,7 @@ export const useGetLanguage = ({ lang }) => {
             string: {
                 examples: 'Приклади',
                 main_advantages: 'Основні переваги',
-                online_catalog: 'Онлайн-каталог',
+                online_catalog_for_your_business: 'Онлайн-каталог для вашого бізнесу',
                 request_sended_successfully: 'Заявка надіслана успішно! Ми зв`яжемося з вами найближчим часом.',
                 first_month_free: 'Перший місяць безкоштовно',
                 hero_text: `Онлайн каталог товарів - це програмне рішення, яке дозволяє створювати електронні каталоги з описом товарів. Воно надає можливості для зручного додавання товарів, класифікації, опису, додавання фотографій та іншої важливої інформації. Користувачі можуть організовувати товари в різні категорії, налаштовувати зручні фільтри, здійснювати пошук для спрощення навігації. Часто використовується компаніями для створення віртуальних торгових каталогів, візуалізації попередніх проектів, інтернет-магазинів, представлення продукції на виставках і презентаціях.`,
@@ -753,7 +753,7 @@ export const useGetLanguage = ({ lang }) => {
             string: {
                 examples: 'Przykłady',
                 main_advantages: 'Główne zalety',
-                online_catalog: 'Katalog online',
+                online_catalog_for_your_business: 'Katalog online dla Twojej firmy',
                 request_sended_successfully: 'Wniosek został pomyślnie wysłany! Skontaktujemy się z Tobą wkrótce.',
                 first_month_free: 'Pierwszy miesiąc za darmo',
                 hero_text:
@@ -952,7 +952,7 @@ export const useGetLanguage = ({ lang }) => {
             string: {
                 examples: 'Příklady',
                 main_advantages: 'Hlavní výhody',
-                online_catalog: 'Online katalog',
+                online_catalog_for_your_business: 'Online katalog pro váš podnik',
                 request_sended_successfully: 'Žádost byla úspěšně odeslána! Brzy se s vámi spojíme.',
                 first_month_free: 'První měsíc zdarma',
                 hero_text:
@@ -1148,7 +1148,7 @@ export const useGetLanguage = ({ lang }) => {
             string: {
                 examples: 'Примеры',
                 main_advantages: 'Основные преимущества',
-                online_catalog: 'Онлайн-каталог',
+                online_catalog_for_your_business: 'Онлайн-каталог для вашего бизнеса',
                 request_sended_successfully: 'Заявка отправлена успешно! Мы свяжемся с вами в ближайшее время.',
                 first_month_free: 'Первый месяц бесплатно',
                 hero_text:

@@ -6,13 +6,14 @@ import { StoresContextInterface } from 'types';
 import { useDevice } from 'hooks/useDevice';
 
 const Hero = ({ setIsOpen, isOpen }) => {
-    const { sx } = useDevice();
+    const { sx, mx } = useDevice();
     const { string }: StoresContextInterface = useOutletContext();
     return (
         <>
             <Grid
-                py={2}
+                py={4}
                 px={2}
+                pt={0}
                 container
                 xs={12}
                 sx={{
@@ -21,70 +22,99 @@ const Hero = ({ setIsOpen, isOpen }) => {
                     alignItems: 'center',
                     position: 'relative',
                     flexDirection: 'column',
-                    background: `url(${require('./img/hero.png')})`,
-                    backgroundRepeat: 'no-repeat',
-                    backgroundPositionX: '100%',
-                    backgroundSize: 'cover',
+                    background: `linear-gradient(89.7deg, rgb(0, 0, 0) 50.7%, rgb(23, 65, 65) 88.8%);`,
+                    // backgroundRepeat: 'no-repeat',
+                    // backgroundPositionX: 'center',
+                    // backgroundSize: 'cover',
+                    width: '100%',
                 }}
             >
                 <Grid
-                    mb={2}
                     xs={12}
+                    mb={2}
+                    container
+                    ml={-2}
                     sx={{
-                        maxWidth: '300px',
-                        backgroundColor: 'white',
-                        opacity: 0.85,
-                        borderRadius: 4,
-                        boxShadow: '0 0 5px 3px #fff',
+                        width: '100vw',
+                        display: 'flex',
+                        justifyContent: 'center',
+                        background: `linear-gradient(89.7deg, rgba(163, 163, 163, 0.281) 50.7%, rgba(255, 255, 255, 0.452) 88.8%);`,
                     }}
                 >
-                    <Box
-                        p={1}
+                    <Grid
+                        xs={12}
                         sx={{
-                            display: 'flex',
-                            flexDirection: 'column',
-                            alignItems: 'center',
-                            justifyContent: 'center',
+                            // maxWidth: '375px',
+                            // backgroundColor: 'white',
+                            // opacity: 0.85,
+                            borderRadius: 4,
+                            // boxShadow: '0 0 5px 3px #fff',
                         }}
                     >
-                        <Typography variant={'h1'} sx={{ lineHeight: 1.1, color: '#000' }}>
-                            {string?.online_catalog}
-                        </Typography>
-                    </Box>
+                        <Box
+                            p={1}
+                            sx={{
+                                display: 'flex',
+                                flexDirection: 'column',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                            }}
+                        >
+                            <Typography variant={'h1'} sx={{ lineHeight: 1.1, color: '#ffffff', textAlign: 'center' }}>
+                                {string?.online_catalog_for_your_business}
+                            </Typography>
+                        </Box>
+                    </Grid>
                 </Grid>
                 <Grid
                     xs={12}
-                    sx={{
-                        maxWidth: '1560px',
-                        backgroundColor: 'white',
-                        opacity: 0.85,
-                        borderRadius: 6,
-                        boxShadow: '0 0 5px 3px #fff',
-                    }}
+                    sx={{ display: 'flex', maxWidth: 1600, gap: 5, textAlign: 'center', justifyContent: 'center' }}
                 >
                     <Box
-                        p={3}
                         sx={{
-                            display: 'flex',
-                            flexDirection: 'column',
-                            alignItems: 'center',
-                            justifyContent: 'center',
+                            maxWidth: '610px',
+                            // backgroundColor: 'white',
+                            // opacity: 0.85,
+                            borderRadius: 6,
+                            // boxShadow: '0 0 5px 3px #fff',
                         }}
                     >
-                        <Typography variant={sx ? 'h3' : 'h2'} sx={{ lineHeight: 1.1, color: '#000' }}>
-                            {string?.hero_text}
-                        </Typography>
-                        <Button
-                            onClick={() => {
-                                setIsOpen(!isOpen);
+                        <Box
+                            px={3}
+                            sx={{
+                                display: 'flex',
+                                flexDirection: 'column',
+                                alignItems: 'center',
+                                justifyContent: 'center',
                             }}
-                            sx={{ mt: 2 }}
-                            variant="contained"
-                            size="large"
                         >
-                            {string?.request}
-                        </Button>
+                            <Typography sx={{ lineHeight: 1.1, color: '#fff', fontSize: sx ? 18 : 22 }}>
+                                {string?.hero_text}
+                            </Typography>
+                            <Button
+                                onClick={() => {
+                                    setIsOpen(!isOpen);
+                                }}
+                                sx={{ mt: 4, width: 180, height: 40, fontSize: 18 }}
+                                variant="contained"
+                                size="large"
+                            >
+                                {string?.request}
+                            </Button>
+                        </Box>
                     </Box>
+                    {!mx && (
+                        <Box
+                            sx={{
+                                borderRadius: 8,
+                                overflow: 'hidden',
+                                height: '410px',
+                                boxShadow: '0 0 8px 2px #ffffff',
+                            }}
+                        >
+                            <img width="400px" src={require('./img/hero.png')} alt="" />
+                        </Box>
+                    )}
                 </Grid>
             </Grid>
         </>

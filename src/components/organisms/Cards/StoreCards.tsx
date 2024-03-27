@@ -49,15 +49,15 @@ const StoreCards = ({ data, dataFavorite, setStoreToApprove }: StoreCardsInterfa
                                 display: 'flex',
                                 borderBottom: '1px solid #ccc',
                                 cursor: 'pointer',
-                                height: 150,
-                                width: 350,
+                                height: 190,
+                                width: 400,
                             }}
                         >
                             <Box
                                 sx={{
                                     width: '70%',
                                     borderRight: '1px solid #ccc',
-                                    height: '150px',
+                                    height: '190px',
                                     overflow: 'hidden',
                                 }}
                             >
