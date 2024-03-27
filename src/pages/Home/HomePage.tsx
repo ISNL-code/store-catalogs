@@ -313,6 +313,7 @@ const HomePage = () => {
                     </Grid>
                 )}
             </Grid>
+
             <Grid
                 mb={2}
                 xs={12}
