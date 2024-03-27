@@ -20,7 +20,7 @@ const Header = ({ headerHeight, appXPadding, string, lang, setLang, setSortedSto
                 left: 0,
                 top: 0,
                 zIndex: 4000,
-                backgroundColor: '#e0e0e0',
+                background: `linear-gradient(89.7deg, rgb(206, 206, 206) 1.7%, rgb(247, 247, 247) 50.7%, rgb(218, 218, 218) 88.8%);`,
                 overflow: 'hidden',
             }}
         >
