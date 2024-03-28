@@ -9,16 +9,24 @@ export const useGetLanguage = ({ lang }) => {
             string: {
                 helper_pricing_text_1:
                     'Do you want to try it or do you have a small range of products? Our plan provides ease of use, a beautiful online catalog and reliable support. This is an ideal choice for your experiments and first steps in using the catalog.',
-                helper_pricing_text_2: '',
-                helper_pricing_text_3: '',
-                view_descr_1: '',
-                view_descr_2: '',
-                view_descr_3: '',
-                view_descr_4: '',
-                view_descr_6: '',
-                view_descr_7: '',
-                view_descr_8: '',
-                view_descr_9: '',
+                helper_pricing_text_2:
+                    'This plan gives you the ability to upload more products, adds a shopping cart feature for easy ordering, and provides analytics to improve your business. In addition, your store now supports more languages, which will help you attract new customers and reach new levels of sales.',
+                helper_pricing_text_3:
+                    'Add your store to mobile applications, implement custom solutions, and forget about product quantity limits. This tariff is your step towards maximum business growth.',
+                view_descr_1:
+                    'This interface is convenient for customers due to its clear visual layout, straightforward navigation, and quick access to essential features. It provides a seamless shopping experience with minimal clutter, making it easy for customers to find and purchase products they love.',
+                view_descr_2:
+                    'The interface demonstrates a shopping cart system, convenient for managing both individual and wholesale purchases. The layout emphasizes simplicity and efficiency, providing a direct path from selection to purchase, a key feature for customers looking to place large orders.',
+                view_descr_3:
+                    'The interface presents a seamless registration feature that enhances the shopping experience by enabling personalization and order management. With user accounts, customers can keep track of favorites, seasonal selections, and order histories, which is ideal for maintaining customer relations and streamlining both retail and bulk purchases.',
+                view_descr_6:
+                    'It provides easy profile management, order tracking, and multi-language support, ensuring a tailored and efficient shopping experience.',
+                view_descr_7:
+                    'This interface shows a product management interface of an inventory system, featuring a list of clothing items. Each entry includes an ID, product name, and SKU numbers for easy tracking and control.',
+                view_descr_8:
+                    'The system provides functionality for editing, updating, and managing inventory, streamlining the operational process for retail or wholesale businesses.',
+                view_descr_9:
+                    'This interface shows an order management page within a business software system, detailing a customers purchase. Includes the customers name, phone number, and email, along with itemized products, sizes, quantities, and prices. This efficient layout simplifies tracking and processing orders, which is essential for business operations and customer service excellence.',
                 web_mob_view: 'Web and Mobile View',
                 examples: 'Examples',
                 main_advantages: 'Main Advantages',
@@ -205,6 +213,26 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'fr',
             string: {
+                helper_pricing_text_1:
+                    "Voulez-vous l'essayer ou avez-vous une petite gamme de produits ? Notre plan offre une facilité d'utilisation, un beau catalogue en ligne et un support fiable. C'est le choix idéal pour vos expérimentations et vos premiers pas dans l'utilisation du catalogue.",
+                helper_pricing_text_2:
+                    "Ce plan vous permet d'ajouter plus de produits, intègre une fonctionnalité de panier d'achat pour faciliter les commandes et fournit des analyses pour améliorer votre entreprise. De plus, votre magasin prend désormais en charge plusieurs langues, ce qui vous aidera à attirer de nouveaux clients et à atteindre de nouveaux niveaux de vente.",
+                helper_pricing_text_3:
+                    'Ajoutez votre magasin aux applications mobiles, implémentez des solutions personnalisées et oubliez les limites de quantité de produits. Ce tarif est votre pas vers la croissance maximale de votre entreprise.',
+                view_descr_1:
+                    "Cette interface est pratique pour les clients grâce à sa mise en page visuelle claire, sa navigation directe et son accès rapide aux fonctionnalités essentielles. Elle offre une expérience d'achat transparente avec un encombrement minimal, facilitant la recherche et l'achat de produits par les clients.",
+                view_descr_2:
+                    "L'interface montre un système de panier d'achat, pratique pour gérer les achats individuels et en gros. La disposition met l'accent sur la simplicité et l'efficacité, offrant un chemin direct de la sélection à l'achat, une caractéristique clé pour les clients qui souhaitent passer de grandes commandes.",
+                view_descr_3:
+                    "L'interface présente une fonctionnalité d'inscription fluide qui améliore l'expérience d'achat en permettant la personnalisation et la gestion des commandes. Avec des comptes utilisateurs, les clients peuvent suivre leurs favoris, les sélections saisonnières et les historiques de commande, ce qui est idéal pour maintenir les relations avec les clients et rationaliser les achats au détail et en gros.",
+                view_descr_6:
+                    "Elle fournit une gestion de profil facile, un suivi des commandes et un support multilingue, assurant une expérience d'achat sur mesure et efficace.",
+                view_descr_7:
+                    "Cette interface montre une interface de gestion des produits d'un système d'inventaire, présentant une liste d'articles vestimentaires. Chaque entrée comprend un identifiant, un nom de produit et des numéros SKU pour un suivi et un contrôle faciles.",
+                view_descr_8:
+                    "Le système fournit des fonctionnalités pour éditer, mettre à jour et gérer l'inventaire, rationalisant le processus opérationnel pour les entreprises de détail ou de gros.",
+                view_descr_9:
+                    "Cette interface montre une page de gestion des commandes au sein d'un système logiciel d'entreprise, détaillant l'achat d'un client. Comprend le nom du client, le numéro de téléphone et l'e-mail, ainsi que les produits détaillés, les tailles, les quantités et les prix. Cette disposition efficace simplifie le suivi et le traitement des commandes, ce qui est essentiel pour les opérations commerciales et l'excellence du service client.",
                 web_mob_view: 'Vue Web et Mobile',
                 examples: 'Exemples',
                 main_advantages: 'Principaux avantages',
@@ -393,6 +421,26 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'es',
             string: {
+                helper_pricing_text_1:
+                    '¿Quieres probarlo o tienes una gama pequeña de productos? Nuestro plan ofrece facilidad de uso, un hermoso catálogo en línea y soporte confiable. Esta es la opción ideal para tus experimentos y primeros pasos en el uso del catálogo.',
+                helper_pricing_text_2:
+                    'Este plan te permite subir más productos, agrega una función de carrito de compras para facilitar los pedidos y proporciona análisis para mejorar tu negocio. Además, tu tienda ahora admite más idiomas, lo que te ayudará a atraer nuevos clientes y alcanzar nuevos niveles de ventas.',
+                helper_pricing_text_3:
+                    'Añade tu tienda a las aplicaciones móviles, implementa soluciones personalizadas y olvídate de los límites de cantidad de productos. Esta tarifa es tu paso hacia el máximo crecimiento empresarial.',
+                view_descr_1:
+                    'Esta interfaz es conveniente para los clientes debido a su claro diseño visual, navegación sencilla y acceso rápido a las funciones esenciales. Ofrece una experiencia de compra sin complicaciones, facilitando a los clientes encontrar y comprar los productos que desean.',
+                view_descr_2:
+                    'La interfaz muestra un sistema de carrito de compras, conveniente para gestionar compras individuales y al por mayor. El diseño enfatiza la simplicidad y la eficiencia, proporcionando un camino directo desde la selección hasta la compra, una característica clave para los clientes que desean realizar pedidos grandes.',
+                view_descr_3:
+                    'La interfaz presenta una función de registro sin interrupciones que mejora la experiencia de compra al permitir la personalización y la gestión de pedidos. Con cuentas de usuario, los clientes pueden realizar un seguimiento de sus favoritos, selecciones estacionales e historiales de pedidos, ideal para mantener relaciones con los clientes y optimizar tanto las compras al por menor como al por mayor.',
+                view_descr_6:
+                    'Proporciona una gestión de perfil sencilla, seguimiento de pedidos y soporte en varios idiomas, asegurando una experiencia de compra a medida y eficiente.',
+                view_descr_7:
+                    'Esta interfaz muestra una interfaz de gestión de productos de un sistema de inventario, que presenta una lista de artículos de vestir. Cada entrada incluye una identificación, nombre del producto y números SKU para un seguimiento y control fáciles.',
+                view_descr_8:
+                    'El sistema proporciona funcionalidad para editar, actualizar y gestionar el inventario, agilizando el proceso operativo para negocios minoristas o mayoristas.',
+                view_descr_9:
+                    'Esta interfaz muestra una página de gestión de pedidos dentro de un sistema de software empresarial, detallando la compra de un cliente. Incluye el nombre, número de teléfono y correo electrónico del cliente, junto con productos detallados, tamaños, cantidades y precios. Esta disposición eficiente simplifica el seguimiento y procesamiento de los pedidos, esencial para las operaciones comerciales y la excelencia en el servicio al cliente.',
                 web_mob_view: 'Vista Web y Móvil',
                 examples: 'Ejemplos',
                 main_advantages: 'Principales ventajas',
@@ -580,6 +628,26 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'ua',
             string: {
+                helper_pricing_text_1:
+                    'Бажаєте спробувати, чи у вас невеликий асортимент продукції? Наш план забезпечує зручність у використанні, прекрасний онлайн-каталог та надійну підтримку. Це ідеальний вибір для ваших експериментів та перших кроків у використанні каталогу.',
+                helper_pricing_text_2:
+                    'Цей план дає вам можливість завантажувати більше продуктів, додає функцію кошика для зручного замовлення та надає аналітику для поліпшення вашого бізнесу. Крім того, ваш магазин тепер підтримує більше мов, що допоможе вам залучати нових клієнтів і досягати нових рівнів продажів.',
+                helper_pricing_text_3:
+                    'Додайте ваш магазин до мобільних додатків, впроваджуйте індивідуальні рішення і забудьте про ліміти кількості продуктів. Цей тариф є вашим кроком до максимального зростання бізнесу.',
+                view_descr_1:
+                    'Цей інтерфейс зручний для клієнтів завдяки своєму чіткому візуальному оформленню, прямолінійній навігації та швидкому доступу до основних функцій. Він забезпечує безперебійний процес покупки з мінімальним перевантаженням, що полегшує клієнтам знаходження та покупку продуктів, які вони люблять.',
+                view_descr_2:
+                    'Інтерфейс демонструє систему кошика для покупок, яка зручна для управління як індивідуальними, так і оптовими покупками. Макет підкреслює простоту і ефективність, забезпечуючи прямий шлях від вибору до покупки, ключову особливість для клієнтів, які бажають робити великі замовлення.',
+                view_descr_3:
+                    'Інтерфейс презентує безперервну функцію реєстрації, яка покращує досвід покупок, дозволяючи персоналізацію та управління замовленнями. Завдяки обліковим записам користувачів, клієнти можуть слідкувати за своїми улюбленими товарами, сезонними виборами та історією замовлень, що ідеально для підтримання відносин з клієнтами та оптимізації як роздрібних, так і оптових покупок.',
+                view_descr_6:
+                    'Забезпечує просте управління профілем, відстеження замовлень та підтримку декількох мов, гарантуючи налаштований та ефективний досвід покупки.',
+                view_descr_7:
+                    'Цей інтерфейс показує інтерфейс управління продуктами системи інвентаризації, який представляє список одягу. Кожен запис включає ідентифікатор, назву продукту та номери SKU для легкого відстеження та контролю.',
+                view_descr_8:
+                    'Система надає функціональність для редагування, оновлення та управління запасами, спрощуючи операційний процес для роздрібних та оптових бізнесів.',
+                view_descr_9:
+                    "Цей інтерфейс показує сторінку управління замовленнями в системі бізнес-програмного забезпечення, деталізуючи покупку клієнта. Включає ім'я, номер телефону та електронну пошту клієнта, разом з детальними продуктами, розмірами, кількістю та цінами. Ця ефективна розстановка спрощує відстеження та обробку замовлень, що є незамінним для комерційних операцій та відмінності у обслуговуванні клієнтів.",
                 web_mob_view: 'Веб/Мобільний Огляд',
                 examples: 'Приклади',
                 main_advantages: 'Основні переваги',
@@ -767,6 +835,26 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'pl',
             string: {
+                helper_pricing_text_1:
+                    'Chcesz to wypróbować, czy masz małą gamę produktów? Nasz plan zapewnia łatwość użytkowania, piękny katalog online i niezawodne wsparcie. Jest to idealny wybór na twoje eksperymenty i pierwsze kroki w korzystaniu z katalogu.',
+                helper_pricing_text_2:
+                    'Ten plan pozwala na dodawanie większej liczby produktów, dodaje funkcję koszyka zakupowego dla łatwych zamówień oraz zapewnia analizy do poprawy twojego biznesu. Ponadto twój sklep teraz obsługuje więcej języków, co pomoże przyciągnąć nowych klientów i osiągnąć nowe poziomy sprzedaży.',
+                helper_pricing_text_3:
+                    'Dodaj swój sklep do aplikacji mobilnych, wdrażaj indywidualne rozwiązania i zapomnij o limitach ilości produktów. Ta taryfa to twój krok w kierunku maksymalnego wzrostu biznesu.',
+                view_descr_1:
+                    'Ten interfejs jest wygodny dla klientów dzięki swojemu przejrzystemu układowi wizualnemu, prostocie nawigacji i szybkiemu dostępowi do kluczowych funkcji. Zapewnia płynne doświadczenie zakupowe z minimalnym bałaganem, ułatwiając klientom znalezienie i zakup produktów, które kochają.',
+                view_descr_2:
+                    'Interfejs pokazuje system koszyka zakupowego, który jest wygodny zarówno do zarządzania zakupami indywidualnymi, jak i hurtowymi. Układ podkreśla prostotę i efektywność, zapewniając bezpośrednią ścieżkę od wyboru do zakupu, kluczową cechę dla klientów zamierzających składać duże zamówienia.',
+                view_descr_3:
+                    'Interfejs prezentuje bezproblemową funkcję rejestracji, która poprawia doświadczenie zakupowe, umożliwiając personalizację i zarządzanie zamówieniami. Dzięki kontom użytkowników klienci mogą śledzić ulubione produkty, wybory sezonowe i historię zamówień, co jest idealne do utrzymywania relacji z klientami i usprawniania zarówno detalicznych, jak i hurtowych zakupów.',
+                view_descr_6:
+                    'Zapewnia łatwe zarządzanie profilem, śledzenie zamówień i wsparcie wielojęzyczne, gwarantując dopasowane i efektywne doświadczenie zakupowe.',
+                view_descr_7:
+                    'Ten interfejs pokazuje interfejs zarządzania produktami systemu inwentaryzacyjnego, prezentujący listę artykułów odzieżowych. Każdy wpis zawiera identyfikator, nazwę produktu i numery SKU dla łatwego śledzenia i kontroli.',
+                view_descr_8:
+                    'System zapewnia funkcjonalność edytowania, aktualizowania i zarządzania zapasami, usprawniając proces operacyjny dla firm detalicznych lub hurtowych.',
+                view_descr_9:
+                    'Ten interfejs pokazuje stronę zarządzania zamówieniami w systemie oprogramowania biznesowego, szczegółowo opisując zakup klienta. Zawiera nazwisko klienta, numer telefonu i e-mail, wraz z wyszczególnionymi produktami, rozmiarami, ilościami i cenami. Ta efektywna układ ułatwia śledzenie i przetwarzanie zamówień, co jest niezbędne dla operacji biznesowych i doskonałości obsługi klienta.',
                 web_mob_view: 'Widok Webowy i Mobilny',
                 examples: 'Przykłady',
                 main_advantages: 'Główne zalety',
@@ -967,6 +1055,26 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'cz',
             string: {
+                helper_pricing_text_1:
+                    'Chcete to vyzkoušet, nebo máte malý sortiment produktů? Náš plán poskytuje snadné použití, krásný online katalog a spolehlivou podporu. Je to ideální volba pro vaše experimenty a první kroky při používání katalogu.',
+                helper_pricing_text_2:
+                    'Tento plán vám umožňuje nahrát více produktů, přidává funkci nákupního košíku pro snadné objednávání a poskytuje analýzy pro zlepšení vašeho podnikání. Kromě toho váš obchod nyní podporuje více jazyků, což vám pomůže přilákat nové zákazníky a dosáhnout nových úrovní prodeje.',
+                helper_pricing_text_3:
+                    'Přidejte váš obchod do mobilních aplikací, implementujte vlastní řešení a zapomeňte na limity množství produktů. Tento tarif je vaším krokem k maximálnímu růstu podnikání.',
+                view_descr_1:
+                    'Toto rozhraní je pohodlné pro zákazníky díky svému čistému vizuálnímu uspořádání, jednoduché navigaci a rychlému přístupu k základním funkcím. Poskytuje plynulý nákupní zážitek s minimálním rušením, což zákazníkům usnadňuje nalezení a nákup produktů, které milují.',
+                view_descr_2:
+                    'Rozhraní ukazuje systém nákupního košíku, který je vhodný pro správu jak individuálních, tak velkoobchodních nákupů. Layout zdůrazňuje jednoduchost a efektivitu, poskytující přímou cestu od výběru k nákupu, klíčovou vlastnost pro zákazníky, kteří chtějí umístit velké objednávky.',
+                view_descr_3:
+                    'Rozhraní prezentuje bezproblémovou funkci registrace, která zlepšuje nákupní zážitek tím, že umožňuje personalizaci a správu objednávek. S uživatelskými účty mohou zákazníci sledovat oblíbené produkty, sezónní výběry a historii objednávek, což je ideální pro udržení vztahů se zákazníky a zefektivnění jak maloobchodních, tak velkoobchodních nákupů.',
+                view_descr_6:
+                    'Poskytuje snadné správu profilu, sledování objednávek a podporu více jazyků, čímž zajišťuje přizpůsobený a efektivní nákupní zážitek.',
+                view_descr_7:
+                    'Toto rozhraní ukazuje rozhraní správy produktů inventárního systému, které obsahuje seznam oděvních položek. Každý záznam obsahuje ID, název produktu a čísla SKU pro snadné sledování a kontrolu.',
+                view_descr_8:
+                    'Systém poskytuje funkce pro úpravy, aktualizace a správu zásob, čímž zjednodušuje provozní proces pro maloobchodní nebo velkoobchodní podniky.',
+                view_descr_9:
+                    'Toto rozhraní ukazuje stránku správy objednávek v rámci podnikového softwarového systému, detailně popisující nákup zákazníka. Zahrnuje jméno, telefonní číslo a e-mail zákazníka, spolu s detailně uvedenými produkty, velikostmi, množstvími a cenami. Toto efektivní uspořádání zjednodušuje sledování a zpracování objednávek, což je nezbytné pro obchodní operace a vynikající zákaznický servis.',
                 web_mob_view: 'Webové a Mobilní Zobrazení',
                 examples: 'Příklady',
                 main_advantages: 'Hlavní výhody',
@@ -1164,6 +1272,26 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'ru',
             string: {
+                helper_pricing_text_1:
+                    'Хотите попробовать или у вас небольшой ассортимент продукции? Наш план обеспечивает простоту использования, красивый онлайн-каталог и надежную поддержку. Это идеальный выбор для ваших экспериментов и первых шагов в использовании каталога.',
+                helper_pricing_text_2:
+                    'Этот план позволяет вам добавлять больше продуктов, добавляет функцию корзины для упрощения заказов и предоставляет аналитику для улучшения вашего бизнеса. Кроме того, ваш магазин теперь поддерживает больше языков, что поможет вам привлекать новых клиентов и достигать новых уровней продаж.',
+                helper_pricing_text_3:
+                    'Добавьте ваш магазин в мобильные приложения, реализуйте индивидуальные решения и забудьте о лимитах на количество продуктов. Этот тариф — ваш шаг к максимальному росту бизнеса.',
+                view_descr_1:
+                    'Этот интерфейс удобен для клиентов благодаря своему четкому визуальному оформлению, простой навигации и быстрому доступу к основным функциям. Он обеспечивает бесперебойный процесс покупки с минимальным количеством отвлекающих факторов, упрощая для клиентов поиск и покупку продуктов, которые они любят.',
+                view_descr_2:
+                    'Интерфейс демонстрирует систему корзины покупок, удобную для управления как индивидуальными, так и оптовыми покупками. Макет подчеркивает простоту и эффективность, предоставляя прямой путь от выбора до покупки, ключевую особенность для клиентов, желающих сделать большие заказы.',
+                view_descr_3:
+                    'Интерфейс представляет собой безупречную функцию регистрации, которая улучшает опыт покупок, позволяя персонализацию и управление заказами. С помощью учетных записей пользователей клиенты могут отслеживать избранные товары, сезонные подборки и историю заказов, что идеально подходит для поддержания отношений с клиентами и оптимизации как розничных, так и оптовых покупок.',
+                view_descr_6:
+                    'Обеспечивает легкое управление профилем, отслеживание заказов и поддержку на нескольких языках, гарантируя настроенный и эффективный шопинг.',
+                view_descr_7:
+                    'Этот интерфейс показывает интерфейс управления продуктами инвентаризационной системы, представляющий список одежды. Каждая запись включает в себя ID, название продукта и номера SKU для удобства отслеживания и контроля.',
+                view_descr_8:
+                    'Система предоставляет функциональность для редактирования, обновления и управления запасами, упрощая операционный процесс для розничных и оптовых бизнесов.',
+                view_descr_9:
+                    'Этот интерфейс показывает страницу управления заказами в системе бизнес-программного обеспечения, детализируя покупку клиента. Включает имя, номер телефона и электронную почту клиента, а также детализированные продукты, размеры, количество и цены. Эта эффективная организация упрощает отслеживание и обработку заказов, что жизненно важно для бизнес-операций и исключительного обслуживания клиентов.',
                 web_mob_view: 'Веб и Мобильный Просмотр',
                 examples: 'Примеры',
                 main_advantages: 'Основные преимущества',
