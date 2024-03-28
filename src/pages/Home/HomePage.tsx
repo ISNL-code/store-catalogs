@@ -28,7 +28,8 @@ const HomePage = () => {
     const PRICING = [
         {
             name: 'START',
-            price: '$11.99',
+            help: string?.helper_pricing_text_1,
+            price: '$14.99',
             rules: [
                 { title: string?.main_function, available: true },
                 { title: string?.admin_panel, available: true },
@@ -45,6 +46,7 @@ const HomePage = () => {
         },
         {
             name: 'PRO',
+            help: string?.helper_pricing_text_2,
             price: '$49.99',
             rules: [
                 { title: string?.main_function, available: true },
@@ -62,6 +64,7 @@ const HomePage = () => {
         },
         {
             name: 'UNLIM',
+            help: string?.helper_pricing_text_3,
             price: '$99.99',
             rules: [
                 { title: string?.main_function, available: true },
@@ -593,7 +596,7 @@ const HomePage = () => {
                                 alignItems: 'center',
                             }}
                         >
-                            {PRICING.map(({ name, price, rules, values }, index) => (
+                            {PRICING.map(({ name, price, rules, values, help }, index) => (
                                 <Grid xs={getPRICINGGridValue()} key={index} p={1}>
                                     <Box
                                         sx={{
@@ -618,7 +621,7 @@ const HomePage = () => {
                                         >
                                             <Box sx={{ display: 'flex', gap: 0.5, color: '#fff' }}>
                                                 <Typography sx={{ color: '#fff', fontSize: 20 }}>{name}</Typography>
-                                                <StyledTooltip title="hello">
+                                                <StyledTooltip title={help}>
                                                     <HelpOutlineIcon />
                                                 </StyledTooltip>
                                             </Box>

@@ -61,7 +61,14 @@ const Hero = ({ setIsOpen, isOpen }) => {
                 </Grid>
                 <Grid
                     xs={12}
-                    sx={{ display: 'flex', maxWidth: 1600, gap: 5, textAlign: 'center', justifyContent: 'center' }}
+                    sx={{
+                        display: 'flex',
+                        maxWidth: 1600,
+                        gap: 5,
+                        textAlign: 'center',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                    }}
                 >
                     <Box
                         sx={{

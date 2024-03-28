@@ -7,7 +7,18 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'en',
             string: {
-                view_descr_1: 'Web and Mobile View',
+                helper_pricing_text_1:
+                    'Do you want to try it or do you have a small range of products? Our plan provides ease of use, a beautiful online catalog and reliable support. This is an ideal choice for your experiments and first steps in using the catalog.',
+                helper_pricing_text_2: '',
+                helper_pricing_text_3: '',
+                view_descr_1: '',
+                view_descr_2: '',
+                view_descr_3: '',
+                view_descr_4: '',
+                view_descr_6: '',
+                view_descr_7: '',
+                view_descr_8: '',
+                view_descr_9: '',
                 web_mob_view: 'Web and Mobile View',
                 examples: 'Examples',
                 main_advantages: 'Main Advantages',
