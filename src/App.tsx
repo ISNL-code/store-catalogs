@@ -14,6 +14,8 @@ import { useUserApi } from 'api/useUserApi';
 import { UserDataInterface } from 'types';
 import UserProfile from 'pages/Profile/UserProfile';
 import UserOrders from 'pages/Orders/UserOrders';
+import Home from 'layouts/Home/Home';
+import HomePage from 'pages/Home/HomePage';
 
 const App = () => {
     const token = localStorage.getItem(ACCESS_TOKEN_KEY);
@@ -61,6 +63,9 @@ const App = () => {
                 <Routes>
                     {
                         <>
+                            <Route path={'/'} element={<Home lang={lang} setLang={setLang} />}>
+                                <Route path={'/home'} element={<HomePage />} />
+                            </Route>
                             <Route
                                 path={'/catalog'}
                                 element={
