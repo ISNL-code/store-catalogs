@@ -71,7 +71,7 @@ const LandingRequestContacts = () => {
                                         }}
                                     >
                                         <Box>
-                                            <a href={`tel:+380665738771`} target="_blank" rel="noreferrer">
+                                            <a href={`tel:+380668652127`} target="_blank" rel="noreferrer">
                                                 <IconButton
                                                     size="small"
                                                     sx={{
@@ -84,7 +84,7 @@ const LandingRequestContacts = () => {
                                                 </IconButton>
                                             </a>
                                         </Box>
-                                        <Typography variant={sm ? 'h4' : 'h3'}>+380665738771</Typography>
+                                        <Typography variant={sm ? 'h4' : 'h3'}>+380668652127</Typography>
                                     </Box>
 
                                     <Box
@@ -96,11 +96,11 @@ const LandingRequestContacts = () => {
                                         }}
                                     >
                                         <Box>
-                                            <a href={`https://wa.me/+380665738771`} target="_blank" rel="noreferrer">
+                                            <a href={`https://wa.me/+380668652127`} target="_blank" rel="noreferrer">
                                                 <Box sx={{ width: 35, height: 35 }}>{WhatsAppIcon()}</Box>
                                             </a>
                                         </Box>
-                                        <Typography variant={sm ? 'h4' : 'h3'}>+380665738771</Typography>
+                                        <Typography variant={sm ? 'h4' : 'h3'}>+380668652127</Typography>
                                     </Box>
 
                                     <Box
@@ -113,14 +113,14 @@ const LandingRequestContacts = () => {
                                     >
                                         <Box>
                                             <a
-                                                href={`viber://chat?number=${'+380665738771'.replaceAll('+', '%2B')}`}
+                                                href={`viber://chat?number=${'+380668652127'.replaceAll('+', '%2B')}`}
                                                 target="_blank"
                                                 rel="noreferrer"
                                             >
                                                 <Box sx={{ width: 35, height: 35 }}>{ViberIcon()}</Box>
                                             </a>
                                         </Box>
-                                        <Typography variant={sm ? 'h4' : 'h3'}>+380665738771</Typography>
+                                        <Typography variant={sm ? 'h4' : 'h3'}>+380668652127</Typography>
                                     </Box>
 
                                     <Box
@@ -132,16 +132,16 @@ const LandingRequestContacts = () => {
                                         }}
                                     >
                                         <Box>
-                                            <a href={`https://t.me/@DmytroOrgish`} target="_blank" rel="noreferrer">
+                                            <a href={`https://t.me/@SNBussinessApp`} target="_blank" rel="noreferrer">
                                                 <Box sx={{ width: 35, height: 35 }}>{TelegramIcon()}</Box>
                                             </a>
                                         </Box>
                                         <Typography variant={sm ? 'h4' : 'h3'}>
-                                            @{'DmytroOrgish'.replaceAll('https://t.me/', '')}
+                                            @{'SNBussinessApp'.replaceAll('https://t.me/', '')}
                                         </Typography>
                                     </Box>
 
-                                    <Box
+                                    {/* <Box
                                         sx={{
                                             display: 'flex',
                                             alignItems: 'center',
@@ -168,7 +168,7 @@ const LandingRequestContacts = () => {
                                             </a>
                                         </Box>
                                         <Typography variant={sm ? 'h4' : 'h3'}>dmytro.orgish88@gmail.com</Typography>
-                                    </Box>
+                                    </Box> */}
                                 </Grid>
                             </Grid>
                         </CardItem>
