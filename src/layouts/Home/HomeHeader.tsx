@@ -31,7 +31,7 @@ const HomeHeader = ({ headerHeight, appXPadding, string, lang, setLang, setOpenM
         >
             <Box sx={{ height: headerHeight, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                 <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <HomeHeaderLogo headerHeight={headerHeight} />
+                    <HomeHeaderLogo />
                 </Box>
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
                     <HeaderNavButton title={string?.home} path={`/`} icon={() => <GridViewIcon />} />

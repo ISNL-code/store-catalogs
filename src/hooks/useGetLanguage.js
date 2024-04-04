@@ -7,6 +7,72 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'en',
             string: {
+                helper_pricing_text_1:
+                    'Do you want to try it or do you have a small range of products? Our plan provides ease of use, a beautiful online catalog and reliable support. This is an ideal choice for your experiments and first steps in using the catalog.',
+                helper_pricing_text_2:
+                    'This plan gives you the ability to upload more products, adds a shopping cart feature for easy ordering, and provides analytics to improve your business. In addition, your store now supports more languages, which will help you attract new customers and reach new levels of sales.',
+                helper_pricing_text_3:
+                    'Add your store to mobile applications, implement custom solutions, and forget about product quantity limits. This tariff is your step towards maximum business growth.',
+                view_descr_1:
+                    'This interface is convenient for customers due to its clear visual layout, straightforward navigation, and quick access to essential features. It provides a seamless shopping experience with minimal clutter, making it easy for customers to find and purchase products they love.',
+                view_descr_2:
+                    'The interface demonstrates a shopping cart system, convenient for managing both individual and wholesale purchases. The layout emphasizes simplicity and efficiency, providing a direct path from selection to purchase, a key feature for customers looking to place large orders.',
+                view_descr_3:
+                    'The interface presents a seamless registration feature that enhances the shopping experience by enabling personalization and order management. With user accounts, customers can keep track of favorites, seasonal selections, and order histories, which is ideal for maintaining customer relations and streamlining both retail and bulk purchases.',
+                view_descr_6:
+                    'It provides easy profile management, order tracking, and multi-language support, ensuring a tailored and efficient shopping experience.',
+                view_descr_7:
+                    'This interface shows a product management interface of an inventory system, featuring a list of clothing items. Each entry includes an ID, product name, and SKU numbers for easy tracking and control.',
+                view_descr_8:
+                    'The system provides functionality for editing, updating, and managing inventory, streamlining the operational process for retail or wholesale businesses.',
+                view_descr_9:
+                    'This interface shows an order management page within a business software system, detailing a customers purchase. Includes the customers name, phone number, and email, along with itemized products, sizes, quantities, and prices. This efficient layout simplifies tracking and processing orders, which is essential for business operations and customer service excellence.',
+                web_mob_view: 'Web and Mobile View',
+                examples: 'Examples',
+                main_advantages: 'Main Advantages',
+                online_catalog_for_your_business: 'Online Catalog for your business',
+                request_sended_successfully: 'The request has been sent successfully! We will contact you shortly.',
+                first_month_free: 'First month free',
+                home: 'Home',
+                hero_text: `An online product catalog is a software solution that allows creating electronic catalogs with product descriptions. It provides features for easy addition of products, classification, description, adding photos, and other important information. Users can organize products into different categories, set up convenient filters, perform searches to simplify navigation. It is often used by companies to create virtual trade catalogs, visualize preliminary projects, online stores, present products at exhibitions, and presentations.`,
+                main_function: `Main Functionality`,
+                admin_panel: `Admin Panel`,
+                admin: `Administrators`,
+                products_models_photo: `Products/Models/Photos`,
+                catalog_lang: `Catalog Languages`,
+                customization: `Customization`,
+                owners: `For Owner`,
+                customers: `For Customer`,
+                request: `Request`,
+                show_all: `Show All`,
+                unlimited: `Unlimited`,
+                month: `Month`,
+                i_want: `I Want to Order`,
+                request_catalog: `Request Catalog`,
+                consultation: `Request Consultation`,
+                request_example: `Request Example`,
+                plan: `Plan`,
+                comment: `Comment`,
+                owner_title_1: `Increased Accessibility`,
+                owner_title_2: `Convenient Management`,
+                owner_title_3: `Increased Sales Efficiency`,
+                owner_title_4: `Multilingualism`,
+                owner_title_5: `Internal Use`,
+                owner_description_1: `The electronic catalog makes products available to customers anytime and from anywhere, which can lead to audience expansion and increased sales.`,
+                owner_description_2: `Allows quick and efficient management of the product assortment, updating information and photos, as well as promptly responding to changes in demand.`,
+                owner_description_3: `Integration of cart functionality allows customers to easily compile orders, which contributes to increased conversion and average order value.`,
+                owner_description_4: `Support for multiple languages ​​simplifies working with customers from different countries, making the catalog more attractive to an international audience.`,
+                owner_description_5: `The catalog can serve not only as a sales tool but also as a means of internal communication and coordination for the staff, providing them with quick access to up-to-date product information.`,
+                customer_title_1: `Convenience and Accessibility`,
+                customer_title_2: `Easy Search and Comparison`,
+                customer_title_3: `Convenience for Gathering Retail and Wholesale Orders`,
+                customer_title_4: `Multilingualism`,
+                customer_title_5: `Improvement of Service Level`,
+                customer_description_1: `Allows customers to search for and browse the product assortment anytime and anywhere via the Internet.`,
+                customer_description_2: `Users can use convenient filters and search to quickly find the products they are interested in, as well as compare their features and prices.`,
+                customer_description_3: `The cart allows customers to conveniently compile wholesale orders by adding necessary products to it as needed, simplifying the process of purchasing large quantities.`,
+                customer_description_4: `The presence of multiple languages ​​makes the catalog more accessible to a wide audience, facilitating understanding of information about products and services.`,
+                customer_description_5: `The electronic catalog provides the opportunity to quickly obtain detailed information about products, their availability, and prices, which contributes to making more informed purchase decisions.`,
                 no_available_sizes: 'No available sizes',
                 image_not_loaded: 'Image not loaded',
                 no_categories_available: 'No categories available',
@@ -74,7 +140,7 @@ export const useGetLanguage = ({ lang }) => {
                 forgot_password: 'Forgot password?',
                 cart: 'Cart',
                 vendor_code: 'Product code',
-                price: 'Price',
+                price: 'Pricing',
                 logout: 'Logout',
                 submit: 'Submit',
                 ukraine: 'Ukraine',
@@ -147,6 +213,72 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'fr',
             string: {
+                helper_pricing_text_1:
+                    "Voulez-vous l'essayer ou avez-vous une petite gamme de produits ? Notre plan offre une facilité d'utilisation, un beau catalogue en ligne et un support fiable. C'est le choix idéal pour vos expérimentations et vos premiers pas dans l'utilisation du catalogue.",
+                helper_pricing_text_2:
+                    "Ce plan vous permet d'ajouter plus de produits, intègre une fonctionnalité de panier d'achat pour faciliter les commandes et fournit des analyses pour améliorer votre entreprise. De plus, votre magasin prend désormais en charge plusieurs langues, ce qui vous aidera à attirer de nouveaux clients et à atteindre de nouveaux niveaux de vente.",
+                helper_pricing_text_3:
+                    'Ajoutez votre magasin aux applications mobiles, implémentez des solutions personnalisées et oubliez les limites de quantité de produits. Ce tarif est votre pas vers la croissance maximale de votre entreprise.',
+                view_descr_1:
+                    "Cette interface est pratique pour les clients grâce à sa mise en page visuelle claire, sa navigation directe et son accès rapide aux fonctionnalités essentielles. Elle offre une expérience d'achat transparente avec un encombrement minimal, facilitant la recherche et l'achat de produits par les clients.",
+                view_descr_2:
+                    "L'interface montre un système de panier d'achat, pratique pour gérer les achats individuels et en gros. La disposition met l'accent sur la simplicité et l'efficacité, offrant un chemin direct de la sélection à l'achat, une caractéristique clé pour les clients qui souhaitent passer de grandes commandes.",
+                view_descr_3:
+                    "L'interface présente une fonctionnalité d'inscription fluide qui améliore l'expérience d'achat en permettant la personnalisation et la gestion des commandes. Avec des comptes utilisateurs, les clients peuvent suivre leurs favoris, les sélections saisonnières et les historiques de commande, ce qui est idéal pour maintenir les relations avec les clients et rationaliser les achats au détail et en gros.",
+                view_descr_6:
+                    "Elle fournit une gestion de profil facile, un suivi des commandes et un support multilingue, assurant une expérience d'achat sur mesure et efficace.",
+                view_descr_7:
+                    "Cette interface montre une interface de gestion des produits d'un système d'inventaire, présentant une liste d'articles vestimentaires. Chaque entrée comprend un identifiant, un nom de produit et des numéros SKU pour un suivi et un contrôle faciles.",
+                view_descr_8:
+                    "Le système fournit des fonctionnalités pour éditer, mettre à jour et gérer l'inventaire, rationalisant le processus opérationnel pour les entreprises de détail ou de gros.",
+                view_descr_9:
+                    "Cette interface montre une page de gestion des commandes au sein d'un système logiciel d'entreprise, détaillant l'achat d'un client. Comprend le nom du client, le numéro de téléphone et l'e-mail, ainsi que les produits détaillés, les tailles, les quantités et les prix. Cette disposition efficace simplifie le suivi et le traitement des commandes, ce qui est essentiel pour les opérations commerciales et l'excellence du service client.",
+                web_mob_view: 'Vue Web et Mobile',
+                examples: 'Exemples',
+                main_advantages: 'Principaux avantages',
+                online_catalog_for_your_business: 'Catalogue en ligne pour votre entreprise',
+                request_sended_successfully: 'La demande a été envoyée avec succès! Nous vous contacterons sous peu.',
+                first_month_free: 'Premier mois gratuit',
+                home: 'Maison',
+                hero_text: `Le catalogue en ligne des produits est une solution logicielle qui permet de créer des catalogues électroniques avec des descriptions de produits. Il offre des fonctionnalités pour ajouter facilement des produits, les classer, les décrire, ajouter des photos et d'autres informations importantes. Les utilisateurs peuvent organiser les produits dans différentes catégories, configurer des filtres pratiques, effectuer des recherches pour simplifier la navigation. Il est souvent utilisé par les entreprises pour créer des catalogues commerciaux virtuels, visualiser des projets préliminaires, des boutiques en ligne, présenter des produits lors d'expositions et de présentations.`,
+                main_function: `Fonctionnalité Principale`,
+                admin_panel: `Panneau d'Administration`,
+                admin: `Administrateurs`,
+                products_models_photo: `Produits/Modèles/Photos`,
+                catalog_lang: `Langues du Catalogue`,
+                customization: `Personnalisation`,
+                owners: `Pour le Propriétaire`,
+                customers: `Pour le Client`,
+                request: `Demander`,
+                show_all: `Afficher Tout`,
+                unlimited: `Illimité`,
+                month: `Mois`,
+                i_want: `Je Veux Commander`,
+                request_catalog: `Demander un Catalogue`,
+                consultation: `Demander une Consultation`,
+                request_example: `Demander un Exemple`,
+                plan: `Plan`,
+                comment: `Commentaire`,
+                owner_title_1: `Augmentation de la Disponibilité`,
+                owner_title_2: `Gestion Facile`,
+                owner_title_3: `Augmentation de l'Efficacité des Ventes`,
+                owner_title_4: `Multilinguisme`,
+                owner_title_5: `Utilisation en Interne`,
+                owner_description_1: `Le catalogue électronique rend les produits accessibles aux clients à tout moment et de n'importe où, ce qui peut entraîner une expansion de l'audience et une augmentation des ventes.`,
+                owner_description_2: `Permet de gérer rapidement et efficacement l'assortiment de produits, de mettre à jour les informations et les photos, ainsi que de réagir rapidement aux changements de la demande.`,
+                owner_description_3: `L'intégration de la fonctionnalité du panier permet aux clients de créer facilement des commandes, ce qui contribue à augmenter la conversion et le panier moyen.`,
+                owner_description_4: `La prise en charge de plusieurs langues facilite le travail avec les clients de différents pays, rendant le catalogue plus attrayant pour un public international.`,
+                owner_description_5: `Le catalogue peut servir non seulement d'outil de vente, mais également de moyen de communication et de coordination internes pour le personnel, en leur fournissant un accès rapide aux informations actuelles sur les produits.`,
+                customer_title_1: `Confort et Accessibilité`,
+                customer_title_2: `Recherche Facile et Comparaison`,
+                customer_title_3: `Confort pour Rassembler les Commandes au Détail et en Gros`,
+                customer_title_4: `Multilinguisme`,
+                customer_title_5: `Amélioration du Niveau de Service`,
+                customer_description_1: `Permet aux clients de rechercher et de consulter l'assortiment de produits à tout moment et en tout lieu via Internet.`,
+                customer_description_2: `Les utilisateurs peuvent utiliser des filtres pratiques et une recherche pour trouver rapidement les produits qui les intéressent, ainsi que comparer leurs caractéristiques et leurs prix.`,
+                customer_description_3: `Le panier permet aux clients de rassembler facilement des commandes en gros en ajoutant les produits nécessaires au fur et à mesure, ce qui simplifie le processus d'achat en grandes quantités.`,
+                customer_description_4: `La présence de plusieurs langues rend le catalogue plus accessible à un large public, facilitant la compréhension des informations sur les produits et services.`,
+                customer_description_5: `Le catalogue électronique offre la possibilité d'obtenir rapidement des informations détaillées sur les produits, leur disponibilité et leurs prix, ce qui contribue à prendre des décisions d'achat plus éclairées.`,
                 no_available_sizes: 'Aucune taille disponible',
                 image_not_loaded: 'Image non chargée',
                 no_categories_available: 'Aucune catégorie disponible',
@@ -289,6 +421,73 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'es',
             string: {
+                helper_pricing_text_1:
+                    '¿Quieres probarlo o tienes una gama pequeña de productos? Nuestro plan ofrece facilidad de uso, un hermoso catálogo en línea y soporte confiable. Esta es la opción ideal para tus experimentos y primeros pasos en el uso del catálogo.',
+                helper_pricing_text_2:
+                    'Este plan te permite subir más productos, agrega una función de carrito de compras para facilitar los pedidos y proporciona análisis para mejorar tu negocio. Además, tu tienda ahora admite más idiomas, lo que te ayudará a atraer nuevos clientes y alcanzar nuevos niveles de ventas.',
+                helper_pricing_text_3:
+                    'Añade tu tienda a las aplicaciones móviles, implementa soluciones personalizadas y olvídate de los límites de cantidad de productos. Esta tarifa es tu paso hacia el máximo crecimiento empresarial.',
+                view_descr_1:
+                    'Esta interfaz es conveniente para los clientes debido a su claro diseño visual, navegación sencilla y acceso rápido a las funciones esenciales. Ofrece una experiencia de compra sin complicaciones, facilitando a los clientes encontrar y comprar los productos que desean.',
+                view_descr_2:
+                    'La interfaz muestra un sistema de carrito de compras, conveniente para gestionar compras individuales y al por mayor. El diseño enfatiza la simplicidad y la eficiencia, proporcionando un camino directo desde la selección hasta la compra, una característica clave para los clientes que desean realizar pedidos grandes.',
+                view_descr_3:
+                    'La interfaz presenta una función de registro sin interrupciones que mejora la experiencia de compra al permitir la personalización y la gestión de pedidos. Con cuentas de usuario, los clientes pueden realizar un seguimiento de sus favoritos, selecciones estacionales e historiales de pedidos, ideal para mantener relaciones con los clientes y optimizar tanto las compras al por menor como al por mayor.',
+                view_descr_6:
+                    'Proporciona una gestión de perfil sencilla, seguimiento de pedidos y soporte en varios idiomas, asegurando una experiencia de compra a medida y eficiente.',
+                view_descr_7:
+                    'Esta interfaz muestra una interfaz de gestión de productos de un sistema de inventario, que presenta una lista de artículos de vestir. Cada entrada incluye una identificación, nombre del producto y números SKU para un seguimiento y control fáciles.',
+                view_descr_8:
+                    'El sistema proporciona funcionalidad para editar, actualizar y gestionar el inventario, agilizando el proceso operativo para negocios minoristas o mayoristas.',
+                view_descr_9:
+                    'Esta interfaz muestra una página de gestión de pedidos dentro de un sistema de software empresarial, detallando la compra de un cliente. Incluye el nombre, número de teléfono y correo electrónico del cliente, junto con productos detallados, tamaños, cantidades y precios. Esta disposición eficiente simplifica el seguimiento y procesamiento de los pedidos, esencial para las operaciones comerciales y la excelencia en el servicio al cliente.',
+                web_mob_view: 'Vista Web y Móvil',
+                examples: 'Ejemplos',
+                main_advantages: 'Principales ventajas',
+                online_catalog_for_your_business: 'Catálogo en línea para su negocio',
+                request_sended_successfully:
+                    '¡La solicitud se ha enviado correctamente! Nos pondremos en contacto con usted pronto.',
+                first_month_free: 'Primer mes gratis',
+                hero_text: `El catálogo en línea de productos es una solución de software que permite crear catálogos electrónicos con descripciones de productos. Ofrece funcionalidades para agregar fácilmente productos, clasificarlos, describirlos, agregar fotos y otra información importante. Los usuarios pueden organizar los productos en diferentes categorías, configurar filtros prácticos, realizar búsquedas para simplificar la navegación. A menudo es utilizado por empresas para crear catálogos comerciales virtuales, visualizar proyectos preliminares, tiendas en línea, presentar productos en exposiciones y presentaciones.`,
+                main_function: `Función Principal`,
+                admin_panel: `Panel de Administración`,
+                admin: `Administradores`,
+                products_models_photo: `Productos/Modelos/Fotos`,
+                catalog_lang: `Idiomas del Catálogo`,
+                customization: `Personalización`,
+                owners: `Para el Propietario`,
+                customers: `Para el Cliente`,
+                request: `Solicitar`,
+                show_all: `Mostrar Todo`,
+                unlimited: `Ilimitado`,
+                month: `Mes`,
+                home: `Inicio`,
+                i_want: `Quiero Ordenar`,
+                request_catalog: `Solicitar un Catálogo`,
+                consultation: `Solicitar una Consulta`,
+                request_example: `Solicitar un Ejemplo`,
+                plan: `Plan`,
+                comment: `Comentario`,
+                owner_title_1: `Aumento de la Disponibilidad`,
+                owner_title_2: `Gestión Fácil`,
+                owner_title_3: `Aumento de la Eficacia de Ventas`,
+                owner_title_4: `Multilingüismo`,
+                owner_title_5: `Uso Interno`,
+                owner_description_1: `El catálogo electrónico hace que los productos sean accesibles para los clientes en cualquier momento y lugar, lo que puede llevar a una expansión de la audiencia y un aumento de las ventas.`,
+                owner_description_2: `Permite gestionar rápidamente y eficientemente el surtido de productos, actualizar la información y las fotos, así como reaccionar rápidamente a los cambios en la demanda.`,
+                owner_description_3: `La integración de la funcionalidad del carrito permite a los clientes crear pedidos fácilmente, lo que contribuye a aumentar la conversión y el valor del pedido promedio.`,
+                owner_description_4: `El soporte para varios idiomas facilita el trabajo con clientes de diferentes países, haciendo que el catálogo sea más atractivo para una audiencia internacional.`,
+                owner_description_5: `El catálogo puede servir no solo como herramienta de venta, sino también como medio de comunicación y coordinación interna para el personal, proporcionándoles un acceso rápido a la información actualizada sobre los productos.`,
+                customer_title_1: `Comodidad y Accesibilidad`,
+                customer_title_2: `Búsqueda Fácil y Comparación`,
+                customer_title_3: `Comodidad para Reunir Pedidos al Por Menor y al Por Mayor`,
+                customer_title_4: `Multilingüismo`,
+                customer_title_5: `Mejora del Nivel de Servicio`,
+                customer_description_1: `Permite a los clientes buscar y consultar el surtido de productos en cualquier momento y lugar a través de Internet.`,
+                customer_description_2: `Los usuarios pueden utilizar filtros prácticos y una búsqueda para encontrar rápidamente los productos que les interesan, así como comparar sus características y precios.`,
+                customer_description_3: `El carrito permite a los clientes reunir fácilmente pedidos al por mayor agregando los productos necesarios a medida que avanzan, lo que simplifica el proceso de compra en grandes cantidades.`,
+                customer_description_4: `La presencia de varios idiomas hace que el catálogo sea más accesible para un amplio público, facilitando la comprensión de la información sobre productos y servicios.`,
+                customer_description_5: `El catálogo electrónico ofrece la posibilidad de obtener rápidamente información detallada sobre los productos, su disponibilidad y precios, lo que contribuye a tomar decisiones de compra más informadas.`,
                 no_available_sizes: 'No hay tallas disponibles',
                 image_not_loaded: 'Imagen no cargada',
                 no_categories_available: 'No hay categorías disponibles',
@@ -429,6 +628,72 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'ua',
             string: {
+                helper_pricing_text_1:
+                    'Бажаєте спробувати, чи у вас невеликий асортимент продукції? Наш план забезпечує зручність у використанні, прекрасний онлайн-каталог та надійну підтримку. Це ідеальний вибір для ваших експериментів та перших кроків у використанні каталогу.',
+                helper_pricing_text_2:
+                    'Цей план дає вам можливість завантажувати більше продуктів, додає функцію кошика для зручного замовлення та надає аналітику для поліпшення вашого бізнесу. Крім того, ваш магазин тепер підтримує більше мов, що допоможе вам залучати нових клієнтів і досягати нових рівнів продажів.',
+                helper_pricing_text_3:
+                    'Додайте ваш магазин до мобільних додатків, впроваджуйте індивідуальні рішення і забудьте про ліміти кількості продуктів. Цей тариф є вашим кроком до максимального зростання бізнесу.',
+                view_descr_1:
+                    'Цей інтерфейс зручний для клієнтів завдяки своєму чіткому візуальному оформленню, прямолінійній навігації та швидкому доступу до основних функцій. Він забезпечує безперебійний процес покупки з мінімальним перевантаженням, що полегшує клієнтам знаходження та покупку продуктів, які вони люблять.',
+                view_descr_2:
+                    'Інтерфейс демонструє систему кошика для покупок, яка зручна для управління як індивідуальними, так і оптовими покупками. Макет підкреслює простоту і ефективність, забезпечуючи прямий шлях від вибору до покупки, ключову особливість для клієнтів, які бажають робити великі замовлення.',
+                view_descr_3:
+                    'Інтерфейс презентує безперервну функцію реєстрації, яка покращує досвід покупок, дозволяючи персоналізацію та управління замовленнями. Завдяки обліковим записам користувачів, клієнти можуть слідкувати за своїми улюбленими товарами, сезонними виборами та історією замовлень, що ідеально для підтримання відносин з клієнтами та оптимізації як роздрібних, так і оптових покупок.',
+                view_descr_6:
+                    'Забезпечує просте управління профілем, відстеження замовлень та підтримку декількох мов, гарантуючи налаштований та ефективний досвід покупки.',
+                view_descr_7:
+                    'Цей інтерфейс показує інтерфейс управління продуктами системи інвентаризації, який представляє список одягу. Кожен запис включає ідентифікатор, назву продукту та номери SKU для легкого відстеження та контролю.',
+                view_descr_8:
+                    'Система надає функціональність для редагування, оновлення та управління запасами, спрощуючи операційний процес для роздрібних та оптових бізнесів.',
+                view_descr_9:
+                    "Цей інтерфейс показує сторінку управління замовленнями в системі бізнес-програмного забезпечення, деталізуючи покупку клієнта. Включає ім'я, номер телефону та електронну пошту клієнта, разом з детальними продуктами, розмірами, кількістю та цінами. Ця ефективна розстановка спрощує відстеження та обробку замовлень, що є незамінним для комерційних операцій та відмінності у обслуговуванні клієнтів.",
+                web_mob_view: 'Веб/Мобільний Огляд',
+                examples: 'Приклади',
+                main_advantages: 'Основні переваги',
+                online_catalog_for_your_business: 'Онлайн-каталог для вашого бізнесу',
+                request_sended_successfully: 'Заявка надіслана успішно! Ми зв`яжемося з вами найближчим часом.',
+                first_month_free: 'Перший місяць безкоштовно',
+                hero_text: `Онлайн каталог товарів - це програмне рішення, яке дозволяє створювати електронні каталоги з описом товарів. Воно надає можливості для зручного додавання товарів, класифікації, опису, додавання фотографій та іншої важливої інформації. Користувачі можуть організовувати товари в різні категорії, налаштовувати зручні фільтри, здійснювати пошук для спрощення навігації. Часто використовується компаніями для створення віртуальних торгових каталогів, візуалізації попередніх проектів, інтернет-магазинів, представлення продукції на виставках і презентаціях.`,
+                main_function: `Основна Функціональність`,
+                admin_panel: `Панель Адміністратора`,
+                admin: `Адміністратори`,
+                products_models_photo: `Продукти/Моделі/Фото`,
+                catalog_lang: `Мови Каталогу`,
+                customization: `Кастомізація`,
+                owners: `Для Власника`,
+                customers: `Для Клієнта`,
+                request: `Замовити`,
+                show_all: `Показати Всі`,
+                unlimited: `Необмежено`,
+                month: `Місяць`,
+                home: `Головна`,
+                i_want: `Я Хочу Замовити`,
+                request_catalog: `Замовити Каталог`,
+                consultation: `Замовити Консультацію`,
+                request_example: `Замовити Зразок`,
+                plan: `План`,
+                comment: `Коментар`,
+                owner_title_1: `Збільшення Доступності`,
+                owner_title_2: `Зручне Управління`,
+                owner_title_3: `Підвищення Ефективності Продажів`,
+                owner_title_4: `Мультиязиковість`,
+                owner_title_5: `Використання Усередині Компанії`,
+                owner_description_1: `Електронний каталог робить продукцію доступною для клієнтів в будь-який час і з будь-якого місця, що може призвести до розширення аудиторії і збільшення продажів.`,
+                owner_description_2: `Дозволяє швидко і ефективно керувати асортиментом товарів, оновлювати інформацію та фотографії, а також оперативно реагувати на зміни в попиті.`,
+                owner_description_3: `Інтеграція функціональності кошика дозволяє покупцям легко збирати замовлення, що сприяє збільшенню конверсії та середнього чека.`,
+                owner_description_4: `Підтримка декількох мов спрощує роботу з клієнтами з різних країн, роблячи каталог привабливішим для міжнародної аудиторії.`,
+                owner_description_5: `Каталог може служити не лише інструментом продажу, але також засобом зв'язку та координації всередині компанії, забезпечуючи їм швидкий доступ до актуальної інформації про продукцію.`,
+                customer_title_1: `Зручність та Доступність`,
+                customer_title_2: `Легкий Пошук та Порівняння`,
+                customer_title_3: `Зручність для Збору Роздрібних та Оптових Замовлень`,
+                customer_title_4: `Мультиязиковість`,
+                customer_title_5: `Підвищення Рівня Сервісу`,
+                customer_description_1: `Дозволяє клієнтам шукати та переглядати асортимент товарів у будь-який час та в будь-якому місці через Інтернет.`,
+                customer_description_2: `Користувачі можуть використовувати зручні фільтри та пошук для швидкого знаходження цікавих товарів, а також порівнювати їх характеристики та ціни.`,
+                customer_description_3: `Кошик дозволяє клієнтам зручно складати оптові замовлення, додаваючи необхідні товари до нього за потреби, спрощуючи процес покупки великих кількостей.`,
+                customer_description_4: `Наявність кількох мов робить каталог більш доступним для широкої аудиторії, полегшуючи розуміння інформації про товари та послуги.`,
+                customer_description_5: `Електронний каталог надає можливість швидко отримати докладну інформацію про товари, їх доступність та ціни, що сприяє у прийнятті більш обґрунтованих рішень щодо покупок.`,
                 no_available_sizes: 'Немає доступних розмірів',
                 image_not_loaded: 'Зображення не завантажено',
                 no_categories_available: 'Немає доступних категорій',
@@ -570,6 +835,84 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'pl',
             string: {
+                helper_pricing_text_1:
+                    'Chcesz to wypróbować, czy masz małą gamę produktów? Nasz plan zapewnia łatwość użytkowania, piękny katalog online i niezawodne wsparcie. Jest to idealny wybór na twoje eksperymenty i pierwsze kroki w korzystaniu z katalogu.',
+                helper_pricing_text_2:
+                    'Ten plan pozwala na dodawanie większej liczby produktów, dodaje funkcję koszyka zakupowego dla łatwych zamówień oraz zapewnia analizy do poprawy twojego biznesu. Ponadto twój sklep teraz obsługuje więcej języków, co pomoże przyciągnąć nowych klientów i osiągnąć nowe poziomy sprzedaży.',
+                helper_pricing_text_3:
+                    'Dodaj swój sklep do aplikacji mobilnych, wdrażaj indywidualne rozwiązania i zapomnij o limitach ilości produktów. Ta taryfa to twój krok w kierunku maksymalnego wzrostu biznesu.',
+                view_descr_1:
+                    'Ten interfejs jest wygodny dla klientów dzięki swojemu przejrzystemu układowi wizualnemu, prostocie nawigacji i szybkiemu dostępowi do kluczowych funkcji. Zapewnia płynne doświadczenie zakupowe z minimalnym bałaganem, ułatwiając klientom znalezienie i zakup produktów, które kochają.',
+                view_descr_2:
+                    'Interfejs pokazuje system koszyka zakupowego, który jest wygodny zarówno do zarządzania zakupami indywidualnymi, jak i hurtowymi. Układ podkreśla prostotę i efektywność, zapewniając bezpośrednią ścieżkę od wyboru do zakupu, kluczową cechę dla klientów zamierzających składać duże zamówienia.',
+                view_descr_3:
+                    'Interfejs prezentuje bezproblemową funkcję rejestracji, która poprawia doświadczenie zakupowe, umożliwiając personalizację i zarządzanie zamówieniami. Dzięki kontom użytkowników klienci mogą śledzić ulubione produkty, wybory sezonowe i historię zamówień, co jest idealne do utrzymywania relacji z klientami i usprawniania zarówno detalicznych, jak i hurtowych zakupów.',
+                view_descr_6:
+                    'Zapewnia łatwe zarządzanie profilem, śledzenie zamówień i wsparcie wielojęzyczne, gwarantując dopasowane i efektywne doświadczenie zakupowe.',
+                view_descr_7:
+                    'Ten interfejs pokazuje interfejs zarządzania produktami systemu inwentaryzacyjnego, prezentujący listę artykułów odzieżowych. Każdy wpis zawiera identyfikator, nazwę produktu i numery SKU dla łatwego śledzenia i kontroli.',
+                view_descr_8:
+                    'System zapewnia funkcjonalność edytowania, aktualizowania i zarządzania zapasami, usprawniając proces operacyjny dla firm detalicznych lub hurtowych.',
+                view_descr_9:
+                    'Ten interfejs pokazuje stronę zarządzania zamówieniami w systemie oprogramowania biznesowego, szczegółowo opisując zakup klienta. Zawiera nazwisko klienta, numer telefonu i e-mail, wraz z wyszczególnionymi produktami, rozmiarami, ilościami i cenami. Ta efektywna układ ułatwia śledzenie i przetwarzanie zamówień, co jest niezbędne dla operacji biznesowych i doskonałości obsługi klienta.',
+                web_mob_view: 'Widok Webowy i Mobilny',
+                examples: 'Przykłady',
+                main_advantages: 'Główne zalety',
+                online_catalog_for_your_business: 'Katalog online dla Twojej firmy',
+                request_sended_successfully: 'Wniosek został pomyślnie wysłany! Skontaktujemy się z Tobą wkrótce.',
+                first_month_free: 'Pierwszy miesiąc za darmo',
+                hero_text:
+                    'Katalog online produktów to rozwiązanie programowe, które umożliwia tworzenie elektronicznych katalogów z opisem produktów. Zapewnia możliwości wygodnego dodawania produktów, klasyfikacji, opisu, dodawania zdjęć i innych ważnych informacji. Użytkownicy mogą organizować produkty w różnych kategoriach, dostosowywać wygodne filtry, przeprowadzać wyszukiwanie w celu ułatwienia nawigacji. Często używane przez firmy do tworzenia wirtualnych katalogów handlowych, wizualizacji projektów wstępnych, sklepów internetowych, prezentacji produktów na wystawach i prezentacjach.',
+                main_function: 'Główne Funkcje',
+                admin_panel: 'Panel Administratora',
+                admin: 'Administratorzy',
+                products_models_photo: 'Produkty/Modele/Zdjęcia',
+                catalog_lang: 'Języki Katalogu',
+                customization: 'Dostosowanie',
+                owners: 'Dla Właściciela',
+                customers: 'Dla Klientów',
+                request: 'Zamów',
+                show_all: 'Pokaż wszystko',
+                unlimited: 'Bez limitu',
+                month: 'Miesiąc',
+                home: 'Strona główna',
+                i_want: 'Chcę zamówić',
+                request_catalog: 'Zamów katalog',
+                consultation: 'Zamów konsultację',
+                request_example: 'Zamów przykład',
+                plan: 'Plan',
+                comment: 'Komentarz',
+                owner_title_1: 'Zwiększenie dostępności',
+                owner_title_2: 'Wygodne zarządzanie',
+                owner_title_3: 'Zwiększenie efektywności sprzedaży',
+                owner_title_4: 'Wielojęzyczność',
+                owner_title_5: 'Wykorzystanie wewnątrz firmy',
+                owner_description_1:
+                    'Elektroniczny katalog sprawia, że produkty są dostępne dla klientów o każdej porze i z dowolnego miejsca, co może prowadzić do zwiększenia widowni i sprzedaży.',
+                owner_description_2:
+                    'Pozwala szybko i skutecznie zarządzać asortymentem produktów, aktualizować informacje i zdjęcia, a także szybko reagować na zmiany w popycie.',
+                owner_description_3:
+                    'Integracja funkcjonalności koszyka umożliwia klientom łatwe składanie zamówień, co przyczynia się do zwiększenia konwersji i średniej wartości zamówienia.',
+                owner_description_4:
+                    'Obsługa kilku języków ułatwia pracę z klientami z różnych krajów, co czyni katalog bardziej atrakcyjnym dla międzynarodowej publiczności.',
+                owner_description_5:
+                    'Katalog może służyć nie tylko jako narzędzie sprzedaży, ale także jako środek wewnętrznej komunikacji i koordynacji dla pracowników, zapewniając im szybki dostęp do aktualnych informacji o produktach.',
+                customer_title_1: 'Wygodę i dostępność',
+                customer_title_2: 'Łatwe wyszukiwanie i porównywanie',
+                customer_title_3: 'Wygodę zbierania zamówień detalicznych i hurtowych',
+                customer_title_4: 'Wielojęzyczność',
+                customer_title_5: 'Podniesienie poziomu obsługi',
+                customer_description_1:
+                    'Pozwala klientom wyszukiwać i zapoznawać się z asortymentem produktów w dowolnym dogodnym czasie i miejscu za pośrednictwem internetu.',
+                customer_description_2:
+                    'Użytkownicy mogą korzystać z wygodnych filtrów i wyszukiwania w celu szybkiego znalezienia interesujących ich produktów oraz porównywania ich cech i cen.',
+                customer_description_3:
+                    'Koszyk umożliwia klientom wygodne składanie zamówień hurtowych, dodając potrzebne produkty do niego w miarę potrzeb, co ułatwia proces zakupu dużymi partiami towarów.',
+                customer_description_4:
+                    'Obecność wielu języków czyni katalog bardziej dostępnym dla szerokiej publiczności, co ułatwia zrozumienie informacji o produktach i usługach.',
+                customer_description_5:
+                    'Elektroniczny katalog zapewnia możliwość szybkiego uzyskania szczegółowych informacji o produktach, ich dostępności i cenach, co przyczynia się do podejmowania bardziej świadomych decyzji zakupowych.',
+
                 no_available_sizes: 'Brak dostępnych rozmiarów',
                 image_not_loaded: 'Obraz nie został załadowany',
                 no_categories_available: 'Brak dostępnych kategorii',
@@ -712,6 +1055,84 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'cz',
             string: {
+                helper_pricing_text_1:
+                    'Chcete to vyzkoušet, nebo máte malý sortiment produktů? Náš plán poskytuje snadné použití, krásný online katalog a spolehlivou podporu. Je to ideální volba pro vaše experimenty a první kroky při používání katalogu.',
+                helper_pricing_text_2:
+                    'Tento plán vám umožňuje nahrát více produktů, přidává funkci nákupního košíku pro snadné objednávání a poskytuje analýzy pro zlepšení vašeho podnikání. Kromě toho váš obchod nyní podporuje více jazyků, což vám pomůže přilákat nové zákazníky a dosáhnout nových úrovní prodeje.',
+                helper_pricing_text_3:
+                    'Přidejte váš obchod do mobilních aplikací, implementujte vlastní řešení a zapomeňte na limity množství produktů. Tento tarif je vaším krokem k maximálnímu růstu podnikání.',
+                view_descr_1:
+                    'Toto rozhraní je pohodlné pro zákazníky díky svému čistému vizuálnímu uspořádání, jednoduché navigaci a rychlému přístupu k základním funkcím. Poskytuje plynulý nákupní zážitek s minimálním rušením, což zákazníkům usnadňuje nalezení a nákup produktů, které milují.',
+                view_descr_2:
+                    'Rozhraní ukazuje systém nákupního košíku, který je vhodný pro správu jak individuálních, tak velkoobchodních nákupů. Layout zdůrazňuje jednoduchost a efektivitu, poskytující přímou cestu od výběru k nákupu, klíčovou vlastnost pro zákazníky, kteří chtějí umístit velké objednávky.',
+                view_descr_3:
+                    'Rozhraní prezentuje bezproblémovou funkci registrace, která zlepšuje nákupní zážitek tím, že umožňuje personalizaci a správu objednávek. S uživatelskými účty mohou zákazníci sledovat oblíbené produkty, sezónní výběry a historii objednávek, což je ideální pro udržení vztahů se zákazníky a zefektivnění jak maloobchodních, tak velkoobchodních nákupů.',
+                view_descr_6:
+                    'Poskytuje snadné správu profilu, sledování objednávek a podporu více jazyků, čímž zajišťuje přizpůsobený a efektivní nákupní zážitek.',
+                view_descr_7:
+                    'Toto rozhraní ukazuje rozhraní správy produktů inventárního systému, které obsahuje seznam oděvních položek. Každý záznam obsahuje ID, název produktu a čísla SKU pro snadné sledování a kontrolu.',
+                view_descr_8:
+                    'Systém poskytuje funkce pro úpravy, aktualizace a správu zásob, čímž zjednodušuje provozní proces pro maloobchodní nebo velkoobchodní podniky.',
+                view_descr_9:
+                    'Toto rozhraní ukazuje stránku správy objednávek v rámci podnikového softwarového systému, detailně popisující nákup zákazníka. Zahrnuje jméno, telefonní číslo a e-mail zákazníka, spolu s detailně uvedenými produkty, velikostmi, množstvími a cenami. Toto efektivní uspořádání zjednodušuje sledování a zpracování objednávek, což je nezbytné pro obchodní operace a vynikající zákaznický servis.',
+                web_mob_view: 'Webové a Mobilní Zobrazení',
+                examples: 'Příklady',
+                main_advantages: 'Hlavní výhody',
+                online_catalog_for_your_business: 'Online katalog pro váš podnik',
+                request_sended_successfully: 'Žádost byla úspěšně odeslána! Brzy se s vámi spojíme.',
+                first_month_free: 'První měsíc zdarma',
+                hero_text:
+                    'Online katalog produktů je softwarové řešení, které umožňuje vytvářet elektronické katalogy s popisem produktů. Poskytuje vám možnosti pohodlného přidávání produktů, klasifikace, popisu, přidávání fotografií a dalších důležitých informací. Uživatelé mohou organizovat produkty do různých kategorií, nastavovat pohodlné filtry, provádět vyhledávání pro zjednodušení navigace. Často se používá firemními subjekty k vytváření virtuálních obchodních katalogů, vizualizace předběžných projektů, internetových obchodů, prezentace výrobků na výstavách a prezentacích.',
+                main_function: 'Hlavní Funkce',
+                admin_panel: 'Administrátorský Panel',
+                admin: 'Administrátoři',
+                products_models_photo: 'Produkty/Modely/Fotografie',
+                catalog_lang: 'Jazyky Katalogu',
+                customization: 'Přizpůsobení',
+                owners: 'Pro Majitele',
+                customers: 'Pro Zákazníky',
+                request: 'Objednat',
+                show_all: 'Zobrazit vše',
+                unlimited: 'Neomezený',
+                month: 'Měsíc',
+                home: 'Domů',
+                i_want: 'Chci objednat',
+                request_catalog: 'Objednat katalog',
+                consultation: 'Objednat konzultaci',
+                request_example: 'Objednat vzorek',
+                plan: 'Plán',
+                comment: 'Komentář',
+                owner_title_1: 'Zvýšení dostupnosti',
+                owner_title_2: 'Pohodlné řízení',
+                owner_title_3: 'Zvýšení účinnosti prodeje',
+                owner_title_4: 'Vícejazyčnost',
+                owner_title_5: 'Využití uvnitř společnosti',
+                owner_description_1:
+                    'Elektronický katalog dělá produkty dostupnými pro zákazníky kdykoli a odkudkoli, což může vést k rozšíření cílové skupiny a zvýšení prodeje.',
+                owner_description_2:
+                    'Umožňuje rychle a efektivně spravovat sortiment produktů, aktualizovat informace a fotografie a rychle reagovat na změny ve poptávce.',
+                owner_description_3:
+                    'Integrace funkcionality nákupního košíku umožňuje zákazníkům snadno shromažďovat objednávky, což přispívá k zvýšení konverze a průměrné hodnoty objednávky.',
+                owner_description_4:
+                    'Podpora více jazyků usnadňuje práci s klienty z různých zemí, čímž se katalog stává přitažlivějším pro mezinárodní publikum.',
+                owner_description_5:
+                    'Katalog může sloužit nejen jako nástroj prodeje, ale také jako prostředek interní komunikace a koordinace pro zaměstnance, poskytující jim rychlý přístup k aktuálním informacím o produktech.',
+                customer_title_1: 'Pohodlí a dostupnost',
+                customer_title_2: 'Snadné vyhledávání a porovnávání',
+                customer_title_3: 'Pohodlnost pro shromažďování maloobchodních i velkoobchodních objednávek',
+                customer_title_4: 'Vícejazyčnost',
+                customer_title_5: 'Zvýšení úrovně servisu',
+                customer_description_1:
+                    'Umožňuje zákazníkům vyhledávat a prohlížet si sortiment produktů kdykoli a kdekoli prostřednictvím internetu.',
+                customer_description_2:
+                    'Uživatelé mohou využívat pohodlné filtry a vyhledávání pro rychlé nalezení požadovaných produktů a porovnání jejich vlastností a cen.',
+                customer_description_3:
+                    'Nákupní košík umožňuje zákazníkům pohodlně shromažďovat velkoobchodní objednávky, přidáváním potřebných produktů podle potřeby, což usnadňuje proces nákupu velkými objemy zboží.',
+                customer_description_4:
+                    'Přítomnost více jazyků činí katalog přístupnějším širšímu publiku, což usnadňuje porozumění informacím o produktech a službách.',
+                customer_description_5:
+                    'Elektronický katalog poskytuje možnost rychle získat podrobné informace o produktech, jejich dostupnosti a cenách, což přispívá k přijímání informovanějších rozhodnutí o nákupu.',
+
                 no_available_sizes: 'Žádné dostupné velikosti',
                 image_not_loaded: 'Obrázek není načten',
                 no_categories_available: 'Nejsou k dispozici žádné kategorie',
@@ -851,6 +1272,83 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'ru',
             string: {
+                helper_pricing_text_1:
+                    'Хотите попробовать или у вас небольшой ассортимент продукции? Наш план обеспечивает простоту использования, красивый онлайн-каталог и надежную поддержку. Это идеальный выбор для ваших экспериментов и первых шагов в использовании каталога.',
+                helper_pricing_text_2:
+                    'Этот план позволяет вам добавлять больше продуктов, добавляет функцию корзины для упрощения заказов и предоставляет аналитику для улучшения вашего бизнеса. Кроме того, ваш магазин теперь поддерживает больше языков, что поможет вам привлекать новых клиентов и достигать новых уровней продаж.',
+                helper_pricing_text_3:
+                    'Добавьте ваш магазин в мобильные приложения, реализуйте индивидуальные решения и забудьте о лимитах на количество продуктов. Этот тариф — ваш шаг к максимальному росту бизнеса.',
+                view_descr_1:
+                    'Этот интерфейс удобен для клиентов благодаря своему четкому визуальному оформлению, простой навигации и быстрому доступу к основным функциям. Он обеспечивает бесперебойный процесс покупки с минимальным количеством отвлекающих факторов, упрощая для клиентов поиск и покупку продуктов, которые они любят.',
+                view_descr_2:
+                    'Интерфейс демонстрирует систему корзины покупок, удобную для управления как индивидуальными, так и оптовыми покупками. Макет подчеркивает простоту и эффективность, предоставляя прямой путь от выбора до покупки, ключевую особенность для клиентов, желающих сделать большие заказы.',
+                view_descr_3:
+                    'Интерфейс представляет собой безупречную функцию регистрации, которая улучшает опыт покупок, позволяя персонализацию и управление заказами. С помощью учетных записей пользователей клиенты могут отслеживать избранные товары, сезонные подборки и историю заказов, что идеально подходит для поддержания отношений с клиентами и оптимизации как розничных, так и оптовых покупок.',
+                view_descr_6:
+                    'Обеспечивает легкое управление профилем, отслеживание заказов и поддержку на нескольких языках, гарантируя настроенный и эффективный шопинг.',
+                view_descr_7:
+                    'Этот интерфейс показывает интерфейс управления продуктами инвентаризационной системы, представляющий список одежды. Каждая запись включает в себя ID, название продукта и номера SKU для удобства отслеживания и контроля.',
+                view_descr_8:
+                    'Система предоставляет функциональность для редактирования, обновления и управления запасами, упрощая операционный процесс для розничных и оптовых бизнесов.',
+                view_descr_9:
+                    'Этот интерфейс показывает страницу управления заказами в системе бизнес-программного обеспечения, детализируя покупку клиента. Включает имя, номер телефона и электронную почту клиента, а также детализированные продукты, размеры, количество и цены. Эта эффективная организация упрощает отслеживание и обработку заказов, что жизненно важно для бизнес-операций и исключительного обслуживания клиентов.',
+                web_mob_view: 'Веб и Мобильный Просмотр',
+                examples: 'Примеры',
+                main_advantages: 'Основные преимущества',
+                online_catalog_for_your_business: 'Онлайн-каталог для вашего бизнеса',
+                request_sended_successfully: 'Заявка отправлена успешно! Мы свяжемся с вами в ближайшее время.',
+                first_month_free: 'Первый месяц бесплатно',
+                hero_text:
+                    'Онлайн каталог товаров – это программное решение, которое позволяет создавать электронные каталоги с описанием товаров. Оно предоставляет Вам возможности для удобного добавления товаров, классификации, описание, добавление фотографий и другой важной информации. Пользователи могут организовывать товары в разные категории, настраивать удобные фильтры, осуществлять поиск для упрощения навигации. Часто используются компаниями для создания виртуальных торговых каталогов, визуализации предварительных проектов, интернет-магазинов, представление продукции на выставках и презентациях.',
+                main_function: 'Основной Функционал',
+                admin_panel: 'Админ Панель',
+                admin: 'Администраторы',
+                products_models_photo: 'Продукты/Модели/Фото',
+                catalog_lang: 'Языки Каталога',
+                customization: 'Кастомизация',
+                owners: 'Для Владелца',
+                customers: 'Для Заказчика',
+                request: 'Заказать',
+                show_all: 'Показать все',
+                unlimited: 'Безлимит',
+                month: 'Месяц',
+                home: ' Главная',
+                i_want: 'Я хочу заказать',
+                request_catalog: 'Заказать каталог',
+                consultation: 'Заказать консультацию',
+                request_example: 'Заказать образец',
+                plan: 'Тариф',
+                comment: 'Комментарий',
+                owner_title_1: 'Увеличение доступности',
+                owner_title_2: 'Удобное управление',
+                owner_title_3: 'Повышение эффективности продаж',
+                owner_title_4: 'Мультиязычность',
+                owner_title_5: 'Использование внутри компании',
+                owner_description_1:
+                    'Электронный каталог делает продукцию доступной для клиентов в любое время и из любого места, что может привести к расширению аудитории и увеличению продаж.',
+                owner_description_2:
+                    'Позволяет быстро и эффективно управлять ассортиментом товаров, обновлять информацию и фотографии, а также оперативно реагировать на изменения в спросе.',
+                owner_description_3:
+                    'Интеграция функциональности корзины позволяет покупателям легко собирать заказы, что способствует увеличению конверсии и среднего чека.',
+                owner_description_4:
+                    'Поддержка нескольких языков упрощает работу с клиентами из разных стран, делая каталог более привлекательным для международной аудитории.',
+                owner_description_5:
+                    'Каталог может служить не только инструментом продаж, но и средством внутренней коммуникации и координации для персонала, обеспечивая им быстрый доступ к актуальной информации о продукции.',
+                customer_title_1: 'Удобство и доступность',
+                customer_title_2: 'Легкий поиск и сравнение',
+                customer_title_3: 'Удобство для сбора как розничных так и оптовых заказов',
+                customer_title_4: 'Мультиязычность',
+                customer_title_5: 'Повышение уровня сервиса',
+                customer_description_1:
+                    'Позволяет покупателям искать и ознакомиться с ассортиментом товаров в любое удобное время и место через интернет.',
+                customer_description_2:
+                    'Пользователи могут использовать удобные фильтры и поиск для быстрого нахождения интересующих товаров, а также сравнивать их характеристики и цены.',
+                customer_description_3:
+                    'Корзина позволяет покупателям удобно собирать оптовые заказы, добавляя необходимые товары в неё по мере необходимости, что упрощает процесс закупки крупными партиями товаров.',
+                customer_description_4:
+                    'Наличие нескольких языков делает каталог более доступным для широкой аудитории, что упрощает понимание информации о товарах и услугах.',
+                customer_description_5:
+                    'Электронный каталог обеспечивает возможность быстрого получения подробной информации о товарах, их наличии и ценах, что способствует принятию более осознанных решений о покупке.',
                 no_available_sizes: 'Нет доступных размеров',
                 image_not_loaded: 'Изображение не загружено',
                 no_categories_available: 'Нет доступных категорий',

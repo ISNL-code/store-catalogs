@@ -1,53 +1,59 @@
 import { Box, Typography } from '@mui/material';
 import { useDevice } from 'hooks/useDevice';
 import { useNavigate } from 'react-router-dom';
-import { LiaGlassMartiniAltSolid } from 'react-icons/lia';
 
-const HomeHeaderLogo = ({ headerHeight }) => {
+const HomeHeaderLogo = () => {
     const navigate = useNavigate();
     const { xxs } = useDevice();
     return (
         <Box onClick={() => navigate('/')} sx={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}>
-            <LiaGlassMartiniAltSolid fontSize={58} />
+            <img
+                src={require('assets/img/logo.png')}
+                style={{ width: xxs ? 45 : 60, height: xxs ? 45 : 60 }}
+                alt="logo"
+            />
 
-            <Box sx={{ display: 'flex', gap: 0.1 }}>
-                <Typography
-                    sx={{ fontFamily: 'Young Serif', fontSize: xxs ? 22 : 26, fontWeight: 700, color: '#6495ED' }}
-                >
-                    C
-                </Typography>
-                <Typography
-                    sx={{ fontFamily: 'Young Serif', fontSize: xxs ? 22 : 26, fontWeight: 700, color: 'orange' }}
-                >
-                    O
-                </Typography>
-                <Typography sx={{ fontFamily: 'Young Serif', fontSize: xxs ? 22 : 26, fontWeight: 700, color: 'red' }}>
-                    C
-                </Typography>
-                <Typography
-                    sx={{ fontFamily: 'Young Serif', fontSize: xxs ? 22 : 26, fontWeight: 700, color: '#bc8fb6' }}
-                >
-                    K
-                </Typography>
-                <Typography
-                    sx={{ fontFamily: 'Young Serif', fontSize: xxs ? 22 : 26, fontWeight: 700, color: '#8FBC8F' }}
-                >
-                    T
-                </Typography>
-                <Typography
-                    sx={{ fontFamily: 'Young Serif', fontSize: xxs ? 22 : 26, fontWeight: 700, color: '#7B68EE' }}
-                >
+            <Box sx={{ display: 'flex', gap: 0.1, alignItems: 'center', mt: 0.5 }}>
+                <Typography sx={{ fontFamily: 'Young Serif', fontSize: xxs ? 22 : 32, fontWeight: 700, color: 'red' }}>
                     A
                 </Typography>
-                <Typography
-                    sx={{ fontFamily: 'Young Serif', fontSize: xxs ? 22 : 26, fontWeight: 700, color: '#c79dc7' }}
-                >
-                    I
+                <Typography sx={{ fontFamily: 'Young Serif', fontSize: xxs ? 22 : 32, fontWeight: 700, color: '#000' }}>
+                    L
+                </Typography>
+                <Typography sx={{ fontFamily: 'Young Serif', fontSize: xxs ? 22 : 32, fontWeight: 700, color: '#000' }}>
+                    B
+                </Typography>
+                <Typography sx={{ fontFamily: 'Young Serif', fontSize: xxs ? 22 : 32, fontWeight: 700, color: '#000' }}>
+                    E
+                </Typography>
+                <Typography sx={{ fontFamily: 'Young Serif', fontSize: xxs ? 22 : 32, fontWeight: 700, color: '#000' }}>
+                    R
+                </Typography>
+                <Typography sx={{ fontFamily: 'Young Serif', fontSize: xxs ? 22 : 32, fontWeight: 700, color: '#000' }}>
+                    T
+                </Typography>
+                <Typography sx={{ fontFamily: 'Young Serif', fontSize: xxs ? 22 : 32, fontWeight: 700, color: '#000' }}>
+                    O
                 </Typography>
                 <Typography
-                    sx={{ fontFamily: 'Young Serif', fontSize: xxs ? 22 : 26, fontWeight: 700, color: '#e9a33b' }}
+                    sx={{
+                        ml: 1,
+                        fontFamily: 'Young Serif',
+                        fontSize: xxs ? 22 : 32,
+                        fontWeight: 700,
+                        color: 'red',
+                    }}
                 >
-                    L
+                    B
+                </Typography>
+                <Typography sx={{ fontFamily: 'Young Serif', fontSize: xxs ? 22 : 32, fontWeight: 700, color: '#000' }}>
+                    I
+                </Typography>
+                <Typography sx={{ fontFamily: 'Young Serif', fontSize: xxs ? 22 : 32, fontWeight: 700, color: '#000' }}>
+                    N
+                </Typography>
+                <Typography sx={{ fontFamily: 'Young Serif', fontSize: xxs ? 22 : 32, fontWeight: 700, color: '#000' }}>
+                    I
                 </Typography>
             </Box>
         </Box>
