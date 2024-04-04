@@ -3,7 +3,6 @@ import { TelegramIcon } from 'assets/svg/telega.js';
 import { ViberIcon } from 'assets/svg/Viber_icon-icons.com_66792.js';
 import { WhatsAppIcon } from 'assets/svg/whatsapp.js';
 import { useOutletContext } from 'react-router-dom';
-import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
 import PersonIcon from '@mui/icons-material/Person';
 import CallIcon from '@mui/icons-material/Call';
 import { useEffect } from 'react';
