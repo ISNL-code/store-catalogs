@@ -6,6 +6,7 @@ import GridViewIcon from '@mui/icons-material/GridView';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import ProfileButton from 'components/molecules/ToolsButtons/ProfileButton';
+import StoreIcon from '@mui/icons-material/Store';
 
 const menuHeight = '70px';
 
@@ -51,6 +52,7 @@ const MobileMenu = ({
                         gap: 2,
                     }}
                 >
+                    <MobileNavButton path={`/`} title={string?.home} icon={p => <StoreIcon {...p} />} />
                     <MobileNavButton
                         path={`/catalog/${storeCode}/${storeName}`}
                         childPath={['/details', '/contacts', 'model']}

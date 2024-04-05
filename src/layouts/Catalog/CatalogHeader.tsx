@@ -84,10 +84,10 @@ const Header = ({
                     />
 
                     {store?.additionalStoreSettings?.favorites && (
-                        <HeaderNavButton
+                        <HeaderNavIconButton
                             path={`/catalog/${storeCode}/${storeName}/favorites`}
                             title={string?.favorites}
-                            icon={props => <FavoriteIcon {...props} />}
+                            icon={() => <FavoriteIcon />}
                             isShown={!sx}
                             action={() => {
                                 navigate(`/catalog/${storeCode}/${storeName}/favorites`);
@@ -97,10 +97,10 @@ const Header = ({
                         />
                     )}
                     {store?.additionalStoreSettings?.cart && (
-                        <HeaderNavButton
+                        <HeaderNavIconButton
                             path={`/catalog/${storeCode}/${storeName}/cart`}
                             title={string?.cart}
-                            icon={props => <ShoppingCartIcon {...props} />}
+                            icon={() => <ShoppingCartIcon />}
                             isShown={!sx}
                             badgeCount={cart?.cartItems?.length}
                             action={() => {
