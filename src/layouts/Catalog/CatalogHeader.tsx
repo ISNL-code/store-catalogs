@@ -11,7 +11,8 @@ import ProfileButton from 'components/molecules/ToolsButtons/ProfileButton';
 
 import StoreIcon from '@mui/icons-material/Store';
 import { StoreInterface, useAddToCartDataInterface, useAddToFavoriteDataInterface } from 'types';
-import HomeHeaderLogo from 'components/atoms/Logo/StoresHeaderLogo';
+import HeaderNavIconButton from 'components/atoms/Buttons/HeaderNavIconButton';
+import CatalogHeaderLogo from 'components/atoms/Logo/CatalogHeaderLogo';
 
 interface HeaderInterface {
     headerHeight;
@@ -65,7 +66,7 @@ const Header = ({
         >
             <Box sx={{ height: headerHeight, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                 <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <HomeHeaderLogo />
+                    <CatalogHeaderLogo />
                 </Box>
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
                     <HeaderNavButton
@@ -112,9 +113,9 @@ const Header = ({
                     )}
 
                     {!auth && (
-                        <HeaderNavButton
+                        <HeaderNavIconButton
                             title={string?.login}
-                            icon={props => <PermIdentityIcon {...props} />}
+                            icon={() => <PermIdentityIcon />}
                             isShown={!sx}
                             action={() => setOpenModalType('login')}
                             isActive={['login', 'register', 'forgot-password'].includes(openModalType)}

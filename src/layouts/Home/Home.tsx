@@ -53,7 +53,7 @@ export default function Home({ lang, setLang }) {
                     }}
                 />
             </Box>
-            <HomeMobileMenu appXPadding={appXPadding} isShown={!!sx} />
+            <HomeMobileMenu appXPadding={appXPadding} isShown={!!sx} string={currentLanguage?.string} />
         </Box>
     );
 }

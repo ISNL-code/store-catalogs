@@ -1,11 +1,11 @@
 import { Box } from '@mui/material';
 import HeaderNavButton from 'components/atoms/Buttons/HeaderNavButton';
 import LanguageButton from 'components/molecules/ToolsButtons/LanguageButton';
-import HomeHeaderLogo from 'components/atoms/Logo/StoresHeaderLogo';
 import StoreIcon from '@mui/icons-material/Store';
 import { useDevice } from 'hooks/useDevice';
 import { useLocation, useParams } from 'react-router-dom';
 import GridViewIcon from '@mui/icons-material/GridView';
+import HomeHeaderLogo from 'components/atoms/Logo/HomeHeaderLogo';
 interface HeaderInterface {
     headerHeight;
     appXPadding;
