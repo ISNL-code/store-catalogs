@@ -1,10 +1,9 @@
-import { Badge, Box, Button, IconButton, Typography } from '@mui/material';
+import { Badge, Box, IconButton, Typography } from '@mui/material';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { ReactNode } from 'react';
-import { useDevice } from 'hooks/useDevice';
 
 interface HeaderNavButtonInterface {
-    icon: (props) => ReactNode;
+    icon: () => ReactNode;
     path?: string;
     childPath?: string[];
     isShown?: boolean;
@@ -30,31 +29,24 @@ const HeaderNavIconButton = ({
     const navigate = useNavigate();
     const location = useLocation();
     const active = location.pathname === path;
-    const { sx, sm } = useDevice();
 
     if (isShown)
         return (
             <>
-                <Box mx={0.5}>
-                    <Button
+                <Box>
+                    <IconButton
                         sx={{
-                            px: sx ? 0 : 1,
-                            height: sx ? '' : 35,
-                            gap: sx ? 0 : 1,
                             display: 'flex',
-                            justifyContent: 'space-between',
-                            flexDirection: sx ? 'column' : 'row',
+                            flexDirection: 'column',
                             alignItems: 'center',
                             '&:hover': { backgroundColor: '#fff' },
-                            border: active || isActive ? '' : '1px solid rgba(0, 0, 0, 0.54)',
                         }}
-                        color={active || isActive ? `primary` : 'info'}
+                        color={active || isActive ? `primary` : 'default'}
                         onClick={() => {
                             if (action) action();
                             clearSort();
                             if (!protectedPath && path) navigate(path);
                         }}
-                        variant={sx ? 'text' : 'outlined'}
                     >
                         <Badge
                             color="error"
@@ -69,18 +61,14 @@ const HeaderNavIconButton = ({
                                 },
                             }}
                         >
-                            {icon({ sx: { color: active || isActive ? '#1976d2' : 'rgba(0, 0, 0, 0.54)' } })}
+                            {icon()}
                         </Badge>
                         <Typography
-                            sx={{
-                                fontSize: sx ? 10 : 14,
-                                color: active || isActive ? '#1976d2' : 'rgba(0, 0, 0, 0.54)',
-                                fontWeight: sx ? 500 : 700,
-                            }}
+                            sx={{ fontSize: 10, color: active || isActive ? '#1976d2' : 'rgba(0, 0, 0, 0.54)' }}
                         >
                             {title}
                         </Typography>
-                    </Button>
+                    </IconButton>
                 </Box>
             </>
         );
