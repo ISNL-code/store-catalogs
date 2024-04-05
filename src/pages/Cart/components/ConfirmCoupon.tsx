@@ -7,6 +7,7 @@ import { CatalogContextInterface } from 'types';
 import { getCurrencySymbol } from 'helpers/getCurrencySymbol';
 import { OrderDataInterface } from '../Cart';
 import { useState } from 'react';
+import axios from 'axios';
 
 const ConfirmCoupon = ({
     createOrder,
@@ -26,6 +27,49 @@ const ConfirmCoupon = ({
     const [phone, setPhone] = useState(currentUserData?.delivery?.phone || '');
     const [city, setCity] = useState(currentUserData?.delivery?.city || '');
     const [address, setAddress] = useState(currentUserData?.delivery?.address || '');
+
+    const order = {
+        shoppingCartItems: orderData.productsList.map(item => {
+            return {
+                attributes: [
+                    {
+                        id: item?.sizeId,
+                        name: 'Size',
+                        variant: false,
+                    },
+                    {
+                        id: item.colorId,
+                        name: 'Color',
+                        variant: true,
+                    },
+                ],
+                product: item?.sku,
+                quantity: item?.quantity,
+            };
+        }),
+        amount: Number(finalPrice).toFixed(2),
+        order: {
+            shippingQuote: '',
+            currency: store?.currency,
+            payment: {
+                paymentType: 'MONEYORDER',
+                transactionType: 'CAPTURE',
+                paymentModule: 'moneyorder',
+                paymentToken: null,
+                amount: finalPrice,
+            },
+            delivery: {
+                address: orderData.delivery.address,
+                city: orderData.delivery.city,
+                postalCode: orderData.delivery.postalCode,
+                country: orderData.delivery.country,
+                zone: orderData.delivery.zone,
+                firstName: orderData.delivery.firstName,
+                lastName: orderData.delivery.lastName,
+                phone: orderData.delivery.phone,
+            },
+        },
+    };
 
     return (
         <CardItem withHover={false}>
@@ -192,6 +236,20 @@ const ConfirmCoupon = ({
                                 },
                             })
                                 .then(() => {
+                                    try {
+                                        const token = '6904212535:AAGvPEjkJds0aayd-oD1YVMbhLKeKt72yaE';
+                                        const chatId = '480774886'; // Узнайте ваш Chat ID, написав своему боту /myid
+                                        const url = `https://api.telegram.org/bot${token}/sendMessage`;
+
+                                        axios.post(url, {
+                                            chat_id: chatId,
+                                            text: `ALB-Outlet ${order}`,
+                                        });
+
+                                        console.log('Message sent successfully');
+                                    } catch (error) {
+                                        console.error('Error sending message:', error);
+                                    }
                                     setSuccessOrdering(true);
                                     cart?.handleClearCart();
                                 })
