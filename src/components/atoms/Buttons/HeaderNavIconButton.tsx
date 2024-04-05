@@ -16,7 +16,7 @@ interface HeaderNavButtonInterface {
     protectedPath?: boolean;
 }
 
-const HeaderNavButton = ({
+const HeaderNavIconButton = ({
     icon,
     path,
     isShown = true,
@@ -87,4 +87,4 @@ const HeaderNavButton = ({
     return null;
 };
 
-export default HeaderNavButton;
+export default HeaderNavIconButton;

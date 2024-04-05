@@ -1,6 +1,5 @@
 import { Box } from '@mui/material';
 import HeaderNavButton from 'components/atoms/Buttons/HeaderNavButton';
-import HeaderLogo from 'components/atoms/Logo/HeaderLogo';
 import LanguageButton from 'components/molecules/ToolsButtons/LanguageButton';
 import PermIdentityIcon from '@mui/icons-material/PermIdentity';
 import { useDevice } from 'hooks/useDevice';
@@ -9,7 +8,10 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import GridViewIcon from '@mui/icons-material/GridView';
 import ProfileButton from 'components/molecules/ToolsButtons/ProfileButton';
+
+import StoreIcon from '@mui/icons-material/Store';
 import { StoreInterface, useAddToCartDataInterface, useAddToFavoriteDataInterface } from 'types';
+import HomeHeaderLogo from 'components/atoms/Logo/StoresHeaderLogo';
 
 interface HeaderInterface {
     headerHeight;
@@ -18,8 +20,6 @@ interface HeaderInterface {
     lang;
     setLang;
     auth;
-    logo;
-    storeHeaderName;
     setOpenModalType;
     openModalType;
     store: StoreInterface | null;
@@ -35,8 +35,6 @@ const Header = ({
     lang,
     setLang,
     auth,
-    logo,
-    storeHeaderName,
     setOpenModalType,
     openModalType,
     store,
@@ -51,7 +49,8 @@ const Header = ({
 
     return (
         <Box
-            px={appXPadding}
+            pr={appXPadding}
+            pl={1}
             sx={{
                 height: headerHeight,
                 borderBottom: '1px solid #ccc',
@@ -66,18 +65,19 @@ const Header = ({
         >
             <Box sx={{ height: headerHeight, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                 <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <HeaderLogo
-                        title={storeHeaderName}
-                        path={`/catalog/${storeCode}/${storeName}`}
-                        imgUrl={logo}
-                        headerHeight={headerHeight}
-                    />
+                    <HomeHeaderLogo />
                 </Box>
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
                     <HeaderNavButton
+                        title={string?.home}
+                        path={`/`}
+                        icon={props => <StoreIcon {...props} />}
+                        isShown={!sx}
+                    />
+                    <HeaderNavButton
                         title={string?.catalog}
                         path={`/catalog/${storeCode}/${storeName}`}
-                        icon={() => <GridViewIcon />}
+                        icon={props => <GridViewIcon {...props} />}
                         isShown={!sx}
                         isActive={location.pathname.includes('details')}
                     />
@@ -86,7 +86,7 @@ const Header = ({
                         <HeaderNavButton
                             path={`/catalog/${storeCode}/${storeName}/favorites`}
                             title={string?.favorites}
-                            icon={() => <FavoriteIcon />}
+                            icon={props => <FavoriteIcon {...props} />}
                             isShown={!sx}
                             action={() => {
                                 navigate(`/catalog/${storeCode}/${storeName}/favorites`);
@@ -99,7 +99,7 @@ const Header = ({
                         <HeaderNavButton
                             path={`/catalog/${storeCode}/${storeName}/cart`}
                             title={string?.cart}
-                            icon={() => <ShoppingCartIcon />}
+                            icon={props => <ShoppingCartIcon {...props} />}
                             isShown={!sx}
                             badgeCount={cart?.cartItems?.length}
                             action={() => {
@@ -114,7 +114,7 @@ const Header = ({
                     {!auth && (
                         <HeaderNavButton
                             title={string?.login}
-                            icon={() => <PermIdentityIcon />}
+                            icon={props => <PermIdentityIcon {...props} />}
                             isShown={!sx}
                             action={() => setOpenModalType('login')}
                             isActive={['login', 'register', 'forgot-password'].includes(openModalType)}

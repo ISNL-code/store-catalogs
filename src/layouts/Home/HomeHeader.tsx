@@ -4,7 +4,8 @@ import LanguageButton from 'components/molecules/ToolsButtons/LanguageButton';
 import HomeHeaderLogo from 'components/atoms/Logo/StoresHeaderLogo';
 import StoreIcon from '@mui/icons-material/Store';
 import { useDevice } from 'hooks/useDevice';
-
+import { useLocation, useParams } from 'react-router-dom';
+import GridViewIcon from '@mui/icons-material/GridView';
 interface HeaderInterface {
     headerHeight;
     appXPadding;
@@ -15,6 +16,8 @@ interface HeaderInterface {
 }
 
 const HomeHeader = ({ headerHeight, appXPadding, string, lang, setLang, setOpenModalType }: HeaderInterface) => {
+    const { storeCode, storeName } = useParams();
+    const location = useLocation();
     const { sx } = useDevice();
     return (
         <Box
@@ -37,8 +40,19 @@ const HomeHeader = ({ headerHeight, appXPadding, string, lang, setLang, setOpenM
                     <HomeHeaderLogo />
                 </Box>
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                    {!sx && <HeaderNavButton title={string?.home} path={`/`} icon={() => <StoreIcon />} />}
-
+                    <HeaderNavButton
+                        title={string?.home}
+                        path={`/`}
+                        icon={props => <StoreIcon {...props} />}
+                        isShown={!sx}
+                    />
+                    <HeaderNavButton
+                        title={string?.catalog}
+                        path={`/catalog/${storeCode}/${storeName}`}
+                        icon={props => <GridViewIcon {...props} />}
+                        isShown={!sx}
+                        isActive={location.pathname.includes('details')}
+                    />
                     <LanguageButton setLang={setLang} string={string} lang={lang} setOpenModalType={setOpenModalType} />
                 </Box>
             </Box>

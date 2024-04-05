@@ -1,39 +1,81 @@
 import { Box, Typography } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
 import { useDevice } from 'hooks/useDevice';
 
-const HeaderLogo = ({ title, path, font = 'Roboto', imgUrl, headerHeight }) => {
-    const navigate = useNavigate();
-    const { xxxs, xxs } = useDevice();
+const HeaderLogo = () => {
+    const { xs } = useDevice();
     return (
-        <Box
-            sx={{
-                cursor: 'pointer',
-                display: 'flex',
-                alignItems: 'center',
-                position: 'relative',
-                opacity: !imgUrl ? 0 : 1,
-                transition: 'opacity 500ms cubic-bezier(0.4, 0, 0.2, 1)',
-                gap: 1,
-            }}
-            onClick={() => {
-                navigate('/');
-            }}
-        >
-            <img
-                src={imgUrl}
-                style={{
-                    height: xxs ? headerHeight - 12 : headerHeight - 6,
-                    border: '1px solid #ccc',
-                    borderRadius: 8,
-                    padding: '0 2px',
-                }}
-                alt="img"
-            />
+        <Box sx={{ display: 'flex', alignItems: 'center', cursor: 'pointer', gap: xs ? 0.75 : 1 }}>
+            <Box sx={{ boxShadow: '0 0 4px 2px #ff0000', borderRadius: '50%', border: '2px solid #000' }}>
+                <Box
+                    sx={{
+                        width: xs ? 40 : 48,
+                        height: xs ? 40 : 48,
+                        borderRadius: '50%',
+                        overflow: 'hidden',
+                        display: 'flex',
+                        alignItems: 'center',
+                        position: 'relative',
+                        border: '3px solid red',
+                    }}
+                >
+                    <img
+                        src={require('assets/img/logo.png')}
+                        style={{
+                            width: xs ? 50 : 66,
+                            height: xs ? 50 : 66,
+                            position: 'absolute',
+                            top: '49.5%',
+                            left: '50%',
+                            transform: 'translate(-50%,-50%)',
+                        }}
+                        alt="logo"
+                    />
+                </Box>
+            </Box>
 
-            <Typography sx={{ fontFamily: font, fontSize: xxxs ? 18 : 20, fontWeight: 700, lineHeight: 1 }}>
-                {title}
-            </Typography>
+            <Box sx={{ display: 'flex', gap: 0.1, alignItems: 'center', mt: 0.5 }}>
+                <Typography sx={{ fontFamily: 'Young Serif', fontSize: xs ? 25 : 32, fontWeight: 700, color: 'red' }}>
+                    A
+                </Typography>
+                <Typography sx={{ fontFamily: 'Young Serif', fontSize: xs ? 25 : 32, fontWeight: 700, color: '#000' }}>
+                    L
+                </Typography>
+                <Typography sx={{ fontFamily: 'Young Serif', fontSize: xs ? 25 : 32, fontWeight: 700, color: '#000' }}>
+                    B
+                </Typography>
+                <Typography sx={{ fontFamily: 'Young Serif', fontSize: xs ? 25 : 32, fontWeight: 700, color: '#000' }}>
+                    E
+                </Typography>
+                <Typography sx={{ fontFamily: 'Young Serif', fontSize: xs ? 25 : 32, fontWeight: 700, color: '#000' }}>
+                    R
+                </Typography>
+                <Typography sx={{ fontFamily: 'Young Serif', fontSize: xs ? 25 : 32, fontWeight: 700, color: '#000' }}>
+                    T
+                </Typography>
+                <Typography sx={{ fontFamily: 'Young Serif', fontSize: xs ? 25 : 32, fontWeight: 700, color: '#000' }}>
+                    O
+                </Typography>
+                <Typography
+                    sx={{
+                        ml: 1,
+                        fontFamily: 'Young Serif',
+                        fontSize: xs ? 25 : 32,
+                        fontWeight: 700,
+                        color: 'red',
+                    }}
+                >
+                    B
+                </Typography>
+                <Typography sx={{ fontFamily: 'Young Serif', fontSize: xs ? 25 : 32, fontWeight: 700, color: '#000' }}>
+                    I
+                </Typography>
+                <Typography sx={{ fontFamily: 'Young Serif', fontSize: xs ? 25 : 32, fontWeight: 700, color: '#000' }}>
+                    N
+                </Typography>
+                <Typography sx={{ fontFamily: 'Young Serif', fontSize: xs ? 25 : 32, fontWeight: 700, color: '#000' }}>
+                    I
+                </Typography>
+            </Box>
         </Box>
     );
 };

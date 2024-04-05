@@ -19,8 +19,8 @@ import { STORE_CODE } from 'constants/constants';
 export default function MainCatalog({ lang, setLang, auth, setAuth, userData }) {
     const { storeName } = useParams();
     const navigate = useNavigate();
-    const { sx, l } = useDevice();
-    const headerHeight = 50;
+    const { sx, l, xxs } = useDevice();
+    const headerHeight = xxs ? 55 : 65;
     const footerHeight = sx ? 70 : 0;
     const instrumentalBarHeight = 36;
     const appXPadding = l ? 2 : 4;
@@ -95,8 +95,6 @@ export default function MainCatalog({ lang, setLang, auth, setAuth, userData }) 
                 lang={supportedLanguage}
                 setLang={setLang}
                 auth={auth}
-                logo={store?.logo?.path}
-                storeHeaderName={store?.name}
                 setOpenModalType={setOpenModalType}
                 openModalType={openModalType}
                 store={store}
