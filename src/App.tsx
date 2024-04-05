@@ -20,7 +20,7 @@ import HomePage from 'pages/Home/HomePage';
 const App = () => {
     const token = localStorage.getItem(ACCESS_TOKEN_KEY);
     const mount = useIsMount();
-    const [lang, setLang] = useState<any>({ code: 'ua', label: 'Ukraine' });
+    const [lang, setLang] = useState<any>({ code: 'en', label: 'English' });
     const [auth, setAuth] = useState<boolean | null>(false);
     const { refetch: updateUserData, isFetching } = useUserApi().useGetUserData({ auth, lang: lang?.code });
     const [currentUserData, setCurrentUserData] = useState<UserDataInterface | any>(null);
@@ -44,7 +44,7 @@ const App = () => {
 
         if (!getLang) {
             localStorage.removeItem('my-lang-cocktail');
-            setLang({ code: 'ua', label: 'Ukraine' });
+            setLang({ code: 'en', label: 'English' });
             return;
         }
         const savedLanguage = JSON.parse(getLang);

@@ -1,8 +1,9 @@
 import { Box } from '@mui/material';
 import HeaderNavButton from 'components/atoms/Buttons/HeaderNavButton';
 import LanguageButton from 'components/molecules/ToolsButtons/LanguageButton';
-import GridViewIcon from '@mui/icons-material/GridView';
 import HomeHeaderLogo from 'components/atoms/Logo/StoresHeaderLogo';
+import StoreIcon from '@mui/icons-material/Store';
+import { useDevice } from 'hooks/useDevice';
 
 interface HeaderInterface {
     headerHeight;
@@ -14,9 +15,11 @@ interface HeaderInterface {
 }
 
 const HomeHeader = ({ headerHeight, appXPadding, string, lang, setLang, setOpenModalType }: HeaderInterface) => {
+    const { sx } = useDevice();
     return (
         <Box
-            px={appXPadding}
+            pr={appXPadding}
+            pl={1}
             sx={{
                 height: headerHeight,
                 borderBottom: '1px solid #ccc',
@@ -34,7 +37,7 @@ const HomeHeader = ({ headerHeight, appXPadding, string, lang, setLang, setOpenM
                     <HomeHeaderLogo />
                 </Box>
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                    <HeaderNavButton title={string?.home} path={`/`} icon={() => <GridViewIcon />} />
+                    {!sx && <HeaderNavButton title={string?.home} path={`/`} icon={() => <StoreIcon />} />}
 
                     <LanguageButton setLang={setLang} string={string} lang={lang} setOpenModalType={setOpenModalType} />
                 </Box>

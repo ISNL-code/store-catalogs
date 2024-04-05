@@ -1,6 +1,7 @@
-import { Badge, Box, IconButton, Typography } from '@mui/material';
+import { Badge, Box, Button, IconButton, Typography } from '@mui/material';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { ReactNode } from 'react';
+import { useDevice } from 'hooks/useDevice';
 
 interface HeaderNavButtonInterface {
     icon: () => ReactNode;
@@ -29,24 +30,29 @@ const HeaderNavButton = ({
     const navigate = useNavigate();
     const location = useLocation();
     const active = location.pathname === path;
+    const { sx, sm } = useDevice();
 
     if (isShown)
         return (
             <>
-                <Box>
-                    <IconButton
+                <Box mx={0.5}>
+                    <Button
                         sx={{
+                            px: sx ? 0 : 1,
+                            gap: sx ? 0 : 1,
                             display: 'flex',
-                            flexDirection: 'column',
+                            justifyContent: 'space-between',
+                            flexDirection: sx ? 'column' : 'row',
                             alignItems: 'center',
                             '&:hover': { backgroundColor: '#fff' },
                         }}
-                        color={active || isActive ? `primary` : 'default'}
+                        color={active || isActive ? `primary` : 'inherit'}
                         onClick={() => {
                             if (action) action();
                             clearSort();
                             if (!protectedPath && path) navigate(path);
                         }}
+                        variant={sx ? 'text' : 'outlined'}
                     >
                         <Badge
                             color="error"
@@ -64,11 +70,15 @@ const HeaderNavButton = ({
                             {icon()}
                         </Badge>
                         <Typography
-                            sx={{ fontSize: 10, color: active || isActive ? '#1976d2' : 'rgba(0, 0, 0, 0.54)' }}
+                            sx={{
+                                fontSize: sx ? 10 : 14,
+                                color: active || isActive ? '#1976d2' : 'rgba(0, 0, 0, 0.54)',
+                                fontWeight: sx ? 500 : 700,
+                            }}
                         >
                             {title}
                         </Typography>
-                    </IconButton>
+                    </Button>
                 </Box>
             </>
         );
