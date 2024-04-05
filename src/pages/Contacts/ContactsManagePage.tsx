@@ -43,6 +43,7 @@ const ContactsManagePage = () => {
                                     display: 'flex',
                                     gap: 1,
                                     justifyContent: 'center',
+                                    alignItems: 'center',
                                     borderBottom: '1px solid #00000013',
                                 }}
                             >
@@ -162,7 +163,7 @@ const ContactsManagePage = () => {
                                         >
                                             <Box>
                                                 <a
-                                                    href={`https://t.me/@${manager.contacts?.telegram}`}
+                                                    href={`https://t.me/${manager.contacts?.telegram}`}
                                                     target="_blank"
                                                     rel="noreferrer"
                                                 >

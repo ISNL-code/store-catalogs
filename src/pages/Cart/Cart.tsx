@@ -154,7 +154,7 @@ const Cart = () => {
 
     return (
         <>
-            {(loadCreateOrder || loading || loadProducts) && <Loader />}
+            {(loadCreateOrder || loading || loadProducts) && <Loader position="fixed" />}
             {isOpenModal && (
                 <DeleteModal
                     string={string}
