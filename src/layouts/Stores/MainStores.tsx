@@ -15,12 +15,12 @@ export default function MainStores({ lang, setLang, auth, setAuth }) {
     const [openModalType, setOpenModalType] = useState<string | null>(null);
     const [storeToApprove, setStoreToApprove] = useState<string | null>(null);
     const [favoritesStores, setFavoriteStores] = useState<string[] | null>(null);
-    const { sx, l, xxs } = useDevice();
+    const { sx, l, xs } = useDevice();
     const { currentLanguage } = useGetLanguage({ lang: lang?.code });
     const [sortedStores, setSortedStores] = useState<string>('');
     const [filteredByTypeStores, setFilteredByTypeStores] = useState<string[] | []>([]);
     const [scrollPosition, setScrollPosition] = useState(0);
-    const headerHeight = xxs ? 50 : 65;
+    const headerHeight = xs ? 50 : 65;
     const footerHeight = sx ? 70 : 0;
     const instrumentalBarHeight = 36;
     const appXPadding = l ? 2 : 4;

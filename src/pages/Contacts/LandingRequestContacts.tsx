@@ -10,7 +10,8 @@ import InstrumentalSubHeader from 'components/organisms/InstrumentalSubHeader/In
 import BackButton from 'components/atoms/Buttons/BackButton';
 import { useDevice } from 'hooks/useDevice';
 import { CatalogContextInterface } from 'types';
-// import EmptyPage from 'components/atoms/EmptyPage/EmptyPage';
+
+import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
 import Grid from '@mui/material/Unstable_Grid2';
 import CardItem from 'components/atoms/Sections/CardItem';
 
@@ -40,13 +41,14 @@ const LandingRequestContacts = () => {
                                     display: 'flex',
                                     gap: 1,
                                     justifyContent: 'center',
+                                    alignItems: 'center',
                                     borderBottom: '1px solid #00000013',
                                 }}
                             >
                                 <PersonIcon color="disabled" />
 
                                 <Typography variant={sm ? 'h3' : 'h2'} sx={{ fontWeight: 700 }}>
-                                    Dmytro
+                                    Sales Nest Manager
                                 </Typography>
                             </Grid>
                             <Grid container xs={12} p={2}>
@@ -140,7 +142,7 @@ const LandingRequestContacts = () => {
                                         </Typography>
                                     </Box>
 
-                                    {/* <Box
+                                    <Box
                                         sx={{
                                             display: 'flex',
                                             alignItems: 'center',
@@ -166,8 +168,8 @@ const LandingRequestContacts = () => {
                                                 </IconButton>
                                             </a>
                                         </Box>
-                                        <Typography variant={sm ? 'h4' : 'h3'}>dmytro.orgish88@gmail.com</Typography>
-                                    </Box> */}
+                                        <Typography variant={sm ? 'h4' : 'h3'}>salesnest.info@gmail.com</Typography>
+                                    </Box>
                                 </Grid>
                             </Grid>
                         </CardItem>
