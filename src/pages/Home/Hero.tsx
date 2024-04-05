@@ -8,7 +8,7 @@ import { useState } from 'react';
 import AdsClickIcon from '@mui/icons-material/AdsClick';
 
 const Hero = ({ setIsOpen, isOpen }) => {
-    const { xxxs, xs, sm, slx, sx, m, mx, ls, l } = useDevice();
+    const { xxxs, xs, sm, slx, sx, m, mx, l } = useDevice();
     const { string }: StoresContextInterface = useOutletContext();
     const [isOpenText, setIsOpenText] = useState(false);
 
@@ -143,7 +143,7 @@ const Hero = ({ setIsOpen, isOpen }) => {
                             }}
                         >
                             <Typography sx={{ lineHeight: 1.1, color: '#fff', fontSize: sx ? 18 : 22 }}>
-                                {string?.hero_text}
+                                {/* {string?.hero_text} */}
                             </Typography>
                             <Button
                                 onClick={() => {
