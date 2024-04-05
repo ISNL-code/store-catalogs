@@ -162,7 +162,7 @@ const ContactsManagePage = () => {
                                         >
                                             <Box>
                                                 <a
-                                                    href={`https://t.me/@${manager.contacts?.telegram}`}
+                                                    href={`https://t.me/${manager.contacts?.telegram}`}
                                                     target="_blank"
                                                     rel="noreferrer"
                                                 >
