@@ -43,6 +43,7 @@ const ContactsManagePage = () => {
                                     display: 'flex',
                                     gap: 1,
                                     justifyContent: 'center',
+                                    alignItems: 'center',
                                     borderBottom: '1px solid #00000013',
                                 }}
                             >
