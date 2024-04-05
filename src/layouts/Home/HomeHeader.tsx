@@ -24,7 +24,7 @@ const HomeHeader = ({ headerHeight, appXPadding, string, lang, setLang, setOpenM
             pl={1}
             sx={{
                 height: headerHeight,
-                borderBottom: '1px solid #ccc',
+                borderBottom: '1px solid #cccccc78',
                 position: 'fixed',
                 width: '100%',
                 left: 0,
