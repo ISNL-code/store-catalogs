@@ -91,7 +91,7 @@ const Slides = () => {
                     width: '100%',
                 }}
             >
-                <Box p={1}>
+                <Box px={2} py={0.5} sx={{ width: 'fit-content', border: '1px dashed #ccc', borderTop: 'none' }}>
                     <Typography sx={{ fontSize: 22, fontWeight: 500 }}>{string?.web_mob_view}</Typography>
                 </Box>
             </Box>

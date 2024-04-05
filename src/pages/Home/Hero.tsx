@@ -16,13 +16,13 @@ const Hero = ({ setIsOpen, isOpen }) => {
         if (xxxs) return 400;
         if (xs) return 370;
         if (sm) return 300;
-        if (slx) return 200;
-        if (sx) return 200;
+        if (slx) return 215;
+        if (sx) return 210;
         if (m) return 250;
         if (mx) return 230;
         if (l) return 200;
 
-        return 'auto';
+        return 200;
     };
 
     return (
@@ -52,11 +52,12 @@ const Hero = ({ setIsOpen, isOpen }) => {
                         width: '100vw',
                         display: 'flex',
                         justifyContent: 'center',
-                        background: `linear-gradient(89.7deg, rgba(163, 163, 163, 0.281) 50.7%, rgba(255, 255, 255, 0.452) 88.8%);`,
+                        background: `linear-gradient(89.7deg, rgba(163, 163, 163, 0.171) 50.7%, rgba(255, 255, 255, 0.226) 98.8%);`,
                     }}
                 >
                     <Grid
                         xs={12}
+                        pb={6}
                         sx={{
                             borderRadius: 4,
                             display: 'flex',
@@ -66,9 +67,9 @@ const Hero = ({ setIsOpen, isOpen }) => {
                     >
                         <Box
                             p={1}
-                            px={5}
+                            px={4.5}
                             sx={{
-                                maxWidth: 375,
+                                maxWidth: 370,
                                 display: 'flex',
                                 flexDirection: 'column',
                                 alignItems: 'center',
@@ -82,7 +83,7 @@ const Hero = ({ setIsOpen, isOpen }) => {
                             <Fab
                                 size="small"
                                 color="warning"
-                                sx={{ position: 'absolute', left: 15, top: 5 }}
+                                sx={{ position: 'absolute', left: '50%', bottom: -40, transform: 'translateX(-50%)' }}
                                 onClick={() => setIsOpenText(!isOpenText)}
                             >
                                 <AdsClickIcon sx={{ color: 'white', fontSize: 32 }} />
@@ -98,7 +99,7 @@ const Hero = ({ setIsOpen, isOpen }) => {
                             alignItems: 'center',
                             justifyContent: 'center',
                             overflow: 'hidden',
-                            transition: 'height 500ms linear',
+                            transition: 'height 300ms linear',
                         }}
                     >
                         <Box
@@ -108,7 +109,7 @@ const Hero = ({ setIsOpen, isOpen }) => {
                             }}
                         >
                             <Typography
-                                sx={{ lineHeight: 1.1, color: '#ccc', fontSize: sx ? 18 : 22, textAlign: 'center' }}
+                                sx={{ lineHeight: 1.1, color: '#e7e7e7', fontSize: sx ? 18 : 22, textAlign: 'center' }}
                             >
                                 {string?.hero_text}
                             </Typography>
