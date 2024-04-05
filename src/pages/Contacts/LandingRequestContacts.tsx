@@ -113,7 +113,7 @@ const LandingRequestContacts = () => {
                                     >
                                         <Box>
                                             <a
-                                                href={`viber://chat?number=${'+380665738771'.replaceAll('+', '%2B')}`}
+                                                href={`viber://chat?number=%2B380665738771`}
                                                 target="_blank"
                                                 rel="noreferrer"
                                             >
@@ -132,7 +132,7 @@ const LandingRequestContacts = () => {
                                         }}
                                     >
                                         <Box>
-                                            <a href={`https://t.me/@SNBussinessApp`} target="_blank" rel="noreferrer">
+                                            <a href={`https://t.me/SNBussinessApp`} target="_blank" rel="noreferrer">
                                                 <Box sx={{ width: 35, height: 35 }}>{TelegramIcon()}</Box>
                                             </a>
                                         </Box>
