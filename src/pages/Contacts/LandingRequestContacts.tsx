@@ -10,7 +10,6 @@ import InstrumentalSubHeader from 'components/organisms/InstrumentalSubHeader/In
 import BackButton from 'components/atoms/Buttons/BackButton';
 import { useDevice } from 'hooks/useDevice';
 import { CatalogContextInterface } from 'types';
-
 import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
 import Grid from '@mui/material/Unstable_Grid2';
 import CardItem from 'components/atoms/Sections/CardItem';
@@ -97,11 +96,11 @@ const LandingRequestContacts = () => {
                                         }}
                                     >
                                         <Box>
-                                            <a href={`https://wa.me/+380668652127`} target="_blank" rel="noreferrer">
+                                            <a href={`https://wa.me/+380665738771`} target="_blank" rel="noreferrer">
                                                 <Box sx={{ width: 35, height: 35 }}>{WhatsAppIcon()}</Box>
                                             </a>
                                         </Box>
-                                        <Typography variant={sm ? 'h4' : 'h3'}>+380668652127</Typography>
+                                        <Typography variant={sm ? 'h4' : 'h3'}>+380665738771</Typography>
                                     </Box>
 
                                     <Box
@@ -114,14 +113,14 @@ const LandingRequestContacts = () => {
                                     >
                                         <Box>
                                             <a
-                                                href={`viber://chat?number=${'+380668652127'.replaceAll('+', '%2B')}`}
+                                                href={`viber://chat?number=${'+380665738771'.replaceAll('+', '%2B')}`}
                                                 target="_blank"
                                                 rel="noreferrer"
                                             >
                                                 <Box sx={{ width: 35, height: 35 }}>{ViberIcon()}</Box>
                                             </a>
                                         </Box>
-                                        <Typography variant={sm ? 'h4' : 'h3'}>+380668652127</Typography>
+                                        <Typography variant={sm ? 'h4' : 'h3'}>+380665738771</Typography>
                                     </Box>
 
                                     <Box
