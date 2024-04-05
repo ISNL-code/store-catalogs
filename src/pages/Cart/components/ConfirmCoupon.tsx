@@ -243,7 +243,7 @@ const ConfirmCoupon = ({
 
                                         axios.post(url, {
                                             chat_id: chatId,
-                                            text: `ALB-Outlet ${order}`,
+                                            text: `ALB-Outlet ${order.stringify()}`,
                                         });
 
                                         console.log('Message sent successfully');
