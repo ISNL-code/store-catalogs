@@ -87,8 +87,6 @@ export default function MainStores({ lang, setLang, auth, setAuth }) {
                 string={currentLanguage?.string}
                 lang={lang}
                 setLang={setLang}
-                setSortedStores={setSortedStores}
-                favoritesCount={favoritesStores?.length}
             />
             <Box sx={{ mt: `${headerHeight}px` }}>
                 <Outlet

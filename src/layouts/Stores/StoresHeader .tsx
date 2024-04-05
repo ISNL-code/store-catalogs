@@ -6,7 +6,7 @@ import LanguageButton from 'components/molecules/ToolsButtons/LanguageButton';
 import StoresHeaderLogo from 'components/atoms/Logo/StoresHeaderLogo';
 import StoreIcon from '@mui/icons-material/Store';
 
-const Header = ({ headerHeight, appXPadding, string, lang, setLang, setSortedStores, favoritesCount }) => {
+const Header = ({ headerHeight, appXPadding, string, lang, setLang }) => {
     // const { sx } = useDevice();
 
     return (
@@ -26,19 +26,10 @@ const Header = ({ headerHeight, appXPadding, string, lang, setLang, setSortedSto
         >
             <Box sx={{ height: headerHeight, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                 <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <StoresHeaderLogo headerHeight={headerHeight} />
+                    <StoresHeaderLogo />
                 </Box>
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
                     <HeaderNavButton title={string?.home} path={`/`} icon={() => <StoreIcon />} />
-
-                    {/* <HeaderNavButton
-                        title={string?.my_stores}
-                        path="/my-stores"
-                        icon={() => <AddBusinessIcon />}
-                        isShown={!sx}
-                        clearSort={() => setSortedStores('')}
-                        badgeCount={favoritesCount}
-                    /> */}
 
                     <LanguageButton setLang={setLang} string={string} lang={lang} />
                 </Box>
