@@ -1,13 +1,30 @@
-import { Button, Typography } from '@mui/material';
+import { Button, Fab, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import Grid from '@mui/material/Unstable_Grid2';
 import { useOutletContext } from 'react-router-dom';
 import { StoresContextInterface } from 'types';
 import { useDevice } from 'hooks/useDevice';
+import { useState } from 'react';
+import AdsClickIcon from '@mui/icons-material/AdsClick';
 
 const Hero = ({ setIsOpen, isOpen }) => {
-    const { sx, mx } = useDevice();
+    const { xxxs, xs, sm, slx, sx, m, mx, ls, l } = useDevice();
     const { string }: StoresContextInterface = useOutletContext();
+    const [isOpenText, setIsOpenText] = useState(false);
+
+    const getHeight = () => {
+        if (xxxs) return 400;
+        if (xs) return 370;
+        if (sm) return 300;
+        if (slx) return 200;
+        if (sx) return 200;
+        if (m) return 250;
+        if (mx) return 230;
+        if (l) return 200;
+
+        return 'auto';
+    };
+
     return (
         <>
             <Grid
@@ -42,19 +59,58 @@ const Hero = ({ setIsOpen, isOpen }) => {
                         xs={12}
                         sx={{
                             borderRadius: 4,
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
                         }}
                     >
                         <Box
                             p={1}
+                            px={5}
                             sx={{
+                                maxWidth: 375,
                                 display: 'flex',
                                 flexDirection: 'column',
                                 alignItems: 'center',
                                 justifyContent: 'center',
+                                position: 'relative',
                             }}
                         >
                             <Typography variant={'h1'} sx={{ lineHeight: 1.1, color: '#ffffff', textAlign: 'center' }}>
                                 {string?.online_catalog_for_your_business}
+                            </Typography>
+                            <Fab
+                                size="small"
+                                color="warning"
+                                sx={{ position: 'absolute', left: 15, top: 5 }}
+                                onClick={() => setIsOpenText(!isOpenText)}
+                            >
+                                <AdsClickIcon sx={{ color: 'white', fontSize: 32 }} />
+                            </Fab>
+                        </Box>
+                    </Grid>
+                    <Grid
+                        xs={12}
+                        sx={{
+                            height: isOpenText ? getHeight() : 0,
+                            maxHeight: 'auto',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            overflow: 'hidden',
+                            transition: 'height 500ms linear',
+                        }}
+                    >
+                        <Box
+                            p={3}
+                            sx={{
+                                maxWidth: 1600,
+                            }}
+                        >
+                            <Typography
+                                sx={{ lineHeight: 1.1, color: '#ccc', fontSize: sx ? 18 : 22, textAlign: 'center' }}
+                            >
+                                {string?.hero_text}
                             </Typography>
                         </Box>
                     </Grid>
