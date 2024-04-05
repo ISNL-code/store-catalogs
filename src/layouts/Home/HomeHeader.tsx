@@ -3,7 +3,7 @@ import HeaderNavButton from 'components/atoms/Buttons/HeaderNavButton';
 import LanguageButton from 'components/molecules/ToolsButtons/LanguageButton';
 import StoreIcon from '@mui/icons-material/Store';
 import { useDevice } from 'hooks/useDevice';
-import { useLocation, useParams } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import GridViewIcon from '@mui/icons-material/GridView';
 import HomeHeaderLogo from 'components/atoms/Logo/HomeHeaderLogo';
 interface HeaderInterface {
@@ -16,7 +16,6 @@ interface HeaderInterface {
 }
 
 const HomeHeader = ({ headerHeight, appXPadding, string, lang, setLang, setOpenModalType }: HeaderInterface) => {
-    const { storeCode, storeName } = useParams();
     const location = useLocation();
     const { sx } = useDevice();
     return (
@@ -48,7 +47,7 @@ const HomeHeader = ({ headerHeight, appXPadding, string, lang, setLang, setOpenM
                     />
                     <HeaderNavButton
                         title={string?.catalog}
-                        path={`/catalog/${storeCode}/${storeName}`}
+                        path={`/catalog/${'ALBERTO_BINI'}/${'alberto-bini'}`}
                         icon={props => <GridViewIcon {...props} />}
                         isShown={!sx}
                         isActive={location.pathname.includes('details')}

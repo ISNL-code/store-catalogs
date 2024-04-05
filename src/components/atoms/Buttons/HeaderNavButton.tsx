@@ -1,4 +1,4 @@
-import { Badge, Box, Button, IconButton, Typography } from '@mui/material';
+import { Badge, Box, Button, Typography } from '@mui/material';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { ReactNode } from 'react';
 import { useDevice } from 'hooks/useDevice';
@@ -30,7 +30,7 @@ const HeaderNavButton = ({
     const navigate = useNavigate();
     const location = useLocation();
     const active = location.pathname === path;
-    const { sx, sm } = useDevice();
+    const { sx } = useDevice();
 
     if (isShown)
         return (

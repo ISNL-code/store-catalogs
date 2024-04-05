@@ -1,13 +1,11 @@
 import { Box } from '@mui/material';
 import MobileNavButton from 'components/atoms/Buttons/MobileNavButton';
 import GridViewIcon from '@mui/icons-material/GridView';
-import { useParams } from 'react-router-dom';
+import StoreIcon from '@mui/icons-material/Store';
 
 const menuHeight = '70px';
 
 const HomeMobileMenu = ({ appXPadding, isShown, string }) => {
-    const { storeCode, storeName } = useParams();
-
     if (isShown)
         return (
             <Box
@@ -32,8 +30,9 @@ const HomeMobileMenu = ({ appXPadding, isShown, string }) => {
                         gap: 2,
                     }}
                 >
+                    <MobileNavButton path={`/`} title={string?.home} icon={p => <StoreIcon {...p} />} />
                     <MobileNavButton
-                        path={`/catalog/${storeCode}/${storeName}`}
+                        path={`/catalog/${'ALBERTO_BINI'}/${'alberto-bini'}`}
                         childPath={['/details', '/contacts', 'model']}
                         title={string?.catalog}
                         icon={p => <GridViewIcon {...p} />}
