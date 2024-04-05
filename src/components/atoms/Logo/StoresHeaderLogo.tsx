@@ -5,7 +5,7 @@ const StoresHeaderLogo = () => {
     const { xs } = useDevice();
     return (
         <Box sx={{ display: 'flex', alignItems: 'center', cursor: 'pointer', gap: xs ? 0.25 : 0.25 }}>
-            <Box sx={{ boxShadow: '0 0 5px 1px #414141c5', borderRadius: '50%', border: '2.2px solid #383838' }}>
+            <Box sx={{ boxShadow: '0 0 5px 1px #414141c5', borderRadius: '50%', border: '1px solid #244c7a' }}>
                 <Box
                     sx={{
                         width: xs ? 40 : 55,
@@ -20,12 +20,12 @@ const StoresHeaderLogo = () => {
                     <img
                         src={require('./5555.webp')}
                         style={{
-                            width: xs ? 62 : 78,
-                            height: xs ? 62 : 78,
+                            width: xs ? 84 : 116,
+                            height: xs ? 84 : 116,
                             position: 'absolute',
                             top: '50%',
                             left: '50%',
-                            transform: 'translate(-50.1%,-51.2%)',
+                            transform: 'translate(-50.4%,-50.8%)',
                         }}
                         alt="logo"
                     />
@@ -40,10 +40,10 @@ const StoresHeaderLogo = () => {
                     gap: 0.05,
                     alignItems: 'center',
                     mt: 0.5,
-                    // borderBottom: '2px double #616161c6',
+                    // borderBottom: '2px double #244c7a',
                     px: 0.25,
                     position: 'relative',
-                    mb: 1.5,
+                    mb: 0.7,
                 }}
             >
                 <Typography
@@ -51,7 +51,7 @@ const StoresHeaderLogo = () => {
                         fontFamily: 'Young Serif',
                         fontSize: xs ? 24 : 32,
                         fontWeight: 600,
-                        color: '#161616',
+                        color: '#000',
                         textShadow: '#0000006a 0 0 2px',
                         mr: 0.1,
                         mt: 0.1,
@@ -64,7 +64,7 @@ const StoresHeaderLogo = () => {
                         fontFamily: 'Young Serif',
                         fontSize: xs ? 24 : 32,
                         fontWeight: 500,
-                        color: '#616161c6',
+                        color: '#244c7a',
                         textShadow: '#000000 0 0 2px',
                     }}
                 >
@@ -75,7 +75,7 @@ const StoresHeaderLogo = () => {
                         fontFamily: 'Young Serif',
                         fontSize: xs ? 24 : 32,
                         fontWeight: 500,
-                        color: '#616161c6',
+                        color: '#244c7a',
                         textShadow: '#000000 0 0 2px',
                     }}
                 >
@@ -86,7 +86,7 @@ const StoresHeaderLogo = () => {
                         fontFamily: 'Young Serif',
                         fontSize: xs ? 24 : 32,
                         fontWeight: 500,
-                        color: '#616161c6',
+                        color: '#244c7a',
                         textShadow: '#000000 0 0 2px',
                     }}
                 >
@@ -97,7 +97,7 @@ const StoresHeaderLogo = () => {
                         fontFamily: 'Young Serif',
                         fontSize: xs ? 24 : 32,
                         fontWeight: 500,
-                        color: '#616161c6',
+                        color: '#244c7a',
                         textShadow: '#000000 0 0 2px',
                     }}
                 >
@@ -110,7 +110,7 @@ const StoresHeaderLogo = () => {
                         fontFamily: 'Young Serif',
                         fontSize: xs ? 24 : 32,
                         fontWeight: 600,
-                        color: '#161616',
+                        color: '#000',
                         textShadow: '#0000006a 0 0 2px',
                         mr: 0.1,
                         mt: 0.1,
@@ -123,7 +123,7 @@ const StoresHeaderLogo = () => {
                         fontFamily: 'Young Serif',
                         fontSize: xs ? 24 : 32,
                         fontWeight: 500,
-                        color: '#616161c6',
+                        color: '#244c7a',
                         textShadow: '#000000 0 0 2px',
                     }}
                 >
@@ -134,7 +134,7 @@ const StoresHeaderLogo = () => {
                         fontFamily: 'Young Serif',
                         fontSize: xs ? 24 : 32,
                         fontWeight: 500,
-                        color: '#616161c6',
+                        color: '#244c7a',
                         textShadow: '#000000 0 0 2px',
                     }}
                 >
@@ -145,32 +145,12 @@ const StoresHeaderLogo = () => {
                         fontFamily: 'Young Serif',
                         fontSize: xs ? 24 : 32,
                         fontWeight: 500,
-                        color: '#616161c6',
+                        color: '#244c7a',
                         textShadow: '#000000 0 0 2px',
                     }}
                 >
                     T
                 </Typography>
-                <Box
-                    sx={{
-                        position: 'absolute',
-                        bottom: 1,
-                        left: 0,
-                        borderTop: '0.1px solid #272727',
-                        width: '100%',
-                        boxShadow: '0 0 2px 1px #7c7c7c',
-                    }}
-                ></Box>
-                <Box
-                    sx={{
-                        position: 'absolute',
-                        bottom: -3,
-                        left: 0,
-                        borderBottom: '0.1px solid #6d6d6d',
-                        width: '100%',
-                        boxShadow: '0 0 1px 1px #7c7c7c6f',
-                    }}
-                ></Box>
             </Box>
         </Box>
     );

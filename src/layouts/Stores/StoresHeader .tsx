@@ -11,7 +11,8 @@ const Header = ({ headerHeight, appXPadding, string, lang, setLang }) => {
 
     return (
         <Box
-            px={appXPadding}
+            pr={appXPadding}
+            pl={1}
             sx={{
                 height: headerHeight,
                 borderBottom: '1px solid #ccc',
