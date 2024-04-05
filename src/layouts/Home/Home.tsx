@@ -9,7 +9,7 @@ import HomeMobileMenu from './HomeMobileMenu';
 
 export default function Home({ lang, setLang }) {
     const { sx, l, xxs } = useDevice();
-    const headerHeight = xxs ? 55 : 65;
+    const headerHeight = xxs ? 50 : 65;
     const footerHeight = sx ? 70 : 0;
     const instrumentalBarHeight = 36;
     const appXPadding = l ? 2 : 4;

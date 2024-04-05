@@ -5,11 +5,11 @@ const HomeHeaderLogo = () => {
     const { xs } = useDevice();
     return (
         <Box sx={{ display: 'flex', alignItems: 'center', cursor: 'pointer', gap: xs ? 0.25 : 0.25 }}>
-            <Box sx={{ boxShadow: '0 0 5px 1px #414141c5', borderRadius: '50%', border: '2px solid #161616' }}>
+            <Box sx={{ boxShadow: '0 0 5px 1px #414141c5', borderRadius: '50%', border: '2.2px solid #383838' }}>
                 <Box
                     sx={{
-                        width: xs ? 45 : 55,
-                        height: xs ? 45 : 55,
+                        width: xs ? 40 : 55,
+                        height: xs ? 40 : 55,
                         borderRadius: '50%',
                         overflow: 'hidden',
                         display: 'flex',
@@ -20,12 +20,12 @@ const HomeHeaderLogo = () => {
                     <img
                         src={require('assets/img/logo.png')}
                         style={{
-                            width: xs ? 70 : 78,
-                            height: xs ? 70 : 78,
+                            width: xs ? 62 : 78,
+                            height: xs ? 62 : 78,
                             position: 'absolute',
                             top: '50%',
                             left: '50%',
-                            transform: 'translate(-50.5%,-51.5%)',
+                            transform: 'translate(-50.1%,-51.2%)',
                         }}
                         alt="logo"
                     />
@@ -35,22 +35,26 @@ const HomeHeaderLogo = () => {
             <Box
                 sx={{
                     pt: 0.3,
+                    pb: -1.5,
                     display: 'flex',
-                    gap: 0.15,
+                    gap: 0.05,
                     alignItems: 'center',
                     mt: 0.5,
-                    borderBottom: '1px solid #5e5e5e',
-                    // borderTop: '1px solid #5e5e5e',
+                    // borderBottom: '2px double #616161c6',
                     px: 0.25,
-                    // boxShadow: '0 2px 5px 1px #414141c5',
+                    position: 'relative',
+                    mb: 0.5,
                 }}
             >
                 <Typography
                     sx={{
                         fontFamily: 'Young Serif',
-                        fontSize: xs ? 23 : 32,
+                        fontSize: xs ? 24 : 32,
                         fontWeight: 600,
                         color: '#161616',
+                        textShadow: '#0000006a 0 0 2px',
+                        mr: 0.1,
+                        mt: 0.1,
                     }}
                 >
                     A
@@ -58,11 +62,10 @@ const HomeHeaderLogo = () => {
                 <Typography
                     sx={{
                         fontFamily: 'Young Serif',
-                        fontSize: xs ? 20 : 32,
-                        fontWeight: 600,
-                        color: '#5e5e5e',
-                        textShadow:
-                            '-1px 1px 0 #000,-1px 1px 0 #000,1px -1px 0 #000,-1px -1px 0 #000,0px 1px 0 #000,0px -1px 0 #000,-1px 0px 0 #000,  1px 0px 0 #000, -1px 1px 0 #000,  --1px 1px 0 #000, 1px -1px 0 #000,  -1px -1px 0 #000,  0px 1px 0 #000,  0px -1px 0 #000,  -1px 0px 0 #000,  1px 0px 0 #000,  -1px 1px 0 #000,  --1px 1px 0 #000,  1px -1px 0 #000,  -1px -1px 0 #000,  -1px 1px 0 #000,  --1px 1px 0 #000, 1px -1px 0 #000,  -1px -1px 0 #000',
+                        fontSize: xs ? 24 : 32,
+                        fontWeight: 500,
+                        color: '#616161c6',
+                        textShadow: '#000000 0 0 2px',
                     }}
                 >
                     L
@@ -70,11 +73,10 @@ const HomeHeaderLogo = () => {
                 <Typography
                     sx={{
                         fontFamily: 'Young Serif',
-                        fontSize: xs ? 20 : 32,
-                        fontWeight: 600,
-                        color: '#5e5e5e',
-                        textShadow:
-                            '-1px 1px 0 #000,-1px 1px 0 #000,1px -1px 0 #000,-1px -1px 0 #000,0px 1px 0 #000,0px -1px 0 #000,-1px 0px 0 #000,  1px 0px 0 #000, -1px 1px 0 #000,  --1px 1px 0 #000, 1px -1px 0 #000,  -1px -1px 0 #000,  0px 1px 0 #000,  0px -1px 0 #000,  -1px 0px 0 #000,  1px 0px 0 #000,  -1px 1px 0 #000,  --1px 1px 0 #000,  1px -1px 0 #000,  -1px -1px 0 #000,  -1px 1px 0 #000,  --1px 1px 0 #000, 1px -1px 0 #000,  -1px -1px 0 #000',
+                        fontSize: xs ? 24 : 32,
+                        fontWeight: 500,
+                        color: '#616161c6',
+                        textShadow: '#000000 0 0 2px',
                     }}
                 >
                     B
@@ -82,11 +84,10 @@ const HomeHeaderLogo = () => {
                 <Typography
                     sx={{
                         fontFamily: 'Young Serif',
-                        fontSize: xs ? 20 : 32,
-                        fontWeight: 600,
-                        color: '#5e5e5e',
-                        textShadow:
-                            '-1px 1px 0 #000,-1px 1px 0 #000,1px -1px 0 #000,-1px -1px 0 #000,0px 1px 0 #000,0px -1px 0 #000,-1px 0px 0 #000,  1px 0px 0 #000, -1px 1px 0 #000,  --1px 1px 0 #000, 1px -1px 0 #000,  -1px -1px 0 #000,  0px 1px 0 #000,  0px -1px 0 #000,  -1px 0px 0 #000,  1px 0px 0 #000,  -1px 1px 0 #000,  --1px 1px 0 #000,  1px -1px 0 #000,  -1px -1px 0 #000,  -1px 1px 0 #000,  --1px 1px 0 #000, 1px -1px 0 #000,  -1px -1px 0 #000',
+                        fontSize: xs ? 24 : 32,
+                        fontWeight: 500,
+                        color: '#616161c6',
+                        textShadow: '#000000 0 0 2px',
                     }}
                 >
                     E
@@ -94,11 +95,10 @@ const HomeHeaderLogo = () => {
                 <Typography
                     sx={{
                         fontFamily: 'Young Serif',
-                        fontSize: xs ? 20 : 32,
-                        fontWeight: 600,
-                        color: '#5e5e5e',
-                        textShadow:
-                            '-1px 1px 0 #000,-1px 1px 0 #000,1px -1px 0 #000,-1px -1px 0 #000,0px 1px 0 #000,0px -1px 0 #000,-1px 0px 0 #000,  1px 0px 0 #000, -1px 1px 0 #000,  --1px 1px 0 #000, 1px -1px 0 #000,  -1px -1px 0 #000,  0px 1px 0 #000,  0px -1px 0 #000,  -1px 0px 0 #000,  1px 0px 0 #000,  -1px 1px 0 #000,  --1px 1px 0 #000,  1px -1px 0 #000,  -1px -1px 0 #000,  -1px 1px 0 #000,  --1px 1px 0 #000, 1px -1px 0 #000,  -1px -1px 0 #000',
+                        fontSize: xs ? 24 : 32,
+                        fontWeight: 500,
+                        color: '#616161c6',
+                        textShadow: '#000000 0 0 2px',
                     }}
                 >
                     R
@@ -106,11 +106,10 @@ const HomeHeaderLogo = () => {
                 <Typography
                     sx={{
                         fontFamily: 'Young Serif',
-                        fontSize: xs ? 20 : 32,
-                        fontWeight: 600,
-                        color: '#5e5e5e',
-                        textShadow:
-                            '-1px 1px 0 #000,-1px 1px 0 #000,1px -1px 0 #000,-1px -1px 0 #000,0px 1px 0 #000,0px -1px 0 #000,-1px 0px 0 #000,  1px 0px 0 #000, -1px 1px 0 #000,  --1px 1px 0 #000, 1px -1px 0 #000,  -1px -1px 0 #000,  0px 1px 0 #000,  0px -1px 0 #000,  -1px 0px 0 #000,  1px 0px 0 #000,  -1px 1px 0 #000,  --1px 1px 0 #000,  1px -1px 0 #000,  -1px -1px 0 #000,  -1px 1px 0 #000,  --1px 1px 0 #000, 1px -1px 0 #000,  -1px -1px 0 #000',
+                        fontSize: xs ? 24 : 32,
+                        fontWeight: 500,
+                        color: '#616161c6',
+                        textShadow: '#000000 0 0 2px',
                     }}
                 >
                     T
@@ -118,22 +117,24 @@ const HomeHeaderLogo = () => {
                 <Typography
                     sx={{
                         fontFamily: 'Young Serif',
-                        fontSize: xs ? 20 : 32,
-                        fontWeight: 600,
-                        color: '#5e5e5e',
-                        textShadow:
-                            '-1px 1px 0 #000,-1px 1px 0 #000,1px -1px 0 #000,-1px -1px 0 #000,0px 1px 0 #000,0px -1px 0 #000,-1px 0px 0 #000,  1px 0px 0 #000, -1px 1px 0 #000,  --1px 1px 0 #000, 1px -1px 0 #000,  -1px -1px 0 #000,  0px 1px 0 #000,  0px -1px 0 #000,  -1px 0px 0 #000,  1px 0px 0 #000,  -1px 1px 0 #000,  --1px 1px 0 #000,  1px -1px 0 #000,  -1px -1px 0 #000,  -1px 1px 0 #000,  --1px 1px 0 #000, 1px -1px 0 #000,  -1px -1px 0 #000',
+                        fontSize: xs ? 24 : 32,
+                        fontWeight: 500,
+                        color: '#616161c6',
+                        textShadow: '#000000 0 0 2px',
                     }}
                 >
                     O
                 </Typography>
                 <Typography
                     sx={{
-                        ml: 0.75,
+                        ml: 1,
                         fontFamily: 'Young Serif',
-                        fontSize: xs ? 23 : 32,
+                        fontSize: xs ? 24 : 32,
                         fontWeight: 600,
                         color: '#161616',
+                        textShadow: '#0000006a 0 0 2px',
+                        mr: 0.1,
+                        mt: 0.1,
                     }}
                 >
                     B
@@ -141,11 +142,10 @@ const HomeHeaderLogo = () => {
                 <Typography
                     sx={{
                         fontFamily: 'Young Serif',
-                        fontSize: xs ? 20 : 32,
-                        fontWeight: 600,
-                        color: '#5e5e5e',
-                        textShadow:
-                            '-1px 1px 0 #000,-1px 1px 0 #000,1px -1px 0 #000,-1px -1px 0 #000,0px 1px 0 #000,0px -1px 0 #000,-1px 0px 0 #000,  1px 0px 0 #000, -1px 1px 0 #000,  --1px 1px 0 #000, 1px -1px 0 #000,  -1px -1px 0 #000,  0px 1px 0 #000,  0px -1px 0 #000,  -1px 0px 0 #000,  1px 0px 0 #000,  -1px 1px 0 #000,  --1px 1px 0 #000,  1px -1px 0 #000,  -1px -1px 0 #000,  -1px 1px 0 #000,  --1px 1px 0 #000, 1px -1px 0 #000,  -1px -1px 0 #000',
+                        fontSize: xs ? 24 : 32,
+                        fontWeight: 500,
+                        color: '#616161c6',
+                        textShadow: '#000000 0 0 2px',
                     }}
                 >
                     I
@@ -153,11 +153,10 @@ const HomeHeaderLogo = () => {
                 <Typography
                     sx={{
                         fontFamily: 'Young Serif',
-                        fontSize: xs ? 20 : 32,
-                        fontWeight: 600,
-                        color: '#5e5e5e',
-                        textShadow:
-                            '-1px 1px 0 #000,-1px 1px 0 #000,1px -1px 0 #000,-1px -1px 0 #000,0px 1px 0 #000,0px -1px 0 #000,-1px 0px 0 #000,  1px 0px 0 #000, -1px 1px 0 #000,  --1px 1px 0 #000, 1px -1px 0 #000,  -1px -1px 0 #000,  0px 1px 0 #000,  0px -1px 0 #000,  -1px 0px 0 #000,  1px 0px 0 #000,  -1px 1px 0 #000,  --1px 1px 0 #000,  1px -1px 0 #000,  -1px -1px 0 #000,  -1px 1px 0 #000,  --1px 1px 0 #000, 1px -1px 0 #000,  -1px -1px 0 #000',
+                        fontSize: xs ? 24 : 32,
+                        fontWeight: 500,
+                        color: '#616161c6',
+                        textShadow: '#000000 0 0 2px',
                     }}
                 >
                     N
@@ -165,15 +164,34 @@ const HomeHeaderLogo = () => {
                 <Typography
                     sx={{
                         fontFamily: 'Young Serif',
-                        fontSize: xs ? 20 : 32,
-                        fontWeight: 600,
-                        color: '#5e5e5e',
-                        textShadow:
-                            '-1px 1px 0 #000,-1px 1px 0 #000,1px -1px 0 #000,-1px -1px 0 #000,0px 1px 0 #000,0px -1px 0 #000,-1px 0px 0 #000,  1px 0px 0 #000, -1px 1px 0 #000,  --1px 1px 0 #000, 1px -1px 0 #000,  -1px -1px 0 #000,  0px 1px 0 #000,  0px -1px 0 #000,  -1px 0px 0 #000,  1px 0px 0 #000,  -1px 1px 0 #000,  --1px 1px 0 #000,  1px -1px 0 #000,  -1px -1px 0 #000,  -1px 1px 0 #000,  --1px 1px 0 #000, 1px -1px 0 #000,  -1px -1px 0 #000',
+                        fontSize: xs ? 24 : 32,
+                        fontWeight: 500,
+                        color: '#616161c6',
+                        textShadow: '#000000 0 0 2px',
                     }}
                 >
                     I
                 </Typography>
+                <Box
+                    sx={{
+                        position: 'absolute',
+                        bottom: 1,
+                        left: 0,
+                        borderTop: '0.1px solid #272727',
+                        width: '100%',
+                        boxShadow: '0 0 2px 1px #7c7c7c',
+                    }}
+                ></Box>
+                <Box
+                    sx={{
+                        position: 'absolute',
+                        bottom: -3,
+                        left: 0,
+                        borderBottom: '0.1px solid #6d6d6d',
+                        width: '100%',
+                        boxShadow: '0 0 1px 1px #7c7c7c6f',
+                    }}
+                ></Box>
             </Box>
         </Box>
     );
