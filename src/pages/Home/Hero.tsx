@@ -8,7 +8,7 @@ import { useState } from 'react';
 import AdsClickIcon from '@mui/icons-material/AdsClick';
 
 const Hero = ({ setIsOpen, isOpen }) => {
-    const { xxxs, xs, sm, slx, sx, m, mx, l } = useDevice();
+    const { xxxs, xxs, xs, sm, slx, sx, m, mx, l } = useDevice();
     const { string }: StoresContextInterface = useOutletContext();
     const [isOpenText, setIsOpenText] = useState(false);
 
@@ -32,19 +32,16 @@ const Hero = ({ setIsOpen, isOpen }) => {
         },
         {
             title: 'Оформите Заявку с Легкостью',
-            description: 'Заполните простую форму обратной связи.',
+            description: 'Заполните простую форму обратной связи и наши специалисты свяжутся с вами.',
         },
-        {
-            title: 'Персонализированное Внимание',
-            description: 'Наши специалисты оперативно свяжутся с вами.',
-        },
+
         {
             title: 'Ваш Уникальный Каталог',
             description: 'Мы зарегистрируем ваш каталог как новый сайт.',
         },
         {
             title: 'Полный Контроль в Ваших Руках',
-            description: 'Получите доступ к управлению каталогом.',
+            description: 'Получите доступ к управлению каталогом, настраивая параметры под свои нужды.',
         },
         {
             title: 'Легкость Загрузки Товаров',
@@ -60,7 +57,7 @@ const Hero = ({ setIsOpen, isOpen }) => {
         <>
             <Grid
                 py={4}
-                px={2}
+                // px={2}
                 pt={0}
                 container
                 xs={12}
@@ -161,11 +158,10 @@ const Hero = ({ setIsOpen, isOpen }) => {
                     <Box
                         sx={{
                             maxWidth: '1400px',
-                            borderRadius: 6,
                         }}
                     >
                         <Box
-                            px={3}
+                            px={1}
                             sx={{
                                 display: 'flex',
                                 flexDirection: 'column',
@@ -174,27 +170,89 @@ const Hero = ({ setIsOpen, isOpen }) => {
                             }}
                         >
                             <Box>
-                                <Typography variant="h2" sx={{ color: 'white' }}>
-                                    Чтобы зарегестрировать каталог:
-                                </Typography>
                                 <Box mt={2} sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
-                                    {steps.map(({ title, description }) => (
-                                        <Box
-                                            p={1}
-                                            sx={{ display: 'flex', flexDirection: 'column', backgroundColor: 'white' }}
-                                        >
-                                            <Box mb={1} sx={{ minWidth: 320 }}>
-                                                <Typography
-                                                    variant="h3"
-                                                    sx={{ whiteSpace: 'nowrap', textAlign: 'left' }}
+                                    {steps.map(({ title, description }, idx) => (
+                                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                                            {!xxs && (
+                                                <Box
+                                                    sx={{
+                                                        backgroundColor: 'white',
+                                                        borderRadius: 6,
+                                                        width: 45,
+                                                        height: 45,
+                                                        display: 'flex',
+                                                        alignItems: 'center',
+                                                        justifyContent: 'center',
+                                                        border: '1px solid #ccc',
+                                                        boxShadow: '0 0 2px 2px #ccc',
+                                                        position: 'relative',
+
+                                                        background:
+                                                            idx === 0
+                                                                ? 'linear-gradient(94deg, rgba(254,64,64,1) 40%, rgba(255,139,139,1) 79%, rgba(255,165,165,1) 93%, rgba(255,255,255,1) 100%)'
+                                                                : idx !== 5
+                                                                ? 'linear-gradient(94deg, #fec240 40%, #ffea8b 79%, #ffee8e 93%, rgba(255,255,255,1) 100%)'
+                                                                : 'linear-gradient(94deg, #009619 40%, #6cca00 79%, #e7ffa5 99%)',
+                                                    }}
                                                 >
-                                                    {title}
-                                                </Typography>
-                                            </Box>
-                                            <Box sx={{ maxWidth: 500 }}>
-                                                <Typography variant="h5" sx={{ textAlign: 'left' }}>
-                                                    {description}
-                                                </Typography>
+                                                    <Typography variant="h1">{idx + 1}</Typography>
+                                                    {idx < 5 && (
+                                                        <Box
+                                                            sx={{
+                                                                width: '5px',
+                                                                border: '2px solid #ccc',
+                                                                height: 80,
+                                                                position: 'absolute',
+                                                                top: 46,
+                                                                backgroundColor: '#fff',
+                                                            }}
+                                                        ></Box>
+                                                    )}
+                                                </Box>
+                                            )}
+                                            <Box
+                                                px={1.5}
+                                                py={0.75}
+                                                sx={{
+                                                    display: 'flex',
+                                                    flexDirection: 'column',
+
+                                                    borderRadius: 2,
+                                                    height: 80,
+                                                    width: 320,
+                                                    border: '2px solid #ccc',
+                                                    backgroundColor: 'rgba(25, 63, 63, 0.877) ',
+                                                }}
+                                            >
+                                                <Box
+                                                    mb={0.75}
+                                                    p={0.25}
+                                                    sx={{
+                                                        background:
+                                                            idx === 0
+                                                                ? 'linear-gradient(94deg, #fe4040ce 40%, #ff8b8bbc 79%, #ffa5a5cf 99%)'
+                                                                : idx !== 5
+                                                                ? 'linear-gradient(94deg, #fec240cf 40%, #ffea8bd6 79%, #ffee8ed6 99%)'
+                                                                : 'linear-gradient(94deg, #009619b9 40%, #6cca00b5 79%, #e7ffa56c 99%)',
+                                                        borderRadius: 2,
+                                                    }}
+                                                >
+                                                    <Typography
+                                                        sx={{
+                                                            fontWeight: 700,
+                                                            fontSize: 17,
+                                                            whiteSpace: 'nowrap',
+                                                            color: '#000',
+                                                        }}
+                                                    >
+                                                        {title}
+                                                    </Typography>
+                                                </Box>
+                                                <Box>
+                                                    <Typography variant="h6" sx={{ color: '#fff' }}>
+                                                        {description}
+                                                    </Typography>
+                                                </Box>
                                             </Box>
                                         </Box>
                                     ))}
@@ -208,7 +266,6 @@ const Hero = ({ setIsOpen, isOpen }) => {
                             sx={{
                                 borderRadius: 8,
                                 overflow: 'hidden',
-                                height: '500px',
                                 boxShadow: '0 0 8px 2px #ffffff',
                             }}
                         >
