@@ -27,36 +27,35 @@ const Hero = ({ setIsOpen, isOpen }) => {
 
     const steps = [
         {
-            title: 'Выбор Тарифа',
-            description: 'Выбирайте тариф, идеально соответствующий вашему бизнесу.',
+            title: string?.titleStep1,
+            description: string?.descriptionStep1,
         },
         {
-            title: 'Оформиление Заявки',
-            description: 'Заполните простую форму обратной связи и наши специалисты свяжутся с вами.',
-        },
-
-        {
-            title: 'Создание Каталог',
-            description: 'Мы зарегистрируем ваш каталог как новый сайт.',
+            title: string?.titleStep2,
+            description: string?.descriptionStep2,
         },
         {
-            title: 'Подключение Админ Панели',
-            description: 'Получите доступ к управлению каталогом, настраивая параметры под свои нужды.',
+            title: string?.titleStep3,
+            description: string?.descriptionStep3,
         },
         {
-            title: 'Загрузка Товаров',
-            description: 'Добавляйте товары с описаниями, ценами и фото легко и быстро.',
+            title: string?.titleStep4,
+            description: string?.descriptionStep4,
         },
         {
-            title: 'Запуск и Продвижение',
-            description: 'Запустите каталог и используйте его для продвижения и продажи товаров.',
+            title: string?.titleStep5,
+            description: string?.descriptionStep5,
+        },
+        {
+            title: string?.titleStep6,
+            description: string?.descriptionStep6,
         },
     ];
 
     return (
         <>
             <Grid
-                py={4}
+                py={2}
                 // px={2}
                 pt={0}
                 container
@@ -73,11 +72,9 @@ const Hero = ({ setIsOpen, isOpen }) => {
             >
                 <Grid
                     xs={12}
-                    mb={2}
                     container
-                    ml={-2}
                     sx={{
-                        width: '100vw',
+                        width: '100%',
                         display: 'flex',
                         justifyContent: 'center',
                         background: `linear-gradient(89.7deg, rgba(163, 163, 163, 0.171) 50.7%, rgba(255, 255, 255, 0.226) 98.8%);`,
@@ -85,7 +82,7 @@ const Hero = ({ setIsOpen, isOpen }) => {
                 >
                     <Grid
                         xs={12}
-                        pb={6}
+                        pb={4.25}
                         sx={{
                             borderRadius: 4,
                             display: 'flex',
@@ -108,14 +105,23 @@ const Hero = ({ setIsOpen, isOpen }) => {
                             <Typography variant={'h1'} sx={{ lineHeight: 1.1, color: '#ffffff', textAlign: 'center' }}>
                                 {string?.online_catalog_for_your_business}
                             </Typography>
-                            <Fab
-                                size="small"
-                                color="warning"
-                                sx={{ position: 'absolute', left: '50%', bottom: -40, transform: 'translateX(-50%)' }}
-                                onClick={() => setIsOpenText(!isOpenText)}
-                            >
-                                <AdsClickIcon sx={{ color: 'white', fontSize: 32 }} />
-                            </Fab>
+                            <Box>
+                                <Fab
+                                    size="small"
+                                    color="warning"
+                                    sx={{
+                                        position: 'absolute',
+                                        left: '50%',
+                                        bottom: -30,
+                                        transform: 'translateX(-50%)',
+                                        width: 35,
+                                        height: 35,
+                                    }}
+                                    onClick={() => setIsOpenText(!isOpenText)}
+                                >
+                                    <AdsClickIcon sx={{ color: 'white', fontSize: 32 }} />
+                                </Fab>
+                            </Box>
                         </Box>
                     </Grid>
                     <Grid
@@ -210,7 +216,7 @@ const Hero = ({ setIsOpen, isOpen }) => {
                                                 </Box>
                                             )}
                                             <Box
-                                                px={1.5}
+                                                px={1.25}
                                                 py={0.75}
                                                 sx={{
                                                     display: 'flex',
@@ -232,7 +238,7 @@ const Hero = ({ setIsOpen, isOpen }) => {
                                                                 ? 'linear-gradient(94deg, #fe4040ce 40%, #ff8b8bbc 79%, #ffa5a5cf 99%)'
                                                                 : idx !== 5
                                                                 ? 'linear-gradient(94deg, #fec240cf 40%, #ffea8bd6 79%, #ffee8ed6 99%)'
-                                                                : 'linear-gradient(94deg, #009619b9 40%, #6cca00b5 79%, #e7ffa56c 99%)',
+                                                                : 'linear-gradient(94deg, #009619b9 40%, #6cca00b5 79%, #e7ffa5c3 99%)',
                                                         borderRadius: 2,
                                                     }}
                                                 >

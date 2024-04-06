@@ -7,6 +7,19 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'en',
             string: {
+                titleStep1: 'Plan Selection',
+                descriptionStep1: 'Choose a plan that perfectly matches your business.',
+                titleStep2: 'Application Processing',
+                descriptionStep2: 'Fill out a simple feedback form and our specialists will contact you.',
+                titleStep3: 'Catalog Creation',
+                descriptionStep3: 'We will register your catalog as a new site.',
+                titleStep4: 'Admin Panel Connection',
+                descriptionStep4: 'Gain access to manage your catalog, adjusting settings to your needs.',
+                titleStep5: 'Product Upload',
+                descriptionStep5: 'Easily and quickly add products with descriptions, prices, and photos.',
+                titleStep6: 'Launch and Promotion',
+                descriptionStep6: 'Launch your catalog and use it for promoting and selling products.',
+
                 helper_pricing_text_1:
                     'Do you want to try it or do you have a small range of products? Our plan provides ease of use, a beautiful online catalog and reliable support. This is an ideal choice for your experiments and first steps in using the catalog.',
                 helper_pricing_text_2:
@@ -214,6 +227,20 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'fr',
             string: {
+                titleStep1: 'Sélection du Plan',
+                descriptionStep1: 'Choisissez un plan qui correspond parfaitement à votre entreprise.',
+                titleStep2: 'Traitement de la Demande',
+                descriptionStep2: 'Remplissez un simple formulaire de retour et nos spécialistes vous contacteront.',
+                titleStep3: 'Création du Catalogue',
+                descriptionStep3: 'Nous enregistrerons votre catalogue comme un nouveau site.',
+                titleStep4: "Panneau d'Administration",
+                descriptionStep4:
+                    "Obtenez l'accès pour gérer votre catalogue, en ajustant les paramètres selon vos besoins.",
+                titleStep5: 'Téléchargement des Produits',
+                descriptionStep5:
+                    'Ajoutez facilement et rapidement des produits avec des descriptions, des prix et des photos.',
+                titleStep6: 'Lancement et Promotion',
+                descriptionStep6: 'Lancez votre catalogue et utilisez-le pour la promotion et la vente de produits.',
                 helper_pricing_text_1:
                     "Voulez-vous l'essayer ou avez-vous une petite gamme de produits ? Notre plan offre une facilité d'utilisation, un beau catalogue en ligne et un support fiable. C'est le choix idéal pour vos expérimentations et vos premiers pas dans l'utilisation du catalogue.",
                 helper_pricing_text_2:
@@ -423,6 +450,18 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'es',
             string: {
+                titleStep1: 'Selección de Plan',
+                descriptionStep1: 'Elige un plan que se ajuste perfectamente a tu negocio.',
+                titleStep2: 'Procesamiento de Solicitud',
+                descriptionStep2: 'Complete el formulario de comentarios y los especialistas se comunicarán con usted.',
+                titleStep3: 'Creación de Catálogo',
+                descriptionStep3: 'Registraremos tu catálogo como un nuevo sitio.',
+                titleStep4: 'Conexión al Panel de Administración',
+                descriptionStep4: 'Obtenga acceso para administrar su catálogo.',
+                titleStep5: 'Carga de Productos',
+                descriptionStep5: 'Agrega productos fácil y rápidamente con descripciones, precios y fotos.',
+                titleStep6: 'Lanzamiento y Promoción',
+                descriptionStep6: 'Lanza tu catálogo y úsalo para la promoción y venta de productos.',
                 helper_pricing_text_1:
                     '¿Quieres probarlo o tienes una gama pequeña de productos? Nuestro plan ofrece facilidad de uso, un hermoso catálogo en línea y soporte confiable. Esta es la opción ideal para tus experimentos y primeros pasos en el uso del catálogo.',
                 helper_pricing_text_2:
@@ -631,6 +670,18 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'ua',
             string: {
+                titleStep1: 'Вибір Плану',
+                descriptionStep1: 'Обирайте план, ідеально відповідний вашому бізнесу.',
+                titleStep2: 'Оформлення Заявки',
+                descriptionStep2: "Заповніть форму зворотного зв'язку, і наші спеціалісти зв'яжуться з вами.",
+                titleStep3: 'Створення Каталогу',
+                descriptionStep3: 'Ми зареєструємо ваш каталог як новий сайт.',
+                titleStep4: 'Підключення Адмін Панелі',
+                descriptionStep4: 'Отримайте доступ до управління каталогом.',
+                titleStep5: 'Завантаження Товарів',
+                descriptionStep5: 'Додавайте товари з описами, цінами та фото легко та швидко.',
+                titleStep6: 'Запуск та Промоція',
+                descriptionStep6: 'Запустіть каталог та використовуйте його для просування та продажу товарів.',
                 helper_pricing_text_1:
                     'Бажаєте спробувати, чи у вас невеликий асортимент продукції? Наш план забезпечує зручність у використанні, прекрасний онлайн-каталог та надійну підтримку. Це ідеальний вибір для ваших експериментів та перших кроків у використанні каталогу.',
                 helper_pricing_text_2:
@@ -765,7 +816,7 @@ export const useGetLanguage = ({ lang }) => {
                 cart: 'Кошик',
                 vendor_code: 'Артикул',
                 price: 'Ціна',
-                prices: 'Тарифнi Пакети',
+                prices: 'Тарифнi Плани',
                 logout: 'Вийти',
                 submit: 'Підтвердити',
                 ukraine: 'Україна',
@@ -839,6 +890,19 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'pl',
             string: {
+                titleStep1: 'Wybór Planu',
+                descriptionStep1: 'Wybierz plan idealnie dopasowany do Twojego biznesu.',
+                titleStep2: 'Składanie Wniosku',
+                descriptionStep2: 'Wypełnij prosty formularz opinii, a nasi specjaliści skontaktują się z Tobą.',
+                titleStep3: 'Tworzenie Katalogu',
+                descriptionStep3: 'Zarejestrujemy Twój katalog jako nową stronę.',
+                titleStep4: 'Panelu Administracyjnego',
+                descriptionStep4:
+                    'Uzyskaj dostęp do zarządzania katalogiem, dostosowując ustawienia do swoich potrzeb.',
+                titleStep5: 'Dodawanie Produktów',
+                descriptionStep5: 'Dodawaj produkty z opisami, cenami i zdjęciami łatwo i szybko.',
+                titleStep6: 'Uruchomienie i Promocja',
+                descriptionStep6: 'Uruchom katalog i wykorzystaj go do promocji i sprzedaży produktów.',
                 helper_pricing_text_1:
                     'Chcesz to wypróbować, czy masz małą gamę produktów? Nasz plan zapewnia łatwość użytkowania, piękny katalog online i niezawodne wsparcie. Jest to idealny wybór na twoje eksperymenty i pierwsze kroki w korzystaniu z katalogu.',
                 helper_pricing_text_2:
@@ -1060,6 +1124,18 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'cz',
             string: {
+                titleStep1: 'Výběr Plánu',
+                descriptionStep1: 'Vyberte plán, který dokonale odpovídá vašemu podnikání.',
+                titleStep2: 'Zpracování Žádosti',
+                descriptionStep2: 'Vyplňte jednoduchý formulář zpětné vazby a naši specialisté se s vámi spojí.',
+                titleStep3: 'Vytvoření Katalogu',
+                descriptionStep3: 'Zaregistrujeme váš katalog jako nový web.',
+                titleStep4: 'Připojení Admin Panelu',
+                descriptionStep4: 'Získejte přístup k řízení katalogu, přizpůsobte nastavení podle svých potřeb.',
+                titleStep5: 'Nahrání Produktů',
+                descriptionStep5: 'Snadno a rychle přidávejte produkty s popisy, cenami a fotografiemi.',
+                titleStep6: 'Spuštění a Propagace',
+                descriptionStep6: 'Spusťte katalog a využijte ho pro propagaci a prodej produktů.',
                 helper_pricing_text_1:
                     'Chcete to vyzkoušet, nebo máte malý sortiment produktů? Náš plán poskytuje snadné použití, krásný online katalog a spolehlivou podporu. Je to ideální volba pro vaše experimenty a první kroky při používání katalogu.',
                 helper_pricing_text_2:
@@ -1278,6 +1354,18 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'ru',
             string: {
+                titleStep1: 'Выбор Плана',
+                descriptionStep1: 'Выбирайте план, идеально соответствующий вашему бизнесу.',
+                titleStep2: 'Оформиление Заявки',
+                descriptionStep2: 'Заполните простую форму обратной связи и наши специалисты свяжутся с вами.',
+                titleStep3: 'Создание Каталога',
+                descriptionStep3: 'Мы зарегистрируем ваш каталог как новый сайт.',
+                titleStep4: 'Подключение Админ Панели',
+                descriptionStep4: 'Получите доступ к управлению каталогом, настраивая параметры под свои нужды.',
+                titleStep5: 'Загрузка Товаров',
+                descriptionStep5: 'Добавляйте товары с описаниями, ценами и фото легко и быстро.',
+                titleStep6: 'Запуск и Продвижение',
+                descriptionStep6: 'Запустите каталог и используйте его для продвижения и продажи товаров.',
                 helper_pricing_text_1:
                     'Хотите попробовать или у вас небольшой ассортимент продукции? Наш план обеспечивает простоту использования, красивый онлайн-каталог и надежную поддержку. Это идеальный выбор для ваших экспериментов и первых шагов в использовании каталога.',
                 helper_pricing_text_2:
