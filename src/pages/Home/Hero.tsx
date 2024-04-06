@@ -25,6 +25,41 @@ const Hero = ({ setIsOpen, isOpen }) => {
         return 200;
     };
 
+    const steps = [
+        {
+            title: 'Выберите Идеальный Тариф',
+            description:
+                'Выбирайте тариф, идеально соответствующий вашему бизнесу, и наслаждайтесь нашим сервисом, специально подобранным для вас.',
+        },
+        {
+            title: 'Оформите Заявку с Легкостью',
+            description:
+                'Заполните простую форму обратной связи, чтобы мы могли адаптировать наш сервис под ваши нужды.',
+        },
+        {
+            title: 'Персонализированное Внимание',
+            description: 'Наши специалисты оперативно свяжутся с вами, чтобы точно уточнить все детали вашего заказа.',
+        },
+        {
+            title: 'Ваш Уникальный Каталог',
+            description: 'Мы зарегистрируем ваш каталог как новый сайт, открывая перед вашим бизнесом новые горизонты.',
+        },
+        {
+            title: 'Полный Контроль в Ваших Руках',
+            description:
+                'Получите доступ к управлению каталогом, настраивая параметры под свои нужды для полного контроля над контентом.',
+        },
+        {
+            title: 'Легкость Загрузки Товаров',
+            description:
+                'Добавляйте товары с описаниями, ценами и фото легко и быстро, делая каталог информативным и привлекательным.',
+        },
+        {
+            title: 'Запуск и Продвижение',
+            description: 'Запустите каталог и используйте его для продвижения и продажи товаров, расширяя свой рынок.',
+        },
+    ];
+
     return (
         <>
             <Grid
@@ -129,7 +164,7 @@ const Hero = ({ setIsOpen, isOpen }) => {
                 >
                     <Box
                         sx={{
-                            maxWidth: '610px',
+                            maxWidth: '900px',
 
                             borderRadius: 6,
                         }}
@@ -143,9 +178,33 @@ const Hero = ({ setIsOpen, isOpen }) => {
                                 justifyContent: 'center',
                             }}
                         >
-                            <Typography sx={{ lineHeight: 1.1, color: '#fff', fontSize: sx ? 18 : 22 }}>
-                                {/* {string?.hero_text} */}
-                            </Typography>
+                            <Box>
+                                <Typography variant="h2" sx={{ color: 'white' }}>
+                                    Чтобы зарегестрировать каталог:
+                                </Typography>
+                                <Box mt={2} sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
+                                    {steps.map(({ title, description }) => (
+                                        <Box
+                                            p={1}
+                                            sx={{ display: 'flex', flexDirection: 'column', backgroundColor: 'white' }}
+                                        >
+                                            <Box mb={1} sx={{ minWidth: 320 }}>
+                                                <Typography
+                                                    variant="h3"
+                                                    sx={{ whiteSpace: 'nowrap', textAlign: 'left' }}
+                                                >
+                                                    {title}
+                                                </Typography>
+                                            </Box>
+                                            <Box sx={{ width: 500 }}>
+                                                <Typography variant="h5" sx={{ textAlign: 'left' }}>
+                                                    {description}
+                                                </Typography>
+                                            </Box>
+                                        </Box>
+                                    ))}
+                                </Box>
+                            </Box>
                             <Button
                                 onClick={() => {
                                     setIsOpen(!isOpen);
