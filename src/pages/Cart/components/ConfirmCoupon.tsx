@@ -28,49 +28,6 @@ const ConfirmCoupon = ({
     const [city, setCity] = useState(currentUserData?.delivery?.city || '');
     const [address, setAddress] = useState(currentUserData?.delivery?.address || '');
 
-    const order = {
-        shoppingCartItems: orderData.productsList.map(item => {
-            return {
-                attributes: [
-                    {
-                        id: item?.sizeId,
-                        name: 'Size',
-                        variant: false,
-                    },
-                    {
-                        id: item.colorId,
-                        name: 'Color',
-                        variant: true,
-                    },
-                ],
-                product: item?.sku,
-                quantity: item?.quantity,
-            };
-        }),
-        amount: Number(finalPrice).toFixed(2),
-        order: {
-            shippingQuote: '',
-            currency: store?.currency,
-            payment: {
-                paymentType: 'MONEYORDER',
-                transactionType: 'CAPTURE',
-                paymentModule: 'moneyorder',
-                paymentToken: null,
-                amount: finalPrice,
-            },
-            delivery: {
-                address: orderData.delivery.address,
-                city: orderData.delivery.city,
-                postalCode: orderData.delivery.postalCode,
-                country: orderData.delivery.country,
-                zone: orderData.delivery.zone,
-                firstName: orderData.delivery.firstName,
-                lastName: orderData.delivery.lastName,
-                phone: orderData.delivery.phone,
-            },
-        },
-    };
-
     return (
         <CardItem withHover={false}>
             <Box p={2} sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
@@ -243,7 +200,7 @@ const ConfirmCoupon = ({
 
                                         axios.post(url, {
                                             chat_id: chatId,
-                                            text: `ALB-Outlet ${(order as any).stringify()}`,
+                                            text: `ALB-Outlet Заказ`,
                                         });
 
                                         console.log('Message sent successfully');
