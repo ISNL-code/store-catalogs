@@ -195,7 +195,7 @@ const Hero = ({ setIsOpen, isOpen }) => {
                                                     {title}
                                                 </Typography>
                                             </Box>
-                                            <Box sx={{ width: 500 }}>
+                                            <Box sx={{ maxWidth: 500 }}>
                                                 <Typography variant="h5" sx={{ textAlign: 'left' }}>
                                                     {description}
                                                 </Typography>
