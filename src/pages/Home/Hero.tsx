@@ -164,8 +164,7 @@ const Hero = ({ setIsOpen, isOpen }) => {
                 >
                     <Box
                         sx={{
-                            maxWidth: '900px',
-
+                            maxWidth: '1400px',
                             borderRadius: 6,
                         }}
                     >
@@ -205,30 +204,33 @@ const Hero = ({ setIsOpen, isOpen }) => {
                                     ))}
                                 </Box>
                             </Box>
-                            <Button
-                                onClick={() => {
-                                    setIsOpen(!isOpen);
-                                }}
-                                sx={{ mt: 4, width: 180, height: 40, fontSize: 18 }}
-                                variant="contained"
-                                size="large"
-                            >
-                                {string?.request}
-                            </Button>
                         </Box>
                     </Box>
                     {!mx && (
                         <Box
+                            mt={2}
                             sx={{
                                 borderRadius: 8,
                                 overflow: 'hidden',
-                                height: '410px',
+                                height: '500px',
                                 boxShadow: '0 0 8px 2px #ffffff',
                             }}
                         >
-                            <img width="400px" src={require('./img/hero.png')} alt="" />
+                            <img width="500px" src={require('./img/hero.png')} alt="" />
                         </Box>
                     )}
+                </Grid>
+                <Grid xs={12} sx={{ display: 'flex', justifyContent: 'center' }}>
+                    <Button
+                        onClick={() => {
+                            setIsOpen(!isOpen);
+                        }}
+                        sx={{ mt: 4, width: 180, height: 40, fontSize: 18 }}
+                        variant="contained"
+                        size="large"
+                    >
+                        {string?.request}
+                    </Button>
                 </Grid>
             </Grid>
         </>
