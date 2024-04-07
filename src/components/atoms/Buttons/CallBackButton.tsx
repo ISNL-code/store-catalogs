@@ -14,7 +14,7 @@ const CallBackButton = ({ from = 'catalog' }) => {
             sx={{
                 zIndex: 2000,
                 position: 'fixed',
-                right: sx ? '24px' : '40px',
+                right: '24px',
                 bottom: sx && from !== 'landing' ? 80 : 20,
                 width: 'fit-content',
                 border: sx ? 'none' : '1px solid green',
@@ -25,6 +25,7 @@ const CallBackButton = ({ from = 'catalog' }) => {
                 alignItems: 'center',
                 justifyContent: 'space-between',
                 cursor: 'pointer',
+                opacity: 0.75,
             }}
             onClick={() => {
                 from === 'catalog'
@@ -33,34 +34,37 @@ const CallBackButton = ({ from = 'catalog' }) => {
             }}
         >
             {!sx && (
-                <Typography m={0.75} sx={{ fontSize: 14, fontWeight: '700', color: '#fff' }}>
+                <Typography m={0.75} ml={0.75} sx={{ fontSize: 12, fontWeight: '700', color: '#fff' }}>
                     {string?.contacts}
                 </Typography>
             )}
-            <Fab
-                size={sx || from === 'landing' ? 'medium' : 'small'}
-                sx={{
-                    backgroundColor: '#ffffff',
-                    '@keyframes fadeIn': {
-                        '0%': { transform: 'translate(2px,2px)' },
-                        '1%': { transform: 'translate(-2px,2px)' },
-                        '2%': { transform: 'translate(2px,2px)' },
-                        '3%': { transform: 'translate(-2px,-2px)' },
-                        '5%': { transform: 'translate(2px,-2px)' },
-                        '7%': { transform: 'translate(2px,2px)' },
-                        '9%': { transform: 'translate(2px,-2px)' },
-                        '12%': { transform: 'translate(2px,0)' },
-                        '14%': { transform: 'translate(0,0)' },
-                        '100%': { transform: 'translate(0,0)' },
-                    },
+            <Box sx={{ width: 'fit-content' }}>
+                <Fab
+                    size={sx || from === 'landing' ? 'medium' : 'small'}
+                    sx={{
+                        p: 2,
+                        backgroundColor: '#ffffff',
+                        // '@keyframes fadeIn': {
+                        //     '0%': { transform: 'translate(2px,2px)' },
+                        //     '1%': { transform: 'translate(-2px,2px)' },
+                        //     '2%': { transform: 'translate(2px,2px)' },
+                        //     '3%': { transform: 'translate(-2px,-2px)' },
+                        //     '5%': { transform: 'translate(2px,-2px)' },
+                        //     '7%': { transform: 'translate(2px,2px)' },
+                        //     '9%': { transform: 'translate(2px,-2px)' },
+                        //     '12%': { transform: 'translate(2px,0)' },
+                        //     '14%': { transform: 'translate(0,0)' },
+                        //     '100%': { transform: 'translate(0,0)' },
+                        // },
 
-                    animation: `fadeIn 4s infinite ease`,
-                    border: '1px solid #ccc',
-                    boxShadow: '0 0 5px 2px green',
-                }}
-            >
-                <PhoneCallbackIcon color="success" />
-            </Fab>
+                        animation: `fadeIn 4s infinite ease`,
+                        border: '1px solid #ccc',
+                        boxShadow: '0 0 5px 2px green',
+                    }}
+                >
+                    <PhoneCallbackIcon color="success" />
+                </Fab>
+            </Box>
         </Box>
     );
 };

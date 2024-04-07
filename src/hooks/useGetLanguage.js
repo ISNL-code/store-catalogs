@@ -7,6 +7,7 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'en',
             string: {
+                call_back: 'Call Back',
                 titleStep1: 'Plan Selection',
                 descriptionStep1: 'Choose a plan that perfectly matches your business.',
                 titleStep2: 'Application Processing',
@@ -222,11 +223,16 @@ export const useGetLanguage = ({ lang }) => {
                 language_error: 'Language error!',
                 spanish: 'Spain',
                 french: 'French',
+                ask_question: 'Ask Question',
+                question: 'Question',
             },
         },
         {
             code: 'fr',
             string: {
+                call_back: 'Rappeler',
+                ask_question: 'Poser une question',
+                question: 'Question',
                 titleStep1: 'Sélection du Plan',
                 descriptionStep1: 'Choisissez un plan qui correspond parfaitement à votre entreprise.',
                 titleStep2: 'Traitement de la Demande',
@@ -450,6 +456,9 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'es',
             string: {
+                call_back: 'Devolver llamada',
+                ask_question: 'Hacer una pregunta',
+                question: 'Pregunta',
                 titleStep1: 'Selección de Plan',
                 descriptionStep1: 'Elige un plan que se ajuste perfectamente a tu negocio.',
                 titleStep2: 'Procesamiento de Solicitud',
@@ -670,6 +679,9 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'ua',
             string: {
+                call_back: 'Передзвонити',
+                ask_question: 'Задати питання',
+                question: 'Питання',
                 titleStep1: 'Вибір Плану',
                 descriptionStep1: 'Обирайте план, ідеально відповідний вашому бізнесу.',
                 titleStep2: 'Оформлення Заявки',
@@ -890,6 +902,9 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'pl',
             string: {
+                call_back: 'Oddzwonić',
+                ask_question: 'Zadaj pytanie',
+                question: 'Pytanie',
                 titleStep1: 'Wybór Planu',
                 descriptionStep1: 'Wybierz plan idealnie dopasowany do Twojego biznesu.',
                 titleStep2: 'Składanie Wniosku',
@@ -1124,6 +1139,9 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'cz',
             string: {
+                call_back: 'Zavolat zpět',
+                ask_question: 'Položit otázku',
+                questuin: '',
                 titleStep1: 'Výběr Plánu',
                 descriptionStep1: 'Vyberte plán, který dokonale odpovídá vašemu podnikání.',
                 titleStep2: 'Zpracování Žádosti',
@@ -1354,6 +1372,9 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'ru',
             string: {
+                call_back: 'Перезвонить',
+                ask_question: 'Задать вопрос',
+                question: 'Вопрос',
                 titleStep1: 'Выбор Плана',
                 descriptionStep1: 'Выбирайте план, идеально соответствующий вашему бизнесу.',
                 titleStep2: 'Оформиление Заявки',

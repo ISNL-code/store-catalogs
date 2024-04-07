@@ -8,11 +8,14 @@ import Slides from './Slides';
 import Advantages from './Advantages';
 import Examples from './Examples';
 import Pricing from './Pricing';
+import QuestionForm from './QuestionForm';
+import MessageButton from 'components/atoms/Buttons/MessageButton';
 
 const HomePage = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [plan, setPlan] = useState({ plan: '', subject: '' });
-    const [openModal, setOpenModal] = useState(false);
+    const [openSuccessModal, setOpenSuccessModal] = useState(false);
+    const [openQuestionForm, setOpenQuestionForm] = useState(false);
 
     return (
         <>
@@ -21,11 +24,18 @@ const HomePage = () => {
                     values={{ ...plan }}
                     isOpen={isOpen}
                     setIsOpen={setIsOpen}
-                    setOpenModal={setOpenModal}
+                    setOpenSuccessModal={setOpenSuccessModal}
                     setPlan={setPlan}
                 />
-                {openModal && <SuccessModel setOpenModal={setOpenModal} />}
+                <QuestionForm
+                    values={{ ...plan }}
+                    isOpen={openQuestionForm}
+                    setIsOpen={setOpenQuestionForm}
+                    setOpenSuccessModal={setOpenSuccessModal}
+                />
+                {openSuccessModal && <SuccessModel setOpenModal={setOpenSuccessModal} />}
                 {<CallBackButton from="landing" />}
+                {<MessageButton from="landing" action={() => setOpenQuestionForm(!openQuestionForm)} />}
                 <Hero setIsOpen={setIsOpen} isOpen={isOpen} />
                 <Slides />
                 <Advantages />

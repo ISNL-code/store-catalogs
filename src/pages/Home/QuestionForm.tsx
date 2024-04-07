@@ -15,7 +15,7 @@ import { useFormik } from 'formik';
 import requestCatalogValidation from 'Validation/requestCatalogValidation';
 import axios from 'axios';
 
-export default function Form({ values, isOpen = false, setIsOpen, setPlan, setOpenSuccessModal }) {
+export default function QuestionForm({ values, isOpen = false, setIsOpen, setOpenSuccessModal }) {
     const { string }: StoresContextInterface = useOutletContext();
     const [formValues, setFormValues] = React.useState<any>({
         subject: '',
@@ -52,11 +52,11 @@ export default function Form({ values, isOpen = false, setIsOpen, setPlan, setOp
 
                 axios.post(url, {
                     chat_id: chatId,
-                    text: `Заказ, Привет, меня зовут ${values.name || '<Заказчик>'}, мои контакты: email:${
+                    text: `Вопрос, Привет, меня зовут ${values.name || '<Заказчик>'}, мои контакты: email:${
                         values.email || '<не указан>'
                     }, тел: ${values.phone || '<не указан>'}, я хочу ${values.subject} по тарифу ${
                         values.plan || '<не указан>'
-                    }, комментарий: ${values.comment || '<не оставил>'}`,
+                    }, вопрос: ${values.comment || '<не оставил>'}`,
                 });
                 setOpenSuccessModal(true);
                 console.log('Message sent successfully');
@@ -81,7 +81,6 @@ export default function Form({ values, isOpen = false, setIsOpen, setPlan, setOp
             email: '',
             comment: '',
         });
-        setPlan({ subject: '', plan: '' });
     };
 
     return (
@@ -98,53 +97,8 @@ export default function Form({ values, isOpen = false, setIsOpen, setPlan, setOp
                     },
                 }}
             >
-                <DialogTitle sx={{ fontSize: 24 }}>{string?.request}:</DialogTitle>
+                <DialogTitle sx={{ fontSize: 24 }}>{string?.ask_question}:</DialogTitle>
                 <DialogContent sx={{ display: 'flex', flexDirection: 'column', gap: 2.5 }}>
-                    <FormControl
-                        error={Boolean(formik.errors.subject && formik.touched.subject)}
-                        fullWidth
-                        size="small"
-                        sx={{ mt: 1 }}
-                    >
-                        <InputLabel sx={{ color: '#898B9B' }}>{string?.i_want}</InputLabel>
-                        <StyledSelect
-                            variant="outlined"
-                            value={formValues.subject || ''}
-                            onChange={e => {
-                                setFormValues(prev => {
-                                    return { ...prev, subject: e.target.value };
-                                });
-                            }}
-                            label={string?.i_want}
-                            fullWidth
-                        >
-                            {[string?.request_catalog, string?.consultation, string?.request_example].map((el, idx) => (
-                                <MenuItem key={idx} value={el}>
-                                    {el}
-                                </MenuItem>
-                            ))}
-                        </StyledSelect>
-                    </FormControl>
-                    <FormControl error={false} fullWidth size="small" sx={{ mt: 1 }}>
-                        <InputLabel sx={{ color: '#898B9B' }}>{string?.plan}</InputLabel>
-                        <StyledSelect
-                            variant="outlined"
-                            label={string?.plan}
-                            value={formValues.plan || ''}
-                            onChange={e => {
-                                setFormValues(prev => {
-                                    return { ...prev, plan: e.target.value };
-                                });
-                            }}
-                            fullWidth
-                        >
-                            {['Start', 'Pro', 'Unlim'].map((el, idx) => (
-                                <MenuItem key={idx} value={el}>
-                                    {el}
-                                </MenuItem>
-                            ))}
-                        </StyledSelect>
-                    </FormControl>
                     <StyledTextField
                         value={formValues.name || ''}
                         onChange={e => {
@@ -193,7 +147,7 @@ export default function Form({ values, isOpen = false, setIsOpen, setPlan, setOp
                                 return { ...prev, comment: e.target.value };
                             });
                         }}
-                        label={string?.comment}
+                        label={string?.question}
                         size="small"
                         fullWidth
                         error={false}
