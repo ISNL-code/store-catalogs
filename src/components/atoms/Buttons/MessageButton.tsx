@@ -1,13 +1,11 @@
 import { Box, Fab, Typography } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
-import { useNavigate, useOutletContext, useParams } from 'react-router-dom';
+import { useOutletContext } from 'react-router-dom';
 import { useDevice } from 'hooks/useDevice';
 
 const MessageButton = ({ from = 'catalog', action }) => {
-    const { storeCode, storeName } = useParams();
     const { string }: any = useOutletContext();
     const { sx, s } = useDevice();
-    const navigate = useNavigate();
 
     return (
         <Box

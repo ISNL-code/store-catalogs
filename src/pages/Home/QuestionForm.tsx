@@ -6,13 +6,11 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 // import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import { InputLabel, MenuItem, FormControl, InputAdornment } from '@mui/material';
-import { StyledSelect } from './StyledSelect';
 import { StoresContextInterface } from 'types';
 import { useOutletContext } from 'react-router-dom';
 import { StyledTextField } from './StyledTextField';
 import { useFormik } from 'formik';
-import requestCatalogValidation from 'Validation/requestCatalogValidation';
+import requestQuestionValidation from 'Validation/requestQuestionValidation';
 import axios from 'axios';
 
 export default function QuestionForm({ values, isOpen = false, setIsOpen, setOpenSuccessModal }) {
@@ -35,14 +33,12 @@ export default function QuestionForm({ values, isOpen = false, setIsOpen, setOpe
 
     const formik = useFormik({
         initialValues: {
-            subject: '',
-            plan: '',
             name: '',
             phone: '',
             email: '',
             comment: '',
         },
-        validationSchema: requestCatalogValidation,
+        validationSchema: requestQuestionValidation,
         onSubmit: values => {
             handleClose();
             try {
@@ -52,11 +48,10 @@ export default function QuestionForm({ values, isOpen = false, setIsOpen, setOpe
 
                 axios.post(url, {
                     chat_id: chatId,
-                    text: `Вопрос, Привет, меня зовут ${values.name || '<Заказчик>'}, мои контакты: email:${
+                    text: `Вопрос, Привет, меня зовут ${values.name || '<Заказчик>'}, мои контакты: email: ${
                         values.email || '<не указан>'
-                    }, тел: ${values.phone || '<не указан>'}, я хочу ${values.subject} по тарифу ${
-                        values.plan || '<не указан>'
-                    }, вопрос: ${values.comment || '<не оставил>'}`,
+                    }, тел: ${values.phone || '<не указан>'}, 
+                     вопрос: ${values.comment || '<не оставил>'}`,
                 });
                 setOpenSuccessModal(true);
                 console.log('Message sent successfully');
@@ -74,8 +69,6 @@ export default function QuestionForm({ values, isOpen = false, setIsOpen, setOpe
     const handleClose = () => {
         setIsOpen(false);
         setFormValues({
-            subject: '',
-            plan: '',
             name: '',
             phone: '',
             email: '',
@@ -111,6 +104,7 @@ export default function QuestionForm({ values, isOpen = false, setIsOpen, setOpe
                         fullWidth
                         error={false}
                         helperText={''}
+                        sx={{ mt: 1 }}
                     />
                     <StyledTextField
                         value={formValues.phone || ''}
@@ -136,7 +130,7 @@ export default function QuestionForm({ values, isOpen = false, setIsOpen, setOpe
                         label={string?.email}
                         size="small"
                         fullWidth
-                        error={Boolean(formik.errors.phone && formik.touched.phone)}
+                        error={Boolean(formik.errors.email && formik.touched.email)}
                         helperText={string?.enter_valid_email}
                     />
 
@@ -150,10 +144,10 @@ export default function QuestionForm({ values, isOpen = false, setIsOpen, setOpe
                         label={string?.question}
                         size="small"
                         fullWidth
-                        error={false}
+                        error={Boolean(formik.errors.comment && formik.touched.comment)}
                         helperText={''}
                         multiline
-                        minRows={2}
+                        minRows={1}
                     />
                 </DialogContent>
                 <DialogActions>

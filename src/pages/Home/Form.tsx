@@ -6,7 +6,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 // import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import { InputLabel, MenuItem, FormControl, InputAdornment } from '@mui/material';
+import { InputLabel, MenuItem, FormControl } from '@mui/material';
 import { StyledSelect } from './StyledSelect';
 import { StoresContextInterface } from 'types';
 import { useOutletContext } from 'react-router-dom';
@@ -52,7 +52,7 @@ export default function Form({ values, isOpen = false, setIsOpen, setPlan, setOp
 
                 axios.post(url, {
                     chat_id: chatId,
-                    text: `Заказ, Привет, меня зовут ${values.name || '<Заказчик>'}, мои контакты: email:${
+                    text: `Заказ, Привет, меня зовут ${values.name || '<Заказчик>'}, мои контакты: email: ${
                         values.email || '<не указан>'
                     }, тел: ${values.phone || '<не указан>'}, я хочу ${values.subject} по тарифу ${
                         values.plan || '<не указан>'
@@ -182,7 +182,7 @@ export default function Form({ values, isOpen = false, setIsOpen, setPlan, setOp
                         label={string?.email}
                         size="small"
                         fullWidth
-                        error={Boolean(formik.errors.phone && formik.touched.phone)}
+                        error={Boolean(formik.errors.email && formik.touched.email)}
                         helperText={string?.enter_valid_email}
                     />
 
