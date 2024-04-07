@@ -1,7 +1,7 @@
-import { Box, Typography } from '@mui/material';
+import { Box, Divider, Typography } from '@mui/material';
 import Grid from '@mui/material/Unstable_Grid2';
 import { useDevice } from 'hooks/useDevice';
-import CheckIcon from '@mui/icons-material/Check';
+import ControlPointIcon from '@mui/icons-material/ControlPoint';
 import { StoresContextInterface } from 'types';
 import { useOutletContext } from 'react-router-dom';
 
@@ -76,7 +76,7 @@ const Advantages = () => {
                     justifyContent: 'space-between',
                 }}
             >
-                <Box px={2} py={0.5} sx={{ width: 'fit-content', border: '1px dashed #ccc', borderTop: 'none' }}>
+                <Box p={1}>
                     <Typography sx={{ fontSize: 22, fontWeight: 500 }}>{string?.main_advantages}</Typography>
                 </Box>
             </Box>
@@ -136,43 +136,23 @@ const Advantages = () => {
                                 }}
                             >
                                 {rules.map((el, idx) => (
-                                    <Box
-                                        key={idx}
-                                        sx={{
-                                            display: 'flex',
-                                            flexDirection: 'row',
-                                            gap: 0.5,
-                                            // mb: 0.75,
-                                        }}
-                                    >
+                                    <Box key={idx}>
                                         <Box
                                             sx={{
-                                                width: 20,
-                                                height: 20,
                                                 display: 'flex',
-                                                alignItems: 'center',
-                                                justifyContent: 'center',
-                                                border: '1px solid #ccc',
-                                                backgroundColor: 'green',
-                                                borderRadius: '50%',
-                                                opacity: 0.8,
+                                                flexDirection: 'row',
+                                                // alignItems: 'center',
+                                                gap: 0.5,
+                                                py: 1,
                                             }}
                                         >
-                                            <CheckIcon
-                                                sx={{
-                                                    p: 0.25,
-                                                    color: '#fff',
-                                                    fontSize: 10,
-                                                    fontWeight: 700,
-                                                    width: 18,
-                                                    height: 18,
-                                                }}
-                                            />
-                                        </Box>
+                                            <ControlPointIcon sx={{ color: 'green' }} />
 
-                                        <Typography sx={{ color: 'gray' }}>
-                                            <b style={{ color: '#000' }}>{el?.title}: </b> {el?.description}
-                                        </Typography>
+                                            <Typography sx={{ color: 'gray' }}>
+                                                <b style={{ color: '#000' }}>{el?.title}: </b> {el?.description}
+                                            </Typography>
+                                        </Box>
+                                        {rules?.length !== idx + 1 && <Divider />}
                                     </Box>
                                 ))}
                             </Box>

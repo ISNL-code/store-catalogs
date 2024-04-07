@@ -1432,7 +1432,7 @@ export const useGetLanguage = ({ lang }) => {
                 request_catalog: 'Заказать каталог',
                 consultation: 'Заказать консультацию',
                 request_example: 'Заказать образец',
-                plan: 'Тариф',
+                plan: 'Тарифные планы',
                 comment: 'Комментарий',
                 owner_title_1: 'Увеличение доступности',
                 owner_title_2: 'Удобное управление',

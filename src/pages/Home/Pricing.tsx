@@ -1,4 +1,4 @@
-import { Box, Button, Typography } from '@mui/material';
+import { Box, Button, Divider, Typography } from '@mui/material';
 import Grid from '@mui/material/Unstable_Grid2';
 import { useDevice } from 'hooks/useDevice';
 import CheckIcon from '@mui/icons-material/Check';
@@ -10,10 +10,10 @@ import StyledTooltip from './StyledTooltip';
 
 const Pricing = ({ setPlan, isOpen, setIsOpen }) => {
     const { string }: StoresContextInterface = useOutletContext();
-    const { sm, l, sx } = useDevice();
+    const { l, sx } = useDevice();
 
     const getPRICINGGridValue = () => {
-        if (sm) return 12;
+        if (sx) return 12;
         if (l) return 6;
         return 4;
     };
@@ -121,7 +121,7 @@ const Pricing = ({ setPlan, isOpen, setIsOpen }) => {
                 xs={12}
                 container
                 sx={{
-                    background: sx ? '' : `url(${require('./img/bcg.png')})`,
+                    background: `url(${require('./img/bcg.png')})`,
                     backgroundRepeat: 'no-repeat',
                     backgroundSize: 'cover',
                     backgroundPosition: 'cover',
@@ -136,7 +136,8 @@ const Pricing = ({ setPlan, isOpen, setIsOpen }) => {
                     container
                     p={1}
                     sx={{
-                        maxWidth: 1600,
+                        width: '100%',
+                        maxWidth: 1300,
                         minHeight: '480px',
                         display: 'flex',
                         justifyContent: 'center',
@@ -144,9 +145,10 @@ const Pricing = ({ setPlan, isOpen, setIsOpen }) => {
                     }}
                 >
                     {PRICING.map(({ name, price, rules, values, help }, index) => (
-                        <Grid xs={getPRICINGGridValue()} key={index} p={1}>
+                        <Grid xs={getPRICINGGridValue()} key={index} p={1} sx={{ maxWidth: 400, width: '100%' }}>
                             <Box
                                 sx={{
+                                    maxWidth: 425,
                                     width: '100%',
                                     backgroundColor: 'white',
                                     borderRadius: 4,
@@ -155,8 +157,8 @@ const Pricing = ({ setPlan, isOpen, setIsOpen }) => {
                                 }}
                             >
                                 <Box
-                                    px={2}
-                                    py={0.75}
+                                    px={3}
+                                    py={1}
                                     sx={{
                                         background: '#1976d2',
                                         display: 'flex',
@@ -172,16 +174,17 @@ const Pricing = ({ setPlan, isOpen, setIsOpen }) => {
                                             <HelpOutlineIcon />
                                         </StyledTooltip>
                                     </Box>
-                                    {price && (
-                                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                                            <Typography sx={{ fontSize: 22, color: '#fff' }}>{price}</Typography>
-                                            <Typography mb={1} sx={{ fontSize: 16, color: '#fff' }}>
-                                                / {string?.month}
-                                            </Typography>
-                                        </Box>
-                                    )}
+
+                                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                                        <Typography sx={{ fontSize: 25, color: '#fff', fontWeight: 700 }}>
+                                            {price}
+                                        </Typography>
+                                        <Typography mb={1} sx={{ fontSize: 16, color: '#fff' }}>
+                                            / {string?.month}
+                                        </Typography>
+                                    </Box>
                                 </Box>
-                                <Box p={1.5} sx={{ position: 'relative' }}>
+                                <Box px={3} py={2} sx={{ position: 'relative' }}>
                                     <Box
                                         sx={{
                                             display: 'flex',
@@ -204,55 +207,30 @@ const Pricing = ({ setPlan, isOpen, setIsOpen }) => {
                                         )}
                                     </Box>
                                     {rules.map((el, idx) => (
-                                        <Box
-                                            key={idx}
-                                            sx={{
-                                                display: 'flex',
-                                                flexDirection: 'row',
-                                                alignItems: 'center',
-                                                gap: 0.5,
-                                                mb: 0.75,
-                                            }}
-                                        >
-                                            {el?.available ? (
-                                                <Box
-                                                    sx={{
-                                                        width: 20,
-                                                        height: 20,
-                                                        display: 'flex',
-                                                        alignItems: 'center',
-                                                        justifyContent: 'center',
-                                                        border: '1px solid #ccc',
-                                                        backgroundColor: 'green',
-                                                        borderRadius: '50%',
-                                                        opacity: 0.8,
-                                                    }}
-                                                >
-                                                    <CheckIcon sx={{ color: '#fff', fontSize: 14, fontWeight: 700 }} />
-                                                </Box>
-                                            ) : (
-                                                <Box
-                                                    sx={{
-                                                        width: 20,
-                                                        height: 20,
-                                                        display: 'flex',
-                                                        alignItems: 'center',
-                                                        justifyContent: 'center',
-                                                        border: '1px solid #ccc',
-                                                        backgroundColor: 'red',
-                                                        borderRadius: '50%',
-                                                        opacity: 0.8,
-                                                    }}
-                                                >
-                                                    <CloseIcon sx={{ color: '#fff', fontSize: 14, fontWeight: 700 }} />
-                                                </Box>
-                                            )}
-                                            <Typography>{el?.title}</Typography>
+                                        <Box key={idx}>
+                                            <Box
+                                                sx={{
+                                                    display: 'flex',
+                                                    flexDirection: 'row',
+                                                    alignItems: 'center',
+                                                    gap: 0.5,
+                                                    py: 1,
+                                                }}
+                                            >
+                                                {el?.available ? (
+                                                    <CheckIcon sx={{ color: 'green' }} />
+                                                ) : (
+                                                    <CloseIcon sx={{ color: 'red' }} />
+                                                )}
+                                                <Typography>{el?.title}</Typography>
+                                            </Box>
+                                            {rules?.length !== idx + 1 && <Divider />}
                                         </Box>
                                     ))}
                                 </Box>
                                 <Box
-                                    p={1.5}
+                                    px={2}
+                                    py={2}
                                     sx={{
                                         display: 'flex',
                                         justifyContent: 'center',
@@ -266,6 +244,7 @@ const Pricing = ({ setPlan, isOpen, setIsOpen }) => {
                                         }}
                                         size="large"
                                         variant="contained"
+                                        sx={{ width: '50%', minWidth: 200 }}
                                     >
                                         {string?.request}
                                     </Button>
