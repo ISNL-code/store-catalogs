@@ -13,9 +13,9 @@ import MessageButton from 'components/atoms/Buttons/MessageButton';
 
 const HomePage = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const [openQuestionForm, setOpenQuestionForm] = useState(false);
     const [plan, setPlan] = useState({ plan: '', subject: '' });
     const [openSuccessModal, setOpenSuccessModal] = useState(false);
-    const [openQuestionForm, setOpenQuestionForm] = useState(false);
 
     return (
         <>
@@ -36,7 +36,12 @@ const HomePage = () => {
                 {openSuccessModal && <SuccessModel setOpenModal={setOpenSuccessModal} />}
                 {<CallBackButton from="landing" />}
                 {<MessageButton from="landing" action={() => setOpenQuestionForm(!openQuestionForm)} />}
-                <Hero setIsOpen={setIsOpen} isOpen={isOpen} />
+                <Hero
+                    setIsOpen={setIsOpen}
+                    isOpen={isOpen}
+                    setOpenQuestionForm={setOpenQuestionForm}
+                    openQuestionForm={openQuestionForm}
+                />
                 <Slides />
                 <Advantages />
                 <Examples />

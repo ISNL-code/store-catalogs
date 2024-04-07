@@ -7,7 +7,7 @@ import { useDevice } from 'hooks/useDevice';
 import { useState } from 'react';
 import AdsClickIcon from '@mui/icons-material/AdsClick';
 
-const Hero = ({ setIsOpen, isOpen }) => {
+const Hero = ({ setIsOpen, isOpen, setOpenQuestionForm, openQuestionForm }) => {
     const { xxxs, xxs, xs, sm, slx, sx, m, mx, l } = useDevice();
     const { string }: StoresContextInterface = useOutletContext();
     const [isOpenText, setIsOpenText] = useState(false);
@@ -278,16 +278,27 @@ const Hero = ({ setIsOpen, isOpen }) => {
                         </Box>
                     )}
                 </Grid>
-                <Grid xs={12} sx={{ display: 'flex', justifyContent: 'center' }}>
+                <Grid xs={12} sx={{ display: 'flex', justifyContent: 'center', gap: 1 }}>
                     <Button
                         onClick={() => {
                             setIsOpen(!isOpen);
                         }}
-                        sx={{ mt: 4, width: 180, height: 40, fontSize: 18 }}
+                        sx={{ mt: 4, width: 160, height: 40, fontSize: 15 }}
                         variant="contained"
-                        size="large"
+                        size="small"
                     >
                         {string?.request}
+                    </Button>
+                    <Button
+                        color="warning"
+                        onClick={() => {
+                            setOpenQuestionForm(!openQuestionForm);
+                        }}
+                        sx={{ mt: 4, width: 160, height: 40, fontSize: 15, whiteSpace: 'nowrap' }}
+                        variant="contained"
+                        size="small"
+                    >
+                        {string?.ask_question}
                     </Button>
                 </Grid>
             </Grid>
