@@ -22,12 +22,47 @@ export const useGetLanguage = ({ lang }) => {
                 titleStep6: 'Launch and Promotion',
                 descriptionStep6: 'Launch your catalog and use it for promoting and selling products.',
 
+                //tariffes
                 helper_pricing_text_1:
-                    'Do you want to try it or do you have a small range of products? Our plan provides ease of use, a beautiful online catalog and reliable support. This is an ideal choice for your experiments and first steps in using the catalog.',
+                    "Want to try or have a small product range? Our plan provides ease of use, a beautiful online catalog, and reliable support. It's the perfect choice for your experiments and first steps in using the catalog.",
                 helper_pricing_text_2:
-                    'This plan gives you the ability to upload more products, adds a shopping cart feature for easy ordering, and provides analytics to improve your business. In addition, your store now supports more languages, which will help you attract new customers and reach new levels of sales.',
-                helper_pricing_text_3:
-                    'Add your store to mobile applications, implement custom solutions, and forget about product quantity limits. This tariff is your step towards maximum business growth.',
+                    'This plan allows you to add more products, adds a cart feature to simplify orders. Moreover, your store now supports more languages, helping you attract new customers and reach new sales levels.',
+                helper_pricing_text_3: 'Coming soon. This rate is your step towards maximum business growth.',
+                products: 'Products',
+                infoDescription_products_2:
+                    'You can place up to 200 products in the catalog, each can have up to 10 variations (for example: color or material of the product...) and for each variation, you can publish up to 5 photos',
+                infoDescription_lang_2:
+                    'In this package, you can connect 3 languages from the list: Ukrainian, English, Polish, Czech, French, Spanish, Russian. By default, Ukrainian, Polish, and English are selected',
+                infoDescription_products_1:
+                    'You can place up to 50 products in the catalog, each can have up to 5 variations (for example: color or material of the product...) and for each variation, you can publish up to 5 photos',
+                infoDescription_lang_1:
+                    'In this package, you can connect 1 language from the list: Ukrainian, English, Polish, Czech, French, Spanish, Russian. Ukrainian is selected by default',
+                currency: 'Currency',
+                infoDescription_currency:
+                    'In this package, you can use one currency of your choice from the list: $, ₴, €. $ is selected by default',
+                add_edit_products: 'Add/edit products',
+                add_edit_options_categories_brands: 'Add/edit options, categories, brands of products',
+                clients_database: 'Clients database',
+                view_control_orders: 'View and manage orders',
+                products_catalog: 'Products catalog',
+                additional_package_options: 'Additional package options',
+                clients: 'Clients',
+                details_ifo_products: 'Detailed information about the product',
+                search_system: 'Search system',
+                categories_filter: 'Filter by categories',
+                favorite_list: 'Wishlist - saving products',
+                login_registration: 'Registration/Login',
+                profile_control: 'Profile management',
+                retailer_contacts: 'Retailer contact information',
+                cart_orders_request: 'Shopping cart/Placing orders',
+                products_add: 'Add products',
+                language_add: 'Add languages',
+                app_store_add: 'Placement in Play Market',
+                add_play_market: 'Placement in Apple Store',
+                add_set_google_analytics: 'Connecting/Setting up Google Analytics',
+                catalog_customization: 'Customizing your catalog',
+                variable_price: 'Variable',
+                add_set_advertising: 'Setting up catalog advertising in social networks and Google',
                 view_descr_1:
                     'Interface with clear design and easy navigation simplifies the review and selection of products.',
                 view_descr_2:
@@ -232,7 +267,48 @@ export const useGetLanguage = ({ lang }) => {
             code: 'fr',
             string: {
                 expected_soon: 'Attendu prochainement',
-
+                helper_pricing_text_1:
+                    "Vous souhaitez essayer ou vous avez une petite gamme de produits ? Notre plan offre une facilité d'utilisation, un beau catalogue en ligne et un support fiable. C'est le choix parfait pour vos expériences et premiers pas dans l'utilisation du catalogue.",
+                helper_pricing_text_2:
+                    "Ce plan vous permet d'ajouter plus de produits, ajoute une fonction de panier pour simplifier les commandes. De plus, votre boutique prend désormais en charge plus de langues, ce qui vous aide à attirer de nouveaux clients et à atteindre de nouveaux niveaux de ventes.",
+                helper_pricing_text_3:
+                    'Disponible prochainement. Ce tarif est votre étape vers la croissance maximale de votre entreprise.',
+                products: 'Produits',
+                infoDescription_products_2:
+                    "Vous pouvez placer jusqu'à 200 produits dans le catalogue, chacun pouvant avoir jusqu'à 10 variations (par exemple : couleur ou matériau du produit...) et pour chaque variation, vous pouvez publier jusqu'à 5 photos",
+                infoDescription_lang_2:
+                    "Dans ce forfait, vous pouvez connecter 3 langues de la liste : ukrainien, anglais, polonais, tchèque, français, espagnol, russe. Par défaut, l'ukrainien, le polonais et l'anglais sont sélectionnés",
+                infoDescription_products_1:
+                    "Vous pouvez placer jusqu'à 50 produits dans le catalogue, chacun pouvant avoir jusqu'à 5 variations (par exemple : couleur ou matériau du produit...) et pour chaque variation, vous pouvez publier jusqu'à 5 photos",
+                catalog_lang: 'Langues du catalogue',
+                infoDescription_lang_1:
+                    "Dans ce forfait, vous pouvez connecter 1 langue de la liste : ukrainien, anglais, polonais, tchèque, français, espagnol, russe. L'ukrainien est sélectionné par défaut",
+                currency: 'Devise',
+                infoDescription_currency:
+                    'Dans ce forfait, vous pouvez utiliser une devise de votre choix dans la liste : $, ₴, €. $ est sélectionné par défaut',
+                add_edit_products: 'Ajouter/modifier des produits',
+                add_edit_options_categories_brands: 'Ajouter/modifier des options, catégories, marques de produits',
+                clients_database: 'Base de données clients',
+                view_control_orders: 'Voir et gérer les commandes',
+                products_catalog: 'Catalogue de produits',
+                additional_package_options: 'Options supplémentaires du forfait',
+                clients: 'Clients',
+                details_ifo_products: 'Informations détaillées sur le produit',
+                search_system: 'Système de recherche',
+                categories_filter: 'Filtrage par catégories',
+                favorite_list: 'Liste de souhaits - sauvegarde des produits',
+                login_registration: 'Inscription/Connexion',
+                profile_control: 'Gestion du profil',
+                retailer_contacts: 'Informations de contact du détaillant',
+                cart_orders_request: 'Panier/Passation des commandes',
+                products_add: 'Ajouter des produits',
+                language_add: 'Ajouter des langues',
+                app_store_add: 'Placement dans Play Market',
+                add_play_market: "Placement dans l'Apple Store",
+                add_set_google_analytics: 'Connexion/Réglage de Google Analytics',
+                catalog_customization: 'Personnalisation de votre catalogue',
+                variable_price: 'Variable',
+                add_set_advertising: 'Réglage de la publicité du catalogue dans les réseaux sociaux et Google',
                 call_back: 'Rappeler',
                 ask_question: 'Poser une question',
                 question: 'Question',
@@ -276,7 +352,6 @@ export const useGetLanguage = ({ lang }) => {
                 admin_panel: `Panneau d'Administration`,
                 admin: `Administrateurs`,
                 products_models_photo: `Produits/Modèles/Photos`,
-                catalog_lang: `Langues du Catalogue`,
                 customization: `Personnalisation`,
                 owners: `Pour le Propriétaire`,
                 customers: `Pour le Client`,
@@ -470,12 +545,49 @@ export const useGetLanguage = ({ lang }) => {
                 descriptionStep5: 'Agrega productos fácil y rápidamente con descripciones, precios y fotos.',
                 titleStep6: 'Lanzamiento y Promoción',
                 descriptionStep6: 'Lanza tu catálogo y úsalo para la promoción y venta de productos.',
+                //tariffes
                 helper_pricing_text_1:
-                    '¿Quieres probarlo o tienes una gama pequeña de productos? Nuestro plan ofrece facilidad de uso, un hermoso catálogo en línea y soporte confiable. Esta es la opción ideal para tus experimentos y primeros pasos en el uso del catálogo.',
+                    '¿Quieres probar o tienes un pequeño surtido de productos? Nuestro plan ofrece facilidad de uso, un hermoso catálogo en línea y soporte confiable. Es la elección perfecta para tus experimentos y primeros pasos en el uso del catálogo.',
                 helper_pricing_text_2:
-                    'Este plan te permite subir más productos, agrega una función de carrito de compras para facilitar los pedidos y proporciona análisis para mejorar tu negocio. Además, tu tienda ahora admite más idiomas, lo que te ayudará a atraer nuevos clientes y alcanzar nuevos niveles de ventas.',
+                    'Este plan te permite añadir más productos, agrega una función de carrito para simplificar los pedidos. Además, tu tienda ahora admite más idiomas, lo que te ayuda a atraer nuevos clientes y alcanzar nuevos niveles de ventas.',
                 helper_pricing_text_3:
-                    'Añade tu tienda a las aplicaciones móviles, implementa soluciones personalizadas y olvídate de los límites de cantidad de productos. Esta tarifa es tu paso hacia el máximo crecimiento empresarial.',
+                    'Disponible próximamente. Esta tarifa es tu paso hacia el máximo crecimiento empresarial.',
+                products: 'Productos',
+                infoDescription_products_2:
+                    'Puedes colocar hasta 200 productos en el catálogo, cada uno puede tener hasta 10 variaciones (por ejemplo: color o material del producto...) y para cada variación puedes publicar hasta 5 fotos',
+                infoDescription_lang_2:
+                    'En este paquete, puedes conectar 3 idiomas de la lista: ucraniano, inglés, polaco, checo, francés, español, ruso. Por defecto, se seleccionan ucraniano, polaco e inglés',
+                infoDescription_products_1:
+                    'Puedes colocar hasta 50 productos en el catálogo, cada uno puede tener hasta 5 variaciones (por ejemplo: color o material del producto...) y para cada variación puedes publicar hasta 5 fotos',
+                catalog_lang: 'Idiomas del catálogo',
+                infoDescription_lang_1:
+                    'En este paquete, puedes conectar 1 idioma de la lista: ucraniano, inglés, polaco, checo, francés, español, ruso. Ucraniano se selecciona por defecto',
+                currency: 'Moneda',
+                infoDescription_currency:
+                    'En este paquete, puedes usar una moneda de tu elección de la lista: $, ₴, €. Por defecto se selecciona $',
+                add_edit_products: 'Agregar/editar productos',
+                add_edit_options_categories_brands: 'Agregar/editar opciones, categorías, marcas de productos',
+                clients_database: 'Base de datos de clientes',
+                view_control_orders: 'Ver y gestionar pedidos',
+                products_catalog: 'Catálogo de productos',
+                additional_package_options: 'Opciones adicionales del paquete',
+                clients: 'Clientes',
+                details_ifo_products: 'Información detallada sobre el producto',
+                search_system: 'Sistema de búsqueda',
+                categories_filter: 'Filtración por categorías',
+                favorite_list: 'Lista de deseos - guardar productos',
+                login_registration: 'Registro/Acceso',
+                profile_control: 'Control de perfil',
+                retailer_contacts: 'Información de contacto del minorista',
+                cart_orders_request: 'Carrito de compras/Realización de pedidos',
+                products_add: 'Añadir productos',
+                language_add: 'Añadir idiomas',
+                app_store_add: 'Colocación en Play Market',
+                add_play_market: 'Colocación en Apple Store',
+                add_set_google_analytics: 'Conexión/Configuración de Google Analytics',
+                catalog_customization: 'Personalización de tu catálogo',
+                variable_price: 'Variable',
+                add_set_advertising: 'Configuración de la publicidad del catálogo en redes sociales y Google',
                 view_descr_1:
                     'La interfaz con un diseño claro y navegación fácil simplifica la revisión y selección de productos.',
                 view_descr_2:
@@ -502,7 +614,7 @@ export const useGetLanguage = ({ lang }) => {
                 admin_panel: `Panel de Administración`,
                 admin: `Administradores`,
                 products_models_photo: `Productos/Modelos/Fotos`,
-                catalog_lang: `Idiomas del Catálogo`,
+
                 customization: `Personalización`,
                 owners: `Para el Propietario`,
                 customers: `Para el Cliente`,
@@ -695,12 +807,49 @@ export const useGetLanguage = ({ lang }) => {
                 descriptionStep5: 'Додавайте товари з описами, цінами та фото легко та швидко.',
                 titleStep6: 'Запуск та Промоція',
                 descriptionStep6: 'Запустіть каталог та використовуйте його для просування та продажу товарів.',
+                //tariffes
                 helper_pricing_text_1:
-                    'Бажаєте спробувати, чи у вас невеликий асортимент продукції? Наш план забезпечує зручність у використанні, прекрасний онлайн-каталог та надійну підтримку. Це ідеальний вибір для ваших експериментів та перших кроків у використанні каталогу.',
+                    'Хочете спробувати або у вас невеликий асортимент продукції? Наш план забезпечує простоту використання, гарний онлайн-каталог та надійну підтримку. Це ідеальний вибір для ваших експериментів та перших кроків у використанні каталогу.',
                 helper_pricing_text_2:
-                    'Цей план дає вам можливість завантажувати більше продуктів, додає функцію кошика для зручного замовлення та надає аналітику для поліпшення вашого бізнесу. Крім того, ваш магазин тепер підтримує більше мов, що допоможе вам залучати нових клієнтів і досягати нових рівнів продажів.',
+                    'Цей план дозволяє вам додавати більше продуктів, додає функцію кошика для спрощення замовлень. Крім того, ваш магазин тепер підтримує більше мов, що допоможе вам залучати нових клієнтів та досягати нових рівнів продажів.',
                 helper_pricing_text_3:
-                    'Додайте ваш магазин до мобільних додатків, впроваджуйте індивідуальні рішення і забудьте про ліміти кількості продуктів. Цей тариф є вашим кроком до максимального зростання бізнесу.',
+                    'Очікується найближчим часом. Цей тариф — ваш крок до максимального зросту бізнесу.',
+                products: 'Товари',
+                infoDescription_products_2:
+                    'Ви можете розмістити в каталозі до 200 товарів, в кожному може бути до 10 варіацій (наприклад: колір або матеріал виробу...) і для кожної варіації можете опублікувати до 5 фотографій',
+                infoDescription_lang_2:
+                    'У цьому пакеті ви можете підключити 3 мови зі списку: українську, англійську, польську, чеську, французьку, іспанську, російську. За замовчуванням обрані українська, польська та англійська',
+                infoDescription_products_1:
+                    'Ви можете розмістити в каталозі до 50 товарів, в кожному може бути до 5 варіацій (наприклад: колір або матеріал виробу...) і для кожної варіації можете опублікувати до 5 фотографій',
+                catalog_lang: 'Мови каталогу',
+                infoDescription_lang_1:
+                    'У цьому пакеті ви можете підключити 1 мову зі списку: українську, англійську, польську, чеську, французьку, іспанську, російську. За замовчуванням обрана українська',
+                currency: 'Валюта',
+                infoDescription_currency:
+                    'У цьому пакеті ви можете використовувати одну валюту на вибір із списку: $, ₴, €. За замовчуванням обрано $',
+                add_edit_products: 'Додавання/редагування товарів',
+                add_edit_options_categories_brands: 'Додавання/редагування опцій, категорій, брендів товару',
+                clients_database: 'База даних клієнтів',
+                view_control_orders: 'Перегляд та управління замовленнями',
+                products_catalog: 'Каталог товарів',
+                additional_package_options: 'Додаткові опції пакету',
+                clients: 'Клієнти',
+                details_ifo_products: 'Детальна інформація про товар',
+                search_system: 'Пошукова система',
+                categories_filter: 'Фільтрація за категоріями',
+                favorite_list: 'Список бажаного - збереження товарів',
+                login_registration: 'Реєстрація/Вхід',
+                profile_control: 'Управління профілем',
+                retailer_contacts: 'Контактна інформація продавця',
+                cart_orders_request: 'Кошик покупок/Оформлення замовлення',
+                products_add: 'Додати продукти',
+                language_add: 'Додати мови',
+                app_store_add: 'Розміщення в Play Market',
+                add_play_market: 'Розміщення в Apple Store',
+                add_set_google_analytics: 'Підключення/Налаштування Google Analytics',
+                catalog_customization: 'Кастомізація вашого каталогу',
+                variable_price: 'Індивідуальна',
+                add_set_advertising: 'Налаштування реклами каталогу в соц мережах і Google',
                 view_descr_1: 'Інтерфейс з зрозумілим дизайном і простою навігацією спрощує огляд і вибір продукції.',
                 view_descr_2:
                     'Зручний кошик полегшує як роздрібні, так і оптові замовлення, забезпечуючи легкий і швидкий шлях від вибору до покупки.',
@@ -724,7 +873,6 @@ export const useGetLanguage = ({ lang }) => {
                 admin_panel: `Панель Адміністратора`,
                 admin: `Адміністратори`,
                 products_models_photo: `Продукти/Моделі/Фото`,
-                catalog_lang: `Мови Каталогу`,
                 customization: `Кастомізація`,
                 owners: `Для Власника`,
                 customers: `Для Клієнта`,
@@ -919,12 +1067,49 @@ export const useGetLanguage = ({ lang }) => {
                 descriptionStep5: 'Dodawaj produkty z opisami, cenami i zdjęciami łatwo i szybko.',
                 titleStep6: 'Uruchomienie i Promocja',
                 descriptionStep6: 'Uruchom katalog i wykorzystaj go do promocji i sprzedaży produktów.',
+                //tariffes
                 helper_pricing_text_1:
-                    'Chcesz to wypróbować, czy masz małą gamę produktów? Nasz plan zapewnia łatwość użytkowania, piękny katalog online i niezawodne wsparcie. Jest to idealny wybór na twoje eksperymenty i pierwsze kroki w korzystaniu z katalogu.',
+                    'Chcesz spróbować lub masz mały asortyment produktów? Nasz plan zapewnia łatwość użytkowania, piękny katalog online i niezawodne wsparcie. To idealny wybór na twoje eksperymenty i pierwsze kroki w korzystaniu z katalogu.',
                 helper_pricing_text_2:
-                    'Ten plan pozwala na dodawanie większej liczby produktów, dodaje funkcję koszyka zakupowego dla łatwych zamówień oraz zapewnia analizy do poprawy twojego biznesu. Ponadto twój sklep teraz obsługuje więcej języków, co pomoże przyciągnąć nowych klientów i osiągnąć nowe poziomy sprzedaży.',
+                    'Ten plan pozwala dodać więcej produktów, dodaje funkcję koszyka, aby ułatwić zamówienia. Ponadto, twój sklep teraz obsługuje więcej języków, co pomoże ci przyciągnąć nowych klientów i osiągnąć nowe poziomy sprzedaży.',
                 helper_pricing_text_3:
-                    'Dodaj swój sklep do aplikacji mobilnych, wdrażaj indywidualne rozwiązania i zapomnij o limitach ilości produktów. Ta taryfa to twój krok w kierunku maksymalnego wzrostu biznesu.',
+                    'Wkrótce dostępne. Ta stawka to twój krok w kierunku maksymalnego wzrostu biznesu.',
+                products: 'Produkty',
+                infoDescription_products_2:
+                    'Możesz umieścić w katalogu do 200 produktów, każdy może mieć do 10 wariantów (na przykład: kolor lub materiał produktu...) i dla każdego wariantu możesz opublikować do 5 zdjęć',
+                infoDescription_lang_2:
+                    'W tym pakiecie możesz połączyć 3 języki z listy: ukraiński, angielski, polski, czeski, francuski, hiszpański, rosyjski. Domyślnie wybrane są ukraiński, polski i angielski',
+                infoDescription_products_1:
+                    'Możesz umieścić w katalogu do 50 produktów, każdy może mieć do 5 wariantów (na przykład: kolor lub materiał produktu...) i dla każdego wariantu możesz opublikować do 5 zdjęć',
+                catalog_lang: 'Języki katalogu',
+                infoDescription_lang_1:
+                    'W tym pakiecie możesz połączyć 1 język z listy: ukraiński, angielski, polski, czeski, francuski, hiszpański, rosyjski. Domyślnie wybrany jest ukraiński',
+                currency: 'Waluta',
+                infoDescription_currency:
+                    'W tym pakiecie możesz użyć jednej waluty z listy: $, ₴, €. Domyślnie wybrany jest $',
+                add_edit_products: 'Dodawanie/edytowanie produktów',
+                add_edit_options_categories_brands: 'Dodawanie/edytowanie opcji, kategorii, marek produktów',
+                clients_database: 'Baza danych klientów',
+                view_control_orders: 'Przeglądanie i zarządzanie zamówieniami',
+                products_catalog: 'Katalog produktów',
+                additional_package_options: 'Dodatkowe opcje pakietu',
+                clients: 'Klienci',
+                details_ifo_products: 'Szczegółowe informacje o produkcie',
+                search_system: 'System wyszukiwania',
+                categories_filter: 'Filtracja według kategorii',
+                favorite_list: 'Lista życzeń - zapisywanie produktów',
+                login_registration: 'Rejestracja/Logowanie',
+                profile_control: 'Zarządzanie profilem',
+                retailer_contacts: 'Informacje kontaktowe sprzedawcy',
+                cart_orders_request: 'Koszyk zakupów/Zamawianie',
+                products_add: 'Dodaj produkty',
+                language_add: 'Dodaj języki',
+                app_store_add: 'Umieszczenie w Play Market',
+                add_play_market: 'Umieszczenie w Apple Store',
+                add_set_google_analytics: 'Podłączenie/Ustawienie Google Analytics',
+                catalog_customization: 'Dostosowanie twojego katalogu',
+                variable_price: 'Indywidualna',
+                add_set_advertising: 'Ustawienie reklamy katalogu w mediach społecznościowych i Google',
                 view_descr_1:
                     'Interfejs z jasnym projektem i łatwą nawigacją ułatwia przeglądanie i wybieranie produktów.',
                 view_descr_2:
@@ -950,7 +1135,6 @@ export const useGetLanguage = ({ lang }) => {
                 admin_panel: 'Panel Administratora',
                 admin: 'Administratorzy',
                 products_models_photo: 'Produkty/Modele/Zdjęcia',
-                catalog_lang: 'Języki Katalogu',
                 customization: 'Dostosowanie',
                 owners: 'Dla Właściciela',
                 customers: 'Dla Klientów',
@@ -1143,6 +1327,7 @@ export const useGetLanguage = ({ lang }) => {
                 expected_soon: 'Očekává se brzy',
                 call_back: 'Zavolat zpět',
                 ask_question: 'Položit otázku',
+                question: 'Otázku',
                 questuin: '',
                 titleStep1: 'Výběr Plánu',
                 descriptionStep1: 'Vyberte plán, který dokonale odpovídá vašemu podnikání.',
@@ -1156,12 +1341,46 @@ export const useGetLanguage = ({ lang }) => {
                 descriptionStep5: 'Snadno a rychle přidávejte produkty s popisy, cenami a fotografiemi.',
                 titleStep6: 'Spuštění a Propagace',
                 descriptionStep6: 'Spusťte katalog a využijte ho pro propagaci a prodej produktů.',
-                helper_pricing_text_1:
-                    'Chcete to vyzkoušet, nebo máte malý sortiment produktů? Náš plán poskytuje snadné použití, krásný online katalog a spolehlivou podporu. Je to ideální volba pro vaše experimenty a první kroky při používání katalogu.',
+                //tariffes
                 helper_pricing_text_2:
-                    'Tento plán vám umožňuje nahrát více produktů, přidává funkci nákupního košíku pro snadné objednávání a poskytuje analýzy pro zlepšení vašeho podnikání. Kromě toho váš obchod nyní podporuje více jazyků, což vám pomůže přilákat nové zákazníky a dosáhnout nových úrovní prodeje.',
-                helper_pricing_text_3:
-                    'Přidejte váš obchod do mobilních aplikací, implementujte vlastní řešení a zapomeňte na limity množství produktů. Tento tarif je vaším krokem k maximálnímu růstu podnikání.',
+                    'Tento plán vám umožňuje přidat více produktů, přidává funkci košíku pro zjednodušení objednávek. Navíc, váš obchod nyní podporuje více jazyků, což vám pomůže přilákat nové zákazníky a dosáhnout nových úrovní prodeje.',
+                helper_pricing_text_3: 'Brzy dostupné. Tato sazba je vaším krokem k maximálnímu růstu podnikání.',
+                products: 'Produkty',
+                infoDescription_products_2:
+                    'Můžete umístit do katalogu až 200 produktů, každý může mít až 10 variant (například: barva nebo materiál produktu...) a pro každou variantu můžete publikovat až 5 fotografií',
+                infoDescription_lang_2:
+                    'V tomto balíčku můžete připojit 3 jazyky ze seznamu: ukrajinština, angličtina, polština, čeština, francouzština, španělština, ruština. Výchozí jsou vybrány ukrajinština, polština a angličtina',
+                infoDescription_products_1:
+                    'Můžete umístit do katalogu až 50 produktů, každý může mít až 5 variant (například: barva nebo materiál produktu...) a pro každou variantu můžete publikovat až 5 fotografií',
+                catalog_lang: 'Jazyky katalogu',
+                infoDescription_lang_1:
+                    'V tomto balíčku můžete připojit 1 jazyk ze seznamu: ukrajinština, angličtina, polština, čeština, francouzština, španělština, ruština. Výchozí je vybrána ukrajinština',
+                currency: 'Měna',
+                infoDescription_currency:
+                    'V tomto balíčku můžete použít jednu měnu z výběru: $, ₴, €. Výchozí je vybrán $',
+                add_edit_products: 'Přidávání/editace produktů',
+                add_edit_options_categories_brands: 'Přidávání/editace možností, kategorií, značek produktů',
+                clients_database: 'Databáze klientů',
+                view_control_orders: 'Prohlížení a správa objednávek',
+                products_catalog: 'Katalog produktů',
+                additional_package_options: 'Další možnosti balíčku',
+                clients: 'Klienti',
+                details_ifo_products: 'Detailní informace o produktu',
+                search_system: 'Vyhledávací systém',
+                categories_filter: 'Filtrace podle kategorií',
+                favorite_list: 'Seznam oblíbených - ukládání produktů',
+                login_registration: 'Registrace/Přihlášení',
+                profile_control: 'Správa profilu',
+                retailer_contacts: 'Kontaktní informace prodejce',
+                cart_orders_request: 'Košík/Objednávka',
+                products_add: 'Přidat produkty',
+                language_add: 'Přidat jazyky',
+                app_store_add: 'Umístění v Play Market',
+                add_play_market: 'Umístění v Apple Store',
+                add_set_google_analytics: 'Připojení/Nastavení Google Analytics',
+                catalog_customization: 'Přizpůsobení vašeho katalogu',
+                variable_price: 'Individuální',
+                add_set_advertising: 'Nastavení reklamy katalogu na sociálních sítích a Google',
                 view_descr_1: 'Rozhraní s čistým designem a snadnou navigací zjednodušuje přehled a výběr produktů.',
                 view_descr_2:
                     'Pohodlný nákupní košík usnadňuje jak maloobchodní, tak velkoobchodní objednávky, poskytující jednoduchou a rychlou cestu od výběru po nákup.',
@@ -1186,7 +1405,6 @@ export const useGetLanguage = ({ lang }) => {
                 admin_panel: 'Administrátorský Panel',
                 admin: 'Administrátoři',
                 products_models_photo: 'Produkty/Modely/Fotografie',
-                catalog_lang: 'Jazyky Katalogu',
                 customization: 'Přizpůsobení',
                 owners: 'Pro Majitele',
                 customers: 'Pro Zákazníky',
@@ -1389,12 +1607,52 @@ export const useGetLanguage = ({ lang }) => {
                 descriptionStep5: 'Добавляйте товары с описаниями, ценами и фото легко и быстро.',
                 titleStep6: 'Запуск и Продвижение',
                 descriptionStep6: 'Запустите каталог и используйте его для продвижения и продажи товаров.',
+                //tariffes
                 helper_pricing_text_1:
                     'Хотите попробовать или у вас небольшой ассортимент продукции? Наш план обеспечивает простоту использования, красивый онлайн-каталог и надежную поддержку. Это идеальный выбор для ваших экспериментов и первых шагов в использовании каталога.',
                 helper_pricing_text_2:
-                    'Этот план позволяет вам добавлять больше продуктов, добавляет функцию корзины для упрощения заказов и предоставляет аналитику для улучшения вашего бизнеса. Кроме того, ваш магазин теперь поддерживает больше языков, что поможет вам привлекать новых клиентов и достигать новых уровней продаж.',
+                    'Этот план позволяет вам добавлять больше продуктов, добавляет функцию корзины для упрощения заказов. Кроме того, ваш магазин теперь поддерживает больше языков, что поможет вам привлекать новых клиентов и достигать новых уровней продаж.',
                 helper_pricing_text_3:
-                    'Добавьте ваш магазин в мобильные приложения, реализуйте индивидуальные решения и забудьте о лимитах на количество продуктов. Этот тариф — ваш шаг к максимальному росту бизнеса.',
+                    'Ожидается в ближайшее время. Этот тариф — ваш шаг к максимальному росту бизнеса.',
+
+                products: 'Товары',
+                infoDescription_products_2:
+                    'Вы можете разместить в каталоге до 200 товаров, в каждом может быть до 10ти вариаций (например: цвет или материал изделия...) и для каждой вариации можете опубликовать до 5ти фотографий',
+
+                infoDescription_lang_2:
+                    'В данном пакете вы можете подключить 3 языка из списка: украинский, ангийский, польский, чешский, французкий, испанский, русский. По умолчанию выбран украинский, польский и английский',
+
+                infoDescription_products_1:
+                    'Вы можете разместить в каталоге до 50 товаров, в каждом может быть до 5ти вариаций (например: цвет или материал изделия...) и для каждой вариации можете опубликовать до 5ти фотографий',
+                catalog_lang: 'Языки каталога',
+                infoDescription_lang_1:
+                    'В данном пакете вы можете подключить 1 язык из списка: украинский, ангийский, польский, чешский, французкий, испанский, русский. По умолчанию выбран украинский',
+                currency: 'Валюта',
+                infoDescription_currency:
+                    'В данном пакете вы можете использовать одну валюту на выбор из списка: $, ₴, €. По умолчанию выбран $',
+                add_edit_products: 'Добавление/редактирование товаров',
+                add_edit_options_categories_brands: 'Добавление/редактирование опций, категорий, брендов товара',
+                clients_database: 'База данных клиентов',
+                view_control_orders: 'Просмотр и управление заказами',
+                products_catalog: 'Каталог товаров',
+                additional_package_options: 'Дополнительные опции пакета',
+                clients: 'Клиенты',
+                details_ifo_products: 'Детальная информация о товаре',
+                search_system: 'Поисковая система',
+                categories_filter: 'Фильтрация по категориям',
+                favorite_list: 'Список желаемого - сохранение товаров',
+                login_registration: 'Регистрация/Вход',
+                profile_control: 'Управление профилем',
+                retailer_contacts: 'Контактная информация продавца',
+                cart_orders_request: 'Корзина покупок/Оформление заказа',
+                products_add: 'Добавить продукты',
+                language_add: 'Добавить языки',
+                app_store_add: 'Размещение в Play Market',
+                add_play_market: 'Размещение в Apple Store',
+                add_set_google_analytics: 'Подключени/Настройка Google Analytics',
+                catalog_customization: 'Кастомизация вашего каталога',
+                variable_price: 'Индивидуальная',
+                add_set_advertising: 'Настройка рекламы каталога в соц сетях и Google',
                 view_descr_1: 'Интерфейс с понятным оформлением и лёгкой навигацией упрощает обзор и отбор товаров.',
                 view_descr_2:
                     'Удобная корзиной упрощает как розничные, так и оптовые заказы, обеспечивая простой и быстрый путь от выбора до покупки.',
@@ -1420,7 +1678,6 @@ export const useGetLanguage = ({ lang }) => {
                 admin_panel: 'Админ Панель',
                 admin: 'Администраторы',
                 products_models_photo: 'Продукты/Модели/Фото',
-                catalog_lang: 'Языки Каталога',
                 customization: 'Кастомизация',
                 owners: 'Для Владелца',
                 customers: 'Для Заказчика',

@@ -181,6 +181,13 @@ const Hero = ({ setIsOpen, isOpen, setOpenQuestionForm, openQuestionForm }) => {
                                         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                                             {!xxs && (
                                                 <Box
+                                                    onClick={() => {
+                                                        idx === 1 && setIsOpen(true);
+                                                        idx === 0 &&
+                                                            (document as any)
+                                                                ?.getElementById('pricing')
+                                                                .scrollIntoView({ block: 'start', behavior: 'smooth' });
+                                                    }}
                                                     sx={{
                                                         backgroundColor: 'white',
                                                         borderRadius: 6,
@@ -192,6 +199,7 @@ const Hero = ({ setIsOpen, isOpen, setOpenQuestionForm, openQuestionForm }) => {
                                                         border: '1px solid #ccc',
                                                         boxShadow: '0 0 2px 2px #ccc',
                                                         position: 'relative',
+                                                        cursor: idx === 0 || idx === 1 ? 'pointer' : 'default',
                                                         background:
                                                             idx === 0
                                                                 ? 'linear-gradient(94deg, rgba(254,64,64,1) 40%, rgba(255,139,139,1) 79%, rgba(255,165,165,1) 93%, rgba(255,255,255,1) 100%)'
@@ -230,6 +238,13 @@ const Hero = ({ setIsOpen, isOpen, setOpenQuestionForm, openQuestionForm }) => {
                                                 }}
                                             >
                                                 <Box
+                                                    onClick={() => {
+                                                        idx === 1 && setIsOpen(true);
+                                                        idx === 0 &&
+                                                            (document as any)
+                                                                ?.getElementById('pricing')
+                                                                .scrollIntoView({ block: 'start', behavior: 'smooth' });
+                                                    }}
                                                     mb={0.75}
                                                     p={0.25}
                                                     sx={{
@@ -240,6 +255,8 @@ const Hero = ({ setIsOpen, isOpen, setOpenQuestionForm, openQuestionForm }) => {
                                                                 ? 'linear-gradient(94deg, #fec240cf 40%, #ffea8bd6 79%, #ffee8ed6 99%)'
                                                                 : 'linear-gradient(94deg, #009619b9 40%, #6cca00b5 79%, #e7ffa5c3 99%)',
                                                         borderRadius: 2,
+
+                                                        cursor: idx === 0 || idx === 1 ? 'pointer' : 'default',
                                                     }}
                                                 >
                                                     <Typography
