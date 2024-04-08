@@ -1,9 +1,10 @@
 import { Box, Divider, Typography } from '@mui/material';
 import Grid from '@mui/material/Unstable_Grid2';
 import { useDevice } from 'hooks/useDevice';
-import ControlPointIcon from '@mui/icons-material/ControlPoint';
+import StarIcon from '@mui/icons-material/Star';
 import { StoresContextInterface } from 'types';
 import { useOutletContext } from 'react-router-dom';
+import BrandName from 'components/atoms/Logo/BrandName';
 
 const Advantages = () => {
     const { string }: StoresContextInterface = useOutletContext();
@@ -76,8 +77,21 @@ const Advantages = () => {
                     justifyContent: 'space-between',
                 }}
             >
-                <Box p={1}>
-                    <Typography sx={{ fontSize: 22, fontWeight: 500 }}>{string?.main_advantages}</Typography>
+                <Box
+                    p={1}
+                    sx={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        border: '1px dashed #ccc',
+                        flexDirection: 'column',
+                        height: 75,
+                    }}
+                >
+                    <Typography sx={{ fontSize: 22, fontWeight: 500, whiteSpace: 'nowrap' }}>
+                        {string?.main_advantages + ' ' + string?.with}
+                    </Typography>
+
+                    <BrandName />
                 </Box>
             </Box>
 
@@ -146,7 +160,7 @@ const Advantages = () => {
                                                 py: 1,
                                             }}
                                         >
-                                            <ControlPointIcon sx={{ color: 'green' }} />
+                                            <StarIcon sx={{ color: 'orange' }} />
 
                                             <Typography sx={{ color: 'gray' }}>
                                                 <b style={{ color: '#000' }}>{el?.title}: </b> {el?.description}

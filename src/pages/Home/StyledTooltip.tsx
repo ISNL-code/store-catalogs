@@ -5,15 +5,19 @@ interface Props {
     data?: any[];
     title?: string;
     children: JSX.Element;
+    disabled?: boolean;
 }
 
-const StyledTooltip = ({ data = [], title = '', children }: Props) => {
+const StyledTooltip = ({ data = [], title = '', children, disabled = false }: Props) => {
     const [open, setOpen] = useState(false);
     return (
         <ClickAwayListener onClickAway={() => setOpen(false)}>
             <Tooltip
-                sx={{ cursor: 'pointer' }}
-                onClick={() => setOpen(!open)}
+                sx={{ cursor: disabled ? 'default' : 'pointer' }}
+                onClick={() => {
+                    if (disabled) return () => {};
+                    setOpen(!open);
+                }}
                 open={open}
                 title={
                     (data.length ? (
