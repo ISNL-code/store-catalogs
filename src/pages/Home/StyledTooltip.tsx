@@ -39,7 +39,7 @@ const StyledTooltip = ({ data = [], title = '', children, disabled = false }: Pr
                         sx: {
                             backgroundColor: '#ffffff',
                             border: '1px solid #1976d2',
-                            maxWidth: '500px',
+                            maxWidth: '375px',
                             px: 2,
                             py: 1,
                         },

@@ -1,4 +1,4 @@
-import { Box, Button, Divider, Typography } from '@mui/material';
+import { Box, Button, Divider, Tooltip, Typography } from '@mui/material';
 import Grid from '@mui/material/Unstable_Grid2';
 import { useDevice } from 'hooks/useDevice';
 import CheckIcon from '@mui/icons-material/Check';
@@ -10,6 +10,7 @@ import StyledTooltip from './StyledTooltip';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import InfoIcon from '@mui/icons-material/Info';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import LanguagesView from 'components/molecules/LanguagesView';
 
 const Pricing = ({ setPlan, isOpen, setIsOpen }) => {
     const { string }: StoresContextInterface = useOutletContext();
@@ -27,12 +28,36 @@ const Pricing = ({ setPlan, isOpen, setIsOpen }) => {
             help: string?.helper_pricing_text_1,
             price: '$14.99',
             catalog_options: [
-                { title: `${string?.admin}: 1`, available: true, info: false },
-                { title: `Продукты: 50`, available: true, info: true },
-                { title: `Моделей в продукте: 5`, available: true, info: true },
-                { title: `Количество фото на модель: 5`, available: true, info: true },
-                { title: `${string?.catalog_lang}: 1`, available: true, info: true, lang: ['UA'] },
-                { title: `Валюта: 1`, available: true, info: true, currency: '$' },
+                { title: `${string?.admin}`, values: [1], available: true, info: false },
+                {
+                    title: `Продукты`,
+                    available: true,
+                    info: true,
+                    values: [50, 5, 5],
+                    infoDescription:
+                        'Вы можете разместить в каталоге до 50 товаров, в каждом может быть до 5ти вариаций (например: цвет или материал изделия...) и для каждой вариации можете опубликовать до 5ти фотографий',
+                },
+
+                {
+                    type: 'lang',
+                    title: `${string?.catalog_lang}`,
+                    available: true,
+                    info: true,
+                    lang: ['UA'],
+                    values: [1],
+                    infoDescription:
+                        'В данном пакете вы можете подключить 1 язык из списка: украинский, ангийский, польский, чешский, французкий, испанский, русский. По умолчанию выбран украинский',
+                },
+                {
+                    type: 'currency',
+                    title: `Валюта`,
+                    available: true,
+                    info: true,
+                    currency: '$',
+                    values: [1],
+                    infoDescription:
+                        'В данном пакете вы можете использовать одну валюту на выбор из списка: $, ₴, €. По умолчанию выбран $',
+                },
             ],
             admin_options: [
                 { title: 'Добавление/редактирование товаров', available: true },
@@ -61,7 +86,7 @@ const Pricing = ({ setPlan, isOpen, setIsOpen }) => {
                 { title: 'Подключени/Настройка Google Analytics', available: false, price: 'дог.' },
                 { title: 'Настройка рекламы каталога в соц сетях и Google', available: false, price: 'дог.' },
             ],
-            add_price: '$11.98',
+
             values: { plan: 'Start', subject: string?.request_catalog },
             active: true,
         },
@@ -70,12 +95,33 @@ const Pricing = ({ setPlan, isOpen, setIsOpen }) => {
             help: string?.helper_pricing_text_2,
             price: '$49.99',
             catalog_options: [
-                { title: `${string?.admin}: 3`, available: true, info: false },
-                { title: `Продукты: 200`, available: true, info: true },
-                { title: `Моделей в продукте: 10`, available: true, info: true },
-                { title: `Количество фото на модель: 10`, available: true, info: true },
-                { title: `${string?.catalog_lang}: 3`, available: true, info: true, lang: ['UA', 'EN', 'PL'] },
-                { title: `Валюта: 1`, available: true, info: true, currency: ['$'] },
+                { title: `${string?.admin}`, available: true, info: false, values: [3] },
+                {
+                    title: `Продукты`,
+                    available: true,
+                    info: true,
+                    values: [200, 10, 10],
+                    infoDescription:
+                        'В данном пакете вы можете разместить в каталоге до 200 товаров, в каждом может быть до 10ти вариаций (например: цвет или материал изделия...) и для каждой вариации можете опубликовать до 10ти фотографий',
+                },
+                {
+                    title: `${string?.catalog_lang}`,
+                    available: true,
+                    info: true,
+                    values: [1],
+                    lang: ['UA', 'EN', 'PL'],
+                    infoDescription:
+                        'В данном пакете вы можете подключить до 3х языков из списка: украинский, ангийский, польский, чешский, французкий, испанский, русский. По умолчанию выбраны: украинский, английский и польский',
+                },
+                {
+                    title: `Валюта`,
+                    available: true,
+                    info: true,
+                    values: [1],
+                    currency: ['$'],
+                    infoDescription:
+                        'В данном пакете вы можете использовать одну валюту на выбор из списка: $, ₴, €. По умолчанию выбран $',
+                },
             ],
             admin_options: [
                 { title: 'Добавление/редактирование товаров', available: true },
@@ -113,11 +159,29 @@ const Pricing = ({ setPlan, isOpen, setIsOpen }) => {
             price: '$99.99',
             catalog_options: [
                 { title: `${string?.admin}: 3`, available: true, info: false },
-                { title: `Продукты: 200`, available: true, info: true },
-                { title: `Моделей в продукте: 10`, available: true, info: true },
-                { title: `Количество фото на модель: 10`, available: true, info: true },
-                { title: `${string?.catalog_lang}: 3`, available: true, info: true, lang: ['UA', 'EN', 'PL'] },
-                { title: `Валюта: 1`, available: true, info: true, currency: ['$'] },
+                {
+                    title: `Продукты: 200/10/10`,
+                    available: true,
+                    info: true,
+                    infoDescription:
+                        'В данном пакете вы можете разместить в каталоге до 200 товаров, в каждом может быть до 10ти вариаций (например: цвет или материал изделия...) и для каждой вариации можете опубликовать до 10ти фотографий',
+                },
+                {
+                    title: `${string?.catalog_lang}: 3`,
+                    available: true,
+                    info: true,
+                    lang: ['UA', 'EN', 'PL'],
+                    infoDescription:
+                        'В данном пакете вы можете подключить до 3х языков из списка: украинский, ангийский, польский, чешский, французкий, испанский, русский. По умолчанию выбраны: украинский, английский и польский',
+                },
+                {
+                    title: `Валюта: 1`,
+                    available: true,
+                    info: true,
+                    currency: ['$'],
+                    infoDescription:
+                        'В данном пакете вы можете использовать одну валюту на выбор из списка: $, ₴, €. По умолчанию выбран $',
+                },
             ],
             admin_options: [
                 { title: 'Добавление/редактирование товаров', available: true },
@@ -298,15 +362,83 @@ const Pricing = ({ setPlan, isOpen, setIsOpen }) => {
                                                             ) : (
                                                                 <CloseIcon sx={{ color: 'red' }} />
                                                             )}
-                                                            <Typography>{el?.title}</Typography>
+                                                            <Typography>{el?.title}: </Typography>
+                                                            {el.values?.map((item, idx) => (
+                                                                <Box
+                                                                    key={item}
+                                                                    sx={{
+                                                                        display: 'flex',
+                                                                        alignItems: 'center',
+                                                                        justifyContent: 'center',
+                                                                        gap: 0.25,
+                                                                    }}
+                                                                >
+                                                                    <Box
+                                                                        p={0.75}
+                                                                        sx={{
+                                                                            border: '2px solid #ccc',
+                                                                            width: 'fit-content',
+                                                                            height: 25,
+                                                                            borderRadius: 4,
+                                                                            display: 'flex',
+                                                                            alignItems: 'center',
+                                                                            justifyContent: 'center',
+                                                                            minWidth: 25,
+                                                                            color: '#fff',
+                                                                            background: `linear-gradient(45.7deg, rgba(71, 71, 71, 0.849) 50.7%, rgb(190, 189, 189) 99.8%);`,
+                                                                        }}
+                                                                    >
+                                                                        {item}
+                                                                    </Box>
+                                                                    {el.values.length > idx + 1 && (
+                                                                        <Box sx={{ fontSize: 20 }}>/</Box>
+                                                                    )}
+                                                                </Box>
+                                                            ))}
                                                         </Box>
                                                         {el?.info && (
                                                             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                                                                {el?.lang && <Box>{el?.lang.join(', ')}</Box>}
-                                                                {el?.currency && <Box>{el?.currency}</Box>}
+                                                                {el?.lang && (
+                                                                    <Box>
+                                                                        <LanguagesView supportedLanguages={el.lang} />
+                                                                    </Box>
+                                                                )}
+                                                                {el?.currency && (
+                                                                    <Box
+                                                                        sx={{
+                                                                            display: 'flex',
+                                                                            alignItems: 'center',
+                                                                            justifyContent: 'center',
+                                                                            gap: 0.25,
+                                                                        }}
+                                                                    >
+                                                                        <Box
+                                                                            p={0.5}
+                                                                            sx={{
+                                                                                cursor: 'default',
+                                                                                height: 26,
+                                                                                borderRadius: 4,
+                                                                                display: 'flex',
+                                                                                alignItems: 'center',
+                                                                                justifyContent: 'center',
+                                                                                minWidth: 26,
+                                                                                color: '#fff',
+                                                                                background: `linear-gradient(45.7deg, rgb(9, 121, 18) 50.7%, rgb(190, 189, 189) 95.8%);`,
+                                                                            }}
+                                                                        >
+                                                                            <Tooltip
+                                                                                placement="left"
+                                                                                key={el?.currency}
+                                                                                title={el?.currency}
+                                                                            >
+                                                                                {el?.currency}
+                                                                            </Tooltip>
+                                                                        </Box>
+                                                                    </Box>
+                                                                )}
                                                                 <Box sx={{ cursor: 'pointer' }}>
-                                                                    <StyledTooltip title={help}>
-                                                                        <InfoIcon sx={{ color: 'gray' }} />
+                                                                    <StyledTooltip title={el.infoDescription}>
+                                                                        <InfoIcon sx={{ color: '#1976d2' }} />
                                                                     </StyledTooltip>
                                                                 </Box>
                                                             </Box>
@@ -468,6 +600,9 @@ const Pricing = ({ setPlan, isOpen, setIsOpen }) => {
                                         >
                                             <Box sx={{ display: 'flex', gap: 0.5, color: '#fff' }}>
                                                 <Typography sx={{ color: '#fff', fontSize: 20 }}>{name}</Typography>
+                                                <StyledTooltip title={help}>
+                                                    <HelpOutlineIcon />
+                                                </StyledTooltip>
                                             </Box>
 
                                             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
