@@ -138,8 +138,8 @@ export default function Form({ values, isOpen = false, setIsOpen, setPlan, setOp
                             }}
                             fullWidth
                         >
-                            {['Start', 'Pro', 'Unlim'].map((el, idx) => (
-                                <MenuItem key={idx} value={el}>
+                            {['Start', 'Pro', 'SUPER PRO'].map((el, idx) => (
+                                <MenuItem key={idx} value={el} disabled={idx === 2}>
                                     {el}
                                 </MenuItem>
                             ))}

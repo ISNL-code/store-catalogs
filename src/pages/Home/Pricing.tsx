@@ -38,6 +38,7 @@ const Pricing = ({ setPlan, isOpen, setIsOpen }) => {
                 { title: 'Добавление/редактирование товаров', available: true },
                 { title: 'Добавление/редактирование опций, категорий, брендов товара', available: true },
                 { title: 'База данных клиентов', available: true },
+                { title: 'Просмотр и управление заказами', available: false },
             ],
             customer_options: [
                 { title: 'Каталог товаров', available: true },
@@ -48,6 +49,8 @@ const Pricing = ({ setPlan, isOpen, setIsOpen }) => {
                 { title: 'Регистрация/Вход', available: true },
                 { title: 'Управление профилем', available: true },
                 { title: 'Контактная информация продавца', available: true },
+                { title: 'Корзина покупок', available: false },
+                { title: 'Оформление заказа', available: false },
             ],
             add_options: [
                 { title: string?.cart, available: false, price: '$19.99', type: 'month' },
@@ -71,7 +74,7 @@ const Pricing = ({ setPlan, isOpen, setIsOpen }) => {
                 { title: `Продукты: 200`, available: true, info: true },
                 { title: `Моделей в продукте: 10`, available: true, info: true },
                 { title: `Количество фото на модель: 10`, available: true, info: true },
-                { title: `${string?.catalog_lang}: 3`, available: true, info: true, lang: ['UA', 'En', 'PL'] },
+                { title: `${string?.catalog_lang}: 3`, available: true, info: true, lang: ['UA', 'EN', 'PL'] },
                 { title: `Валюта: 1`, available: true, info: true, currency: ['$'] },
             ],
             admin_options: [
@@ -93,7 +96,6 @@ const Pricing = ({ setPlan, isOpen, setIsOpen }) => {
                 { title: 'Оформление заказа', available: true },
             ],
             add_options: [
-                { title: string?.cart, available: false, price: '$19.99', type: 'month' },
                 { title: 'Продукты (+50)', available: false, price: '$9.99', type: 'month' },
                 { title: 'Язык (+1)', available: false, price: '$4.99', type: 'month' },
                 { title: 'Размещение в Play Market', available: false, price: '$9.99', type: 'month' },
@@ -106,15 +108,15 @@ const Pricing = ({ setPlan, isOpen, setIsOpen }) => {
             values: { plan: 'Pro', subject: string?.request_catalog },
         },
         {
-            name: 'UNLIM',
+            name: 'SUPER PRO',
             help: string?.helper_pricing_text_3,
-            price: '$00.00',
+            price: '$99',
             catalog_options: [
                 { title: `${string?.admin}: 3`, available: true, info: false },
                 { title: `Продукты: 200`, available: true, info: true },
                 { title: `Моделей в продукте: 10`, available: true, info: true },
                 { title: `Количество фото на модель: 10`, available: true, info: true },
-                { title: `${string?.catalog_lang}: 3`, available: true, info: true, lang: ['UA', 'En', 'PL'] },
+                { title: `${string?.catalog_lang}: 3`, available: true, info: true, lang: ['UA', 'EN', 'PL'] },
                 { title: `Валюта: 1`, available: true, info: true, currency: ['$'] },
             ],
             admin_options: [
@@ -134,18 +136,13 @@ const Pricing = ({ setPlan, isOpen, setIsOpen }) => {
                 { title: 'Контактная информация продавца', available: true },
                 { title: 'Корзина покупок', available: true },
                 { title: 'Оформление заказа', available: true },
-                { title: 'Корзина покупок', available: true },
-                { title: 'Оформление заказа', available: true },
             ],
             add_options: [
-                { title: string?.cart, available: false, price: '$19.99', type: 'month' },
                 { title: 'Продукты (+50)', available: false, price: '$9.99', type: 'month' },
                 { title: 'Язык (+1)', available: false, price: '$4.99', type: 'month' },
                 { title: 'Размещение в Play Market', available: false, price: '$9.99', type: 'month' },
                 { title: 'Размещение в Apple Store', available: false, price: '$9.99', type: 'month' },
                 { title: 'Кастомизация каталога', available: false, price: 'дог.' },
-                { title: 'Подключени/Настройка Google Analytics', available: false, price: 'дог.' },
-                { title: 'Настройка рекламы каталога в соц сетях и Google', available: false, price: 'дог.' },
                 { title: 'Подключени/Настройка Google Analytics', available: false, price: 'дог.' },
                 { title: 'Настройка рекламы каталога в соц сетях и Google', available: false, price: 'дог.' },
             ],
@@ -305,11 +302,13 @@ const Pricing = ({ setPlan, isOpen, setIsOpen }) => {
                                                         </Box>
                                                         {el?.info && (
                                                             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                                                                {el?.lang && <Box>{el?.lang}</Box>}
+                                                                {el?.lang && <Box>{el?.lang.join(', ')}</Box>}
                                                                 {el?.currency && <Box>{el?.currency}</Box>}
-                                                                <StyledTooltip title={help}>
-                                                                    <InfoIcon sx={{ color: 'gray' }} />
-                                                                </StyledTooltip>
+                                                                <Box sx={{ cursor: 'pointer' }}>
+                                                                    <StyledTooltip title={help}>
+                                                                        <InfoIcon sx={{ color: 'gray' }} />
+                                                                    </StyledTooltip>
+                                                                </Box>
                                                             </Box>
                                                         )}
                                                     </Box>
@@ -455,36 +454,32 @@ const Pricing = ({ setPlan, isOpen, setIsOpen }) => {
                                             position: 'relative',
                                         }}
                                     >
-                                        <Box sx={{ filter: 'blur(5px)' }}>
-                                            <Box
-                                                px={3}
-                                                py={1}
-                                                sx={{
-                                                    background: '#1976d2',
-                                                    display: 'flex',
-                                                    justifyContent: 'space-between',
-                                                    alignItems: 'center',
-                                                    borderBottom: '1px solid #1976d2',
-                                                    opacity: 0.8,
-                                                    filter: 'blur(4px)',
-                                                }}
-                                            >
-                                                <Box sx={{ display: 'flex', gap: 0.5, color: '#fff' }}>
-                                                    <Typography sx={{ color: '#fff', fontSize: 20 }}>{name}</Typography>
-                                                    <StyledTooltip title={help} disabled>
-                                                        <HelpOutlineIcon />
-                                                    </StyledTooltip>
-                                                </Box>
-
-                                                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                                                    <Typography sx={{ fontSize: 25, color: '#fff', fontWeight: 700 }}>
-                                                        {price}
-                                                    </Typography>
-                                                    <Typography mb={1} sx={{ fontSize: 16, color: '#fff' }}>
-                                                        / {string?.month}
-                                                    </Typography>
-                                                </Box>
+                                        <Box
+                                            px={3}
+                                            py={1}
+                                            sx={{
+                                                background: '#1976d2',
+                                                display: 'flex',
+                                                justifyContent: 'space-between',
+                                                alignItems: 'center',
+                                                borderBottom: '1px solid #1976d2',
+                                                opacity: 0.8,
+                                            }}
+                                        >
+                                            <Box sx={{ display: 'flex', gap: 0.5, color: '#fff' }}>
+                                                <Typography sx={{ color: '#fff', fontSize: 20 }}>{name}</Typography>
                                             </Box>
+
+                                            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                                                <Typography sx={{ fontSize: 25, color: '#fff', fontWeight: 700 }}>
+                                                    {price}
+                                                </Typography>
+                                                <Typography mb={1} sx={{ fontSize: 16, color: '#fff' }}>
+                                                    / {string?.month}
+                                                </Typography>
+                                            </Box>
+                                        </Box>
+                                        <Box sx={{ filter: 'blur(5px)' }}>
                                             <Box p={1} sx={{ backgroundColor: '#f1f1f1', width: '100%' }}>
                                                 <Typography sx={{ textAlign: 'center', fontSize: 18 }}>
                                                     Каталог
@@ -526,7 +521,7 @@ const Pricing = ({ setPlan, isOpen, setIsOpen }) => {
                                                                 >
                                                                     {el?.lang && <Box>{el?.lang}</Box>}
                                                                     {el?.currency && <Box>{el?.currency}</Box>}
-                                                                    <StyledTooltip title={help}>
+                                                                    <StyledTooltip title={help} disabled>
                                                                         <InfoIcon sx={{ color: 'gray' }} />
                                                                     </StyledTooltip>
                                                                 </Box>
