@@ -110,7 +110,7 @@ const Pricing = ({ setPlan, isOpen, setIsOpen }) => {
         {
             name: 'SUPER PRO',
             help: string?.helper_pricing_text_3,
-            price: '$99',
+            price: '$99.99',
             catalog_options: [
                 { title: `${string?.admin}: 3`, available: true, info: false },
                 { title: `Продукты: 200`, available: true, info: true },
@@ -196,7 +196,7 @@ const Pricing = ({ setPlan, isOpen, setIsOpen }) => {
                     background: `url(${require('./img/bcg.png')})`,
                     backgroundRepeat: 'no-repeat',
                     backgroundSize: 'cover',
-                    backgroundPosition: 'cover',
+                    backgroundPosition: 'center',
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center',

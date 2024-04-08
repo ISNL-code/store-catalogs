@@ -85,6 +85,7 @@ const Advantages = () => {
                         border: '1px dashed #ccc',
                         flexDirection: 'column',
                         height: 75,
+                        borderTop: 'none',
                     }}
                 >
                     <Typography sx={{ fontSize: 22, fontWeight: 500, whiteSpace: 'nowrap' }}>
