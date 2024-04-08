@@ -7,6 +7,8 @@ import { StoresContextInterface } from 'types';
 import { useOutletContext } from 'react-router-dom';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import StyledTooltip from './StyledTooltip';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
+import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 
 const Pricing = ({ setPlan, isOpen, setIsOpen }) => {
     const { string }: StoresContextInterface = useOutletContext();
@@ -23,18 +25,21 @@ const Pricing = ({ setPlan, isOpen, setIsOpen }) => {
             name: 'START',
             help: string?.helper_pricing_text_1,
             price: '$14.99',
-            rules: [
+            options: [
                 { title: string?.main_function, available: true },
                 { title: string?.admin_panel, available: true },
                 { title: `${string?.admin}: 1'`, available: true },
                 { title: `${string?.products_models_photo}: 50/5/5`, available: true },
                 { title: `${string?.catalog_lang}: ua, en`, available: true },
-                { title: string?.cart, available: false },
-                { title: 'Google Analytics', available: false },
-                { title: 'Play Market', available: false },
-                { title: 'Apple Store', available: false },
-                { title: string?.customization, available: false },
+                { title: 'Apple Store', available: true },
+                { title: string?.customization, available: true },
             ],
+            add_options: [
+                { title: string?.cart, available: true, price: '$5.99' },
+                { title: 'Google Analytics', available: true, price: '$5.99' },
+                { title: 'Play Market', available: false, price: '$5.99' },
+            ],
+            add_price: '$11.98',
             values: { plan: 'Start', subject: string?.request_catalog },
             active: true,
         },
@@ -42,7 +47,7 @@ const Pricing = ({ setPlan, isOpen, setIsOpen }) => {
             name: 'PRO',
             help: string?.helper_pricing_text_2,
             price: '$49.99',
-            rules: [
+            options: [
                 { title: string?.main_function, available: true },
                 { title: string?.admin_panel, available: true },
                 { title: `${string?.admin}: 5`, available: true },
@@ -50,18 +55,21 @@ const Pricing = ({ setPlan, isOpen, setIsOpen }) => {
                 { title: `${string?.catalog_lang}: ua, en, es, fr, pl, cz, ru,`, available: true },
                 { title: string?.cart, available: true },
                 { title: 'Google Analytics', available: true },
-                { title: 'Play Market', available: false },
-                { title: 'Apple Store', available: false },
-                { title: string?.customization, available: false },
             ],
             values: { plan: 'Pro', subject: string?.request_catalog },
             active: true,
+            add_options: [
+                { title: 'Play Market', available: false, price: '$5.99' },
+                { title: 'Apple Store', available: false, price: '$5.99' },
+                { title: string?.customization, available: false, price: '$5.99' },
+            ],
+            add_price: '$0.00',
         },
         {
             name: 'UNLIM',
             help: string?.helper_pricing_text_3,
             price: '$00.00',
-            rules: [
+            options: [
                 { title: string?.expected_soon, available: true },
                 { title: string?.expected_soon, available: true },
                 { title: string?.expected_soon, available: true },
@@ -72,12 +80,14 @@ const Pricing = ({ setPlan, isOpen, setIsOpen }) => {
                 { title: string?.expected_soon, available: true },
                 { title: string?.expected_soon, available: true },
                 { title: string?.expected_soon, available: true },
-                { title: string?.expected_soon, available: true },
-                { title: string?.expected_soon, available: true },
-                { title: string?.expected_soon, available: true },
             ],
             values: { plan: 'Unlim', subject: string?.request_catalog },
             active: false,
+            add_options: [
+                { title: 'Play Market', available: false, price: '$5.99' },
+                { title: 'Apple Store', available: false, price: '$5.99' },
+                { title: string?.customization, available: false, price: '$5.99' },
+            ],
         },
     ];
 
@@ -146,7 +156,7 @@ const Pricing = ({ setPlan, isOpen, setIsOpen }) => {
                         alignItems: 'center',
                     }}
                 >
-                    {PRICING.map(({ name, price, rules, values, help, active }, index) => (
+                    {PRICING.map(({ name, price, options, values, help, active, add_options, add_price }, index) => (
                         <Grid xs={getPRICINGGridValue()} key={index} p={1} sx={{ maxWidth: 400, width: '100%' }}>
                             {active ? (
                                 <Box
@@ -168,7 +178,6 @@ const Pricing = ({ setPlan, isOpen, setIsOpen }) => {
                                             justifyContent: 'space-between',
                                             alignItems: 'center',
                                             borderBottom: '1px solid #1976d2',
-                                            opacity: 0.8,
                                         }}
                                     >
                                         <Box sx={{ display: 'flex', gap: 0.5, color: '#fff' }}>
@@ -188,29 +197,7 @@ const Pricing = ({ setPlan, isOpen, setIsOpen }) => {
                                         </Box>
                                     </Box>
                                     <Box px={2} py={2} sx={{ position: 'relative' }}>
-                                        <Box
-                                            sx={{
-                                                display: 'flex',
-                                                alignItems: 'center',
-                                                justifyContent: 'center',
-                                                width: 145,
-                                                height: 145,
-                                                overflow: 'hidden',
-                                                position: 'absolute',
-                                                bottom: 10,
-                                                right: 10,
-                                                borderRadius: '50%',
-                                            }}
-                                        >
-                                            {!index && (
-                                                <img
-                                                    src={require('./img/free.webp')}
-                                                    style={{ width: 205, height: 205 }}
-                                                    alt=""
-                                                />
-                                            )}
-                                        </Box>
-                                        {rules.map((el, idx) => (
+                                        {options.map((el, idx) => (
                                             <Box key={idx}>
                                                 <Box
                                                     sx={{
@@ -228,10 +215,69 @@ const Pricing = ({ setPlan, isOpen, setIsOpen }) => {
                                                     )}
                                                     <Typography>{el?.title}</Typography>
                                                 </Box>
-                                                {rules?.length !== idx + 1 && <Divider />}
+                                                {options?.length !== idx + 1 && <Divider />}
                                             </Box>
                                         ))}
                                     </Box>
+
+                                    <Box
+                                        px={2}
+                                        py={0.5}
+                                        sx={{
+                                            background: '#8f8f8f',
+                                            display: 'flex',
+                                            justifyContent: 'space-between',
+                                            alignItems: 'center',
+                                        }}
+                                    >
+                                        <Box sx={{ display: 'flex', gap: 0.5, color: '#fff' }}>
+                                            <Typography sx={{ color: '#fff', fontSize: 20 }}>
+                                                Additional options
+                                            </Typography>
+                                        </Box>
+
+                                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                                            <Typography sx={{ fontSize: 18, color: '#fff', fontWeight: 700 }}>
+                                                {add_price}
+                                            </Typography>
+                                            <Typography mb={1} sx={{ fontSize: 12, color: '#fff' }}>
+                                                / {string?.month}
+                                            </Typography>
+                                        </Box>
+                                    </Box>
+                                    <Box px={2} py={1} sx={{ position: 'relative' }}>
+                                        {add_options.map((el, idx) => (
+                                            <Box key={idx}>
+                                                <Box
+                                                    sx={{
+                                                        display: 'flex',
+                                                        alignItems: 'center',
+                                                        justifyContent: 'space-between',
+                                                    }}
+                                                >
+                                                    <Box
+                                                        sx={{
+                                                            display: 'flex',
+                                                            flexDirection: 'row',
+                                                            alignItems: 'center',
+                                                            gap: 0.5,
+                                                            py: 1,
+                                                        }}
+                                                    >
+                                                        {el?.available ? (
+                                                            <AddCircleIcon sx={{ color: 'green' }} />
+                                                        ) : (
+                                                            <RemoveCircleIcon sx={{ color: 'red' }} />
+                                                        )}
+                                                        <Typography>{el?.title}</Typography>
+                                                    </Box>
+                                                    <Typography>{el?.price}</Typography>
+                                                </Box>
+                                                {options?.length !== idx + 1 && <Divider />}
+                                            </Box>
+                                        ))}
+                                    </Box>
+
                                     <Box
                                         px={2}
                                         py={2}
@@ -263,6 +309,8 @@ const Pricing = ({ setPlan, isOpen, setIsOpen }) => {
                                         borderRadius: 4,
                                         boxShadow: '0 0 2px 1px #1976d2',
                                         overflow: 'hidden',
+                                        filter: 'grayscale(100%)',
+                                        position: 'relative',
                                     }}
                                 >
                                     <Box
@@ -280,7 +328,7 @@ const Pricing = ({ setPlan, isOpen, setIsOpen }) => {
                                     >
                                         <Box sx={{ display: 'flex', gap: 0.5, color: '#fff' }}>
                                             <Typography sx={{ color: '#fff', fontSize: 20 }}>{name}</Typography>
-                                            <StyledTooltip title={help}>
+                                            <StyledTooltip title={help} disabled>
                                                 <HelpOutlineIcon />
                                             </StyledTooltip>
                                         </Box>
@@ -294,28 +342,8 @@ const Pricing = ({ setPlan, isOpen, setIsOpen }) => {
                                             </Typography>
                                         </Box>
                                     </Box>
-                                    <Box px={2} py={2} sx={{ position: 'relative' }}>
-                                        <Box
-                                            sx={{
-                                                display: 'flex',
-                                                alignItems: 'center',
-                                                justifyContent: 'center',
-                                                width: 145,
-                                                height: 145,
-                                                overflow: 'hidden',
-                                                position: 'absolute',
-                                                bottom: 10,
-                                                right: 10,
-                                                borderRadius: '50%',
-                                            }}
-                                        >
-                                            <img
-                                                src={require('./img/exp_soon.webp')}
-                                                style={{ width: 230, height: 230 }}
-                                                alt=""
-                                            />
-                                        </Box>
-                                        {rules.map((el, idx) => (
+                                    <Box px={2} py={2}>
+                                        {options.map((el, idx) => (
                                             <Box key={idx} sx={{ filter: 'blur(6px)' }}>
                                                 <Box
                                                     sx={{
@@ -333,9 +361,87 @@ const Pricing = ({ setPlan, isOpen, setIsOpen }) => {
                                                     )}
                                                     <Typography>{el?.title}</Typography>
                                                 </Box>
-                                                {rules?.length !== idx + 1 && <Divider />}
+                                                {options?.length !== idx + 1 && <Divider />}
                                             </Box>
                                         ))}
+                                    </Box>
+                                    <Box
+                                        px={3}
+                                        py={0.5}
+                                        sx={{
+                                            background: '#8f8f8f',
+                                            display: 'flex',
+                                            justifyContent: 'space-between',
+                                            alignItems: 'center',
+                                            filter: 'blur(4px)',
+                                        }}
+                                    >
+                                        <Box sx={{ display: 'flex', gap: 0.5, color: '#fff' }}>
+                                            <Typography sx={{ color: '#fff', fontSize: 20 }}>
+                                                Additional options
+                                            </Typography>
+                                        </Box>
+
+                                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                                            <Typography sx={{ fontSize: 25, color: '#fff', fontWeight: 700 }}>
+                                                $0.00
+                                            </Typography>
+                                            <Typography mb={1} sx={{ fontSize: 16, color: '#fff' }}>
+                                                / {string?.month}
+                                            </Typography>
+                                        </Box>
+                                    </Box>
+                                    <Box px={2} py={1} sx={{ position: 'relative', filter: 'blur(4px)' }}>
+                                        {add_options.map((el, idx) => (
+                                            <Box key={idx}>
+                                                <Box
+                                                    sx={{
+                                                        display: 'flex',
+                                                        alignItems: 'center',
+                                                        justifyContent: 'space-between',
+                                                    }}
+                                                >
+                                                    <Box
+                                                        sx={{
+                                                            display: 'flex',
+                                                            flexDirection: 'row',
+                                                            alignItems: 'center',
+                                                            gap: 0.5,
+                                                            py: 1,
+                                                        }}
+                                                    >
+                                                        {el?.available ? (
+                                                            <AddCircleIcon sx={{ color: 'green' }} />
+                                                        ) : (
+                                                            <RemoveCircleIcon sx={{ color: 'red' }} />
+                                                        )}
+                                                        <Typography>{el?.title}</Typography>
+                                                    </Box>
+                                                    <Typography>{el?.price}</Typography>
+                                                </Box>
+                                                {options?.length !== idx + 1 && <Divider />}
+                                            </Box>
+                                        ))}
+                                    </Box>
+                                    <Box
+                                        sx={{
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            justifyContent: 'center',
+                                            width: 145,
+                                            height: 145,
+                                            overflow: 'hidden',
+                                            position: 'absolute',
+                                            top: 80,
+                                            right: 10,
+                                            borderRadius: '50%',
+                                        }}
+                                    >
+                                        <img
+                                            src={require('./img/exp_soon.webp')}
+                                            style={{ width: 250, height: 250 }}
+                                            alt=""
+                                        />
                                     </Box>
                                     <Box
                                         px={2}
