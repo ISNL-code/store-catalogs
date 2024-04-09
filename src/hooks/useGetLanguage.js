@@ -23,6 +23,10 @@ export const useGetLanguage = ({ lang }) => {
                 descriptionStep6: 'Launch your catalog and use it for promoting and selling products.',
 
                 //tariffes
+                catalog_options_info: 'Main catalog options',
+                admin_options_info: 'Options for catalog management',
+                clients_options_info: 'Catalog interface options for users and clients',
+                additional_package_options_info: 'Options that can be additionally purchased for this package',
                 helper_pricing_text_1:
                     "Want to try or have a small product range? Our plan provides ease of use, a beautiful online catalog, and reliable support. It's the perfect choice for your experiments and first steps in using the catalog.",
                 helper_pricing_text_2:
@@ -267,6 +271,10 @@ export const useGetLanguage = ({ lang }) => {
             code: 'fr',
             string: {
                 expected_soon: 'Attendu prochainement',
+                catalog_options_info: 'Options principales du catalogue',
+                admin_options_info: 'Options pour la gestion du catalogue',
+                clients_options_info: 'Options de l`interface du catalogue pour les utilisateurs et les clients',
+                additional_package_options_info: 'Options pouvant être achetées en supplément pour ce paquet',
                 helper_pricing_text_1:
                     "Vous souhaitez essayer ou vous avez une petite gamme de produits ? Notre plan offre une facilité d'utilisation, un beau catalogue en ligne et un support fiable. C'est le choix parfait pour vos expériences et premiers pas dans l'utilisation du catalogue.",
                 helper_pricing_text_2:
@@ -546,6 +554,10 @@ export const useGetLanguage = ({ lang }) => {
                 titleStep6: 'Lanzamiento y Promoción',
                 descriptionStep6: 'Lanza tu catálogo y úsalo para la promoción y venta de productos.',
                 //tariffes
+                catalog_options_info: 'Opciones principales del catálogo',
+                admin_options_info: 'Opciones para la gestión del catálogo',
+                clients_options_info: 'Opciones de interfaz del catálogo para usuarios y clientes',
+                additional_package_options_info: 'Opciones que se pueden comprar adicionalmente para este paquete',
                 helper_pricing_text_1:
                     '¿Quieres probar o tienes un pequeño surtido de productos? Nuestro plan ofrece facilidad de uso, un hermoso catálogo en línea y soporte confiable. Es la elección perfecta para tus experimentos y primeros pasos en el uso del catálogo.',
                 helper_pricing_text_2:
@@ -808,6 +820,10 @@ export const useGetLanguage = ({ lang }) => {
                 titleStep6: 'Запуск та Промоція',
                 descriptionStep6: 'Запустіть каталог та використовуйте його для просування та продажу товарів.',
                 //tariffes
+                catalog_options_info: 'Основні опції каталогу',
+                admin_options_info: 'Опції для управління каталогом',
+                clients_options_info: 'Опції інтерфейсу каталогу для користувачів та замовників',
+                additional_package_options_info: 'Опції, які можна додатково купити для даного пакету',
                 helper_pricing_text_1:
                     'Хочете спробувати або у вас невеликий асортимент продукції? Наш план забезпечує простоту використання, гарний онлайн-каталог та надійну підтримку. Це ідеальний вибір для ваших експериментів та перших кроків у використанні каталогу.',
                 helper_pricing_text_2:
@@ -1068,6 +1084,11 @@ export const useGetLanguage = ({ lang }) => {
                 titleStep6: 'Uruchomienie i Promocja',
                 descriptionStep6: 'Uruchom katalog i wykorzystaj go do promocji i sprzedaży produktów.',
                 //tariffes
+                catalog_options_info: 'Główne opcje katalogu',
+                admin_options_info: 'Opcje dla zarządzania katalogiem',
+                clients_options_info: 'Opcje interfejsu katalogu dla użytkowników i klientów',
+                additional_package_options_info: 'Opcje, które można dodatkowo zakupić do tego pakietu',
+
                 helper_pricing_text_1:
                     'Chcesz spróbować lub masz mały asortyment produktów? Nasz plan zapewnia łatwość użytkowania, piękny katalog online i niezawodne wsparcie. To idealny wybór na twoje eksperymenty i pierwsze kroki w korzystaniu z katalogu.',
                 helper_pricing_text_2:
@@ -1342,6 +1363,10 @@ export const useGetLanguage = ({ lang }) => {
                 titleStep6: 'Spuštění a Propagace',
                 descriptionStep6: 'Spusťte katalog a využijte ho pro propagaci a prodej produktů.',
                 //tariffes
+                catalog_options_info: 'Hlavní možnosti katalogu',
+                admin_options_info: 'Možnosti pro správu katalogu',
+                clients_options_info: 'Možnosti rozhraní katalogu pro uživatele a zákazníky',
+                additional_package_options_info: 'Možnosti, které lze dodatečně zakoupit pro tento balíček',
                 helper_pricing_text_2:
                     'Tento plán vám umožňuje přidat více produktů, přidává funkci košíku pro zjednodušení objednávek. Navíc, váš obchod nyní podporuje více jazyků, což vám pomůže přilákat nové zákazníky a dosáhnout nových úrovní prodeje.',
                 helper_pricing_text_3: 'Brzy dostupné. Tato sazba je vaším krokem k maximálnímu růstu podnikání.',
@@ -1591,6 +1616,10 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'ru',
             string: {
+                catalog_options_info: 'Основные опции каталога',
+                admin_options_info: 'Опции для управления каталогом',
+                clients_options_info: 'Опции интерфейса каталога для пользователей и заказчиков',
+                additional_package_options_info: 'Опции, которые можно купить лополнительно для данного пакета',
                 expected_soon: 'Ожидается в ближайшее время',
                 call_back: 'Перезвонить',
                 ask_question: 'Задать вопрос',

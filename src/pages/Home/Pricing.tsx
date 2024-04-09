@@ -74,7 +74,7 @@ const Pricing = ({ setPlan, isOpen, setIsOpen }) => {
                 { title: string?.cart_orders_request, available: false },
             ],
             add_options: [
-                { title: string?.cart, available: false, price: '$19.99', type: 'month' },
+                { title: string?.cart_orders_request, available: false, price: '$19.99', type: 'month' },
                 { title: string?.products_add, available: false, price: '$9.99', type: 'month', values: ['+50'] },
                 { title: string?.language_add, available: false, price: '$4.99', type: 'month', values: ['+1'] },
                 { title: string?.app_store_add, available: false, price: '$9.99', type: 'month' },
@@ -271,7 +271,7 @@ const Pricing = ({ setPlan, isOpen, setIsOpen }) => {
                     p={1}
                     sx={{
                         width: '100%',
-                        maxWidth: 1300,
+                        maxWidth: 1800,
                         minHeight: '480px',
                         display: 'flex',
                         justifyContent: 'center',
@@ -293,11 +293,11 @@ const Pricing = ({ setPlan, isOpen, setIsOpen }) => {
                             },
                             index
                         ) => (
-                            <Grid xs={getPRICINGGridValue()} key={index} p={1} sx={{ maxWidth: 425, width: '100%' }}>
+                            <Grid xs={getPRICINGGridValue()} key={index} p={1} sx={{ maxWidth: 560, width: '100%' }}>
                                 {active ? (
                                     <Box
                                         sx={{
-                                            maxWidth: 475,
+                                            maxWidth: 560,
                                             width: '100%',
                                             backgroundColor: 'white',
                                             borderRadius: 4,
@@ -333,10 +333,24 @@ const Pricing = ({ setPlan, isOpen, setIsOpen }) => {
                                             </Box>
                                         </Box>
 
-                                        <Box p={1} sx={{ backgroundColor: '#f1f1f1', width: '100%' }}>
+                                        <Box
+                                            p={1}
+                                            sx={{
+                                                backgroundColor: '#f1f1f1',
+                                                width: '100%',
+                                                display: 'flex',
+                                                justifyContent: 'center',
+                                                gap: 1,
+                                            }}
+                                        >
                                             <Typography sx={{ textAlign: 'center', fontSize: 18 }}>
                                                 {string?.catalog}
                                             </Typography>
+                                            <Box sx={{ cursor: 'pointer' }}>
+                                                <StyledTooltip title={string?.catalog_options_info}>
+                                                    <InfoIcon sx={{ color: '#1976d2' }} />
+                                                </StyledTooltip>
+                                            </Box>
                                         </Box>
                                         <Box px={2} sx={{ position: 'relative' }}>
                                             {catalog_options.map((el, idx) => (
@@ -450,10 +464,24 @@ const Pricing = ({ setPlan, isOpen, setIsOpen }) => {
                                             ))}
                                         </Box>
 
-                                        <Box p={1} sx={{ backgroundColor: '#f1f1f1', width: '100%' }}>
+                                        <Box
+                                            p={1}
+                                            sx={{
+                                                backgroundColor: '#f1f1f1',
+                                                width: '100%',
+                                                display: 'flex',
+                                                justifyContent: 'center',
+                                                gap: 1,
+                                            }}
+                                        >
                                             <Typography sx={{ textAlign: 'center', fontSize: 18 }}>
                                                 {string?.admin}
                                             </Typography>
+                                            <Box sx={{ cursor: 'pointer' }}>
+                                                <StyledTooltip title={string?.admin_options_info}>
+                                                    <InfoIcon sx={{ color: '#1976d2' }} />
+                                                </StyledTooltip>
+                                            </Box>
                                         </Box>
                                         <Box px={2} sx={{ position: 'relative' }}>
                                             {admin_options.map((el, idx) => (
@@ -479,10 +507,24 @@ const Pricing = ({ setPlan, isOpen, setIsOpen }) => {
                                             ))}
                                         </Box>
 
-                                        <Box p={1} sx={{ backgroundColor: '#f1f1f1', width: '100%' }}>
+                                        <Box
+                                            p={1}
+                                            sx={{
+                                                backgroundColor: '#f1f1f1',
+                                                width: '100%',
+                                                display: 'flex',
+                                                justifyContent: 'center',
+                                                gap: 1,
+                                            }}
+                                        >
                                             <Typography sx={{ textAlign: 'center', fontSize: 18 }}>
                                                 {string?.clients}
                                             </Typography>
+                                            <Box sx={{ cursor: 'pointer' }}>
+                                                <StyledTooltip title={string?.clients_options_info}>
+                                                    <InfoIcon sx={{ color: '#1976d2' }} />
+                                                </StyledTooltip>
+                                            </Box>
                                         </Box>
                                         <Box px={2} sx={{ position: 'relative' }}>
                                             {customer_options.map((el, idx) => (
@@ -507,10 +549,24 @@ const Pricing = ({ setPlan, isOpen, setIsOpen }) => {
                                                 </Box>
                                             ))}
                                         </Box>
-                                        <Box p={1} sx={{ backgroundColor: '#f1f1f1', width: '100%' }}>
+                                        <Box
+                                            p={1}
+                                            sx={{
+                                                backgroundColor: '#f1f1f1',
+                                                width: '100%',
+                                                display: 'flex',
+                                                justifyContent: 'center',
+                                                gap: 1,
+                                            }}
+                                        >
                                             <Typography sx={{ textAlign: 'center', fontSize: 18 }}>
                                                 {string?.additional_package_options}
                                             </Typography>
+                                            <Box sx={{ cursor: 'pointer' }}>
+                                                <StyledTooltip title={string?.additional_package_options_info}>
+                                                    <InfoIcon sx={{ color: '#1976d2' }} />
+                                                </StyledTooltip>
+                                            </Box>
                                         </Box>
                                         <Box px={2} py={1} sx={{ position: 'relative' }}>
                                             {add_options.map((el, idx) => (
@@ -596,11 +652,12 @@ const Pricing = ({ setPlan, isOpen, setIsOpen }) => {
 
                                         <Box
                                             px={2}
-                                            py={2}
+                                            py={0.5}
+                                            pb={1.5}
                                             sx={{
                                                 display: 'flex',
                                                 justifyContent: 'center',
-                                                backgroundColor: '#eeeeee',
+                                                backgroundColor: '#eeeeee7b',
                                             }}
                                         >
                                             <Button
@@ -619,7 +676,7 @@ const Pricing = ({ setPlan, isOpen, setIsOpen }) => {
                                 ) : (
                                     <Box
                                         sx={{
-                                            maxWidth: 425,
+                                            maxWidth: 560,
                                             width: '100%',
                                             backgroundColor: 'white',
                                             borderRadius: 4,
@@ -659,10 +716,24 @@ const Pricing = ({ setPlan, isOpen, setIsOpen }) => {
                                                 </Box>
                                             </Box>
                                             <Box sx={{ filter: 'blur(5px)' }}>
-                                                <Box p={1} sx={{ backgroundColor: '#f1f1f1', width: '100%' }}>
+                                                <Box
+                                                    p={1}
+                                                    sx={{
+                                                        backgroundColor: '#f1f1f1',
+                                                        width: '100%',
+                                                        display: 'flex',
+                                                        justifyContent: 'center',
+                                                        gap: 1,
+                                                    }}
+                                                >
                                                     <Typography sx={{ textAlign: 'center', fontSize: 18 }}>
                                                         {string?.catalog}
                                                     </Typography>
+                                                    <Box sx={{ cursor: 'pointer' }}>
+                                                        <StyledTooltip title={string?.catalog_options_info}>
+                                                            <InfoIcon sx={{ color: '#1976d2' }} />
+                                                        </StyledTooltip>
+                                                    </Box>
                                                 </Box>
                                                 <Box px={2} sx={{ position: 'relative' }}>
                                                     {catalog_options.map((el, idx) => (
@@ -784,10 +855,24 @@ const Pricing = ({ setPlan, isOpen, setIsOpen }) => {
                                                     ))}
                                                 </Box>
 
-                                                <Box p={1} sx={{ backgroundColor: '#f1f1f1', width: '100%' }}>
+                                                <Box
+                                                    p={1}
+                                                    sx={{
+                                                        backgroundColor: '#f1f1f1',
+                                                        width: '100%',
+                                                        display: 'flex',
+                                                        justifyContent: 'center',
+                                                        gap: 1,
+                                                    }}
+                                                >
                                                     <Typography sx={{ textAlign: 'center', fontSize: 18 }}>
                                                         {string?.admin}
                                                     </Typography>
+                                                    <Box sx={{ cursor: 'pointer' }}>
+                                                        <StyledTooltip title={string?.admin_options_info}>
+                                                            <InfoIcon sx={{ color: '#1976d2' }} />
+                                                        </StyledTooltip>
+                                                    </Box>
                                                 </Box>
                                                 <Box px={2} sx={{ position: 'relative' }}>
                                                     {admin_options.map((el, idx) => (
@@ -813,10 +898,24 @@ const Pricing = ({ setPlan, isOpen, setIsOpen }) => {
                                                     ))}
                                                 </Box>
 
-                                                <Box p={1} sx={{ backgroundColor: '#f1f1f1', width: '100%' }}>
+                                                <Box
+                                                    p={1}
+                                                    sx={{
+                                                        backgroundColor: '#f1f1f1',
+                                                        width: '100%',
+                                                        display: 'flex',
+                                                        justifyContent: 'center',
+                                                        gap: 1,
+                                                    }}
+                                                >
                                                     <Typography sx={{ textAlign: 'center', fontSize: 18 }}>
                                                         {string?.clients}
                                                     </Typography>
+                                                    <Box sx={{ cursor: 'pointer' }}>
+                                                        <StyledTooltip title={string?.clients_options_info}>
+                                                            <InfoIcon sx={{ color: '#1976d2' }} />
+                                                        </StyledTooltip>
+                                                    </Box>
                                                 </Box>
                                                 <Box px={2} sx={{ position: 'relative' }}>
                                                     {customer_options.map((el, idx) => (
@@ -841,11 +940,26 @@ const Pricing = ({ setPlan, isOpen, setIsOpen }) => {
                                                         </Box>
                                                     ))}
                                                 </Box>
-                                                <Box p={1} sx={{ backgroundColor: '#f1f1f1', width: '100%' }}>
+                                                <Box
+                                                    p={1}
+                                                    sx={{
+                                                        backgroundColor: '#f1f1f1',
+                                                        width: '100%',
+                                                        display: 'flex',
+                                                        justifyContent: 'center',
+                                                        gap: 1,
+                                                    }}
+                                                >
                                                     <Typography sx={{ textAlign: 'center', fontSize: 18 }}>
                                                         {string?.additional_package_options}
                                                     </Typography>
+                                                    <Box sx={{ cursor: 'pointer' }}>
+                                                        <StyledTooltip title={string?.additional_package_options_info}>
+                                                            <InfoIcon sx={{ color: '#1976d2' }} />
+                                                        </StyledTooltip>
+                                                    </Box>
                                                 </Box>
+
                                                 <Box px={2} py={1} sx={{ position: 'relative' }}>
                                                     {add_options.map((el, idx) => (
                                                         <Box key={idx}>
@@ -905,12 +1019,21 @@ const Pricing = ({ setPlan, isOpen, setIsOpen }) => {
                                                                         </Box>
                                                                     ))}
                                                                 </Box>
-                                                                <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                                                                    <Typography sx={{ fontSize: 14 }}>
+                                                                <Box
+                                                                    sx={{
+                                                                        display: 'flex',
+                                                                        alignItems: 'center',
+                                                                        width: 120,
+                                                                        justifyContent: 'flex-end',
+                                                                    }}
+                                                                >
+                                                                    <Typography sx={{ fontSize: 14, color: 'gray' }}>
                                                                         {el?.price}
                                                                     </Typography>
                                                                     {el?.type && (
-                                                                        <Typography sx={{ fontSize: 14 }}>
+                                                                        <Typography
+                                                                            sx={{ fontSize: 14, color: 'gray' }}
+                                                                        >
                                                                             / {string?.month}
                                                                         </Typography>
                                                                     )}
@@ -924,11 +1047,12 @@ const Pricing = ({ setPlan, isOpen, setIsOpen }) => {
 
                                             <Box
                                                 px={2}
-                                                py={2}
+                                                py={0.5}
+                                                pb={1.5}
                                                 sx={{
                                                     display: 'flex',
                                                     justifyContent: 'center',
-                                                    backgroundColor: '#eeeeee',
+                                                    backgroundColor: '#eeeeee7b',
                                                 }}
                                             >
                                                 <Button
