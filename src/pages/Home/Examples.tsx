@@ -1,16 +1,24 @@
-import { Box, Button, Typography } from '@mui/material';
+import {
+    Box,
+    // Button,
+    Typography,
+} from '@mui/material';
 import Grid from '@mui/material/Unstable_Grid2';
 import { useDevice } from 'hooks/useDevice';
 import { StoresContextInterface } from 'types';
 import { useOutletContext } from 'react-router-dom';
 import Stores from 'pages/Stores/Stores';
 import Marquee from 'react-fast-marquee';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const Examples = () => {
     const [storesDetails, setStoresDetails] = useState(true);
     const { string }: StoresContextInterface = useOutletContext();
     const { sx } = useDevice();
+
+    useEffect(() => {
+        setStoresDetails(true);
+    }, []);
 
     return (
         <>
