@@ -58,9 +58,10 @@ export default function MainStores({ lang, setLang, auth, setAuth }) {
         if (!storesDataRes) return;
         setStoresList(
             storesDataRes?.data
-                ?.filter(el => el.code !== 'DEFAULT')
+                .filter(item => STORES_DATA?.find(el => el.code === item.code))
                 .map(item => {
                     const addStoreData = STORES_DATA?.find(el => el.code === item.code);
+
                     const description =
                         addStoreData?.descriptions.find(el => el.language === lang.code) ||
                         addStoreData?.descriptions.find(el => el.language === 'en');

@@ -8,7 +8,7 @@ import Marquee from 'react-fast-marquee';
 import { useState } from 'react';
 
 const Examples = () => {
-    const [storesDetails, setStoresDetails] = useState(false);
+    const [storesDetails, setStoresDetails] = useState(true);
     const { string }: StoresContextInterface = useOutletContext();
     const { sx } = useDevice();
 
@@ -37,14 +37,14 @@ const Examples = () => {
                     <Box px={2} py={0.5} sx={{ width: 'fit-content', border: '1px dashed #ccc', borderTop: 'none' }}>
                         <Typography sx={{ fontSize: 22, fontWeight: 500 }}>{string?.examples}</Typography>
                     </Box>
-                    <Button
+                    {/* <Button
                         size="medium"
                         onClick={() => setStoresDetails(!storesDetails)}
                         variant="contained"
                         sx={{ ml: 'auto' }}
                     >
                         {string?.show_all}
-                    </Button>
+                    </Button> */}
                 </Box>
             </Grid>
             <Grid
