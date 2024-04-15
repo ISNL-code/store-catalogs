@@ -28,7 +28,7 @@ const Pricing = ({ setPlan, isOpen, setIsOpen }) => {
             help: string?.helper_pricing_text_1,
             price: '$14.99',
             catalog_options: [
-                { title: `${string?.admin}`, values: [3], available: true, info: false },
+                { title: `${string?.admin}`, values: [1], available: true, info: false },
                 {
                     title: string?.products,
                     available: true,
@@ -91,7 +91,7 @@ const Pricing = ({ setPlan, isOpen, setIsOpen }) => {
             help: string?.helper_pricing_text_2,
             price: '$49.99',
             catalog_options: [
-                { title: `${string?.admin}`, values: [1], available: true, info: false },
+                { title: `${string?.admin}`, values: [3], available: true, info: false },
                 {
                     title: string?.products,
                     available: true,
@@ -153,7 +153,7 @@ const Pricing = ({ setPlan, isOpen, setIsOpen }) => {
             help: string?.helper_pricing_text_3,
             price: '$99.99',
             catalog_options: [
-                { title: `${string?.admin}`, values: [1], available: true, info: false },
+                { title: `${string?.admin}`, values: [3], available: true, info: false },
                 {
                     title: string?.products,
                     available: true,
