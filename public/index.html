@@ -81,6 +81,26 @@
                 transaction_id: '',
             });
         </script>
+
+        <!-- Event snippet for Покупка conversion page
+        In your html page, add the snippet and call gtag_report_conversion when someone clicks on the chosen link or button. -->
+        <script>
+            function gtag_report_conversion(url) {
+                var callback = function () {
+                    if (typeof url != 'undefined') {
+                        window.location = url;
+                    }
+                };
+                gtag('event', 'conversion', {
+                    send_to: 'AW-16532045891/BjdfCLir_qYZEMOAjMs9',
+                    value: 1.0,
+                    currency: 'UAH',
+                    transaction_id: '',
+                    event_callback: callback,
+                });
+                return false;
+            }
+        </script>
     </head>
     <body>
         <noscript>You need to enable JavaScript to run this app.</noscript>
