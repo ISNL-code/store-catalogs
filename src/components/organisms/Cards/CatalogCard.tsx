@@ -70,7 +70,6 @@ const CatalogCard = ({ modelsVariants, name, productId, currency, setProductsLis
         if (!modelsVariants?.length) return;
         setShownModel(modelsVariants.find(variant => variant.selected));
     }, [modelsVariants]);
-    console.log(shownModel);
     const getGridValue = () => {
         if (s) return 12;
         if (sx) return 6;
@@ -168,6 +167,7 @@ const CatalogCard = ({ modelsVariants, name, productId, currency, setProductsLis
                                                     store?.productImagesOptions?.height,
                                                 display: 'flex !important',
                                                 alignItems: 'center',
+                                                backgroundColor: '#fafafa',
                                             }}
                                         >
                                             <Image store={store} imgUrl={imageUrl} ref={ref} />
@@ -200,7 +200,6 @@ const CatalogCard = ({ modelsVariants, name, productId, currency, setProductsLis
                         sx={{
                             height: 45,
                             overflow: 'visible',
-                            backgroundColor: '#fff',
                             zIndex: 1,
                         }}
                     >
@@ -210,7 +209,7 @@ const CatalogCard = ({ modelsVariants, name, productId, currency, setProductsLis
                                 display: 'flex',
                                 justifyContent: 'center',
                                 flexWrap: isExpanded ? 'wrap' : 'nowrap',
-                                backgroundColor: '#fff',
+                                backgroundColor: '#fafafa',
                                 height: isExpanded ? '95px' : '45px',
                                 pt: 1,
                                 px: 0.2,
@@ -219,7 +218,7 @@ const CatalogCard = ({ modelsVariants, name, productId, currency, setProductsLis
                         >
                             <Box
                                 sx={{
-                                    backgroundColor: '#fff',
+                                    backgroundColor: '#fafafa',
                                     display: 'flex',
                                     justifyContent: 'center',
                                     gap: 0.4,
@@ -283,7 +282,6 @@ const CatalogCard = ({ modelsVariants, name, productId, currency, setProductsLis
                                 display: 'flex',
                                 flexDirection: 'column',
                                 gap: 1,
-                                borderTop: '1px solid #f0f0f0',
                                 backgroundColor: '#fafafa',
                             }}
                         >
