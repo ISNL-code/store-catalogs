@@ -168,6 +168,7 @@ const CatalogFavoriteCard = ({ modelsVariants, name, productId, currency, promoT
                                                     store?.productImagesOptions?.height,
                                                 display: 'flex !important',
                                                 alignItems: 'center',
+                                                backgroundColor: '#fafafa',
                                             }}
                                         >
                                             <Image store={store} imgUrl={imageUrl} ref={ref} />
@@ -218,18 +219,16 @@ const CatalogFavoriteCard = ({ modelsVariants, name, productId, currency, promoT
                                     display: 'flex',
                                     justifyContent: 'center',
                                     flexWrap: isExpanded ? 'wrap' : 'nowrap',
-                                    backgroundColor: '#fff',
+                                    backgroundColor: '#fafafa',
                                     height: isExpanded ? '95px' : '45px',
                                     pt: 1,
                                     px: 0.2,
-                                    borderTop: '1px solid #00000013',
-
                                     transition: 'height 250ms cubic-bezier(0, 0.4, 0.2, 1)',
                                 }}
                             >
                                 <Box
                                     sx={{
-                                        backgroundColor: '#fff',
+                                        backgroundColor: '#fafafa',
                                         display: 'flex',
                                         justifyContent: 'center',
                                         gap: 0.5,
@@ -255,7 +254,6 @@ const CatalogFavoriteCard = ({ modelsVariants, name, productId, currency, promoT
                                 display: 'flex',
                                 flexDirection: 'column',
                                 gap: 1,
-                                borderTop: '1px solid #f0f0f0',
                                 backgroundColor: '#fafafa',
                             }}
                         >
