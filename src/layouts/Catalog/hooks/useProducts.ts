@@ -33,13 +33,15 @@ export const useProducts = ({ store, lang, queryCategories, setQueryCategories }
     useEffect(() => {
         if (!productsRes || loadProducts) return setProductsList([]);
         if (currentProductsPage) return;
-        console.log(productsRes.data.products);
         setProductsList(
             productsRes.data.products?.map(product => {
+                const prices = product.variants?.map(el => Number(el.inventory[0]?.price));
+
                 return {
                     id: product.id,
                     variants: product.variants
                         .sort((a, b) => a.sortOrder - b.sortOrder)
+                        .filter(el => el.images.length)
                         .map((variant, idx) => {
                             return {
                                 id: variant.id,
@@ -51,8 +53,9 @@ export const useProducts = ({ store, lang, queryCategories, setQueryCategories }
                                 sku: variant.sku,
                             };
                         }),
+
                     name: product.description.name,
-                    price: product.finalPrice,
+                    price: '$' + Math.max(...prices),
                     promoTags:
                         product.options
                             .find(({ code }) => code === 'PROMO')

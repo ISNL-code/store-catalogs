@@ -44,6 +44,11 @@ const Favorites = () => {
             const products = res.data?.data.products;
 
             const data = favorites?.favoriteItems?.map(({ sku }) => {
+                const prices = products
+                    .find(el => el.variants.map(({ sku }) => sku).includes(sku))
+                    ?.variants.sort((a, b) => a.sortOrder - b.sortOrder)
+                    ?.map(el => Number(el.inventory[0]?.price));
+
                 return {
                     ...products
                         .find(el => el.variants.map(({ sku }) => sku).includes(sku))
@@ -66,7 +71,7 @@ const Favorites = () => {
                                 sku: variant.sku,
                             };
                         }),
-                    price: products.find(el => el.variants.map(({ sku }) => sku).includes(sku))?.finalPrice,
+                    price: '$' + Math.max(...prices),
                     promoTags:
                         products
                             .find(el => el.variants.map(({ sku }) => sku).includes(sku))
