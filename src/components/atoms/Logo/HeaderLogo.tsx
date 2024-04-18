@@ -32,7 +32,12 @@ const HeaderLogo = ({ title, path, font = 'Roboto', imgUrl, headerHeight }) => {
             />
 
             <Typography sx={{ fontFamily: font, fontSize: xxxs ? 18 : 20, fontWeight: 700, lineHeight: 1 }}>
-                {title}
+                {title.replaceAll('Sales', '')}
+            </Typography>
+            <Typography
+                sx={{ fontFamily: font, fontSize: xxxs ? 18 : 20, fontWeight: 700, lineHeight: 1, color: 'red' }}
+            >
+                {title.replaceAll('Kremen Belts', '').toUpperCase()}
             </Typography>
         </Box>
     );

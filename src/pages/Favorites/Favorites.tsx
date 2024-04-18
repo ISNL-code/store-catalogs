@@ -143,6 +143,7 @@ const Favorites = () => {
                                     key={product?.id}
                                     modelsVariants={product?.variants}
                                     name={product?.name}
+                                    productMainPrice={product?.price}
                                     productId={product?.productId}
                                     promoTags={product?.promoTags}
                                     currency={getCurrencySymbol(store?.currency)}

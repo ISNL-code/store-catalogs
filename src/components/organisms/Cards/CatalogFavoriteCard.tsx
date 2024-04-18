@@ -55,7 +55,7 @@ function SampleNextArrow(props) {
     );
 }
 
-const CatalogFavoriteCard = ({ modelsVariants, name, productId, currency, promoTags }) => {
+const CatalogFavoriteCard = ({ modelsVariants, name, productId, currency, promoTags, productMainPrice }) => {
     const ref = useRef<HTMLInputElement>(null);
     const { s, sx, ls, l } = useDevice();
     const navigate = useNavigate();
@@ -272,7 +272,14 @@ const CatalogFavoriteCard = ({ modelsVariants, name, productId, currency, promoT
                             >
                                 {store?.mainStoreSettings?.prices && (
                                     <Box sx={{ display: 'flex' }}>
-                                        <Typography variant="h3" sx={{ color: '#505050' }}>
+                                        <Typography
+                                            variant="h4"
+                                            sx={{ color: '#575757', textDecoration: 'line-through', fontWeight: 700 }}
+                                        >
+                                            {!isExpanded && productMainPrice}
+                                        </Typography>
+                                        /
+                                        <Typography variant="h3" sx={{ color: '#f83838' }}>
                                             {!isExpanded && currency}
                                             {!isExpanded && Number(shownModel?.price)}
                                         </Typography>

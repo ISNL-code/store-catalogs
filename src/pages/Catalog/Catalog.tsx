@@ -96,6 +96,7 @@ const Catalog = () => {
                                     modelsVariants={product.variants}
                                     name={product.name}
                                     productId={product.id}
+                                    productMainPrice={product?.price}
                                     currency={getCurrencySymbol(store?.currency)}
                                     setProductsList={setProductsList}
                                     promoTags={product?.promoTags}

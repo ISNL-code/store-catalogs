@@ -56,7 +56,7 @@ function SampleNextArrow(props) {
     );
 }
 
-const CatalogCard = ({ modelsVariants, name, productId, currency, setProductsList, promoTags }) => {
+const CatalogCard = ({ modelsVariants, name, productId, currency, setProductsList, promoTags, productMainPrice }) => {
     const ref = useRef<HTMLInputElement>(null);
     const { s, sx, ls, l } = useDevice();
     const navigate = useNavigate();
@@ -300,7 +300,18 @@ const CatalogCard = ({ modelsVariants, name, productId, currency, setProductsLis
                             >
                                 {store?.mainStoreSettings?.prices && (
                                     <Box sx={{ display: 'flex' }}>
-                                        <Typography variant="h3" sx={{ color: '#505050' }}>
+                                        <Typography
+                                            variant="h3"
+                                            sx={{
+                                                color: '#575757',
+                                                textDecoration: 'line-through',
+                                                fontWeight: 700,
+                                            }}
+                                        >
+                                            {!isExpanded && productMainPrice}
+                                        </Typography>
+                                        /
+                                        <Typography variant="h2" sx={{ color: '#f83838' }}>
                                             {!isExpanded && currency}
                                             {!isExpanded && Number(shownModel?.price)}
                                         </Typography>

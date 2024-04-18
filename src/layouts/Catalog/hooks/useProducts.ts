@@ -33,6 +33,7 @@ export const useProducts = ({ store, lang, queryCategories, setQueryCategories }
     useEffect(() => {
         if (!productsRes || loadProducts) return setProductsList([]);
         if (currentProductsPage) return;
+        console.log(productsRes.data.products);
         setProductsList(
             productsRes.data.products?.map(product => {
                 return {
