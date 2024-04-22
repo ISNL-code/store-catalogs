@@ -5,7 +5,7 @@ import { LoadedProductListInterface } from 'types';
 
 export const useProducts = ({ store, lang, queryCategories, setQueryCategories }) => {
     const mount = useIsMount();
-    const count = 24;
+    const count = 36;
     const [currentProductsPage, setCurrentProductsPage] = useState(0);
     const [productsList, setProductsList] = useState<LoadedProductListInterface[] | [] | null>(null);
     const [totalCount, setTotalCount] = useState(0);
@@ -36,7 +36,7 @@ export const useProducts = ({ store, lang, queryCategories, setQueryCategories }
         setProductsList(
             productsRes.data.products?.map(product => {
                 const prices = product.variants?.map(el => Number(el.inventory[0]?.price));
-
+                console.log(product.variants);
                 return {
                     id: product.id,
                     variants: product.variants
