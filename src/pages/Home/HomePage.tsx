@@ -17,7 +17,6 @@ const HomePage = () => {
                 <Box style={{ overflow: 'hidden', maxHeight: '100vh', background: '#ccc' }}>
                     <Marquee
                         autoFill
-                        style={{ display: 'flex' }}
                         loop={0}
                         speed={65}
                         gradient
