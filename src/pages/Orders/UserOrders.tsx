@@ -40,10 +40,12 @@ const UserOrders = () => {
                         currency: el?.currency,
                     };
                 })
-                .filter(el => {
-                    if (Number(catalogPriceMode) === 1) return el?.products?.length >= 10;
-                    if (Number(catalogPriceMode) === 3) return el?.products?.length < 10;
-                    return true;
+                .filter((el, idx) => {
+                    if (Number(catalogPriceMode) === 1)
+                        return el?.products?.reduce((acc, el) => acc + 1 * Number(el?.orderedQuantity), 0) >= 10;
+                    if (Number(catalogPriceMode) === 3)
+                        return el?.products?.reduce((acc, el) => acc + 1 * Number(el?.orderedQuantity), 0) < 10;
+                    return false;
                 })
         );
 

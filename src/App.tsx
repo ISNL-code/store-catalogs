@@ -48,7 +48,8 @@ const App = () => {
             return;
         }
         const savedLanguage = JSON.parse(getLang);
-        localStorage.setItem('catalog_mode', JSON.stringify(3));
+        const catalogPriceMode = localStorage.getItem('catalog_mode');
+        if (!catalogPriceMode) localStorage.setItem('catalog_mode', JSON.stringify(3));
         setLang(savedLanguage);
     }, []);
 

@@ -110,7 +110,6 @@ const ConfirmCoupon = ({
             return;
         }
         if (Number(catalogPriceMode) === 1) {
-            console.log(orderData?.productsList?.reduce((acc, el) => acc + 1 * Number(el?.quantity), 0));
             if (orderData?.productsList?.reduce((acc, el) => acc + 1 * Number(el?.quantity), 0) < 10) {
                 setOpenModal(true);
             } else createOrderConfirm();
