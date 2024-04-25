@@ -13,7 +13,7 @@ const PriceDetails = ({ productDetails, isShown }) => {
                     <Box>
                         <Typography>
                             {getCurrencySymbol(store?.currency)}
-                            {productDetails?.price?.replace('$', '')?.replace('UAH', '')}
+                            {productDetails?.price?.replace('$', '')?.replace('UAH', '').replace('€', '')}
                         </Typography>
                     </Box>
                 </Box>

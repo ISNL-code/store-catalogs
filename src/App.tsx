@@ -64,7 +64,7 @@ const App = () => {
                     {
                         <>
                             <Route path={'/'} element={<Home lang={lang} setLang={setLang} />}>
-                                <Route path={'/home'} element={<HomePage />} />
+                                <Route path={'/'} element={<HomePage />} />
                             </Route>
                             <Route
                                 path={'/catalog'}
