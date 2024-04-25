@@ -30,7 +30,7 @@ const HomeHeader = ({ headerHeight, appXPadding, string, lang, setLang, setOpenM
                 left: 0,
                 top: 0,
                 zIndex: 4000,
-                backgroundColor: '#fff',
+                backgroundColor: '#ffffffe6',
                 overflow: 'hidden',
             }}
         >

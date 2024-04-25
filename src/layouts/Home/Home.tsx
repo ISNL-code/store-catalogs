@@ -30,7 +30,7 @@ export default function Home({ lang, setLang }) {
                 setOpenModalType={setOpenModalType}
             />
 
-            <Box px={appXPadding} pt={1}>
+            <Box px={appXPadding}>
                 <Outlet
                     context={{
                         //main data

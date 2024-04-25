@@ -45,6 +45,7 @@ const HeaderNavButton = ({
                             justifyContent: 'space-between',
                             flexDirection: sx ? 'column' : 'row',
                             alignItems: 'center',
+                            backgroundColor: '#fff',
                             '&:hover': { backgroundColor: '#fff' },
                             border: active || isActive ? '' : '1px solid rgba(0, 0, 0, 0.54)',
                         }}
