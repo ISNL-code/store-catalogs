@@ -53,6 +53,26 @@ const HomePage = () => {
                             src={require(`./images/${6}.jpg`)}
                             alt={`Loading ...`}
                         />
+                        <img
+                            style={{ maxHeight: '100vh', overflow: 'hidden' }}
+                            src={require(`./images/${7}.jpg`)}
+                            alt={`Loading ...`}
+                        />
+                        <img
+                            style={{ maxHeight: '100vh', overflow: 'hidden' }}
+                            src={require(`./images/${8}.jpg`)}
+                            alt={`Loading ...`}
+                        />
+                        <img
+                            style={{ maxHeight: '100vh', overflow: 'hidden' }}
+                            src={require(`./images/${9}.jpg`)}
+                            alt={`Loading ...`}
+                        />
+                        <img
+                            style={{ maxHeight: '100vh', overflow: 'hidden' }}
+                            src={require(`./images/${10}.jpg`)}
+                            alt={`Loading ...`}
+                        />
                     </Marquee>
                 </Box>
             </Box>
