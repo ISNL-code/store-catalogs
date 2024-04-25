@@ -2,7 +2,6 @@ import IconButton from '@mui/material/IconButton';
 import { Box, ListItemText, Menu, MenuItem, Typography } from '@mui/material';
 import { Fragment, useState } from 'react';
 import LanguageIcon from '@mui/icons-material/Language';
-import { useDevice } from 'hooks/useDevice';
 
 const LanguageButton = ({
     setLang,
@@ -19,7 +18,6 @@ const LanguageButton = ({
     ],
     setOpenModalType = _ => {},
 }) => {
-    const { sx } = useDevice();
     const [anchorElLang, setAnchorElLang] = useState(null);
     const open = Boolean(anchorElLang);
 
