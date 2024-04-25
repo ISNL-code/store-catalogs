@@ -1,28 +1,47 @@
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
+import ContactsButton from 'components/atoms/Buttons/ContactsButton';
 import { useDevice } from 'hooks/useDevice';
 import Marquee from 'react-fast-marquee';
+import Grid from '@mui/material/Unstable_Grid2';
+import { useOutletContext } from 'react-router-dom';
+import { CatalogContextInterface } from 'types';
+
 const HomePage = () => {
-    const { s } = useDevice();
+    const { appXPadding }: CatalogContextInterface = useOutletContext();
+    const { sx, s } = useDevice();
 
     return (
-        <Box style={{ overflow: 'hidden', maxHeight: '100vh' }}>
-            <Marquee
-                style={{ display: 'flex' }}
-                loop={0}
-                speed={65}
-                gradient
-                gradientColor="#6666664e"
-                gradientWidth={s ? 100 : 300}
-            >
-                {[...Array(12).keys()].map(el => (
-                    <img
-                        style={{ maxHeight: '100vh', overflow: 'hidden' }}
-                        src={require(`./images/${el + 1}.jpg`)}
-                        alt={`Loading ${el + 1}`}
-                    />
-                ))}
-            </Marquee>
-        </Box>
+        <>
+            <Box sx={{ position: 'fixed', top: 0, left: 0, zIndex: 0 }}>
+                <ContactsButton />
+                <Box style={{ overflow: 'hidden', maxHeight: '100vh', background: '#ccc' }}>
+                    <Marquee
+                        autoFill
+                        style={{ display: 'flex' }}
+                        loop={0}
+                        speed={65}
+                        gradient
+                        gradientColor="#6666664e"
+                        gradientWidth={s ? 100 : 300}
+                    >
+                        {[...Array(12).keys()].map(el => (
+                            <img
+                                style={{ maxHeight: '100vh', overflow: 'hidden' }}
+                                src={require(`./images/${el + 1}.jpg`)}
+                                alt={`Loading ${el + 1}`}
+                            />
+                        ))}
+                    </Marquee>
+                </Box>
+            </Box>
+            <Grid container xs={12} sx={{ px: appXPadding, mt: 10 }}>
+                <Typography
+                    sx={{ color: '#fff', zIndex: 1, textShadow: '#000000 1px 1px 2px', fontSize: sx ? 48 : 72 }}
+                >
+                    Alberto Bini: Elegance in Outerwear
+                </Typography>
+            </Grid>
+        </>
     );
 };
 export default HomePage;

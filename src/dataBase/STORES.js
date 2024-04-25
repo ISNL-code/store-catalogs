@@ -74,10 +74,10 @@ export const STORES_DATA = [
             {
                 firstName: 'Alberto Bini Manager',
                 lastName: '',
-                emailAddress: 'alb-admin@mail.com',
+                emailAddress: 'salesnest.info@gmail.com',
                 options: { manager: true },
                 contacts: {
-                    emailAddress: '',
+                    emailAddress: 'salesnest.info@gmail.com',
                     phone: '+380983080085',
                     viber: '+380983080085',
                     whatsapp: '+380983080085',
