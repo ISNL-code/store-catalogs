@@ -87,10 +87,8 @@ const HomePage = () => {
                 </Box>
             </Box>
             <Grid container xs={12} sx={{ px: appXPadding, mt: 10 }}>
-                <Typography
-                    sx={{ color: '#fff', zIndex: 1, textShadow: '#000000 1px 1px 2px', fontSize: sx ? 48 : 72 }}
-                >
-                    Alberto Bini: Elegance in Outerwear
+                <Typography sx={{ color: '#fff', zIndex: 1, textShadow: '#000000 0 0 5px', fontSize: sx ? 56 : 96 }}>
+                    Elegance in Outerwear
                 </Typography>
             </Grid>
         </>
