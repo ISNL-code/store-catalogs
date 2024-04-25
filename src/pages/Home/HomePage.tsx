@@ -14,10 +14,10 @@ const HomePage = () => {
         <>
             <Box sx={{ position: 'fixed', top: 0, left: 0, zIndex: 0 }}>
                 <ContactsButton />
-                <Box style={{ overflow: 'hidden', maxHeight: '100vh', background: '#ccc' }}>
+                <Box style={{ overflow: 'hidden', maxHeight: '100vh', background: '#ccc', maxWidth: '100vw' }}>
                     <Marquee
                         // autoFill
-                        loop={10}
+                        loop={0}
                         speed={65}
                         gradient
                         gradientColor="#6666664e"
@@ -32,22 +32,22 @@ const HomePage = () => {
                             style={{ maxHeight: '100vh', overflow: 'hidden' }}
                             src={require(`./images/${2}.jpg`)}
                             alt={`Loading ...`}
-                        />{' '}
+                        />
                         <img
                             style={{ maxHeight: '100vh', overflow: 'hidden' }}
                             src={require(`./images/${3}.jpg`)}
                             alt={`Loading ...`}
-                        />{' '}
+                        />
                         <img
                             style={{ maxHeight: '100vh', overflow: 'hidden' }}
                             src={require(`./images/${4}.jpg`)}
                             alt={`Loading ...`}
-                        />{' '}
+                        />
                         <img
                             style={{ maxHeight: '100vh', overflow: 'hidden' }}
                             src={require(`./images/${5}.jpg`)}
                             alt={`Loading ...`}
-                        />{' '}
+                        />
                         <img
                             style={{ maxHeight: '100vh', overflow: 'hidden' }}
                             src={require(`./images/${6}.jpg`)}
@@ -71,6 +71,16 @@ const HomePage = () => {
                         <img
                             style={{ maxHeight: '100vh', overflow: 'hidden' }}
                             src={require(`./images/${10}.jpg`)}
+                            alt={`Loading ...`}
+                        />
+                        <img
+                            style={{ maxHeight: '100vh', overflow: 'hidden' }}
+                            src={require(`./images/${11}.jpg`)}
+                            alt={`Loading ...`}
+                        />
+                        <img
+                            style={{ maxHeight: '100vh', overflow: 'hidden' }}
+                            src={require(`./images/${12}.jpg`)}
                             alt={`Loading ...`}
                         />
                     </Marquee>
