@@ -12,7 +12,7 @@ export default function Home({ lang, setLang }) {
     const headerHeight = xxs ? 50 : 65;
     const footerHeight = sx ? 70 : 0;
     const instrumentalBarHeight = 0;
-    const appXPadding = l ? 0 : 0;
+    const appXPadding = l ? 2 : 4;
     const [openModalType, setOpenModalType] = useState<string | null>(null);
     const { currentLanguage } = useGetLanguage({ lang: lang?.code });
     const [scrollPosition, setScrollPosition] = useState(0);
@@ -30,7 +30,7 @@ export default function Home({ lang, setLang }) {
                 setOpenModalType={setOpenModalType}
             />
 
-            <Box px={appXPadding}>
+            <Box>
                 <Outlet
                     context={{
                         //main data
