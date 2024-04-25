@@ -24,13 +24,36 @@ const HomePage = () => {
                         gradientColor="#6666664e"
                         gradientWidth={s ? 100 : 300}
                     >
-                        {[...Array(12).keys()].map(el => (
-                            <img
-                                style={{ maxHeight: '100vh', overflow: 'hidden' }}
-                                src={require(`./images/${el + 1}.jpg`)}
-                                alt={`Loading ${el + 1}`}
-                            />
-                        ))}
+                        <img
+                            style={{ maxHeight: '100vh', overflow: 'hidden' }}
+                            src={require(`./images/${1}.jpg`)}
+                            alt={`Loading...`}
+                        />
+                        <img
+                            style={{ maxHeight: '100vh', overflow: 'hidden' }}
+                            src={require(`./images/${2}.jpg`)}
+                            alt={`Loading ...`}
+                        />{' '}
+                        <img
+                            style={{ maxHeight: '100vh', overflow: 'hidden' }}
+                            src={require(`./images/${3}.jpg`)}
+                            alt={`Loading ...`}
+                        />{' '}
+                        <img
+                            style={{ maxHeight: '100vh', overflow: 'hidden' }}
+                            src={require(`./images/${4}.jpg`)}
+                            alt={`Loading ...`}
+                        />{' '}
+                        <img
+                            style={{ maxHeight: '100vh', overflow: 'hidden' }}
+                            src={require(`./images/${5}.jpg`)}
+                            alt={`Loading ...`}
+                        />{' '}
+                        <img
+                            style={{ maxHeight: '100vh', overflow: 'hidden' }}
+                            src={require(`./images/${6}.jpg`)}
+                            alt={`Loading ...`}
+                        />
                     </Marquee>
                 </Box>
             </Box>
