@@ -10,7 +10,7 @@ const HomePage = () => {
             speed={65}
             gradient
             gradientColor="#6666664e"
-            gradientWidth={s ? 50 : 200}
+            gradientWidth={s ? 100 : 300}
         >
             {[...Array(12).keys()].map(el => (
                 <img style={{ maxHeight: '100vh' }} src={require(`./images/${el + 1}.jpg`)} alt={`Loading ${el + 1}`} />
