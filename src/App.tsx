@@ -48,7 +48,7 @@ const App = () => {
             return;
         }
         const savedLanguage = JSON.parse(getLang);
-
+        localStorage.setItem('catalog_mode', JSON.stringify(3));
         setLang(savedLanguage);
     }, []);
 

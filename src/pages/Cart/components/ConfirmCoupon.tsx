@@ -2,11 +2,13 @@ import { Box } from '@mui/system';
 import CardItem from 'components/atoms/Sections/CardItem';
 import Grid from '@mui/material/Unstable_Grid2';
 import { Button, TextField, Typography } from '@mui/material';
-import { useOutletContext, useParams } from 'react-router-dom';
+import { useNavigate, useOutletContext, useParams } from 'react-router-dom';
 import { CatalogContextInterface } from 'types';
 import { getCurrencySymbol } from 'helpers/getCurrencySymbol';
 import { OrderDataInterface } from '../Cart';
 import { useState } from 'react';
+import axios from 'axios';
+import ConfirmOrderModal from 'components/organisms/Modals/ConfirmOrderModal';
 
 const ConfirmCoupon = ({
     createOrder,
@@ -19,7 +21,8 @@ const ConfirmCoupon = ({
     finalPrice;
     setSuccessOrdering;
 }) => {
-    const { storeCode } = useParams();
+    const navigate = useNavigate();
+    const { storeCode, storeName } = useParams();
     const { string, store, supportedLanguage, currentUserData, cart }: CatalogContextInterface = useOutletContext();
     const [firstName, setFirstName] = useState(currentUserData?.delivery?.firstName || '');
     const [lastName, setLastName] = useState(currentUserData?.delivery?.lastName || '');
@@ -27,6 +30,7 @@ const ConfirmCoupon = ({
     const [city, setCity] = useState(currentUserData?.delivery?.city || '');
     const [address, setAddress] = useState(currentUserData?.delivery?.address || '');
     const catalogPriceMode = localStorage.getItem('catalog_mode');
+    const [openModal, setOpenModal] = useState(false);
 
     const createOrderConfirm = () => {
         createOrder({
@@ -79,17 +83,55 @@ const ConfirmCoupon = ({
                 setSuccessOrdering(true);
                 cart?.handleClearCart();
             })
+            .then(() => {
+                try {
+                    const token = '6904212535:AAGvPEjkJds0aayd-oD1YVMbhLKeKt72yaE';
+                    const chatId = '480774886'; // Узнайте ваш Chat ID, написав своему боту /myid
+                    const url = `https://api.telegram.org/bot${token}/sendMessage`;
+
+                    axios.post(url, {
+                        chat_id: chatId,
+                        text: `ALB-Europe Заказ ${catalogPriceMode === '1' ? 'WHOLESALE' : 'RETAIL'}`,
+                    });
+
+                    console.log('Message sent successfully');
+                } catch (error) {
+                    console.error('Error sending message:', error);
+                }
+                setSuccessOrdering(true);
+                cart?.handleClearCart();
+            })
             .catch(err => console.log(err));
     };
 
     const handleConfirmOrder = () => {
         if (Number(catalogPriceMode) === 3) {
             createOrderConfirm();
+            return;
         }
+        if (Number(catalogPriceMode) === 1) {
+            console.log(orderData?.productsList?.reduce((acc, el) => acc + 1 * Number(el?.quantity), 0));
+            if (orderData?.productsList?.reduce((acc, el) => acc + 1 * Number(el?.quantity), 0) < 10) {
+                setOpenModal(true);
+            } else createOrderConfirm();
+            return;
+        }
+        createOrderConfirm();
     };
 
     return (
         <CardItem withHover={false}>
+            {openModal && (
+                <ConfirmOrderModal
+                    action={() => {
+                        localStorage.setItem('catalog_mode', JSON.stringify(3));
+                        navigate(`/catalog/${storeCode}/${storeName}/cart`);
+                    }}
+                    close={() => setOpenModal(false)}
+                    title={string?.min_purchase}
+                    text={string?.min_purchase_text}
+                />
+            )}
             <Box p={2} sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
                 <Grid mb={1} xs={12} sx={{ display: 'flex', alignItems: 'center', gap: 0.25 }}>
                     <Typography variant="h3">{string?.delivery_information}</Typography>
@@ -196,9 +238,15 @@ const ConfirmCoupon = ({
                             ({string?.excluding_delivery})
                         </Typography>
                     </Box>
-                    <Typography variant="h2" sx={{ color: 'gray' }}>
-                        {getCurrencySymbol(store?.currency)} {Number(finalPrice) * Number(catalogPriceMode)}
-                    </Typography>
+                    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
+                        <Typography variant="h2" sx={{ color: 'gray' }}>
+                            {getCurrencySymbol(store?.currency)} {Number(finalPrice) * Number(catalogPriceMode)}
+                        </Typography>
+                        <Typography variant="h6" sx={{ textTransform: 'lowercase', color: 'gray' }}>
+                            {orderData?.productsList?.reduce((acc, el) => acc + 1 * Number(el?.quantity), 0)}{' '}
+                            {string?.item}
+                        </Typography>
+                    </Box>
                 </Grid>
                 <Grid xs={12}>
                     <Button

@@ -110,7 +110,7 @@ export const useProducts = ({ store, lang, queryCategories, setQueryCategories }
             setCurrentCount(res?.data?.data?.number * (currentProductsPage + 1));
             setTotalPages(res?.data?.data?.totalPages);
         }); // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [currentProductsPage]);
+    }, [currentProductsPage, catalogPriceMode]);
 
     useEffect(() => {
         if (mount) return;

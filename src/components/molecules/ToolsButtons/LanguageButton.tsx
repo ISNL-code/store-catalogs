@@ -92,7 +92,7 @@ const LanguageButton = ({
                 }}
             >
                 <LanguageIcon />
-                {sx && <Typography sx={{ fontSize: 10, color: 'rgba(0, 0, 0, 0.54)' }}>{string?.language}</Typography>}
+                {<Typography sx={{ fontSize: 10, color: 'rgba(0, 0, 0, 0.54)' }}>{string?.language}</Typography>}
                 {selectLangFlag()}
             </IconButton>
             <Menu

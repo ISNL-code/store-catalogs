@@ -7,6 +7,11 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'en',
             string: {
+                min_purchase: 'Minimum Purchase Requirement',
+                min_purchase_text:
+                    'Welcome to the Wholesale Alberto Bini Catalog. Please note that a minimum order of 10 items is required. For purchases of fewer than 10 items, kindly visit our Retail Catalog. Thank you for choosing Alberto Bini!',
+                item: 'item(s)',
+                add_more: 'Add more',
                 retail_catalog: 'Retail Catalog',
                 wholesale_catalog: 'Wholesale Catalog',
                 helper_pricing_text_1:
@@ -215,6 +220,11 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'fr',
             string: {
+                min_purchase: 'Exigence d`achat minimum',
+                min_purchase_text:
+                    'Bienvenue dans le Catalogue de Gros Alberto Bini. Veuillez noter qu`une commande minimale de 10 articles est requise. Pour des achats de moins de 10 articles, veuillez visiter notre Catalogue de Détail. Merci de choisir Alberto Bini!',
+                item: 'article(s)',
+                add_more: 'Ajouter plus',
                 retail_catalog: 'Catalogue de détail',
                 wholesale_catalog: 'Catalogue de gros',
                 helper_pricing_text_1:
@@ -425,6 +435,11 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'es',
             string: {
+                min_purchase: 'Requisito de compra mínima',
+                min_purchase_text:
+                    'Bienvenido al Catálogo Mayorista de Alberto Bini. Tenga en cuenta que se requiere un pedido mínimo de 10 artículos. Para compras de menos de 10 artículos, por favor visite nuestro Catálogo Minorista. ¡Gracias por elegir Alberto Bini!',
+                item: 'artículo(s)',
+                add_more: 'Agregar más',
                 retail_catalog: 'Catálogo de venta al por menor',
                 wholesale_catalog: 'Catálogo de venta al por mayor',
                 helper_pricing_text_1:
@@ -634,6 +649,11 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'ua',
             string: {
+                min_purchase: 'Вимога до мінімальної кількості покупки',
+                min_purchase_text:
+                    'Ласкаво просимо до Оптового каталогу Alberto Bini. Зверніть увагу, що необхідне замовлення мінімум 10 одиниць товару. Для покупки менше ніж 10 одиниць, будь ласка, відвідайте наш Роздрібний каталог. Дякуємо, що обрали Alberto Bini!',
+                item: 'од.',
+                add_more: 'Додати більше',
                 retail_catalog: 'Роздрібний каталог',
                 wholesale_catalog: 'Оптовий каталог',
                 helper_pricing_text_1:
@@ -843,6 +863,11 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'pl',
             string: {
+                min_purchase: 'Wymagany minimalny zakup',
+                min_purchase_text:
+                    'Witamy w Hurtowym Katalogu Alberto Bini. Prosimy zauważyć, że wymagane jest minimalne zamówienie 10 sztuk. Dla zakupów mniejszych niż 10 sztuk, prosimy odwiedzić nasz Katalog Detaliczny. Dziękujemy za wybór Alberto Bini!',
+                item: 'sztuka(i)',
+                add_more: 'Dodaj więcej',
                 retail_catalog: 'Katalog detaliczny',
                 wholesale_catalog: 'Katalog hurtowy',
                 helper_pricing_text_1:
@@ -1065,6 +1090,11 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'cz',
             string: {
+                min_purchase: 'Požadavek na minimální nákup',
+                min_purchase_text:
+                    'Vítejte v Velkoobchodním katalogu Alberto Bini. Vezměte prosím na vědomí, že je vyžadována minimální objednávka 10 položek. Pro nákupy menšího počtu než 10 položek navštivte prosím náš Maloobchodní katalog. Děkujeme, že jste si vybrali Alberto Bini!',
+                item: 'položka(y)',
+                add_more: 'Přidat více',
                 retail_catalog: 'Maloobchodní katalog',
                 wholesale_catalog: 'Velkoobchodní katalog',
                 helper_pricing_text_1:
@@ -1284,6 +1314,11 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'ru',
             string: {
+                min_purchase: 'Требование минимальной покупки',
+                min_purchase_text:
+                    'Добро пожаловать в Оптовый каталог Alberto Bini. Обратите внимание, что минимальный заказ составляет 10 единиц товара. Для покупки менее 10 единиц товара, пожалуйста, посетите наш Розничный каталог. Спасибо, что выбрали Alberto Bini!',
+                item: 'ед.',
+                add_more: 'Добавить ещё',
                 retail_catalog: 'Розничный каталог',
                 wholesale_catalog: 'Оптовый каталог',
                 helper_pricing_text_1:
