@@ -9,7 +9,7 @@ const HomePage = () => {
             loop={0}
             speed={65}
             gradient
-            gradientColor="#0000004e"
+            gradientColor="#6666664e"
             gradientWidth={s ? 50 : 200}
         >
             {[...Array(12).keys()].map(el => (
