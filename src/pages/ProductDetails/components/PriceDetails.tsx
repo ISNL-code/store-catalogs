@@ -5,7 +5,7 @@ import { useOutletContext } from 'react-router-dom';
 
 const PriceDetails = ({ productDetails, isShown }) => {
     const { string, store }: any = useOutletContext();
-
+    const catalogPriceMode = localStorage.getItem('catalog_mode');
     if (isShown)
         return (
             <DetailsSection label={string?.price}>
@@ -13,7 +13,8 @@ const PriceDetails = ({ productDetails, isShown }) => {
                     <Box>
                         <Typography>
                             {getCurrencySymbol(store?.currency)}
-                            {productDetails?.price?.replace('$', '')?.replace('UAH', '').replace('€', '')}
+                            {productDetails?.price?.replace('$', '')?.replace('UAH', '').replace('€', '') *
+                                Number(catalogPriceMode)}
                         </Typography>
                     </Box>
                 </Box>

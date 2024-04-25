@@ -25,7 +25,7 @@ const Favorites = () => {
     const [productIds, setProductIds] = useState<string[] | any[]>([]);
     const [favoriteProducts, setFavoriteProducts] = useState<ProductVariantInterface[] | any[]>([]);
     const [isOpenModal, setIsOpenModal] = useState(false);
-
+    const catalogPriceMode = localStorage.getItem('catalog_mode');
     const { isFetching: loadProducts, refetch: updateFavoriteProductsRes } = useProductsApi().useGetProductByIDForCart({
         id: productIds,
         lang: supportedLanguage,
@@ -60,13 +60,15 @@ const Favorites = () => {
                                 id: variant.id,
                                 productId: variant.productId,
                                 selected: variant.sku === sku,
-                                price: variant.inventory[0]?.price,
+                                price: variant.inventory[0]?.price * Number(catalogPriceMode),
                                 images: variant.images,
                                 colorCode: variant.variation.optionValue.code,
                                 sku: variant.sku,
                             };
                         }),
-                    price: products.find(el => el.variants.map(({ sku }) => sku).includes(sku))?.finalPrice,
+                    price:
+                        products.find(el => el.variants.map(({ sku }) => sku).includes(sku))?.finalPrice *
+                        Number(catalogPriceMode),
                     promoTags:
                         products
                             .find(el => el.variants.map(({ sku }) => sku).includes(sku))

@@ -26,7 +26,7 @@ const ConfirmCoupon = ({
     const [phone, setPhone] = useState(currentUserData?.delivery?.phone || '');
     const [city, setCity] = useState(currentUserData?.delivery?.city || '');
     const [address, setAddress] = useState(currentUserData?.delivery?.address || '');
-
+    const catalogPriceMode = localStorage.getItem('catalog_mode');
     return (
         <CardItem withHover={false}>
             <Box p={2} sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
@@ -136,7 +136,7 @@ const ConfirmCoupon = ({
                         </Typography>
                     </Box>
                     <Typography variant="h2" sx={{ color: 'gray' }}>
-                        {getCurrencySymbol(store?.currency)} {Number(finalPrice).toFixed(2)}
+                        {getCurrencySymbol(store?.currency)} {Number(finalPrice) * Number(catalogPriceMode)}
                     </Typography>
                 </Grid>
                 <Grid xs={12}>

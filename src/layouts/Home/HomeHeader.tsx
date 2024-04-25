@@ -46,11 +46,24 @@ const HomeHeader = ({ headerHeight, appXPadding, string, lang, setLang, setOpenM
                         isShown={!sx}
                     />
                     <HeaderNavButton
-                        title={string?.catalog}
+                        title={string?.wholesale_catalog}
                         path={`/catalog/${'ALBERTO_BINI'}/${'alberto-bini'}`}
                         icon={props => <GridViewIcon {...props} />}
                         isShown={!sx}
                         isActive={location.pathname.includes('details')}
+                        action={() => {
+                            localStorage.setItem('catalog_mode', JSON.stringify(1));
+                        }}
+                    />
+                    <HeaderNavButton
+                        title={string?.retail_catalog}
+                        path={`/catalog/${'ALBERTO_BINI'}/${'alberto-bini'}`}
+                        icon={props => <GridViewIcon {...props} />}
+                        isShown={!sx}
+                        isActive={location.pathname.includes('details')}
+                        action={() => {
+                            localStorage.setItem('catalog_mode', JSON.stringify(3));
+                        }}
                     />
                     <LanguageButton setLang={setLang} string={string} lang={lang} setOpenModalType={setOpenModalType} />
                 </Box>

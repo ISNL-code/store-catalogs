@@ -17,28 +17,33 @@ const UserOrders = () => {
     const { handleGetStatusParams } = useGetStatusParams();
     const { s } = useDevice();
     const { storeCode, storeName } = useParams();
-    const { string }: CatalogContextInterface = useOutletContext();
+    const { string, store }: CatalogContextInterface = useOutletContext();
     const [orderData, setOrderData] = useState<OrderInterFace | any>(null);
     const { data: customerOrdersRes, isFetching: loadingOrders } = useUserApi().useGetCustomersOrders({
         storeCode,
     });
     const [isOpenDetails, setIsOpenDetails] = useState({ open: false, id: null });
-
+    const catalogPriceMode = localStorage.getItem('catalog_mode');
     useEffect(() => {
         if (!customerOrdersRes || loadingOrders) return;
 
         const order = customerOrdersRes.data.orders;
         setOrderData(
-            order?.map(el => {
-                return {
-                    id: el.id,
-                    orderStatus: el?.orderStatus,
-                    datePurchased: el?.datePurchased,
-                    products: el?.products,
-                    total: { value: el?.total?.value },
-                    currency: el?.currency,
-                };
-            })
+            order
+                ?.map(el => {
+                    return {
+                        id: el.id,
+                        orderStatus: el?.orderStatus,
+                        datePurchased: el?.datePurchased,
+                        products: el?.products,
+                        total: { value: el?.total?.value },
+                        currency: el?.currency,
+                    };
+                })
+                .filter(el => {
+                    if (Number(catalogPriceMode) === 1) return el?.products?.length >= 10;
+                    if (Number(catalogPriceMode) === 3) return el?.products?.length < 10;
+                })
         );
     }, [customerOrdersRes, loadingOrders]);
 
@@ -243,7 +248,13 @@ const UserOrders = () => {
                                                                 {string?.price}:
                                                             </Typography>
                                                         )}
-                                                        <Typography variant="h5">{price || '---'}</Typography>
+                                                        <Typography variant="h5">
+                                                            {getCurrencySymbol(store?.currency)}
+                                                            {price
+                                                                ?.replace('$', '')
+                                                                ?.replace('UAH', '')
+                                                                .replace('€', '') * Number(catalogPriceMode) || '---'}
+                                                        </Typography>
                                                     </Grid>
                                                     <Grid
                                                         xs={s ? 12 : 3}
@@ -282,7 +293,7 @@ const UserOrders = () => {
                                                 </Typography>
                                                 <Typography variant="h5">
                                                     {getCurrencySymbol(order?.currency)}
-                                                    {order?.total?.value}
+                                                    {order?.total?.value * Number(catalogPriceMode)}
                                                 </Typography>
                                             </Grid>
                                         </Grid>

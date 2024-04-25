@@ -1,10 +1,15 @@
 import { Box, Typography } from '@mui/material';
 import { useDevice } from 'hooks/useDevice';
+import { useNavigate } from 'react-router-dom';
 
 const CatalogHeaderLogo = () => {
     const { xs } = useDevice();
+    const navigate = useNavigate();
     return (
-        <Box sx={{ display: 'flex', alignItems: 'center', cursor: 'pointer', gap: xs ? 0.25 : 0.25 }}>
+        <Box
+            sx={{ display: 'flex', alignItems: 'center', cursor: 'pointer', gap: xs ? 0.25 : 0.25 }}
+            onClick={() => navigate('/')}
+        >
             <Box sx={{ boxShadow: '0 0 5px 1px #414141c5', borderRadius: '50%', border: '2.2px solid #383838' }}>
                 <Box
                     sx={{
@@ -40,7 +45,6 @@ const CatalogHeaderLogo = () => {
                     gap: 0.05,
                     alignItems: 'center',
                     mt: 0.5,
-                    // borderBottom: '2px double #616161c6',
                     px: 0.25,
                     position: 'relative',
                     mb: 0.5,

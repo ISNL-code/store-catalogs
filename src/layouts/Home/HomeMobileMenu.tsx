@@ -34,8 +34,20 @@ const HomeMobileMenu = ({ appXPadding, isShown, string }) => {
                     <MobileNavButton
                         path={`/catalog/${'ALBERTO_BINI'}/${'alberto-bini'}`}
                         childPath={['/details', '/contacts', 'model']}
-                        title={string?.catalog}
+                        title={string?.wholesale_catalog}
                         icon={p => <GridViewIcon {...p} />}
+                        action={() => {
+                            localStorage.setItem('catalog_mode', JSON.stringify(1));
+                        }}
+                    />
+                    <MobileNavButton
+                        path={`/catalog/${'ALBERTO_BINI'}/${'alberto-bini'}`}
+                        childPath={['/details', '/contacts', 'model']}
+                        title={string?.retail_catalog}
+                        icon={p => <GridViewIcon {...p} />}
+                        action={() => {
+                            localStorage.setItem('catalog_mode', JSON.stringify(3));
+                        }}
                     />
                 </Box>
             </Box>

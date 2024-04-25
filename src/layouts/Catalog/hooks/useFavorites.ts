@@ -14,7 +14,7 @@ export const useFavorites = ({ store, lang, queryCategories, setQueryCategories 
     const [totalCount, setTotalCount] = useState(0);
     const [currentCount, setCurrentCount] = useState(0);
     const [totalPages, setTotalPages] = useState(0);
-
+    const catalogPriceMode = localStorage.getItem('catalog_mode');
     const {
         data: favoritesRes,
         isFetching: loadFavorites,
@@ -51,14 +51,14 @@ export const useFavorites = ({ store, lang, queryCategories, setQueryCategories 
                                     id: variant.id,
                                     productId: variant.productId,
                                     selected: idx === 0,
-                                    price: variant.inventory[0]?.price,
+                                    price: variant.inventory[0]?.price * Number(catalogPriceMode),
                                     images: variant.images,
                                     colorCode: variant.variation.optionValue.code,
                                     sku: variant.sku,
                                 };
                             }),
                         name: product.product.description.name,
-                        price: product.product.finalPrice,
+                        price: product.product.finalPrice * Number(catalogPriceMode),
                         promoTags:
                             product.product.options
                                 .find(({ code }) => code === 'PROMO')
@@ -97,14 +97,14 @@ export const useFavorites = ({ store, lang, queryCategories, setQueryCategories 
                                             id: variant.id,
                                             productId: variant.productId,
                                             selected: idx === 0,
-                                            price: variant.inventory[0]?.price,
+                                            price: variant.inventory[0]?.price * Number(catalogPriceMode),
                                             images: variant.images,
                                             colorCode: variant.variation.optionValue.code,
                                             sku: variant.sku,
                                         };
                                     }),
                                 name: product.product.description.name,
-                                price: product.product.finalPrice,
+                                price: product.product.finalPrice * Number(catalogPriceMode),
                                 promoTags:
                                     product.product.options
                                         .find(({ code }) => code === 'PROMO')

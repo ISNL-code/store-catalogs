@@ -7,6 +7,8 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'en',
             string: {
+                retail_catalog: 'Retail Catalog',
+                wholesale_catalog: 'Wholesale Catalog',
                 helper_pricing_text_1:
                     'Do you want to try it or do you have a small range of products? Our plan provides ease of use, a beautiful online catalog and reliable support. This is an ideal choice for your experiments and first steps in using the catalog.',
                 helper_pricing_text_2:
@@ -213,6 +215,8 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'fr',
             string: {
+                retail_catalog: 'Catalogue de détail',
+                wholesale_catalog: 'Catalogue de gros',
                 helper_pricing_text_1:
                     "Voulez-vous l'essayer ou avez-vous une petite gamme de produits ? Notre plan offre une facilité d'utilisation, un beau catalogue en ligne et un support fiable. C'est le choix idéal pour vos expérimentations et vos premiers pas dans l'utilisation du catalogue.",
                 helper_pricing_text_2:
@@ -421,6 +425,8 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'es',
             string: {
+                retail_catalog: 'Catálogo de venta al por menor',
+                wholesale_catalog: 'Catálogo de venta al por mayor',
                 helper_pricing_text_1:
                     '¿Quieres probarlo o tienes una gama pequeña de productos? Nuestro plan ofrece facilidad de uso, un hermoso catálogo en línea y soporte confiable. Esta es la opción ideal para tus experimentos y primeros pasos en el uso del catálogo.',
                 helper_pricing_text_2:
@@ -628,6 +634,8 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'ua',
             string: {
+                retail_catalog: 'Роздрібний каталог',
+                wholesale_catalog: 'Оптовий каталог',
                 helper_pricing_text_1:
                     'Бажаєте спробувати, чи у вас невеликий асортимент продукції? Наш план забезпечує зручність у використанні, прекрасний онлайн-каталог та надійну підтримку. Це ідеальний вибір для ваших експериментів та перших кроків у використанні каталогу.',
                 helper_pricing_text_2:
@@ -835,6 +843,8 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'pl',
             string: {
+                retail_catalog: 'Katalog detaliczny',
+                wholesale_catalog: 'Katalog hurtowy',
                 helper_pricing_text_1:
                     'Chcesz to wypróbować, czy masz małą gamę produktów? Nasz plan zapewnia łatwość użytkowania, piękny katalog online i niezawodne wsparcie. Jest to idealny wybór na twoje eksperymenty i pierwsze kroki w korzystaniu z katalogu.',
                 helper_pricing_text_2:
@@ -1055,6 +1065,8 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'cz',
             string: {
+                retail_catalog: 'Maloobchodní katalog',
+                wholesale_catalog: 'Velkoobchodní katalog',
                 helper_pricing_text_1:
                     'Chcete to vyzkoušet, nebo máte malý sortiment produktů? Náš plán poskytuje snadné použití, krásný online katalog a spolehlivou podporu. Je to ideální volba pro vaše experimenty a první kroky při používání katalogu.',
                 helper_pricing_text_2:
@@ -1272,6 +1284,8 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'ru',
             string: {
+                retail_catalog: 'Розничный каталог',
+                wholesale_catalog: 'Оптовый каталог',
                 helper_pricing_text_1:
                     'Хотите попробовать или у вас небольшой ассортимент продукции? Наш план обеспечивает простоту использования, красивый онлайн-каталог и надежную поддержку. Это идеальный выбор для ваших экспериментов и первых шагов в использовании каталога.',
                 helper_pricing_text_2:

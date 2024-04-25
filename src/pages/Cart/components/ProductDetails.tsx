@@ -8,7 +8,7 @@ const ProductDetails = ({ data }) => {
     const navigate = useNavigate();
     const { storeCode, storeName } = useParams();
     const { string, cart, store }: CatalogContextInterface = useOutletContext();
-
+    const catalogPriceMode = localStorage.getItem('catalog_mode');
     return (
         <>
             <Grid
@@ -56,7 +56,7 @@ const ProductDetails = ({ data }) => {
                 <Typography>{string?.price}:</Typography>
                 <Typography variant="h3" sx={{ color: 'gray' }}>
                     {getCurrencySymbol(store?.currency)}
-                    {data?.inventory ? data?.inventory[0]?.price : '0'}
+                    {data?.inventory ? data?.inventory[0]?.price * Number(catalogPriceMode) : '0'}
                 </Typography>
             </Box>
             <Box sx={{ display: 'flex', gap: 1 }}>

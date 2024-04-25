@@ -72,7 +72,7 @@ export const STORES_DATA = [
         ],
         managers: [
             {
-                firstName: 'Elena',
+                firstName: 'Alberto Bini Manager',
                 lastName: '',
                 emailAddress: 'alb-admin@mail.com',
                 options: { manager: true },
