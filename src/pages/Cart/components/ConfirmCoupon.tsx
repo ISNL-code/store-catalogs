@@ -27,6 +27,67 @@ const ConfirmCoupon = ({
     const [city, setCity] = useState(currentUserData?.delivery?.city || '');
     const [address, setAddress] = useState(currentUserData?.delivery?.address || '');
     const catalogPriceMode = localStorage.getItem('catalog_mode');
+
+    const createOrderConfirm = () => {
+        createOrder({
+            lang: supportedLanguage,
+            storeCode,
+            data: {
+                shoppingCartItems: orderData.productsList.map(item => {
+                    return {
+                        attributes: [
+                            {
+                                id: item?.sizeId,
+                                name: 'Size',
+                                variant: false,
+                            },
+                            {
+                                id: item.colorId,
+                                name: 'Color',
+                                variant: true,
+                            },
+                        ],
+                        product: item?.sku,
+                        quantity: item?.quantity,
+                    };
+                }),
+                amount: Number(finalPrice).toFixed(2),
+                order: {
+                    shippingQuote: '',
+                    currency: store?.currency,
+                    payment: {
+                        paymentType: 'MONEYORDER',
+                        transactionType: 'CAPTURE',
+                        paymentModule: 'moneyorder',
+                        paymentToken: null,
+                        amount: finalPrice,
+                    },
+                    delivery: {
+                        address: orderData.delivery.address,
+                        city: orderData.delivery.city,
+                        postalCode: orderData.delivery.postalCode,
+                        country: orderData.delivery.country,
+                        zone: orderData.delivery.zone,
+                        firstName: orderData.delivery.firstName,
+                        lastName: orderData.delivery.lastName,
+                        phone: orderData.delivery.phone,
+                    },
+                },
+            },
+        })
+            .then(() => {
+                setSuccessOrdering(true);
+                cart?.handleClearCart();
+            })
+            .catch(err => console.log(err));
+    };
+
+    const handleConfirmOrder = () => {
+        if (Number(catalogPriceMode) === 3) {
+            createOrderConfirm();
+        }
+    };
+
     return (
         <CardItem withHover={false}>
             <Box p={2} sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
@@ -145,57 +206,7 @@ const ConfirmCoupon = ({
                         variant="contained"
                         sx={{ width: '100%' }}
                         onClick={() => {
-                            createOrder({
-                                lang: supportedLanguage,
-                                storeCode,
-                                data: {
-                                    shoppingCartItems: orderData.productsList.map(item => {
-                                        return {
-                                            attributes: [
-                                                {
-                                                    id: item?.sizeId,
-                                                    name: 'Size',
-                                                    variant: false,
-                                                },
-                                                {
-                                                    id: item.colorId,
-                                                    name: 'Color',
-                                                    variant: true,
-                                                },
-                                            ],
-                                            product: item?.sku,
-                                            quantity: item?.quantity,
-                                        };
-                                    }),
-                                    amount: Number(finalPrice).toFixed(2),
-                                    order: {
-                                        shippingQuote: '',
-                                        currency: store?.currency,
-                                        payment: {
-                                            paymentType: 'MONEYORDER',
-                                            transactionType: 'CAPTURE',
-                                            paymentModule: 'moneyorder',
-                                            paymentToken: null,
-                                            amount: finalPrice,
-                                        },
-                                        delivery: {
-                                            address: orderData.delivery.address,
-                                            city: orderData.delivery.city,
-                                            postalCode: orderData.delivery.postalCode,
-                                            country: orderData.delivery.country,
-                                            zone: orderData.delivery.zone,
-                                            firstName: orderData.delivery.firstName,
-                                            lastName: orderData.delivery.lastName,
-                                            phone: orderData.delivery.phone,
-                                        },
-                                    },
-                                },
-                            })
-                                .then(() => {
-                                    setSuccessOrdering(true);
-                                    cart?.handleClearCart();
-                                })
-                                .catch(err => console.log(err));
+                            handleConfirmOrder();
                         }}
                     >
                         {string?.confirm_order}
