@@ -2,6 +2,7 @@ import { Box } from '@mui/material';
 import MobileNavButton from 'components/atoms/Buttons/MobileNavButton';
 import GridViewIcon from '@mui/icons-material/GridView';
 import StoreIcon from '@mui/icons-material/Store';
+import Grid from '@mui/material/Unstable_Grid2';
 
 const menuHeight = '70px';
 
@@ -20,36 +21,40 @@ const HomeMobileMenu = ({ appXPadding, isShown, string }) => {
                     zIndex: 4000,
                 }}
             >
-                <Box
+                <Grid
+                    xs={12}
+                    container
                     mt={0.5}
                     sx={{
                         height: menuHeight,
-                        display: 'flex',
-                        alignItems: 'baseline',
-                        justifyContent: 'space-around',
-                        gap: 2,
                     }}
                 >
-                    <MobileNavButton path={`/`} title={string?.home} icon={p => <StoreIcon {...p} />} />
-                    <MobileNavButton
-                        path={`/catalog/${'ALBERTO_BINI'}/${'alberto-bini'}`}
-                        childPath={['/details', '/contacts', 'model']}
-                        title={string?.wholesale_catalog}
-                        icon={p => <GridViewIcon {...p} />}
-                        action={() => {
-                            localStorage.setItem('catalog_mode', JSON.stringify(1));
-                        }}
-                    />
-                    <MobileNavButton
-                        path={`/catalog/${'ALBERTO_BINI'}/${'alberto-bini'}`}
-                        childPath={['/details', '/contacts', 'model']}
-                        title={string?.retail_catalog}
-                        icon={p => <GridViewIcon {...p} />}
-                        action={() => {
-                            localStorage.setItem('catalog_mode', JSON.stringify(3));
-                        }}
-                    />
-                </Box>
+                    <Grid xs={4}>
+                        <MobileNavButton path={`/`} title={string?.home} icon={p => <StoreIcon {...p} />} />
+                    </Grid>
+                    <Grid xs={4}>
+                        <MobileNavButton
+                            path={`/catalog/${'ALBERTO_BINI'}/${'alberto-bini'}`}
+                            childPath={['/details', '/contacts', 'model']}
+                            title={string?.wholesale_catalog}
+                            icon={p => <GridViewIcon {...p} />}
+                            action={() => {
+                                localStorage.setItem('catalog_mode', JSON.stringify(1));
+                            }}
+                        />
+                    </Grid>
+                    <Grid xs={4}>
+                        <MobileNavButton
+                            path={`/catalog/${'ALBERTO_BINI'}/${'alberto-bini'}`}
+                            childPath={['/details', '/contacts', 'model']}
+                            title={string?.retail_catalog}
+                            icon={p => <GridViewIcon {...p} />}
+                            action={() => {
+                                localStorage.setItem('catalog_mode', JSON.stringify(3));
+                            }}
+                        />
+                    </Grid>
+                </Grid>
             </Box>
         );
     return null;
