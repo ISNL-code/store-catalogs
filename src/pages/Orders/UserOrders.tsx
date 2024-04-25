@@ -43,8 +43,11 @@ const UserOrders = () => {
                 .filter(el => {
                     if (Number(catalogPriceMode) === 1) return el?.products?.length >= 10;
                     if (Number(catalogPriceMode) === 3) return el?.products?.length < 10;
+                    return true;
                 })
         );
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [customerOrdersRes, loadingOrders]);
 
     return (
