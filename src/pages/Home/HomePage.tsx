@@ -16,7 +16,7 @@ const HomePage = () => {
                 <ContactsButton />
                 <Box style={{ overflow: 'hidden', maxHeight: '100vh', background: '#ccc' }}>
                     <Marquee
-                        // autoFill
+                        autoFill
                         loop={10}
                         speed={65}
                         gradient
