@@ -141,10 +141,12 @@ const HomePage = () => {
                     mt={2}
                     sx={{ backgroundColor: '#ffffff78', zIndex: 2, borderRadius: 1 }}
                 >
-                    <Typography sx={{ color: '#000', zIndex: 1, fontSize: sx ? 24 : 38 }}>24/7 Operations</Typography>
+                    <Typography sx={{ color: '#000', zIndex: 1, fontSize: sx ? 24 : 38 }}>
+                        Wholesale and Retail Sales
+                    </Typography>
                     <Typography sx={{ color: '#2c2c2c', zIndex: 1, fontWeight: 500, fontSize: sx ? 18 : 26 }}>
-                        Our operations are optimized for responsiveness and efficiency, ensuring rapid order processing
-                        and excellent customer service at any hour.
+                        We offer flexible terms for both wholesale and retail buyers, providing wide access to our
+                        products for large retail chains and individual customers alike.
                     </Typography>
                 </Grid>
                 <Grid
@@ -155,12 +157,10 @@ const HomePage = () => {
                     mt={2}
                     sx={{ backgroundColor: '#ffffff78', zIndex: 2, borderRadius: 1 }}
                 >
-                    <Typography sx={{ color: '#000', zIndex: 1, fontSize: sx ? 24 : 38 }}>
-                        Wholesale and Retail Sales
-                    </Typography>
+                    <Typography sx={{ color: '#000', zIndex: 1, fontSize: sx ? 24 : 38 }}>24/7 Operations</Typography>
                     <Typography sx={{ color: '#2c2c2c', zIndex: 1, fontWeight: 500, fontSize: sx ? 18 : 26 }}>
-                        We offer flexible terms for both wholesale and retail buyers, providing wide access to our
-                        products for large retail chains and individual customers alike.
+                        Our operations are optimized for responsiveness and efficiency, ensuring rapid order processing
+                        and excellent customer service at any hour.
                     </Typography>
                 </Grid>
             </Grid>
