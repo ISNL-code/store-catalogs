@@ -117,7 +117,7 @@ const HomePage = () => {
                     <Typography sx={{ color: '#000', zIndex: 1, fontSize: sx ? 24 : 36 }}>
                         {string?.customer_title_1}
                     </Typography>
-                    <Typography sx={{ color: '#2c2c2c', zIndex: 1, fontWeight: 500, fontSize: sx ? 18 : 24 }}>
+                    <Typography sx={{ color: '#2c2c2c', zIndex: 1, fontWeight: 500, fontSize: sx ? 16 : 24 }}>
                         {string?.customer_description_1}
                     </Typography>
                 </Grid>
@@ -132,7 +132,7 @@ const HomePage = () => {
                     <Typography sx={{ color: '#000', zIndex: 1, fontSize: sx ? 24 : 36 }}>
                         {string?.customer_title_2}
                     </Typography>
-                    <Typography sx={{ color: '#2c2c2c', zIndex: 1, fontWeight: 500, fontSize: sx ? 18 : 24 }}>
+                    <Typography sx={{ color: '#2c2c2c', zIndex: 1, fontWeight: 500, fontSize: sx ? 16 : 24 }}>
                         {string?.customer_description_2}
                     </Typography>
                 </Grid>
@@ -147,7 +147,7 @@ const HomePage = () => {
                     <Typography sx={{ color: '#000', zIndex: 1, fontSize: sx ? 24 : 36 }}>
                         {string?.customer_title_3}
                     </Typography>
-                    <Typography sx={{ color: '#2c2c2c', zIndex: 1, fontWeight: 500, fontSize: sx ? 18 : 24 }}>
+                    <Typography sx={{ color: '#2c2c2c', zIndex: 1, fontWeight: 500, fontSize: sx ? 16 : 24 }}>
                         {string?.customer_description_3}{' '}
                     </Typography>
                 </Grid>
@@ -160,7 +160,7 @@ const HomePage = () => {
                     sx={{ backgroundColor: '#ffffff78', zIndex: 1, borderRadius: 1 }}
                 >
                     <Typography sx={{ color: '#000', fontSize: sx ? 24 : 36 }}>{string?.customer_title_4}</Typography>
-                    <Typography sx={{ color: '#2c2c2c', fontWeight: 500, fontSize: sx ? 18 : 24 }}>
+                    <Typography sx={{ color: '#2c2c2c', fontWeight: 500, fontSize: sx ? 16 : 24 }}>
                         {string?.customer_description_4}
                     </Typography>
                 </Grid>
