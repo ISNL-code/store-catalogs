@@ -84,9 +84,70 @@ const HomePage = () => {
                 </Box>
             </Box>
             <Grid container xs={12} mt={-5}>
-                <Typography sx={{ color: '#fff', zIndex: 1, textShadow: '#000000 0 0 5px', fontSize: sx ? 56 : 96 }}>
+                <Typography
+                    variant="h1"
+                    sx={{ color: '#fff', zIndex: 1, textShadow: '#000000 0 0 5px', fontSize: sx ? 56 : 96 }}
+                >
                     Elegance in Outerwear
                 </Typography>
+            </Grid>
+            <Grid
+                xs={12}
+                container
+                mt={5}
+                sx={{
+                    flexWrap: 'wrap',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    maxWidth: '900px',
+                }}
+            >
+                <Grid
+                    p={sx ? 1 : 4}
+                    container
+                    xs={12}
+                    mt={2}
+                    sx={{ backgroundColor: '#ffffff78', zIndex: 2, borderRadius: 1 }}
+                >
+                    <Typography sx={{ color: '#000', zIndex: 1, fontSize: sx ? 24 : 40, mb: 1 }}>
+                        Extensive Collection
+                    </Typography>
+                    <Typography sx={{ color: '#2c2c2c', zIndex: 1, fontWeight: 500, fontSize: sx ? 18 : 28 }}>
+                        Our portfolio features an expansive range of styles suited for various age groups and
+                        preferences, constantly updated with the latest fashion trends.
+                    </Typography>
+                </Grid>
+                <Grid
+                    p={sx ? 1 : 4}
+                    container
+                    xs={12}
+                    mt={2}
+                    sx={{ backgroundColor: '#ffffff78', zIndex: 2, borderRadius: 1 }}
+                >
+                    <Typography sx={{ color: '#000', zIndex: 1, fontSize: sx ? 24 : 40, mb: 1 }}>
+                        Quality Assurance
+                    </Typography>
+                    <Typography sx={{ color: '#2c2c2c', zIndex: 1, fontWeight: 500, fontSize: sx ? 18 : 28 }}>
+                        We emphasize superior craftsmanship, utilizing durable and fashionable materials to ensure each
+                        piece not only looks elegant but lasts.
+                    </Typography>
+                </Grid>
+                <Grid
+                    p={sx ? 1 : 4}
+                    container
+                    xs={12}
+                    mt={2}
+                    sx={{ backgroundColor: '#ffffff78', zIndex: 2, borderRadius: 1 }}
+                >
+                    <Typography sx={{ color: '#000', zIndex: 1, fontSize: sx ? 24 : 40, mb: 1 }}>
+                        24/7 Operations
+                    </Typography>
+                    <Typography sx={{ color: '#2c2c2c', zIndex: 1, fontWeight: 500, fontSize: sx ? 18 : 28 }}>
+                        Our operations are optimized for responsiveness and efficiency, ensuring rapid order processing
+                        and excellent customer service at any hour.
+                    </Typography>
+                </Grid>
             </Grid>
         </>
     );
