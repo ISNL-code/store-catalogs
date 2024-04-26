@@ -3,8 +3,6 @@ import ContactsButton from 'components/atoms/Buttons/ContactsButton';
 import { useDevice } from 'hooks/useDevice';
 import Marquee from 'react-fast-marquee';
 import Grid from '@mui/material/Unstable_Grid2';
-import { useOutletContext } from 'react-router-dom';
-import { CatalogContextInterface } from 'types';
 
 const HomePage = () => {
     const { sx, s } = useDevice();
