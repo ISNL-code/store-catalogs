@@ -3,8 +3,10 @@ import ContactsButton from 'components/atoms/Buttons/ContactsButton';
 import { useDevice } from 'hooks/useDevice';
 import Marquee from 'react-fast-marquee';
 import Grid from '@mui/material/Unstable_Grid2';
+import { useOutletContext } from 'react-router-dom';
 
 const HomePage = () => {
+    const { string }: any = useOutletContext();
     const { sx, s } = useDevice();
 
     return (
@@ -112,25 +114,10 @@ const HomePage = () => {
                     sx={{ backgroundColor: '#ffffff78', zIndex: 2, borderRadius: 1 }}
                 >
                     <Typography sx={{ color: '#000', zIndex: 1, fontSize: sx ? 24 : 38 }}>
-                        Extensive Collection
+                        {string?.customer_title_1}
                     </Typography>
                     <Typography sx={{ color: '#2c2c2c', zIndex: 1, fontWeight: 500, fontSize: sx ? 18 : 26 }}>
-                        Our portfolio features an expansive range of styles suited for various age groups and
-                        preferences, constantly updated with the latest fashion trends.
-                    </Typography>
-                </Grid>
-                <Grid
-                    p={sx ? 1 : 4}
-                    py={sx ? 1 : 2}
-                    container
-                    xs={12}
-                    mt={2}
-                    sx={{ backgroundColor: '#ffffff78', zIndex: 2, borderRadius: 1 }}
-                >
-                    <Typography sx={{ color: '#000', zIndex: 1, fontSize: sx ? 24 : 38 }}>Quality Assurance</Typography>
-                    <Typography sx={{ color: '#2c2c2c', zIndex: 1, fontWeight: 500, fontSize: sx ? 18 : 26 }}>
-                        We emphasize superior craftsmanship, utilizing durable and fashionable materials to ensure each
-                        piece not only looks elegant but lasts.
+                        {string?.customer_description_1}
                     </Typography>
                 </Grid>
                 <Grid
@@ -142,11 +129,10 @@ const HomePage = () => {
                     sx={{ backgroundColor: '#ffffff78', zIndex: 2, borderRadius: 1 }}
                 >
                     <Typography sx={{ color: '#000', zIndex: 1, fontSize: sx ? 24 : 38 }}>
-                        Wholesale and Retail Sales
+                        {string?.customer_title_2}
                     </Typography>
                     <Typography sx={{ color: '#2c2c2c', zIndex: 1, fontWeight: 500, fontSize: sx ? 18 : 26 }}>
-                        We offer flexible terms for both wholesale and retail buyers, providing wide access to our
-                        products for large retail chains and individual customers alike.
+                        {string?.customer_description_2}
                     </Typography>
                 </Grid>
                 <Grid
@@ -157,10 +143,26 @@ const HomePage = () => {
                     mt={2}
                     sx={{ backgroundColor: '#ffffff78', zIndex: 2, borderRadius: 1 }}
                 >
-                    <Typography sx={{ color: '#000', zIndex: 1, fontSize: sx ? 24 : 38 }}>24/7 Operations</Typography>
+                    <Typography sx={{ color: '#000', zIndex: 1, fontSize: sx ? 24 : 38 }}>
+                        {string?.customer_title_3}
+                    </Typography>
                     <Typography sx={{ color: '#2c2c2c', zIndex: 1, fontWeight: 500, fontSize: sx ? 18 : 26 }}>
-                        Our operations are optimized for responsiveness and efficiency, ensuring rapid order processing
-                        and excellent customer service at any hour.
+                        {string?.customer_description_3}{' '}
+                    </Typography>
+                </Grid>
+                <Grid
+                    p={sx ? 1 : 4}
+                    py={sx ? 1 : 2}
+                    container
+                    xs={12}
+                    mt={2}
+                    sx={{ backgroundColor: '#ffffff78', zIndex: 2, borderRadius: 1 }}
+                >
+                    <Typography sx={{ color: '#000', zIndex: 1, fontSize: sx ? 24 : 38 }}>
+                        {string?.customer_title_4}
+                    </Typography>
+                    <Typography sx={{ color: '#2c2c2c', zIndex: 1, fontWeight: 500, fontSize: sx ? 18 : 26 }}>
+                        {string?.customer_description_4}
                     </Typography>
                 </Grid>
             </Grid>
