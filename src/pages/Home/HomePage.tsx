@@ -11,9 +11,8 @@ const HomePage = () => {
     const { string }: any = useOutletContext();
     const { sx, s } = useDevice();
 
-    const variants = {
-        hidden: { opacity: 0, y: 150 },
-        visible: { opacity: 1, y: 0 },
+    const variants = num => {
+        return { hidden: { opacity: sx ? 0 : 1, y: sx ? 100 * num : 0 }, visible: { opacity: 1, y: 0 } };
     };
 
     return (
@@ -105,7 +104,7 @@ const HomePage = () => {
                 mb={sx ? 20 : 5}
                 xs={12}
                 container
-                mt={sx ? '80vh' : 3}
+                mt={sx ? '90vh' : 3}
                 sx={{
                     flexWrap: 'wrap',
                     display: 'flex',
@@ -120,7 +119,7 @@ const HomePage = () => {
                         whileInView="visible"
                         viewport={{ once: true, amount: 0.5 }}
                         transition={{ duration: 0.5 }}
-                        variants={variants}
+                        variants={variants(el)}
                         style={{ width: '100%', zIndex: 2 }}
                     >
                         <Grid
@@ -140,49 +139,6 @@ const HomePage = () => {
                         </Grid>
                     </motion.div>
                 ))}
-                {/* <Grid
-                    p={sx ? 1.5 : 4}
-                    py={sx ? 1 : 1.75}
-                    container
-                    xs={12}
-                    mt={1.5}
-                    sx={{ backgroundColor: '#ffffff78', zIndex: 2, borderRadius: 1 }}
-                >
-                    <Typography sx={{ color: '#000', zIndex: 1, fontSize: sx ? 24 : 36 }}>
-                        {string?.customer_title_2}
-                    </Typography>
-                    <Typography sx={{ color: '#2c2c2c', zIndex: 1, fontWeight: 500, fontSize: sx ? 16 : 24 }}>
-                        {string?.customer_description_2}
-                    </Typography>
-                </Grid>
-                <Grid
-                    p={sx ? 1 : 4}
-                    py={sx ? 1 : 1.75}
-                    container
-                    xs={12}
-                    mt={1.5}
-                    sx={{ backgroundColor: '#ffffff78', zIndex: 2, borderRadius: 1 }}
-                >
-                    <Typography sx={{ color: '#000', zIndex: 1, fontSize: sx ? 24 : 36 }}>
-                        {string?.customer_title_3}
-                    </Typography>
-                    <Typography sx={{ color: '#2c2c2c', zIndex: 1, fontWeight: 500, fontSize: sx ? 16 : 24 }}>
-                        {string?.customer_description_3}{' '}
-                    </Typography>
-                </Grid>
-                <Grid
-                    p={sx ? 1 : 4}
-                    py={sx ? 1 : 1.75}
-                    container
-                    xs={12}
-                    mt={1.5}
-                    sx={{ backgroundColor: '#ffffff78', zIndex: 1, borderRadius: 1 }}
-                >
-                    <Typography sx={{ color: '#000', fontSize: sx ? 24 : 36 }}>{string?.customer_title_4}</Typography>
-                    <Typography sx={{ color: '#2c2c2c', fontWeight: 500, fontSize: sx ? 16 : 24 }}>
-                        {string?.customer_description_4}
-                    </Typography>
-                </Grid> */}
             </Grid>
         </>
     );
