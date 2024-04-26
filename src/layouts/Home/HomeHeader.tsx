@@ -7,6 +7,7 @@ import HomeIcon from '@mui/icons-material/Home';
 import HomeHeaderLogo from 'components/atoms/Logo/HomeHeaderLogo';
 import StorefrontIcon from '@mui/icons-material/Storefront';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
+import InfoIcon from '@mui/icons-material/Info';
 interface HeaderInterface {
     headerHeight;
     appXPadding;
@@ -65,6 +66,13 @@ const HomeHeader = ({ headerHeight, appXPadding, string, lang, setLang, setOpenM
                         action={() => {
                             localStorage.setItem('catalog_mode', JSON.stringify(3));
                         }}
+                    />
+                    <HeaderNavButton
+                        title={string?.info}
+                        path={`/`}
+                        icon={props => <InfoIcon {...props} />}
+                        isShown={!sx}
+                        action={() => {}}
                     />
                     <LanguageButton setLang={setLang} string={string} lang={lang} setOpenModalType={setOpenModalType} />
                 </Box>

@@ -114,7 +114,7 @@ const HomePage = () => {
                     mt={1.5}
                     sx={{ backgroundColor: '#ffffff78', zIndex: 2, borderRadius: 1 }}
                 >
-                    <Typography sx={{ color: '#000', zIndex: 1, fontSize: sx ? 24 : 38 }}>
+                    <Typography sx={{ color: '#000', zIndex: 1, fontSize: sx ? 24 : 36 }}>
                         {string?.customer_title_1}
                     </Typography>
                     <Typography sx={{ color: '#2c2c2c', zIndex: 1, fontWeight: 500, fontSize: sx ? 18 : 24 }}>
@@ -129,7 +129,7 @@ const HomePage = () => {
                     mt={1.5}
                     sx={{ backgroundColor: '#ffffff78', zIndex: 2, borderRadius: 1 }}
                 >
-                    <Typography sx={{ color: '#000', zIndex: 1, fontSize: sx ? 24 : 38 }}>
+                    <Typography sx={{ color: '#000', zIndex: 1, fontSize: sx ? 24 : 36 }}>
                         {string?.customer_title_2}
                     </Typography>
                     <Typography sx={{ color: '#2c2c2c', zIndex: 1, fontWeight: 500, fontSize: sx ? 18 : 24 }}>
@@ -144,7 +144,7 @@ const HomePage = () => {
                     mt={1.5}
                     sx={{ backgroundColor: '#ffffff78', zIndex: 2, borderRadius: 1 }}
                 >
-                    <Typography sx={{ color: '#000', zIndex: 1, fontSize: sx ? 24 : 38 }}>
+                    <Typography sx={{ color: '#000', zIndex: 1, fontSize: sx ? 24 : 36 }}>
                         {string?.customer_title_3}
                     </Typography>
                     <Typography sx={{ color: '#2c2c2c', zIndex: 1, fontWeight: 500, fontSize: sx ? 18 : 24 }}>
@@ -159,7 +159,7 @@ const HomePage = () => {
                     mt={1.5}
                     sx={{ backgroundColor: '#ffffff78', zIndex: 1, borderRadius: 1 }}
                 >
-                    <Typography sx={{ color: '#000', fontSize: sx ? 24 : 38 }}>{string?.customer_title_4}</Typography>
+                    <Typography sx={{ color: '#000', fontSize: sx ? 24 : 36 }}>{string?.customer_title_4}</Typography>
                     <Typography sx={{ color: '#2c2c2c', fontWeight: 500, fontSize: sx ? 18 : 24 }}>
                         {string?.customer_description_4}
                     </Typography>

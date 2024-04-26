@@ -4,6 +4,7 @@ import HomeIcon from '@mui/icons-material/Home';
 import Grid from '@mui/material/Unstable_Grid2';
 import StorefrontIcon from '@mui/icons-material/Storefront';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
+import InfoIcon from '@mui/icons-material/Info';
 
 const menuHeight = '70px';
 
@@ -30,13 +31,12 @@ const HomeMobileMenu = ({ appXPadding, isShown, string }) => {
                         height: menuHeight,
                     }}
                 >
-                    <Grid xs={4}>
+                    <Grid xs={3}>
                         <MobileNavButton path={`/`} title={string?.home} icon={p => <HomeIcon {...p} />} />
                     </Grid>
-                    <Grid xs={4}>
+                    <Grid xs={3}>
                         <MobileNavButton
                             path={`/catalog/${'ALBERTO_BINI'}/${'alberto-bini'}`}
-                            childPath={['/details', '/contacts', 'model']}
                             title={string?.wholesale_catalog}
                             icon={p => <AttachMoneyIcon {...p} />}
                             action={() => {
@@ -44,15 +44,22 @@ const HomeMobileMenu = ({ appXPadding, isShown, string }) => {
                             }}
                         />
                     </Grid>
-                    <Grid xs={4}>
+                    <Grid xs={3}>
                         <MobileNavButton
                             path={`/catalog/${'ALBERTO_BINI'}/${'alberto-bini'}`}
-                            childPath={['/details', '/contacts', 'model']}
                             title={string?.retail_catalog}
                             icon={p => <StorefrontIcon {...p} />}
                             action={() => {
                                 localStorage.setItem('catalog_mode', JSON.stringify(3));
                             }}
+                        />
+                    </Grid>
+                    <Grid xs={3}>
+                        <MobileNavButton
+                            path={`/`}
+                            title={string?.info}
+                            icon={p => <InfoIcon {...p} />}
+                            action={() => {}}
                         />
                     </Grid>
                 </Grid>
