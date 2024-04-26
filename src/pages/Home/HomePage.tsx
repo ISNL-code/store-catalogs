@@ -7,7 +7,6 @@ import { useOutletContext } from 'react-router-dom';
 import { CatalogContextInterface } from 'types';
 
 const HomePage = () => {
-    const { appXPadding }: CatalogContextInterface = useOutletContext();
     const { sx, s } = useDevice();
 
     return (
