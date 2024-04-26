@@ -4,13 +4,21 @@ import { useDevice } from 'hooks/useDevice';
 import Marquee from 'react-fast-marquee';
 import Grid from '@mui/material/Unstable_Grid2';
 import { useOutletContext } from 'react-router-dom';
+import MessageButton from 'components/atoms/Buttons/MessageButton';
+import { motion } from 'framer-motion';
 
 const HomePage = () => {
     const { string }: any = useOutletContext();
     const { sx, s } = useDevice();
 
+    const variants = {
+        hidden: { opacity: 0, y: 150 },
+        visible: { opacity: 1, y: 0 },
+    };
+
     return (
         <>
+            <MessageButton action={() => {}} />
             <ContactsButton />
             <Box sx={{ position: 'fixed', top: 0, left: 0, zIndex: 0 }}>
                 <Box style={{ overflow: 'hidden', maxHeight: '100vh', background: '#ccc', maxWidth: '100vw' }}>
@@ -88,7 +96,7 @@ const HomePage = () => {
             <Grid container xs={12} mt={-4}>
                 <Typography
                     variant="h1"
-                    sx={{ color: '#fff', zIndex: 1, textShadow: '#000000 0 0 5px', fontSize: sx ? 56 : 96 }}
+                    sx={{ color: '#fff', zIndex: 1, textShadow: '#000000 0 0 5px', fontSize: sx ? 64 : 96 }}
                 >
                     Elegance in Outerwear
                 </Typography>
@@ -97,7 +105,7 @@ const HomePage = () => {
                 mb={sx ? 20 : 5}
                 xs={12}
                 container
-                mt={sx ? 1 : 3}
+                mt={sx ? '80vh' : 3}
                 sx={{
                     flexWrap: 'wrap',
                     display: 'flex',
@@ -106,22 +114,33 @@ const HomePage = () => {
                     maxWidth: '900px',
                 }}
             >
-                <Grid
-                    p={sx ? 1 : 4}
-                    py={sx ? 1 : 1.75}
-                    container
-                    xs={12}
-                    mt={1.5}
-                    sx={{ backgroundColor: '#ffffff78', zIndex: 2, borderRadius: 1 }}
-                >
-                    <Typography sx={{ color: '#000', zIndex: 1, fontSize: sx ? 24 : 36 }}>
-                        {string?.customer_title_1}
-                    </Typography>
-                    <Typography sx={{ color: '#2c2c2c', zIndex: 1, fontWeight: 500, fontSize: sx ? 16 : 24 }}>
-                        {string?.customer_description_1}
-                    </Typography>
-                </Grid>
-                <Grid
+                {[1, 2, 3, 4].map(el => (
+                    <motion.div
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true, amount: 0.5 }}
+                        transition={{ duration: 0.5 }}
+                        variants={variants}
+                        style={{ width: '100%', zIndex: 2 }}
+                    >
+                        <Grid
+                            p={sx ? 1 : 4}
+                            py={sx ? 1 : 1.75}
+                            container
+                            xs={12}
+                            mt={1.5}
+                            sx={{ backgroundColor: '#ffffff78', zIndex: 2, borderRadius: 1 }}
+                        >
+                            <Typography sx={{ color: '#000', zIndex: 1, fontSize: sx ? 24 : 36 }}>
+                                {string?.[`customer_title_${el}`]}
+                            </Typography>
+                            <Typography sx={{ color: '#2c2c2c', zIndex: 1, fontWeight: 500, fontSize: sx ? 16 : 24 }}>
+                                {string?.[`customer_description_${el}`]}
+                            </Typography>
+                        </Grid>
+                    </motion.div>
+                ))}
+                {/* <Grid
                     p={sx ? 1.5 : 4}
                     py={sx ? 1 : 1.75}
                     container
@@ -163,7 +182,7 @@ const HomePage = () => {
                     <Typography sx={{ color: '#2c2c2c', fontWeight: 500, fontSize: sx ? 16 : 24 }}>
                         {string?.customer_description_4}
                     </Typography>
-                </Grid>
+                </Grid> */}
             </Grid>
         </>
     );

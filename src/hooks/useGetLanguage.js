@@ -7,6 +7,7 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'en',
             string: {
+                message: 'Message',
                 info: 'Info',
                 min_purchase: 'Minimum Purchase Requirement',
                 min_purchase_text:
@@ -210,6 +211,7 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'kz',
             string: {
+                message: 'Хабарлама',
                 info: 'Ақпарат',
                 min_purchase: 'Сатып алу минимумы талабы',
                 min_purchase_text:
@@ -415,6 +417,8 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'fr',
             string: {
+                message: 'Message',
+
                 info: 'Info',
                 min_purchase: 'Exigence d`achat minimum',
                 min_purchase_text:
@@ -619,6 +623,7 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'es',
             string: {
+                message: 'Mensaje',
                 info: 'Información',
                 min_purchase: 'Requisito de compra mínima',
                 min_purchase_text:
@@ -823,6 +828,7 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'ua',
             string: {
+                message: 'Повідомлення',
                 info: 'Інформація',
                 min_purchase: 'Вимога до мінімальної кількості покупки',
                 min_purchase_text:
@@ -1027,6 +1033,7 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'pl',
             string: {
+                message: 'Wiadomość',
                 info: 'Informacja',
                 min_purchase: 'Wymagany minimalny zakup',
                 min_purchase_text:
@@ -1233,6 +1240,7 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'cz',
             string: {
+                message: 'Zpráva',
                 info: 'Informace',
                 min_purchase: 'Požadavek na minimální nákup',
                 min_purchase_text:
@@ -1436,6 +1444,7 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'ru',
             string: {
+                message: 'Сообщение',
                 info: 'Информация',
                 min_purchase: 'Требование минимальной покупки',
                 min_purchase_text:

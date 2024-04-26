@@ -11,7 +11,7 @@ const ContactsButton = () => {
     return (
         <Box
             sx={{
-                opacity: 0.75,
+                opacity: 0.85,
                 zIndex: 2000,
                 position: 'fixed',
                 right: sx ? '16px' : '40px',
@@ -41,16 +41,16 @@ const ContactsButton = () => {
                     zIndex: 2000,
                     backgroundColor: '#ffffff',
                     '@keyframes fadeIn': {
-                        '0%': { transform: 'translate(2px,2px)' },
-                        '1%': { transform: 'translate(-2px,2px)' },
-                        '2%': { transform: 'translate(2px,2px)' },
-                        '3%': { transform: 'translate(-2px,-2px)' },
-                        '5%': { transform: 'translate(2px,-2px)' },
-                        '7%': { transform: 'translate(2px,2px)' },
-                        '9%': { transform: 'translate(2px,-2px)' },
-                        '12%': { transform: 'translate(2px,0)' },
-                        '14%': { transform: 'translate(0,0)' },
-                        '100%': { transform: 'translate(0,0)' },
+                        // '0%': { transform: 'translate(2px,2px)' },
+                        // '1%': { transform: 'translate(-2px,2px)' },
+                        // '2%': { transform: 'translate(2px,2px)' },
+                        // '3%': { transform: 'translate(-2px,-2px)' },
+                        // '5%': { transform: 'translate(2px,-2px)' },
+                        // '7%': { transform: 'translate(2px,2px)' },
+                        // '9%': { transform: 'translate(2px,-2px)' },
+                        // '12%': { transform: 'translate(2px,0)' },
+                        // '14%': { transform: 'translate(0,0)' },
+                        // '100%': { transform: 'translate(0,0)' },
                     },
 
                     animation: `fadeIn 4s infinite ease`,
