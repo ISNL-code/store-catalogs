@@ -94,7 +94,7 @@ const HomePage = () => {
             <Grid
                 xs={12}
                 container
-                mt={5}
+                mt={3}
                 sx={{
                     flexWrap: 'wrap',
                     display: 'flex',
@@ -105,47 +105,62 @@ const HomePage = () => {
             >
                 <Grid
                     p={sx ? 1 : 4}
+                    py={sx ? 1 : 2}
                     container
                     xs={12}
                     mt={2}
                     sx={{ backgroundColor: '#ffffff78', zIndex: 2, borderRadius: 1 }}
                 >
-                    <Typography sx={{ color: '#000', zIndex: 1, fontSize: sx ? 24 : 40, mb: 1 }}>
+                    <Typography sx={{ color: '#000', zIndex: 1, fontSize: sx ? 24 : 38 }}>
                         Extensive Collection
                     </Typography>
-                    <Typography sx={{ color: '#2c2c2c', zIndex: 1, fontWeight: 500, fontSize: sx ? 18 : 28 }}>
+                    <Typography sx={{ color: '#2c2c2c', zIndex: 1, fontWeight: 500, fontSize: sx ? 18 : 26 }}>
                         Our portfolio features an expansive range of styles suited for various age groups and
                         preferences, constantly updated with the latest fashion trends.
                     </Typography>
                 </Grid>
                 <Grid
                     p={sx ? 1 : 4}
+                    py={sx ? 1 : 2}
                     container
                     xs={12}
                     mt={2}
                     sx={{ backgroundColor: '#ffffff78', zIndex: 2, borderRadius: 1 }}
                 >
-                    <Typography sx={{ color: '#000', zIndex: 1, fontSize: sx ? 24 : 40, mb: 1 }}>
-                        Quality Assurance
-                    </Typography>
-                    <Typography sx={{ color: '#2c2c2c', zIndex: 1, fontWeight: 500, fontSize: sx ? 18 : 28 }}>
+                    <Typography sx={{ color: '#000', zIndex: 1, fontSize: sx ? 24 : 38 }}>Quality Assurance</Typography>
+                    <Typography sx={{ color: '#2c2c2c', zIndex: 1, fontWeight: 500, fontSize: sx ? 18 : 26 }}>
                         We emphasize superior craftsmanship, utilizing durable and fashionable materials to ensure each
                         piece not only looks elegant but lasts.
                     </Typography>
                 </Grid>
                 <Grid
                     p={sx ? 1 : 4}
+                    py={sx ? 1 : 2}
                     container
                     xs={12}
                     mt={2}
                     sx={{ backgroundColor: '#ffffff78', zIndex: 2, borderRadius: 1 }}
                 >
-                    <Typography sx={{ color: '#000', zIndex: 1, fontSize: sx ? 24 : 40, mb: 1 }}>
-                        24/7 Operations
-                    </Typography>
-                    <Typography sx={{ color: '#2c2c2c', zIndex: 1, fontWeight: 500, fontSize: sx ? 18 : 28 }}>
+                    <Typography sx={{ color: '#000', zIndex: 1, fontSize: sx ? 24 : 38 }}>24/7 Operations</Typography>
+                    <Typography sx={{ color: '#2c2c2c', zIndex: 1, fontWeight: 500, fontSize: sx ? 18 : 26 }}>
                         Our operations are optimized for responsiveness and efficiency, ensuring rapid order processing
                         and excellent customer service at any hour.
+                    </Typography>
+                </Grid>
+                <Grid
+                    p={sx ? 1 : 4}
+                    py={sx ? 1 : 2}
+                    container
+                    xs={12}
+                    mt={2}
+                    sx={{ backgroundColor: '#ffffff78', zIndex: 2, borderRadius: 1 }}
+                >
+                    <Typography sx={{ color: '#000', zIndex: 1, fontSize: sx ? 24 : 38 }}>
+                        Wholesale and Retail Sales
+                    </Typography>
+                    <Typography sx={{ color: '#2c2c2c', zIndex: 1, fontWeight: 500, fontSize: sx ? 18 : 26 }}>
+                        We offer flexible terms for both wholesale and retail buyers, providing wide access to our
+                        products for large retail chains and individual customers alike.
                     </Typography>
                 </Grid>
             </Grid>
