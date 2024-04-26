@@ -94,7 +94,7 @@ const HomePage = () => {
             <Grid
                 xs={12}
                 container
-                mt={3}
+                mt={sx ? 1 : 3}
                 sx={{
                     flexWrap: 'wrap',
                     display: 'flex',
