@@ -15,6 +15,7 @@ const LanguageButton = ({
         { code: 'ru' },
         { code: 'es' },
         { code: 'fr' },
+        // { code: 'kz' },
     ],
     setOpenModalType = _ => {},
 }) => {
@@ -66,6 +67,10 @@ const LanguageButton = ({
                 {lang?.code === 'es' && (
                     <img style={{ height: 20 }} src={require(`assets/img/flags/es.png`)} alt="Broken Img" />
                 )}
+                /
+                {/* {lang?.code === 'kz' && (
+                    <img style={{ height: 20 }} src={require(`assets/img/flags/kz.png`)} alt="Broken Img" />
+                )} */}
             </Box>
         );
     };
@@ -130,6 +135,9 @@ const LanguageButton = ({
                                 case 'fr':
                                     currentLabel = string?.french;
                                     break;
+                                // case 'kz':
+                                //     currentLabel = string?.french;
+                                //     break;
                                 default:
                                     currentLabel = string?.ukrainian;
                             }
