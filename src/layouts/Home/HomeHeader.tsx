@@ -1,11 +1,12 @@
 import { Box } from '@mui/material';
 import HeaderNavButton from 'components/atoms/Buttons/HeaderNavButton';
 import LanguageButton from 'components/molecules/ToolsButtons/LanguageButton';
-import StoreIcon from '@mui/icons-material/Store';
 import { useDevice } from 'hooks/useDevice';
 import { useLocation } from 'react-router-dom';
-import GridViewIcon from '@mui/icons-material/GridView';
+import HomeIcon from '@mui/icons-material/Home';
 import HomeHeaderLogo from 'components/atoms/Logo/HomeHeaderLogo';
+import StorefrontIcon from '@mui/icons-material/Storefront';
+import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 interface HeaderInterface {
     headerHeight;
     appXPadding;
@@ -42,13 +43,13 @@ const HomeHeader = ({ headerHeight, appXPadding, string, lang, setLang, setOpenM
                     <HeaderNavButton
                         title={string?.home}
                         path={`/`}
-                        icon={props => <StoreIcon {...props} />}
+                        icon={props => <HomeIcon {...props} />}
                         isShown={!sx}
                     />
                     <HeaderNavButton
                         title={string?.wholesale_catalog}
                         path={`/catalog/${'ALBERTO_BINI'}/${'alberto-bini'}`}
-                        icon={props => <GridViewIcon {...props} />}
+                        icon={props => <AttachMoneyIcon {...props} />}
                         isShown={!sx}
                         isActive={location.pathname.includes('details')}
                         action={() => {
@@ -58,7 +59,7 @@ const HomeHeader = ({ headerHeight, appXPadding, string, lang, setLang, setOpenM
                     <HeaderNavButton
                         title={string?.retail_catalog}
                         path={`/catalog/${'ALBERTO_BINI'}/${'alberto-bini'}`}
-                        icon={props => <GridViewIcon {...props} />}
+                        icon={props => <StorefrontIcon {...props} />}
                         isShown={!sx}
                         isActive={location.pathname.includes('details')}
                         action={() => {

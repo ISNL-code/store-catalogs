@@ -1,8 +1,10 @@
 import { Box } from '@mui/material';
 import MobileNavButton from 'components/atoms/Buttons/MobileNavButton';
-import GridViewIcon from '@mui/icons-material/GridView';
+import HomeIcon from '@mui/icons-material/Home';
 import StoreIcon from '@mui/icons-material/Store';
 import Grid from '@mui/material/Unstable_Grid2';
+import StorefrontIcon from '@mui/icons-material/Storefront';
+import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 
 const menuHeight = '70px';
 
@@ -30,14 +32,14 @@ const HomeMobileMenu = ({ appXPadding, isShown, string }) => {
                     }}
                 >
                     <Grid xs={4}>
-                        <MobileNavButton path={`/`} title={string?.home} icon={p => <StoreIcon {...p} />} />
+                        <MobileNavButton path={`/`} title={string?.home} icon={p => <HomeIcon {...p} />} />
                     </Grid>
                     <Grid xs={4}>
                         <MobileNavButton
                             path={`/catalog/${'ALBERTO_BINI'}/${'alberto-bini'}`}
                             childPath={['/details', '/contacts', 'model']}
                             title={string?.wholesale_catalog}
-                            icon={p => <GridViewIcon {...p} />}
+                            icon={p => <AttachMoneyIcon {...p} />}
                             action={() => {
                                 localStorage.setItem('catalog_mode', JSON.stringify(1));
                             }}
@@ -48,7 +50,7 @@ const HomeMobileMenu = ({ appXPadding, isShown, string }) => {
                             path={`/catalog/${'ALBERTO_BINI'}/${'alberto-bini'}`}
                             childPath={['/details', '/contacts', 'model']}
                             title={string?.retail_catalog}
-                            icon={p => <GridViewIcon {...p} />}
+                            icon={p => <StorefrontIcon {...p} />}
                             action={() => {
                                 localStorage.setItem('catalog_mode', JSON.stringify(3));
                             }}

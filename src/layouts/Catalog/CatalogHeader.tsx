@@ -9,7 +9,7 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import GridViewIcon from '@mui/icons-material/GridView';
 import ProfileButton from 'components/molecules/ToolsButtons/ProfileButton';
 
-import StoreIcon from '@mui/icons-material/Store';
+import HomeIcon from '@mui/icons-material/Home';
 import { StoreInterface, useAddToCartDataInterface, useAddToFavoriteDataInterface } from 'types';
 import HeaderNavIconButton from 'components/atoms/Buttons/HeaderNavIconButton';
 import CatalogHeaderLogo from 'components/atoms/Logo/CatalogHeaderLogo';
@@ -72,7 +72,7 @@ const Header = ({
                     <HeaderNavButton
                         title={string?.home}
                         path={`/`}
-                        icon={props => <StoreIcon {...props} />}
+                        icon={props => <HomeIcon {...props} />}
                         isShown={!sx}
                     />
                     <HeaderNavButton

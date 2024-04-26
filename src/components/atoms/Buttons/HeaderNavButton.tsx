@@ -40,7 +40,7 @@ const HeaderNavButton = ({
                         sx={{
                             px: sx ? 0 : 1,
                             height: sx ? '' : 35,
-                            gap: sx ? 0 : 1,
+                            gap: sx ? 0 : 0.5,
                             display: 'flex',
                             justifyContent: 'space-between',
                             flexDirection: sx ? 'column' : 'row',
