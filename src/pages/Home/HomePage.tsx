@@ -11,8 +11,8 @@ const HomePage = () => {
 
     return (
         <>
+            <ContactsButton />
             <Box sx={{ position: 'fixed', top: 0, left: 0, zIndex: 0 }}>
-                <ContactsButton />
                 <Box style={{ overflow: 'hidden', maxHeight: '100vh', background: '#ccc', maxWidth: '100vw' }}>
                     <Marquee
                         // autoFill
@@ -94,6 +94,7 @@ const HomePage = () => {
                 </Typography>
             </Grid>
             <Grid
+                mb={sx ? 20 : 5}
                 xs={12}
                 container
                 mt={sx ? 1 : 3}
@@ -116,12 +117,12 @@ const HomePage = () => {
                     <Typography sx={{ color: '#000', zIndex: 1, fontSize: sx ? 24 : 38 }}>
                         {string?.customer_title_1}
                     </Typography>
-                    <Typography sx={{ color: '#2c2c2c', zIndex: 1, fontWeight: 500, fontSize: sx ? 18 : 26 }}>
+                    <Typography sx={{ color: '#2c2c2c', zIndex: 1, fontWeight: 500, fontSize: sx ? 18 : 26, pr: 3 }}>
                         {string?.customer_description_1}
                     </Typography>
                 </Grid>
                 <Grid
-                    p={sx ? 1 : 4}
+                    p={sx ? 1.5 : 4}
                     py={sx ? 1 : 2}
                     container
                     xs={12}
@@ -131,7 +132,7 @@ const HomePage = () => {
                     <Typography sx={{ color: '#000', zIndex: 1, fontSize: sx ? 24 : 38 }}>
                         {string?.customer_title_2}
                     </Typography>
-                    <Typography sx={{ color: '#2c2c2c', zIndex: 1, fontWeight: 500, fontSize: sx ? 18 : 26 }}>
+                    <Typography sx={{ color: '#2c2c2c', zIndex: 1, fontWeight: 500, fontSize: sx ? 18 : 26, pr: 3 }}>
                         {string?.customer_description_2}
                     </Typography>
                 </Grid>
@@ -146,7 +147,7 @@ const HomePage = () => {
                     <Typography sx={{ color: '#000', zIndex: 1, fontSize: sx ? 24 : 38 }}>
                         {string?.customer_title_3}
                     </Typography>
-                    <Typography sx={{ color: '#2c2c2c', zIndex: 1, fontWeight: 500, fontSize: sx ? 18 : 26 }}>
+                    <Typography sx={{ color: '#2c2c2c', zIndex: 1, fontWeight: 500, fontSize: sx ? 18 : 26, pr: 3 }}>
                         {string?.customer_description_3}{' '}
                     </Typography>
                 </Grid>
@@ -156,12 +157,10 @@ const HomePage = () => {
                     container
                     xs={12}
                     mt={2}
-                    sx={{ backgroundColor: '#ffffff78', zIndex: 2, borderRadius: 1 }}
+                    sx={{ backgroundColor: '#ffffff78', zIndex: 1, borderRadius: 1 }}
                 >
-                    <Typography sx={{ color: '#000', zIndex: 1, fontSize: sx ? 24 : 38 }}>
-                        {string?.customer_title_4}
-                    </Typography>
-                    <Typography sx={{ color: '#2c2c2c', zIndex: 1, fontWeight: 500, fontSize: sx ? 18 : 26 }}>
+                    <Typography sx={{ color: '#000', fontSize: sx ? 24 : 38 }}>{string?.customer_title_4}</Typography>
+                    <Typography sx={{ color: '#2c2c2c', fontWeight: 500, fontSize: sx ? 18 : 26 }}>
                         {string?.customer_description_4}
                     </Typography>
                 </Grid>

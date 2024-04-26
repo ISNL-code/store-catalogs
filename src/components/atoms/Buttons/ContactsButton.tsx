@@ -11,9 +11,10 @@ const ContactsButton = () => {
     return (
         <Box
             sx={{
+                opacity: 0.75,
                 zIndex: 2000,
                 position: 'fixed',
-                right: sx ? '24px' : '40px',
+                right: sx ? '16px' : '40px',
                 bottom: sx ? 80 : 20,
                 width: 'fit-content',
                 border: sx ? 'none' : '1px solid #44a041',
@@ -30,13 +31,14 @@ const ContactsButton = () => {
             }}
         >
             {!sx && (
-                <Typography m={0.75} sx={{ fontSize: 14, fontWeight: '700', color: '#fff' }}>
+                <Typography m={0.75} sx={{ fontSize: 14, fontWeight: '700', color: '#fff', zIndex: 2000 }}>
                     {string?.contacts}
                 </Typography>
             )}
             <Fab
                 size={sx ? 'medium' : 'small'}
                 sx={{
+                    zIndex: 2000,
                     backgroundColor: '#ffffff',
                     '@keyframes fadeIn': {
                         '0%': { transform: 'translate(2px,2px)' },
@@ -55,7 +57,7 @@ const ContactsButton = () => {
                     border: '1px solid #ccc',
                 }}
             >
-                <PhoneCallbackIcon color="success" />
+                <PhoneCallbackIcon color="success" sx={{ zIndex: 2000 }} />
             </Fab>
         </Box>
     );
