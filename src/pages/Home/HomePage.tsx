@@ -86,7 +86,7 @@ const HomePage = () => {
                     </Marquee>
                 </Box>
             </Box>
-            <Grid container xs={12} sx={{ px: appXPadding, mt: 10 }}>
+            <Grid container xs={12} mt={-5}>
                 <Typography sx={{ color: '#fff', zIndex: 1, textShadow: '#000000 0 0 5px', fontSize: sx ? 56 : 96 }}>
                     Elegance in Outerwear
                 </Typography>

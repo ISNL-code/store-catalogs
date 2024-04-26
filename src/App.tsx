@@ -66,6 +66,7 @@ const App = () => {
                         <>
                             <Route path={'/'} element={<Home lang={lang} setLang={setLang} />}>
                                 <Route path={'/'} element={<HomePage />} />
+                                <Route path={'/:storeCode/:storeName/contacts'} element={<ContactsManagePage />} />
                             </Route>
                             <Route
                                 path={'/catalog'}

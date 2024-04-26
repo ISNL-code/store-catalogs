@@ -27,7 +27,7 @@ const ContactsButton = () => {
                 cursor: 'pointer',
             }}
             onClick={() => {
-                navigate(`/catalog/${storeCode}/${storeName}/contacts`);
+                navigate(`/ALBERTO_BINI/alberto-bini/contacts`);
             }}
         >
             {!sx && (

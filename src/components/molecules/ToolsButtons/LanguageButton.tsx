@@ -10,12 +10,12 @@ const LanguageButton = ({
     storeLanguages = [
         { code: 'ua' },
         { code: 'en' },
+        { code: 'kz' },
         { code: 'pl' },
         { code: 'cz' },
         { code: 'ru' },
         { code: 'es' },
         { code: 'fr' },
-        // { code: 'kz' },
     ],
     setOpenModalType = _ => {},
 }) => {
@@ -67,10 +67,9 @@ const LanguageButton = ({
                 {lang?.code === 'es' && (
                     <img style={{ height: 20 }} src={require(`assets/img/flags/es.png`)} alt="Broken Img" />
                 )}
-                /
-                {/* {lang?.code === 'kz' && (
+                {lang?.code === 'kz' && (
                     <img style={{ height: 20 }} src={require(`assets/img/flags/kz.png`)} alt="Broken Img" />
-                )} */}
+                )}
             </Box>
         );
     };
@@ -91,11 +90,11 @@ const LanguageButton = ({
                     width: '50px',
                     display: 'flex',
                     flexDirection: 'column',
-                    '&:hover': { backgroundColor: '#fff' },
+                    '&:hover': { backgroundColor: '#ffffff0' },
                 }}
             >
                 <LanguageIcon />
-                {<Typography sx={{ fontSize: 10, color: 'rgba(0, 0, 0, 0.54)' }}>{string?.language}</Typography>}
+                <Typography sx={{ fontSize: 10, color: 'rgba(0, 0, 0, 0.54)' }}>{string?.language}</Typography>
                 {selectLangFlag()}
             </IconButton>
             <Menu
@@ -122,6 +121,9 @@ const LanguageButton = ({
                                 case 'pl':
                                     currentLabel = string?.polish;
                                     break;
+                                case 'kz':
+                                    currentLabel = string?.kazakhstani;
+                                    break;
                                 case 'cz':
                                     currentLabel = string?.czech;
                                     break;
@@ -135,9 +137,7 @@ const LanguageButton = ({
                                 case 'fr':
                                     currentLabel = string?.french;
                                     break;
-                                // case 'kz':
-                                //     currentLabel = string?.french;
-                                //     break;
+
                                 default:
                                     currentLabel = string?.ukrainian;
                             }
