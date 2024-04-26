@@ -1,10 +1,9 @@
 import { Box, Fab, Typography } from '@mui/material';
 import PhoneCallbackIcon from '@mui/icons-material/PhoneCallback';
-import { useNavigate, useOutletContext, useParams } from 'react-router-dom';
+import { useNavigate, useOutletContext } from 'react-router-dom';
 import { useDevice } from 'hooks/useDevice';
 
 const ContactsButton = () => {
-    const { storeCode, storeName } = useParams();
     const { string }: any = useOutletContext();
     const { sx, s } = useDevice();
     const navigate = useNavigate();
