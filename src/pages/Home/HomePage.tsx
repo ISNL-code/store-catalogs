@@ -85,7 +85,7 @@ const HomePage = () => {
                     </Marquee>
                 </Box>
             </Box>
-            <Grid container xs={12} mt={-5}>
+            <Grid container xs={12} mt={-4}>
                 <Typography
                     variant="h1"
                     sx={{ color: '#fff', zIndex: 1, textShadow: '#000000 0 0 5px', fontSize: sx ? 56 : 96 }}
@@ -108,59 +108,59 @@ const HomePage = () => {
             >
                 <Grid
                     p={sx ? 1 : 4}
-                    py={sx ? 1 : 2}
+                    py={sx ? 1 : 1.75}
                     container
                     xs={12}
-                    mt={2}
+                    mt={1.5}
                     sx={{ backgroundColor: '#ffffff78', zIndex: 2, borderRadius: 1 }}
                 >
                     <Typography sx={{ color: '#000', zIndex: 1, fontSize: sx ? 24 : 38 }}>
                         {string?.customer_title_1}
                     </Typography>
-                    <Typography sx={{ color: '#2c2c2c', zIndex: 1, fontWeight: 500, fontSize: sx ? 18 : 26, pr: 3 }}>
+                    <Typography sx={{ color: '#2c2c2c', zIndex: 1, fontWeight: 500, fontSize: sx ? 18 : 24 }}>
                         {string?.customer_description_1}
                     </Typography>
                 </Grid>
                 <Grid
                     p={sx ? 1.5 : 4}
-                    py={sx ? 1 : 2}
+                    py={sx ? 1 : 1.75}
                     container
                     xs={12}
-                    mt={2}
+                    mt={1.5}
                     sx={{ backgroundColor: '#ffffff78', zIndex: 2, borderRadius: 1 }}
                 >
                     <Typography sx={{ color: '#000', zIndex: 1, fontSize: sx ? 24 : 38 }}>
                         {string?.customer_title_2}
                     </Typography>
-                    <Typography sx={{ color: '#2c2c2c', zIndex: 1, fontWeight: 500, fontSize: sx ? 18 : 26, pr: 3 }}>
+                    <Typography sx={{ color: '#2c2c2c', zIndex: 1, fontWeight: 500, fontSize: sx ? 18 : 24 }}>
                         {string?.customer_description_2}
                     </Typography>
                 </Grid>
                 <Grid
                     p={sx ? 1 : 4}
-                    py={sx ? 1 : 2}
+                    py={sx ? 1 : 1.75}
                     container
                     xs={12}
-                    mt={2}
+                    mt={1.5}
                     sx={{ backgroundColor: '#ffffff78', zIndex: 2, borderRadius: 1 }}
                 >
                     <Typography sx={{ color: '#000', zIndex: 1, fontSize: sx ? 24 : 38 }}>
                         {string?.customer_title_3}
                     </Typography>
-                    <Typography sx={{ color: '#2c2c2c', zIndex: 1, fontWeight: 500, fontSize: sx ? 18 : 26, pr: 3 }}>
+                    <Typography sx={{ color: '#2c2c2c', zIndex: 1, fontWeight: 500, fontSize: sx ? 18 : 24 }}>
                         {string?.customer_description_3}{' '}
                     </Typography>
                 </Grid>
                 <Grid
                     p={sx ? 1 : 4}
-                    py={sx ? 1 : 2}
+                    py={sx ? 1 : 1.75}
                     container
                     xs={12}
-                    mt={2}
+                    mt={1.5}
                     sx={{ backgroundColor: '#ffffff78', zIndex: 1, borderRadius: 1 }}
                 >
                     <Typography sx={{ color: '#000', fontSize: sx ? 24 : 38 }}>{string?.customer_title_4}</Typography>
-                    <Typography sx={{ color: '#2c2c2c', fontWeight: 500, fontSize: sx ? 18 : 26 }}>
+                    <Typography sx={{ color: '#2c2c2c', fontWeight: 500, fontSize: sx ? 18 : 24 }}>
                         {string?.customer_description_4}
                     </Typography>
                 </Grid>
