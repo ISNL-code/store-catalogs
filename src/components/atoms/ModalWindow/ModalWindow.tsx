@@ -17,7 +17,7 @@ const ModalWindow = ({ children, type = '', title, text = '', closeAction = () =
                 display: 'flex',
                 justifyContent: 'center',
                 position: 'fixed',
-                zIndex: 4000,
+                zIndex: 1000,
                 left: 0,
                 top: 0,
                 backgroundColor: '#cccccc0',
