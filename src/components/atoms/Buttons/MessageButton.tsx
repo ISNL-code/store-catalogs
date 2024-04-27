@@ -13,8 +13,8 @@ const MessageButton = ({ from = 'catalog', action }) => {
                 opacity: 0.85,
                 zIndex: 2000,
                 position: 'fixed',
-                right: sx ? '70px' : '175px',
-                bottom: sx ? 80 : 20,
+                right: sx ? '75px' : '40px',
+                bottom: sx ? 80 : 75,
                 width: 'fit-content',
                 border: sx ? 'none' : '1px solid #3486d8',
                 backgroundColor: sx ? 'none' : '#5396da',
@@ -30,7 +30,10 @@ const MessageButton = ({ from = 'catalog', action }) => {
             }}
         >
             {!sx && (
-                <Typography m={0.75} sx={{ fontSize: 12, fontWeight: '700', color: '#fff' }}>
+                <Typography
+                    m={0.75}
+                    sx={{ fontSize: 12, fontWeight: '700', color: '#fff', minWidth: 80, textAlign: 'center' }}
+                >
                     {string?.message}
                 </Typography>
             )}
@@ -39,19 +42,6 @@ const MessageButton = ({ from = 'catalog', action }) => {
                 sx={{
                     p: 2,
                     backgroundColor: '#ffffff',
-                    // '@keyframes fadeIn': {
-                    //     '0%': { transform: 'translate(2px,2px)' },
-                    //     '1%': { transform: 'translate(-2px,2px)' },
-                    //     '2%': { transform: 'translate(2px,2px)' },
-                    //     '3%': { transform: 'translate(-2px,-2px)' },
-                    //     '5%': { transform: 'translate(2px,-2px)' },
-                    //     '7%': { transform: 'translate(2px,2px)' },
-                    //     '9%': { transform: 'translate(2px,-2px)' },
-                    //     '12%': { transform: 'translate(2px,0)' },
-                    //     '14%': { transform: 'translate(0,0)' },
-                    //     '100%': { transform: 'translate(0,0)' },
-                    // },
-
                     animation: `fadeIn 4s infinite ease`,
                     border: '1px solid #ccc',
                     boxShadow: '0 0 5px 2px #1976d2',

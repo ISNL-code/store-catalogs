@@ -102,7 +102,7 @@ const HomePage = () => {
                 mb={sx ? 18 : 0}
                 xs={12}
                 container
-                mt={sx ? '90vh' : 5}
+                mt={sx ? '90vh' : 10}
                 sx={{
                     flexWrap: 'wrap',
                     display: 'flex',

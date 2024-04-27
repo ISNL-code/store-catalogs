@@ -31,7 +31,10 @@ const ContactsButton = () => {
             }}
         >
             {!sx && (
-                <Typography m={0.75} sx={{ fontSize: 14, fontWeight: '700', color: '#fff', zIndex: 2000 }}>
+                <Typography
+                    m={0.75}
+                    sx={{ fontSize: 12, fontWeight: '700', color: '#fff', minWidth: 80, textAlign: 'center' }}
+                >
                     {string?.contacts}
                 </Typography>
             )}
@@ -40,21 +43,9 @@ const ContactsButton = () => {
                 sx={{
                     zIndex: 2000,
                     backgroundColor: '#ffffff',
-                    '@keyframes fadeIn': {
-                        // '0%': { transform: 'translate(2px,2px)' },
-                        // '1%': { transform: 'translate(-2px,2px)' },
-                        // '2%': { transform: 'translate(2px,2px)' },
-                        // '3%': { transform: 'translate(-2px,-2px)' },
-                        // '5%': { transform: 'translate(2px,-2px)' },
-                        // '7%': { transform: 'translate(2px,2px)' },
-                        // '9%': { transform: 'translate(2px,-2px)' },
-                        // '12%': { transform: 'translate(2px,0)' },
-                        // '14%': { transform: 'translate(0,0)' },
-                        // '100%': { transform: 'translate(0,0)' },
-                    },
-
                     animation: `fadeIn 4s infinite ease`,
                     border: '1px solid #ccc',
+                    boxShadow: '0 0 5px 2px #19d219',
                 }}
             >
                 <PhoneCallbackIcon color="success" sx={{ zIndex: 2000 }} />
