@@ -21,14 +21,7 @@ const HomePage = () => {
             <ContactsButton />
             <Box sx={{ position: 'fixed', top: 0, left: 0, zIndex: 0 }}>
                 <Box style={{ overflow: 'hidden', maxHeight: '100vh', background: '#ccc', maxWidth: '100vw' }}>
-                    <Marquee
-                        // autoFill
-                        loop={0}
-                        speed={65}
-                        gradient
-                        gradientColor="#6666664e"
-                        gradientWidth={s ? 100 : 300}
-                    >
+                    <Marquee loop={0} speed={65} gradient gradientColor="#6666664e" gradientWidth={s ? 100 : 300}>
                         <img
                             style={{ maxHeight: '100vh', overflow: 'hidden' }}
                             src={require(`./images/${1}.jpg`)}
@@ -113,7 +106,7 @@ const HomePage = () => {
                     maxWidth: '900px',
                 }}
             >
-                {[1, 2, 3, 4].map(el => (
+                {[1, 2, 3, 2].map(el => (
                     <motion.div
                         initial="hidden"
                         whileInView="visible"
