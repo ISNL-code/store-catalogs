@@ -88,16 +88,16 @@ const HomePage = () => {
             <Grid container xs={12} mt={-4}>
                 <Typography
                     variant="h1"
-                    sx={{ color: '#fff', zIndex: 1, textShadow: '#000000 0 0 5px', fontSize: sx ? 64 : 96 }}
+                    sx={{ color: '#fff', zIndex: 1, textShadow: '#000000 0 0 5px', fontSize: sx ? 56 : 96 }}
                 >
                     Elegance in Outerwear
                 </Typography>
             </Grid>
             <Grid
-                mb={sx ? 30 : 5}
+                mb={sx ? 25 : 5}
                 xs={12}
                 container
-                mt={sx ? '90vh' : 3}
+                mt={sx ? '90vh' : 15}
                 sx={{
                     flexWrap: 'wrap',
                     display: 'flex',
