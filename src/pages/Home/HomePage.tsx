@@ -85,7 +85,7 @@ const HomePage = () => {
                     </Marquee>
                 </Box>
             </Box>
-            <Grid container xs={12} mt={-4} sx={{ position: 'fixed' }}>
+            <Grid container xs={12} mt={-4} sx={{ position: 'sticky' }}>
                 <Typography
                     variant="h1"
                     sx={{
@@ -99,10 +99,10 @@ const HomePage = () => {
                 </Typography>
             </Grid>
             <Grid
-                mb={sx ? 20 : 5}
+                mb={sx ? 20 : 0}
                 xs={12}
                 container
-                mt={sx ? '90vh' : 15}
+                mt={sx ? '90vh' : 5}
                 sx={{
                     flexWrap: 'wrap',
                     display: 'flex',
@@ -126,7 +126,7 @@ const HomePage = () => {
                             container
                             xs={12}
                             mt={1.2}
-                            sx={{ backgroundColor: '#ffffff78', zIndex: 2, borderRadius: 1 }}
+                            sx={{ backgroundColor: '#ffffff78', zIndex: 2, borderRadius: 1, position: 'relative' }}
                         >
                             <Typography sx={{ color: '#000', zIndex: 1, fontSize: sx ? 23 : 36 }}>
                                 {string?.[`customer_title_${el}`]}
