@@ -20,7 +20,7 @@ export default function MainCatalog({ lang, setLang, auth, setAuth, userData }) 
     const { storeName } = useParams();
     const navigate = useNavigate();
     const { sx, l, xs } = useDevice();
-    const headerHeight = xs ? 55 : 65;
+    const headerHeight = xs ? 50 : 65;
     const footerHeight = sx ? 70 : 0;
     const instrumentalBarHeight = 36;
     const appXPadding = l ? 2 : 4;
