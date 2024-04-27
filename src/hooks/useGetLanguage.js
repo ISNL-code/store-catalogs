@@ -17,8 +17,28 @@ export const useGetLanguage = ({ lang }) => {
                 info_title_4: 'Privacy Policy',
                 info_text_1:
                     'Alberto Bini is a Ukrainian brand clothing manufacturer that has been creating high-quality women`s apparel for over 10 years. The production utilizes the latest materials and technologies, allowing for the creation of modern, high-quality, and practical clothing that is valued and in demand worldwide.',
-                info_text_2: 'Loading...',
-                info_text_3: 'Loading...',
+                info_text_2: `1. PAYMENT:\n
+                After placing an order, payment is made by transferring funds to the specified bank account.
+                Payments are accepted to the bank account of the company SPULKA, registered in Poland.\n\n
+                2. DELIVERY:\n
+                - FOR RETAIL ORDERS:\n
+                If the item is available at the warehouse in Poland, delivery is made within 2 business days.
+                If the item is located at the warehouse in Ukraine, delivery will take up to 2 weeks.\n
+                - FOR WHOLESALE ORDERS:\n
+                Delivery time depends on the volume of the order and its location, typically within 1 month.\n\n
+                After the order is placed, a manager will contact you to provide more detailed information regarding payment methods, bank account details, and delivery terms.`,
+                info_text_3: `RETURNS:\n
+                - We accept returns within 30 days of the purchase date.
+                - Items must be unused, in their original packaging, and accompanied by a proof of purchase.
+                - Return shipping costs are the responsibility of the customer unless the return is due to a product defect or error on our part.\n
+                EXCHANGE:\n
+                - Exchanges are permitted within 30 days of the purchase date.
+                - Items eligible for exchange must be in unused condition and in their original packaging.
+                - Exchange shipping costs are covered by the customer, unless the exchange is due to a product defect or our error.\n
+                REFUNDS:\n
+                - Refunds will be issued to the original form of payment within 7-10 business days after the returned item is received and inspected.
+                - Shipping fees are non-refundable unless the return is due to a product defect or our error.
+                - Please note that certain items may be subject to additional return restrictions. For further assistance or to initiate a return or exchange, please contact our customer service team.`,
                 info_text_4: `1. GENERAL PROVISIONS\n
                 - 1.1. User's use of the site constitutes agreement with this Privacy Policy and the terms of the user's personal data processing.\n
                 - 1.2. In case of disagreement with the terms of the Privacy Policy, the user must stop using the site.\n
@@ -282,8 +302,28 @@ export const useGetLanguage = ({ lang }) => {
                 info_title_4: 'Құпиялылық саясаты',
                 info_text_1:
                     'Alberto Bini - бұл Украинадағы 10 жылдан астам уақыт бойы жоғары сапалы әйелдер киімдерін шығарып келе жатқан бренд. Өндіріс заманауи материалдар мен технологияларды пайдаланады, бұл заманауи, жоғары сапалы және тәжірибелі киімдерді жасауға мүмкіндік береді, бұл бүкіл әлемде бағаланады және сұранысқа ие.',
-                info_text_2: 'Жүктелуде...',
-                info_text_3: 'Жүктелуде...',
+                info_text_2: `1. ТӨЛЕМ:\n
+                    Тапсырыс берілген кейін ақшаны белгіленген банк қаржысына аударып төленеді.
+                    Төлемдер Польшада тіркелген SPULKA компаниясының банк есепке жазушы ақпараттарына қабылданады.\n\n
+                    2. ЖЕТКІЗУ:\n
+                    - ДӘМЕ АҚЫ: \n
+                    Элемент Польшадағы амбарда бар болса, жеткізу 2 бизнес күні ішінде жасалады.
+                    Элемент Украинадағы амбарда орналасқан болса, жеткізу 2 аптаға дейін болады.\n
+                    - ОПТОВЫЕ ТАПСЫРЫСТАР ҮШІН: \n
+                    Жеткізу уақыты тапсырыстың құрамы мен оның орналасқан орнына байланысты, тұрақтылықтар бойынша 1 ай ішінде.\n\n
+                    Тапсырыс берілген кейін, менеджер сізге төлем әдістері, банк есепке жазушы мәліметтері мен жеткізу шарттары туралы көбірек ақпарат беретін жолымен хабарласады.`,
+                info_text_3: `АЛЫП ТЫРЫС:\n
+                    - Сатылым күнінен кейін 30 күн ішінде алып тұруға рұқсат беріледі.
+                    - Элементтер қолданылмаған, олардың түпнұсқасы және сатылымның растауымен келесі дұрыстаумен қажетті.
+                    - Алып тұру жолы ақытып кеткен басқа қате не іскери жұмыстан себепті пайдаланушының жауаптылығында.\n
+                    АЛМАСУ:\n
+                    - Алмасулар сатылым күнінен кейін 30 күн ішінде жүргізіледі.
+                    - Алмасуға қабілетті элементтер қолданылмаған және олардың түпнұсқасы болуы қажет.
+                    - Алмасу жолының ақытып кетуы пайдаланушының мөлшерлемесінен өткізіледі, тек сатылымда қате не іскері жұмыстан себепті.
+                    АҚЫЛЫ ІАЛЫМДАР:\n
+                    - Алып тұрылған элемент қабылдалған және тексерілген кейін алдын ала ақшаланады және 7-10 бизнес күні ішінде орындалады.
+                    - Жүк төлемі қайтарылмау емес, тек сатылымда қате не іскері жұмыстан себепті.
+                    - Орындалатын кейбір элементтерге қайтару шектелері қолданылады. Қосымша көмек немесе қайтару немесе алмасу бастау үшін, сіздің қызмет көрсетушілерімізбен байланысыңыз.`,
                 info_text_4: `1. ЖАЛПЫ ШАРТТАР\n
                 - 1.1. Пайдаланушының сайтты пайдалануы бұл Құпиялылық Саясатымен және пайдаланушының жеке деректерін өңдеушінің міндеттерімен келісім болып табылады.\n
                 - 1.2. Құпиялылық Саясатының шарттарымен келіспеген жағдайда, пайдаланушы сайтты пайдалануды тоқтатуы тиіс.\n
@@ -548,8 +588,29 @@ export const useGetLanguage = ({ lang }) => {
                 info_title_4: 'Politique de confidentialité',
                 info_text_1:
                     'Alberto Bini est un fabricant de vêtements de marque ukrainienne qui crée des vêtements pour femmes de haute qualité depuis plus de 10 ans. La production utilise les derniers matériaux et technologies, permettant la création de vêtements modernes, de haute qualité et pratiques qui sont appréciés et demandés dans le monde entier.',
-                info_text_2: 'Chargement...',
-                info_text_3: 'Chargement...',
+                info_text_2: `1. PAIEMENT :\n
+                    Après avoir passé une commande, le paiement s'effectue par virement sur le compte bancaire spécifié.
+                    Les paiements sont acceptés sur le compte bancaire de la société SPULKA, enregistrée en Pologne.\n\n
+                    2. LIVRAISON :\n
+                    - POUR LES COMMANDES DE DÉTAIL :\n
+                    Si l'article est disponible dans l'entrepôt en Pologne, la livraison est effectuée dans les 2 jours ouvrables.
+                    Si l'article est situé dans l'entrepôt en Ukraine, la livraison prendra jusqu'à 2 semaines.\n
+                    - POUR LES COMMANDES EN GROS :\n
+                    Le délai de livraison dépend du volume de la commande et de son lieu, généralement dans un délai d'un mois.\n\n
+                    Après avoir passé la commande, un responsable vous contactera pour vous fournir des informations plus détaillées sur les méthodes de paiement, les détails du compte bancaire et les conditions de livraison.`,
+                info_text_3: `RETOURS :\n
+                    - Nous acceptons les retours dans les 30 jours suivant la date d'achat.
+                    - Les articles doivent être inutilisés, dans leur emballage d'origine et accompagnés d'une preuve d'achat.
+                    - Les frais d'expédition pour le retour sont à la charge du client sauf en cas de défaut du produit ou d'erreur de notre part.\n
+                    ÉCHANGE :\n
+                    - Les échanges sont autorisés dans les 30 jours suivant la date d'achat.
+                    - Les articles éligibles à l'échange doivent être dans un état non utilisé et dans leur emballage d'origine.
+                    - Les frais d'expédition pour l'échange sont à la charge du client, sauf en cas de défaut du produit ou de notre erreur.\n
+                    REMBOURSEMENTS :\n
+                    - Les remboursements seront effectués sur le mode de paiement d'origine dans les 7 à 10 jours ouvrables suivant la réception et l'inspection de l'article retourné.
+                    - Les frais de livraison ne sont pas remboursables sauf en cas de défaut du produit ou de notre erreur.
+                    - Veuillez noter que certains articles peuvent être soumis à des restrictions de retour supplémentaires. Pour obtenir plus d'aide ou pour initier un retour ou un échange, veuillez contacter notre équipe de service clientèle.`,
+
                 info_text_4: `1. DISPOSITIONS GÉNÉRALES\n
                 - 1.1. L'utilisation du site par l'utilisateur constitue l'accord avec cette Politique de Confidentialité et les termes du traitement des données personnelles de l'utilisateur.\n
                 - 1.2. En cas de désaccord avec les termes de la Politique de Confidentialité, l'utilisateur doit cesser d'utiliser le site.\n
@@ -813,8 +874,29 @@ export const useGetLanguage = ({ lang }) => {
                 info_title_4: 'Política de privacidad',
                 info_text_1:
                     'Alberto Bini es un fabricante de ropa de marca ucraniana que ha estado creando ropa de mujer de alta calidad durante más de 10 años. La producción utiliza los últimos materiales y tecnologías, permitiendo la creación de ropa moderna, de alta calidad y práctica que es valorada y demandada en todo el mundo.',
-                info_text_2: 'Cargando...',
-                info_text_3: 'Cargando...',
+                info_text_2: `1. PAGO:\n
+                    Después de realizar un pedido, el pago se realiza mediante transferencia de fondos a la cuenta bancaria especificada.
+                    Los pagos se aceptan en la cuenta bancaria de la empresa SPULKA, registrada en Polonia.\n\n
+                    2. ENTREGA:\n
+                    - PARA PEDIDOS AL POR MENOR:\n
+                    Si el artículo está disponible en el almacén en Polonia, la entrega se realiza en un plazo de 2 días hábiles.
+                    Si el artículo está ubicado en el almacén en Ucrania, la entrega tomará hasta 2 semanas.\n
+                    - PARA PEDIDOS AL POR MAYOR:\n
+                    El tiempo de entrega depende del volumen del pedido y su ubicación, generalmente dentro de un mes.\n\n
+                    Después de realizar el pedido, un gerente se pondrá en contacto con usted para proporcionarle información más detallada sobre los métodos de pago, los detalles de la cuenta bancaria y los términos de entrega.`,
+                info_text_3: `DEVOLUCIONES:\n
+                    - Aceptamos devoluciones dentro de los 30 días posteriores a la fecha de compra.
+                    - Los artículos deben estar sin usar, en su embalaje original y acompañados de un comprobante de compra.
+                    - Los costos de envío de devolución son responsabilidad del cliente a menos que la devolución se deba a un defecto del producto o un error por nuestra parte.\n
+                    INTERCAMBIO:\n
+                    - Los intercambios son permitidos dentro de los 30 días posteriores a la fecha de compra.
+                    - Los artículos elegibles para intercambio deben estar en condiciones sin usar y en su embalaje original.
+                    - Los costos de envío del intercambio son cubiertos por el cliente, a menos que el intercambio se deba a un defecto del producto o nuestro error.\n
+                    REEMBOLSOS:\n
+                    - Los reembolsos se emitirán al método de pago original dentro de los 7-10 días hábiles posteriores a la recepción e inspección del artículo devuelto.
+                    - Las tarifas de envío no son reembolsables a menos que la devolución se deba a un defecto del producto o nuestro error.
+                    - Tenga en cuenta que ciertos artículos pueden estar sujetos a restricciones adicionales de devolución. Para obtener más ayuda o para iniciar una devolución o intercambio, comuníquese con nuestro equipo de servicio al cliente.`,
+
                 info_text_4: `1. DISPOSICIONES GENERALES\n
                 - 1.1. El uso del sitio por parte del usuario constituye el acuerdo con esta Política de Privacidad y los términos del procesamiento de datos personales del usuario.\n
                 - 1.2. En caso de desacuerdo con los términos de la Política de Privacidad, el usuario debe dejar de usar el sitio.\n
@@ -1081,8 +1163,29 @@ export const useGetLanguage = ({ lang }) => {
                 info_title_4: 'Політика конфіденційності',
                 info_text_1:
                     'Alberto Bini - це український виробник одягу, який вже понад 10 років створює жіночий одяг високої якості. Виробництво використовує найсучасніші матеріали та технології, що дозволяє створювати сучасний, високоякісний та практичний одяг, який цінують і який користується попитом у всьому світі.',
-                info_text_2: 'Завантаження...',
-                info_text_3: 'Завантаження...',
+                info_text_2: `1. ОПЛАТА:\n
+                    Після розміщення замовлення оплата здійснюється шляхом переказу коштів на вказаний банківський рахунок.
+                    Платежі приймаються на банківський рахунок компанії SPULKA, зареєстрованої в Польщі.\n\n
+                    2. ДОСТАВКА:\n
+                    - ДЛЯ РОЗДРІБНИХ ЗАМОВЛЕНЬ:\n
+                    Якщо товар є в наявності на складі в Польщі, доставка здійснюється протягом 2 робочих днів.
+                    Якщо товар знаходиться на складі в Україні, доставка займе до 2 тижнів.\n
+                    - ДЛЯ ОПТОВИХ ЗАМОВЛЕНЬ:\n
+                    Час доставки залежить від обсягу замовлення та його місця розташування, зазвичай протягом 1 місяця.\n\n
+                    Після розміщення замовлення менеджер зв'яжеться з вами, щоб надати більш детальну інформацію щодо методів оплати, реквізитів банківського рахунку та умов доставки.`,
+                info_text_3: `ПОВЕРНЕННЯ:\n
+                    - Ми приймаємо повернення протягом 30 днів з дати покупки.
+                    - Товари повинні бути не використані, в їхній оригінальній упаковці, і супроводжуватися доказом покупки.
+                    - Вартість доставки для повернення несе покупець, якщо повернення не пов'язане з дефектом товару або помилкою з нашого боку.\n
+                    ОБМІН:\n
+                    - Обміни дозволяються протягом 30 днів з дати покупки.
+                    - Товари, придатні для обміну, повинні бути не використані і в оригінальній упаковці.
+                    - Вартість доставки обміну несе покупець, якщо обмін не пов'язаний з дефектом товару або нашою помилкою.\n
+                    ПОВЕРНЕННЯ КОШТІВ:\n
+                    - Повернення коштів буде здійснено на оригінальний спосіб оплати протягом 7-10 робочих днів після отримання та перевірки поверненого товару.
+                    - Витрати на доставку не підлягають поверненню, якщо повернення не пов'язане з дефектом товару або нашою помилкою.
+                    - Зверніть увагу, що деякі товари можуть бути піддані додатковим обмеженням щодо повернення. Для отримання додаткової допомоги або для початку процедури повернення або обміну, будь ласка, зверніться до нашої служби підтримки клієнтів.`,
+
                 info_text_4: `1. ЗАГАЛЬНІ ПОЛОЖЕННЯ\n
                 - 1.1. Використання користувачем сайту означає згоду з цією Політикою конфіденційності та умовами обробки особистих даних користувача.\n
                 - 1.2. У разі неузгодження з умовами Політики конфіденційності користувач повинен припинити використання сайту.\n
@@ -1346,8 +1449,30 @@ export const useGetLanguage = ({ lang }) => {
                 info_title_4: 'Polityka prywatności',
                 info_text_1:
                     'Alberto Bini to ukraiński producent odzieży, który od ponad 10 lat tworzy wysokiej jakości odzież damską. Produkcja wykorzystuje najnowsze materiały i technologie, umożliwiając tworzenie nowoczesnych, wysokiej jakości i praktycznych ubrań, które są cenione i poszukiwane na całym świecie.',
-                info_text_2: 'Ładowanie...',
-                info_text_3: 'Ładowanie...',
+                info_text_2: `1. PŁATNOŚĆ:\n
+                    Po złożeniu zamówienia płatność jest dokonywana poprzez przelew środków na wskazane konto bankowe.
+                    Płatności są akceptowane na konto bankowe firmy SPULKA zarejestrowanej w Polsce.\n\n
+                    2. DOSTAWA:\n
+                    - DLA ZAMÓWIEŃ DETALICZNYCH:\n
+                    Jeśli artykuł jest dostępny na magazynie w Polsce, dostawa odbywa się w ciągu 2 dni roboczych.
+                    Jeśli artykuł znajduje się na magazynie na Ukrainie, dostawa może potrwać do 2 tygodni.\n
+                    - DLA ZAMÓWIEŃ HURTOWYCH:\n
+                    Czas dostawy zależy od wielkości zamówienia i jego lokalizacji, zazwyczaj w ciągu 1 miesiąca.\n\n
+                    Po złożeniu zamówienia menedżer skontaktuje się z Państwem, aby udzielić szczegółowych informacji na temat metod płatności, danych konta bankowego i warunków dostawy.`,
+
+                info_text_3: `ZWROTY:\n
+                    - Akceptujemy zwroty w ciągu 30 dni od daty zakupu.
+                    - Towary muszą być nieużywane, w oryginalnym opakowaniu i muszą być dołączone do nich dowody zakupu.
+                    - Koszty wysyłki zwrotnej ponosi klient, chyba że zwrot wynika z wady produktu lub naszego błędu.\n
+                    WYMIANA:\n
+                    - Wymiany są możliwe w ciągu 30 dni od daty zakupu.
+                    - Towary uprawnione do wymiany muszą być nieużywane i znajdować się w oryginalnym opakowaniu.
+                    - Koszty wysyłki wymiany pokrywa klient, chyba że wymiana wynika z wady produktu lub naszego błędu.\n
+                    ZWROT PIENIĘDZY:\n
+                    - Zwrot pieniędzy zostanie dokonany na pierwotną formę płatności w ciągu 7-10 dni roboczych po otrzymaniu i sprawdzeniu zwróconego przedmiotu.
+                    - Opłaty za wysyłkę nie podlegają zwrotowi, chyba że zwrot wynika z wady produktu lub naszego błędu.
+                    - Prosimy zauważyć, że niektóre przedmioty mogą podlegać dodatkowym ograniczeniom zwrotów. Dla dalszej pomocy lub rozpoczęcia procedury zwrotu lub wymiany, prosimy skontaktować się z naszym działem obsługi klienta.`,
+
                 info_text_4: `1. OGÓLNE POSTANOWIENIA\n
                 - 1.1. Korzystanie przez użytkownika z serwisu oznacza zgodę na niniejszą Politykę Prywatności oraz warunki przetwarzania danych osobowych użytkownika.\n
                 - 1.2. W przypadku niezgody z warunkami Polityki Prywatności użytkownik powinien zaprzestać korzystania z serwisu.\n
@@ -1613,8 +1738,29 @@ export const useGetLanguage = ({ lang }) => {
                 info_title_4: 'Zásady ochrany osobních údajů',
                 info_text_1:
                     'Alberto Bini je ukrajinský výrobce značkového oblečení, který již více než 10 let vyrábí kvalitní dámské oděvy. Výroba využívá nejnovější materiály a technologie, což umožňuje tvorbu moderního, kvalitního a praktického oblečení, které je ceněno a žádáno po celém světě.',
-                info_text_2: 'Načítání...',
-                info_text_3: 'Načítání...',
+                info_text_2: `1. PLATBA:\n
+                    Po zadání objednávky se platba provádí převodem prostředků na určený bankovní účet.
+                    Platby jsou přijímány na bankovní účet společnosti SPULKA registrované v Polsku.\n\n
+                    2. DODÁNÍ:\n
+                    - PRO REZERVAČNÍ OBJEDNÁVKY:\n
+                    Pokud je položka k dispozici na skladě v Polsku, dodání probíhá do 2 pracovních dnů.
+                    Pokud je položka umístěna na skladě na Ukrajině, dodání může trvat až 2 týdny.\n
+                    - PRO VELKOPRODEJNÍ OBJEDNÁVKY:\n
+                    Doba dodání závisí na objemu objednávky a jejím umístění, obvykle do 1 měsíce.\n\n
+                    Po zadání objednávky s Vámi kontaktuje manažer, aby poskytl podrobnější informace o platebních metodách, bankovních údajích a podmínkách dodání.`,
+                info_text_3: `VRÁCENÍ:\n
+                    - Přijímáme vrácení do 30 dnů od data nákupu.
+                    - Položky musí být nepoužité, v původním obalu a musí být doprovázeny dokladem o nákupu.
+                    - Náklady na vrácení dopravy nese zákazník, pokud vrácení není způsobeno vadou produktu nebo naší chybou.\n
+                    VÝMĚNA:\n
+                    - Výměny jsou povoleny do 30 dnů od data nákupu.
+                    - Položky oprávněné k výměně musí být nepoužité a v původním obalu.
+                    - Náklady na dopravu výměny hradí zákazník, pokud výměna není způsobena vadou produktu nebo naší chybou.\n
+                    VRÁCENÍ PENĚZ:\n
+                    - Vrácení peněz bude provedeno na původní způsob platby do 7-10 pracovních dnů po obdržení a zkontrolování vráceného zboží.
+                    - Náklady na dopravu nejsou vráceny, pokud vrácení není způsobeno vadou produktu nebo naší chybou.
+                    - Upozorňujeme, že některé položky mohou podléhat dalším omezením vrácení. Pro další pomoc nebo zahájení procesu vrácení nebo výměny nás prosím kontaktujte prostřednictvím našeho zákaznického servisu.`,
+
                 info_text_4: `1. OBECNÁ USTANOVENÍ\n
                 - 1.1. Používání uživatelem stránky představuje souhlas s touto Zásadou ochrany osobních údajů a podmínkami zpracování osobních údajů uživatele.\n
                 - 1.2. V případě nesouhlasu s podmínkami Zásady ochrany osobních údajů musí uživatel přestat používat stránku.\n
@@ -1877,8 +2023,29 @@ export const useGetLanguage = ({ lang }) => {
                 info_title_4: 'Политика конфиденциальности',
                 info_text_1:
                     'Alberto Bini - украинский производитель брендовой одежды, который более 10 лет создает женскую одежду высокого качества. Производство использует последние материалы и технологии, позволяющие создавать современную, высококачественную и практичную одежду, которая ценится и востребована во всем мире.',
-                info_text_2: 'Загрузка...',
-                info_text_3: 'Загрузка...',
+                info_text_2: `1. ОПЛАТА:\n
+                    После размещения заказа оплата производится путем перевода средств на указанный банковский счет.
+                    Платежи принимаются на банковский счет компании SPULKA, зарегистрированной в Польше.\n\n
+                    2. ДОСТАВКА:\n
+                    - ДЛЯ РОЗНИЧНЫХ ЗАКАЗОВ:\n
+                    Если товар доступен на складе в Польше, доставка осуществляется в течение 2 рабочих дней.
+                    Если товар находится на складе в Украине, доставка займет до 2 недель.\n
+                    - ДЛЯ ОПТОВЫХ ЗАКАЗОВ:\n
+                    Время доставки зависит от объема заказа и его местоположения, обычно в течение 1 месяца.\n\n
+                    После размещения заказа менеджер свяжется с вами, чтобы предоставить более подробную информацию о методах оплаты, банковских реквизитах и условиях доставки.`,
+                info_text_3: `ВОЗВРАТЫ:\n
+                    - Мы принимаем возвраты в течение 30 дней с даты покупки.
+                    - Товары должны быть неиспользованными, в своей оригинальной упаковке и сопровождаться документом о покупке.
+                    - Стоимость обратной доставки несет клиент, если возврат не вызван дефектом продукта или нашей ошибкой.\n
+                    ОБМЕН:\n
+                    - Обмены разрешены в течение 30 дней с даты покупки.
+                    - Товары, подлежащие обмену, должны быть неиспользованными и в своей оригинальной упаковке.
+                    - Стоимость доставки обмена оплачивает клиент, если обмен не вызван дефектом продукта или нашей ошибкой.\n
+                    ВОЗВРАТ ДЕНЕГ:\n
+                    - Возврат средств будет осуществлен на исходный способ оплаты в течение 7-10 рабочих дней после получения и проверки возвращенного товара.
+                    - Стоимость доставки не возвращается, если возврат не вызван дефектом продукта или нашей ошибкой.
+                    - Обратите внимание, что некоторые товары могут подпадать под дополнительные ограничения возврата. Для получения дополнительной помощи или начала процесса возврата или обмена, пожалуйста, свяжитесь с нашей службой поддержки клиентов.`,
+
                 info_text_4: `1. ОБЩИЕ ПОЛОЖЕНИЯ\n
                 - 1.1. Использование пользователем сайта означает согласие с настоящей Политикой конфиденциальности и условиями обработки персональных данных пользователя.\n
                 - 1.2. В случае несогласия с условиями Политики конфиденциальности пользователь должен прекратить использование сайта.\n
