@@ -106,7 +106,7 @@ const HomePage = () => {
                     maxWidth: '900px',
                 }}
             >
-                {[1, 2, 3, 2].map(el => (
+                {[1, 2, 3, 3].map(el => (
                     <motion.div
                         initial="hidden"
                         whileInView="visible"
