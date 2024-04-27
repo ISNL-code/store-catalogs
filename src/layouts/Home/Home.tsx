@@ -12,8 +12,8 @@ import { useStoresApi } from 'api/useStoresApi';
 import { STORES_DATA } from 'dataBase/STORES';
 
 export default function Home({ lang, setLang }) {
-    const { sx, l, xxs } = useDevice();
-    const headerHeight = xxs ? 50 : 65;
+    const { sx, l, xs } = useDevice();
+    const headerHeight = xs ? 50 : 65;
     const footerHeight = sx ? 70 : 0;
     const instrumentalBarHeight = 36;
     const appXPadding = l ? 2 : 4;

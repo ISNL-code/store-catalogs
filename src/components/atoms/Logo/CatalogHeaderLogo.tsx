@@ -1,20 +1,15 @@
 import { Box, Typography } from '@mui/material';
 import { useDevice } from 'hooks/useDevice';
-import { useNavigate } from 'react-router-dom';
 
 const CatalogHeaderLogo = () => {
     const { xs } = useDevice();
-    const navigate = useNavigate();
     return (
-        <Box
-            sx={{ display: 'flex', alignItems: 'center', cursor: 'pointer', gap: xs ? 0.25 : 0.25 }}
-            onClick={() => navigate('/')}
-        >
+        <Box sx={{ display: 'flex', alignItems: 'center', cursor: 'pointer', gap: xs ? 0.25 : 0.25 }}>
             <Box sx={{ boxShadow: '0 0 5px 1px #414141c5', borderRadius: '50%', border: '2.2px solid #383838' }}>
                 <Box
                     sx={{
-                        width: xs ? 40 : 55,
-                        height: xs ? 40 : 55,
+                        width: xs ? 36 : 55,
+                        height: xs ? 36 : 55,
                         borderRadius: '50%',
                         overflow: 'hidden',
                         display: 'flex',
@@ -25,8 +20,8 @@ const CatalogHeaderLogo = () => {
                     <img
                         src={require('assets/img/logo.png')}
                         style={{
-                            width: xs ? 62 : 78,
-                            height: xs ? 62 : 78,
+                            width: xs ? 58 : 78,
+                            height: xs ? 58 : 78,
                             position: 'absolute',
                             top: '50%',
                             left: '50%',
@@ -45,6 +40,7 @@ const CatalogHeaderLogo = () => {
                     gap: 0.05,
                     alignItems: 'center',
                     mt: 0.5,
+                    // borderBottom: '2px double #616161c6',
                     px: 0.25,
                     position: 'relative',
                     mb: 0.5,
@@ -69,7 +65,7 @@ const CatalogHeaderLogo = () => {
                         fontSize: xs ? 24 : 32,
                         fontWeight: 500,
                         color: '#616161c6',
-                        textShadow: '#000000 0 0 2px',
+                        textShadow: '#000000 0 0 1.25px',
                     }}
                 >
                     L
@@ -80,7 +76,7 @@ const CatalogHeaderLogo = () => {
                         fontSize: xs ? 24 : 32,
                         fontWeight: 500,
                         color: '#616161c6',
-                        textShadow: '#000000 0 0 2px',
+                        textShadow: '#000000 0 0 1.25px',
                     }}
                 >
                     B
@@ -91,7 +87,7 @@ const CatalogHeaderLogo = () => {
                         fontSize: xs ? 24 : 32,
                         fontWeight: 500,
                         color: '#616161c6',
-                        textShadow: '#000000 0 0 2px',
+                        textShadow: '#000000 0 0 1.25px',
                     }}
                 >
                     E
@@ -102,7 +98,7 @@ const CatalogHeaderLogo = () => {
                         fontSize: xs ? 24 : 32,
                         fontWeight: 500,
                         color: '#616161c6',
-                        textShadow: '#000000 0 0 2px',
+                        textShadow: '#000000 0 0 1.25px',
                     }}
                 >
                     R
@@ -113,7 +109,7 @@ const CatalogHeaderLogo = () => {
                         fontSize: xs ? 24 : 32,
                         fontWeight: 500,
                         color: '#616161c6',
-                        textShadow: '#000000 0 0 2px',
+                        textShadow: '#000000 0 0 1.25px',
                     }}
                 >
                     T
@@ -124,7 +120,7 @@ const CatalogHeaderLogo = () => {
                         fontSize: xs ? 24 : 32,
                         fontWeight: 500,
                         color: '#616161c6',
-                        textShadow: '#000000 0 0 2px',
+                        textShadow: '#000000 0 0 1.25px',
                     }}
                 >
                     O
@@ -149,7 +145,7 @@ const CatalogHeaderLogo = () => {
                         fontSize: xs ? 24 : 32,
                         fontWeight: 500,
                         color: '#616161c6',
-                        textShadow: '#000000 0 0 2px',
+                        textShadow: '#000000 0 0 1.25px',
                     }}
                 >
                     I
@@ -160,7 +156,7 @@ const CatalogHeaderLogo = () => {
                         fontSize: xs ? 24 : 32,
                         fontWeight: 500,
                         color: '#616161c6',
-                        textShadow: '#000000 0 0 2px',
+                        textShadow: '#000000 0 0 1.25px',
                     }}
                 >
                     N
@@ -171,7 +167,7 @@ const CatalogHeaderLogo = () => {
                         fontSize: xs ? 24 : 32,
                         fontWeight: 500,
                         color: '#616161c6',
-                        textShadow: '#000000 0 0 2px',
+                        textShadow: '#000000 0 0 1.25px',
                     }}
                 >
                     I
@@ -183,7 +179,7 @@ const CatalogHeaderLogo = () => {
                         left: 0,
                         borderTop: '0.1px solid #272727',
                         width: '100%',
-                        boxShadow: '0 0 2px 1px #7c7c7c',
+                        boxShadow: '0 0 2px #7c7c7c',
                     }}
                 ></Box>
                 <Box
@@ -193,7 +189,7 @@ const CatalogHeaderLogo = () => {
                         left: 0,
                         borderBottom: '0.1px solid #6d6d6d',
                         width: '100%',
-                        boxShadow: '0 0 1px 1px #7c7c7c6f',
+                        boxShadow: '0 0 1px  #7c7c7c6f',
                     }}
                 ></Box>
             </Box>

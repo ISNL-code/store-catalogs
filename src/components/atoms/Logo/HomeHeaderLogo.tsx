@@ -8,8 +8,8 @@ const HomeHeaderLogo = () => {
             <Box sx={{ boxShadow: '0 0 5px 1px #414141c5', borderRadius: '50%', border: '2.2px solid #383838' }}>
                 <Box
                     sx={{
-                        width: xs ? 40 : 55,
-                        height: xs ? 40 : 55,
+                        width: xs ? 36 : 55,
+                        height: xs ? 36 : 55,
                         borderRadius: '50%',
                         overflow: 'hidden',
                         display: 'flex',
@@ -20,8 +20,8 @@ const HomeHeaderLogo = () => {
                     <img
                         src={require('assets/img/logo.png')}
                         style={{
-                            width: xs ? 62 : 78,
-                            height: xs ? 62 : 78,
+                            width: xs ? 58 : 78,
+                            height: xs ? 58 : 78,
                             position: 'absolute',
                             top: '50%',
                             left: '50%',
@@ -65,7 +65,7 @@ const HomeHeaderLogo = () => {
                         fontSize: xs ? 24 : 32,
                         fontWeight: 500,
                         color: '#616161c6',
-                        textShadow: '#000000 0 0 2px',
+                        textShadow: '#000000 0 0 1.25px',
                     }}
                 >
                     L
@@ -76,7 +76,7 @@ const HomeHeaderLogo = () => {
                         fontSize: xs ? 24 : 32,
                         fontWeight: 500,
                         color: '#616161c6',
-                        textShadow: '#000000 0 0 2px',
+                        textShadow: '#000000 0 0 1.25px',
                     }}
                 >
                     B
@@ -87,7 +87,7 @@ const HomeHeaderLogo = () => {
                         fontSize: xs ? 24 : 32,
                         fontWeight: 500,
                         color: '#616161c6',
-                        textShadow: '#000000 0 0 2px',
+                        textShadow: '#000000 0 0 1.25px',
                     }}
                 >
                     E
@@ -98,7 +98,7 @@ const HomeHeaderLogo = () => {
                         fontSize: xs ? 24 : 32,
                         fontWeight: 500,
                         color: '#616161c6',
-                        textShadow: '#000000 0 0 2px',
+                        textShadow: '#000000 0 0 1.25px',
                     }}
                 >
                     R
@@ -109,7 +109,7 @@ const HomeHeaderLogo = () => {
                         fontSize: xs ? 24 : 32,
                         fontWeight: 500,
                         color: '#616161c6',
-                        textShadow: '#000000 0 0 2px',
+                        textShadow: '#000000 0 0 1.25px',
                     }}
                 >
                     T
@@ -120,7 +120,7 @@ const HomeHeaderLogo = () => {
                         fontSize: xs ? 24 : 32,
                         fontWeight: 500,
                         color: '#616161c6',
-                        textShadow: '#000000 0 0 2px',
+                        textShadow: '#000000 0 0 1.25px',
                     }}
                 >
                     O
@@ -145,7 +145,7 @@ const HomeHeaderLogo = () => {
                         fontSize: xs ? 24 : 32,
                         fontWeight: 500,
                         color: '#616161c6',
-                        textShadow: '#000000 0 0 2px',
+                        textShadow: '#000000 0 0 1.25px',
                     }}
                 >
                     I
@@ -156,7 +156,7 @@ const HomeHeaderLogo = () => {
                         fontSize: xs ? 24 : 32,
                         fontWeight: 500,
                         color: '#616161c6',
-                        textShadow: '#000000 0 0 2px',
+                        textShadow: '#000000 0 0 1.25px',
                     }}
                 >
                     N
@@ -167,7 +167,7 @@ const HomeHeaderLogo = () => {
                         fontSize: xs ? 24 : 32,
                         fontWeight: 500,
                         color: '#616161c6',
-                        textShadow: '#000000 0 0 2px',
+                        textShadow: '#000000 0 0 1.25px',
                     }}
                 >
                     I
@@ -179,7 +179,7 @@ const HomeHeaderLogo = () => {
                         left: 0,
                         borderTop: '0.1px solid #272727',
                         width: '100%',
-                        boxShadow: '0 0 2px 1px #7c7c7c',
+                        boxShadow: '0 0 2px #7c7c7c',
                     }}
                 ></Box>
                 <Box
@@ -189,7 +189,7 @@ const HomeHeaderLogo = () => {
                         left: 0,
                         borderBottom: '0.1px solid #6d6d6d',
                         width: '100%',
-                        boxShadow: '0 0 1px 1px #7c7c7c6f',
+                        boxShadow: '0 0 1px  #7c7c7c6f',
                     }}
                 ></Box>
             </Box>
