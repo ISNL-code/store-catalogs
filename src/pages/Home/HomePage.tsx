@@ -85,7 +85,7 @@ const HomePage = () => {
                     </Marquee>
                 </Box>
             </Box>
-            <Grid container xs={12} mt={-4}>
+            <Grid container xs={12} mt={-4} sx={{ position: 'fixed' }}>
                 <Typography
                     variant="h1"
                     sx={{
@@ -93,7 +93,6 @@ const HomePage = () => {
                         zIndex: 1,
                         textShadow: '#000000 0 0 5px',
                         fontSize: sx ? 56 : 96,
-                        position: 'fixed',
                     }}
                 >
                     Elegance in Outerwear
@@ -126,13 +125,13 @@ const HomePage = () => {
                             py={sx ? 1 : 1.75}
                             container
                             xs={12}
-                            mt={1.5}
+                            mt={1.2}
                             sx={{ backgroundColor: '#ffffff78', zIndex: 2, borderRadius: 1 }}
                         >
-                            <Typography sx={{ color: '#000', zIndex: 1, fontSize: sx ? 24 : 36 }}>
+                            <Typography sx={{ color: '#000', zIndex: 1, fontSize: sx ? 23 : 36 }}>
                                 {string?.[`customer_title_${el}`]}
                             </Typography>
-                            <Typography sx={{ color: '#2c2c2c', zIndex: 1, fontWeight: 500, fontSize: sx ? 16 : 24 }}>
+                            <Typography sx={{ color: '#2c2c2c', zIndex: 1, fontWeight: 500, fontSize: sx ? 15 : 24 }}>
                                 {string?.[`customer_description_${el}`]}
                             </Typography>
                         </Grid>
