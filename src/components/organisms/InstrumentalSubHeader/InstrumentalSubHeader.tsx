@@ -8,11 +8,7 @@ interface InstrumentalBarInterface {
     EndSlot?: () => ReactNode;
 }
 
-const InstrumentalSubHeader = ({
-    StartSlot = () => <></>,
-    CentralSlot = () => <></>,
-    EndSlot = () => <></>,
-}: InstrumentalBarInterface) => {
+const InstrumentalSubHeader = ({ StartSlot, CentralSlot, EndSlot }: InstrumentalBarInterface) => {
     const {
         instrumentalBarHeight,
         headerHeight,
@@ -35,11 +31,17 @@ const InstrumentalSubHeader = ({
                 backgroundColor: '#cccccc3b',
             }}
         >
-            <Box>{StartSlot()}</Box>
-            <Box sx={{ width: '100%', textAlign: 'center', position: 'fixed', left: 0, pointerEvents: 'none' }}>
-                {CentralSlot()}
-            </Box>
-            <Box>{EndSlot()}</Box>
+            {StartSlot && <Box sx={{ width: '100%' }}>{StartSlot()}</Box>}
+            {CentralSlot && (
+                <Box sx={{ width: '100%', textAlign: 'center', position: 'fixed', left: 0, pointerEvents: 'none' }}>
+                    {CentralSlot()}
+                </Box>
+            )}
+            {EndSlot && (
+                <Box sx={{ width: '100%' }}>
+                    <Box sx={{ ml: 'auto', display: 'flex', justifyContent: 'flex-end' }}>{EndSlot()}</Box>
+                </Box>
+            )}
         </Box>
     );
 };

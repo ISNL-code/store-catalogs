@@ -16,6 +16,7 @@ import UserProfile from 'pages/Profile/UserProfile';
 import UserOrders from 'pages/Orders/UserOrders';
 import Home from 'layouts/Home/Home';
 import HomePage from 'pages/Home/HomePage';
+import InformationPage from 'pages/Information/InformationPage';
 
 const App = () => {
     const token = localStorage.getItem(ACCESS_TOKEN_KEY);
@@ -67,6 +68,7 @@ const App = () => {
                             <Route path={'/'} element={<Home lang={lang} setLang={setLang} />}>
                                 <Route path={'/'} element={<HomePage />} />
                                 <Route path={'/:storeCode/:storeName/contacts'} element={<ContactsManagePage />} />
+                                <Route path={'/info'} element={<InformationPage />} />
                             </Route>
                             <Route
                                 path={'/catalog'}

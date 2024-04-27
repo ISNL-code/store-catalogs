@@ -69,7 +69,7 @@ const HomeHeader = ({ headerHeight, appXPadding, string, lang, setLang, setOpenM
                     />
                     <HeaderNavButton
                         title={string?.info}
-                        path={`/`}
+                        path={`/info`}
                         icon={props => <InfoIcon {...props} />}
                         isShown={!sx}
                         action={() => {}}

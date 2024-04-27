@@ -7,6 +7,9 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'en',
             string: {
+                delivery: 'Delivery',
+                payments: 'Payments',
+                additional: 'Additional',
                 message: 'Message',
                 info: 'Info',
                 min_purchase: 'Minimum Purchase Requirement',
@@ -211,6 +214,9 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'kz',
             string: {
+                delivery: 'Жеткізу',
+                payments: 'Төлемдер',
+                additional: 'Қосымша',
                 message: 'Хабарлама',
                 info: 'Ақпарат',
                 min_purchase: 'Сатып алу минимумы талабы',
@@ -417,8 +423,10 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'fr',
             string: {
+                delivery: 'Livraison',
+                payments: 'Paiements',
+                additional: 'Supplémentaire',
                 message: 'Message',
-
                 info: 'Info',
                 min_purchase: 'Exigence d`achat minimum',
                 min_purchase_text:
@@ -623,6 +631,9 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'es',
             string: {
+                delivery: 'Entrega',
+                payments: 'Pagos',
+                additional: 'Adicional',
                 message: 'Mensaje',
                 info: 'Información',
                 min_purchase: 'Requisito de compra mínima',
@@ -828,6 +839,9 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'ua',
             string: {
+                delivery: 'Доставка',
+                payments: 'Платежі',
+                additional: 'Додатково',
                 message: 'Повідомлення',
                 info: 'Інформація',
                 min_purchase: 'Вимога до мінімальної кількості покупки',
@@ -1033,6 +1047,9 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'pl',
             string: {
+                delivery: 'Dostawa',
+                payments: 'Płatności',
+                additional: 'Dodatkowe',
                 message: 'Wiadomość',
                 info: 'Informacja',
                 min_purchase: 'Wymagany minimalny zakup',
@@ -1240,6 +1257,9 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'cz',
             string: {
+                delivery: 'Dodávka',
+                payments: 'Platby',
+                additional: 'Další',
                 message: 'Zpráva',
                 info: 'Informace',
                 min_purchase: 'Požadavek na minimální nákup',
@@ -1444,6 +1464,9 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'ru',
             string: {
+                delivery: 'Доставка',
+                payments: 'Платежи',
+                additional: 'Дополнительно',
                 message: 'Сообщение',
                 info: 'Информация',
                 min_purchase: 'Требование минимальной покупки',

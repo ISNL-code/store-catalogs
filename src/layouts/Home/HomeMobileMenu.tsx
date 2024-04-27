@@ -56,7 +56,7 @@ const HomeMobileMenu = ({ appXPadding, isShown, string }) => {
                     </Grid>
                     <Grid xs={3}>
                         <MobileNavButton
-                            path={`/`}
+                            path={`/info`}
                             title={string?.info}
                             icon={p => <InfoIcon {...p} />}
                             action={() => {}}
