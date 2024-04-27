@@ -39,6 +39,56 @@ export default function Register({ setAuth, lang, string, close, setOpenModalTyp
         { code: 'PL', country: string?.poland },
         { code: 'TR', country: string?.turkey },
         { code: 'UA', country: string?.ukraine },
+        { code: 'AL', country: 'Albania' },
+        { code: 'AD', country: 'Andorra' },
+        { code: 'AM', country: 'Armenia' },
+        { code: 'AT', country: 'Austria' },
+        { code: 'AZ', country: 'Azerbaijan' },
+        { code: 'BY', country: 'Belarus' },
+        { code: 'BE', country: 'Belgium' },
+        { code: 'BA', country: 'Bosnia and Herzegovina' },
+        { code: 'BG', country: 'Bulgaria' },
+        { code: 'HR', country: 'Croatia' },
+        { code: 'CY', country: 'Cyprus' },
+        { code: 'DK', country: 'Denmark' },
+        { code: 'EE', country: 'Estonia' },
+        { code: 'FO', country: 'Faroe Islands' },
+        { code: 'FI', country: 'Finland' },
+        { code: 'FR', country: 'France' },
+        { code: 'GE', country: 'Georgia' },
+        { code: 'DE', country: 'Germany' },
+        { code: 'GI', country: 'Gibraltar' },
+        { code: 'GR', country: 'Greece' },
+        { code: 'GG', country: 'Guernsey' },
+        { code: 'HU', country: 'Hungary' },
+        { code: 'IS', country: 'Iceland' },
+        { code: 'IE', country: 'Ireland' },
+        { code: 'IM', country: 'Isle of Man' },
+        { code: 'JE', country: 'Jersey' },
+        { code: 'XK', country: 'Kosovo' },
+        { code: 'LV', country: 'Latvia' },
+        { code: 'LI', country: 'Liechtenstein' },
+        { code: 'LT', country: 'Lithuania' },
+        { code: 'LU', country: 'Luxembourg' },
+        { code: 'MT', country: 'Malta' },
+        { code: 'MD', country: 'Moldova' },
+        { code: 'MC', country: 'Monaco' },
+        { code: 'ME', country: 'Montenegro' },
+        { code: 'NL', country: 'Netherlands' },
+        { code: 'MK', country: 'North Macedonia' },
+        { code: 'NO', country: 'Norway' },
+        { code: 'PT', country: 'Portugal' },
+        { code: 'RO', country: 'Romania' },
+        { code: 'RU', country: 'Russia' },
+        { code: 'SM', country: 'San Marino' },
+        { code: 'RS', country: 'Serbia' },
+        { code: 'SK', country: 'Slovakia' },
+        { code: 'SI', country: 'Slovenia' },
+        { code: 'ES', country: 'Spain' },
+        { code: 'SJ', country: 'Svalbard and Jan Mayen' },
+        { code: 'SE', country: 'Sweden' },
+        { code: 'GB', country: 'United Kingdom' },
+        { code: 'VA', country: 'Vatican City' },
     ];
     const [passwordVisible, setPasswordVisible] = useState(false);
     const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
@@ -254,7 +304,7 @@ export default function Register({ setAuth, lang, string, close, setOpenModalTyp
                     error={!!(formik.errors.phoneNumber && formik.touched.phoneNumber)}
                     helperText={formik.errors.phoneNumber && string[formik.errors.phoneNumber]}
                 />
-                <FormControl fullWidth sx={{ minWidth: 250, mt: 1 }} size="small">
+                <FormControl fullWidth sx={{ minWidth: 250, mt: 1, zIndex: 5000 }} size="small">
                     <InputLabel sx={{ color: '#696666' }} id="country-label">
                         {string?.country}
                     </InputLabel>
@@ -266,9 +316,10 @@ export default function Register({ setAuth, lang, string, close, setOpenModalTyp
                             setCountry(e.target.value);
                         }}
                         input={<OutlinedInput label={string?.country} />}
+                        sx={{ zIndex: 5000 }}
                     >
                         {countryList.map(item => (
-                            <MenuItem key={item.code} value={item.code}>
+                            <MenuItem key={item.code} value={item.code} sx={{ zIndex: 5000 }}>
                                 {item.country}
                             </MenuItem>
                         ))}
