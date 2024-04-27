@@ -10,27 +10,42 @@ const InformationPage = () => {
         <>
             <InstrumentalSubHeader
                 StartSlot={() => (
-                    <Grid container xs={12} sx={{ width: '100%' }} spacing={0.5}>
+                    <Grid container xs={12} sx={{ width: '100%', display: 'flex', gap: 0.5 }}>
                         <Grid>
-                            <Button sx={{ background: '#fff' }} variant="outlined">
-                                {string?.delivery}
+                            <Button sx={{ background: '#fff', px: 1 }} variant="outlined">
+                                {string?.about}
                             </Button>
                         </Grid>
                         <Grid>
-                            <Button sx={{ background: '#fff' }} variant="outlined">
+                            <Button sx={{ background: '#fff', px: 1 }} variant="outlined">
                                 {string?.payments}
                             </Button>
                         </Grid>
 
                         <Grid>
-                            <Button sx={{ background: '#fff' }} variant="outlined">
-                                {string?.additional}
+                            <Button sx={{ background: '#fff', px: 1 }} variant="outlined">
+                                {string?.delivery}
+                            </Button>
+                        </Grid>
+                        <Grid>
+                            <Button sx={{ background: '#fff', px: 1 }} variant="outlined">
+                                {string?.return_exchange}
+                            </Button>
+                        </Grid>
+                        <Grid>
+                            <Button sx={{ background: '#fff', px: 1 }} variant="outlined">
+                                FAQ
+                            </Button>
+                        </Grid>
+                        <Grid>
+                            <Button sx={{ background: '#fff', px: 1 }} variant="outlined">
+                                {string?.privacy_policy}
                             </Button>
                         </Grid>
                     </Grid>
                 )}
             />
-            <Grid xs={12} container>
+            <Grid mt={5} xs={12} container>
                 ...Loading
             </Grid>
         </>

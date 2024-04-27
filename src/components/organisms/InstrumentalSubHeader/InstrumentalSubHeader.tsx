@@ -18,11 +18,12 @@ const InstrumentalSubHeader = ({ StartSlot, CentralSlot, EndSlot }: Instrumental
     return (
         <Box
             px={appXPadding}
+            py={0.5}
             sx={{
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-between',
-                height: instrumentalBarHeight,
+                minHeight: instrumentalBarHeight,
                 width: '100%',
                 position: 'fixed',
                 top: headerHeight,

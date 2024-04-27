@@ -7,6 +7,9 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'en',
             string: {
+                about: 'About',
+                return_exchange: 'Return & Exchange',
+                privacy_policy: 'Privacy Policy',
                 delivery: 'Delivery',
                 payments: 'Payments',
                 additional: 'Additional',
