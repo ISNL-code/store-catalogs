@@ -1,3 +1,4 @@
+import React, { useRef } from 'react';
 import InstrumentalSubHeader from 'components/organisms/InstrumentalSubHeader/InstrumentalSubHeader';
 import Grid from '@mui/material/Unstable_Grid2';
 import { Button, Typography } from '@mui/material';
@@ -5,12 +6,22 @@ import { useOutletContext } from 'react-router-dom';
 
 const InformationPage = () => {
     const { string }: any = useOutletContext();
+    const aboutStoreRef = useRef(null);
+    const paymentsDeliveryRef = useRef(null);
+    const returnExchangeRef = useRef(null);
+    const privacyPolicyRef = useRef(null);
+
+    const scrollToRef = (ref: React.RefObject<HTMLDivElement>) => {
+        if (ref.current) {
+            window.scrollTo({ top: ref.current.offsetTop - 120, behavior: 'smooth' });
+        }
+    };
 
     const data = [
-        { title: string?.info_title_1, text: string?.info_text_1 },
-        { title: string?.info_title_2, text: string?.info_text_2 },
-        { title: string?.info_title_3, text: string?.info_text_3 },
-        { title: string?.info_title_4, text: string?.info_text_4 },
+        { title: string?.info_title_1, text: string?.info_text_1, ref: aboutStoreRef },
+        { title: string?.info_title_2, text: string?.info_text_2, ref: paymentsDeliveryRef },
+        { title: string?.info_title_3, text: string?.info_text_3, ref: returnExchangeRef },
+        { title: string?.info_title_4, text: string?.info_text_4, ref: privacyPolicyRef },
     ];
 
     return (
@@ -19,22 +30,38 @@ const InformationPage = () => {
                 StartSlot={() => (
                     <Grid container xs={12} sx={{ width: '100%', display: 'flex', gap: 0.5 }}>
                         <Grid>
-                            <Button sx={{ background: '#fff', px: 1 }} variant="outlined">
+                            <Button
+                                sx={{ background: '#fff', px: 0.8, '&:hover': { backgroundColor: '#fff' } }}
+                                variant="outlined"
+                                onClick={() => scrollToRef(aboutStoreRef)}
+                            >
                                 {string?.about_store}
                             </Button>
                         </Grid>
                         <Grid>
-                            <Button sx={{ background: '#fff', px: 1 }} variant="outlined">
+                            <Button
+                                sx={{ background: '#fff', px: 0.8, '&:hover': { backgroundColor: '#fff' } }}
+                                variant="outlined"
+                                onClick={() => scrollToRef(paymentsDeliveryRef)}
+                            >
                                 {string?.payments_delivery}
                             </Button>
                         </Grid>
                         <Grid>
-                            <Button sx={{ background: '#fff', px: 1 }} variant="outlined">
+                            <Button
+                                sx={{ background: '#fff', px: 0.8, '&:hover': { backgroundColor: '#fff' } }}
+                                variant="outlined"
+                                onClick={() => scrollToRef(returnExchangeRef)}
+                            >
                                 {string?.return_exchange}
                             </Button>
                         </Grid>
                         <Grid>
-                            <Button sx={{ background: '#fff', px: 1 }} variant="outlined">
+                            <Button
+                                sx={{ background: '#fff', px: 0.8, '&:hover': { backgroundColor: '#fff' } }}
+                                variant="outlined"
+                                onClick={() => scrollToRef(privacyPolicyRef)}
+                            >
                                 {string?.privacy_policy}
                             </Button>
                         </Grid>
@@ -47,8 +74,8 @@ const InformationPage = () => {
                 container
                 sx={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', alignItems: 'center' }}
             >
-                {data?.map(({ title, text }, idx) => (
-                    <Grid key={idx} xs={12} container mb={3} sx={{ maxWidth: 1200 }}>
+                {data?.map(({ title, text, ref }, idx) => (
+                    <Grid key={idx} xs={12} container mb={3} sx={{ maxWidth: 1200 }} ref={ref}>
                         <Grid xs={12} sx={{ background: '#ececec7c', py: 0.75, mb: 1, textAlign: 'center' }}>
                             <Typography variant="h2" sx={{ lineHeight: 1 }}>
                                 {title}
