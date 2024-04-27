@@ -111,7 +111,7 @@ const HomePage = () => {
                     maxWidth: '900px',
                 }}
             >
-                {[1, 2, 2, 2].map(el => (
+                {[1, 2, 2, 2].map((el, idx) => (
                     <motion.div
                         initial="hidden"
                         whileInView="visible"
@@ -129,10 +129,10 @@ const HomePage = () => {
                             sx={{ backgroundColor: '#ffffff78', zIndex: 2, borderRadius: 1, position: 'relative' }}
                         >
                             <Typography sx={{ color: '#000', zIndex: 1, fontSize: sx ? 23 : 36 }}>
-                                {string?.[`customer_title_${el}`]}
+                                {string?.[`customer_title_${idx + 1}`]}
                             </Typography>
                             <Typography sx={{ color: '#2c2c2c', zIndex: 1, fontWeight: 500, fontSize: sx ? 15 : 24 }}>
-                                {string?.[`customer_description_${el}`]}
+                                {string?.[`customer_description_${idx + 1}`]}
                             </Typography>
                         </Grid>
                     </motion.div>
