@@ -99,7 +99,7 @@ const HomePage = () => {
                 </Typography>
             </Grid>
             <Grid
-                mb={sx ? 18 : 5}
+                mb={sx ? 20 : 5}
                 xs={12}
                 container
                 mt={sx ? '90vh' : 15}
