@@ -94,7 +94,7 @@ const HomePage = () => {
                 </Typography>
             </Grid>
             <Grid
-                mb={sx ? 20 : 5}
+                mb={sx ? 30 : 5}
                 xs={12}
                 container
                 mt={sx ? '90vh' : 3}
@@ -106,7 +106,7 @@ const HomePage = () => {
                     maxWidth: '900px',
                 }}
             >
-                {[1, 2, 2, 1].map(el => (
+                {[1, 2, 2, 2].map(el => (
                     <motion.div
                         initial="hidden"
                         whileInView="visible"
