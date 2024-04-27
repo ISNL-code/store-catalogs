@@ -7,12 +7,67 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'en',
             string: {
-                about: 'About',
-                return_exchange: 'Return & Exchange',
+                about_store: 'About Store',
+                payments_delivery: 'Payments & Delivery',
+                return_exchange: 'Returns & Exchange',
                 privacy_policy: 'Privacy Policy',
-                delivery: 'Delivery',
-                payments: 'Payments',
-                additional: 'Additional',
+                info_title_1: 'About Alberto Bini',
+                info_title_2: 'Payments & Delivery',
+                info_title_3: 'Returns & Exchange',
+                info_title_4: 'Privacy Policy',
+                info_text_1:
+                    'Alberto Bini is a Ukrainian brand clothing manufacturer that has been creating high-quality women`s apparel for over 10 years. The production utilizes the latest materials and technologies, allowing for the creation of modern, high-quality, and practical clothing that is valued and in demand worldwide.',
+                info_text_2: 'Loading...',
+                info_text_3: 'Loading...',
+                info_text_4: `1. GENERAL PROVISIONS\n
+                - 1.1. User's use of the site constitutes agreement with this Privacy Policy and the terms of the user's personal data processing.\n
+                - 1.2. In case of disagreement with the terms of the Privacy Policy, the user must stop using the site.\n
+                - 1.3. This Privacy Policy applies only to this site. The site administration does not control and is not responsible for third-party websites that the user may access through links available on the site.\n
+                - 1.4. The site administration does not verify the accuracy of personal data provided by the user.\n
+                \n
+                2. PRIVACY POLICY SUBJECT\n
+                - 2.1. This Privacy Policy establishes the obligations of the site administration to not disclose and to protect the privacy of personal data that the user provides at the request of the site administration.\n
+                - 2.2. Personal data permitted for processing under this Privacy Policy are provided by the user by filling out the registration form on the site.\n
+                \n
+                3. PURPOSES OF COLLECTING USER PERSONAL INFORMATION\n
+                - 3.1. The site administration may use the user's personal data for the purposes of:\n
+                - 3.1.1. Identifying the user to process an order.\n
+                - 3.1.2. Providing the user with access to personalized site resources.\n
+                - 3.1.3. Establishing contact with the user, including sending notifications, inquiries concerning the use of the site, provision of services, and processing user requests and applications.\n
+                - 3.1.4. Determining the user's location to ensure security and prevent fraud.\n
+                - 3.1.5. Confirming the accuracy and completeness of personal data provided by the user.\n
+                - 3.1.6. Informing the user of the site about the status of the order.\n
+                - 3.1.7. Providing effective customer and technical support in case of problems related to the use of the site.\n
+                - 3.1.8. Providing the user, with their consent, updates on products, special offers, pricing information, newsletters, and other information on behalf of the site or its partners.\n
+                - 3.1.9. Conducting advertising activities with the consent of the user.\n
+                - 3.1.10. Providing the user access to partner sites or services to obtain products, updates, and services.\n
+                \n
+                4. PARTIES' OBLIGATIONS\n
+                - 4.1. The user is obligated to:\n
+                - 4.1.1. Provide personal data necessary for using the site.\n
+                - 4.1.2. Update and supplement the provided personal data information in case of any changes.\n
+                - 4.2. The site administration is obligated to:\n
+                - 4.2.1. Use the information obtained exclusively for the purposes specified in clause 3 of this Privacy Policy.\n
+                - 4.2.2. Keep the confidential information secret, not disclose it without the user's prior written consent, and not sell, exchange, publish, or disclose the user's personal data by any other means.\n
+                - 4.2.3. Take precautions to protect the confidentiality of the user's personal data according to the procedure normally used to protect such information in existing business transactions.\n
+                - 4.2.4. Block personal data relating to the respective user from the moment the user or their legal representative or an authorized body for the protection of personal data subjects makes a request or inquiry, during the period of verification, in case of inaccurate personal data or unlawful actions.\n
+                \n
+                5. PARTIES' LIABILITY\n
+                - 5.1. The site administration, having failed to fulfill its obligations, is liable for losses incurred by the user due to the unlawful use of personal data, in accordance with the laws of Ukraine.\n
+                - 5.2. In the event of loss or disclosure of Confidential Information, the site administration is not responsible if such confidential information:\n
+                - 5.2.1. Became public domain before its loss or disclosure.\n
+                - 5.2.2. Was received from a third party before it was obtained by the site administration.\n
+                - 5.2.3. Was disclosed with the consent of the user.\n
+                \n
+                6. DISPUTE RESOLUTION\n
+                - 6.1. Before filing a lawsuit with disputes arising from the relations between the site user and the site administration, it is mandatory to submit a claim (a written proposal for voluntary dispute resolution).\n
+                - 6.2. The recipient of the claim must notify the claimant in writing of the results of the claim consideration within 30 calendar days from the day of receiving the claim.\n
+                - 6.3. If an agreement is not reached, the dispute will be referred to a judicial body in accordance with the current legislation of Ukraine.\n
+                \n
+                7. ADDITIONAL TERMS\n
+                - 7.1. The site administration has the right to make changes to this Privacy Policy without the user's consent.\n
+                - 7.2. The new Privacy Policy comes into effect from the moment it is posted on the e-commerce site, unless otherwise provided by the new edition of the Policy.`,
+
                 message: 'Message',
                 info: 'Info',
                 min_purchase: 'Minimum Purchase Requirement',
@@ -217,9 +272,66 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'kz',
             string: {
-                delivery: 'Жеткізу',
-                payments: 'Төлемдер',
-                additional: 'Қосымша',
+                about_store: 'Дүкен туралы',
+                payments_delivery: 'Төлемдер мен жеткізу',
+                return_exchange: 'Қайтару және айырбастау',
+                privacy_policy: 'Құпиялылық саясаты',
+                info_title_1: 'Alberto Bini туралы',
+                info_title_2: 'Төлемдер мен жеткізу',
+                info_title_3: 'Қайтару және айырбастау',
+                info_title_4: 'Құпиялылық саясаты',
+                info_text_1:
+                    'Alberto Bini - бұл Украинадағы 10 жылдан астам уақыт бойы жоғары сапалы әйелдер киімдерін шығарып келе жатқан бренд. Өндіріс заманауи материалдар мен технологияларды пайдаланады, бұл заманауи, жоғары сапалы және тәжірибелі киімдерді жасауға мүмкіндік береді, бұл бүкіл әлемде бағаланады және сұранысқа ие.',
+                info_text_2: 'Жүктелуде...',
+                info_text_3: 'Жүктелуде...',
+                info_text_4: `1. ЖАЛПЫ ШАРТТАР\n
+                - 1.1. Пайдаланушының сайтты пайдалануы бұл Құпиялылық Саясатымен және пайдаланушының жеке деректерін өңдеушінің міндеттерімен келісім болып табылады.\n
+                - 1.2. Құпиялылық Саясатының шарттарымен келіспеген жағдайда, пайдаланушы сайтты пайдалануды тоқтатуы тиіс.\n
+                - 1.3. Бұл Құпиялылық Саясат тек осы сайтқа қолданылады. Сайт әкімшілігі сайтта қол жетімді сілтемелер арқылы кіруге болатын қолданушының қолдануын бақыламайды және жауапкерші емес.\n
+                - 1.4. Сайт әкімшілігі пайдаланушының берген жеке деректердің дәлелділігін тексермейді.\n
+\n
+                2. ЖЕКЕ ДЕРЕКТЕРГЕ ҚҰПИЯЛЫЛЫҚ САЯСАТЫНЫҢ МӘСЕЛЕЛЕРІ\n
+                - 2.1. Бұл Құпиялылық Саясат сайт әкімшілігінің пайдаланушыдан сайт әкімшілігінің қоғамын ашып алмай және қоғамдық деректерді қорғауға міндеттіліктерін белгілейді.\n
+                - 2.2. Бұл Құпиялылық Саясат бойынша өңдеу құқығы берілген пайдаланушының сайттың тіркеу формасын толтыру арқылы беріледі.\n
+\n
+                3. ПАЙДАЛАНУШЫ ЖЕКЕ ДЕРЕКТЕРІН ТОБАУ МЕҢГЕРУ МӘСЕЛЕЛЕРІ\n
+                - 3.1. Сайт әкімшілігі пайдаланушының жеке деректерін осы мақсаттарға қолдануы мүмкін:\n
+                - 3.1.1. Тапсырысты өңдеуге пайдаланушыны анықтау.\n
+                - 3.1.2. Пайдаланушыға жеке сайт ресурстарына қол жеткізу.\n
+                - 3.1.3. Пайдаланушымен байланысты алу, хабарламалар жіберу, сайтты пайдалану туралы сұраулар, қызмет көрсету және пайдаланушының сұраныстары мен өтініштерді өңдеу.\n
+                - 3.1.4. Пайдаланушының орналасуын анықтау үшін оның орналасуын анықтау және шағымдылығын растау.\n
+                - 3.1.5. Пайдаланушының берген жеке деректерінің дәлелділігі мен толықтығын растау.\n
+                - 3.1.6. Тапсырыстың мәртебесі туралы сайттың пайдаланушысын хабарлама.\n
+                - 3.1.7. Сайтты пайдалану қатарында пайдалану мәселелері барысында ыңғайлы қолдау және техникалық қолдау көрсету.\n
+                - 3.1.8. Пайдаланушыға, оның келісімімен, өнімдерді, арнайы ұсыныстарды, бағаларды, жаңалықтарды, және басқа ақпараттарды сайттың немесе оның партнерлерінің атында жаңарту.\n
+                - 3.1.9. Пайдаланушының келісімімен ұсыныстарды жүргізу.\n
+                - 3.1.10. Пайдаланушыға партнерлік сайттарға немесе қызметтерге қол жетімділігін қамтамасыз ету.\n
+\n
+                4. ТАРТЫСҰШЫЛАРДЫҢ МӘСЕЛЕЛЕРІ\n
+                - 4.1. Пайдаланушы міндетті:\n
+                - 4.1.1. Сайтты пайдалану үшін қажетті жеке деректерді ұсыну.\n
+                - 4.1.2. Өзгерістер болған жағдайда берілген жеке деректердің ақпаратын жаңарту және толықтыру.\n
+                - 4.2. Сайт әкімшілігі міндетті:\n
+                - 4.2.1. Алдымен белгіленген Құпиялылық Саясаттың 3-тармағына көрсетілген мақсаттар үшін алынған ақпаратты пайдалану.\n
+                - 4.2.2. Қолданушының писаныштық келісімінсіз ашықтамақ, оның пайдаланымын жасауға алдыңғы жазбалы келісімінсіз ашықтамақ, сатуға, алмасуға, басуға, немесе басқа құқықсыз пайдаланушының жеке деректерін ашықтамақ.\n
+                - 4.2.3. Құпиялылықты сақтау қауымдастықтарында сондай-ақ әділ жүргізілетін процедураларға сәйкестендірме үшін пайдаланушының жеке деректерінің ғұрыппасын қорғау.\n
+                - 4.2.4. Пайдаланушы немесе оның мүдделі немесе жеке деректерді қорғау арқылы өтініш немесе сұрау жасайтын кезде, жеке деректердің дәлелділігін тексеру кезінде, жалған жеке деректер немесе қанунсыз әрекеттер кезінде, пайдаланушыға төмендеу.\n
+\n
+                5. ТАРТЫСҰШЫЛАРДЫҢ ЖАВАБДАРЛЫҒЫ\n
+                - 5.1. Құпиялылықты анықтамай тапсырғанда сайт әкімшілігі, пайдаланушының жеке деректерінің зұлым пайдалануына байланысты қазіргі Украина закондарына сәйкес және пайдаланушының жасалған қасиеттері туралы зиянға ұшырауы мүмкін.\n
+                - 5.2. Құпиялылықты ұшырауды немесе ашықтауынан сайт әкімшілігі егер:\n
+                - 5.2.1. Оның ұшырауды немесе ашықтауынан алдында ақпаратты қоғамдық аумаққа қаралған.\n
+                - 5.2.2. Ол сайт әкімшілігінен алынған кезде қолданушынан алынған.\n
+                - 5.2.3. Пайдаланушының келісімімен ашықталған.\n
+\n
+                6. ТАРТЫСЫМДЫ ШЕШІМ\n
+                - 6.1. Сайт пайдаланушысы мен сайт әкімшілігі арасындағы мүдделерден туған шешімдермен ауыстырмалу алдында талап беру (жазбалы шешімді төмендеу үшін жазбалы ұсыным) қойылуы міндетті.\n
+                - 6.2. Ұсыным алушы, ұсынымды қабылдаған күннен кейін 30 күн ішінде қызметінің нәтижелері туралы жазбалы хабарлама жіберуі міндетті.\n
+                - 6.3. Келісімге жетілмеген жақтылық жасалған кезде мүдделе қазіргі Украина закондарына сәйкес жүргізілетін адам арасында өткінішке себеп болады.\n
+\n
+                7. ҚОСЫМША ШАРТТАР\n
+                - 7.1. Сайт әкімшілігі пайдаланушының келісімінсіз бұл Құпиялылық Саясатты өзгерту құқығына ие.\n
+                - 7.2. Жаңа Құпиялылық Саясат емес болса, ол электронды мекенжайда жарияланған моменттен бастап өзгеретін кезде, емес болған соңғы нұсқаның қамтамасыз етуімен эффектіленеді.`,
                 message: 'Хабарлама',
                 info: 'Ақпарат',
                 min_purchase: 'Сатып алу минимумы талабы',
@@ -426,9 +538,66 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'fr',
             string: {
-                delivery: 'Livraison',
-                payments: 'Paiements',
-                additional: 'Supplémentaire',
+                about_store: 'À propos du magasin',
+                payments_delivery: 'Paiements & Livraison',
+                return_exchange: 'Retours & Échange',
+                privacy_policy: 'Politique de confidentialité',
+                info_title_1: 'À propos d’Alberto Bini',
+                info_title_2: 'Paiements & Livraison',
+                info_title_3: 'Retours & Échange',
+                info_title_4: 'Politique de confidentialité',
+                info_text_1:
+                    'Alberto Bini est un fabricant de vêtements de marque ukrainienne qui crée des vêtements pour femmes de haute qualité depuis plus de 10 ans. La production utilise les derniers matériaux et technologies, permettant la création de vêtements modernes, de haute qualité et pratiques qui sont appréciés et demandés dans le monde entier.',
+                info_text_2: 'Chargement...',
+                info_text_3: 'Chargement...',
+                info_text_4: `1. DISPOSITIONS GÉNÉRALES\n
+                - 1.1. L'utilisation du site par l'utilisateur constitue l'accord avec cette Politique de Confidentialité et les termes du traitement des données personnelles de l'utilisateur.\n
+                - 1.2. En cas de désaccord avec les termes de la Politique de Confidentialité, l'utilisateur doit cesser d'utiliser le site.\n
+                - 1.3. Cette Politique de Confidentialité s'applique uniquement à ce site. L'administration du site ne contrôle pas et n'est pas responsable des sites Web tiers auxquels l'utilisateur peut accéder via des liens disponibles sur le site.\n
+                - 1.4. L'administration du site ne vérifie pas l'exactitude des données personnelles fournies par l'utilisateur.\n
+\n
+                2. OBJET DE LA POLITIQUE DE CONFIDENTIALITÉ\n
+                - 2.1. Cette Politique de Confidentialité établit les obligations de l'administration du site de ne pas divulguer et de protéger la confidentialité des données personnelles que l'utilisateur fournit à la demande de l'administration du site.\n
+                - 2.2. Les données personnelles autorisées pour le traitement selon cette Politique de Confidentialité sont fournies par l'utilisateur en remplissant le formulaire d'inscription sur le site.\n
+\n
+                3. OBJECTIFS DE LA COLLECTE D'INFORMATIONS PERSONNELLES DE L'UTILISATEUR\n
+                - 3.1. L'administration du site peut utiliser les données personnelles de l'utilisateur aux fins suivantes :\n
+                - 3.1.1. Identifier l'utilisateur pour traiter une commande.\n
+                - 3.1.2. Fournir à l'utilisateur un accès à des ressources personnalisées du site.\n
+                - 3.1.3. Établir un contact avec l'utilisateur, y compris l'envoi de notifications, des demandes concernant l'utilisation du site, la fourniture de services et le traitement des demandes et applications des utilisateurs.\n
+                - 3.1.4. Déterminer l'emplacement de l'utilisateur pour garantir la sécurité et prévenir la fraude.\n
+                - 3.1.5. Confirmer l'exactitude et l'exhaustivité des données personnelles fournies par l'utilisateur.\n
+                - 3.1.6. Informer l'utilisateur du site sur l'état de la commande.\n
+                - 3.1.7. Fournir un support client et technique efficace en cas de problèmes liés à l'utilisation du site.\n
+                - 3.1.8. Fournir à l'utilisateur, avec son consentement, des mises à jour sur les produits, des offres spéciales, des informations sur les prix, des bulletins d'information et d'autres informations au nom du site ou de ses partenaires.\n
+                - 3.1.9. Réaliser des activités publicitaires avec le consentement de l'utilisateur.\n
+                - 3.1.10. Fournir à l'utilisateur l'accès à des sites ou services partenaires pour obtenir des produits, des mises à jour et des services.\n
+\n
+                4. OBLIGATIONS DES PARTIES\n
+                - 4.1. L'utilisateur est tenu de :\n
+                - 4.1.1. Fournir des données personnelles nécessaires pour utiliser le site.\n
+                - 4.1.2. Mettre à jour et compléter les informations des données personnelles fournies en cas de changements.\n
+                - 4.2. L'administration du site est tenue de :\n
+                - 4.2.1. Utiliser les informations obtenues exclusivement aux fins spécifiées au paragraphe 3 de cette Politique de Confidentialité.\n
+                - 4.2.2. Garder confidentielles les informations confidentielles, ne pas les divulguer sans le consentement écrit préalable de l'utilisateur, et ne pas vendre, échanger, publier ou divulguer les données personnelles de l'utilisateur d'aucune autre manière.\n
+                - 4.2.3. Prendre des précautions pour protéger la confidentialité des données personnelles de l'utilisateur conformément à la procédure normalement utilisée pour protéger de telles informations dans les transactions commerciales existantes.\n
+                - 4.2.4. Bloquer les données personnelles relatives à l'utilisateur respectif à partir du moment où l'utilisateur ou son représentant légal ou un organisme autorisé pour la protection des sujets de données personnelles fait une demande ou une requête, pendant la période de vérification, en cas de données personnelles inexactes ou d'actions illégales.\n
+\n
+                5. RESPONSABILITÉ DES PARTIES\n
+                - 5.1. L'administration du site, en ne respectant pas ses obligations, est responsable des pertes subies par l'utilisateur en raison de l'utilisation illégale des données personnelles, conformément aux lois de l'Ukraine.\n
+                - 5.2. En cas de perte ou de divulgation d'Informations Confidentielles, l'administration du site n'est pas responsable si de telles informations confidentielles :\n
+                - 5.2.1. Sont devenues publiques avant leur perte ou leur divulgation.\n
+                - 5.2.2. Ont été reçues d'un tiers avant d'être obtenues par l'administration du site.\n
+                - 5.2.3. Ont été divulguées avec le consentement de l'utilisateur.\n
+\n
+                6. RÈGLEMENT DES DIFFÉRENDS\n
+                - 6.1. Avant de déposer une plainte pour les litiges découlant des relations entre l'utilisateur du site et l'administration du site, il est obligatoire de soumettre une réclamation (une proposition écrite pour la résolution volontaire des litiges).\n
+                - 6.2. Le destinataire de la réclamation doit informer le demandeur par écrit des résultats de l'examen de la réclamation dans les 30 jours calendaires à compter du jour de réception de la réclamation.\n
+                - 6.3. En cas d'échec de l'accord, le litige sera renvoyé à un organe judiciaire conformément à la législation en vigueur en Ukraine.\n
+\n
+                7. CONDITIONS SUPPLÉMENTAIRES\n
+                - 7.1. L'administration du site a le droit de modifier cette Politique de Confidentialité sans le consentement de l'utilisateur.\n
+                - 7.2. La nouvelle Politique de Confidentialité entre en vigueur à partir du moment de sa publication sur le site de commerce électronique, sauf disposition contraire de la nouvelle édition de la Politique.`,
                 message: 'Message',
                 info: 'Info',
                 min_purchase: 'Exigence d`achat minimum',
@@ -634,6 +803,66 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'es',
             string: {
+                about_store: 'Acerca de la tienda.',
+                payments_delivery: 'Pagos y envíos',
+                return_exchange: 'Devoluciones e intercambios',
+                privacy_policy: 'Política de privacidad',
+                info_title_1: 'Acerca de Alberto Bini',
+                info_title_2: 'Pagos y envíos',
+                info_title_3: 'Devoluciones e intercambios',
+                info_title_4: 'Política de privacidad',
+                info_text_1:
+                    'Alberto Bini es un fabricante de ropa de marca ucraniana que ha estado creando ropa de mujer de alta calidad durante más de 10 años. La producción utiliza los últimos materiales y tecnologías, permitiendo la creación de ropa moderna, de alta calidad y práctica que es valorada y demandada en todo el mundo.',
+                info_text_2: 'Cargando...',
+                info_text_3: 'Cargando...',
+                info_text_4: `1. DISPOSICIONES GENERALES\n
+                - 1.1. El uso del sitio por parte del usuario constituye el acuerdo con esta Política de Privacidad y los términos del procesamiento de datos personales del usuario.\n
+                - 1.2. En caso de desacuerdo con los términos de la Política de Privacidad, el usuario debe dejar de usar el sitio.\n
+                - 1.3. Esta Política de Privacidad se aplica únicamente a este sitio. La administración del sitio no controla ni es responsable de los sitios web de terceros a los que el usuario pueda acceder a través de enlaces disponibles en el sitio.\n
+                - 1.4. La administración del sitio no verifica la precisión de los datos personales proporcionados por el usuario.\n
+\n
+                2. TEMA DE LA POLÍTICA DE PRIVACIDAD\n
+                - 2.1. Esta Política de Privacidad establece las obligaciones de la administración del sitio de no divulgar y proteger la privacidad de los datos personales que el usuario proporciona a solicitud de la administración del sitio.\n
+                - 2.2. Los datos personales permitidos para el procesamiento según esta Política de Privacidad son proporcionados por el usuario al completar el formulario de registro en el sitio.\n
+\n
+                3. PROPÓSITOS DE LA RECOPILACIÓN DE INFORMACIÓN PERSONAL DEL USUARIO\n
+                - 3.1. La administración del sitio puede utilizar los datos personales del usuario para los siguientes fines:\n
+                - 3.1.1. Identificar al usuario para procesar un pedido.\n
+                - 3.1.2. Proporcionar al usuario acceso a recursos personalizados del sitio.\n
+                - 3.1.3. Establecer contacto con el usuario, incluido el envío de notificaciones, consultas relacionadas con el uso del sitio, prestación de servicios y procesamiento de solicitudes y aplicaciones de usuarios.\n
+                - 3.1.4. Determinar la ubicación del usuario para garantizar la seguridad y prevenir el fraude.\n
+                - 3.1.5. Confirmar la precisión y completitud de los datos personales proporcionados por el usuario.\n
+                - 3.1.6. Informar al usuario del sitio sobre el estado del pedido.\n
+                - 3.1.7. Proporcionar soporte técnico y de atención al cliente efectivo en caso de problemas relacionados con el uso del sitio.\n
+                - 3.1.8. Proporcionar al usuario, con su consentimiento, actualizaciones sobre productos, ofertas especiales, información de precios, boletines informativos y otra información en nombre del sitio o sus socios.\n
+                - 3.1.9. Realizar actividades publicitarias con el consentimiento del usuario.\n
+                - 3.1.10. Proporcionar al usuario acceso a sitios o servicios de socios para obtener productos, actualizaciones y servicios.\n
+\n
+                4. OBLIGACIONES DE LAS PARTES\n
+                - 4.1. El usuario está obligado a:\n
+                - 4.1.1. Proporcionar datos personales necesarios para utilizar el sitio.\n
+                - 4.1.2. Actualizar y complementar la información de los datos personales proporcionada en caso de cambios.\n
+                - 4.2. La administración del sitio está obligada a:\n
+                - 4.2.1. Utilizar la información obtenida exclusivamente para los fines especificados en el párrafo 3 de esta Política de Privacidad.\n
+                - 4.2.2. Mantener en secreto la información confidencial, no divulgarla sin el consentimiento previo por escrito del usuario, y no vender, intercambiar, publicar o divulgar los datos personales del usuario de ninguna otra manera.\n
+                - 4.2.3. Tomar precauciones para proteger la confidencialidad de los datos personales del usuario de acuerdo con el procedimiento normalmente utilizado para proteger dicha información en transacciones comerciales existentes.\n
+                - 4.2.4. Bloquear los datos personales relacionados con el usuario respectivo desde el momento en que el usuario o su representante legal o un órgano autorizado para la protección de los sujetos de datos personales haga una solicitud o consulta, durante el período de verificación, en caso de datos personales inexactos o acciones ilegales.\n
+\n
+                5. RESPONSABILIDAD DE LAS PARTES\n
+                - 5.1. La administración del sitio, al no cumplir con sus obligaciones, es responsable de las pérdidas incurridas por el usuario debido al uso ilegal de datos personales, de acuerdo con las leyes de Ucrania.\n
+                - 5.2. En caso de pérdida o divulgación de Información Confidencial, la administración del sitio no es responsable si dicha información confidencial:\n
+                - 5.2.1. Se convirtió en dominio público antes de su pérdida o divulgación.\n
+                - 5.2.2. Fue recibida de un tercero antes de que fuera obtenida por la administración del sitio.\n
+                - 5.2.3. Fue divulgada con el consentimiento del usuario.\n
+\n
+                6. RESOLUCIÓN DE DISPUTAS\n
+                - 6.1. Antes de presentar una demanda con disputas surgidas de las relaciones entre el usuario del sitio y la administración del sitio, es obligatorio presentar un reclamo (una propuesta escrita para la resolución voluntaria de disputas).\n
+                - 6.2. El destinatario del reclamo debe notificar al reclamante por escrito los resultados de la consideración del reclamo dentro de los 30 días calendario a partir del día de recibir el reclamo.\n
+                - 6.3. Si no se llega a un acuerdo, la disputa se remitirá a un órgano judicial de acuerdo con la legislación vigente de Ucrania.\n
+\n
+                7. TÉRMINOS ADICIONALES\n
+                - 7.1. La administración del sitio tiene derecho a realizar cambios en esta Política de Privacidad sin el consentimiento del usuario.\n
+                - 7.2. La nueva Política de Privacidad entra en vigor desde el momento en que se publica en el sitio de comercio electrónico, a menos que la nueva edición de la Política lo disponga de otra manera.`,
                 delivery: 'Entrega',
                 payments: 'Pagos',
                 additional: 'Adicional',
@@ -842,9 +1071,66 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'ua',
             string: {
-                delivery: 'Доставка',
-                payments: 'Платежі',
-                additional: 'Додатково',
+                about_store: 'Про магазин',
+                payments_delivery: 'Оплата та доставка',
+                return_exchange: 'Повернення та обмін',
+                privacy_policy: 'Політика конфіденційності',
+                info_title_1: 'Про Alberto Bini',
+                info_title_2: 'Оплата та доставка',
+                info_title_3: 'Повернення та обмін',
+                info_title_4: 'Політика конфіденційності',
+                info_text_1:
+                    'Alberto Bini - це український виробник одягу, який вже понад 10 років створює жіночий одяг високої якості. Виробництво використовує найсучасніші матеріали та технології, що дозволяє створювати сучасний, високоякісний та практичний одяг, який цінують і який користується попитом у всьому світі.',
+                info_text_2: 'Завантаження...',
+                info_text_3: 'Завантаження...',
+                info_text_4: `1. ЗАГАЛЬНІ ПОЛОЖЕННЯ\n
+                - 1.1. Використання користувачем сайту означає згоду з цією Політикою конфіденційності та умовами обробки особистих даних користувача.\n
+                - 1.2. У разі неузгодження з умовами Політики конфіденційності користувач повинен припинити використання сайту.\n
+                - 1.3. Ця Політика конфіденційності застосовується лише до цього сайту. Адміністрація сайту не контролює і не несе відповідальності за сторонні веб-сайти, до яких користувач може отримати доступ за допомогою посилань, доступних на сайті.\n
+                - 1.4. Адміністрація сайту не перевіряє точність особистих даних, наданих користувачем.\n
+\n
+                2. ПРЕДМЕТ ПОЛІТИКИ КОНФІДЕНЦІЙНОСТІ\n
+                - 2.1. Ця Політика конфіденційності встановлює обов'язки адміністрації сайту не розголошувати та захищати конфіденційність особистих даних, які користувач надає за запитом адміністрації сайту.\n
+                - 2.2. Особисті дані, дозволені для обробки згідно з цією Політикою конфіденційності, надаються користувачем шляхом заповнення форми реєстрації на сайті.\n
+\n
+                3. МЕТИ ЗБОРУ ОСОБИСТИХ ДАНИХ КОРИСТУВАЧА\n
+                - 3.1. Адміністрація сайту може використовувати особисті дані користувача для наступних цілей:\n
+                - 3.1.1. Ідентифікації користувача для обробки замовлення.\n
+                - 3.1.2. Надання користувачу доступу до персоналізованих ресурсів сайту.\n
+                - 3.1.3. Встановлення контакту з користувачем, включаючи надсилання сповіщень, запитів щодо використання сайту, надання послуг та обробки запитів та заяв користувачів.\n
+                - 3.1.4. Визначення місцезнаходження користувача для забезпечення безпеки та запобігання шахрайству.\n
+                - 3.1.5. Підтвердження точності та повноти особистих даних, наданих користувачем.\n
+                - 3.1.6. Інформування користувача сайту про стан замовлення.\n
+                - 3.1.7. Надання ефективної підтримки клієнтів та технічної підтримки в разі виникнення проблем, пов'язаних з використанням сайту.\n
+                - 3.1.8. Надання користувачу, за його згодою, оновлень щодо продуктів, спеціальних пропозицій, інформації про ціни, розсилок та іншої інформації від імені сайту або його партнерів.\n
+                - 3.1.9. Проведення рекламних заходів за згодою користувача.\n
+                - 3.1.10. Надання користувачу доступу до сайтів або послуг партнерів для отримання продуктів, оновлень та послуг.\n
+\n
+                4. ОБОВ'ЯЗКИ СТОРІН\n
+                - 4.1. Користувач зобов'язаний:\n
+                - 4.1.1. Надати особисті дані, необхідні для використання сайту.\n
+                - 4.1.2. Оновлювати та доповнювати надану інформацію особистих даних у разі змін.\n
+                - 4.2. Адміністрація сайту зобов'язана:\n
+                - 4.2.1. Використовувати отриману інформацію виключно для цілей, вказаних в пункті 3 цієї Політики конфіденційності.\n
+                - 4.2.2. Зберігати конфіденційну інформацію в таємниці, не розголошувати її без попередньої письмової згоди користувача та не продавати, не обмінювати, не публікувати або не розголошувати особисті дані користувача іншим способом.\n
+                - 4.2.3. Приймати заходи для захисту конфіденційності особистих даних користувача згідно з процедурою, зазвичай використовуваною для захисту такої інформації в існуючих комерційних угодах.\n
+                - 4.2.4. Блокувати особисті дані, що стосуються відповідного користувача з моменту, коли користувач або його законний представник або уповноважений орган з питань захисту суб'єктів персональних даних подає запит або запит, протягом періоду перевірки, у разі невірних особистих даних або незаконних дій.\n
+\n
+                5. ВІДПОВІДАЛЬНІСТЬ СТОРІН\n
+                - 5.1. Адміністрація сайту, не виконавши свої обов'язки, несе відповідальність за збитки, заподіяні користувачеві внаслідок незаконного використання особистих даних, відповідно до законів України.\n
+                - 5.2. У разі втрати або розголошення Конфіденційної інформації адміністрація сайту не несе відповідальності, якщо така конфіденційна інформація:\n
+                - 5.2.1. Стала загальнодоступною до моменту її втрати або розголошення.\n
+                - 5.2.2. Була отримана від третьої сторони до її отримання адміністрацією сайту.\n
+                - 5.2.3. Була розголошена згодою користувача.\n
+\n
+                6. ВИРІШЕННЯ СПОРІВ\n
+                - 6.1. Перед поданням позову з питань, що виникають з відносин між користувачем сайту та адміністрацією сайту, обов'язково подати претензію (письмову пропозицію щодо добровільного врегулювання спору).\n
+                - 6.2. Отримувач претензії повинен повідомити заявника письмово про результати розгляду претензії протягом 30 календарних днів з дня отримання претензії.\n
+                - 6.3. Якщо домовленості не досягнуто, спір буде переданий до судового органу відповідно до чинного законодавства України.\n
+\n
+                7. ДОДАТКОВІ УМОВИ\n
+                - 7.1. Адміністрація сайту має право вносити зміни до цієї Політики конфіденційності без згоди користувача.\n
+                - 7.2. Нова Політика конфіденційності набуває чинності з моменту її розміщення на сайті електронної комерції, якщо інше не передбачено новим виданням Політики.`,
                 message: 'Повідомлення',
                 info: 'Інформація',
                 min_purchase: 'Вимога до мінімальної кількості покупки',
@@ -1050,9 +1336,66 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'pl',
             string: {
-                delivery: 'Dostawa',
-                payments: 'Płatności',
-                additional: 'Dodatkowe',
+                about_store: 'O sklepie',
+                payments_delivery: 'Płatności i dostawa',
+                return_exchange: 'Zwroty i wymiany',
+                privacy_policy: 'Polityka prywatności',
+                info_title_1: 'O Alberto Bini',
+                info_title_2: 'Płatności i dostawa',
+                info_title_3: 'Zwroty i wymiany',
+                info_title_4: 'Polityka prywatności',
+                info_text_1:
+                    'Alberto Bini to ukraiński producent odzieży, który od ponad 10 lat tworzy wysokiej jakości odzież damską. Produkcja wykorzystuje najnowsze materiały i technologie, umożliwiając tworzenie nowoczesnych, wysokiej jakości i praktycznych ubrań, które są cenione i poszukiwane na całym świecie.',
+                info_text_2: 'Ładowanie...',
+                info_text_3: 'Ładowanie...',
+                info_text_4: `1. OGÓLNE POSTANOWIENIA\n
+                - 1.1. Korzystanie przez użytkownika z serwisu oznacza zgodę na niniejszą Politykę Prywatności oraz warunki przetwarzania danych osobowych użytkownika.\n
+                - 1.2. W przypadku niezgody z warunkami Polityki Prywatności użytkownik powinien zaprzestać korzystania z serwisu.\n
+                - 1.3. Niniejsza Polityka Prywatności dotyczy wyłącznie tego serwisu. Administracja serwisu nie kontroluje i nie ponosi odpowiedzialności za strony trzecie, do których użytkownik może uzyskać dostęp za pośrednictwem dostępnych na stronie linków.\n
+                - 1.4. Administracja serwisu nie sprawdza dokładności danych osobowych podanych przez użytkownika.\n
+\n
+                2. PRZEDMIOT POLITYKI PRYWATNOŚCI\n
+                - 2.1. Niniejsza Polityka Prywatności określa obowiązki administracji serwisu polegające na nieujawnianiu i ochronie prywatności danych osobowych, które użytkownik podaje na żądanie administracji serwisu.\n
+                - 2.2. Dane osobowe dopuszczone do przetwarzania zgodnie z niniejszą Polityką Prywatności są dostarczane przez użytkownika poprzez wypełnienie formularza rejestracyjnego na stronie.\n
+\n
+                3. CEL ZBIERANIA DANYCH OSOBOWYCH UŻYTKOWNIKA\n
+                - 3.1. Administracja serwisu może wykorzystywać dane osobowe użytkownika w celu:\n
+                - 3.1.1. Identyfikacji użytkownika w celu przetworzenia zamówienia.\n
+                - 3.1.2. Zapewnienia użytkownikowi dostępu do zasobów spersonalizowanych na stronie.\n
+                - 3.1.3. Nawiązania kontaktu z użytkownikiem, w tym wysyłania powiadomień, zapytań dotyczących korzystania ze strony, świadczenia usług oraz przetwarzania żądań i wniosków użytkownika.\n
+                - 3.1.4. Określenia lokalizacji użytkownika w celu zapewnienia bezpieczeństwa i zapobiegania oszustwom.\n
+                - 3.1.5. Potwierdzenia dokładności i kompletności danych osobowych podanych przez użytkownika.\n
+                - 3.1.6. Informowania użytkownika strony o statusie zamówienia.\n
+                - 3.1.7. Zapewnienia efektywnego wsparcia klienta i technicznego w przypadku problemów związanych z korzystaniem ze strony.\n
+                - 3.1.8. Zapewnienia użytkownikowi, za jego zgodą, aktualizacji dotyczących produktów, ofert specjalnych, informacji o cenach, biuletynów oraz innych informacji w imieniu strony lub jej partnerów.\n
+                - 3.1.9. Prowadzenia działań reklamowych za zgodą użytkownika.\n
+                - 3.1.10. Zapewnienia użytkownikowi dostępu do stron lub usług partnerskich w celu uzyskania produktów, aktualizacji i usług.\n
+\n
+                4. OBOWIĄZKI STRON\n
+                - 4.1. Użytkownik ma obowiązek:\n
+                - 4.1.1. Dostarczyć dane osobowe niezbędne do korzystania ze strony.\n
+                - 4.1.2. Aktualizować i uzupełniać podane informacje osobiste w przypadku jakichkolwiek zmian.\n
+                - 4.2. Administracja serwisu ma obowiązek:\n
+                - 4.2.1. Wykorzystywać uzyskane informacje wyłącznie w celach określonych w punkcie 3 niniejszej Polityki Prywatności.\n
+                - 4.2.2. Zachować poufność informacji, nie ujawniać ich bez uprzedniej pisemnej zgody użytkownika oraz nie sprzedawać, nie wymieniać, nie publikować ani nie ujawniać danych osobowych użytkownika w żaden inny sposób.\n
+                - 4.2.3. Podjąć środki ostrożności w celu ochrony poufności danych osobowych użytkownika zgodnie z procedurą zwykle stosowaną do ochrony takich informacji w istniejących transakcjach biznesowych.\n
+                - 4.2.4. Zablokować dane osobowe dotyczące odpowiedniego użytkownika od momentu, w którym użytkownik lub jego przedstawiciel prawny lub upoważniony organ ds. ochrony osób fizycznych składa żądanie lub wniosek, w okresie weryfikacji, w przypadku niewłaściwych danych osobowych lub działań niezgodnych z prawem.\n
+\n
+                5. ODPOWIEDZIALNOŚĆ STRON\n
+                - 5.1. Administracja serwisu, nie wypełniając swoich obowiązków, ponosi odpowiedzialność za szkody poniesione przez użytkownika w wyniku nielegalnego wykorzystania danych osobowych, zgodnie z prawem Ukrainy.\n
+                - 5.2. W przypadku utraty lub ujawnienia informacji poufnych administracja serwisu nie ponosi odpowiedzialności, jeśli takie informacje poufne:\n
+                - 5.2.1. Stają się domeną publiczną przed ich utratą lub ujawnieniem.\n
+                - 5.2.2. Zostały uzyskane od strony trzeciej przed ich uzyskaniem przez administrację serwisu.\n
+                - 5.2.3. Zostały ujawnione za zgodą użytkownika.\n
+\n
+                6. ROZSTRZYGANIE SPORÓW\n
+                - 6.1. Przed wszczęciem postępowania sądowego w sprawach wynikających z relacji między użytkownikiem serwisu a administracją serwisu, konieczne jest złożenie roszczenia (pisemnej propozycji dobrowolnego rozwiązania sporu).\n
+                - 6.2. Odbiorca roszczenia powinien poinformować składającego roszczenie na piśmie o wynikach rozpatrzenia roszczenia w ciągu 30 dni kalendarzowych od dnia otrzymania roszczenia.\n
+                - 6.3. Jeżeli nie osiągnięto porozumienia, spór zostanie skierowany do organu sądowego zgodnie z obowiązującymi przepisami prawa Ukrainy.\n
+\n
+                7. DODATKOWE WARUNKI\n
+                - 7.1. Administracja serwisu ma prawo dokonywania zmian w niniejszej Polityce Prywatności bez zgody użytkownika.\n
+                - 7.2. Nowa Polityka Prywatności wchodzi w życie z chwilą opublikowania jej na stronie e-commerce, chyba że nowa edycja Polityki przewiduje inaczej.`,
                 message: 'Wiadomość',
                 info: 'Informacja',
                 min_purchase: 'Wymagany minimalny zakup',
@@ -1260,9 +1603,66 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'cz',
             string: {
-                delivery: 'Dodávka',
-                payments: 'Platby',
-                additional: 'Další',
+                about_store: 'O obchodě',
+                payments_delivery: 'Platby a dodání',
+                return_exchange: 'Vrácení a výměna',
+                privacy_policy: 'Zásady ochrany osobních údajů',
+                info_title_1: 'O Alberto Bini',
+                info_title_2: 'Platby a dodání',
+                info_title_3: 'Vrácení a výměna',
+                info_title_4: 'Zásady ochrany osobních údajů',
+                info_text_1:
+                    'Alberto Bini je ukrajinský výrobce značkového oblečení, který již více než 10 let vyrábí kvalitní dámské oděvy. Výroba využívá nejnovější materiály a technologie, což umožňuje tvorbu moderního, kvalitního a praktického oblečení, které je ceněno a žádáno po celém světě.',
+                info_text_2: 'Načítání...',
+                info_text_3: 'Načítání...',
+                info_text_4: `1. OBECNÁ USTANOVENÍ\n
+                - 1.1. Používání uživatelem stránky představuje souhlas s touto Zásadou ochrany osobních údajů a podmínkami zpracování osobních údajů uživatele.\n
+                - 1.2. V případě nesouhlasu s podmínkami Zásady ochrany osobních údajů musí uživatel přestat používat stránku.\n
+                - 1.3. Tato Zásada ochrany osobních údajů platí pouze pro tuto stránku. Správa stránky nemá kontrolu a nenese odpovědnost za webové stránky třetích stran, ke kterým uživatel může získat přístup prostřednictvím odkazů dostupných na stránce.\n
+                - 1.4. Správa stránky neprovádí ověřování správnosti osobních údajů poskytnutých uživatelem.\n
+\n
+                2. PŘEDMĚT ZÁSADY OCHRANY OSOBNÍCH ÚDAJŮ\n
+                - 2.1. Tato Zásada ochrany osobních údajů stanovuje povinnosti správy stránky týkající se neposkytování a ochrany soukromí osobních údajů, které uživatel poskytne na požádání správy stránky.\n
+                - 2.2. Osobní údaje povolené k zpracování podle této Zásady ochrany osobních údajů jsou poskytovány uživatelem vyplněním registračního formuláře na stránce.\n
+\n
+                3. ÚČELY ZÍSKÁVÁNÍ OSOBNÍCH ÚDAJŮ UŽIVATELE\n
+                - 3.1. Správa stránky může používat osobní údaje uživatele pro účely:\n
+                - 3.1.1. Identifikace uživatele k provedení objednávky.\n
+                - 3.1.2. Poskytnutí uživateli přístupu k personalizovaným zdrojům stránky.\n
+                - 3.1.3. Návaznost na uživatele, včetně odesílání upozornění, dotazů týkajících se používání stránky, poskytování služeb a zpracování požadavků a žádostí uživatele.\n
+                - 3.1.4. Určení polohy uživatele k zajištění bezpečnosti a prevence podvodů.\n
+                - 3.1.5. Potvrzení přesnosti a úplnosti osobních údajů poskytnutých uživatelem.\n
+                - 3.1.6. Informování uživatele stránky o stavu objednávky.\n
+                - 3.1.7. Poskytnutí efektivní podpory zákazníkům a technické podpory v případě problémů souvisejících s používáním stránky.\n
+                - 3.1.8. Poskytnutí uživateli s jeho souhlasem aktualizací produktů, speciálních nabídek, informací o cenách, bulletinů a dalších informací jménem stránky nebo jejích partnerů.\n
+                - 3.1.9. Provádění reklamních aktivit s souhlasem uživatele.\n
+                - 3.1.10. Poskytnutí uživateli přístupu k partnerským stránkám nebo službám k získání produktů, aktualizací a služeb.\n
+\n
+                4. POVINNOSTI STRAN\n
+                - 4.1. Uživatel je povinen:\n
+                - 4.1.1. Poskytnout osobní údaje nezbytné k používání stránky.\n
+                - 4.1.2. Aktualizovat a doplnit poskytnuté osobní údaje v případě jakýchkoli změn.\n
+                - 4.2. Správa stránky je povinna:\n
+                - 4.2.1. Použít získané informace výhradně pro účely uvedené v odstavci 3 této Zásady ochrany osobních údajů.\n
+                - 4.2.2. Uchovat důvěrné informace v tajnosti, neposkytovat je bez předchozího písemného souhlasu uživatele a neprodávat, neměnit, nepublikovat ani neposkytovat osobní údaje uživatele žádným jiným způsobem.\n
+                - 4.2.3. Přijmout opatření k ochraně důvěrnosti osobních údajů uživatele v souladu s postupem obvykle používaným k ochraně takových informací v existujících obchodních transakcích.\n
+                - 4.2.4. Zablokovat osobní údaje týkající se příslušného uživatele od okamžiku, kdy uživatel nebo jeho zákonný zástupce nebo pověřený orgán pro ochranu subjektů osobních údajů podá žádost nebo dotaz, po dobu ověření, v případě nesprávných osobních údajů nebo nezákonných činů.\n
+\n
+                5. ODPOVĚDNOST STRAN\n
+                - 5.1. Správa stránky nese odpovědnost za ztráty, které uživatel utrpí v důsledku nezákonného použití osobních údajů, v souladu s právními předpisy Ukrajiny, pokud nesplní své povinnosti.\n
+                - 5.2. V případě ztráty nebo zveřejnění důvěrných informací správa stránky nenese odpovědnost, pokud tyto důvěrné informace:\n
+                - 5.2.1. Staly se veřejnou doménou před jejich ztrátou nebo zveřejněním.\n
+                - 5.2.2. Byly získány od třetí strany předtím, než je získala správa stránky.\n
+                - 5.2.3. Byly zveřejněny se souhlasem uživatele.\n
+\n
+                6. ŘEŠENÍ SPORŮ\n
+                - 6.1. Před podáním žaloby v případech sporů vyplývajících z vztahů mezi uživatelem stránky a správou stránky je povinné podat nárok (písemný návrh na dobrovolné řešení sporu).\n
+                - 6.2. Příjemce nároku musí informovat žalobce písemně o výsledcích posouzení nároku do 30 kalendářních dnů ode dne přijetí nároku.\n
+                - 6.3. Pokud nedojde k dohodě, spor bude předán soudnímu orgánu v souladu s platnou legislativou Ukrajiny.\n
+\n
+                7. DALŠÍ PODMÍNKY\n
+                - 7.1. Správa stránky má právo provádět změny této Zásady ochrany osobních údajů bez souhlasu uživatele.\n
+                - 7.2. Nová Zásada ochrany osobních údajů nabývá účinnosti okamžikem jejího zveřejnění na e-commerce stránce, pokud nová verze Zásady nestanoví jinak.`,
                 message: 'Zpráva',
                 info: 'Informace',
                 min_purchase: 'Požadavek na minimální nákup',
@@ -1467,6 +1867,66 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'ru',
             string: {
+                about_store: 'О магазине',
+                payments_delivery: 'Оплата и доставка',
+                return_exchange: 'Возврат и обмен',
+                privacy_policy: 'Политика конфиденциальности',
+                info_title_1: 'О Alberto Bini',
+                info_title_2: 'Оплата и доставка',
+                info_title_3: 'Возврат и обмен',
+                info_title_4: 'Политика конфиденциальности',
+                info_text_1:
+                    'Alberto Bini - украинский производитель брендовой одежды, который более 10 лет создает женскую одежду высокого качества. Производство использует последние материалы и технологии, позволяющие создавать современную, высококачественную и практичную одежду, которая ценится и востребована во всем мире.',
+                info_text_2: 'Загрузка...',
+                info_text_3: 'Загрузка...',
+                info_text_4: `1. ОБЩИЕ ПОЛОЖЕНИЯ\n
+                - 1.1. Использование пользователем сайта означает согласие с настоящей Политикой конфиденциальности и условиями обработки персональных данных пользователя.\n
+                - 1.2. В случае несогласия с условиями Политики конфиденциальности пользователь должен прекратить использование сайта.\n
+                - 1.3. Настоящая Политика конфиденциальности распространяется только на данный сайт. Администрация сайта не контролирует и не несет ответственности за сторонние веб-сайты, к которым пользователь может получить доступ через ссылки, доступные на сайте.\n
+                - 1.4. Администрация сайта не проверяет достоверность предоставленных пользователем персональных данных.\n
+\n
+                2. ПРЕДМЕТ ПОЛИТИКИ КОНФИДЕНЦИАЛЬНОСТИ\n
+                - 2.1. Настоящая Политика конфиденциальности устанавливает обязательства администрации сайта по неразглашению и защите конфиденциальности персональных данных, которые пользователь предоставляет по запросу администрации сайта.\n
+                - 2.2. Персональные данные, разрешенные для обработки в соответствии с настоящей Политикой конфиденциальности, предоставляются пользователем путем заполнения регистрационной формы на сайте.\n
+\n
+                3. ЦЕЛИ СБОРА ПЕРСОНАЛЬНОЙ ИНФОРМАЦИИ ПОЛЬЗОВАТЕЛЯ\n
+                - 3.1. Администрация сайта может использовать персональные данные пользователя в целях:\n
+                - 3.1.1. Идентификации пользователя для обработки заказа.\n
+                - 3.1.2. Предоставления пользователю доступа к персонализированным ресурсам сайта.\n
+                - 3.1.3. Установления контакта с пользователем, включая отправку уведомлений, запросов касательно использования сайта, предоставления услуг и обработки запросов и заявок пользователя.\n
+                - 3.1.4. Определения местоположения пользователя для обеспечения безопасности и предотвращения мошенничества.\n
+                - 3.1.5. Подтверждения точности и полноты предоставленных пользователем персональных данных.\n
+                - 3.1.6. Информирования пользователя сайта о статусе заказа.\n
+                - 3.1.7. Предоставления эффективной клиентской и технической поддержки в случае проблем, связанных с использованием сайта.\n
+                - 3.1.8. Предоставления пользователю, с его согласия, обновлений продуктов, специальных предложений, информации о ценах, рассылок и другой информации от имени сайта или его партнеров.\n
+                - 3.1.9. Проведения рекламной деятельности с согласия пользователя.\n
+                - 3.1.10. Предоставления пользователю доступа к партнерским сайтам или услугам для получения продуктов, обновлений и услуг.\n
+\n
+                4. ОБЯЗАННОСТИ СТОРОН\n
+                - 4.1. Пользователь обязан:\n
+                - 4.1.1. Предоставить персональные данные, необходимые для использования сайта.\n
+                - 4.1.2. Обновлять и дополнять предоставленную информацию о персональных данных в случае каких-либо изменений.\n
+                - 4.2. Администрация сайта обязана:\n
+                - 4.2.1. Использовать полученную информацию исключительно для целей, указанных в пункте 3 настоящей Политики конфиденциальности.\n
+                - 4.2.2. Сохранять в тайне конфиденциальную информацию, не разглашать ее без предварительного письменного согласия пользователя и не продавать, не обменивать, не публиковать или не разглашать персональные данные пользователя никаким другим способом.\n
+                - 4.2.3. Принимать меры для защиты конфиденциальности персональных данных пользователя в соответствии с процедурой, обычно используемой для защиты такой информации в существующих деловых транзакциях.\n
+                - 4.2.4. Блокировать персональные данные, относящиеся к соответствующему пользователю, с момента подачи пользователем или его законным представителем или уполномоченным органом по защите субъектов персональных данных запроса или обращения в течение периода проверки, в случае недостоверности персональных данных или незаконных действий.\n
+\n
+                5. ОТВЕТСТВЕННОСТЬ СТОРОН\n
+                - 5.1. Администрация сайта, не выполнив свои обязанности, несет ответственность за убытки, понесенные пользователем в результате незаконного использования его персональных данных, в соответствии с законодательством Украины.\n
+                - 5.2. В случае утраты или разглашения конфиденциальной информации администрация сайта не несет ответственности, если такая конфиденциальная информация:\n
+                - 5.2.1. Стала общедоступной до ее утраты или разглашения.\n
+                - 5.2.2. Была получена от третьей стороны до получения ее администрацией сайта.\n
+                - 5.2.3. Была разглашена с согласия пользователя.\n
+\n
+                6. РАЗРЕШЕНИЕ СПОРОВ\n
+                - 6.1. Перед подачей исковых заявлений по спорам, возникающим из отношений между пользователем сайта и администрацией сайта, обязательно подача претензии (письменного предложения о добровольном разрешении спора).\n
+                - 6.2. Получатель претензии обязан уведомить заявителя письменно о результатах рассмотрения претензии в течение 30 календарных дней с момента получения претензии.\n
+                - 6.3. В случае недостижения соглашения спор будет передан на судебное разбирательство в соответствии с действующим законодательством Украины.\n
+\n
+                7. ДОПОЛНИТЕЛЬНЫЕ УСЛОВИЯ\n
+                - 7.1. Администрация сайта имеет право вносить изменения в настоящую Политику конфиденциальности без согласия пользователя.\n
+                - 7.2. Новая Политика конфиденциальности вступает в силу с момента ее размещения на сайте электронной коммерции, если новая редакция Политики не предусматривает иное.`,
                 delivery: 'Доставка',
                 payments: 'Платежи',
                 additional: 'Дополнительно',
