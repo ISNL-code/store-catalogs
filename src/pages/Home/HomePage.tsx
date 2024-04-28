@@ -6,18 +6,28 @@ import Grid from '@mui/material/Unstable_Grid2';
 import { useOutletContext } from 'react-router-dom';
 import MessageButton from 'components/atoms/Buttons/MessageButton';
 import { motion } from 'framer-motion';
+import QuestionForm from './QuestionForm';
+import { useState } from 'react';
 
 const HomePage = () => {
     const { string }: any = useOutletContext();
     const { sx, s } = useDevice();
 
     const variants = num => {
+        const [openQuestionForm, setOpenQuestionForm] = useState(false);
+        const [openSuccessModal, setOpenSuccessModal] = useState(false);
         return { hidden: { opacity: sx ? 0 : 1, y: sx ? 100 * num : 0 }, visible: { opacity: 1, y: 0 } };
     };
 
     return (
         <>
             <MessageButton action={() => {}} />
+            <QuestionForm
+                isOpen={openQuestionForm}
+                setIsOpen={setOpenQuestionForm}
+                setOpenSuccessModal={setOpenSuccessModal}
+            />
+            {openSuccessModal && <SuccessModel setOpenModal={setOpenSuccessModal} />}
             <ContactsButton />
             <Box sx={{ position: 'fixed', top: 0, left: 0, zIndex: 0 }}>
                 <Box style={{ overflow: 'hidden', maxHeight: '100vh', background: '#ccc', maxWidth: '100vw' }}>

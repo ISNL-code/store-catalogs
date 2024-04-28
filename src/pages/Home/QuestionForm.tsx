@@ -13,7 +13,7 @@ import { useFormik } from 'formik';
 import requestQuestionValidation from 'Validation/requestQuestionValidation';
 import axios from 'axios';
 
-export default function QuestionForm({ values, isOpen = false, setIsOpen, setOpenSuccessModal }) {
+export default function QuestionForm({ isOpen = false, setIsOpen, setOpenSuccessModal }) {
     const { string }: StoresContextInterface = useOutletContext();
     const [formValues, setFormValues] = React.useState<any>({
         subject: '',
@@ -27,9 +27,9 @@ export default function QuestionForm({ values, isOpen = false, setIsOpen, setOpe
 
     React.useEffect(() => {
         setOpen(isOpen);
-        setFormValues({ ...formValues, ...values });
+        setFormValues({ ...formValues });
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [isOpen, values]);
+    }, [isOpen]);
 
     const formik = useFormik({
         initialValues: {
