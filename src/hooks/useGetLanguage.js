@@ -7,6 +7,8 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'en',
             string: {
+                support: 'Support',
+                ask_question: 'Ask question',
                 about_store: 'About Store',
                 payments_delivery: 'Payments & Delivery',
                 return_exchange: 'Returns & Exchange',
@@ -292,6 +294,8 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'kz',
             string: {
+                support: 'Қолдау',
+                ask_question: 'Сұрау сору',
                 about_store: 'Дүкен туралы',
                 payments_delivery: 'Төлемдер мен жеткізу',
                 return_exchange: 'Қайтару және айырбастау',
@@ -578,6 +582,8 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'fr',
             string: {
+                support: 'Support',
+                ask_question: 'Poser une question',
                 about_store: 'À propos du magasin',
                 payments_delivery: 'Paiements & Livraison',
                 return_exchange: 'Retours & Échange',
@@ -864,6 +870,8 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'es',
             string: {
+                support: 'Soporte',
+                ask_question: 'Hacer una pregunta',
                 about_store: 'Acerca de la tienda.',
                 payments_delivery: 'Pagos y envíos',
                 return_exchange: 'Devoluciones e intercambios',
@@ -1153,6 +1161,8 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'ua',
             string: {
+                support: 'Підтримка',
+                ask_question: 'Задати питання',
                 about_store: 'Про магазин',
                 payments_delivery: 'Оплата та доставка',
                 return_exchange: 'Повернення та обмін',
@@ -1439,6 +1449,8 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'pl',
             string: {
+                support: 'Wsparcie',
+                ask_question: 'Zadaj pytanie',
                 about_store: 'O sklepie',
                 payments_delivery: 'Płatności i dostawa',
                 return_exchange: 'Zwroty i wymiany',
@@ -1728,6 +1740,8 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'cz',
             string: {
+                support: 'Podpora',
+                ask_question: 'Zeptejte se otázku',
                 about_store: 'O obchodě',
                 payments_delivery: 'Platby a dodání',
                 return_exchange: 'Vrácení a výměna',
@@ -2013,6 +2027,8 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'ru',
             string: {
+                support: 'Поддержка',
+                ask_question: 'Задать вопрос',
                 about_store: 'О магазине',
                 payments_delivery: 'Оплата и доставка',
                 return_exchange: 'Возврат и обмен',

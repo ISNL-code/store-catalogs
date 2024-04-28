@@ -48,9 +48,9 @@ export default function QuestionForm({ isOpen = false, setIsOpen, setOpenSuccess
 
                 axios.post(url, {
                     chat_id: chatId,
-                    text: `Вопрос, Привет, меня зовут ${values.name || '<Заказчик>'}, мои контакты: email: ${
-                        values.email || '<не указан>'
-                    }, тел: ${values.phone || '<не указан>'}, 
+                    text: `alberto_bini_europe|Вопрос, Привет, меня зовут ${
+                        values.name || '<Заказчик>'
+                    }, мои контакты: email: ${values.email || '<не указан>'}, тел: ${values.phone || '<не указан>'}, 
                      вопрос: ${values.comment || '<не оставил>'}`,
                 });
                 setOpenSuccessModal(true);
@@ -90,7 +90,7 @@ export default function QuestionForm({ isOpen = false, setIsOpen, setOpenSuccess
                     },
                 }}
             >
-                <DialogTitle sx={{ fontSize: 24 }}>{string?.ask_question}:</DialogTitle>
+                <DialogTitle sx={{ fontSize: 20, color: 'gray' }}>{string?.support}</DialogTitle>
                 <DialogContent sx={{ display: 'flex', flexDirection: 'column', gap: 2.5 }}>
                     <StyledTextField
                         value={formValues.name || ''}
@@ -141,7 +141,7 @@ export default function QuestionForm({ isOpen = false, setIsOpen, setOpenSuccess
                                 return { ...prev, comment: e.target.value };
                             });
                         }}
-                        label={string?.question}
+                        label={string?.ask_question}
                         size="small"
                         fullWidth
                         error={Boolean(formik.errors.comment && formik.touched.comment)}

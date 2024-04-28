@@ -8,20 +8,25 @@ import MessageButton from 'components/atoms/Buttons/MessageButton';
 import { motion } from 'framer-motion';
 import QuestionForm from './QuestionForm';
 import { useState } from 'react';
+import SuccessModel from './SuccessModel';
 
 const HomePage = () => {
+    const [openQuestionForm, setOpenQuestionForm] = useState(false);
+    const [openSuccessModal, setOpenSuccessModal] = useState(false);
     const { string }: any = useOutletContext();
     const { sx, s } = useDevice();
 
     const variants = num => {
-        const [openQuestionForm, setOpenQuestionForm] = useState(false);
-        const [openSuccessModal, setOpenSuccessModal] = useState(false);
         return { hidden: { opacity: sx ? 0 : 1, y: sx ? 100 * num : 0 }, visible: { opacity: 1, y: 0 } };
     };
 
     return (
         <>
-            <MessageButton action={() => {}} />
+            <MessageButton
+                action={() => {
+                    setOpenQuestionForm(true);
+                }}
+            />
             <QuestionForm
                 isOpen={openQuestionForm}
                 setIsOpen={setOpenQuestionForm}
