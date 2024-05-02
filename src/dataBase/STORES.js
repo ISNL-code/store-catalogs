@@ -1,22 +1,12 @@
 export const STORES_DATA = [
     {
-        code: 'ALBERTO_BINI',
+        code: 'alberto_bini_europe',
         appStoreUrl: '',
         playMarketUrl: '',
-        webUrl: 'https://alberto-bini.netlify.app',
+        webUrl: 'https://albertobini-brandeurope.com',
         mainImage: require('./images/alb.jpeg'),
         productImagesOptions: { width: 6, height: 9, cropX: 0, cropY: 20 },
         descriptions: [
-            {
-                language: 'ua',
-                name: 'Магазин жiночого одягу',
-                description: 'Магазин жiночого одягу',
-                friendlyUrl: 'Магазин жiночого одягу',
-                keyWords: 'Магазин жiночого одягу',
-                highlights: 'Магазин жiночого одягу',
-                metaDescription: 'Магазин жiночого одягу',
-                title: 'Магазин жiночого одягу',
-            },
             {
                 language: 'en',
                 name: 'Store of Women`s Clothes',
@@ -26,16 +16,6 @@ export const STORES_DATA = [
                 highlights: 'Store of Women`s Clothes',
                 metaDescription: 'Store of Women`s Clothes',
                 title: 'Store of Women`s Clothes',
-            },
-            {
-                language: 'ru',
-                name: 'Магазин Женской Одежды',
-                description: 'Магазин Женской Одежды',
-                friendlyUrl: 'Магазин Женской Одежды',
-                keyWords: 'Магазин Женской Одежды',
-                highlights: 'Магазин Женской Одежды',
-                metaDescription: 'Магазин Женской Одежды',
-                title: 'Магазин Женской Одежды',
             },
         ],
         mainStoreSettings: {
@@ -81,7 +61,7 @@ export const STORES_DATA = [
                     phone: '+380983080085',
                     viber: '+380983080085',
                     whatsapp: '+380983080085',
-                    telegram: 'Albertobiniopt',
+                    telegram: 'SNBusinessApp',
                 },
             },
         ],

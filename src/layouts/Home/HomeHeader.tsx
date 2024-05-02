@@ -8,6 +8,7 @@ import HomeHeaderLogo from 'components/atoms/Logo/HomeHeaderLogo';
 import StorefrontIcon from '@mui/icons-material/Storefront';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import InfoIcon from '@mui/icons-material/Info';
+import { StoreInterface } from 'types';
 interface HeaderInterface {
     headerHeight;
     appXPadding;
@@ -15,9 +16,10 @@ interface HeaderInterface {
     lang;
     setLang;
     setOpenModalType;
+    store: StoreInterface | null;
 }
 
-const HomeHeader = ({ headerHeight, appXPadding, string, lang, setLang, setOpenModalType }: HeaderInterface) => {
+const HomeHeader = ({ headerHeight, appXPadding, string, lang, setLang, setOpenModalType, store }: HeaderInterface) => {
     const location = useLocation();
     const { sx } = useDevice();
     return (
@@ -49,7 +51,7 @@ const HomeHeader = ({ headerHeight, appXPadding, string, lang, setLang, setOpenM
                     />
                     <HeaderNavButton
                         title={string?.wholesale_catalog}
-                        path={`/catalog/${'ALBERTO_BINI'}/${'alberto-bini'}`}
+                        path={`/catalog/${store?.code}/${store?.name}`}
                         icon={props => <AttachMoneyIcon {...props} />}
                         isShown={!sx}
                         isActive={location.pathname.includes('details')}
@@ -59,7 +61,7 @@ const HomeHeader = ({ headerHeight, appXPadding, string, lang, setLang, setOpenM
                     />
                     <HeaderNavButton
                         title={string?.retail_catalog}
-                        path={`/catalog/${'ALBERTO_BINI'}/${'alberto-bini'}`}
+                        path={`/catalog/${store?.code}/${store?.name}`}
                         icon={props => <StorefrontIcon {...props} />}
                         isShown={!sx}
                         isActive={location.pathname.includes('details')}

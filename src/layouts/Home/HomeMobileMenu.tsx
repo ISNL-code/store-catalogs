@@ -8,7 +8,7 @@ import InfoIcon from '@mui/icons-material/Info';
 
 const menuHeight = '70px';
 
-const HomeMobileMenu = ({ appXPadding, isShown, string }) => {
+const HomeMobileMenu = ({ appXPadding, isShown, string, store }) => {
     if (isShown)
         return (
             <Box
@@ -36,7 +36,7 @@ const HomeMobileMenu = ({ appXPadding, isShown, string }) => {
                     </Grid>
                     <Grid xs={3}>
                         <MobileNavButton
-                            path={`/catalog/${'ALBERTO_BINI'}/${'alberto-bini'}`}
+                            path={`/catalog/${store?.code}/${store?.name.replaceAll(' ', '-')}`}
                             title={string?.wholesale_catalog}
                             icon={p => <AttachMoneyIcon {...p} />}
                             action={() => {
@@ -46,7 +46,7 @@ const HomeMobileMenu = ({ appXPadding, isShown, string }) => {
                     </Grid>
                     <Grid xs={3}>
                         <MobileNavButton
-                            path={`/catalog/${'ALBERTO_BINI'}/${'alberto-bini'}`}
+                            path={`/catalog/${store?.code}/${store?.name.replaceAll(' ', '-')}`}
                             title={string?.retail_catalog}
                             icon={p => <StorefrontIcon {...p} />}
                             action={() => {

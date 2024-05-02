@@ -4,7 +4,7 @@ import { useNavigate, useOutletContext } from 'react-router-dom';
 import { useDevice } from 'hooks/useDevice';
 
 const ContactsButton = () => {
-    const { string }: any = useOutletContext();
+    const { string, store }: any = useOutletContext();
     const { sx, s } = useDevice();
     const navigate = useNavigate();
 
@@ -27,7 +27,7 @@ const ContactsButton = () => {
                 cursor: 'pointer',
             }}
             onClick={() => {
-                navigate(`/ALBERTO_BINI/alberto-bini/contacts`);
+                navigate(`/${store?.code}/${store?.name}/contacts`);
             }}
         >
             {!sx && (

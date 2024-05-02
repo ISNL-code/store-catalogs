@@ -158,6 +158,7 @@ const CatalogCard = ({ modelsVariants, name, productId, currency, setProductsLis
                                 {shownModel?.images?.map(({ imageUrl }, idx) => {
                                     return (
                                         <Grid
+                                            key={idx}
                                             alignItems="center"
                                             xs={12}
                                             sx={{

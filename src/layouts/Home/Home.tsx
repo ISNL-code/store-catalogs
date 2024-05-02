@@ -44,6 +44,7 @@ export default function Home({ lang, setLang }) {
                 lang={lang}
                 setLang={setLang}
                 setOpenModalType={setOpenModalType}
+                store={store}
             />
 
             <Box
@@ -72,7 +73,7 @@ export default function Home({ lang, setLang }) {
                     }}
                 />
             </Box>
-            <HomeMobileMenu appXPadding={appXPadding} isShown={!!sx} string={currentLanguage?.string} />
+            <HomeMobileMenu appXPadding={appXPadding} isShown={!!sx} string={currentLanguage?.string} store={store} />
         </Box>
     );
 }
