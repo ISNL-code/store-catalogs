@@ -5,6 +5,7 @@ import Grid from '@mui/material/Unstable_Grid2';
 import StorefrontIcon from '@mui/icons-material/Storefront';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import InfoIcon from '@mui/icons-material/Info';
+import { STORE_CODE } from 'constants/constants';
 
 const menuHeight = '70px';
 
@@ -36,7 +37,7 @@ const HomeMobileMenu = ({ appXPadding, isShown, string, store }) => {
                     </Grid>
                     <Grid xs={3}>
                         <MobileNavButton
-                            path={`/catalog/${store?.code}/${store?.name.replaceAll(' ', '-')}`}
+                            path={`/catalog/${STORE_CODE}/${'Alberto Bini EU'.replaceAll(' ', '-')}`}
                             title={string?.wholesale_catalog}
                             icon={p => <AttachMoneyIcon {...p} />}
                             action={() => {
@@ -46,7 +47,7 @@ const HomeMobileMenu = ({ appXPadding, isShown, string, store }) => {
                     </Grid>
                     <Grid xs={3}>
                         <MobileNavButton
-                            path={`/catalog/${store?.code}/${store?.name.replaceAll(' ', '-')}`}
+                            path={`/catalog/${STORE_CODE}/${'Alberto Bini EU'.replaceAll(' ', '-')}`}
                             title={string?.retail_catalog}
                             icon={p => <StorefrontIcon {...p} />}
                             action={() => {

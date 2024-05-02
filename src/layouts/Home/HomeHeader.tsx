@@ -9,6 +9,7 @@ import StorefrontIcon from '@mui/icons-material/Storefront';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import InfoIcon from '@mui/icons-material/Info';
 import { StoreInterface } from 'types';
+import { STORE_CODE } from 'constants/constants';
 interface HeaderInterface {
     headerHeight;
     appXPadding;
@@ -51,7 +52,7 @@ const HomeHeader = ({ headerHeight, appXPadding, string, lang, setLang, setOpenM
                     />
                     <HeaderNavButton
                         title={string?.wholesale_catalog}
-                        path={`/catalog/${store?.code}/${store?.name}`}
+                        path={`/catalog/${STORE_CODE}/${'Alberto Bini EU'.replaceAll(' ', '-')}`}
                         icon={props => <AttachMoneyIcon {...props} />}
                         isShown={!sx}
                         isActive={location.pathname.includes('details')}
@@ -61,7 +62,7 @@ const HomeHeader = ({ headerHeight, appXPadding, string, lang, setLang, setOpenM
                     />
                     <HeaderNavButton
                         title={string?.retail_catalog}
-                        path={`/catalog/${store?.code}/${store?.name}`}
+                        path={`/catalog/${STORE_CODE}/${'Alberto Bini EU'.replaceAll(' ', '-')}`}
                         icon={props => <StorefrontIcon {...props} />}
                         isShown={!sx}
                         isActive={location.pathname.includes('details')}

@@ -77,7 +77,7 @@ const Header = ({
                     />
                     <HeaderNavButton
                         title={string?.catalog}
-                        path={`/catalog/${storeCode}/${storeName}`}
+                        path={`/catalog/${storeCode}/${storeName?.replaceAll(' ', '-')}`}
                         icon={props => <GridViewIcon {...props} />}
                         isShown={!sx}
                         isActive={location.pathname.includes('details')}
@@ -85,12 +85,12 @@ const Header = ({
 
                     {store?.additionalStoreSettings?.favorites && (
                         <HeaderNavIconButton
-                            path={`/catalog/${storeCode}/${storeName}/favorites`}
+                            path={`/catalog/${storeCode}/${storeName?.replaceAll(' ', '-')}/favorites`}
                             title={string?.favorites}
                             icon={() => <FavoriteIcon />}
                             isShown={!sx}
                             action={() => {
-                                navigate(`/catalog/${storeCode}/${storeName}/favorites`);
+                                navigate(`/catalog/${storeCode}/${storeName?.replaceAll(' ', '-')}/favorites`);
                             }}
                             badgeCount={favorites?.favoriteItems?.length}
                             protectedPath={!auth}
@@ -98,14 +98,14 @@ const Header = ({
                     )}
                     {store?.additionalStoreSettings?.cart && (
                         <HeaderNavIconButton
-                            path={`/catalog/${storeCode}/${storeName}/cart`}
+                            path={`/catalog/${storeCode}/${storeName?.replaceAll(' ', '-')}/cart`}
                             title={string?.cart}
                             icon={() => <ShoppingCartIcon />}
                             isShown={!sx}
                             badgeCount={cart?.cartItems?.length}
                             action={() => {
                                 if (auth) {
-                                    navigate(`/catalog/${storeCode}/${storeName}/cart`);
+                                    navigate(`/catalog/${storeCode}/${storeName?.replaceAll(' ', '-')}/cart`);
                                 } else setOpenModalType('login');
                             }}
                             protectedPath={!auth}
