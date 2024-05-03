@@ -128,6 +128,7 @@ const HomePage = () => {
             >
                 {[1, 2, 2, 2].map((el, idx) => (
                     <motion.div
+                        key={idx}
                         initial="hidden"
                         whileInView="visible"
                         viewport={{ once: true, amount: 0.5 }}

@@ -15,7 +15,7 @@ import { CatalogContextInterface } from 'types';
 import CardItem from 'components/atoms/Sections/CardItem';
 import Grid from '@mui/material/Unstable_Grid2';
 import PromoTags from 'components/atoms/PromoTags/PromoTags';
-import Image, { EmptyImage } from 'components/atoms/Media/Image';
+import { Image, EmptyImage } from 'components/atoms/Media/Image';
 // import { useFavoritesProductsApi } from 'api/useFavoritesProductsApi';
 
 interface ShownModelInterface {
@@ -57,7 +57,7 @@ function SampleNextArrow(props) {
 }
 
 const CatalogCard = ({ modelsVariants, name, productId, currency, setProductsList, promoTags }) => {
-    const ref = useRef<HTMLInputElement>(null);
+    const imageRef = useRef<HTMLImageElement>(null);
     const { s, sx, ls, l } = useDevice();
     const navigate = useNavigate();
     const { store, cart, favorites, currentUserData }: CatalogContextInterface = useOutletContext();
@@ -141,10 +141,10 @@ const CatalogCard = ({ modelsVariants, name, productId, currency, setProductsLis
                 >
                     <Grid
                         xs={12}
-                        ref={ref}
+                        ref={imageRef}
                         sx={{
                             height:
-                                ((ref?.current?.clientWidth as number) / store?.productImagesOptions?.width) *
+                                ((imageRef?.current?.clientWidth as number) / store?.productImagesOptions?.width) *
                                 store?.productImagesOptions?.height,
                         }}
                     >
@@ -163,7 +163,7 @@ const CatalogCard = ({ modelsVariants, name, productId, currency, setProductsLis
                                             xs={12}
                                             sx={{
                                                 height:
-                                                    ((ref?.current?.clientWidth as number) /
+                                                    ((imageRef?.current?.clientWidth as number) /
                                                         store?.productImagesOptions?.width) *
                                                     store?.productImagesOptions?.height,
                                                 display: 'flex !important',
@@ -171,7 +171,7 @@ const CatalogCard = ({ modelsVariants, name, productId, currency, setProductsLis
                                                 backgroundColor: '#fafafa',
                                             }}
                                         >
-                                            <Image store={store} imgUrl={imageUrl} ref={ref} />
+                                            <Image store={store} imgUrl={imageUrl} ref={imageRef} />
                                         </Grid>
                                     );
                                 })}
@@ -187,7 +187,8 @@ const CatalogCard = ({ modelsVariants, name, productId, currency, setProductsLis
                                     alignItems: 'center',
                                     flexDirection: 'column',
                                     height:
-                                        ((ref?.current?.clientWidth as number) / store?.productImagesOptions?.width) *
+                                        ((imageRef?.current?.clientWidth as number) /
+                                            store?.productImagesOptions?.width) *
                                         store?.productImagesOptions?.height,
                                 }}
                             >
