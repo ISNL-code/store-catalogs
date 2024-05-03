@@ -17,8 +17,9 @@ interface ImageProps {
 const ImageComponent = React.forwardRef<HTMLImageElement, ImageProps>(({ imgUrl, store }, ref) => (
     <Grid
         xs={12}
-        alignContent="center"
         sx={{
+            display: 'flex',
+            alignItems: 'center',
             height: (ref as React.MutableRefObject<HTMLDivElement>).current?.clientWidth
                 ? ((ref as React.MutableRefObject<HTMLDivElement>).current.clientWidth /
                       store.productImagesOptions.width) *
@@ -30,9 +31,6 @@ const ImageComponent = React.forwardRef<HTMLImageElement, ImageProps>(({ imgUrl,
             src={imgUrl}
             style={{
                 width: '100%',
-                height: '100%',
-                display: 'flex',
-                alignItems: 'center',
             }}
             alt="Display"
             ref={ref}
