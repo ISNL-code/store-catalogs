@@ -2,7 +2,7 @@ import { CatalogContextInterface, StoreInterface } from 'types';
 import Grid from '@mui/material/Unstable_Grid2';
 import { Box, Typography } from '@mui/material';
 import CardItem from 'components/atoms/Sections/CardItem';
-import Image from 'components/atoms/Media/Image';
+import { Image } from 'components/atoms/Media/Image';
 // import LanguagesView from 'components/molecules/LanguagesView';
 // import FavoriteStoresButton from 'components/molecules/ToolsButtons/FavoriteStoresButton';
 // import ShareButton from 'components/molecules/ToolsButtons/ShareButton';
@@ -64,14 +64,14 @@ const StoreCards = ({ data, dataFavorite, setStoreToApprove }: StoreCardsInterfa
                                 <Image
                                     store={{ productImagesOptions: { height: 1, width: 1 } }}
                                     imgUrl={item?.mainImage}
-                                    ref={{}}
+                                    ref={null}
                                 />
                             </Box>
                             <Box
                                 p={0.5}
                                 sx={{ width: '30%', display: 'flex', alignItems: 'center', backgroundColor: 'white' }}
                             >
-                                <Image store={{}} imgUrl={item?.logo?.path} ref={{}} />
+                                <Image store={{} as any} imgUrl={item?.logo?.path as string} ref={null} />
                             </Box>
                         </Box>
                         <Box onClick={e => e.stopPropagation()}>

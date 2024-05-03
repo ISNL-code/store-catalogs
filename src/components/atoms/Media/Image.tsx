@@ -20,10 +20,10 @@ const ImageComponent = React.forwardRef<HTMLImageElement, ImageProps>(({ imgUrl,
         sx={{
             display: 'flex',
             alignItems: 'center',
-            height: (ref as React.MutableRefObject<HTMLDivElement>).current?.clientWidth
-                ? ((ref as React.MutableRefObject<HTMLDivElement>).current.clientWidth /
-                      store.productImagesOptions.width) *
-                  store.productImagesOptions.height
+            height: (ref as React.MutableRefObject<HTMLDivElement>)?.current?.clientWidth
+                ? ((ref as React.MutableRefObject<HTMLDivElement>)?.current.clientWidth /
+                      store?.productImagesOptions.width) *
+                  store?.productImagesOptions.height
                 : 'auto',
         }}
     >
