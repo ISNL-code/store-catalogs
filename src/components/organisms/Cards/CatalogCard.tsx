@@ -57,7 +57,7 @@ function SampleNextArrow(props) {
 }
 
 const CatalogCard = ({ modelsVariants, name, productId, currency, setProductsList, promoTags, productMainPrice }) => {
-    const ref = useRef<HTMLInputElement>(null);
+    const ref = useRef<HTMLImageElement>(null);
     const { s, sx, ls, l } = useDevice();
     const navigate = useNavigate();
     const { store, cart, favorites, currentUserData }: CatalogContextInterface = useOutletContext();
@@ -158,6 +158,7 @@ const CatalogCard = ({ modelsVariants, name, productId, currency, setProductsLis
                                 {shownModel?.images?.map(({ imageUrl }, idx) => {
                                     return (
                                         <Grid
+                                            key={idx}
                                             alignItems="center"
                                             xs={12}
                                             sx={{
