@@ -21,6 +21,7 @@ import Loader from 'components/atoms/Loader/Loader';
 import { useParams } from 'react-router-dom';
 import { useFormik } from 'formik';
 import registerFormValidation from 'Validation/registerFormValidation';
+import axios from 'axios';
 
 export default function Register({ setAuth, lang, string, close, setOpenModalType }) {
     const { storeCode } = useParams();
@@ -122,6 +123,20 @@ export default function Register({ setAuth, lang, string, close, setOpenModalTyp
                     localStorage.setItem(ACCESS_TOKEN_KEY, JSON.stringify(res.data.token));
                     if (res.data.token) setAuth(true);
                     setOpenModalType(null);
+                })
+                .then(_ => {
+                    try {
+                        const token = '6904212535:AAGvPEjkJds0aayd-oD1YVMbhLKeKt72yaE';
+                        const chatId = '480774886'; // Узнайте ваш Chat ID, написав своему боту /myid
+                        const url = `https://api.telegram.org/bot${token}/sendMessage`;
+
+                        axios.post(url, {
+                            chat_id: chatId,
+                            text: `ALB-Europe Регистрация страна:${values.country}, пользователь:${values.username} `,
+                        });
+                    } catch (error) {
+                        console.error('Error sending message:', error);
+                    }
                 })
                 .catch(err => {
                     setError(true);
