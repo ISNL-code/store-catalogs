@@ -28,6 +28,7 @@ const ImageComponent = React.forwardRef<HTMLImageElement, ImageProps>(({ imgUrl,
         }}
     >
         <img
+            loading="lazy"
             src={imgUrl}
             style={{
                 width: '100%',
