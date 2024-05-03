@@ -316,50 +316,14 @@ const CatalogCard = memo<CatalogCardProps>(
                                     backgroundColor: '#fafafa',
                                 }}
                             >
-                                {store?.mainStoreSettings?.prices && (
-                                    <Box sx={{ display: 'flex' }}>
-                                        <Typography
-                                            variant="h4"
-                                            sx={{ color: '#505050', textDecoration: 'line-through' }}
-                                        >
-                                            {!isExpanded && currency}
-                                            {!isExpanded && Number(shownModel?.price) * 140}
-                                        </Typography>
-                                        /
-                                        <Typography variant="h3" sx={{ color: 'red' }}>
-                                            {!isExpanded && currency}
-                                            {!isExpanded && Number(shownModel?.price) * 80}
-                                        </Typography>
-                                    </Box>
-                                )}
-                                <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-                                    <Box
-                                        px={1}
-                                        sx={{
-                                            border: '1px solid #ccc',
-                                            height: '20px',
-                                            display: 'flex',
-                                            alignItems: 'center',
-                                            backgroundColor: '#fff',
-                                            borderRadius: '16px',
-                                        }}
-                                    >
-                                        <Typography variant="h6" sx={{ color: 'gray' }}>
-                                            {shownModel?.sku}
-                                        </Typography>
-                                    </Box>
-                                    <CartButton
-                                        selected={cart?.cartItems?.find(item => item.sku === shownModel?.sku)}
-                                        isShown={store?.additionalStoreSettings?.cart}
-                                        action={() => {
-                                            cart?.handleSetCartItems({
-                                                sku: shownModel?.sku,
-                                                storeCode,
-                                                userId: currentUserData?.id,
-                                                productId: shownModel?.productId,
-                                            });
-                                        }}
-                                    />
+                                <Typography
+                                    px={1}
+                                    py={0.5}
+                                    variant="h4"
+                                    sx={{ height: 40, fontSize: 14, fontWeight: 500 }}
+                                >
+                                    {!isExpanded && name}
+                                </Typography>
 
                                 <Box
                                     px={1}
