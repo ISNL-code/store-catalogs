@@ -93,7 +93,7 @@ const Catalog = () => {
                             return (
                                 <CatalogCard
                                     key={product.id}
-                                    modelsVariants={product.variants}
+                                    modelsVariants={product.variants as any}
                                     name={product.name}
                                     productId={product.id}
                                     currency={getCurrencySymbol(store?.currency)}
