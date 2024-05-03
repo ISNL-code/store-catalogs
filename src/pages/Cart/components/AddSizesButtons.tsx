@@ -91,7 +91,7 @@ const AddSizesButtons = ({
                                 </Box>
                                 <Box sx={{ display: 'flex', gap: 1 }}>
                                     <Fab
-                                        sx={{ width: 35, height: 35 }}
+                                        sx={{ width: 35, height: 35, zIndex: 0 }}
                                         onClick={() => {
                                             setSelectedSizes(prev => {
                                                 return prev?.map(item => {
@@ -127,7 +127,7 @@ const AddSizesButtons = ({
                                         }}
                                     />
                                     <Fab
-                                        sx={{ width: 35, height: 35 }}
+                                        sx={{ width: 35, height: 35, zIndex: 0 }}
                                         onClick={() => {
                                             setSelectedSizes(prev => {
                                                 return prev?.map(item => {

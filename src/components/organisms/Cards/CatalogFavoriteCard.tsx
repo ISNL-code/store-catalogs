@@ -14,7 +14,7 @@ import { CatalogContextInterface } from 'types';
 import CardItem from 'components/atoms/Sections/CardItem';
 import Grid from '@mui/material/Unstable_Grid2';
 import PromoTags from 'components/atoms/PromoTags/PromoTags';
-import Image, { EmptyImage } from 'components/atoms/Media/Image';
+import { Image, EmptyImage } from 'components/atoms/Media/Image';
 
 interface ShownModelInterface {
     price: string;
@@ -56,7 +56,7 @@ function SampleNextArrow(props) {
 }
 
 const CatalogFavoriteCard = ({ modelsVariants, name, productId, currency, promoTags, productMainPrice }) => {
-    const ref = useRef<HTMLInputElement>(null);
+    const imageRef = useRef<HTMLImageElement>(null);
     const { s, sx, ls, l } = useDevice();
     const navigate = useNavigate();
     const { store, cart, currentUserData, favorites }: CatalogContextInterface = useOutletContext();
@@ -141,10 +141,11 @@ const CatalogFavoriteCard = ({ modelsVariants, name, productId, currency, promoT
                 >
                     <Grid
                         xs={12}
-                        ref={ref}
+                        ref={imageRef}
                         sx={{
                             height:
-                                (((ref as any)?.current?.clientWidth as number) / store?.productImagesOptions?.width) *
+                                (((imageRef as any)?.current?.clientWidth as number) /
+                                    store?.productImagesOptions?.width) *
                                 store?.productImagesOptions?.height,
                         }}
                     >
@@ -159,11 +160,12 @@ const CatalogFavoriteCard = ({ modelsVariants, name, productId, currency, promoT
                                     if (imageUrl.includes('.mp4')) return null;
                                     return (
                                         <Grid
+                                            key={idx}
                                             alignItems="center"
                                             xs={12}
                                             sx={{
                                                 height:
-                                                    (((ref as any)?.current?.clientWidth as number) /
+                                                    (((imageRef as any)?.current?.clientWidth as number) /
                                                         store?.productImagesOptions?.width) *
                                                     store?.productImagesOptions?.height,
                                                 display: 'flex !important',
@@ -171,7 +173,7 @@ const CatalogFavoriteCard = ({ modelsVariants, name, productId, currency, promoT
                                                 backgroundColor: '#fafafa',
                                             }}
                                         >
-                                            <Image store={store} imgUrl={imageUrl} ref={ref} />
+                                            <Image store={store} imgUrl={imageUrl} ref={imageRef} />
                                         </Grid>
                                     );
                                 })}
@@ -187,7 +189,8 @@ const CatalogFavoriteCard = ({ modelsVariants, name, productId, currency, promoT
                                     alignItems: 'center',
                                     flexDirection: 'column',
                                     height:
-                                        ((ref?.current?.clientWidth as number) / store?.productImagesOptions?.width) *
+                                        ((imageRef?.current?.clientWidth as number) /
+                                            store?.productImagesOptions?.width) *
                                         store?.productImagesOptions?.height,
                                 }}
                             >

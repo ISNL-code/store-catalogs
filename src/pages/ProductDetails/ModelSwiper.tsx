@@ -1,14 +1,15 @@
 import { Box } from '@mui/material';
 import Gradient from 'components/atoms/Gradient/Gradient';
-import Image from 'components/atoms/Media/Image';
+
 import { Fragment, useEffect, useRef, useState } from 'react';
 import { useOutletContext } from 'react-router-dom';
 import { useDevice } from 'hooks/useDevice';
 import { CatalogContextInterface } from 'types';
 import FullScreenSwiper from './FullScreenSwiper';
+import { Image } from 'components/atoms/Media/Image';
 
 const ModelSwiper = ({ images, selectedVariant }) => {
-    const ref = useRef<HTMLInputElement>(null);
+    const imageRef = useRef<HTMLImageElement>(null);
     const { store, headerHeight, instrumentalBarHeight, footerHeight }: CatalogContextInterface = useOutletContext();
     const [fullScreenMode, setFullScreenMode] = useState<boolean>(false);
     const { sm, sx } = useDevice();
@@ -45,7 +46,7 @@ const ModelSwiper = ({ images, selectedVariant }) => {
                         return (
                             <Fragment key={idx}>
                                 <Box
-                                    ref={ref}
+                                    ref={imageRef}
                                     sx={{
                                         borderRadius: 4,
                                         minWidth: imagesList.length < 1 ? '100%' : sm ? '65%' : '40%',
@@ -62,7 +63,7 @@ const ModelSwiper = ({ images, selectedVariant }) => {
                                     <Box>
                                         <Gradient dest="top" />
                                         <Gradient dest="bottom" />
-                                        <Image ref={ref} store={store} imgUrl={`${imageUrl}`} />
+                                        <Image ref={imageRef} store={store} imgUrl={`${imageUrl}`} />
                                     </Box>
                                 </Box>
                             </Fragment>

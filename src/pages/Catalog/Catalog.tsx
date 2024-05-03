@@ -87,13 +87,13 @@ const Catalog = () => {
             />
 
             {productsList?.length ? (
-                <TransitionBox dependency={loading}>
+                <TransitionBox dependency={loading} time="1250">
                     <Grid xs={12} container>
                         {productsList?.map(product => {
                             return (
                                 <CatalogCard
                                     key={product.id}
-                                    modelsVariants={product.variants}
+                                    modelsVariants={product.variants as any}
                                     name={product.name}
                                     productId={product.id}
                                     productMainPrice={product?.price}
