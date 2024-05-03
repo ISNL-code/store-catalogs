@@ -8,7 +8,7 @@ import { useOutletContext, useParams } from 'react-router-dom';
 import { CatalogContextInterface, ProductVariantInterface } from 'types';
 import Loader from 'components/atoms/Loader/Loader';
 import Grid from '@mui/material/Unstable_Grid2';
-import Image, { EmptyImage } from 'components/atoms/Media/Image';
+import { Image, EmptyImage } from 'components/atoms/Media/Image';
 import { useDevice } from 'hooks/useDevice';
 import { Box, Button } from '@mui/material';
 import AddSizesButtons from './components/AddSizesButtons';
@@ -43,7 +43,7 @@ export interface OrderDataInterface {
 }
 
 const Cart = () => {
-    const ref = useRef<HTMLInputElement>(null);
+    const imageRef = useRef<HTMLImageElement>(null);
     const { sx, xs } = useDevice();
     const { storeCode } = useParams();
     const mount = useIsMount();
@@ -189,7 +189,7 @@ const Cart = () => {
                                     p={xs ? 0 : 1}
                                 >
                                     <Grid
-                                        ref={ref}
+                                        ref={imageRef}
                                         xs={xs ? 12 : 6}
                                         sx={{
                                             maxWidth: 450,
@@ -210,7 +210,7 @@ const Cart = () => {
                                             <Image
                                                 store={store}
                                                 imgUrl={el?.images ? el?.images[0]?.imageUrl : ''}
-                                                ref={ref}
+                                                ref={imageRef}
                                             />
                                         ) : (
                                             <EmptyImage />
