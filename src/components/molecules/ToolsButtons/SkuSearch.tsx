@@ -6,8 +6,10 @@ import { useProductsApi } from 'api/useProductsApi';
 import debounce from 'lodash.debounce';
 import SearchIcon from '@mui/icons-material/Search';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import { useDevice } from 'hooks/useDevice';
 
 const SkuSearch = () => {
+    const { s } = useDevice();
     const navigate = useNavigate();
     const { storeCode, storeName } = useParams();
     const [value, setValue] = useState('');
@@ -79,7 +81,7 @@ const SkuSearch = () => {
                     position: 'fixed',
                     width: '100vw',
                     maxWidth: 600,
-                    top: 50,
+                    top: s ? 49 : 62,
                     zIndex: 4002,
                     right: 0,
                 }}
