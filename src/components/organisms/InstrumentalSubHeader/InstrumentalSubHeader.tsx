@@ -8,11 +8,7 @@ interface InstrumentalBarInterface {
     EndSlot?: () => ReactNode;
 }
 
-const InstrumentalSubHeader = ({
-    StartSlot = () => <></>,
-    CentralSlot = () => <></>,
-    EndSlot = () => <></>,
-}: InstrumentalBarInterface) => {
+const InstrumentalSubHeader = ({ StartSlot, CentralSlot, EndSlot }: InstrumentalBarInterface) => {
     const {
         instrumentalBarHeight,
         headerHeight,
@@ -22,11 +18,12 @@ const InstrumentalSubHeader = ({
     return (
         <Box
             px={appXPadding}
+            py={0.5}
             sx={{
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-between',
-                height: instrumentalBarHeight,
+                minHeight: instrumentalBarHeight,
                 width: '100%',
                 position: 'fixed',
                 top: headerHeight,
@@ -35,11 +32,17 @@ const InstrumentalSubHeader = ({
                 backgroundColor: '#cccccc3b',
             }}
         >
-            <Box>{StartSlot()}</Box>
-            <Box sx={{ width: '100%', textAlign: 'center', position: 'fixed', left: 0, pointerEvents: 'none' }}>
-                {CentralSlot()}
-            </Box>
-            <Box>{EndSlot()}</Box>
+            {StartSlot && <Box sx={{ width: '100%' }}>{StartSlot()}</Box>}
+            {CentralSlot && (
+                <Box sx={{ width: '100%', textAlign: 'center', position: 'fixed', left: 0, pointerEvents: 'none' }}>
+                    {CentralSlot()}
+                </Box>
+            )}
+            {EndSlot && (
+                <Box sx={{ width: '100%' }}>
+                    <Box sx={{ ml: 'auto', display: 'flex', justifyContent: 'flex-end' }}>{EndSlot()}</Box>
+                </Box>
+            )}
         </Box>
     );
 };

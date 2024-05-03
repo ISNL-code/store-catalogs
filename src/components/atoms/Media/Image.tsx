@@ -2,31 +2,45 @@ import { Typography } from '@mui/material';
 import Grid from '@mui/material/Unstable_Grid2';
 import PhotoCameraIcon from '@mui/icons-material/PhotoCamera';
 import { useOutletContext } from 'react-router-dom';
+import React from 'react';
 
-export default function Image({ imgUrl, store, ref }) {
-    return (
-        <Grid
-            xs={12}
-            alignContent="center"
-            sx={{
-                height:
-                    ((ref?.current?.clientWidth as number) / store?.productImagesOptions?.width) *
-                    store?.productImagesOptions?.height,
-            }}
-        >
-            <img
-                src={imgUrl}
-                style={{
-                    width: '100%',
-                    height: '100%',
-                    display: 'flex',
-                    alignItems: 'center',
-                }}
-                alt="broken img"
-            />
-        </Grid>
-    );
+interface ImageProps {
+    imgUrl: string;
+    store: {
+        productImagesOptions: {
+            width: number;
+            height: number;
+        };
+    };
 }
+
+const ImageComponent = React.forwardRef<HTMLImageElement, ImageProps>(({ imgUrl, store }, ref) => (
+    <Grid
+        xs={12}
+        alignContent="center"
+        sx={{
+            height: (ref as React.MutableRefObject<HTMLDivElement>).current?.clientWidth
+                ? ((ref as React.MutableRefObject<HTMLDivElement>).current.clientWidth /
+                      store.productImagesOptions.width) *
+                  store.productImagesOptions.height
+                : 'auto',
+        }}
+    >
+        <img
+            src={imgUrl}
+            style={{
+                width: '100%',
+                height: '100%',
+                display: 'flex',
+                alignItems: 'center',
+            }}
+            alt="Display"
+            ref={ref}
+        />
+    </Grid>
+));
+
+export const Image = ImageComponent;
 
 export function EmptyImage() {
     const { string }: any = useOutletContext();
