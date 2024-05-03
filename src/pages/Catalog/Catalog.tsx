@@ -87,7 +87,7 @@ const Catalog = () => {
             />
 
             {productsList?.length ? (
-                <TransitionBox dependency={loading}>
+                <TransitionBox dependency={loading} time="1250">
                     <Grid xs={12} container>
                         {productsList?.map(product => {
                             return (
