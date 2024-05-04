@@ -8,6 +8,7 @@ import { getCurrencySymbol } from 'helpers/getCurrencySymbol';
 import { OrderDataInterface } from '../Cart';
 import { useState } from 'react';
 import axios from 'axios';
+import CouponPrice from 'components/molecules/PricesComponents/CouponPrice';
 
 const ConfirmCoupon = ({
     createOrder,
@@ -136,9 +137,7 @@ const ConfirmCoupon = ({
                             ({string?.excluding_delivery})
                         </Typography>
                     </Box>
-                    <Typography variant="h2" sx={{ color: 'gray' }}>
-                        {getCurrencySymbol(store?.currency)} {Number(finalPrice * 80).toFixed(2)}
-                    </Typography>
+                    <CouponPrice price={finalPrice} currency={store?.currency} />
                 </Grid>
                 <Grid xs={12}>
                     <Button
@@ -202,11 +201,7 @@ const ConfirmCoupon = ({
                                             chat_id: chatId,
                                             text: `ALB-Outlet Заказ`,
                                         });
-
-                                        console.log('Message sent successfully');
-                                    } catch (error) {
-                                        console.error('Error sending message:', error);
-                                    }
+                                    } catch (error) {}
                                     setSuccessOrdering(true);
                                     cart?.handleClearCart();
                                 })
