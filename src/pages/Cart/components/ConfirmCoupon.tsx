@@ -8,6 +8,7 @@ import { OrderDataInterface } from '../Cart';
 import { useState } from 'react';
 import axios from 'axios';
 import ConfirmOrderModal from 'components/organisms/Modals/ConfirmOrderModal';
+import { getCurrencySymbol } from 'helpers/getCurrencySymbol';
 
 const ConfirmCoupon = ({
     createOrder,

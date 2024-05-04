@@ -18,7 +18,7 @@ const UserOrders = () => {
     const { handleGetStatusParams } = useGetStatusParams();
     const { s } = useDevice();
     const { storeCode, storeName } = useParams();
-    const { string, store }: CatalogContextInterface = useOutletContext();
+    const { string }: CatalogContextInterface = useOutletContext();
     const [orderData, setOrderData] = useState<OrderInterFace | any>(null);
     const { data: customerOrdersRes, isFetching: loadingOrders } = useUserApi().useGetCustomersOrders({
         storeCode,
