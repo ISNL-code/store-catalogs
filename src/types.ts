@@ -133,7 +133,6 @@ export interface StoreInterface {
             };
         }
     ];
-    storeType: 'sales' | 'wholesales' | 'default';
 }
 
 export interface UserDataInterface {

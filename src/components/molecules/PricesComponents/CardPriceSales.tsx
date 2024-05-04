@@ -1,9 +1,10 @@
 interface Props {
     currency;
     price;
+    discountPrice;
 }
 
-const CardPriceSales = ({ currency, price }: Props) => {
+const CardPriceSales = ({ currency, price, discountPrice }: Props) => {
     return <div>CardPriceSales</div>;
 };
 

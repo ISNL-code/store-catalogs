@@ -1,20 +1,35 @@
 import CardPriceDefault from 'components/molecules/PricesComponents/CardPriceDefault';
 import CardPriceSales from 'components/molecules/PricesComponents/CardPriceSales';
-import { useOutletContext } from 'react-router-dom';
+import {
+    HARD_SET_CURRENCY,
+    MAIN_PRICE_MULTIPLICATION,
+    SALE_PRICE_MULTIPLICATION,
+    STORE_TYPE,
+} from 'constants/store_config_options';
 
 interface Props {
     currency;
     price;
+    discountPrice?;
 }
 
-const CardPrice = ({ currency, price }: Props) => {
-    const { store }: any = useOutletContext();
-
+const CardPrice = ({ currency, price, discountPrice = null }: Props) => {
     return (
         <>
             <>
-                {store?.storeType !== 'sales' && <CardPriceDefault currency={currency} price={price} />}
-                {store?.storeType === 'sales' && <CardPriceSales currency={currency} price={price} />}
+                {STORE_TYPE !== 'sales' && (
+                    <CardPriceDefault
+                        currency={HARD_SET_CURRENCY || currency}
+                        price={price * MAIN_PRICE_MULTIPLICATION}
+                    />
+                )}
+                {STORE_TYPE === 'sales' && (
+                    <CardPriceSales
+                        currency={HARD_SET_CURRENCY || currency}
+                        price={price * MAIN_PRICE_MULTIPLICATION}
+                        discountPrice={discountPrice * SALE_PRICE_MULTIPLICATION}
+                    />
+                )}
             </>
         </>
     );

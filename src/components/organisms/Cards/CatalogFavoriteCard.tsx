@@ -276,7 +276,11 @@ const CatalogFavoriteCard = ({ modelsVariants, name, productId, currency, promoT
                                 }}
                             >
                                 {store?.mainStoreSettings?.prices && !isExpanded && (
-                                    <CardPrice currency={currency} price={Number(shownModel?.price)} />
+                                    <CardPrice
+                                        currency={currency}
+                                        price={Number(shownModel?.price)}
+                                        discountPrice={Number(shownModel?.price)}
+                                    />
                                 )}
                                 <Box mx={0.5} sx={{ ml: 'auto' }}>
                                     <CardSkuLabel sku={shownModel?.sku as string} />
