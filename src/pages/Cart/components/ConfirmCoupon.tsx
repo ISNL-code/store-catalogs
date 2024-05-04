@@ -7,6 +7,7 @@ import { CatalogContextInterface } from 'types';
 import { getCurrencySymbol } from 'helpers/getCurrencySymbol';
 import { OrderDataInterface } from '../Cart';
 import { useState } from 'react';
+import axios from 'axios';
 
 const ConfirmCoupon = ({
     orderData,
@@ -134,7 +135,7 @@ const ConfirmCoupon = ({
                         </Typography>
                     </Box>
                     <Typography variant="h2" sx={{ color: 'gray' }}>
-                        {getCurrencySymbol(store?.currency)} {Number(finalPrice).toFixed(2)}
+                        {getCurrencySymbol(store?.currency)} {Number(finalPrice * 80).toFixed(2)}
                     </Typography>
                 </Grid>
                 <Grid xs={12}>

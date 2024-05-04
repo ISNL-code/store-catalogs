@@ -243,7 +243,9 @@ const UserOrders = () => {
                                                                 {string?.price}:
                                                             </Typography>
                                                         )}
-                                                        <Typography variant="h5">{price || '---'}</Typography>
+                                                        <Typography variant="h5">
+                                                            {Number(price.replace('$', '')?.replace('UAH', '')) * 80}
+                                                        </Typography>
                                                     </Grid>
                                                     <Grid
                                                         xs={s ? 12 : 3}
@@ -282,7 +284,7 @@ const UserOrders = () => {
                                                 </Typography>
                                                 <Typography variant="h5">
                                                     {getCurrencySymbol(order?.currency)}
-                                                    {order?.total?.value}
+                                                    {order?.total?.value * 80}
                                                 </Typography>
                                             </Grid>
                                         </Grid>

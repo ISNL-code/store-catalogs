@@ -31,7 +31,7 @@ const HeaderLogo = ({ title, path, font = 'Roboto', imgUrl, headerHeight }) => {
                 alt="img"
             />
 
-            <Typography sx={{ fontFamily: font, fontSize: xxxs ? 18 : 20, fontWeight: 700, lineHeight: 1 }}>
+            <Typography sx={{ fontFamily: font, fontSize: xxxs ? 18 : 24, fontWeight: 700, lineHeight: 1 }}>
                 {title}
             </Typography>
         </Box>

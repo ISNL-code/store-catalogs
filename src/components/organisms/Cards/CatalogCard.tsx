@@ -16,6 +16,8 @@ import CardItem from 'components/atoms/Sections/CardItem';
 import Grid from '@mui/material/Unstable_Grid2';
 import PromoTags from 'components/atoms/PromoTags/PromoTags';
 import { Image, EmptyImage } from 'components/atoms/Media/Image';
+import CardPrice from 'components/molecules/PricesComponents/CardPrice';
+import CardSkuLabel from 'components/atoms/Labels/CardSkuLabel';
 // import { useFavoritesProductsApi } from 'api/useFavoritesProductsApi';
 
 interface ShownModelInterface {
@@ -78,7 +80,6 @@ function SampleNextArrow(props) {
 }
 
 const MemoizedColorIndicatorButton = memo(ColorIndicatorButton, (prevProps, nextProps) => {
-    // Можно добавить дополнительное сравнение пропсов, если нужно
     return prevProps.selected === nextProps.selected && prevProps.color === nextProps.color;
 });
 
@@ -334,30 +335,18 @@ const CatalogCard = memo<CatalogCardProps>(
                                         justifyContent: 'space-between',
                                     }}
                                 >
-                                    {store?.mainStoreSettings?.prices && (
-                                        <Box sx={{ display: 'flex' }}>
-                                            <Typography variant="h3" sx={{ color: '#505050' }}>
-                                                {!isExpanded && currency}
-                                                {!isExpanded && Number(shownModel?.price)}
-                                            </Typography>
-                                        </Box>
+                                    {store?.mainStoreSettings?.prices && !isExpanded && (
+                                        <CardPrice
+                                            currency={currency}
+                                            price={Number(shownModel?.price)}
+                                            discountPrice={Number(shownModel?.price)}
+                                        />
                                     )}
+                                    <Box mx={0.5} sx={{ ml: 'auto' }}>
+                                        <CardSkuLabel sku={shownModel?.sku as string} />
+                                    </Box>
+
                                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-                                        <Box
-                                            px={1}
-                                            sx={{
-                                                border: '1px solid #ccc',
-                                                height: '20px',
-                                                display: 'flex',
-                                                alignItems: 'center',
-                                                backgroundColor: '#fff',
-                                                borderRadius: '16px',
-                                            }}
-                                        >
-                                            <Typography variant="h6" sx={{ color: 'gray' }}>
-                                                {shownModel?.sku}
-                                            </Typography>
-                                        </Box>
                                         <CartButton
                                             selected={cart?.cartItems?.find(item => item.sku === shownModel?.sku)}
                                             isShown={store?.additionalStoreSettings?.cart}
