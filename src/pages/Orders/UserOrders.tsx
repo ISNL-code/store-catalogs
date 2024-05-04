@@ -181,8 +181,7 @@ const UserOrders = () => {
                                             const size = item.attributes.find(
                                                 item => item.attributeName.toLowerCase() === 'size'
                                             )?.attributeValue;
-                                            const price = item.product.variants.find(({ id }) => id === item.variant)
-                                                ?.inventory[0]?.prices[0]?.finalPrice;
+                                            const price = item.price;
                                             const totalQuantity = item.orderedQuantity;
 
                                             return (
@@ -247,7 +246,7 @@ const UserOrders = () => {
 
                                                         <Typography variant="h5">
                                                             {HARD_SET_CURRENCY || getCurrencySymbol(order?.currency)}
-                                                            {Number(price.replace('$', '')?.replace('UAH', '')) *
+                                                            {Number(price.replace(/[^0-9.]/g, '')) *
                                                                 SALE_PRICE_MULTIPLICATION}
                                                         </Typography>
                                                     </Grid>
@@ -288,7 +287,7 @@ const UserOrders = () => {
                                                 </Typography>
                                                 <Typography variant="h5">
                                                     {HARD_SET_CURRENCY || getCurrencySymbol(order?.currency)}
-                                                    {order?.total?.value * 80}
+                                                    {order?.total?.value}
                                                 </Typography>
                                             </Grid>
                                         </Grid>

@@ -1,5 +1,6 @@
 import { Box, Typography } from '@mui/material';
 import { Colors } from 'colors';
+import { getCurrencySymbol } from 'helpers/getCurrencySymbol';
 
 interface Props {
     currency;
@@ -12,12 +13,12 @@ const DetailsPriceSales = ({ currency, price, discountPrice }: Props) => {
         <>
             <Box sx={{ display: 'flex' }}>
                 <Typography sx={{ color: Colors?.GRAY_900, fontSize: 18, textDecoration: 'line-through' }}>
-                    {currency}
+                    {getCurrencySymbol(currency)}
                     {Number(price)}
                 </Typography>
                 /
                 <Typography sx={{ color: Colors?.RED, fontSize: 20, fontWeight: 700 }}>
-                    {currency}
+                    {getCurrencySymbol(currency)}
                     {Number(discountPrice)}
                 </Typography>
             </Box>

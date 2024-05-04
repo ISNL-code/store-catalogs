@@ -26,6 +26,7 @@ interface ShownModelInterface {
     id: number;
     sku: string;
     productId: number;
+    quantity: number;
 }
 
 function SamplePrevArrow(props) {
@@ -52,6 +53,7 @@ interface CatalogCardProps {
         price: string;
         images: any[];
         sku: string;
+        quantity: number;
     }[];
     name: string;
     productId: number;
@@ -93,6 +95,8 @@ const CatalogCard = memo<CatalogCardProps>(
         const { storeCode, storeName } = useParams();
         const [shownModel, setShownModel] = useState<ShownModelInterface | null>(null);
         const [isExpanded, setIsExpanded] = useState(false);
+
+        const absentProduct = Boolean(!shownModel?.quantity);
 
         useEffect(() => {
             if (!modelsVariants?.length) return;
@@ -199,6 +203,7 @@ const CatalogCard = memo<CatalogCardProps>(
                                                     display: 'flex !important',
                                                     alignItems: 'center',
                                                     backgroundColor: '#fafafa',
+                                                    opacity: absentProduct ? 0.5 : 1,
                                                 }}
                                             >
                                                 <Image store={store} imgUrl={imageUrl} ref={imageRef} />

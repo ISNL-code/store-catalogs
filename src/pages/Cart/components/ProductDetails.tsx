@@ -1,11 +1,10 @@
 import { Box, Button, Typography } from '@mui/material';
 import Grid from '@mui/material/Unstable_Grid2';
 import CartModelPrice from 'components/molecules/PricesComponents/CartModelPrice';
-import { getCurrencySymbol } from 'helpers/getCurrencySymbol';
 import { useNavigate, useOutletContext, useParams } from 'react-router-dom';
 import { CatalogContextInterface } from 'types';
 
-const ProductDetails = ({ data }) => {
+const ProductDetails = ({ data, setOrderData }) => {
     const navigate = useNavigate();
     const { storeCode, storeName } = useParams();
     const { string, cart, store }: CatalogContextInterface = useOutletContext();
@@ -46,6 +45,14 @@ const ProductDetails = ({ data }) => {
                     onClick={() => {
                         cart?.handleSetCartItems({
                             sku: data?.sku,
+                        });
+                        setOrderData(prev => {
+                            return {
+                                ...prev,
+                                productsList: prev?.productsList?.filter(el => {
+                                    return el.colorId !== data.id;
+                                }),
+                            };
                         });
                     }}
                 >
