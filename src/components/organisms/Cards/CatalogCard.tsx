@@ -80,7 +80,6 @@ function SampleNextArrow(props) {
 }
 
 const MemoizedColorIndicatorButton = memo(ColorIndicatorButton, (prevProps, nextProps) => {
-    // Можно добавить дополнительное сравнение пропсов, если нужно
     return prevProps.selected === nextProps.selected && prevProps.color === nextProps.color;
 });
 
