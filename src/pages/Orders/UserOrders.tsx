@@ -247,7 +247,7 @@ const UserOrders = () => {
 
                                                         <Typography variant="h5">
                                                             {HARD_SET_CURRENCY || getCurrencySymbol(order?.currency)}
-                                                            {Number(price.replace('$', '')?.replace('UAH', '')) *
+                                                            {Number(price.replace(/[^0-9.]/g, '')) *
                                                                 SALE_PRICE_MULTIPLICATION}
                                                         </Typography>
                                                     </Grid>

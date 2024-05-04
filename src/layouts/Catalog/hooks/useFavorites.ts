@@ -56,6 +56,7 @@ export const useFavorites = ({ store, lang, queryCategories, setQueryCategories 
                                     images: variant.images,
                                     colorCode: variant.variation.optionValue.code,
                                     sku: variant.sku,
+                                    quantity: variant.inventory[0]?.quantity,
                                 };
                             }),
                         name: product.product.description.name,
@@ -103,6 +104,7 @@ export const useFavorites = ({ store, lang, queryCategories, setQueryCategories 
                                             images: variant.images,
                                             colorCode: variant.variation.optionValue.code,
                                             sku: variant.sku,
+                                            quantity: variant.inventory[0]?.quantity,
                                         };
                                     }),
                                 name: product.product.description.name,

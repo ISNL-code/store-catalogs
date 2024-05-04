@@ -25,6 +25,7 @@ interface ShownModelInterface {
     sku: string;
     colorCode: string;
     productId: number;
+    quantity: number;
 }
 
 function SamplePrevArrow(props) {
@@ -175,7 +176,12 @@ const CatalogFavoriteCard = ({ modelsVariants, name, productId, currency, promoT
                                                 backgroundColor: '#fafafa',
                                             }}
                                         >
-                                            <Image store={store} imgUrl={imageUrl} ref={imageRef} />
+                                            <Image
+                                                store={store}
+                                                imgUrl={imageUrl}
+                                                ref={imageRef}
+                                                disabled={Boolean(!shownModel?.quantity)}
+                                            />
                                         </Grid>
                                     );
                                 })}

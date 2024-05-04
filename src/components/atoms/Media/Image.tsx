@@ -12,9 +12,10 @@ interface ImageProps {
             height: number;
         };
     };
+    disabled?: boolean;
 }
 
-const ImageComponent = React.forwardRef<HTMLImageElement, ImageProps>(({ imgUrl, store }, ref) => (
+const ImageComponent = React.forwardRef<HTMLImageElement, ImageProps>(({ imgUrl, store, disabled = false }, ref) => (
     <Grid
         xs={12}
         sx={{
@@ -25,6 +26,7 @@ const ImageComponent = React.forwardRef<HTMLImageElement, ImageProps>(({ imgUrl,
                       store?.productImagesOptions?.width) *
                   store?.productImagesOptions?.height
                 : 'auto',
+            opacity: disabled ? 0.5 : '',
         }}
     >
         <img
