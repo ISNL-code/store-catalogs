@@ -10,7 +10,7 @@ const ArticleDetails = ({ isShown }) => {
             <DetailsSection label={string?.vendor_code}>
                 <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                     <Box>
-                        <Typography>{modelSku?.replaceAll('_', '/')}</Typography>
+                        <Typography sx={{ fontSize: 20 }}>{modelSku?.replaceAll('_', '/')}</Typography>
                     </Box>
                 </Box>
             </DetailsSection>

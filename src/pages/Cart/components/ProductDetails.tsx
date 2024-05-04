@@ -1,5 +1,6 @@
 import { Box, Button, Typography } from '@mui/material';
 import Grid from '@mui/material/Unstable_Grid2';
+import CartModelPrice from 'components/molecules/PricesComponents/CartModelPrice';
 import { getCurrencySymbol } from 'helpers/getCurrencySymbol';
 import { useNavigate, useOutletContext, useParams } from 'react-router-dom';
 import { CatalogContextInterface } from 'types';
@@ -54,10 +55,7 @@ const ProductDetails = ({ data }) => {
             <Typography variant="h3">{data?.name}</Typography>
             <Box sx={{ display: 'flex', gap: 1 }}>
                 <Typography>{string?.price}:</Typography>
-                <Typography variant="h3" sx={{ color: 'gray' }}>
-                    {getCurrencySymbol(store?.currency)}
-                    {data?.inventory ? data?.inventory[0]?.price * 80 : '0'}
-                </Typography>
+                <CartModelPrice price={data?.inventory[0]?.price} currency={store?.currency} />
             </Box>
             <Box sx={{ display: 'flex', gap: 1 }}>
                 <Typography>{string?.color}:</Typography>

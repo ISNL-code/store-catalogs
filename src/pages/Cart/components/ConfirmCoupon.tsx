@@ -4,10 +4,9 @@ import Grid from '@mui/material/Unstable_Grid2';
 import { Button, TextField, Typography } from '@mui/material';
 import { useOutletContext } from 'react-router-dom';
 import { CatalogContextInterface } from 'types';
-import { getCurrencySymbol } from 'helpers/getCurrencySymbol';
 import { OrderDataInterface } from '../Cart';
 import { useState } from 'react';
-import axios from 'axios';
+import CouponPrice from 'components/molecules/PricesComponents/CouponPrice';
 
 const ConfirmCoupon = ({
     orderData,
@@ -134,9 +133,7 @@ const ConfirmCoupon = ({
                             ({string?.excluding_delivery})
                         </Typography>
                     </Box>
-                    <Typography variant="h2" sx={{ color: 'gray' }}>
-                        {getCurrencySymbol(store?.currency)} {Number(finalPrice * 80).toFixed(2)}
-                    </Typography>
+                    <CouponPrice price={finalPrice} currency={store?.currency} />
                 </Grid>
                 <Grid xs={12}>
                     <Button
