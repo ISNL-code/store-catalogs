@@ -132,12 +132,12 @@ const LandingRequestContacts = () => {
                                         }}
                                     >
                                         <Box>
-                                            <a href={`https://t.me/SNBussinessApp`} target="_blank" rel="noreferrer">
+                                            <a href={`https://t.me/SNBusinessApp`} target="_blank" rel="noreferrer">
                                                 <Box sx={{ width: 35, height: 35 }}>{TelegramIcon()}</Box>
                                             </a>
                                         </Box>
                                         <Typography variant={sm ? 'h4' : 'h3'}>
-                                            @{'SNBussinessApp'.replaceAll('https://t.me/', '')}
+                                            @{'SNBusinessApp'.replaceAll('https://t.me/', '')}
                                         </Typography>
                                     </Box>
 

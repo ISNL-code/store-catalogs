@@ -73,10 +73,10 @@ export const STORES_DATA = [
             {
                 firstName: 'SN Manager',
                 lastName: '',
-                emailAddress: 'dmytro.orgish88@gmail.com',
+                emailAddress: 'salesnest.info@gmail.com',
                 options: { manager: true },
                 contacts: {
-                    emailAddress: 'dmytro.orgish88@gmail.com',
+                    emailAddress: 'salesnest.info@gmail.com',
                     phone: '+380665738771',
                     viber: '+380665738771',
                     whatsapp: '+380665738771',
@@ -161,14 +161,14 @@ export const STORES_DATA = [
             {
                 firstName: 'SN Manager',
                 lastName: '',
-                emailAddress: 'dmytro.orgish88@gmail.com',
+                emailAddress: 'salesnest.info@gmail.com',
                 options: { manager: true },
                 contacts: {
-                    emailAddress: 'dmytro.orgish88@gmail.com',
+                    emailAddress: 'salesnest.info@gmail.com',
                     phone: '+380665738771',
                     viber: '+380665738771',
                     whatsapp: '+380665738771',
-                    telegram: 'https://t.me/@DmytroOrgish',
+                    telegram: 'SNBusinessApp',
                 },
             },
         ],
