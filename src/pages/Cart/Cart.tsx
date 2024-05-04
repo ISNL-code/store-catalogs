@@ -126,7 +126,7 @@ const Cart = () => {
                 0
             )
         );
-    }, [orderData.productsList]);
+    }, [orderData.productsList, cartProducts?.length]);
 
     const [loading, setLoading] = useState(true);
 
@@ -245,7 +245,7 @@ const Cart = () => {
                                             borderBottomRightRadius: xs ? '' : 24,
                                         }}
                                     >
-                                        <ProductDetails data={el} />
+                                        <ProductDetails data={el} setOrderData={setOrderData} />
                                         {store?.mainStoreSettings?.sizes ? (
                                             <AddSizesButtons
                                                 sizes={el?.sizes}

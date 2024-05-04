@@ -50,6 +50,7 @@ export const useProducts = ({ store, lang, queryCategories, setQueryCategories }
                                 images: variant.images,
                                 colorCode: variant.variation.optionValue.code,
                                 sku: variant.sku,
+                                quantity: variant.inventory[0]?.quantity,
                             };
                         }),
                     name: product.description.name,
@@ -91,6 +92,7 @@ export const useProducts = ({ store, lang, queryCategories, setQueryCategories }
                                         images: variant.images,
                                         colorCode: variant.variation.optionValue.code,
                                         sku: variant.sku,
+                                        quantity: variant.inventory[0]?.quantity,
                                     };
                                 }),
                             name: product.description.name,

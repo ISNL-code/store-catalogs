@@ -1,9 +1,9 @@
 export const STORES_DATA = [
     {
-        code: 'alberto_bini_europe',
+        code: 'ALBERTO_BINI',
         appStoreUrl: '',
         playMarketUrl: '',
-        webUrl: 'https://albertobini-brandeurope.com',
+        webUrl: 'https://alberto-bini.netlify.app',
         mainImage: require('./images/alb.jpeg'),
         productImagesOptions: { width: 6, height: 9, cropX: 0, cropY: 20 },
         descriptions: [

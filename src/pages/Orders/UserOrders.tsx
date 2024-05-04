@@ -12,6 +12,7 @@ import { useEffect, useState } from 'react';
 import { useGetStatusParams } from 'hooks/useGetStatusParams';
 import { getCurrencySymbol } from 'helpers/getCurrencySymbol';
 import Loader from 'components/atoms/Loader/Loader';
+import { HARD_SET_CURRENCY, SALE_PRICE_MULTIPLICATION } from 'constants/store_config_options';
 
 const UserOrders = () => {
     const { handleGetStatusParams } = useGetStatusParams();
@@ -190,8 +191,7 @@ const UserOrders = () => {
                                             const size = item.attributes.find(
                                                 item => item.attributeName.toLowerCase() === 'size'
                                             )?.attributeValue;
-                                            const price = item.product.variants.find(({ id }) => id === item.variant)
-                                                ?.inventory[0]?.prices[0]?.finalPrice;
+                                            const price = item.price;
                                             const totalQuantity = item.orderedQuantity;
 
                                             return (
@@ -255,11 +255,9 @@ const UserOrders = () => {
                                                         )}
 
                                                         <Typography variant="h5">
-                                                            {getCurrencySymbol(store?.currency)}
-                                                            {price
-                                                                ?.replace('$', '')
-                                                                ?.replace('UAH', '')
-                                                                .replace('€', '') * Number(catalogPriceMode) || '---'}
+                                                            {HARD_SET_CURRENCY || getCurrencySymbol(order?.currency)}
+                                                            {Number(price.replace(/[^0-9.]/g, '')) *
+                                                                SALE_PRICE_MULTIPLICATION}
                                                         </Typography>
                                                     </Grid>
                                                     <Grid
@@ -298,8 +296,8 @@ const UserOrders = () => {
                                                     {string?.final_price}
                                                 </Typography>
                                                 <Typography variant="h5">
-                                                    {getCurrencySymbol(order?.currency)}
-                                                    {order?.total?.value * Number(catalogPriceMode)}
+                                                    {HARD_SET_CURRENCY || getCurrencySymbol(order?.currency)}
+                                                    {order?.total?.value}
                                                 </Typography>
                                             </Grid>
                                         </Grid>
