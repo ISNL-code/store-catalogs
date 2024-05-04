@@ -1,9 +1,9 @@
 export const STORES_DATA = [
     {
-        code: 'ALBERTO_BINI_SALES',
+        code: 'ALBERTO_BINI',
         appStoreUrl: '',
         playMarketUrl: '',
-        webUrl: 'https://alberto-bini-sales.netlify.app',
+        webUrl: 'https://alberto-bini.netlify.app',
         mainImage: require('./images/alb.jpeg'),
         productImagesOptions: { width: 6, height: 8, cropX: 0, cropY: 20 },
         descriptions: [
@@ -71,12 +71,12 @@ export const STORES_DATA = [
         ],
         managers: [
             {
-                firstName: 'Elena',
+                firstName: 'Alberto Bini Manager',
                 lastName: '',
-                emailAddress: 'lena@admin.com',
+                emailAddress: '',
                 options: { manager: true },
                 contacts: {
-                    emailAddress: 'lena@admin.com',
+                    emailAddress: '',
                     phone: '+380983080085',
                     viber: '+380983080085',
                     whatsapp: '+380983080085',

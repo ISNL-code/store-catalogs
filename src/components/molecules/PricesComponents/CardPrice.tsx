@@ -17,13 +17,13 @@ const CardPrice = ({ currency, price, discountPrice = null }: Props) => {
     return (
         <>
             <>
-                {STORE_TYPE !== 'sales' && (
+                {Boolean(STORE_TYPE === 'wholesales' || STORE_TYPE === 'default') && (
                     <CardPriceDefault
                         currency={HARD_SET_CURRENCY || currency}
                         price={price * MAIN_PRICE_MULTIPLICATION}
                     />
                 )}
-                {STORE_TYPE === 'sales' && (
+                {Boolean(STORE_TYPE === 'sales') && (
                     <CardPriceSales
                         currency={HARD_SET_CURRENCY || currency}
                         price={price * MAIN_PRICE_MULTIPLICATION}

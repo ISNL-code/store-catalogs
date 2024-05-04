@@ -1,4 +1,4 @@
-export const MAIN_PRICE_MULTIPLICATION = 140;
-export const SALE_PRICE_MULTIPLICATION = 80;
-export const HARD_SET_CURRENCY = '₴';
-export const STORE_TYPE = 'sales'; // sales | wholesales | default
+export let MAIN_PRICE_MULTIPLICATION = 1;
+export let SALE_PRICE_MULTIPLICATION = 1;
+export let HARD_SET_CURRENCY = '';
+export let STORE_TYPE = 'wholesales'; // sales | wholesales | default
