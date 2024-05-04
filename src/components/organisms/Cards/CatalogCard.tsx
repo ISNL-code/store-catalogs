@@ -26,6 +26,7 @@ interface ShownModelInterface {
     id: number;
     sku: string;
     productId: number;
+    quantity: number;
 }
 
 function SamplePrevArrow(props) {
@@ -52,6 +53,7 @@ interface CatalogCardProps {
         price: string;
         images: any[];
         sku: string;
+        quantity: number;
     }[];
     name: string;
     productId: number;
@@ -201,7 +203,12 @@ const CatalogCard = memo<CatalogCardProps>(
                                                     backgroundColor: '#fafafa',
                                                 }}
                                             >
-                                                <Image store={store} imgUrl={imageUrl} ref={imageRef} />
+                                                <Image
+                                                    store={store}
+                                                    imgUrl={imageUrl}
+                                                    ref={imageRef}
+                                                    disabled={Boolean(!shownModel?.quantity)}
+                                                />
                                             </Grid>
                                         );
                                     })}

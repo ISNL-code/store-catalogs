@@ -4,7 +4,6 @@ import Grid from '@mui/material/Unstable_Grid2';
 import { Button, TextField, Typography } from '@mui/material';
 import { useOutletContext, useParams } from 'react-router-dom';
 import { CatalogContextInterface } from 'types';
-import { getCurrencySymbol } from 'helpers/getCurrencySymbol';
 import { OrderDataInterface } from '../Cart';
 import { useState } from 'react';
 import axios from 'axios';

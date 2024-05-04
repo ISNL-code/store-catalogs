@@ -64,6 +64,7 @@ const Favorites = () => {
                                 images: variant.images,
                                 colorCode: variant.variation.optionValue.code,
                                 sku: variant.sku,
+                                quantity: variant.inventory[0]?.quantity,
                             };
                         }),
                     price: products.find(el => el.variants.map(({ sku }) => sku).includes(sku))?.finalPrice,
