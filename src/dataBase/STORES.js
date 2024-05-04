@@ -61,6 +61,7 @@ export const STORES_DATA = [
         },
         dataBaseStoreSettings: { users: 5, products: 50, productModels: 5, photos: 5, videos: 1 },
         securityStoreSettings: { private: false, securityKey: null },
+        storeType: 'wholesales',
         storeProductTypes: [
             {
                 code: 'Outerwear',

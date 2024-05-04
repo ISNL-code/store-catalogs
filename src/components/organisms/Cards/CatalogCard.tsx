@@ -16,7 +16,8 @@ import CardItem from 'components/atoms/Sections/CardItem';
 import Grid from '@mui/material/Unstable_Grid2';
 import PromoTags from 'components/atoms/PromoTags/PromoTags';
 import { Image, EmptyImage } from 'components/atoms/Media/Image';
-// import { useFavoritesProductsApi } from 'api/useFavoritesProductsApi';
+import CardPrice from 'components/molecules/PricesComponents/CardPrice';
+import CardSkuLabel from 'components/atoms/Labels/CardSkuLabel';
 
 interface ShownModelInterface {
     price: string;
@@ -316,14 +317,26 @@ const CatalogCard = memo<CatalogCardProps>(
                                     backgroundColor: '#fafafa',
                                 }}
                             >
-                                <Typography
-                                    px={1}
-                                    py={0.5}
-                                    variant="h4"
-                                    sx={{ height: 40, fontSize: 14, fontWeight: 500 }}
-                                >
-                                    {!isExpanded && name}
-                                </Typography>
+                                {store?.mainStoreSettings?.prices && !isExpanded && (
+                                    <CardPrice currency={currency} price={Number(shownModel?.price)} />
+                                )}
+                                <Box mx={0.5} sx={{ ml: 'auto' }}>
+                                    <CardSkuLabel sku={shownModel?.sku as string} />
+                                </Box>
+
+                                <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
+                                    <CartButton
+                                        selected={cart?.cartItems?.find(item => item.sku === shownModel?.sku)}
+                                        isShown={store?.additionalStoreSettings?.cart}
+                                        action={() => {
+                                            cart?.handleSetCartItems({
+                                                sku: shownModel?.sku,
+                                                storeCode,
+                                                userId: currentUserData?.id,
+                                                productId: shownModel?.productId,
+                                            });
+                                        }}
+                                    />
 
                                 <Box
                                     px={1}
