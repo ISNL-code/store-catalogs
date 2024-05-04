@@ -59,7 +59,7 @@ export const STORES_DATA = [
             appleStore: false,
             playMarket: false,
         },
-        dataBaseStoreSettings: { users: 5, products: 50, productModels: 5, photos: 5, videos: 1 },
+        dataBaseStoreSettings: { users: 5, products: 200, productModels: 10, photos: 10, videos: 1 },
         securityStoreSettings: { private: false, securityKey: null },
         storeProductTypes: [
             {
