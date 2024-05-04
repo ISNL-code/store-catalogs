@@ -15,6 +15,8 @@ import CardItem from 'components/atoms/Sections/CardItem';
 import Grid from '@mui/material/Unstable_Grid2';
 import PromoTags from 'components/atoms/PromoTags/PromoTags';
 import { Image, EmptyImage } from 'components/atoms/Media/Image';
+import CardPrice from 'components/molecules/PricesComponents/CardPrice';
+import CardSkuLabel from 'components/atoms/Labels/CardSkuLabel';
 
 interface ShownModelInterface {
     price: string;
@@ -273,37 +275,17 @@ const CatalogFavoriteCard = ({ modelsVariants, name, productId, currency, promoT
                                     justifyContent: 'space-between',
                                 }}
                             >
-                                {store?.mainStoreSettings?.prices && (
-                                    <Box sx={{ display: 'flex' }}>
-                                        <Typography
-                                            variant="h4"
-                                            sx={{ color: '#575757', textDecoration: 'line-through', fontWeight: 700 }}
-                                        >
-                                            {!isExpanded && productMainPrice}
-                                        </Typography>
-                                        /
-                                        <Typography variant="h3" sx={{ color: '#f83838' }}>
-                                            {!isExpanded && currency}
-                                            {!isExpanded && Number(shownModel?.price)}
-                                        </Typography>
-                                    </Box>
+                                {store?.mainStoreSettings?.prices && !isExpanded && (
+                                    <CardPrice
+                                        currency={currency}
+                                        price={Number(shownModel?.price)}
+                                        discountPrice={Number(shownModel?.price)}
+                                    />
                                 )}
+                                <Box mx={0.5} sx={{ ml: 'auto' }}>
+                                    <CardSkuLabel sku={shownModel?.sku as string} />
+                                </Box>
                                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-                                    <Box
-                                        px={1}
-                                        sx={{
-                                            border: '1px solid #ccc',
-                                            height: '20px',
-                                            display: 'flex',
-                                            alignItems: 'center',
-                                            backgroundColor: '#fff',
-                                            borderRadius: '16px',
-                                        }}
-                                    >
-                                        <Typography variant="h6" sx={{ color: 'gray' }}>
-                                            {shownModel?.sku}
-                                        </Typography>
-                                    </Box>
                                     <CartButton
                                         selected={cart?.cartItems?.find(item => item.sku === shownModel?.sku)}
                                         isShown={store?.additionalStoreSettings?.cart}

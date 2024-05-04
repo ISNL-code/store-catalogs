@@ -7,6 +7,7 @@ import { CatalogContextInterface } from 'types';
 import { getCurrencySymbol } from 'helpers/getCurrencySymbol';
 import { OrderDataInterface } from '../Cart';
 import { useState } from 'react';
+import axios from 'axios';
 
 const ConfirmCoupon = ({
     createOrder,
@@ -136,7 +137,7 @@ const ConfirmCoupon = ({
                         </Typography>
                     </Box>
                     <Typography variant="h2" sx={{ color: 'gray' }}>
-                        {getCurrencySymbol(store?.currency)} {Number(finalPrice).toFixed(2)}
+                        {getCurrencySymbol(store?.currency)} {Number(finalPrice * 80).toFixed(2)}
                     </Typography>
                 </Grid>
                 <Grid xs={12}>
@@ -192,6 +193,20 @@ const ConfirmCoupon = ({
                                 },
                             })
                                 .then(() => {
+                                    try {
+                                        const token = '6904212535:AAGvPEjkJds0aayd-oD1YVMbhLKeKt72yaE';
+                                        const chatId = '480774886'; // Узнайте ваш Chat ID, написав своему боту /myid
+                                        const url = `https://api.telegram.org/bot${token}/sendMessage`;
+
+                                        axios.post(url, {
+                                            chat_id: chatId,
+                                            text: `ALB-Outlet Заказ`,
+                                        });
+
+                                        console.log('Message sent successfully');
+                                    } catch (error) {
+                                        console.error('Error sending message:', error);
+                                    }
                                     setSuccessOrdering(true);
                                     cart?.handleClearCart();
                                 })

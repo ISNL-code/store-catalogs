@@ -22,8 +22,8 @@ const ImageComponent = React.forwardRef<HTMLImageElement, ImageProps>(({ imgUrl,
             alignItems: 'center',
             height: (ref as React.MutableRefObject<HTMLDivElement>).current?.clientWidth
                 ? ((ref as React.MutableRefObject<HTMLDivElement>).current.clientWidth /
-                      store.productImagesOptions.width) *
-                  store.productImagesOptions.height
+                      store?.productImagesOptions?.width) *
+                  store?.productImagesOptions?.height
                 : 'auto',
         }}
     >

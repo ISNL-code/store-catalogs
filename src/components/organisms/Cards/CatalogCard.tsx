@@ -16,6 +16,8 @@ import CardItem from 'components/atoms/Sections/CardItem';
 import Grid from '@mui/material/Unstable_Grid2';
 import PromoTags from 'components/atoms/PromoTags/PromoTags';
 import { Image, EmptyImage } from 'components/atoms/Media/Image';
+import CardPrice from 'components/molecules/PricesComponents/CardPrice';
+import CardSkuLabel from 'components/atoms/Labels/CardSkuLabel';
 // import { useFavoritesProductsApi } from 'api/useFavoritesProductsApi';
 
 interface ShownModelInterface {
@@ -56,15 +58,26 @@ function SampleNextArrow(props) {
     );
 }
 
-const CatalogCard = ({ modelsVariants, name, productId, currency, setProductsList, promoTags, productMainPrice }) => {
-    const ref = useRef<HTMLImageElement>(null);
-    const { s, sx, ls, l } = useDevice();
-    const navigate = useNavigate();
-    const { store, cart, favorites, currentUserData }: CatalogContextInterface = useOutletContext();
-    const colorsBoxRef = useRef(null);
-    const { storeCode, storeName } = useParams();
-    const [shownModel, setShownModel] = useState<ShownModelInterface | null>(null);
-    const [isExpanded, setIsExpanded] = useState(false);
+const MemoizedColorIndicatorButton = memo(ColorIndicatorButton, (prevProps, nextProps) => {
+    return prevProps.selected === nextProps.selected && prevProps.color === nextProps.color;
+});
+
+const CatalogCard = memo<CatalogCardProps>(
+    ({ modelsVariants, name, productId, currency, setProductsList, promoTags }) => {
+        const imageRef = useRef<HTMLImageElement>(null);
+        const { s, sx, ls, l } = useDevice();
+        const navigate = useNavigate();
+        const { store, cart, favorites, currentUserData }: CatalogContextInterface = useOutletContext();
+        const colorsBoxRef = useRef(null);
+        const { storeCode, storeName } = useParams();
+        const [shownModel, setShownModel] = useState<ShownModelInterface | null>(null);
+        const [isExpanded, setIsExpanded] = useState(false);
+
+        useEffect(() => {
+            if (!modelsVariants?.length) return;
+            const selectedVariant = modelsVariants.find(variant => variant.selected);
+            setShownModel(selectedVariant ? selectedVariant : null); // Установка null вместо undefined
+        }, [modelsVariants]);
 
     useEffect(() => {
         if (!modelsVariants?.length) return;
@@ -299,40 +312,59 @@ const CatalogCard = ({ modelsVariants, name, productId, currency, setProductsLis
                                     justifyContent: 'space-between',
                                 }}
                             >
-                                {store?.mainStoreSettings?.prices && (
-                                    <Box sx={{ display: 'flex' }}>
-                                        <Typography
-                                            variant="h3"
-                                            sx={{
-                                                color: '#575757',
-                                                textDecoration: 'line-through',
-                                                fontWeight: 700,
-                                            }}
-                                        >
-                                            {!isExpanded && productMainPrice}
-                                        </Typography>
-                                        /
-                                        <Typography variant="h2" sx={{ color: '#f83838' }}>
-                                            {!isExpanded && currency}
-                                            {!isExpanded && Number(shownModel?.price)}
-                                        </Typography>
+                                <Typography
+                                    px={1}
+                                    py={0.5}
+                                    variant="h4"
+                                    sx={{ height: 40, fontSize: 14, fontWeight: 500 }}
+                                >
+                                    {!isExpanded && name}
+                                </Typography>
+
+                                <Box
+                                    px={1}
+                                    pb={0.5}
+                                    sx={{
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'space-between',
+                                    }}
+                                >
+                                    {store?.mainStoreSettings?.prices && !isExpanded && (
+                                        <CardPrice
+                                            currency={currency}
+                                            price={Number(shownModel?.price)}
+                                            discountPrice={Number(shownModel?.price)}
+                                        />
+                                    )}
+                                    <Box mx={0.5} sx={{ ml: 'auto' }}>
+                                        <CardSkuLabel sku={shownModel?.sku as string} />
                                     </Box>
-                                )}
-                                <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-                                    <Box
-                                        px={1}
-                                        sx={{
-                                            border: '1px solid #ccc',
-                                            height: '20px',
-                                            display: 'flex',
-                                            alignItems: 'center',
-                                            backgroundColor: '#fff',
-                                            borderRadius: '16px',
-                                        }}
-                                    >
-                                        <Typography variant="h6" sx={{ color: 'gray' }}>
-                                            {shownModel?.sku}
-                                        </Typography>
+
+                                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
+                                        <CartButton
+                                            selected={cart?.cartItems?.find(item => item.sku === shownModel?.sku)}
+                                            isShown={store?.additionalStoreSettings?.cart}
+                                            action={() => {
+                                                cart?.handleSetCartItems({
+                                                    sku: shownModel?.sku,
+                                                    storeCode,
+                                                    userId: currentUserData?.id,
+                                                    productId: shownModel?.productId,
+                                                });
+                                            }}
+                                        />
+
+                                        <ShareButton
+                                            isShown={store?.additionalStoreSettings?.promo}
+                                            path={`${
+                                                store?.webUrl
+                                            }/catalog/${storeCode}/${storeName}/details/${productId}/model/${shownModel?.sku?.replaceAll(
+                                                '/',
+                                                '_'
+                                            )}`}
+                                            text=""
+                                        />
                                     </Box>
                                     <CartButton
                                         selected={cart?.cartItems?.find(item => item.sku === shownModel?.sku)}
