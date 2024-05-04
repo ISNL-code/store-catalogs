@@ -339,7 +339,7 @@ const CatalogCard = memo<CatalogCardProps>(
                                     {store?.mainStoreSettings?.prices && !isExpanded && (
                                         <CardPrice
                                             currency={currency}
-                                            price={Number(shownModel?.price)}
+                                            price={Number(productMainPrice)}
                                             discountPrice={Number(shownModel?.price)}
                                         />
                                     )}

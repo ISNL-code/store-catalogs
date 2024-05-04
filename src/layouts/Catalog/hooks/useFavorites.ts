@@ -38,6 +38,7 @@ export const useFavorites = ({ store, lang, queryCategories, setQueryCategories 
 
         setFavoritesList(
             favoritesRes.data.map(product => {
+                const prices = product.variants?.map(el => Number(el.inventory[0]?.price));
                 return {
                     attributes: [],
                     favoriteProductId: product?.favoriteProductId,
@@ -58,7 +59,7 @@ export const useFavorites = ({ store, lang, queryCategories, setQueryCategories 
                                 };
                             }),
                         name: product.product.description.name,
-                        price: product.product.finalPrice,
+                        price: Math.max(...prices),
                         promoTags:
                             product.product.options
                                 .find(({ code }) => code === 'PROMO')
@@ -84,6 +85,7 @@ export const useFavorites = ({ store, lang, queryCategories, setQueryCategories 
                 return [
                     ...prevData,
                     ...res?.data?.data?.map(product => {
+                        const prices = product.variants?.map(el => Number(el.inventory[0]?.price));
                         return {
                             attributes: [],
                             favoriteProductId: product?.favoriteProductId,
@@ -104,7 +106,7 @@ export const useFavorites = ({ store, lang, queryCategories, setQueryCategories 
                                         };
                                     }),
                                 name: product.product.description.name,
-                                price: product.product.finalPrice,
+                                price: Math.max(...prices),
                                 promoTags:
                                     product.product.options
                                         .find(({ code }) => code === 'PROMO')

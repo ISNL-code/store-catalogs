@@ -1,7 +1,6 @@
 import { Box, Button, Typography } from '@mui/material';
 import Grid from '@mui/material/Unstable_Grid2';
 import CartModelPrice from 'components/molecules/PricesComponents/CartModelPrice';
-import { getCurrencySymbol } from 'helpers/getCurrencySymbol';
 import { useNavigate, useOutletContext, useParams } from 'react-router-dom';
 import { CatalogContextInterface } from 'types';
 

@@ -10,7 +10,7 @@ const PriceDetails = ({ productDetails, isShown }) => {
             <DetailsSection label={string?.price}>
                 <DetailsPrice
                     currency={store?.currency}
-                    price={Number(productDetails?.price?.replace('$', '')?.replace('UAH', '')?.replace('€', ''))}
+                    price={Number(productDetails?.originalPrice)}
                     discountPrice={Number(
                         productDetails?.price?.replace('$', '')?.replace('UAH', '')?.replace('€', '')
                     )}

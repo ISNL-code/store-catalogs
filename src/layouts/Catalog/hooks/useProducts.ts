@@ -36,7 +36,7 @@ export const useProducts = ({ store, lang, queryCategories, setQueryCategories }
         setProductsList(
             productsRes.data.products?.map(product => {
                 const prices = product.variants?.map(el => Number(el.inventory[0]?.price));
-                console.log(product.variants);
+
                 return {
                     id: product.id,
                     variants: product.variants
@@ -55,7 +55,7 @@ export const useProducts = ({ store, lang, queryCategories, setQueryCategories }
                         }),
 
                     name: product.description.name,
-                    price: '$' + Math.max(...prices),
+                    price: Math.max(...prices),
                     promoTags:
                         product.options
                             .find(({ code }) => code === 'PROMO')
@@ -77,9 +77,11 @@ export const useProducts = ({ store, lang, queryCategories, setQueryCategories }
         updateProducts().then(res => {
             setProductsList(prev => {
                 const prevData = prev ? [...prev] : [];
+
                 return [
                     ...prevData,
                     ...res?.data?.data?.products?.map(product => {
+                        const prices = product.variants?.map(el => Number(el.inventory[0]?.price));
                         return {
                             id: product.id,
                             variants: product.variants
@@ -96,7 +98,7 @@ export const useProducts = ({ store, lang, queryCategories, setQueryCategories }
                                     };
                                 }),
                             name: product.description.name,
-                            price: product.finalPrice,
+                            price: Math.max(...prices),
                             promoTags:
                                 product.options
                                     .find(({ code }) => code === 'PROMO')
