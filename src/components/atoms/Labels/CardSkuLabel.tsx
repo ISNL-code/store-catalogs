@@ -16,7 +16,10 @@ const CardSkuLabel = ({ sku }: Props) => {
                 borderRadius: '16px',
             }}
         >
-            <Typography variant="h6" sx={{ color: 'gray' }}>
+            <Typography
+                variant="h6"
+                sx={{ color: 'gray', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}
+            >
                 {sku}
             </Typography>
         </Box>

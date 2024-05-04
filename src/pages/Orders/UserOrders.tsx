@@ -253,6 +253,7 @@ const UserOrders = () => {
                                                                 {string?.price}:
                                                             </Typography>
                                                         )}
+
                                                         <Typography variant="h5">
                                                             {getCurrencySymbol(store?.currency)}
                                                             {price

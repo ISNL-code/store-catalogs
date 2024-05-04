@@ -7,11 +7,11 @@ interface Props {
     discountPrice;
 }
 
-const CardPriceSales = ({ currency, price, discountPrice }: Props) => {
+const DetailsPriceSales = ({ currency, price, discountPrice }: Props) => {
     return (
         <>
             <Box sx={{ display: 'flex' }}>
-                <Typography sx={{ color: Colors?.GRAY_900, fontSize: 16, textDecoration: 'line-through' }}>
+                <Typography sx={{ color: Colors?.GRAY_900, fontSize: 18, textDecoration: 'line-through' }}>
                     {currency}
                     {Number(price)}
                 </Typography>
@@ -25,4 +25,4 @@ const CardPriceSales = ({ currency, price, discountPrice }: Props) => {
     );
 };
 
-export default CardPriceSales;
+export default DetailsPriceSales;
