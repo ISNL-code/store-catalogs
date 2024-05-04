@@ -175,14 +175,14 @@ const UserOrders = () => {
                                     )}
                                     <Grid container xs={12}>
                                         {order?.products?.map(item => {
+                                            console.log(item);
                                             const sku = item.product.variants.find(
                                                 ({ id }) => id === item.variant
                                             )?.sku;
                                             const size = item.attributes.find(
                                                 item => item.attributeName.toLowerCase() === 'size'
                                             )?.attributeValue;
-                                            const price = item.product.variants.find(({ id }) => id === item.variant)
-                                                ?.inventory[0]?.prices[0]?.finalPrice;
+                                            const price = item.price;
                                             const totalQuantity = item.orderedQuantity;
 
                                             return (
@@ -288,7 +288,7 @@ const UserOrders = () => {
                                                 </Typography>
                                                 <Typography variant="h5">
                                                     {HARD_SET_CURRENCY || getCurrencySymbol(order?.currency)}
-                                                    {order?.total?.value * 80}
+                                                    {order?.total?.value}
                                                 </Typography>
                                             </Grid>
                                         </Grid>
