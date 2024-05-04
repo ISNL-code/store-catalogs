@@ -1,6 +1,5 @@
-import { Box, Typography } from '@mui/material';
 import DetailsSection from 'components/atoms/Sections/DetailsSection';
-import { getCurrencySymbol } from 'helpers/getCurrencySymbol';
+import DetailsPrice from 'components/molecules/PricesComponents/DetailsPrice';
 import { useOutletContext } from 'react-router-dom';
 
 const PriceDetails = ({ productDetails, isShown }) => {
@@ -9,17 +8,13 @@ const PriceDetails = ({ productDetails, isShown }) => {
     if (isShown)
         return (
             <DetailsSection label={string?.price}>
-                <Box sx={{ display: 'flex' }}>
-                    <Typography variant="h4" sx={{ textDecoration: 'line-through' }}>
-                        {getCurrencySymbol(store?.currency)}
-                        {productDetails?.price?.replace('$', '')?.replace('UAH', '') * 140}
-                    </Typography>
-                    /
-                    <Typography variant="h3" sx={{ color: 'red' }}>
-                        {getCurrencySymbol(store?.currency)}
-                        {productDetails?.price?.replace('$', '')?.replace('UAH', '') * 80}
-                    </Typography>
-                </Box>
+                <DetailsPrice
+                    currency={store?.currency}
+                    price={Number(productDetails?.price?.replace('$', '')?.replace('UAH', '')?.replace('€', ''))}
+                    discountPrice={Number(
+                        productDetails?.price?.replace('$', '')?.replace('UAH', '')?.replace('€', '')
+                    )}
+                />
             </DetailsSection>
         );
     return null;

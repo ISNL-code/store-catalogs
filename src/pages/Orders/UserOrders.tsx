@@ -12,6 +12,7 @@ import { useEffect, useState } from 'react';
 import { useGetStatusParams } from 'hooks/useGetStatusParams';
 import { getCurrencySymbol } from 'helpers/getCurrencySymbol';
 import Loader from 'components/atoms/Loader/Loader';
+import { HARD_SET_CURRENCY, SALE_PRICE_MULTIPLICATION } from 'constants/store_config_options';
 
 const UserOrders = () => {
     const { handleGetStatusParams } = useGetStatusParams();
@@ -243,8 +244,11 @@ const UserOrders = () => {
                                                                 {string?.price}:
                                                             </Typography>
                                                         )}
+
                                                         <Typography variant="h5">
-                                                            {Number(price.replace('$', '')?.replace('UAH', '')) * 80}
+                                                            {HARD_SET_CURRENCY || getCurrencySymbol(order?.currency)}
+                                                            {Number(price.replace('$', '')?.replace('UAH', '')) *
+                                                                SALE_PRICE_MULTIPLICATION}
                                                         </Typography>
                                                     </Grid>
                                                     <Grid
@@ -283,7 +287,7 @@ const UserOrders = () => {
                                                     {string?.final_price}
                                                 </Typography>
                                                 <Typography variant="h5">
-                                                    {getCurrencySymbol(order?.currency)}
+                                                    {HARD_SET_CURRENCY || getCurrencySymbol(order?.currency)}
                                                     {order?.total?.value * 80}
                                                 </Typography>
                                             </Grid>
