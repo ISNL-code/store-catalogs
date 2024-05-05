@@ -16,14 +16,6 @@ import UserOrders from 'pages/Orders/UserOrders';
 import { STORE_CONFIG } from 'constants/stores_config';
 import { Helmet } from 'react-helmet';
 
-const HeadComponent = ({ domain }) => {
-    return (
-        <Helmet>
-            <title>{'Сайт 2'}</title>
-            <meta name="description" content={'Описание для Сайта 2'} />
-        </Helmet>
-    );
-};
 const App = () => {
     const { ACCESS_TOKEN_KEY } = STORE_CONFIG;
     const token = localStorage.getItem(ACCESS_TOKEN_KEY);
@@ -65,10 +57,12 @@ const App = () => {
         localStorage.setItem('my-lang-cocktail', JSON.stringify(lang));
     }, [lang, mount]);
 
-    const domain = window.location.hostname;
     return (
         <>
-            <HeadComponent domain={domain} />
+            <Helmet>
+                <title>{'Сайт 2'}</title>
+                <meta name="description" content={'Описание для Сайта 2'} />
+            </Helmet>
             <ThemeProvider theme={mainTheme}>
                 <Router>
                     <Routes>
