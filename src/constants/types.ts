@@ -16,4 +16,5 @@ export interface STORE_CONFIG_Interface {
         CUSTOM_CURRENCY: string | null; // use in custom catalogs  if use different from default currency
         STORE_TYPE: StoreType; // use in custom catalogs for identification of store type
     };
+    WEB_HEAD_DATA: { STORE_TITLE: string; STORE_DESCRIPTION: string };
 }

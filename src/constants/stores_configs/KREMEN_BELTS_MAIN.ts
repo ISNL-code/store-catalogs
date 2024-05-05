@@ -14,4 +14,5 @@ export const KREMEN_BELTS_MAIN = {
         custom_currency: null,
         store_type: StoreType?.default,
     },
+    web_head_data: { store_title: '', store_description: '' },
 };

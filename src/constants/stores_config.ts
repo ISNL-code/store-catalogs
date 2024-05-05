@@ -22,6 +22,10 @@ const storeConfig = (): STORE_CONFIG_Interface => {
             CUSTOM_CURRENCY: matchingDomain?.options?.custom_currency || null,
             STORE_TYPE: matchingDomain?.options?.store_type || StoreType?.default,
         },
+        WEB_HEAD_DATA: {
+            STORE_TITLE: matchingDomain?.web_head_data?.store_title || '',
+            STORE_DESCRIPTION: matchingDomain?.web_head_data?.store_description || '',
+        },
     };
 };
 

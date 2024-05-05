@@ -14,7 +14,6 @@ import { UserDataInterface } from 'types';
 import UserProfile from 'pages/Profile/UserProfile';
 import UserOrders from 'pages/Orders/UserOrders';
 import { STORE_CONFIG } from 'constants/stores_config';
-import { Helmet } from 'react-helmet';
 
 const App = () => {
     const { ACCESS_TOKEN_KEY } = STORE_CONFIG;
@@ -59,10 +58,6 @@ const App = () => {
 
     return (
         <>
-            <Helmet>
-                <title>{'Сайт 2'}</title>
-                <meta name="description" content={'Описание для Сайта 2'} />
-            </Helmet>
             <ThemeProvider theme={mainTheme}>
                 <Router>
                     <Routes>
