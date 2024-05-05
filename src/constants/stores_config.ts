@@ -1,33 +1,12 @@
-const domains = [
-    {
-        URL: ['http://localhost:3000'],
-        store_code: 'ALBERTO_BINI',
-        token_key: 'sn-shop-dev-tkn',
-        cart_key: 'sn-shop-dev-cart',
-        favorite_url: 'sn-shop-dev-favorites',
-        base_url: 'https://kremen-belts.com/api',
-    },
-    {
-        URL: ['https://alberto-bini.netlify.app'],
-        store_code: 'ALBERTO_BINI',
-        token_key: 'abm-tkn',
-        cart_key: 'abm-cart',
-        favorite_url: 'abm-favorites',
-        base_url: 'https://kremen-belts.com/api',
-    },
-];
+import { ALBERTO_BINI_MAIN } from './stores_configs/ALBERTO_BINI_MAIN';
+import { DEVELOP_STORE } from './stores_configs/A_DEVELOP_STORE';
+import { StoreType, STORE_CONFIG_Interface } from './types';
 
-interface STORE_CONFIG_Interface {
-    STORE_CODE: string; // use for get current store data
-    ACCESS_TOKEN_KEY: string; // use for local storage
-    BASE_URL: string; // use for auth interceptor
-    CART_KEY: string; // use for local storage
-    FAVORITE_KEY: string; // use for local storage
-}
+const stores = [DEVELOP_STORE, ALBERTO_BINI_MAIN];
 
 const storeConfig = (): STORE_CONFIG_Interface => {
     const currentUrl = window.location.href;
-    const matchingDomain = domains.find(domain => domain.URL.some(url => currentUrl.includes(url)));
+    const matchingDomain = stores.find(domain => domain.URL.some(url => currentUrl.includes(url)));
 
     return {
         STORE_CODE: matchingDomain?.store_code || '',
@@ -35,6 +14,13 @@ const storeConfig = (): STORE_CONFIG_Interface => {
         ACCESS_TOKEN_KEY: matchingDomain?.token_key || '',
         CART_KEY: matchingDomain?.cart_key || '',
         FAVORITE_KEY: matchingDomain?.favorite_url || '',
+        OPTIONS: {
+            MAIN_PRICE_MULTIPLICATION: matchingDomain?.options?.main_price_multiplication || 1,
+            SALE_PRICE_MULTIPLICATION: matchingDomain?.options?.sale_price_multiplication || 1,
+            CURRENCY_MULTIPLICATION: matchingDomain?.options?.currency_multiplication || 1,
+            CUSTOM_CURRENCY: matchingDomain?.options?.custom_currency || null,
+            STORE_TYPE: matchingDomain?.options?.store_type || StoreType?.default,
+        },
     };
 };
 

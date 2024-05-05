@@ -1,4 +1,4 @@
-export const alberto_bini_main = {
+export const ALBERTO_BINI_MAIN_DB = {
     code: 'ALBERTO_BINI',
     appStoreUrl: '',
     playMarketUrl: '',

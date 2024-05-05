@@ -3,8 +3,7 @@ import { STORE_CONFIG } from 'constants/stores_config';
 
 const AuthInterceptor = () => {
     const { ACCESS_TOKEN_KEY, BASE_URL } = STORE_CONFIG;
-    const AUTH_ROUTE_PATH = '/secure';
-    // const SERVER_ERROR_ROUTE_PATH = '/server-error';
+    const SERVER_ERROR_ROUTE_PATH = '/';
 
     axios.defaults.baseURL = BASE_URL;
 
@@ -27,9 +26,8 @@ const AuthInterceptor = () => {
 
             if (isUnauthorized && isApiUrl) {
                 window.localStorage.removeItem(ACCESS_TOKEN_KEY);
-                if (window.location.pathname !== AUTH_ROUTE_PATH) window.location.href = AUTH_ROUTE_PATH;
             }
-            // if (error.response.status >= 500) window.location.href = SERVER_ERROR_ROUTE_PATH;
+            if (error.response.status >= 500) window.location.href = SERVER_ERROR_ROUTE_PATH;
             return Promise.reject(error);
         }
     );

@@ -1,0 +1,4 @@
+import { ALBERTO_BINI_MAIN_DB } from './stores_db/ALBERTO_BINI_MAIN_DB';
+import { KREMEN_BELTS_MAIN_DB } from './stores_db/KREMEN_BELTS_MAIN_DB';
+
+export const STORES_DATA = [ALBERTO_BINI_MAIN_DB, KREMEN_BELTS_MAIN_DB];

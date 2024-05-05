@@ -1,13 +1,21 @@
 import { Typography } from '@mui/material';
-import { HARD_SET_CURRENCY, SALE_PRICE_MULTIPLICATION } from 'constants/store_config_options';
+import { STORE_CONFIG } from 'constants/stores_config';
 import { getCurrencySymbol } from 'helpers/getCurrencySymbol';
 
-const CartModelPrice = ({ price, currency }) => {
+interface Props {
+    price: string | number;
+    currency: string;
+}
+
+const CartModelPrice = ({ price, currency }: Props) => {
+    const { OPTIONS } = STORE_CONFIG;
+    const { CURRENCY_MULTIPLICATION, CUSTOM_CURRENCY, SALE_PRICE_MULTIPLICATION } = OPTIONS;
+
     return (
         <>
             <Typography variant="h3" sx={{ color: 'gray' }}>
-                {HARD_SET_CURRENCY || getCurrencySymbol(currency)}
-                {price * SALE_PRICE_MULTIPLICATION}
+                {CUSTOM_CURRENCY || getCurrencySymbol(currency)}
+                {Number(price) * SALE_PRICE_MULTIPLICATION * CURRENCY_MULTIPLICATION}
             </Typography>
         </>
     );

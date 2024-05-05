@@ -1,5 +1,5 @@
 import { Typography } from '@mui/material';
-import { HARD_SET_CURRENCY, SALE_PRICE_MULTIPLICATION } from 'constants/store_config_options';
+import { STORE_CONFIG } from 'constants/stores_config';
 import { getCurrencySymbol } from 'helpers/getCurrencySymbol';
 
 interface Props {
@@ -8,11 +8,14 @@ interface Props {
 }
 
 const CouponPrice = ({ price, currency }: Props) => {
+    const { OPTIONS } = STORE_CONFIG;
+    const { CURRENCY_MULTIPLICATION, CUSTOM_CURRENCY, SALE_PRICE_MULTIPLICATION } = OPTIONS;
+
     return (
         <>
             <Typography variant="h2" sx={{ color: 'gray' }}>
-                {HARD_SET_CURRENCY || getCurrencySymbol(currency)}{' '}
-                {Number(price * SALE_PRICE_MULTIPLICATION).toFixed(2)}
+                {CUSTOM_CURRENCY || getCurrencySymbol(currency)}{' '}
+                {Number(price * SALE_PRICE_MULTIPLICATION * CURRENCY_MULTIPLICATION).toFixed(2)}
             </Typography>
         </>
     );
