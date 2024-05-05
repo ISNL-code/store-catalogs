@@ -14,7 +14,16 @@ import { UserDataInterface } from 'types';
 import UserProfile from 'pages/Profile/UserProfile';
 import UserOrders from 'pages/Orders/UserOrders';
 import { STORE_CONFIG } from 'constants/stores_config';
+import { Helmet } from 'react-helmet';
 
+const HeadComponent = ({ domain }) => {
+    return (
+        <Helmet>
+            <title>{'Сайт 2'}</title>
+            <meta name="description" content={'Описание для Сайта 2'} />
+        </Helmet>
+    );
+};
 const App = () => {
     const { ACCESS_TOKEN_KEY } = STORE_CONFIG;
     const token = localStorage.getItem(ACCESS_TOKEN_KEY);
@@ -56,47 +65,59 @@ const App = () => {
         localStorage.setItem('my-lang-cocktail', JSON.stringify(lang));
     }, [lang, mount]);
 
+    const domain = window.location.hostname;
     return (
-        <ThemeProvider theme={mainTheme}>
-            <Router>
-                <Routes>
-                    {
-                        <>
-                            <Route
-                                path={'/catalog'}
-                                element={
-                                    <Catalog
-                                        lang={lang}
-                                        setLang={setLang}
-                                        auth={auth}
-                                        setAuth={setAuth}
-                                        userData={{ currentUserData, isFetching, updateUserData, setCurrentUserData }}
+        <>
+            <HeadComponent domain={domain} />
+            <ThemeProvider theme={mainTheme}>
+                <Router>
+                    <Routes>
+                        {
+                            <>
+                                <Route
+                                    path={'/catalog'}
+                                    element={
+                                        <Catalog
+                                            lang={lang}
+                                            setLang={setLang}
+                                            auth={auth}
+                                            setAuth={setAuth}
+                                            userData={{
+                                                currentUserData,
+                                                isFetching,
+                                                updateUserData,
+                                                setCurrentUserData,
+                                            }}
+                                        />
+                                    }
+                                >
+                                    <Route path={'/catalog/:storeCode/:storeName'} element={<CatalogPage />} />
+                                    <Route
+                                        path={'/catalog/:storeCode/:storeName/contacts'}
+                                        element={<ContactsManagePage />}
                                     />
-                                }
-                            >
-                                <Route path={'/catalog/:storeCode/:storeName'} element={<CatalogPage />} />
-                                <Route
-                                    path={'/catalog/:storeCode/:storeName/contacts'}
-                                    element={<ContactsManagePage />}
-                                />
-                                <Route
-                                    path={'/catalog/:storeCode/:storeName/details/:productId/model/:modelSku'}
-                                    element={<ProductDetailsPage />}
-                                />
-                                <Route path={'/catalog/:storeCode/:storeName/cart'} element={<CartPage />} />
+                                    <Route
+                                        path={'/catalog/:storeCode/:storeName/details/:productId/model/:modelSku'}
+                                        element={<ProductDetailsPage />}
+                                    />
+                                    <Route path={'/catalog/:storeCode/:storeName/cart'} element={<CartPage />} />
 
-                                <Route path={'/catalog/:storeCode/:storeName/favorites'} element={<FavoritesPage />} />
+                                    <Route
+                                        path={'/catalog/:storeCode/:storeName/favorites'}
+                                        element={<FavoritesPage />}
+                                    />
 
-                                <Route path={'/catalog/:storeCode/:storeName/profile'} element={<UserProfile />} />
+                                    <Route path={'/catalog/:storeCode/:storeName/profile'} element={<UserProfile />} />
 
-                                <Route path={'/catalog/:storeCode/:storeName/orders'} element={<UserOrders />} />
-                            </Route>
-                            <Route path="*" element={<Navigate to="/catalog" replace />} />
-                        </>
-                    }
-                </Routes>
-            </Router>
-        </ThemeProvider>
+                                    <Route path={'/catalog/:storeCode/:storeName/orders'} element={<UserOrders />} />
+                                </Route>
+                                <Route path="*" element={<Navigate to="/catalog" replace />} />
+                            </>
+                        }
+                    </Routes>
+                </Router>
+            </ThemeProvider>
+        </>
     );
 };
 

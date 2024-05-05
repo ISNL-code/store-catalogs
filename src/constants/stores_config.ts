@@ -1,8 +1,9 @@
 import { ALBERTO_BINI_MAIN } from './stores_configs/ALBERTO_BINI_MAIN';
 import { DEVELOP_STORE } from './stores_configs/A_DEVELOP_STORE';
+import { KREMEN_BELTS_MAIN } from './stores_configs/KREMEN_BELTS_MAIN';
 import { StoreType, STORE_CONFIG_Interface } from './types';
 
-const stores = [DEVELOP_STORE, ALBERTO_BINI_MAIN];
+const stores = [DEVELOP_STORE, ALBERTO_BINI_MAIN, KREMEN_BELTS_MAIN];
 
 const storeConfig = (): STORE_CONFIG_Interface => {
     const currentUrl = window.location.href;
