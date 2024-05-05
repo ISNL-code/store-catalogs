@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Navigate, Route, Routes } from 'react-router-dom';
 import mainTheme from 'theme/mainTheme';
 import { useIsMount } from 'hooks/useIsMount';
-import { ACCESS_TOKEN_KEY } from 'constants/constants';
 import CatalogPage from 'pages/Catalog/Catalog';
 import Catalog from 'layouts/Catalog/MainCatalog';
 import ProductDetailsPage from 'pages/ProductDetails/ProductDetails';
@@ -14,8 +13,10 @@ import { useUserApi } from 'api/useUserApi';
 import { UserDataInterface } from 'types';
 import UserProfile from 'pages/Profile/UserProfile';
 import UserOrders from 'pages/Orders/UserOrders';
+import { STORE_CONFIG } from 'constants/stores_config';
 
 const App = () => {
+    const { ACCESS_TOKEN_KEY } = STORE_CONFIG;
     const token = localStorage.getItem(ACCESS_TOKEN_KEY);
     const mount = useIsMount();
     const [lang, setLang] = useState<any>({ code: 'ua', label: 'Ukraine' });

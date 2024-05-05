@@ -1,4 +1,4 @@
-import { CART_KEY } from 'constants/constants';
+import { STORE_CONFIG } from 'constants/stores_config';
 import { useIsMount } from 'hooks/useIsMount';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
@@ -15,6 +15,7 @@ export const useAddToCart = ({
     loadingUser,
     storeName,
 }: useAddToCartParamsInterface): useAddToCartDataInterface => {
+    const { CART_KEY } = STORE_CONFIG;
     const { storeCode } = useParams();
     const mount = useIsMount();
     const [cartItems, setCartItems] = useState<any[]>([]);
@@ -23,7 +24,7 @@ export const useAddToCart = ({
         if (loadingUser) return;
 
         if (!auth) return setCartItems([]);
-        setCartItems(JSON.parse(localStorage.getItem(storeCode + CART_KEY) as string) || []); // eslint-disable-next-line react-hooks/exhaustive-deps
+        setCartItems(JSON.parse(localStorage.getItem(storeCode + '-' + CART_KEY) as string) || []); // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [auth, storeName]);
 
     useEffect(() => {
@@ -31,8 +32,8 @@ export const useAddToCart = ({
 
         if (mount) return;
         if (cartItems.length) {
-            localStorage.setItem(storeCode + CART_KEY, JSON.stringify(cartItems));
-        } else if (auth) localStorage.removeItem(storeCode + CART_KEY); // eslint-disable-next-line react-hooks/exhaustive-deps
+            localStorage.setItem(storeCode + '-' + CART_KEY, JSON.stringify(cartItems));
+        } else if (auth) localStorage.removeItem(storeCode + '-' + CART_KEY); // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [cartItems]);
 
     const handleSetCartItems = data => {

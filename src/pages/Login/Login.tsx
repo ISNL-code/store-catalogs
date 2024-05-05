@@ -5,14 +5,16 @@ import { useUserApi } from 'api/useUserApi';
 import { useEffect, useState } from 'react';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
-import { ACCESS_TOKEN_KEY } from 'constants/constants';
+
 import ModalWindow from 'components/atoms/ModalWindow/ModalWindow';
 import Loader from 'components/atoms/Loader/Loader';
 import { useParams } from 'react-router-dom';
 import { useFormik } from 'formik';
 import loginFormValidations from 'Validation/loginFormValidations';
+import { STORE_CONFIG } from 'constants/stores_config';
 
 export default function Login({ setAuth, string, close, setOpenModalType }) {
+    const { ACCESS_TOKEN_KEY } = STORE_CONFIG;
     const { storeCode } = useParams();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');

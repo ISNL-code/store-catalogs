@@ -66,12 +66,7 @@ const Header = ({
         >
             <Box sx={{ height: headerHeight, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                 <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <HeaderLogo
-                        title={storeHeaderName}
-                        path={`/catalog/${storeCode}/${storeName}`}
-                        imgUrl={logo}
-                        headerHeight={headerHeight}
-                    />
+                    <HeaderLogo title={storeHeaderName} imgUrl={logo} headerHeight={headerHeight} />
                 </Box>
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
                     <HeaderNavButton

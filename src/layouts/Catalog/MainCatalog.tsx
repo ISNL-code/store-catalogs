@@ -14,9 +14,10 @@ import { StoreInterface } from 'types';
 import { STORES_DATA } from 'dataBase/STORES';
 import { useAddToCart } from './hooks/useAddToCart';
 import { useAddToFavorites } from './hooks/useAddToFavorites';
-import { STORE_CODE } from 'constants/constants';
+import { STORE_CONFIG } from 'constants/stores_config';
 
 export default function MainCatalog({ lang, setLang, auth, setAuth, userData }) {
+    const { STORE_CODE } = STORE_CONFIG;
     const { storeName } = useParams();
     const navigate = useNavigate();
     const { sx, l } = useDevice();

@@ -1,4 +1,4 @@
-import { FAVORITE_KEY } from 'constants/constants';
+import { STORE_CONFIG } from 'constants/stores_config';
 import { useIsMount } from 'hooks/useIsMount';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
@@ -13,6 +13,7 @@ export const useAddToFavorites = ({
     loadingUser,
     storeName,
 }: useAddToFavoritesParamsInterface): useAddToFavoriteDataInterface => {
+    const { FAVORITE_KEY } = STORE_CONFIG;
     const { storeCode } = useParams();
     const mount = useIsMount();
     const [favoriteItems, setFavoriteItems] = useState<any[]>([]);
@@ -20,7 +21,7 @@ export const useAddToFavorites = ({
     useEffect(() => {
         if (loadingUser) return;
 
-        setFavoriteItems(JSON.parse(localStorage.getItem(storeCode + FAVORITE_KEY) as string) || []); // eslint-disable-next-line react-hooks/exhaustive-deps
+        setFavoriteItems(JSON.parse(localStorage.getItem(storeCode + '-' + FAVORITE_KEY) as string) || []); // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [storeName]);
 
     useEffect(() => {
@@ -28,8 +29,8 @@ export const useAddToFavorites = ({
 
         if (mount) return;
         if (favoriteItems.length) {
-            localStorage.setItem(storeCode + FAVORITE_KEY, JSON.stringify(favoriteItems));
-        } else localStorage.removeItem(storeCode + FAVORITE_KEY); // eslint-disable-next-line react-hooks/exhaustive-deps
+            localStorage.setItem(storeCode + '-' + FAVORITE_KEY, JSON.stringify(favoriteItems));
+        } else localStorage.removeItem(storeCode + '-' + FAVORITE_KEY); // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [favoriteItems]);
 
     const handleSetFavoriteItems = data => {

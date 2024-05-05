@@ -1,9 +1,10 @@
-import { ACCESS_TOKEN_KEY } from 'constants/constants';
 import ModalWindow from 'components/atoms/ModalWindow/ModalWindow';
 import { Box, Button } from '@mui/material';
 import { useNavigate, useParams } from 'react-router-dom';
+import { STORE_CONFIG } from 'constants/stores_config';
 
 export default function Logout({ setAuth, string, close }) {
+    const { ACCESS_TOKEN_KEY } = STORE_CONFIG;
     const navigate = useNavigate();
     const { storeCode, storeName } = useParams();
 

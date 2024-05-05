@@ -1,7 +1,8 @@
 import axios from 'axios';
-import { ACCESS_TOKEN_KEY, BASE_URL } from 'constants/constants';
+import { STORE_CONFIG } from 'constants/stores_config';
 
 const AuthInterceptor = () => {
+    const { ACCESS_TOKEN_KEY, BASE_URL } = STORE_CONFIG;
     const AUTH_ROUTE_PATH = '/secure';
     // const SERVER_ERROR_ROUTE_PATH = '/server-error';
 

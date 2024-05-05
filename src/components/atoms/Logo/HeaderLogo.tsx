@@ -2,7 +2,7 @@ import { Box, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { useDevice } from 'hooks/useDevice';
 
-const HeaderLogo = ({ title, path, font = 'Roboto', imgUrl, headerHeight }) => {
+const HeaderLogo = ({ title, font = 'Roboto', imgUrl, headerHeight }) => {
     const navigate = useNavigate();
     const { xxxs, xxs } = useDevice();
     return (
