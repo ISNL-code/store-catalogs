@@ -26,6 +26,7 @@ interface LoadedProductInterface {
     title: string;
     promo: any[];
     details: string;
+    originalPrice: number;
 }
 
 interface SelectedVarianInterface {
@@ -51,13 +52,14 @@ const ProductDetails = () => {
         if (!productRes || loadProduct) return;
 
         const product = productRes.data.products[0];
-
+        const prices = product.variants?.map(el => Number(el.inventory[0]?.price));
         setProductDetails({
             title: product?.description.title,
             details: product?.description.description,
+            originalPrice: Math.max(...prices),
             price: product?.finalPrice,
             id: product?.id,
-            variants: product?.variants.sort((a, b) => a.sortOrder - b.sortOrder),
+            variants: product?.variants.sort((a, b) => a.sortOrder - b.sortOrder).filter(el => el.images.length),
             promo:
                 product?.options
                     .find(({ code }) => code === 'PROMO')
