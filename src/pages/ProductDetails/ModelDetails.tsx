@@ -27,7 +27,11 @@ const ModelDetails = ({ productDetails, selectedVariant, setSelectedVariant }) =
             {store?.mainStoreSettings?.prices && (
                 <Box sx={{ display: 'flex', gap: 1 }}>
                     <Box sx={{ width: '100%' }}>
-                        <PriceDetails productDetails={productDetails} isShown={store?.mainStoreSettings?.prices} />
+                        <PriceDetails
+                            productDetails={productDetails}
+                            selectedVariant={selectedVariant}
+                            isShown={store?.mainStoreSettings?.prices}
+                        />
                     </Box>
                     <Box sx={{ width: '100%' }}>
                         <ArticleDetails isShown={store?.mainStoreSettings?.prices} />
