@@ -14,5 +14,8 @@ export const KREMEN_BELTS_MAIN = {
         custom_currency: null,
         store_type: StoreType?.default,
     },
-    web_head_data: { store_title: '', store_description: '' },
+    web_head_data: {
+        store_title: 'Kremen Belts Wholesales Catalog | Kremen Belts Оптовий Каталог',
+        store_description: `Ласкаво просимо до Kremen Belts — вашого найкращого джерела стильних ременів та аксесуарів! | Welcome to Kremen Belts — your ultimate source for stylish belts and accessories!`,
+    },
 };

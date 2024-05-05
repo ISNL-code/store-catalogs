@@ -14,6 +14,7 @@ import { UserDataInterface } from 'types';
 import UserProfile from 'pages/Profile/UserProfile';
 import UserOrders from 'pages/Orders/UserOrders';
 import { STORE_CONFIG } from 'constants/stores_config';
+import Head from 'layouts/Head';
 
 const App = () => {
     const { ACCESS_TOKEN_KEY } = STORE_CONFIG;
@@ -58,6 +59,7 @@ const App = () => {
 
     return (
         <>
+            {/* <Head /> */}
             <ThemeProvider theme={mainTheme}>
                 <Router>
                     <Routes>
