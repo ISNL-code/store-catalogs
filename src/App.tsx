@@ -59,7 +59,7 @@ const App = () => {
 
     return (
         <>
-            {/* <Head /> */}
+            <Head />
             <ThemeProvider theme={mainTheme}>
                 <Router>
                     <Routes>
