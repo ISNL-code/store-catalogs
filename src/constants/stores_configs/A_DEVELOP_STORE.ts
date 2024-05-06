@@ -4,5 +4,5 @@ import { KREMEN_BELTS_MAIN } from './KREMEN_BELTS_MAIN'; // eslint-disable-line
 export const DEVELOP_STORE = {
     // ...ALBERTO_BINI_MAIN,
     ...KREMEN_BELTS_MAIN,
-    URL: ['http://localhost:3000'],
+    URL: ['http://localhost:3000', 'https://sales-nest-dev.netlify.app'],
 };

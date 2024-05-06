@@ -27,7 +27,6 @@ const Head: React.FC = () => {
                 gtag('config', ${GOOGLE_ANALYTICS_ID});
                 `}
             </script>
-            <title>Alberto Bini New</title>
         </Helmet>
     );
 };
