@@ -8,7 +8,7 @@ const ProductDetails = ({ data, setOrderData }) => {
     const navigate = useNavigate();
     const { storeCode, storeName } = useParams();
     const { string, cart, store }: CatalogContextInterface = useOutletContext();
-
+    console.log(data);
     return (
         <>
             <Grid

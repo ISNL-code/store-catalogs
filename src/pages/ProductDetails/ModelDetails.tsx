@@ -16,7 +16,7 @@ const ModelDetails = ({ productDetails, selectedVariant, setSelectedVariant }) =
     return (
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: m ? 1.5 : 3 }}>
             <Box>
-                <TitleDetails productDetails={productDetails} />
+                <TitleDetails productDetails={productDetails} selectedVariant={selectedVariant} />
             </Box>
             <Box>
                 <ActionSection

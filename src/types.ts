@@ -107,6 +107,7 @@ export interface StoreInterface {
         user: string;
     };
     //add
+    links: { name: string; href: string }[];
     webUrl: string;
     appStoreUrl: string;
     playMarketUrl: string;
@@ -320,6 +321,7 @@ export interface ProductVariantInterface {
     store: string;
     productId: number;
     sku: string;
+    variantSku: string;
     defaultSelection: boolean;
     variation: VariationInterface;
     variationValue: string | number | null;

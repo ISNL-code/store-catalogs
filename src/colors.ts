@@ -13,6 +13,7 @@ export enum Colors {
     GRAY_900 = '#505050',
     RED = '#db3214',
     RED_100 = '#ffebeb',
+    RED_300 = '#f88d8d',
     ORANGE = '#ff5722',
     YELLOW_GREEN = '#9ACD32', // used for temp tools
     TEAL = '#008080',

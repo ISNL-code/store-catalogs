@@ -5,6 +5,7 @@ export const ALBERTO_BINI_SALES_DB = {
     webUrl: 'https://alberto-bini-sales.netlify.app',
     mainImage: require('../images/posters/alb.jpeg'),
     productImagesOptions: { width: 6, height: 9, cropX: 0, cropY: 200 },
+    links: [],
     descriptions: [
         {
             language: 'ua',

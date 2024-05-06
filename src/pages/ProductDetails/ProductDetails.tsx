@@ -51,8 +51,8 @@ const ProductDetails = () => {
     useEffect(() => {
         if (!productRes || loadProduct) return;
 
-        const product = productRes.data.products[0];
-        const prices = product.variants?.map(el => Number(el.inventory[0]?.price));
+        const product = productRes?.data?.products[0];
+        const prices = product?.variants?.map(el => Number(el?.inventory[0]?.price)) || [0];
         setProductDetails({
             title: product?.description.title,
             details: product?.description.description,

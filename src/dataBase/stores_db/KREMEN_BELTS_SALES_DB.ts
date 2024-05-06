@@ -5,6 +5,7 @@ export const KREMEN_BELTS_SALES_DB = {
     playMarketUrl: '',
     mainImage: require('../images/posters/belts.jpeg'),
     productImagesOptions: { width: 3, height: 2, cropX: 0, cropY: 0 },
+    links: [{ name: 'Kremen Belts', href: 'https://kremen-belts.netlify.app' }],
     descriptions: [
         {
             language: 'ua',

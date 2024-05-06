@@ -18,6 +18,8 @@ import PromoTags from 'components/atoms/PromoTags/PromoTags';
 import { Image, EmptyImage } from 'components/atoms/Media/Image';
 import CardPrice from 'components/molecules/PricesComponents/CardPrice';
 import CardSkuLabel from 'components/atoms/Labels/CardSkuLabel';
+import SaleTag from 'components/atoms/PromoTags/SaleTag';
+import { STORE_CONFIG } from 'constants/stores_config';
 // import { useFavoritesProductsApi } from 'api/useFavoritesProductsApi';
 
 interface ShownModelInterface {
@@ -89,6 +91,8 @@ const MemoizedColorIndicatorButton = memo(ColorIndicatorButton, (prevProps, next
 
 const CatalogCard = memo<CatalogCardProps>(
     ({ modelsVariants, name, productId, currency, setProductsList, promoTags }) => {
+        const { OPTIONS } = STORE_CONFIG;
+        const { STORE_TYPE } = OPTIONS;
         const imageRef = useRef<HTMLImageElement>(null);
         const { s, sx, ls, l } = useDevice();
         const navigate = useNavigate();
@@ -121,29 +125,40 @@ const CatalogCard = memo<CatalogCardProps>(
                         <Box
                             sx={{
                                 position: 'absolute',
-                                top: 10,
-                                left: 10,
+                                top: 8,
+                                left: 8,
                                 zIndex: 1,
                                 display: 'flex',
-                                flexDirection: 'column',
                                 gap: 0.5,
                             }}
                         >
-                            {promoTags?.map(el => (
-                                <PromoTags
-                                    key={el.id}
-                                    value={el.name || el.code}
-                                    code={el.code}
-                                    size={20}
-                                    selected={true}
-                                    disabled={true}
-                                />
-                            ))}
+                            {!!promoTags?.length && (
+                                <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.5 }}>
+                                    {promoTags?.map(el => (
+                                        <PromoTags
+                                            key={el.id}
+                                            value={el.name || el.code}
+                                            code={el.code}
+                                            size={20}
+                                            selected={true}
+                                            disabled={true}
+                                        />
+                                    ))}
+                                </Box>
+                            )}
+                            <Box>
+                                {STORE_TYPE === 'sales' && (
+                                    <SaleTag
+                                        price={Number(shownModel?.originalPrice)}
+                                        discountPrice={Number(shownModel?.price)}
+                                    />
+                                )}
+                            </Box>
                         </Box>
                     )}
 
                     <Box
-                        sx={{ position: 'absolute', top: 10, right: 10, zIndex: 1, display: 'flex', gap: 0.5 }}
+                        sx={{ position: 'absolute', top: 8, right: 8, zIndex: 1, display: 'flex', gap: 0.5 }}
                         onClick={() => {
                             favorites?.handleSetFavoriteItems({
                                 sku: shownModel?.sku,

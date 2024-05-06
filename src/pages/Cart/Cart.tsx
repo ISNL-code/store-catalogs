@@ -21,9 +21,9 @@ import SuccessOrderingPage from 'components/atoms/SuccessOrdering/SuccessOrderin
 
 interface ProductListInterface {
     sizeId: number | null;
-    colorId: string;
+    colorId: number;
     sku: string;
-    quantity: string;
+    quantity: number;
     price: string | number;
 }
 
@@ -54,7 +54,7 @@ const Cart = () => {
     const [isOpenModal, setIsOpenModal] = useState(false);
     const [finalPrice, setFinalPrice] = useState(0);
     const [successOrdering, setSuccessOrdering] = useState(false);
-    const [orderData, setOrderData] = useState({
+    const [orderData, setOrderData] = useState<OrderDataInterface>({
         final_price: 0,
         productsList: [] as ProductListInterface[],
         delivery: {
@@ -93,7 +93,7 @@ const Cart = () => {
                     ...products
                         .find(el => el.variants.map(({ sku }) => sku).includes(sku))
                         ?.variants?.filter(el => el.sku === sku)[0],
-                    productSku: products.find(el => el.variants.map(({ sku }) => sku).includes(sku))?.sku,
+                    variantSku: products.find(el => el.variants.map(({ sku }) => sku).includes(sku))?.sku,
                     sizes: {
                         ...products
                             .find(el => el.variants.map(({ sku }) => sku).includes(sku))
@@ -120,6 +120,7 @@ const Cart = () => {
 
     useEffect(() => {
         if (!orderData.productsList.length) return setFinalPrice(0);
+        console.log(orderData?.productsList);
         setFinalPrice(
             orderData?.productsList.reduce(
                 (acc, el) => Number((el.price as string).replaceAll(',', '')) * Number(el.quantity) + acc,
@@ -256,7 +257,6 @@ const Cart = () => {
                                             />
                                         ) : (
                                             <AddButtons
-                                                orderData={orderData}
                                                 setOrderData={setOrderData}
                                                 productPrice={el?.inventory ? el?.inventory[0]?.price : '0'}
                                                 productData={el}

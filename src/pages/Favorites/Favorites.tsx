@@ -58,13 +58,17 @@ const Favorites = () => {
                     variants: products
                         .find(el => el.variants.map(({ sku }) => sku).includes(sku))
                         ?.variants.sort((a, b) => a.sortOrder - b.sortOrder)
-                        .map((variant, idx) => {
-                            // const originalPrice =
-                            //     STORE_TYPE === 'sales'
-                            //         ? Math.max(...variant.variants?.map(el => Number(el.inventory[0]?.price)))
-                            //         : Number(variant.price);
+                        .map(variant => {
+                            const originalPrice =
+                                STORE_TYPE === 'sales'
+                                    ? Math.max(
+                                          ...products
+                                              .find(el => el.variants.map(({ sku }) => sku).includes(sku))
+                                              ?.variants.sort((a, b) => a.sortOrder - b.sortOrder)
+                                              ?.map(el => Number(el.inventory[0]?.price))
+                                      )
+                                    : Number(variant.inventory[0]?.price);
 
-                            // console.log(originalPrice);
                             return {
                                 id: variant.id,
                                 productId: variant.productId,
@@ -74,6 +78,7 @@ const Favorites = () => {
                                 colorCode: variant.variation.optionValue.code,
                                 sku: variant.sku,
                                 quantity: variant.inventory[0]?.quantity,
+                                originalPrice,
                             };
                         }),
                     price: products.find(el => el.variants.map(({ sku }) => sku).includes(sku))?.finalPrice,

@@ -3,21 +3,21 @@ import AddIcon from '@mui/icons-material/Add';
 import { Box, Fab, TextField, Typography } from '@mui/material';
 import SizesIndicatorButton from 'components/atoms/SizesIndicatorButton/SizesIndicatorButton';
 import { useOutletContext } from 'react-router-dom';
-import { useState } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 import { OrderDataInterface } from '../Cart';
+import { ProductVariantInterface } from 'types';
 
 const AddSizesButtons = ({
     sizes,
     productPrice,
-    orderData,
     setOrderData,
     productData,
 }: {
     sizes;
     productPrice;
     orderData: OrderDataInterface;
-    setOrderData;
-    productData;
+    setOrderData: Dispatch<SetStateAction<OrderDataInterface>>;
+    productData: ProductVariantInterface;
 }) => {
     const { string }: any = useOutletContext();
     const [selectedSize, setSelectedSizes] = useState<any>([]);
@@ -56,7 +56,7 @@ const AddSizesButtons = ({
                                                         {
                                                             sizeId: el?.id,
                                                             colorId: productData?.id,
-                                                            sku: productData?.productSku,
+                                                            sku: productData?.variantSku,
                                                             quantity: 1,
                                                             price: productPrice,
                                                         },

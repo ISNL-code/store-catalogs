@@ -1,10 +1,18 @@
 import RemoveIcon from '@mui/icons-material/Remove';
 import AddIcon from '@mui/icons-material/Add';
 import { Box, Fab, TextField } from '@mui/material';
-import { useEffect, useState } from 'react';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { useIsMount } from 'hooks/useIsMount';
+import { ProductVariantInterface } from 'types';
+import { OrderDataInterface } from '../Cart';
 
-const AddButtons = ({ productPrice, orderData, setOrderData, productData }) => {
+interface Props {
+    productPrice;
+    setOrderData: Dispatch<SetStateAction<OrderDataInterface>>;
+    productData: ProductVariantInterface;
+}
+
+const AddButtons = ({ productPrice, setOrderData, productData }: Props) => {
     const mount = useIsMount();
     const [value, setValue] = useState(1);
 
@@ -18,7 +26,7 @@ const AddButtons = ({ productPrice, orderData, setOrderData, productData }) => {
                     {
                         sizeId: null,
                         colorId: productData?.id,
-                        sku: productData?.productSku,
+                        sku: productData?.variantSku,
                         quantity: 1,
                         price: productPrice,
                     },
@@ -39,8 +47,8 @@ const AddButtons = ({ productPrice, orderData, setOrderData, productData }) => {
                         return {
                             ...prev,
                             productsList: prev.productsList.map(item => {
-                                if (item.sku === productData?.productSku && item.quantity > 1)
-                                    return { ...item, quantity: item.quantity - 1 };
+                                if (item.sku === productData?.variantSku && Number(item.quantity) > 1)
+                                    return { ...item, quantity: Number(item.quantity) - 1 };
                                 return item;
                             }),
                         };
@@ -69,8 +77,8 @@ const AddButtons = ({ productPrice, orderData, setOrderData, productData }) => {
                         return {
                             ...prev,
                             productsList: prev.productsList.map(item => {
-                                if (item.sku === productData?.productSku)
-                                    return { ...item, quantity: item.quantity + 1 };
+                                if (item?.colorId === productData?.id)
+                                    return { ...item, quantity: Number(item.quantity) + 1 };
                                 return item;
                             }),
                         };

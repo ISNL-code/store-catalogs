@@ -17,6 +17,8 @@ import PromoTags from 'components/atoms/PromoTags/PromoTags';
 import { Image, EmptyImage } from 'components/atoms/Media/Image';
 import CardPrice from 'components/molecules/PricesComponents/CardPrice';
 import CardSkuLabel from 'components/atoms/Labels/CardSkuLabel';
+import { STORE_CONFIG } from 'constants/stores_config';
+import SaleTag from 'components/atoms/PromoTags/SaleTag';
 
 interface ShownModelInterface {
     price: string;
@@ -26,6 +28,7 @@ interface ShownModelInterface {
     colorCode: string;
     productId: number;
     quantity: number;
+    originalPrice: number;
 }
 
 function SamplePrevArrow(props) {
@@ -59,6 +62,8 @@ function SampleNextArrow(props) {
 }
 
 const CatalogFavoriteCard = ({ modelsVariants, name, productId, currency, promoTags }) => {
+    const { OPTIONS } = STORE_CONFIG;
+    const { STORE_TYPE } = OPTIONS;
     const imageRef = useRef<HTMLImageElement>(null);
     const { s, sx, ls, l } = useDevice();
     const navigate = useNavigate();
@@ -98,16 +103,28 @@ const CatalogFavoriteCard = ({ modelsVariants, name, productId, currency, promoT
                             gap: 0.5,
                         }}
                     >
-                        {promoTags?.map(el => (
-                            <PromoTags
-                                key={el.id}
-                                value={el.name || el.code}
-                                code={el.code}
-                                size={20}
-                                selected={true}
-                                disabled={true}
-                            />
-                        ))}
+                        {!!promoTags?.length && (
+                            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.5 }}>
+                                {promoTags?.map(el => (
+                                    <PromoTags
+                                        key={el.id}
+                                        value={el.name || el.code}
+                                        code={el.code}
+                                        size={20}
+                                        selected={true}
+                                        disabled={true}
+                                    />
+                                ))}
+                            </Box>
+                        )}
+                        <Box>
+                            {STORE_TYPE === 'sales' && (
+                                <SaleTag
+                                    price={Number(shownModel?.originalPrice)}
+                                    discountPrice={Number(shownModel?.price)}
+                                />
+                            )}
+                        </Box>
                     </Box>
                 )}
 
@@ -282,7 +299,7 @@ const CatalogFavoriteCard = ({ modelsVariants, name, productId, currency, promoT
                                 {store?.mainStoreSettings?.prices && !isExpanded && (
                                     <CardPrice
                                         currency={currency}
-                                        price={Number(shownModel?.price)}
+                                        price={Number(shownModel?.originalPrice)}
                                         discountPrice={Number(shownModel?.price)}
                                     />
                                 )}
