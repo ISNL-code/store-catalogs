@@ -3,22 +3,21 @@ import { Box, ListItemText, Menu, MenuItem, Typography } from '@mui/material';
 import { Fragment, useState } from 'react';
 import LanguageIcon from '@mui/icons-material/Language';
 
+interface Props {
+    setLang;
+    string;
+    lang: string | null;
+    storeLanguages?: string[];
+    setOpenModalType;
+}
+
 const LanguageButton = ({
     setLang,
     string,
     lang,
-    storeLanguages = [
-        { code: 'ua' },
-        { code: 'en' },
-        { code: 'kz' },
-        { code: 'pl' },
-        { code: 'cz' },
-        { code: 'ru' },
-        { code: 'es' },
-        { code: 'fr' },
-    ],
+    storeLanguages = ['ua', 'en', 'kz', 'pl', 'cz', 'ru', 'es', 'fr'],
     setOpenModalType = _ => {},
-}) => {
+}: Props) => {
     const [anchorElLang, setAnchorElLang] = useState(null);
     const open = Boolean(anchorElLang);
 
@@ -46,28 +45,28 @@ const LanguageButton = ({
                     cursor: 'pointer',
                 }}
             >
-                {lang?.code === 'ua' && (
+                {lang === 'ua' && (
                     <img style={{ height: 20 }} src={require(`assets/img/flags/ua.png`)} alt="Broken Img" />
                 )}
-                {lang?.code === 'pl' && (
+                {lang === 'pl' && (
                     <img style={{ height: 20 }} src={require(`assets/img/flags/pl.png`)} alt="Broken Img" />
                 )}
-                {lang?.code === 'cz' && (
+                {lang === 'cz' && (
                     <img style={{ height: 20 }} src={require(`assets/img/flags/cz.png`)} alt="Broken Img" />
                 )}
-                {lang?.code === 'en' && (
+                {lang === 'en' && (
                     <img style={{ height: 20 }} src={require(`assets/img/flags/en.png`)} alt="Broken Img" />
                 )}
-                {lang?.code === 'ru' && (
+                {lang === 'ru' && (
                     <img style={{ height: 20 }} src={require(`assets/img/flags/ru.png`)} alt="Broken Img" />
                 )}
-                {lang?.code === 'fr' && (
+                {lang === 'fr' && (
                     <img style={{ height: 20 }} src={require(`assets/img/flags/fr.png`)} alt="Broken Img" />
                 )}
-                {lang?.code === 'es' && (
+                {lang === 'es' && (
                     <img style={{ height: 20 }} src={require(`assets/img/flags/es.png`)} alt="Broken Img" />
                 )}
-                {lang?.code === 'kz' && (
+                {lang === 'kz' && (
                     <img style={{ height: 20 }} src={require(`assets/img/flags/kz.png`)} alt="Broken Img" />
                 )}
             </Box>
@@ -109,7 +108,7 @@ const LanguageButton = ({
             >
                 <Box sx={{ width: 200 }}>
                     <Box>
-                        {storeLanguages?.map(({ code }) => {
+                        {storeLanguages?.map(code => {
                             let currentLabel = '';
                             switch (code) {
                                 case 'ua':
@@ -145,7 +144,7 @@ const LanguageButton = ({
                                 <Fragment key={code}>
                                     <MenuItem
                                         onClick={() => {
-                                            setLang({ code, label: currentLabel });
+                                            setLang(code);
                                             handleClose();
                                         }}
                                     >

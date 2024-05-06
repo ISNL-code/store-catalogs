@@ -7,6 +7,8 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'en',
             string: {
+                to: 'to',
+                in: 'in',
                 no_available_sizes: 'No available sizes',
                 image_not_loaded: 'Image not loaded',
                 no_categories_available: 'No categories available',
@@ -70,7 +72,8 @@ export const useGetLanguage = ({ lang }) => {
                 my_stores: 'My stores',
                 login: 'Login',
                 register: 'Register',
-                wrong_login_or_password: 'Wrong login or password',
+                wrong_password_or_user_not_registered_in:
+                    'Incorrect password or user with this email is not registered in',
                 forgot_password: 'Forgot password?',
                 cart: 'Cart',
                 vendor_code: 'Product code',
@@ -147,6 +150,8 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'fr',
             string: {
+                to: 'à',
+                in: 'dans',
                 no_available_sizes: 'Aucune taille disponible',
                 image_not_loaded: 'Image non chargée',
                 no_categories_available: 'Aucune catégorie disponible',
@@ -212,7 +217,7 @@ export const useGetLanguage = ({ lang }) => {
                 my_stores: 'Mes magasins',
                 login: 'Connexion',
                 register: 'S`inscrire',
-                wrong_login_or_password: 'Connexion ou mot de passe incorrect',
+                wrong_password_or_user_not_registered_in: `Mot de passe incorrect ou utilisateur avec cet e-mail n'est pas enregistré dans`,
                 forgot_password: 'Mot de passe oublié?',
                 cart: 'Panier',
                 vendor_code: 'Code du fournisseur',
@@ -289,6 +294,8 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'es',
             string: {
+                to: 'a',
+                in: 'en',
                 no_available_sizes: 'No hay tallas disponibles',
                 image_not_loaded: 'Imagen no cargada',
                 no_categories_available: 'No hay categorías disponibles',
@@ -352,7 +359,8 @@ export const useGetLanguage = ({ lang }) => {
                 my_stores: 'Mis tiendas',
                 login: 'Iniciar sesión',
                 register: 'Registrarse',
-                wrong_login_or_password: 'Inicio de sesión o contraseña incorrectos',
+                wrong_password_or_user_not_registered_in:
+                    'Contraseña incorrecta o usuario con este correo electrónico no está registrado en',
                 forgot_password: 'Olvidaste tu contraseña?',
                 cart: 'Carrito',
                 vendor_code: 'Código de proveedor',
@@ -429,6 +437,8 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'ua',
             string: {
+                to: 'до',
+                in: 'в',
                 no_available_sizes: 'Немає доступних розмірів',
                 image_not_loaded: 'Зображення не завантажено',
                 no_categories_available: 'Немає доступних категорій',
@@ -492,7 +502,8 @@ export const useGetLanguage = ({ lang }) => {
                 my_stores: 'Мої магазини',
                 login: 'Вхід',
                 register: 'Зареєструватися',
-                wrong_login_or_password: 'Неправильний логін або пароль',
+                wrong_password_or_user_not_registered_in:
+                    'Невiрний пароль або користувач з такою поштою не зареєстрований в',
                 forgot_password: 'Забули пароль?',
                 cart: 'Кошик',
                 vendor_code: 'Артикул',
@@ -570,6 +581,8 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'pl',
             string: {
+                to: 'do',
+                in: 'w',
                 no_available_sizes: 'Brak dostępnych rozmiarów',
                 image_not_loaded: 'Obraz nie został załadowany',
                 no_categories_available: 'Brak dostępnych kategorii',
@@ -634,7 +647,8 @@ export const useGetLanguage = ({ lang }) => {
                 my_stores: 'Moje sklepy',
                 login: 'Zaloguj się',
                 register: 'Zarejestruj się',
-                wrong_login_or_password: 'Błędny login lub hasło',
+                wrong_password_or_user_not_registered_in:
+                    'Nieprawidłowe hasło lub użytkownik z tym adresem e-mail nie jest zarejestrowany w',
                 forgot_password: 'Zapomniałem hasła?',
                 cart: 'Koszyk',
                 vendor_code: 'Kod',
@@ -712,6 +726,8 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'cz',
             string: {
+                to: 'do',
+                in: 'v',
                 no_available_sizes: 'Žádné dostupné velikosti',
                 image_not_loaded: 'Obrázek není načten',
                 no_categories_available: 'Nejsou k dispozici žádné kategorie',
@@ -774,7 +790,8 @@ export const useGetLanguage = ({ lang }) => {
                 my_stores: 'Moje obchody',
                 login: 'Přihlásit',
                 register: 'Registrovat',
-                wrong_login_or_password: 'Chybné přihlašovací jméno nebo heslo',
+                wrong_password_or_user_not_registered_in:
+                    'Nesprávné heslo nebo uživatel s tímto e-mailem není registrován v',
                 forgot_password: 'Zapomenuté heslo?',
                 cart: 'Košík',
                 vendor_code: 'Kód',
@@ -851,6 +868,8 @@ export const useGetLanguage = ({ lang }) => {
         {
             code: 'ru',
             string: {
+                to: 'к',
+                in: 'в',
                 no_available_sizes: 'Нет доступных размеров',
                 image_not_loaded: 'Изображение не загружено',
                 no_categories_available: 'Нет доступных категорий',
@@ -915,7 +934,8 @@ export const useGetLanguage = ({ lang }) => {
                 my_stores: 'Мои магазины',
                 login: 'Вход',
                 register: 'Регистрация',
-                wrong_login_or_password: 'Неверный логин или пароль',
+                wrong_password_or_user_not_registered_in:
+                    'Неверный пароль или пользователь с такой почтой не зарегестрирован в',
                 forgot_password: 'Забыл пароль?',
                 cart: 'Корзина',
                 vendor_code: 'Артикул',

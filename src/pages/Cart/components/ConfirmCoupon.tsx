@@ -8,6 +8,7 @@ import { OrderDataInterface } from '../Cart';
 import { useState } from 'react';
 import axios from 'axios';
 import CouponPrice from 'components/molecules/PricesComponents/CouponPrice';
+import { STORE_CONFIG } from 'constants/stores_config';
 
 const ConfirmCoupon = ({
     createOrder,
@@ -20,6 +21,7 @@ const ConfirmCoupon = ({
     finalPrice;
     setSuccessOrdering;
 }) => {
+    const { STORE_NAME } = STORE_CONFIG;
     const { storeCode } = useParams();
     const { string, store, supportedLanguage, currentUserData, cart }: CatalogContextInterface = useOutletContext();
     const [firstName, setFirstName] = useState(currentUserData?.delivery?.firstName || '');
@@ -198,7 +200,7 @@ const ConfirmCoupon = ({
 
                                         axios.post(url, {
                                             chat_id: chatId,
-                                            text: `ALB-Outlet Заказ`,
+                                            text: `${STORE_NAME} Заказ`,
                                         });
                                     } catch (error) {}
                                     setSuccessOrdering(true);

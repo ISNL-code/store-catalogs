@@ -1,13 +1,17 @@
 import { StoreType } from 'constants/types';
 
+const prefix = 'abm';
+
 export const ALBERTO_BINI_MAIN = {
     URL: ['https://alberto-bini.netlify.app'],
     store_name: 'Alberto Bini',
     store_code: 'ALBERTO_BINI',
-    token_key: 'abm-tkn',
-    cart_key: 'abm-cart',
-    favorite_url: 'abm-favorites',
+    token_key: `${prefix}-tkn`,
+    cart_key: `${prefix}-cart`,
+    favorite_url: `${prefix}-favorites`,
     base_url: 'https://kremen-belts.com/api',
+    lang_key: `${prefix}-lang`,
+    app_lang: 'ua',
     options: {
         main_price_multiplication: 1,
         sale_price_multiplication: 1,

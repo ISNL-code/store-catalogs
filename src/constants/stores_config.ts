@@ -2,9 +2,10 @@ import { ALBERTO_BINI_MAIN } from './stores_configs/ALBERTO_BINI_MAIN';
 import { ALBERTO_BINI_SALES } from './stores_configs/ALBERTO_BINI_SALES';
 import { DEVELOP_STORE } from './stores_configs/A_DEVELOP_STORE';
 import { KREMEN_BELTS_MAIN } from './stores_configs/KREMEN_BELTS_MAIN';
+import { KREMEN_BELTS_SALES } from './stores_configs/KREMEN_BELTS_SALES';
 import { StoreType, STORE_CONFIG_Interface } from './types';
 
-const stores = [DEVELOP_STORE, ALBERTO_BINI_MAIN, KREMEN_BELTS_MAIN, ALBERTO_BINI_SALES];
+const stores = [DEVELOP_STORE, ALBERTO_BINI_MAIN, KREMEN_BELTS_MAIN, ALBERTO_BINI_SALES, KREMEN_BELTS_SALES];
 
 const storeConfig = (): STORE_CONFIG_Interface => {
     const currentUrl = window.location.href;
@@ -14,9 +15,11 @@ const storeConfig = (): STORE_CONFIG_Interface => {
         STORE_NAME: matchingDomain?.store_name || '',
         STORE_CODE: matchingDomain?.store_code || '',
         BASE_URL: matchingDomain?.base_url || '',
-        ACCESS_TOKEN_KEY: matchingDomain?.token_key || '',
-        CART_KEY: matchingDomain?.cart_key || '',
-        FAVORITE_KEY: matchingDomain?.favorite_url || '',
+        ACCESS_TOKEN_KEY: matchingDomain?.token_key || 'sales_nest_token',
+        CART_KEY: matchingDomain?.cart_key || 'sales_nest_cart',
+        FAVORITE_KEY: matchingDomain?.favorite_url || 'sales_nest_favorite',
+        LANGUAGE_KEY: matchingDomain?.lang_key || 'sales_nest_lang',
+        APP_LANGUAGE: matchingDomain?.app_lang || 'en',
         OPTIONS: {
             MAIN_PRICE_MULTIPLICATION: matchingDomain?.options?.main_price_multiplication || 1,
             SALE_PRICE_MULTIPLICATION: matchingDomain?.options?.sale_price_multiplication || 1,

@@ -11,4 +11,4 @@ Required settings
 
 Optional settings
 
-1.add product types of store to 'dataBase/PRODUCT_TYPES.ts'
+1. add product types of store to 'dataBase/PRODUCT_TYPES.ts'

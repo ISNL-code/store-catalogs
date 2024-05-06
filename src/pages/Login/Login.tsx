@@ -12,9 +12,10 @@ import { useParams } from 'react-router-dom';
 import { useFormik } from 'formik';
 import loginFormValidations from 'Validation/loginFormValidations';
 import { STORE_CONFIG } from 'constants/stores_config';
+import { Colors } from 'colors';
 
 export default function Login({ setAuth, string, close, setOpenModalType }) {
-    const { ACCESS_TOKEN_KEY } = STORE_CONFIG;
+    const { ACCESS_TOKEN_KEY, STORE_NAME } = STORE_CONFIG;
     const { storeCode } = useParams();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -54,16 +55,19 @@ export default function Login({ setAuth, string, close, setOpenModalType }) {
         >
             {isLoading && <Loader />}
             <ModalWindow
-                title={string?.login}
+                title={string?.login + ' ' + string?.in + ' ' + `"${STORE_NAME}"` + ' ' + string?.catalog} // eslint-disable-line
                 closeAction={() => {
                     close();
                     setError(false);
                 }}
             >
                 {error && (
-                    <Box mt={1} sx={{ width: '100%', textAlign: 'center' }}>
+                    <Box px={1} mt={-1} mb={1} sx={{ width: '100%', textAlign: 'center' }}>
                         <Typography variant="body1" sx={{ color: 'red' }}>
-                            {string?.wrong_login_or_password}!
+                            {string?.wrong_password_or_user_not_registered_in}{' '}
+                            <span style={{ whiteSpace: 'nowrap', color: Colors?.BLACK, textDecoration: 'underline' }}>
+                                {STORE_NAME}
+                            </span>
                         </Typography>
                     </Box>
                 )}

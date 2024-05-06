@@ -15,7 +15,7 @@ interface HeaderInterface {
     headerHeight;
     appXPadding;
     string;
-    lang;
+    lang: string | null;
     setLang;
     auth;
     logo;
@@ -130,7 +130,7 @@ const Header = ({
                         lang={lang}
                         setOpenModalType={setOpenModalType}
                         storeLanguages={store?.supportedLanguages?.map(el => {
-                            return { code: el?.code };
+                            return el?.code;
                         })}
                     />
                 </Box>

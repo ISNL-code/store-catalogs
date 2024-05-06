@@ -3,6 +3,15 @@ import { useIsMount } from 'hooks/useIsMount';
 import { useEffect, useState } from 'react';
 import { CategoryInterface } from 'types';
 
+interface Props {
+    store;
+    lang: string | null;
+    currentProductsPage;
+    handleSetProductsPage;
+    setQueryCategories;
+    queryCategories;
+}
+
 export const useCategory = ({
     store,
     lang,
@@ -10,13 +19,13 @@ export const useCategory = ({
     handleSetProductsPage,
     setQueryCategories,
     queryCategories,
-}) => {
+}: Props) => {
     const mount = useIsMount();
     const [categoriesList, setCategoriesList] = useState<CategoryInterface | []>([]);
 
     const { data: categoryRes, refetch: updateCategories } = useCategoriesApi().useGetAllCategories({
         store: store,
-        lang: lang?.code,
+        lang: lang,
     });
 
     useEffect(() => {

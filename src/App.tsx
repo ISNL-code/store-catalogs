@@ -17,10 +17,10 @@ import { STORE_CONFIG } from 'constants/stores_config';
 import Head from 'layouts/Head';
 
 const App = () => {
-    const { ACCESS_TOKEN_KEY, STORE_CODE } = STORE_CONFIG;
+    const { ACCESS_TOKEN_KEY, STORE_CODE, LANGUAGE_KEY, APP_LANGUAGE } = STORE_CONFIG;
     const token = localStorage.getItem(ACCESS_TOKEN_KEY);
     const mount = useIsMount();
-    const [lang, setLang] = useState<any>({ code: 'ua', label: 'Ukraine' });
+    const [lang, setLang] = useState<string>(APP_LANGUAGE);
     const [auth, setAuth] = useState<boolean | null>(false);
     const { refetch: updateUserData, isFetching } = useUserApi().useGetUserData({
         storeCode: STORE_CODE,
@@ -42,22 +42,22 @@ const App = () => {
     }, [token]);
 
     useEffect(() => {
-        const getLang = localStorage.getItem('my-lang-cocktail');
+        if (mount) return;
+        localStorage.setItem(LANGUAGE_KEY, JSON.stringify(lang));
+    }, [lang, mount]); // eslint-disable-line
+
+    useEffect(() => {
+        const getLang = localStorage.getItem(LANGUAGE_KEY);
 
         if (!getLang) {
-            localStorage.removeItem('my-lang-cocktail');
-            setLang({ code: 'ua', label: 'Ukraine' });
+            setLang(APP_LANGUAGE);
+            localStorage.setItem(LANGUAGE_KEY, JSON.stringify(APP_LANGUAGE));
             return;
         }
         const savedLanguage = JSON.parse(getLang);
 
         setLang(savedLanguage);
-    }, []);
-
-    useEffect(() => {
-        if (mount) return;
-        localStorage.setItem('my-lang-cocktail', JSON.stringify(lang));
-    }, [lang, mount]);
+    }, []); // eslint-disable-line
 
     return (
         <>

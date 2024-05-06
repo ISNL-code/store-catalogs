@@ -26,11 +26,11 @@ export default function MainCatalog({ lang, setLang, auth, setAuth, userData }) 
     const instrumentalBarHeight = 36;
     const appXPadding = l ? 2 : 4;
     const [openModalType, setOpenModalType] = useState<string | null>(null);
-    const { currentLanguage } = useGetLanguage({ lang: lang?.code });
+    const { currentLanguage } = useGetLanguage({ lang });
     const [scrollPosition, setScrollPosition] = useState(0);
     const [queryCategories, setQueryCategories] = useState<string[] | []>([]);
     const [store, setStore] = useState<StoreInterface | null>(null);
-    const [supportedLanguage, setSupportedLanguage] = useState<any>();
+    const [supportedLanguage, setSupportedLanguage] = useState<string | null>(null);
 
     const { data: storeDataRes, isFetching: loadStore } = useStoresApi().useGetStoreByCode({
         code: STORE_CODE,
@@ -73,9 +73,7 @@ export default function MainCatalog({ lang, setLang, auth, setAuth, userData }) 
 
     useEffect(() => {
         if (!store?.supportedLanguages) return;
-        setSupportedLanguage(
-            store?.supportedLanguages?.find(el => el.code === lang?.code) ? { code: lang?.code } : { code: 'en' }
-        );
+        setSupportedLanguage(store?.supportedLanguages?.find(el => el.code === lang) ? lang : 'en');
     }, [lang, store?.supportedLanguages]);
 
     useEffect(() => {
@@ -114,8 +112,8 @@ export default function MainCatalog({ lang, setLang, auth, setAuth, userData }) 
                 <Outlet
                     context={{
                         //main data
-                        lang: lang?.code,
-                        supportedLanguage: supportedLanguage?.code,
+                        lang: lang,
+                        supportedLanguage: supportedLanguage,
                         string: currentLanguage?.string,
                         scrollPosition: scrollPosition,
                         setScrollPosition: setScrollPosition,
@@ -165,7 +163,7 @@ export default function MainCatalog({ lang, setLang, auth, setAuth, userData }) 
             <Modals
                 string={currentLanguage?.string as string}
                 setAuth={setAuth}
-                lang={lang?.code}
+                lang={lang}
                 openModalType={openModalType}
                 setOpenModalType={setOpenModalType}
             />

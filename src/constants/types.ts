@@ -4,12 +4,14 @@ export enum StoreType {
     default = 'default',
 }
 export interface STORE_CONFIG_Interface {
-    STORE_NAME: string;
+    STORE_NAME: string; // Real store name
     STORE_CODE: string; // use for get current store data
-    ACCESS_TOKEN_KEY: string; // use for local storage
+    ACCESS_TOKEN_KEY: string; // use for local storage key
     BASE_URL: string; // use for auth interceptor
-    CART_KEY: string; // use for local storage
-    FAVORITE_KEY: string; // use for local storage
+    CART_KEY: string; // use for local storage key
+    FAVORITE_KEY: string; // use for local storage key
+    LANGUAGE_KEY: string; // use for local storage key
+    APP_LANGUAGE: string; // init app language
     OPTIONS: {
         MAIN_PRICE_MULTIPLICATION: number; // use in custom catalogs for multiple main prices
         SALE_PRICE_MULTIPLICATION: number; // use in custom catalogs for multiple sales prices

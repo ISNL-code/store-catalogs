@@ -3,7 +3,14 @@ import { useIsMount } from 'hooks/useIsMount';
 import { useEffect, useState } from 'react';
 import { LoadedProductListInterface } from 'types';
 
-export const useProducts = ({ store, lang, queryCategories, setQueryCategories }) => {
+interface Props {
+    store;
+    lang: string | null;
+    queryCategories;
+    setQueryCategories;
+}
+
+export const useProducts = ({ store, lang, queryCategories, setQueryCategories }: Props) => {
     const mount = useIsMount();
     const count = 24;
     const [currentProductsPage, setCurrentProductsPage] = useState(0);
@@ -19,7 +26,7 @@ export const useProducts = ({ store, lang, queryCategories, setQueryCategories }
         refetch: updateProducts,
     } = useProductsApi().useGetAllProducts({
         store: store,
-        lang: lang?.code,
+        lang: lang,
         count: count,
         page: currentProductsPage,
         categories: queryCategories,
