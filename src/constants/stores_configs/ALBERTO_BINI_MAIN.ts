@@ -1,7 +1,7 @@
 import { StoreType } from 'constants/types';
 
 export const ALBERTO_BINI_MAIN = {
-    URL: ['https://alberto-bini.netlify.app', 'https://sales-nest-dev.netlify.app'],
+    URL: ['https://alberto-bini.netlify.app'],
     store_code: 'ALBERTO_BINI',
     token_key: 'abm-tkn',
     cart_key: 'abm-cart',
