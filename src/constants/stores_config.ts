@@ -25,6 +25,7 @@ const storeConfig = (): STORE_CONFIG_Interface => {
         WEB_HEAD_DATA: {
             STORE_TITLE: matchingDomain?.web_head_data?.store_title || '',
             STORE_DESCRIPTION: matchingDomain?.web_head_data?.store_description || '',
+            GOOGLE_ANALYTICS_ID: matchingDomain?.web_head_data?.google_analytics_id || '',
         },
     };
 };

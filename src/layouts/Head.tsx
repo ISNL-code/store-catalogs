@@ -9,7 +9,7 @@ declare global {
 
 const Head: React.FC = () => {
     const { WEB_HEAD_DATA } = STORE_CONFIG;
-    const { STORE_TITLE, STORE_DESCRIPTION } = WEB_HEAD_DATA;
+    const { STORE_TITLE, STORE_DESCRIPTION, GOOGLE_ANALYTICS_ID } = WEB_HEAD_DATA;
 
     return (
         <Helmet>
@@ -24,7 +24,7 @@ const Head: React.FC = () => {
                 }
                 gtag('js', new Date());
 
-                gtag('config', 'G-C4TDRX7K5V');
+                gtag('config', ${GOOGLE_ANALYTICS_ID});
                 `}
             </script>
             <title>Alberto Bini New</title>
