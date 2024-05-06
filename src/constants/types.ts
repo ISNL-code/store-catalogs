@@ -4,6 +4,7 @@ export enum StoreType {
     default = 'default',
 }
 export interface STORE_CONFIG_Interface {
+    STORE_NAME: string;
     STORE_CODE: string; // use for get current store data
     ACCESS_TOKEN_KEY: string; // use for local storage
     BASE_URL: string; // use for auth interceptor

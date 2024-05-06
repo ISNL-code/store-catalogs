@@ -2,6 +2,7 @@ import { StoreType } from 'constants/types';
 
 export const KREMEN_BELTS_MAIN = {
     URL: ['https://kremen-belts.netlify.app', 'https://kremen-belts-main.netlify.app'],
+    store_name: 'Kremen Belts',
     store_code: 'DEFAULT',
     token_key: 'kbm-tkn',
     cart_key: 'kbm-cart',
