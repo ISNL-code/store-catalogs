@@ -15,9 +15,9 @@ const Head: React.FC = () => {
         <Helmet>
             <title>{STORE_TITLE}</title>
             <meta name="description" content={STORE_DESCRIPTION} />
-            <script async src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ANALYTICS_ID}`}></script>
+            <script async src={`https://www.googletagmanager.com/gtag/js?id=G-${GOOGLE_ANALYTICS_ID}`}></script>
             <script>
-                {`function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config",${GOOGLE_ANALYTICS_ID})`}
+                {`function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config",G-${GOOGLE_ANALYTICS_ID})`}
             </script>
         </Helmet>
     );
