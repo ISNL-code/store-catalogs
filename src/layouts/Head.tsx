@@ -3,22 +3,23 @@ import { Helmet } from 'react-helmet';
 
 declare global {
     interface Window {
-        dataLayer: any[]; // Предполагается, что dataLayer - это массив
+        dataLayer: any[];
     }
 }
 
 const Head: React.FC = () => {
     const { WEB_HEAD_DATA } = STORE_CONFIG;
-    const { STORE_TITLE, STORE_DESCRIPTION, GOOGLE_ANALYTICS_ID } = WEB_HEAD_DATA;
-    console.log(GOOGLE_ANALYTICS_ID);
+    const { STORE_TITLE, STORE_DESCRIPTION, GOOGLE_ANALYTICS_ID, STORE_LOGO } = WEB_HEAD_DATA;
     return (
         <Helmet>
             <title>{STORE_TITLE}</title>
             <meta name="description" content={STORE_DESCRIPTION} />
-            <script async src={`https://www.googletagmanager.com/gtag/js?id=G-${GOOGLE_ANALYTICS_ID}`}></script>
+            <script async src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ANALYTICS_ID}`}></script>
             <script>
-                {`function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","G-${GOOGLE_ANALYTICS_ID}")`}
+                {`function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","${GOOGLE_ANALYTICS_ID}")`}
             </script>
+            <link rel="icon" href={require(`dataBase/images/logos/${STORE_LOGO}`)} />
+            {/* <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" /> */}
         </Helmet>
     );
 };
