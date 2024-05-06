@@ -3,7 +3,7 @@ export const KREMEN_BELTS_MAIN_DB = {
     webUrl: 'https://kremen-belts.netlify.app',
     appStoreUrl: '',
     playMarketUrl: '',
-    mainImage: require('../images/belts.jpeg'),
+    mainImage: require('../images/posters/belts.jpeg'),
     productImagesOptions: { width: 4, height: 3, cropX: 0, cropY: 0 },
     descriptions: [
         {
