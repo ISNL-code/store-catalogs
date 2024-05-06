@@ -47,13 +47,13 @@ export const useUserApi = () => {
             }
         );
 
-    const useGetUserData = ({ auth, lang }) => {
+    const useGetUserData = ({ storeCode }) => {
         return useQuery(
             ['get-user-profile'],
 
             () =>
                 get({
-                    url: `v1/auth/customer/profile`,
+                    url: `v1/auth/customer/profile?store=${storeCode}`,
                 }),
             { enabled: false }
         );

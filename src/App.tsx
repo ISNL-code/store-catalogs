@@ -17,12 +17,14 @@ import { STORE_CONFIG } from 'constants/stores_config';
 import Head from 'layouts/Head';
 
 const App = () => {
-    const { ACCESS_TOKEN_KEY } = STORE_CONFIG;
+    const { ACCESS_TOKEN_KEY, STORE_CODE } = STORE_CONFIG;
     const token = localStorage.getItem(ACCESS_TOKEN_KEY);
     const mount = useIsMount();
     const [lang, setLang] = useState<any>({ code: 'ua', label: 'Ukraine' });
     const [auth, setAuth] = useState<boolean | null>(false);
-    const { refetch: updateUserData, isFetching } = useUserApi().useGetUserData({ auth, lang: lang?.code });
+    const { refetch: updateUserData, isFetching } = useUserApi().useGetUserData({
+        storeCode: STORE_CODE,
+    });
     const [currentUserData, setCurrentUserData] = useState<UserDataInterface | any>(null);
 
     useEffect(() => {
