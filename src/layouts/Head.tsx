@@ -58,7 +58,7 @@ const Head: React.FC = () => {
 
     useEffect(() => {
         createManifest();
-    }, [STORE_LOGO]); // Обновляем манифест при изменении лого
+    }, [STORE_LOGO]); // eslint-disable-line
 
     return (
         <HelmetProvider>
