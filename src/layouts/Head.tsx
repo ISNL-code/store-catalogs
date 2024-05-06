@@ -64,27 +64,6 @@ const Head: React.FC = () => {
         <HelmetProvider>
             <Helmet>
                 <meta name="theme-color" content="#000000" />
-                <link rel="preconnect" href="https://fonts.googleapis.com" />
-                <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-                <link
-                    rel="stylesheet"
-                    href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap"
-                />
-                <link
-                    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;800&family=Young+Serif&display=swap"
-                    rel="stylesheet"
-                />
-                <link
-                    rel="stylesheet"
-                    type="text/css"
-                    charSet="UTF-8"
-                    href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css"
-                />
-                <link
-                    rel="stylesheet"
-                    type="text/css"
-                    href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css"
-                />
                 <title>{STORE_TITLE}</title>
                 <meta name="description" content={STORE_DESCRIPTION} />
                 <script async src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ANALYTICS_ID}`}></script>
