@@ -27,6 +27,7 @@ interface ShownModelInterface {
     sku: string;
     productId: number;
     quantity: number;
+    originalPrice: number;
 }
 
 function SamplePrevArrow(props) {
@@ -54,6 +55,7 @@ interface CatalogCardProps {
         images: any[];
         sku: string;
         quantity: number;
+        originalPrice: number;
     }[];
     name: string;
     productId: number;
@@ -343,7 +345,7 @@ const CatalogCard = memo<CatalogCardProps>(
                                     {store?.mainStoreSettings?.prices && !isExpanded && (
                                         <CardPrice
                                             currency={currency}
-                                            price={Number(shownModel?.price)}
+                                            price={Number(shownModel?.originalPrice)}
                                             discountPrice={Number(shownModel?.price)}
                                         />
                                     )}

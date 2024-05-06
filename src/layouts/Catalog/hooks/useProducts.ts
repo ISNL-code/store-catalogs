@@ -1,4 +1,5 @@
 import { useProductsApi } from 'api/useProductsApi';
+import { STORE_CONFIG } from 'constants/stores_config';
 import { useIsMount } from 'hooks/useIsMount';
 import { useEffect, useState } from 'react';
 import { LoadedProductListInterface } from 'types';
@@ -11,6 +12,8 @@ interface Props {
 }
 
 export const useProducts = ({ store, lang, queryCategories, setQueryCategories }: Props) => {
+    const { OPTIONS } = STORE_CONFIG;
+    const { STORE_TYPE } = OPTIONS;
     const mount = useIsMount();
     const count = 24;
     const [currentProductsPage, setCurrentProductsPage] = useState(0);
@@ -42,6 +45,11 @@ export const useProducts = ({ store, lang, queryCategories, setQueryCategories }
         if (currentProductsPage) return;
         setProductsList(
             productsRes.data.products?.map(product => {
+                const originalPrice =
+                    STORE_TYPE === 'sales'
+                        ? Math.max(...product.variants?.map(el => Number(el.inventory[0]?.price)))
+                        : Number(product.price);
+
                 return {
                     id: product.id,
                     variants: product.variants
@@ -56,6 +64,7 @@ export const useProducts = ({ store, lang, queryCategories, setQueryCategories }
                                 colorCode: variant.variation.optionValue.code,
                                 sku: variant.sku,
                                 quantity: variant.inventory[0]?.quantity,
+                                originalPrice: originalPrice,
                             };
                         }),
                     name: product.description.name,
@@ -84,6 +93,11 @@ export const useProducts = ({ store, lang, queryCategories, setQueryCategories }
                 return [
                     ...prevData,
                     ...res?.data?.data?.products?.map(product => {
+                        const originalPrice =
+                            STORE_TYPE === 'sales'
+                                ? Math.max(...product.variants?.map(el => Number(el.inventory[0]?.price)))
+                                : Number(product.price);
+
                         return {
                             id: product.id,
                             variants: product.variants
@@ -98,10 +112,11 @@ export const useProducts = ({ store, lang, queryCategories, setQueryCategories }
                                         colorCode: variant.variation.optionValue.code,
                                         sku: variant.sku,
                                         quantity: variant.inventory[0]?.quantity,
+                                        originalPrice: originalPrice,
                                     };
                                 }),
                             name: product.description.name,
-                            price: product.finalPrice,
+                            price: Number(product.finalPrice),
                             promoTags:
                                 product.options
                                     .find(({ code }) => code === 'PROMO')
