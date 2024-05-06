@@ -1,16 +1,10 @@
 import { STORE_CONFIG } from 'constants/stores_config';
-import { useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 
 declare global {
     interface Window {
         dataLayer: any[]; // Предполагается, что dataLayer - это массив
     }
-}
-
-interface WebHeadData {
-    STORE_TITLE: string;
-    STORE_DESCRIPTION: string;
 }
 
 const Head: React.FC = () => {
