@@ -17,15 +17,7 @@ const Head: React.FC = () => {
             <meta name="description" content={STORE_DESCRIPTION} />
             <script async src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ANALYTICS_ID}`}></script>
             <script>
-                {`
-                window.dataLayer = window.dataLayer || [];
-                function gtag() {
-                    dataLayer.push(arguments);
-                }
-                gtag('js', new Date());
-
-                gtag('config', ${GOOGLE_ANALYTICS_ID});
-                `}
+                {`function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config",${GOOGLE_ANALYTICS_ID})`}
             </script>
         </Helmet>
     );
