@@ -54,6 +54,7 @@ export const useProducts = ({ store, lang, queryCategories, setQueryCategories }
                     id: product.id,
                     variants: product.variants
                         .sort((a, b) => a.sortOrder - b.sortOrder)
+                        .filter(el => el.images.length)
                         .map((variant, idx) => {
                             return {
                                 id: variant.id,
@@ -102,6 +103,7 @@ export const useProducts = ({ store, lang, queryCategories, setQueryCategories }
                             id: product.id,
                             variants: product.variants
                                 .sort((a, b) => a.sortOrder - b.sortOrder)
+                                .filter(el => el.images.length)
                                 .map((variant, idx) => {
                                     return {
                                         id: variant.id,

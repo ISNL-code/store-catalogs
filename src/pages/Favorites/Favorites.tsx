@@ -15,8 +15,11 @@ import CatalogFavoriteCard from 'components/organisms/Cards/CatalogFavoriteCard'
 import { useIsMount } from 'hooks/useIsMount';
 import { useProductsApi } from 'api/useProductsApi';
 import DeleteModal from 'components/organisms/Modals/DeleteModal';
+import { STORE_CONFIG } from 'constants/stores_config';
 
 const Favorites = () => {
+    const { OPTIONS } = STORE_CONFIG;
+    const { STORE_TYPE } = OPTIONS;
     const { store, favorites, supportedLanguage, string }: CatalogContextInterface = useOutletContext();
     const { storeCode } = useParams();
     const mount = useIsMount();
@@ -56,6 +59,12 @@ const Favorites = () => {
                         .find(el => el.variants.map(({ sku }) => sku).includes(sku))
                         ?.variants.sort((a, b) => a.sortOrder - b.sortOrder)
                         .map((variant, idx) => {
+                            // const originalPrice =
+                            //     STORE_TYPE === 'sales'
+                            //         ? Math.max(...variant.variants?.map(el => Number(el.inventory[0]?.price)))
+                            //         : Number(variant.price);
+
+                            // console.log(originalPrice);
                             return {
                                 id: variant.id,
                                 productId: variant.productId,
