@@ -89,7 +89,7 @@ const CatalogFavoriteCard = ({ modelsVariants, name, productId, currency, promoT
     };
 
     return (
-        <Grid p={1} xs={getGridValue()}>
+        <Grid xs={getGridValue()}>
             <CardItem>
                 {store?.additionalStoreSettings?.promo && (
                     <Box

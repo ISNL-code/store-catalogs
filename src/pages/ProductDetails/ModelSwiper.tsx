@@ -63,7 +63,11 @@ const ModelSwiper = ({ images, selectedVariant }) => {
                                     <Box>
                                         <Gradient dest="top" />
                                         <Gradient dest="bottom" />
-                                        <Image ref={imageRef} store={store} imgUrl={`${imageUrl}`} />
+                                        <Image
+                                            ref={imagesList.length < 1 ? null : imageRef}
+                                            store={store}
+                                            imgUrl={`${imageUrl}`}
+                                        />
                                     </Box>
                                 </Box>
                             </Fragment>

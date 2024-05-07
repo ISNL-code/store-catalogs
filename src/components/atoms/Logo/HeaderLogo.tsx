@@ -1,8 +1,10 @@
 import { Box, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { useDevice } from 'hooks/useDevice';
+import { STORE_CONFIG } from 'constants/stores_config';
 
 const HeaderLogo = ({ title, font = 'Roboto', imgUrl, headerHeight }) => {
+    const { STORE_CODE, STORE_NAME } = STORE_CONFIG;
     const navigate = useNavigate();
     const { xxxs, xxs } = useDevice();
     return (
@@ -17,7 +19,7 @@ const HeaderLogo = ({ title, font = 'Roboto', imgUrl, headerHeight }) => {
                 gap: 1,
             }}
             onClick={() => {
-                navigate('/');
+                navigate(`/catalog/${STORE_CODE}/${STORE_NAME.replace(' ', '-').toLowerCase()}`);
             }}
         >
             <img

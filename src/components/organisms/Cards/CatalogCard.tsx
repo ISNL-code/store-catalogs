@@ -119,7 +119,7 @@ const CatalogCard = memo<CatalogCardProps>(
         };
 
         return (
-            <Grid p={1} xs={getGridValue()}>
+            <Grid xs={getGridValue()}>
                 <CardItem>
                     {store?.additionalStoreSettings?.promo && (
                         <Box

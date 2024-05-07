@@ -151,7 +151,7 @@ const Favorites = () => {
 
             {favoriteProducts?.length ? (
                 <TransitionBox dependency={loading}>
-                    <Grid xs={12} container>
+                    <Grid xs={12} container spacing={1.5}>
                         {favoriteProducts?.map(product => {
                             return (
                                 <CatalogFavoriteCard
