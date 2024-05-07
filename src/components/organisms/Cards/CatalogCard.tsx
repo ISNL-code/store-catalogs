@@ -113,7 +113,7 @@ const CatalogCard = memo<CatalogCardProps>(
         }, [modelsVariants]);
 
         const getGridValue = () => {
-            if (s) return 6;
+            if (s) return 12;
             if (sx) return 6;
             if (ls) return 4;
             if (l) return 3;

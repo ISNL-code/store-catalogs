@@ -16,10 +16,8 @@ const CardItem = ({ children, withHover = true }) => {
                 position: 'sticky',
                 backgroundColor: Colors?.WHITE,
                 width: '100%',
-                border: '1px solid',
-                borderColor: Colors?.GRAY_300,
                 '&:hover': {
-                    transform: withHover ? 'scale(1.025)' : '',
+                    transform: withHover && !sx ? 'scale(1.025)' : '',
 
                     zIndex: 1000,
                 },
