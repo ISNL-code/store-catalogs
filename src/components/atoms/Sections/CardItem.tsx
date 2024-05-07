@@ -11,7 +11,6 @@ const CardItem = ({ children, withHover = true }) => {
 
     return (
         <Box
-            m={sx ? 0 : 0.25}
             ref={cardRef}
             sx={{
                 position: 'sticky',

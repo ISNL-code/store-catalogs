@@ -10,5 +10,5 @@ export const DEVELOP_STORE = {
     // ...ALBERTO_BINI_SALES,
     // ...KREMEN_BELTS_MAIN,
     // ...KREMEN_BELTS_SALES,
-    URL: ['http://localhost:3000'],
+    URL: ['http://localhost:3000', 'https://sales-nest-dev.netlify.app/'],
 };
