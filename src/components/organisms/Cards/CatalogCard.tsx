@@ -21,7 +21,6 @@ import CardSkuLabel from 'components/atoms/Labels/CardSkuLabel';
 import SaleTag from 'components/atoms/PromoTags/SaleTag';
 import { STORE_CONFIG } from 'constants/stores_config';
 import { Colors } from 'colors';
-import { useWindowSize } from '@react-hook/window-size';
 
 interface ShownModelInterface {
     price: string;
@@ -92,7 +91,6 @@ const MemoizedColorIndicatorButton = memo(ColorIndicatorButton, (prevProps, next
 
 const CatalogCard = memo<CatalogCardProps>(
     ({ modelsVariants, name, productId, currency, setProductsList, promoTags }) => {
-        const [width, height] = useWindowSize();
         const { OPTIONS } = STORE_CONFIG;
         const { STORE_TYPE } = OPTIONS;
         const imageRef = useRef<HTMLImageElement>(null);
