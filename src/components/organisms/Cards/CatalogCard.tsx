@@ -20,7 +20,8 @@ import CardPrice from 'components/molecules/PricesComponents/CardPrice';
 import CardSkuLabel from 'components/atoms/Labels/CardSkuLabel';
 import SaleTag from 'components/atoms/PromoTags/SaleTag';
 import { STORE_CONFIG } from 'constants/stores_config';
-// import { useFavoritesProductsApi } from 'api/useFavoritesProductsApi';
+import { Colors } from 'colors';
+import { useWindowSize } from '@react-hook/window-size';
 
 interface ShownModelInterface {
     price: string;
@@ -91,9 +92,11 @@ const MemoizedColorIndicatorButton = memo(ColorIndicatorButton, (prevProps, next
 
 const CatalogCard = memo<CatalogCardProps>(
     ({ modelsVariants, name, productId, currency, setProductsList, promoTags }) => {
+        const [width, height] = useWindowSize();
         const { OPTIONS } = STORE_CONFIG;
         const { STORE_TYPE } = OPTIONS;
         const imageRef = useRef<HTMLImageElement>(null);
+        const sliderRef = useRef<HTMLImageElement>(null);
         const { s, sx, ls, l } = useDevice();
         const navigate = useNavigate();
         const { store, cart, favorites, currentUserData }: CatalogContextInterface = useOutletContext();
@@ -101,13 +104,14 @@ const CatalogCard = memo<CatalogCardProps>(
         const { storeCode, storeName } = useParams();
         const [shownModel, setShownModel] = useState<ShownModelInterface | null>(null);
         const [isExpanded, setIsExpanded] = useState(false);
+        const [sliderHeight, setSliderHeight] = useState<number | string>(0);
 
         const absentProduct = Boolean(!shownModel?.quantity);
 
         useEffect(() => {
             if (!modelsVariants?.length) return;
             const selectedVariant = modelsVariants.find(variant => variant.selected);
-            setShownModel(selectedVariant ? selectedVariant : null); // Установка null вместо undefined
+            setShownModel(selectedVariant ? selectedVariant : null);
         }, [modelsVariants]);
 
         const getGridValue = () => {
@@ -118,8 +122,17 @@ const CatalogCard = memo<CatalogCardProps>(
             return 2;
         };
 
+        useEffect(() => {
+            setTimeout(() => {
+                setSliderHeight(
+                    ((sliderRef?.current?.clientWidth || 1) / store?.productImagesOptions?.width) *
+                        store?.productImagesOptions?.height
+                );
+            }, 100);
+        }, [sliderRef?.current?.clientWidth]); // eslint-disable-line
+
         return (
-            <Grid xs={getGridValue()} p={0.5}>
+            <Grid container xs={getGridValue()} sx={{ opacity: sliderHeight ? 1 : 0 }}>
                 <CardItem>
                     {store?.additionalStoreSettings?.promo && (
                         <Box
@@ -177,9 +190,7 @@ const CatalogCard = memo<CatalogCardProps>(
                         container
                         xs={12}
                         sx={{
-                            display: 'flex',
                             cursor: 'pointer',
-                            backgroundColor: '#fff',
                         }}
                         onClick={() => {
                             navigate(
@@ -190,62 +201,43 @@ const CatalogCard = memo<CatalogCardProps>(
                             );
                         }}
                     >
-                        <Grid
-                            xs={12}
-                            ref={imageRef}
-                            sx={{
-                                height:
-                                    ((imageRef?.current?.clientWidth as number) / store?.productImagesOptions?.width) *
-                                    store?.productImagesOptions?.height,
-                            }}
-                        >
+                        <Grid ref={sliderRef} xs={12} sx={{ backgroundColor: Colors?.GRAY_100 }}>
                             {shownModel?.images?.length ? (
-                                <Slider
-                                    dots={true}
-                                    nextArrow={<SampleNextArrow />}
-                                    prevArrow={<SamplePrevArrow />}
-                                    lazyLoad={true}
-                                >
-                                    {shownModel?.images?.map(({ imageUrl }, idx) => {
-                                        return (
-                                            <Grid
-                                                key={idx}
-                                                alignItems="center"
-                                                xs={12}
-                                                sx={{
-                                                    height:
-                                                        ((imageRef?.current?.clientWidth as number) /
-                                                            store?.productImagesOptions?.width) *
-                                                        store?.productImagesOptions?.height,
-                                                    display: 'flex !important',
-                                                    alignItems: 'center',
-                                                    backgroundColor: '#fafafa',
-                                                    opacity: absentProduct ? 0.5 : 1,
-                                                }}
-                                            >
-                                                <ImageComponent store={store} imgUrl={imageUrl} ref={imageRef} />
-                                            </Grid>
-                                        );
-                                    })}
-                                </Slider>
+                                <>
+                                    {sliderHeight && (
+                                        <Slider
+                                            dots={true}
+                                            nextArrow={<SampleNextArrow />}
+                                            prevArrow={<SamplePrevArrow />}
+                                            lazyLoad={true}
+                                            style={{
+                                                height: sliderHeight,
+                                                overflow: 'hidden',
+                                                transition: 'height 250ms cubic-bezier(0.4, 0, 0.2, 1)',
+                                            }}
+                                        >
+                                            {shownModel?.images?.map(({ imageUrl }, idx) => {
+                                                return (
+                                                    <Grid
+                                                        key={idx}
+                                                        xs={12}
+                                                        sx={{
+                                                            opacity: absentProduct ? 0.5 : 1,
+                                                        }}
+                                                    >
+                                                        <ImageComponent
+                                                            store={store}
+                                                            imgUrl={imageUrl}
+                                                            ref={imageRef}
+                                                        />
+                                                    </Grid>
+                                                );
+                                            })}
+                                        </Slider>
+                                    )}
+                                </>
                             ) : (
-                                <Grid
-                                    xs={12}
-                                    justifyContent="center"
-                                    alignItems="center"
-                                    sx={{
-                                        display: 'flex',
-                                        justifyContent: 'center',
-                                        alignItems: 'center',
-                                        flexDirection: 'column',
-                                        height:
-                                            ((imageRef?.current?.clientWidth as number) /
-                                                store?.productImagesOptions?.width) *
-                                            store?.productImagesOptions?.height,
-                                    }}
-                                >
-                                    <EmptyImage />
-                                </Grid>
+                                <>{shownModel?.images && <EmptyImage />}</>
                             )}
                         </Grid>
                     </Grid>
@@ -263,7 +255,7 @@ const CatalogCard = memo<CatalogCardProps>(
                                     display: 'flex',
                                     justifyContent: 'center',
                                     flexWrap: isExpanded ? 'wrap' : 'nowrap',
-                                    backgroundColor: '#fafafa',
+                                    backgroundColor: Colors?.GRAY_100,
                                     height: isExpanded ? '95px' : '45px',
                                     pt: 1,
                                     px: 0.2,
@@ -272,7 +264,7 @@ const CatalogCard = memo<CatalogCardProps>(
                             >
                                 <Box
                                     sx={{
-                                        backgroundColor: '#fafafa',
+                                        backgroundColor: Colors?.GRAY_100,
                                         display: 'flex',
                                         justifyContent: 'center',
                                         gap: 0.4,
@@ -336,7 +328,7 @@ const CatalogCard = memo<CatalogCardProps>(
                                     display: 'flex',
                                     flexDirection: 'column',
                                     gap: 1,
-                                    backgroundColor: '#fafafa',
+                                    backgroundColor: Colors?.GRAY_100,
                                 }}
                             >
                                 <Typography

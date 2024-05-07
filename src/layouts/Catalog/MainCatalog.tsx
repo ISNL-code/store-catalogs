@@ -70,7 +70,7 @@ export default function MainCatalog({ lang, setLang, auth, setAuth, userData }) 
         if (storeCode) {
             if (STORE_CODE !== storeCode) navigate('/');
         }
-    }, [storeCode, STORE_CODE]);
+    }, [storeCode, STORE_CODE]); // eslint-disable-line
 
     useEffect(() => {
         if (!storeDataRes || loadStore) return;
@@ -111,7 +111,7 @@ export default function MainCatalog({ lang, setLang, auth, setAuth, userData }) 
             />
 
             <Box
-                px={appXPadding}
+                px={sx ? 0 : appXPadding}
                 pt={1}
                 sx={{ mt: `${headerHeight + instrumentalBarHeight}px`, mb: `${footerHeight}px` }}
             >

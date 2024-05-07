@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Typography, CircularProgress, Box } from '@mui/material';
-import Grid from '@mui/material/Unstable_Grid2';
+import { Typography, CircularProgress } from '@mui/material';
 import PhotoCameraIcon from '@mui/icons-material/PhotoCamera';
 import { useOutletContext } from 'react-router-dom';
 import { Colors } from 'colors';
@@ -15,7 +14,7 @@ interface ImageProps {
     };
 }
 
-const ImageComponent = React.forwardRef<HTMLImageElement, ImageProps>(({ imgUrl, store }, ref) => {
+const ImageComponent = React.forwardRef<HTMLImageElement, ImageProps>(({ imgUrl }, ref) => {
     const [imgLoaded, setImgLoaded] = useState(false);
     const [imgError, setImgError] = useState(false);
 
@@ -38,19 +37,7 @@ const ImageComponent = React.forwardRef<HTMLImageElement, ImageProps>(({ imgUrl,
     }, [imgUrl]);
 
     return (
-        <Grid
-            xs={12}
-            sx={{
-                display: 'flex',
-                alignItems: 'center',
-                height: (ref as React.MutableRefObject<HTMLDivElement>)?.current?.clientWidth
-                    ? ((ref as React.MutableRefObject<HTMLDivElement>)?.current?.clientWidth /
-                          store?.productImagesOptions?.width) *
-                      store?.productImagesOptions?.height
-                    : 'auto',
-                justifyContent: 'center',
-            }}
-        >
+        <>
             {imgLoaded && !imgError ? (
                 <img
                     loading="lazy"
@@ -58,22 +45,13 @@ const ImageComponent = React.forwardRef<HTMLImageElement, ImageProps>(({ imgUrl,
                     style={{
                         width: '100%',
                     }}
-                    alt="Display"
+                    alt="Loading..."
                     ref={ref}
                 />
             ) : (
-                <Box style={{ textAlign: 'center', width: '100%', display: 'flex', justifyContent: 'center' }}>
-                    {imgError ? (
-                        <>
-                            <PhotoCameraIcon sx={{ fontSize: 56, opacity: 0.25 }} />
-                            <Typography sx={{ opacity: 0.25 }}>Error loading image</Typography>
-                        </>
-                    ) : (
-                        <CircularProgress sx={{ color: Colors?.GRAY }} />
-                    )}
-                </Box>
+                <CircularProgress sx={{ color: Colors?.GRAY }} />
             )}
-        </Grid>
+        </>
     );
 });
 
