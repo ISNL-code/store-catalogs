@@ -6,7 +6,7 @@ import { useOutletContext } from 'react-router-dom';
 import { useDevice } from 'hooks/useDevice';
 import { CatalogContextInterface } from 'types';
 import FullScreenSwiper from './FullScreenSwiper';
-import { Image } from 'components/atoms/Media/Image';
+import ImageComponent from 'components/atoms/Media/Image';
 
 const ModelSwiper = ({ images, selectedVariant }) => {
     const imageRef = useRef<HTMLImageElement>(null);
@@ -54,6 +54,7 @@ const ModelSwiper = ({ images, selectedVariant }) => {
                                         overflow: 'hidden',
                                         display: 'flex',
                                         alignItems: 'center',
+                                        justifyContent: 'center',
                                     }}
                                     onClick={() => {
                                         setFullScreenMode(true);
@@ -63,7 +64,7 @@ const ModelSwiper = ({ images, selectedVariant }) => {
                                     <Box>
                                         <Gradient dest="top" />
                                         <Gradient dest="bottom" />
-                                        <Image
+                                        <ImageComponent
                                             ref={imagesList.length < 1 ? null : imageRef}
                                             store={store}
                                             imgUrl={`${imageUrl}`}

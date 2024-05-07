@@ -8,7 +8,7 @@ import { useNavigate, useOutletContext, useParams } from 'react-router-dom';
 import { CatalogContextInterface, ProductVariantInterface } from 'types';
 import Loader from 'components/atoms/Loader/Loader';
 import Grid from '@mui/material/Unstable_Grid2';
-import { Image, EmptyImage } from 'components/atoms/Media/Image';
+import ImageComponent, { EmptyImage } from 'components/atoms/Media/Image';
 import { useDevice } from 'hooks/useDevice';
 import { Box, Button } from '@mui/material';
 import AddSizesButtons from './components/AddSizesButtons';
@@ -220,7 +220,7 @@ const Cart = () => {
                                         }}
                                     >
                                         {el?.images?.length ? (
-                                            <Image
+                                            <ImageComponent
                                                 store={store}
                                                 imgUrl={el?.images ? el?.images[0]?.imageUrl : ''}
                                                 ref={imageRef}

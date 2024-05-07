@@ -14,7 +14,7 @@ import { CatalogContextInterface } from 'types';
 import CardItem from 'components/atoms/Sections/CardItem';
 import Grid from '@mui/material/Unstable_Grid2';
 import PromoTags from 'components/atoms/PromoTags/PromoTags';
-import { Image, EmptyImage } from 'components/atoms/Media/Image';
+import ImageComponent, { EmptyImage } from 'components/atoms/Media/Image';
 import CardPrice from 'components/molecules/PricesComponents/CardPrice';
 import CardSkuLabel from 'components/atoms/Labels/CardSkuLabel';
 import { STORE_CONFIG } from 'constants/stores_config';
@@ -196,7 +196,7 @@ const CatalogFavoriteCard = ({ modelsVariants, name, productId, currency, promoT
                                                 opacity: absentProduct ? 0.5 : 1,
                                             }}
                                         >
-                                            <Image store={store} imgUrl={imageUrl} ref={imageRef} />
+                                            <ImageComponent store={store} imgUrl={imageUrl} ref={imageRef} />
                                         </Grid>
                                     );
                                 })}
