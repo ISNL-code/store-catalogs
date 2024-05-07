@@ -5,7 +5,7 @@ import { useRef } from 'react';
 import { useOutletContext } from 'react-router-dom';
 
 const CardItem = ({ children, withHover = true }) => {
-    const { sx } = useDevice();
+    const { sx } = useDevice(); // eslint-disable-line
     const cardRef = useRef<HTMLElement>(null);
     const { setScrollPosition }: any = useOutletContext();
 
