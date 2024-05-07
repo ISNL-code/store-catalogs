@@ -19,7 +19,7 @@ const HeaderLogo = ({ title, font = 'Roboto', imgUrl, headerHeight }) => {
                 gap: 1,
             }}
             onClick={() => {
-                navigate(`/catalog/${STORE_CODE}/${STORE_NAME.replace(' ', '-').toLowerCase()}`);
+                navigate(`/catalog/${STORE_CODE}/${STORE_NAME.replaceAll(' ', '-').toLowerCase()}`);
             }}
         >
             <img
