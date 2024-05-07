@@ -10,7 +10,7 @@ import ImageComponent from 'components/atoms/Media/Image';
 
 const ModelSwiper = ({ images }) => {
     const imageRef = useRef<HTMLImageElement>(null);
-    const { store, headerHeight, instrumentalBarHeight, footerHeight }: CatalogContextInterface = useOutletContext();
+    const { headerHeight, instrumentalBarHeight, footerHeight }: CatalogContextInterface = useOutletContext();
     const [fullScreenMode, setFullScreenMode] = useState<boolean>(false);
     const { sm, sx } = useDevice();
     const [slide, setSlide] = useState(0);
@@ -66,7 +66,6 @@ const ModelSwiper = ({ images }) => {
                                         <Gradient dest="bottom" />
                                         <ImageComponent
                                             ref={imagesList.length === 1 ? null : imageRef}
-                                            store={store}
                                             imgUrl={`${imageUrl}`}
                                         />
                                     </Box>

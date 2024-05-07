@@ -112,7 +112,7 @@ export default function MainCatalog({ lang, setLang, auth, setAuth, userData }) 
 
             <Box
                 px={sx ? 0 : appXPadding}
-                pt={1}
+                pt={sx ? 0 : 1}
                 sx={{ mt: `${headerHeight + instrumentalBarHeight}px`, mb: `${footerHeight}px` }}
             >
                 <Outlet

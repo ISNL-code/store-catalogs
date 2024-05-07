@@ -230,7 +230,6 @@ const Cart = () => {
                                     >
                                         {el?.images?.length ? (
                                             <ImageComponent
-                                                store={store}
                                                 imgUrl={el?.images ? el?.images[0]?.imageUrl : ''}
                                                 ref={imageRef}
                                             />

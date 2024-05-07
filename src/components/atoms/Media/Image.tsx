@@ -1,20 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { Typography, CircularProgress } from '@mui/material';
+import { Typography, CircularProgress, Box } from '@mui/material';
 import PhotoCameraIcon from '@mui/icons-material/PhotoCamera';
 import { useOutletContext } from 'react-router-dom';
 import { Colors } from 'colors';
 
 interface ImageProps {
     imgUrl: string;
-    store: {
-        productImagesOptions: {
-            width: number;
-            height: number;
-        };
-    };
+    height?;
 }
 
-const ImageComponent = React.forwardRef<HTMLImageElement, ImageProps>(({ imgUrl }, ref) => {
+const ImageComponent = React.forwardRef<HTMLImageElement, ImageProps>(({ imgUrl, height }, ref) => {
     const [imgLoaded, setImgLoaded] = useState(false);
     const [imgError, setImgError] = useState(false);
 
@@ -37,7 +32,14 @@ const ImageComponent = React.forwardRef<HTMLImageElement, ImageProps>(({ imgUrl 
     }, [imgUrl]);
 
     return (
-        <>
+        <Box
+            sx={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                height: height,
+            }}
+        >
             {imgLoaded && !imgError ? (
                 <img
                     loading="lazy"
@@ -51,18 +53,26 @@ const ImageComponent = React.forwardRef<HTMLImageElement, ImageProps>(({ imgUrl 
             ) : (
                 <CircularProgress sx={{ color: Colors?.GRAY }} />
             )}
-        </>
+        </Box>
     );
 });
 
 export default ImageComponent;
 
-export function EmptyImage() {
+export function EmptyImage({ height }: { height? }) {
     const { string }: any = useOutletContext();
     return (
-        <>
+        <Box
+            sx={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                height: height,
+                flexDirection: 'column',
+            }}
+        >
             <PhotoCameraIcon sx={{ fontSize: 56, opacity: 0.25, textAlign: 'center' }} />
             <Typography sx={{ width: 150, textAlign: 'center', opacity: 0.25 }}>{string?.image_not_loaded}</Typography>
-        </>
+        </Box>
     );
 }

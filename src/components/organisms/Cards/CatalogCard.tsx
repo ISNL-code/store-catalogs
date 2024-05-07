@@ -12,7 +12,6 @@ import ExtraColorsButton from 'components/atoms/ColorIndicatorButton/ExtraColors
 import CollapseButton from 'components/molecules/ToolsButtons/СollapseButton';
 import { useDevice } from 'hooks/useDevice';
 import { CatalogContextInterface } from 'types';
-import CardItem from 'components/atoms/Sections/CardItem';
 import Grid from '@mui/material/Unstable_Grid2';
 import PromoTags from 'components/atoms/PromoTags/PromoTags';
 import ImageComponent, { EmptyImage } from 'components/atoms/Media/Image';
@@ -21,6 +20,8 @@ import CardSkuLabel from 'components/atoms/Labels/CardSkuLabel';
 import SaleTag from 'components/atoms/PromoTags/SaleTag';
 import { STORE_CONFIG } from 'constants/stores_config';
 import { Colors } from 'colors';
+import ProductItem from 'components/atoms/Sections/ProductItem';
+import Loader from 'components/atoms/Loader/Loader';
 
 interface ShownModelInterface {
     price: string;
@@ -131,7 +132,8 @@ const CatalogCard = memo<CatalogCardProps>(
 
         return (
             <Grid container xs={getGridValue()} sx={{ opacity: sliderHeight ? 1 : 0 }}>
-                <CardItem>
+                {!sliderHeight && <Loader />}
+                <ProductItem>
                     {store?.additionalStoreSettings?.promo && (
                         <Box
                             sx={{
@@ -199,7 +201,11 @@ const CatalogCard = memo<CatalogCardProps>(
                             );
                         }}
                     >
-                        <Grid ref={sliderRef} xs={12} sx={{ backgroundColor: Colors?.GRAY_100 }}>
+                        <Grid
+                            ref={sliderRef}
+                            xs={12}
+                            sx={{ backgroundColor: Colors?.GRAY_100, height: sliderHeight || 250 }}
+                        >
                             {shownModel?.images?.length ? (
                                 <>
                                     {sliderHeight && (
@@ -221,12 +227,13 @@ const CatalogCard = memo<CatalogCardProps>(
                                                         xs={12}
                                                         sx={{
                                                             opacity: absentProduct ? 0.5 : 1,
+                                                            flexGrow: 1,
                                                         }}
                                                     >
                                                         <ImageComponent
-                                                            store={store}
                                                             imgUrl={imageUrl}
                                                             ref={imageRef}
+                                                            height={sliderHeight}
                                                         />
                                                     </Grid>
                                                 );
@@ -235,7 +242,7 @@ const CatalogCard = memo<CatalogCardProps>(
                                     )}
                                 </>
                             ) : (
-                                <>{shownModel?.images && <EmptyImage />}</>
+                                <>{shownModel?.images && <EmptyImage height={sliderHeight} />}</>
                             )}
                         </Grid>
                     </Grid>
@@ -387,7 +394,7 @@ const CatalogCard = memo<CatalogCardProps>(
                             </Box>
                         </Box>
                     </Box>
-                </CardItem>
+                </ProductItem>
             </Grid>
         );
     }

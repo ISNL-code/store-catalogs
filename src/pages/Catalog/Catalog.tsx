@@ -115,15 +115,17 @@ const Catalog = () => {
             ) : (
                 <>{!loadProducts && !loading && <EmptyPage isShown />}</>
             )}
-            <PaginationButton
-                setCurrentPage={handleSetProductsPage}
-                totalCount={totalProductsCount}
-                loadProducts={loadProducts}
-                productsList={productsList}
-                page={currentProductsPage}
-                totalPages={totalProductsPages}
-                countPerPage={productCountPerPage}
-            />
+            {!!productsList?.length && !loadProducts && !loading && (
+                <PaginationButton
+                    setCurrentPage={handleSetProductsPage}
+                    totalCount={totalProductsCount}
+                    loadProducts={loadProducts}
+                    productsList={productsList}
+                    page={currentProductsPage}
+                    totalPages={totalProductsPages}
+                    countPerPage={productCountPerPage}
+                />
+            )}
         </Box>
     );
 };

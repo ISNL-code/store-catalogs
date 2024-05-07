@@ -196,7 +196,7 @@ const CatalogFavoriteCard = ({ modelsVariants, name, productId, currency, promoT
                                                 opacity: absentProduct ? 0.5 : 1,
                                             }}
                                         >
-                                            <ImageComponent store={store} imgUrl={imageUrl} ref={imageRef} />
+                                            <ImageComponent imgUrl={imageUrl} ref={imageRef} />
                                         </Grid>
                                     );
                                 })}
