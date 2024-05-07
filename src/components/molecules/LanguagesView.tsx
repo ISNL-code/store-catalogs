@@ -77,6 +77,13 @@ const LanguagesView = ({ supportedLanguages }) => {
                                             alt="Broken Img"
                                         />
                                     )}
+                                    {el === 'kz' && (
+                                        <img
+                                            style={{ height: 24 }}
+                                            src={require(`assets/img/flags/kz.png`)}
+                                            alt="Broken Img"
+                                        />
+                                    )}
                                 </>
                             </Box>
                         </Tooltip>
