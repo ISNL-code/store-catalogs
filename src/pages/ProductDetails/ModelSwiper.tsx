@@ -8,7 +8,7 @@ import { CatalogContextInterface } from 'types';
 import FullScreenSwiper from './FullScreenSwiper';
 import ImageComponent from 'components/atoms/Media/Image';
 
-const ModelSwiper = ({ images, selectedVariant }) => {
+const ModelSwiper = ({ images }) => {
     const imageRef = useRef<HTMLImageElement>(null);
     const { store, headerHeight, instrumentalBarHeight, footerHeight }: CatalogContextInterface = useOutletContext();
     const [fullScreenMode, setFullScreenMode] = useState<boolean>(false);
@@ -49,7 +49,7 @@ const ModelSwiper = ({ images, selectedVariant }) => {
                                     ref={imageRef}
                                     sx={{
                                         borderRadius: 4,
-                                        minWidth: imagesList.length < 1 ? '100%' : sm ? '65%' : '40%',
+                                        minWidth: imagesList.length === 1 ? '100%' : sm ? '65%' : '40%',
                                         position: 'relative',
                                         overflow: 'hidden',
                                         display: 'flex',
@@ -65,7 +65,7 @@ const ModelSwiper = ({ images, selectedVariant }) => {
                                         <Gradient dest="top" />
                                         <Gradient dest="bottom" />
                                         <ImageComponent
-                                            ref={imagesList.length < 1 ? null : imageRef}
+                                            ref={imagesList.length === 1 ? null : imageRef}
                                             store={store}
                                             imgUrl={`${imageUrl}`}
                                         />

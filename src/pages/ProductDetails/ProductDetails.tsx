@@ -150,7 +150,7 @@ const ProductDetails = () => {
                             },
                         }}
                     >
-                        <ModelSwiper images={selectedVariant?.images} selectedVariant={selectedVariant} />
+                        <ModelSwiper images={selectedVariant?.images} />
                     </Grid>
                     <Grid
                         px={sx ? 0 : 2}
