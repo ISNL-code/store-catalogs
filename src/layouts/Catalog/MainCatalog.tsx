@@ -18,7 +18,7 @@ import { STORE_CONFIG } from 'constants/stores_config';
 
 export default function MainCatalog({ lang, setLang, auth, setAuth, userData }) {
     const { STORE_CODE } = STORE_CONFIG;
-    const { storeName } = useParams();
+    const { storeName, storeCode } = useParams();
     const navigate = useNavigate();
     const { sx, l } = useDevice();
     const headerHeight = 50;
@@ -65,6 +65,12 @@ export default function MainCatalog({ lang, setLang, auth, setAuth, userData }) 
 
     const cart = useAddToCart({ auth, loadingUser: userData?.isFetching, storeName });
     const favorites = useAddToFavorites({ loadingUser: userData?.isFetching, storeName });
+
+    useEffect(() => {
+        if (storeCode) {
+            if (STORE_CODE !== storeCode) navigate('/');
+        }
+    }, [storeCode, STORE_CODE]);
 
     useEffect(() => {
         if (!storeDataRes || loadStore) return;

@@ -20,7 +20,6 @@ const FavoritesButton = ({ isShown, selected }: FavoriteButtonInterface) => {
                             width: '33px',
                             height: '33px',
                         }}
-                        onClick={() => {}}
                     >
                         {selected ? <FavoriteIcon color="warning" /> : <FavoriteBorderIcon color="warning" />}
                     </IconButton>

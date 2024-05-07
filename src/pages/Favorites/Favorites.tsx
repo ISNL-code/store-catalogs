@@ -46,6 +46,15 @@ const Favorites = () => {
         updateFavoriteProductsRes().then(res => {
             const products = res.data?.data.products;
 
+            //clear invalid items
+            favorites?.favoriteItems?.forEach(({ sku, storeCode, userId, productId }) => {
+                if (!products.find(el => el.variants.map(({ sku }) => sku).includes(sku))) {
+                    favorites?.handleSetFavoriteItems({
+                        sku,
+                    });
+                }
+            });
+
             const data = favorites?.favoriteItems?.map(({ sku }) => {
                 return {
                     ...products
@@ -151,7 +160,7 @@ const Favorites = () => {
 
             {favoriteProducts?.length ? (
                 <TransitionBox dependency={loading}>
-                    <Grid xs={12} container spacing={1.5}>
+                    <Grid container xs={12}>
                         {favoriteProducts?.map(product => {
                             return (
                                 <CatalogFavoriteCard

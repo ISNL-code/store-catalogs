@@ -88,7 +88,16 @@ const Cart = () => {
         updateCartProductsRes().then(res => {
             const products = res.data?.data.products;
 
-            const data = cart.cartItems.map(({ sku }) => {
+            //clear invalid items
+            cart?.cartItems.forEach(({ sku }) => {
+                if (!products.find(el => el.variants.map(({ sku }) => sku).includes(sku))) {
+                    cart?.handleSetCartItems({
+                        sku,
+                    });
+                }
+            });
+
+            const data = cart?.cartItems?.map(({ sku }) => {
                 return {
                     ...products
                         .find(el => el.variants.map(({ sku }) => sku).includes(sku))
@@ -120,7 +129,7 @@ const Cart = () => {
 
     useEffect(() => {
         if (!orderData.productsList.length) return setFinalPrice(0);
-        console.log(orderData?.productsList);
+
         setFinalPrice(
             orderData?.productsList.reduce(
                 (acc, el) => Number((el.price as string).replaceAll(',', '')) * Number(el.quantity) + acc,

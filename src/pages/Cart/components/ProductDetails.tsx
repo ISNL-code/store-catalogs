@@ -8,7 +8,7 @@ const ProductDetails = ({ data, setOrderData }) => {
     const navigate = useNavigate();
     const { storeCode, storeName } = useParams();
     const { string, cart, store }: CatalogContextInterface = useOutletContext();
-    console.log(data);
+
     return (
         <>
             <Grid
@@ -62,7 +62,7 @@ const ProductDetails = ({ data, setOrderData }) => {
             <Typography variant="h3">{data?.name}</Typography>
             <Box sx={{ display: 'flex', gap: 1 }}>
                 <Typography>{string?.price}:</Typography>
-                <CartModelPrice price={data?.inventory[0]?.price} currency={store?.currency} />
+                <CartModelPrice price={data?.inventory && data?.inventory[0]?.price} currency={store?.currency} />
             </Box>
             <Box sx={{ display: 'flex', gap: 1 }}>
                 <Typography>{string?.color}:</Typography>

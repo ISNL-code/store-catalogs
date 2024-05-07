@@ -54,7 +54,9 @@ export const useProducts = ({ store, lang, queryCategories, setQueryCategories }
                     id: product.id,
                     variants: product.variants
                         .sort((a, b) => a.sortOrder - b.sortOrder)
-                        .filter(el => el.images.length)
+                        .filter(el => {
+                            return STORE_TYPE === 'sales' ? el.images.length : true;
+                        })
                         .map((variant, idx) => {
                             return {
                                 id: variant.id,
@@ -103,7 +105,9 @@ export const useProducts = ({ store, lang, queryCategories, setQueryCategories }
                             id: product.id,
                             variants: product.variants
                                 .sort((a, b) => a.sortOrder - b.sortOrder)
-                                .filter(el => el.images.length)
+                                .filter(el => {
+                                    return STORE_TYPE === 'sales' ? el.images.length : true;
+                                })
                                 .map((variant, idx) => {
                                     return {
                                         id: variant.id,
