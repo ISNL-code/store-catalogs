@@ -204,7 +204,7 @@ const CatalogCard = memo<CatalogCardProps>(
                         <Grid
                             ref={sliderRef}
                             xs={12}
-                            sx={{ backgroundColor: Colors?.GRAY_100, height: sliderHeight || 250 }}
+                            sx={{ backgroundColor: Colors?.WHITE, height: sliderHeight || 250 }}
                         >
                             {shownModel?.images?.length ? (
                                 <>
@@ -260,7 +260,7 @@ const CatalogCard = memo<CatalogCardProps>(
                                     display: 'flex',
                                     justifyContent: 'center',
                                     flexWrap: isExpanded ? 'wrap' : 'nowrap',
-                                    backgroundColor: Colors?.GRAY_100,
+                                    backgroundColor: Colors?.GRAY_300,
                                     height: isExpanded ? '95px' : '45px',
                                     pt: 1,
                                     px: 0.2,
@@ -269,7 +269,6 @@ const CatalogCard = memo<CatalogCardProps>(
                             >
                                 <Box
                                     sx={{
-                                        backgroundColor: Colors?.GRAY_100,
                                         display: 'flex',
                                         justifyContent: 'center',
                                         gap: 0.4,
@@ -333,14 +332,21 @@ const CatalogCard = memo<CatalogCardProps>(
                                     display: 'flex',
                                     flexDirection: 'column',
                                     gap: 1,
-                                    backgroundColor: Colors?.GRAY_100,
+                                    backgroundColor: Colors?.GRAY_300,
                                 }}
                             >
                                 <Typography
                                     px={1}
                                     py={0.5}
                                     variant="h4"
-                                    sx={{ height: 40, fontSize: 14, fontWeight: 500 }}
+                                    sx={{
+                                        height: 16,
+                                        fontSize: 14,
+                                        fontWeight: 500,
+                                        whiteSpace: 'nowrap',
+                                        overflow: 'hidden',
+                                        textOverflow: 'ellipsis',
+                                    }}
                                 >
                                     {!isExpanded && name}
                                 </Typography>
@@ -352,6 +358,7 @@ const CatalogCard = memo<CatalogCardProps>(
                                         display: 'flex',
                                         alignItems: 'center',
                                         justifyContent: 'space-between',
+                                        backgroundColor: Colors?.GRAY_300,
                                     }}
                                 >
                                     {store?.mainStoreSettings?.prices && !isExpanded && (
