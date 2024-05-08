@@ -9,7 +9,6 @@ import Slider from 'react-slick';
 import CollapseButton from 'components/molecules/ToolsButtons/СollapseButton';
 import { useDevice } from 'hooks/useDevice';
 import { CatalogContextInterface } from 'types';
-import CardItem from 'components/atoms/Sections/CardItem';
 import Grid from '@mui/material/Unstable_Grid2';
 import PromoTags from 'components/atoms/PromoTags/PromoTags';
 import ImageComponent, { EmptyImage } from 'components/atoms/Media/Image';

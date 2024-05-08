@@ -1,7 +1,6 @@
 import { STORE_CONFIG } from 'constants/stores_config';
 import { useIsMount } from 'hooks/useIsMount';
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
 import { useAddToFavoriteDataInterface } from 'types';
 
 interface useAddToFavoritesParamsInterface {
@@ -14,7 +13,6 @@ export const useAddToFavorites = ({
     storeName,
 }: useAddToFavoritesParamsInterface): useAddToFavoriteDataInterface => {
     const { FAVORITE_KEY } = STORE_CONFIG;
-    const { storeCode } = useParams();
     const mount = useIsMount();
     const [favoriteItems, setFavoriteItems] = useState<any[]>([]);
 

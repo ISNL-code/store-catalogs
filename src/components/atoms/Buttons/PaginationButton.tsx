@@ -1,5 +1,4 @@
 import { Box, Button, Typography } from '@mui/material';
-import { useDevice } from 'hooks/useDevice';
 import { useRef } from 'react';
 import { useOutletContext } from 'react-router-dom';
 import Loader from '../Loader/Loader';
@@ -14,7 +13,6 @@ const PaginationButton = ({
     countPerPage,
 }) => {
     const { string }: any = useOutletContext();
-    const { sx } = useDevice();
     const ref = useRef(null);
 
     if (productsList?.length < 12) return null;

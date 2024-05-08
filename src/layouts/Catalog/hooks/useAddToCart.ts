@@ -1,7 +1,6 @@
 import { STORE_CONFIG } from 'constants/stores_config';
 import { useIsMount } from 'hooks/useIsMount';
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
 import { useAddToCartDataInterface } from 'types';
 
 interface useAddToCartParamsInterface {
@@ -16,7 +15,6 @@ export const useAddToCart = ({
     storeName,
 }: useAddToCartParamsInterface): useAddToCartDataInterface => {
     const { CART_KEY } = STORE_CONFIG;
-    const { storeCode } = useParams();
     const mount = useIsMount();
     const [cartItems, setCartItems] = useState<any[]>([]);
 
