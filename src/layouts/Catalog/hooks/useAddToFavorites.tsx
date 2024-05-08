@@ -21,7 +21,7 @@ export const useAddToFavorites = ({
     useEffect(() => {
         if (loadingUser) return;
 
-        setFavoriteItems(JSON.parse(localStorage.getItem(storeCode + '-' + FAVORITE_KEY) as string) || []); // eslint-disable-next-line react-hooks/exhaustive-deps
+        setFavoriteItems(JSON.parse(localStorage.getItem(FAVORITE_KEY) as string) || []); // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [storeName]);
 
     useEffect(() => {
@@ -29,8 +29,8 @@ export const useAddToFavorites = ({
 
         if (mount) return;
         if (favoriteItems.length) {
-            localStorage.setItem(storeCode + '-' + FAVORITE_KEY, JSON.stringify(favoriteItems));
-        } else localStorage.removeItem(storeCode + '-' + FAVORITE_KEY); // eslint-disable-next-line react-hooks/exhaustive-deps
+            localStorage.setItem(FAVORITE_KEY, JSON.stringify(favoriteItems));
+        } else localStorage.removeItem(FAVORITE_KEY); // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [favoriteItems]);
 
     const handleSetFavoriteItems = data => {

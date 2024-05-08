@@ -26,7 +26,7 @@ const PaginationButton = ({
             <Box
                 mb={1}
                 ref={ref}
-                mt={sx ? 0 : 1}
+                mt={1}
                 sx={{
                     width: '100%',
                     display: 'flex',

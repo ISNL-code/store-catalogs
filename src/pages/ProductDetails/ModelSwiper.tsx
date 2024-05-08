@@ -38,7 +38,6 @@ const ModelSwiper = ({ images }) => {
                     sx={{
                         display: 'flex',
                         flexDirection: sx ? 'row' : 'column',
-                        gap: 0.75,
                     }}
                 >
                     {imagesList?.map(({ imageUrl }, idx) => {
@@ -48,7 +47,6 @@ const ModelSwiper = ({ images }) => {
                                 <Box
                                     ref={imageRef}
                                     sx={{
-                                        borderRadius: 4,
                                         minWidth: imagesList.length === 1 ? '100%' : sm ? '65%' : '40%',
                                         position: 'relative',
                                         overflow: 'hidden',

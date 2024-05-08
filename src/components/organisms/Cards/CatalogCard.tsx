@@ -1,4 +1,4 @@
-import { Box, IconButton, Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import ShareButton from 'components/molecules/ToolsButtons/ShareButton';
 import { memo, useEffect, useRef, useState } from 'react';
 import { useNavigate, useOutletContext, useParams } from 'react-router-dom';
@@ -6,8 +6,6 @@ import ColorIndicatorButton from 'components/atoms/ColorIndicatorButton/ColorInd
 import CartButton from 'components/molecules/ToolsButtons/CartButton';
 import FavoritesButton from 'components/molecules/ToolsButtons/FavoritesButton';
 import Slider from 'react-slick';
-import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
-import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import ExtraColorsButton from 'components/atoms/ColorIndicatorButton/ExtraColorsButton';
 import CollapseButton from 'components/molecules/ToolsButtons/СollapseButton';
 import { useDevice } from 'hooks/useDevice';
@@ -22,6 +20,7 @@ import { STORE_CONFIG } from 'constants/stores_config';
 import { Colors } from 'colors';
 import ProductItem from 'components/atoms/Sections/ProductItem';
 import Loader from 'components/atoms/Loader/Loader';
+import { SampleNextArrow, SamplePrevArrow } from './SliderArrows';
 
 interface ShownModelInterface {
     price: string;
@@ -31,21 +30,6 @@ interface ShownModelInterface {
     productId: number;
     quantity: number;
     originalPrice: number;
-}
-
-function SamplePrevArrow(props) {
-    const { onClick } = props;
-    return (
-        <IconButton
-            onClick={e => {
-                e.stopPropagation();
-                onClick();
-            }}
-            sx={{ zIndex: 1000, position: 'absolute', bottom: 0, left: 0 }}
-        >
-            <ArrowLeftIcon />
-        </IconButton>
-    );
 }
 
 interface CatalogCardProps {
@@ -69,21 +53,6 @@ interface CatalogCardProps {
         name?: string;
         code?: string;
     }[];
-}
-
-function SampleNextArrow(props) {
-    const { onClick } = props;
-    return (
-        <IconButton
-            onClick={e => {
-                e.stopPropagation();
-                onClick();
-            }}
-            sx={{ zIndex: 1000, position: 'absolute', bottom: 0, right: 0 }}
-        >
-            <ArrowRightIcon />
-        </IconButton>
-    );
 }
 
 const MemoizedColorIndicatorButton = memo(ColorIndicatorButton, (prevProps, nextProps) => {
@@ -250,7 +219,6 @@ const CatalogCard = memo<CatalogCardProps>(
                         <Box
                             sx={{
                                 height: 45,
-                                overflow: 'visible',
                                 zIndex: 1,
                             }}
                         >
@@ -340,7 +308,7 @@ const CatalogCard = memo<CatalogCardProps>(
                                     py={0.5}
                                     variant="h4"
                                     sx={{
-                                        height: 16,
+                                        height: 19,
                                         fontSize: 14,
                                         fontWeight: 500,
                                         whiteSpace: 'nowrap',
@@ -353,7 +321,7 @@ const CatalogCard = memo<CatalogCardProps>(
 
                                 <Box
                                     px={1}
-                                    pb={0.5}
+                                    pb={0.25}
                                     sx={{
                                         display: 'flex',
                                         alignItems: 'center',

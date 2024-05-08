@@ -13,6 +13,8 @@ const CardItem = ({ children, withHover = true }) => {
             sx={{
                 position: 'sticky',
                 backgroundColor: Colors?.WHITE,
+                border: '0.25px solid',
+                borderColor: Colors?.GRAY_500,
                 width: '100%',
                 overflow: 'hidden',
                 display: 'flex',

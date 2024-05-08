@@ -1,4 +1,4 @@
-import { Box, IconButton, Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import ShareButton from 'components/molecules/ToolsButtons/ShareButton';
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate, useOutletContext, useParams } from 'react-router-dom';
@@ -6,8 +6,6 @@ import ColorIndicatorButton from 'components/atoms/ColorIndicatorButton/ColorInd
 import CartButton from 'components/molecules/ToolsButtons/CartButton';
 import FavoritesButton from 'components/molecules/ToolsButtons/FavoritesButton';
 import Slider from 'react-slick';
-import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
-import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import CollapseButton from 'components/molecules/ToolsButtons/СollapseButton';
 import { useDevice } from 'hooks/useDevice';
 import { CatalogContextInterface } from 'types';
@@ -19,6 +17,9 @@ import CardPrice from 'components/molecules/PricesComponents/CardPrice';
 import CardSkuLabel from 'components/atoms/Labels/CardSkuLabel';
 import { STORE_CONFIG } from 'constants/stores_config';
 import SaleTag from 'components/atoms/PromoTags/SaleTag';
+import { SampleNextArrow, SamplePrevArrow } from './SliderArrows';
+import ProductItem from 'components/atoms/Sections/ProductItem';
+import { Colors } from 'colors';
 
 interface ShownModelInterface {
     price: string;
@@ -31,40 +32,11 @@ interface ShownModelInterface {
     originalPrice: number;
 }
 
-function SamplePrevArrow(props) {
-    const { onClick } = props;
-    return (
-        <IconButton
-            onClick={e => {
-                e.stopPropagation();
-                onClick();
-            }}
-            sx={{ zIndex: 1000, position: 'absolute', bottom: 0, left: 0 }}
-        >
-            <ArrowLeftIcon />
-        </IconButton>
-    );
-}
-
-function SampleNextArrow(props) {
-    const { onClick } = props;
-    return (
-        <IconButton
-            onClick={e => {
-                e.stopPropagation();
-                onClick();
-            }}
-            sx={{ zIndex: 1000, position: 'absolute', bottom: 0, right: 0 }}
-        >
-            <ArrowRightIcon />
-        </IconButton>
-    );
-}
-
 const CatalogFavoriteCard = ({ modelsVariants, name, productId, currency, promoTags }) => {
     const { OPTIONS } = STORE_CONFIG;
     const { STORE_TYPE } = OPTIONS;
     const imageRef = useRef<HTMLImageElement>(null);
+    const sliderRef = useRef<HTMLImageElement>(null);
     const { s, sx, ls, l } = useDevice();
     const navigate = useNavigate();
     const { store, cart, currentUserData, favorites }: CatalogContextInterface = useOutletContext();
@@ -72,6 +44,7 @@ const CatalogFavoriteCard = ({ modelsVariants, name, productId, currency, promoT
     const { storeCode, storeName } = useParams();
     const [shownModel, setShownModel] = useState<ShownModelInterface | null>(null);
     const [isExpanded, setIsExpanded] = useState(false);
+    const [sliderHeight, setSliderHeight] = useState<number | string>(0);
 
     const absentProduct = Boolean(!shownModel?.quantity);
 
@@ -88,15 +61,24 @@ const CatalogFavoriteCard = ({ modelsVariants, name, productId, currency, promoT
         return 2;
     };
 
+    useEffect(() => {
+        setTimeout(() => {
+            setSliderHeight(
+                ((sliderRef?.current?.clientWidth || 1) / store?.productImagesOptions?.width) *
+                    store?.productImagesOptions?.height
+            );
+        }, 100);
+    }, [sliderRef?.current?.clientWidth]); // eslint-disable-line
+
     return (
-        <Grid p={0.5} xs={getGridValue()}>
-            <CardItem>
+        <Grid container xs={getGridValue()} sx={{ opacity: sliderHeight ? 1 : 0 }}>
+            <ProductItem>
                 {store?.additionalStoreSettings?.promo && (
                     <Box
                         sx={{
                             position: 'absolute',
-                            top: 10,
-                            left: 10,
+                            top: 8,
+                            left: 8,
                             zIndex: 1,
                             display: 'flex',
                             flexDirection: 'column',
@@ -129,7 +111,7 @@ const CatalogFavoriteCard = ({ modelsVariants, name, productId, currency, promoT
                 )}
 
                 <Box
-                    sx={{ position: 'absolute', top: 10, right: 10, zIndex: 1, display: 'flex', gap: 0.5 }}
+                    sx={{ position: 'absolute', top: 8, right: 8, zIndex: 1, display: 'flex', gap: 0.5 }}
                     onClick={() => {
                         favorites?.handleSetFavoriteItems({
                             sku: shownModel?.sku,
@@ -148,9 +130,7 @@ const CatalogFavoriteCard = ({ modelsVariants, name, productId, currency, promoT
                     container
                     xs={12}
                     sx={{
-                        display: 'flex',
                         cursor: 'pointer',
-                        backgroundColor: '#fff',
                     }}
                     onClick={() => {
                         navigate(
@@ -161,64 +141,36 @@ const CatalogFavoriteCard = ({ modelsVariants, name, productId, currency, promoT
                         );
                     }}
                 >
-                    <Grid
-                        xs={12}
-                        ref={imageRef}
-                        sx={{
-                            height:
-                                (((imageRef as any)?.current?.clientWidth as number) /
-                                    store?.productImagesOptions?.width) *
-                                store?.productImagesOptions?.height,
-                        }}
-                    >
+                    <Grid ref={sliderRef} xs={12} sx={{ backgroundColor: Colors?.WHITE, height: sliderHeight || 250 }}>
                         {shownModel?.images?.length ? (
                             <Slider
                                 dots={true}
                                 nextArrow={<SampleNextArrow />}
                                 prevArrow={<SamplePrevArrow />}
                                 lazyLoad={true}
+                                style={{
+                                    height: sliderHeight,
+                                    overflow: 'hidden',
+                                    transition: 'height 250ms cubic-bezier(0.4, 0, 0.2, 1)',
+                                }}
                             >
                                 {shownModel?.images?.map(({ imageUrl }, idx) => {
-                                    if (imageUrl.includes('.mp4')) return null;
                                     return (
                                         <Grid
                                             key={idx}
-                                            alignItems="center"
                                             xs={12}
                                             sx={{
-                                                height:
-                                                    (((imageRef as any)?.current?.clientWidth as number) /
-                                                        store?.productImagesOptions?.width) *
-                                                    store?.productImagesOptions?.height,
-                                                display: 'flex !important',
-                                                alignItems: 'center',
-                                                backgroundColor: '#fafafa',
                                                 opacity: absentProduct ? 0.5 : 1,
+                                                flexGrow: 1,
                                             }}
                                         >
-                                            <ImageComponent imgUrl={imageUrl} ref={imageRef} />
+                                            <ImageComponent imgUrl={imageUrl} ref={imageRef} height={sliderHeight} />{' '}
                                         </Grid>
                                     );
                                 })}
                             </Slider>
                         ) : (
-                            <Grid
-                                xs={12}
-                                justifyContent="center"
-                                alignItems="center"
-                                sx={{
-                                    display: 'flex',
-                                    justifyContent: 'center',
-                                    alignItems: 'center',
-                                    flexDirection: 'column',
-                                    height:
-                                        ((imageRef?.current?.clientWidth as number) /
-                                            store?.productImagesOptions?.width) *
-                                        store?.productImagesOptions?.height,
-                                }}
-                            >
-                                <EmptyImage />
-                            </Grid>
+                            <>{shownModel?.images && <EmptyImage height={sliderHeight} />}</>
                         )}
                     </Grid>
                 </Grid>
@@ -226,8 +178,6 @@ const CatalogFavoriteCard = ({ modelsVariants, name, productId, currency, promoT
                     <Box
                         sx={{
                             height: 45,
-                            overflow: 'visible',
-                            backgroundColor: '#fff',
                             zIndex: 1,
                         }}
                     >
@@ -235,7 +185,7 @@ const CatalogFavoriteCard = ({ modelsVariants, name, productId, currency, promoT
                             sx={{
                                 height: 45,
                                 overflow: 'visible',
-                                backgroundColor: '#fff',
+                                backgroundColor: Colors?.GRAY_300,
                                 zIndex: 1,
                             }}
                         >
@@ -245,7 +195,7 @@ const CatalogFavoriteCard = ({ modelsVariants, name, productId, currency, promoT
                                     display: 'flex',
                                     justifyContent: 'center',
                                     flexWrap: isExpanded ? 'wrap' : 'nowrap',
-                                    backgroundColor: '#fafafa',
+                                    backgroundColor: Colors?.GRAY_300,
                                     height: isExpanded ? '95px' : '45px',
                                     pt: 1,
                                     px: 0.2,
@@ -254,7 +204,6 @@ const CatalogFavoriteCard = ({ modelsVariants, name, productId, currency, promoT
                             >
                                 <Box
                                     sx={{
-                                        backgroundColor: '#fafafa',
                                         display: 'flex',
                                         justifyContent: 'center',
                                         gap: 0.5,
@@ -280,20 +229,33 @@ const CatalogFavoriteCard = ({ modelsVariants, name, productId, currency, promoT
                                 display: 'flex',
                                 flexDirection: 'column',
                                 gap: 1,
-                                backgroundColor: '#fafafa',
+                                backgroundColor: Colors?.GRAY_300,
                             }}
                         >
-                            <Typography px={1} py={0.5} variant="h4" sx={{ height: 40, fontSize: 14, fontWeight: 500 }}>
+                            <Typography
+                                px={1}
+                                py={0.5}
+                                variant="h4"
+                                sx={{
+                                    height: 19,
+                                    fontSize: 14,
+                                    fontWeight: 500,
+                                    whiteSpace: 'nowrap',
+                                    overflow: 'hidden',
+                                    textOverflow: 'ellipsis',
+                                }}
+                            >
                                 {!isExpanded && name}
                             </Typography>
 
                             <Box
                                 px={1}
-                                pb={0.5}
+                                pb={0.25}
                                 sx={{
                                     display: 'flex',
                                     alignItems: 'center',
                                     justifyContent: 'space-between',
+                                    backgroundColor: Colors?.GRAY_300,
                                 }}
                             >
                                 {store?.mainStoreSettings?.prices && !isExpanded && (
@@ -335,7 +297,7 @@ const CatalogFavoriteCard = ({ modelsVariants, name, productId, currency, promoT
                         </Box>
                     </Box>
                 </Box>
-            </CardItem>
+            </ProductItem>
         </Grid>
     );
 };

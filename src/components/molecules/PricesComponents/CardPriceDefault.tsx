@@ -9,7 +9,7 @@ interface Props {
 const CardPriceDefault = ({ currency, price }: Props) => {
     return (
         <Box sx={{ display: 'flex' }}>
-            <Typography sx={{ color: Colors?.GRAY_900, fontSize: 20 }}>
+            <Typography sx={{ color: Colors?.RED, fontSize: 20 }}>
                 {currency}
                 {Number(price)}
             </Typography>

@@ -26,7 +26,7 @@ const UserOrders = () => {
         storeCode,
     });
     const [isOpenDetails, setIsOpenDetails] = useState({ open: false, id: null });
-
+    const { sx } = useDevice();
     useEffect(() => {
         if (!customerOrdersRes || loadingOrders) return;
 
@@ -46,7 +46,7 @@ const UserOrders = () => {
     }, [customerOrdersRes, loadingOrders]);
 
     return (
-        <>
+        <Box p={sx ? 2 : 0}>
             {loadingOrders && <Loader />}
             <InstrumentalSubHeader
                 StartSlot={() => <BackButton nav={`/catalog/${storeCode}/${storeName}`} action={() => {}} />}
@@ -304,7 +304,7 @@ const UserOrders = () => {
                 );
             })}
             {!orderData?.length && !loadingOrders && <EmptyPage isShown />}
-        </>
+        </Box>
     );
 };
 

@@ -163,7 +163,7 @@ const Cart = () => {
         );
 
     return (
-        <>
+        <Box p={sx ? 2 : 0}>
             {(loadCreateOrder || loading || loadProducts) && <Loader position="fixed" />}
             {isOpenModal && (
                 <DeleteModal
@@ -203,9 +203,7 @@ const Cart = () => {
                                     sx={{
                                         ml: 'auto',
                                         border: xs ? '1px solid #ccc' : '',
-                                        borderRadius: xs ? 6 : 0,
                                         overflow: 'hidden',
-                                        boxShadow: xs ? '0 0 3px 1px #00000037' : '',
                                     }}
                                     key={el.id}
                                     p={xs ? 0 : 1}
@@ -217,9 +215,6 @@ const Cart = () => {
                                             maxWidth: 450,
                                             ml: 'auto',
                                             border: !xs ? '1px solid #ccc' : '',
-                                            boxShadow: '0 0 2px 1.5px #00000037',
-                                            borderTopLeftRadius: xs ? '' : 24,
-                                            borderBottomLeftRadius: xs ? '' : 24,
                                             overflow: 'hidden',
                                             borderRight: 'none',
                                             display: 'flex',
@@ -249,9 +244,6 @@ const Cart = () => {
                                             flexDirection: 'column',
                                             gap: sx ? 1 : 2,
                                             backgroundColor: '#fafafa',
-                                            boxShadow: '0 0 2px 1.5px #00000037',
-                                            borderTopRightRadius: xs ? '' : 24,
-                                            borderBottomRightRadius: xs ? '' : 24,
                                         }}
                                     >
                                         <ProductDetails data={el} setOrderData={setOrderData} />
@@ -289,7 +281,7 @@ const Cart = () => {
             ) : (
                 <>{!(loading || loadProducts) && <EmptyPage />}</>
             )}
-        </>
+        </Box>
     );
 };
 

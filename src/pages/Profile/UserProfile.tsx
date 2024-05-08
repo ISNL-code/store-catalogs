@@ -1,4 +1,4 @@
-import { Button, TextField, Typography } from '@mui/material';
+import { Box, Button, TextField, Typography } from '@mui/material';
 import BackButton from 'components/atoms/Buttons/BackButton';
 import InstrumentalSubHeader from 'components/organisms/InstrumentalSubHeader/InstrumentalSubHeader';
 import { useOutletContext, useParams } from 'react-router-dom';
@@ -30,7 +30,7 @@ const UserProfile = () => {
     }, [currentUserData]);
 
     return (
-        <>
+        <Box p={sx ? 2 : 0}>
             {isLoading && <Loader />}
             <InstrumentalSubHeader
                 StartSlot={() => <BackButton nav={`/catalog/${storeCode}/${storeName}`} action={() => {}} />}
@@ -183,7 +183,7 @@ const UserProfile = () => {
                     </Grid>
                 </Grid>
             </Grid>
-        </>
+        </Box>
     );
 };
 

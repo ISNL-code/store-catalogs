@@ -51,7 +51,7 @@ const ImageComponent = React.forwardRef<HTMLImageElement, ImageProps>(({ imgUrl,
                     ref={ref}
                 />
             ) : (
-                <CircularProgress sx={{ color: Colors?.GRAY }} />
+                <CircularProgress sx={{ color: Colors?.GRAY }} thickness={2} />
             )}
         </Box>
     );
