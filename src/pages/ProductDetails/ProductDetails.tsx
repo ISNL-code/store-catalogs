@@ -153,7 +153,7 @@ const ProductDetails = () => {
                         <ModelSwiper images={selectedVariant?.images} />
                     </Grid>
                     <Grid
-                        px={sx ? 0 : 2}
+                        px={2}
                         pt={2}
                         xs={detailsGrid()}
                         sx={{

@@ -3,15 +3,7 @@ import { useRef } from 'react';
 import { useOutletContext } from 'react-router-dom';
 import Loader from '../Loader/Loader';
 
-const PaginationButton = ({
-    setCurrentPage,
-    totalCount,
-    loadProducts,
-    productsList,
-    page,
-    totalPages,
-    countPerPage,
-}) => {
+const PaginationButton = ({ setCurrentPage, totalCount, loadProducts, productsList, page, totalPages }) => {
     const { string }: any = useOutletContext();
     const ref = useRef(null);
 

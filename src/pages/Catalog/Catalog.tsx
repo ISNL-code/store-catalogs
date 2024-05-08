@@ -32,7 +32,6 @@ const Catalog = () => {
         totalProductsCount,
         currentProductsPage,
         totalProductsPages,
-        productCountPerPage,
     }: CatalogContextInterface = useOutletContext();
     const [showTopBtn, setShowTopBtn] = useState(false);
     const [showMobileStoresButton, setShowMobileStoresButton] = useState(true);
@@ -123,7 +122,6 @@ const Catalog = () => {
                     productsList={productsList}
                     page={currentProductsPage}
                     totalPages={totalProductsPages}
-                    countPerPage={productCountPerPage}
                 />
             )}
         </Box>

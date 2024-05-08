@@ -9,16 +9,27 @@ import FullScreenSwiper from './FullScreenSwiper';
 import ImageComponent from 'components/atoms/Media/Image';
 
 const ModelSwiper = ({ images }) => {
+    const sliderRef = useRef<HTMLImageElement>(null);
     const imageRef = useRef<HTMLImageElement>(null);
-    const { headerHeight, instrumentalBarHeight, footerHeight }: CatalogContextInterface = useOutletContext();
+    const { headerHeight, instrumentalBarHeight, footerHeight, store }: CatalogContextInterface = useOutletContext();
     const [fullScreenMode, setFullScreenMode] = useState<boolean>(false);
     const { sm, sx } = useDevice();
     const [slide, setSlide] = useState(0);
     const [imagesList, setImagesList] = useState<{ imageUrl: string }[] | []>([]);
+    const [sliderHeight, setSliderHeight] = useState<number | string>(0);
 
     useEffect(() => {
         setImagesList(images);
     }, [images]);
+
+    useEffect(() => {
+        setTimeout(() => {
+            setSliderHeight(
+                ((sliderRef?.current?.clientWidth || 1) / store?.productImagesOptions?.width) *
+                    store?.productImagesOptions?.height
+            );
+        }, 100);
+    }, [sliderRef?.current?.clientWidth]); // eslint-disable-line
 
     return (
         <>
@@ -41,11 +52,10 @@ const ModelSwiper = ({ images }) => {
                     }}
                 >
                     {imagesList?.map(({ imageUrl }, idx) => {
-                        if (imageUrl.includes('.mp4')) return null;
                         return (
                             <Fragment key={idx}>
                                 <Box
-                                    ref={imageRef}
+                                    ref={sliderRef}
                                     sx={{
                                         minWidth: imagesList.length === 1 ? '100%' : sm ? '65%' : '40%',
                                         position: 'relative',
@@ -53,6 +63,7 @@ const ModelSwiper = ({ images }) => {
                                         display: 'flex',
                                         alignItems: 'center',
                                         justifyContent: 'center',
+                                        height: sliderHeight,
                                     }}
                                     onClick={() => {
                                         setFullScreenMode(true);
@@ -62,10 +73,7 @@ const ModelSwiper = ({ images }) => {
                                     <Box>
                                         <Gradient dest="top" />
                                         <Gradient dest="bottom" />
-                                        <ImageComponent
-                                            ref={imagesList.length === 1 ? null : imageRef}
-                                            imgUrl={`${imageUrl}`}
-                                        />
+                                        <ImageComponent ref={imageRef} imgUrl={`${imageUrl}`} height={sliderHeight} />
                                     </Box>
                                 </Box>
                             </Fragment>
