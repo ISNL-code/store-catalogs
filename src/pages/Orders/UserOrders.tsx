@@ -26,7 +26,7 @@ const UserOrders = () => {
         storeCode,
     });
     const [isOpenDetails, setIsOpenDetails] = useState({ open: false, id: null });
-    const { sx } = useDevice();
+
     useEffect(() => {
         if (!customerOrdersRes || loadingOrders) return;
 
