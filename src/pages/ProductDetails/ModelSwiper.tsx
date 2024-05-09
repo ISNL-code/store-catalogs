@@ -79,7 +79,7 @@ const ModelSwiper = ({ images }) => {
                                     <Box
                                         sx={{
                                             height: sliderHeight,
-                                            maxHeight: imageRef?.current?.clientHeight,
+                                            maxHeight: 'fit-content',
                                         }}
                                     >
                                         <Gradient dest="top" />
