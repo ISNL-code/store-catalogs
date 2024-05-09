@@ -10,7 +10,7 @@ const Gradient = ({ dest }) => {
                 top: 0,
                 left: 0,
                 zIndex: 1,
-                backgroundImage: `linear-gradient(to ${dest}, rgba(255, 255, 255, 0) 40%, rgba(199, 199, 199, 0.158) 65%, rgba(0, 0, 0, 0.151)90%,#0000003d)`,
+                backgroundImage: `linear-gradient(to ${dest}, rgba(200, 200, 200, 0) 40%, rgba(199, 199, 199, 0.158) 55%, rgba(110, 110, 110, 0.151)90%,#7474743c)`,
                 pointerEvents: 'none',
             }}
         ></Box>

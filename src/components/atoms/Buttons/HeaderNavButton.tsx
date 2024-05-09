@@ -1,4 +1,4 @@
-import { Badge, Box, IconButton, Typography } from '@mui/material';
+import { Badge, IconButton, Typography } from '@mui/material';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { ReactNode } from 'react';
 
@@ -32,45 +32,39 @@ const HeaderNavButton = ({
 
     if (isShown)
         return (
-            <>
-                <Box>
-                    <IconButton
-                        sx={{
-                            display: 'flex',
-                            flexDirection: 'column',
-                            alignItems: 'center',
-                            '&:hover': { backgroundColor: '#fff' },
-                        }}
-                        color={active || isActive ? `primary` : 'default'}
-                        onClick={() => {
-                            if (action) action();
-                            clearSort();
-                            if (!protectedPath && path) navigate(path);
-                        }}
-                    >
-                        <Badge
-                            color="error"
-                            badgeContent={badgeCount}
-                            sx={{
-                                '.MuiBadge-badge': {
-                                    width: 16,
-                                    height: 16,
-                                    minWidth: 16,
-                                    fontSize: 12,
-                                    top: 3,
-                                },
-                            }}
-                        >
-                            {icon()}
-                        </Badge>
-                        <Typography
-                            sx={{ fontSize: 10, color: active || isActive ? '#1976d2' : 'rgba(0, 0, 0, 0.54)' }}
-                        >
-                            {title}
-                        </Typography>
-                    </IconButton>
-                </Box>
-            </>
+            <IconButton
+                sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    '&:hover': { backgroundColor: '#fff' },
+                }}
+                color={active || isActive ? `primary` : 'default'}
+                onClick={() => {
+                    if (action) action();
+                    clearSort();
+                    if (!protectedPath && path) navigate(path);
+                }}
+            >
+                <Badge
+                    color="error"
+                    badgeContent={badgeCount}
+                    sx={{
+                        '.MuiBadge-badge': {
+                            width: 16,
+                            height: 16,
+                            minWidth: 16,
+                            fontSize: 12,
+                            top: 3,
+                        },
+                    }}
+                >
+                    {icon()}
+                </Badge>
+                <Typography sx={{ fontSize: 10, color: active || isActive ? '#1976d2' : 'rgba(0, 0, 0, 0.54)' }}>
+                    {title}
+                </Typography>
+            </IconButton>
         );
     return null;
 };

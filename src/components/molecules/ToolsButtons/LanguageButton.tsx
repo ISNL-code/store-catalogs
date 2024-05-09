@@ -33,8 +33,8 @@ const LanguageButton = ({
             <Box
                 sx={{
                     position: 'absolute',
-                    top: 4,
-                    right: 5,
+                    top: -4,
+                    right: 0,
                     borderRadius: '50%',
                     overflow: 'hidden',
                     height: 20,
@@ -86,10 +86,12 @@ const LanguageButton = ({
                 aria-expanded={open ? 'true' : undefined}
                 sx={{
                     position: 'relative',
-                    width: '50px',
+                    width: '40px',
                     display: 'flex',
                     flexDirection: 'column',
                     '&:hover': { backgroundColor: '#ffffff0' },
+                    p: 0,
+                    mb: -0.25,
                 }}
             >
                 <LanguageIcon />

@@ -1,4 +1,4 @@
-import { Box, Button } from '@mui/material';
+import { Box } from '@mui/material';
 import Loader from 'components/atoms/Loader/Loader';
 import { useEffect, useState } from 'react';
 import { useOutletContext, useParams } from 'react-router-dom';
@@ -11,11 +11,13 @@ import { CatalogContextInterface, ProductVariantInterface } from 'types';
 import TransitionBox from 'components/atoms/Transitions/TransitionBox';
 import Grid from '@mui/material/Unstable_Grid2';
 import CallBackButton from 'components/atoms/Buttons/CallBackButton';
-import CatalogFavoriteCard from 'components/organisms/Cards/CatalogFavoriteCard';
 import { useIsMount } from 'hooks/useIsMount';
 import { useProductsApi } from 'api/useProductsApi';
 import DeleteModal from 'components/organisms/Modals/DeleteModal';
 import { STORE_CONFIG } from 'constants/stores_config';
+import ViewModeButton from 'components/molecules/ToolsButtons/ViewModeButton';
+import CatalogListCard from 'components/organisms/Cards/CatalogListCard';
+import ClearListButton from 'components/molecules/ToolsButtons/ClearListButton';
 
 const Favorites = () => {
     const { OPTIONS } = STORE_CONFIG;
@@ -46,7 +48,7 @@ const Favorites = () => {
         updateFavoriteProductsRes().then(res => {
             const products = res.data?.data.products;
 
-            //clear invalid items
+            //clear invalid items or deleted by seller
             favorites?.favoriteItems?.forEach(({ sku, storeCode, userId, productId }) => {
                 if (!products.find(el => el.variants.map(({ sku }) => sku).includes(sku))) {
                     favorites?.handleSetFavoriteItems({
@@ -144,17 +146,15 @@ const Favorites = () => {
             <InstrumentalSubHeader
                 StartSlot={() => <BackButton nav={-1} action={() => {}} />}
                 EndSlot={() => (
-                    <Button
-                        disabled={!favoriteProducts?.length}
-                        variant="outlined"
-                        color="error"
-                        sx={{ backgroundColor: 'white' }}
-                        onClick={() => {
-                            setIsOpenModal(true);
-                        }}
-                    >
-                        {string?.clear_favorites}
-                    </Button>
+                    <Box sx={{ display: 'flex', gap: 0.75 }}>
+                        <ViewModeButton />
+                        <ClearListButton
+                            action={() => {
+                                setIsOpenModal(true);
+                            }}
+                            isShown
+                        />
+                    </Box>
                 )}
             />
 
@@ -163,13 +163,13 @@ const Favorites = () => {
                     <Grid container xs={12}>
                         {favoriteProducts?.map(product => {
                             return (
-                                <CatalogFavoriteCard
+                                <CatalogListCard
                                     key={product?.id}
                                     modelsVariants={product?.variants}
                                     name={product?.name}
                                     productId={product?.productId}
-                                    promoTags={product?.promoTags}
                                     currency={getCurrencySymbol(store?.currency)}
+                                    promoTags={product?.promoTags}
                                 />
                             );
                         })}

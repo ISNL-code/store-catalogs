@@ -1,6 +1,5 @@
 import { Box } from '@mui/material';
 import Loader from 'components/atoms/Loader/Loader';
-import CatalogCard from 'components/organisms/Cards/CatalogCard';
 import { useEffect, useState } from 'react';
 import { useOutletContext } from 'react-router-dom';
 import { getCurrencySymbol } from 'helpers/getCurrencySymbol';
@@ -17,6 +16,8 @@ import AppleStoreButton from 'components/atoms/Buttons/AppleStoreButton';
 import PlayMarketButton from 'components/atoms/Buttons/PlayMarketButton';
 import PaginationButton from 'components/atoms/Buttons/PaginationButton';
 import SideLink from 'components/atoms/Buttons/SideLink';
+import ViewModeButton from 'components/molecules/ToolsButtons/ViewModeButton';
+import CatalogListCard from 'components/organisms/Cards/CatalogListCard';
 
 const Catalog = () => {
     const {
@@ -87,6 +88,7 @@ const Catalog = () => {
                 }
                 EndSlot={() => (
                     <Box sx={{ display: 'flex', gap: 0.75 }}>
+                        <ViewModeButton />
                         {store?.mainStoreSettings?.skuSearch && <SkuSearch />}
                         <FilterCategories isShown={store?.mainStoreSettings?.categories} />
                     </Box>
@@ -95,10 +97,10 @@ const Catalog = () => {
 
             {productsList?.length ? (
                 <TransitionBox dependency={loading} time="1250">
-                    <Grid xs={12} container>
+                    <Grid className="CatalogList" xs={12} container>
                         {productsList?.map(product => {
                             return (
-                                <CatalogCard
+                                <CatalogListCard
                                     key={product.id}
                                     modelsVariants={product.variants as any}
                                     name={product.name}
@@ -114,7 +116,7 @@ const Catalog = () => {
             ) : (
                 <>{!loadProducts && !loading && <EmptyPage isShown />}</>
             )}
-            {!!productsList?.length && !loadProducts && !loading && (
+            {Boolean(productsList?.length) && (
                 <PaginationButton
                     setCurrentPage={handleSetProductsPage}
                     totalCount={totalProductsCount}

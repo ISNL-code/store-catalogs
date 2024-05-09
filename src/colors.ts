@@ -8,9 +8,9 @@ export enum Colors {
     DARK_BLUE = 'rgb(35, 48, 68)',
     DARK_BLUE_900 = 'rgb(30, 42, 56)',
     GRAY = '#949494',
-    GRAY_100 = 'rgb(245, 245, 245)',
+    GRAY_100 = 'rgb(250, 250, 250)',
     GRAY_300 = 'rgb(240, 240, 240)',
-    GRAY_500 = 'rgb(225, 225, 225)',
+    GRAY_500 = 'rgb(200, 200, 200)',
     GRAY_900 = '#505050',
     RED = '#db3214',
     RED_100 = '#ffebeb',
@@ -21,4 +21,6 @@ export enum Colors {
     LIGHT_GREEN = '#51ce77',
     WHITE = '#fff',
     BLACK = '#000',
+    // shadows
+    SHADOW = `0 0 5px 3px #afafaf66`,
 }

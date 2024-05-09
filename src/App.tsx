@@ -15,12 +15,15 @@ import UserProfile from 'pages/Profile/UserProfile';
 import UserOrders from 'pages/Orders/UserOrders';
 import { STORE_CONFIG } from 'constants/stores_config';
 import Head from 'layouts/Head';
+import { ViewModeType } from 'constants/types';
 
 const App = () => {
-    const { ACCESS_TOKEN_KEY, STORE_CODE, LANGUAGE_KEY, APP_LANGUAGE } = STORE_CONFIG;
+    const { ACCESS_TOKEN_KEY, STORE_CODE, LANGUAGE_KEY, APP_LANGUAGE, VIEW_MODE_KEY, USER_OPTIONS } = STORE_CONFIG;
+    const { VIEW_MODE } = USER_OPTIONS;
     const token = localStorage.getItem(ACCESS_TOKEN_KEY);
     const mount = useIsMount();
     const [lang, setLang] = useState<string>(APP_LANGUAGE);
+    const [viewMode, setViewMode] = useState<ViewModeType | null>(null);
     const [auth, setAuth] = useState<boolean | null>(false);
     const { refetch: updateUserData, isFetching } = useUserApi().useGetUserData({
         storeCode: STORE_CODE,
@@ -47,16 +50,29 @@ const App = () => {
     }, [lang, mount]); // eslint-disable-line
 
     useEffect(() => {
+        if (mount) return;
+        localStorage.setItem(VIEW_MODE_KEY, JSON.stringify(viewMode));
+    }, [viewMode, mount]); // eslint-disable-line
+
+    useEffect(() => {
         const getLang = localStorage.getItem(LANGUAGE_KEY);
+        const getViewMode = localStorage.getItem(VIEW_MODE_KEY);
+
+        if (!getViewMode) {
+            setViewMode(VIEW_MODE);
+            localStorage.setItem(VIEW_MODE_KEY, JSON.stringify(VIEW_MODE));
+        } else {
+            const savedViewMode = JSON.parse(getViewMode);
+            setViewMode(savedViewMode);
+        }
 
         if (!getLang) {
             setLang(APP_LANGUAGE);
             localStorage.setItem(LANGUAGE_KEY, JSON.stringify(APP_LANGUAGE));
-            return;
+        } else {
+            const savedLanguage = JSON.parse(getLang);
+            setLang(savedLanguage);
         }
-        const savedLanguage = JSON.parse(getLang);
-
-        setLang(savedLanguage);
     }, []); // eslint-disable-line
 
     return (
@@ -73,6 +89,8 @@ const App = () => {
                                         <Catalog
                                             lang={lang}
                                             setLang={setLang}
+                                            viewMode={viewMode}
+                                            setViewMode={setViewMode}
                                             auth={auth}
                                             setAuth={setAuth}
                                             userData={{

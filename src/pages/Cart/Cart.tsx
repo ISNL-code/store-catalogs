@@ -163,7 +163,7 @@ const Cart = () => {
         );
 
     return (
-        <Box p={sx ? 2 : 0}>
+        <Box>
             {(loadCreateOrder || loading || loadProducts) && <Loader position="fixed" />}
             {isOpenModal && (
                 <DeleteModal
@@ -206,7 +206,6 @@ const Cart = () => {
                                         overflow: 'hidden',
                                     }}
                                     key={el.id}
-                                    p={xs ? 0 : 1}
                                 >
                                     <Grid
                                         ref={imageRef}
@@ -267,8 +266,8 @@ const Cart = () => {
                             );
                         })}
                     </Grid>
-                    <Grid mb={2} mt={xs ? 2 : 0} p={xs ? 0 : 1} xs={sx ? 12 : 4}>
-                        <Box sx={{ position: 'sticky', top: 100 }}>
+                    <Grid xs={sx ? 12 : 4}>
+                        <Box sx={{ position: 'sticky' }}>
                             <ConfirmCoupon
                                 createOrder={createOrder}
                                 orderData={orderData}

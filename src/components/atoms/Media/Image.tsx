@@ -46,6 +46,7 @@ const ImageComponent = React.forwardRef<HTMLImageElement, ImageProps>(({ imgUrl,
                     src={imgUrl}
                     style={{
                         width: '100%',
+                        transition: 'all 250ms linear',
                     }}
                     alt="Loading..."
                     ref={ref}

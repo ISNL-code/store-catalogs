@@ -167,7 +167,7 @@ const ProductDetails = () => {
                             },
                         }}
                     >
-                        <Box p={sx ? 0 : 2}>
+                        <Box>
                             <ModelDetails
                                 productDetails={productDetails}
                                 selectedVariant={selectedVariant}

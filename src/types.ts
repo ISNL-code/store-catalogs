@@ -1,5 +1,9 @@
+import { ViewModeType } from 'constants/types';
+
 export interface CatalogContextInterface {
     lang: string;
+    viewMode: ViewModeType;
+    setViewMode;
     string: any;
     store: StoreInterface;
     categoriesList: {};

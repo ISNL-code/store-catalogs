@@ -16,15 +16,15 @@ import { useAddToCart } from './hooks/useAddToCart';
 import { useAddToFavorites } from './hooks/useAddToFavorites';
 import { STORE_CONFIG } from 'constants/stores_config';
 
-export default function MainCatalog({ lang, setLang, auth, setAuth, userData }) {
+export default function MainCatalog({ lang, setLang, auth, setAuth, userData, viewMode, setViewMode }) {
     const { STORE_CODE } = STORE_CONFIG;
     const { storeName, storeCode } = useParams();
     const navigate = useNavigate();
-    const { sx, l } = useDevice();
+    const { sx } = useDevice();
     const headerHeight = 50;
     const footerHeight = sx ? 70 : 0;
     const instrumentalBarHeight = 36;
-    const appXPadding = l ? 2 : 4;
+    const appXPadding = sx ? 2 : 4;
     const [openModalType, setOpenModalType] = useState<string | null>(null);
     const { currentLanguage } = useGetLanguage({ lang });
     const [scrollPosition, setScrollPosition] = useState(0);
@@ -110,14 +110,10 @@ export default function MainCatalog({ lang, setLang, auth, setAuth, userData }) 
                 user={userData}
             />
 
-            <Box
-                px={sx ? 0 : appXPadding}
-                pt={sx ? 0 : 1}
-                sx={{ mt: `${headerHeight + instrumentalBarHeight}px`, mb: `${footerHeight}px` }}
-            >
+            <Box sx={{ mt: `${headerHeight + instrumentalBarHeight}px`, mb: `${footerHeight}px` }}>
                 <Outlet
                     context={{
-                        //main data
+                        //main data | user options
                         lang: lang,
                         supportedLanguage: supportedLanguage,
                         string: currentLanguage?.string,
@@ -125,6 +121,8 @@ export default function MainCatalog({ lang, setLang, auth, setAuth, userData }) 
                         setScrollPosition: setScrollPosition,
                         setOpenModalType: setOpenModalType,
                         openModalType: openModalType,
+                        viewMode: viewMode,
+                        setViewMode: setViewMode,
 
                         //store data
                         store,

@@ -17,6 +17,7 @@ const ModelSwiper = ({ images }) => {
     const [slide, setSlide] = useState(0);
     const [imagesList, setImagesList] = useState<{ imageUrl: string }[] | []>([]);
     const [sliderHeight, setSliderHeight] = useState<number | string>(0);
+    const [maxHeight, setMaxHeight] = useState<number | string>(0);
 
     useEffect(() => {
         setImagesList(images);
@@ -29,7 +30,10 @@ const ModelSwiper = ({ images }) => {
                     store?.productImagesOptions?.height
             );
         }, 100);
-    }, [sliderRef?.current?.clientWidth]); // eslint-disable-line
+        setTimeout(() => {
+            setMaxHeight(imageRef?.current?.clientHeight as number);
+        }, 100);
+    }, [sliderRef?.current?.clientWidth, imageRef?.current?.clientHeight]); // eslint-disable-line
 
     return (
         <>
@@ -63,17 +67,16 @@ const ModelSwiper = ({ images }) => {
                                         display: 'flex',
                                         alignItems: 'center',
                                         justifyContent: 'center',
-                                        height: sliderHeight,
                                     }}
                                     onClick={() => {
                                         setFullScreenMode(true);
                                         setSlide(idx);
                                     }}
                                 >
-                                    <Box>
+                                    <Box sx={{ height: sliderHeight, maxHeight: maxHeight }}>
                                         <Gradient dest="top" />
                                         <Gradient dest="bottom" />
-                                        <ImageComponent ref={imageRef} imgUrl={`${imageUrl}`} height={sliderHeight} />
+                                        <ImageComponent ref={imageRef} imgUrl={`${imageUrl}`} height={'100%'} />
                                     </Box>
                                 </Box>
                             </Fragment>

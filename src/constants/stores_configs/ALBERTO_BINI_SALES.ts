@@ -1,4 +1,4 @@
-import { StoreType } from 'constants/types';
+import { StoreType, ViewModeType } from 'constants/types';
 
 const prefix = 'abs';
 
@@ -25,4 +25,5 @@ export const ALBERTO_BINI_SALES = {
         google_analytics_id: 'G-C4TDRX7K5V',
         store_logo: 'alberto_bini_logo.png',
     },
+    user_options: { view_mode: ViewModeType?.grid_l },
 };

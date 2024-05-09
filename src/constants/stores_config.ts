@@ -4,7 +4,7 @@ import { ALBERTO_BINI_SALES } from './stores_configs/ALBERTO_BINI_SALES';
 import { DEVELOP_STORE } from './stores_configs/A_DEVELOP_STORE';
 import { KREMEN_BELTS_MAIN } from './stores_configs/KREMEN_BELTS_MAIN';
 import { KREMEN_BELTS_SALES } from './stores_configs/KREMEN_BELTS_SALES';
-import { StoreType, STORE_CONFIG_Interface } from './types';
+import { StoreType, STORE_CONFIG_Interface, ViewModeType } from './types';
 
 const stores = [
     DEVELOP_STORE,
@@ -28,6 +28,7 @@ const storeConfig = (): STORE_CONFIG_Interface => {
         FAVORITE_KEY: matchingDomain?.favorite_url || 'sales_nest_favorite',
         LANGUAGE_KEY: matchingDomain?.lang_key || 'sales_nest_lang',
         APP_LANGUAGE: matchingDomain?.app_lang || 'en',
+        VIEW_MODE_KEY: 'sales_nest_view_mode',
         OPTIONS: {
             MAIN_PRICE_MULTIPLICATION: matchingDomain?.options?.main_price_multiplication || 1,
             SALE_PRICE_MULTIPLICATION: matchingDomain?.options?.sale_price_multiplication || 1,
@@ -41,6 +42,7 @@ const storeConfig = (): STORE_CONFIG_Interface => {
             GOOGLE_ANALYTICS_ID: matchingDomain?.web_head_data?.google_analytics_id || '',
             STORE_LOGO: matchingDomain?.web_head_data?.store_logo || '',
         },
+        USER_OPTIONS: { VIEW_MODE: matchingDomain?.user_options?.view_mode || ViewModeType?.grid_l },
     };
 };
 

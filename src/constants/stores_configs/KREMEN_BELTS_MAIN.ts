@@ -1,4 +1,4 @@
-import { StoreType } from 'constants/types';
+import { StoreType, ViewModeType } from 'constants/types';
 
 const prefix = 'kbm';
 
@@ -25,4 +25,5 @@ export const KREMEN_BELTS_MAIN = {
         google_analytics_id: 'G-7G98583PY1',
         store_logo: 'kremen_belts_logo.png',
     },
+    user_options: { view_mode: ViewModeType?.grid_l },
 };

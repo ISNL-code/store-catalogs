@@ -3,6 +3,12 @@ export enum StoreType {
     wholesales = 'wholesales',
     default = 'default',
 }
+
+export enum ViewModeType {
+    grid_l = 'grid_l',
+    grid_m = 'grid_m',
+    card = 'card',
+}
 export interface STORE_CONFIG_Interface {
     STORE_NAME: string; // Real store name
     STORE_CODE: string; // use for get current store data
@@ -12,6 +18,7 @@ export interface STORE_CONFIG_Interface {
     FAVORITE_KEY: string; // use for local storage key
     LANGUAGE_KEY: string; // use for local storage key
     APP_LANGUAGE: string; // init app language
+    VIEW_MODE_KEY: string; // use for local storage key
     OPTIONS: {
         MAIN_PRICE_MULTIPLICATION: number; // use in custom catalogs for multiple main prices
         SALE_PRICE_MULTIPLICATION: number; // use in custom catalogs for multiple sales prices
@@ -20,4 +27,5 @@ export interface STORE_CONFIG_Interface {
         STORE_TYPE: StoreType; // use in custom catalogs for identification of store type
     };
     WEB_HEAD_DATA: { STORE_TITLE: string; STORE_DESCRIPTION: string; GOOGLE_ANALYTICS_ID: string; STORE_LOGO: string };
+    USER_OPTIONS: { VIEW_MODE: ViewModeType }; // use for product list view}
 }

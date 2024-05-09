@@ -46,7 +46,7 @@ const UserOrders = () => {
     }, [customerOrdersRes, loadingOrders]);
 
     return (
-        <Box p={sx ? 2 : 0}>
+        <Box>
             {loadingOrders && <Loader />}
             <InstrumentalSubHeader
                 StartSlot={() => <BackButton nav={`/catalog/${storeCode}/${storeName}`} action={() => {}} />}

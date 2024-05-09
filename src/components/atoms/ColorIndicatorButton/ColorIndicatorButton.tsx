@@ -27,6 +27,7 @@ const ColorIndicatorButton = ({
             sx={
                 withLabel
                     ? {
+                          zIndex: 1,
                           display: 'flex',
                           alignItems: 'center',
                           border: selected ? '1px solid #ccc' : '0 solid #ccc',
@@ -40,7 +41,7 @@ const ColorIndicatorButton = ({
                                   ? `linear-gradient(135deg, #e9e9e9 50%, #ffffff) padding-box 90%, linear-gradient(90deg, #a7a7a7, #dbdbdb) border-box`
                                   : 'none',
                       }
-                    : null
+                    : { zIndex: 1 }
             }
         >
             <Box

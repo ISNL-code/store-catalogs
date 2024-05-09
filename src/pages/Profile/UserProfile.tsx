@@ -30,7 +30,7 @@ const UserProfile = () => {
     }, [currentUserData]);
 
     return (
-        <Box p={sx ? 2 : 0}>
+        <Box>
             {isLoading && <Loader />}
             <InstrumentalSubHeader
                 StartSlot={() => <BackButton nav={`/catalog/${storeCode}/${storeName}`} action={() => {}} />}

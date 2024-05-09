@@ -1,4 +1,5 @@
 import { Tooltip, Typography } from '@mui/material';
+import { Colors } from 'colors';
 
 interface Props {
     data?: any[];
@@ -16,25 +17,26 @@ const StyledTooltip = ({ data = [], title = '', children, maxWidth = 500, hidden
                 (data.length ? (
                     <>
                         {data.map(el => (
-                            <Typography key={el} sx={{ fontSize: 14, color: '#000' }}>
+                            <Typography key={el} sx={{ fontSize: 14 }}>
                                 {el}
                             </Typography>
                         ))}
                     </>
                 ) : (
-                    <Typography sx={{ fontSize: 14, color: '#000' }}>{title}</Typography>
+                    <Typography sx={{ fontSize: 12, color: '#000' }}>{title}</Typography>
                 )) as JSX.Element
             }
             arrow
-            placement="top-end"
+            placement="bottom-end"
             componentsProps={{
                 tooltip: {
                     sx: {
                         backgroundColor: '#ffffff',
-                        border: '1px solid #1976d290',
+                        border: '1px solid',
+                        borderColor: Colors?.GRAY_500,
                         maxWidth: maxWidth,
-                        px: 2,
-                        py: 1,
+                        p: 0.5,
+                        px: 1,
                         display: hidden ? 'none' : 'block',
                     },
                 },
@@ -42,7 +44,8 @@ const StyledTooltip = ({ data = [], title = '', children, maxWidth = 500, hidden
                     sx: {
                         color: '#fff',
                         '&:before': {
-                            border: '1px solid #1976d290',
+                            border: '1px solid ',
+                            borderColor: Colors?.GRAY_500,
                         },
                     },
                 },
