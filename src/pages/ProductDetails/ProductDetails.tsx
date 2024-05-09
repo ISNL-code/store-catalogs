@@ -121,7 +121,7 @@ const ProductDetails = () => {
     if (!productDetails) return <Loader />;
 
     return (
-        <Box p={appXPadding} pb={footerMenuHeight}>
+        <Box px={appXPadding} pb={footerMenuHeight}>
             <InstrumentalSubHeader
                 StartSlot={() => <BackButton nav={`/catalog/${storeCode}/${storeName}`} action={() => {}} />}
                 EndSlot={() => (

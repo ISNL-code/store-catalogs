@@ -40,7 +40,7 @@ const GridLargeView = ({
                     position: 'sticky',
                     backgroundColor: Colors?.GRAY_100,
                     border: s ? 'none' : '0.25px solid',
-                    borderBottom: s ? '0.25px solid' : 'none',
+                    borderBottom: '0.25px solid',
                     borderColor: Colors?.GRAY_500,
                     width: '100%',
                     overflow: 'hidden',

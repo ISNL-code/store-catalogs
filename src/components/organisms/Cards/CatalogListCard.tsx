@@ -274,13 +274,15 @@ const CatalogListCard = memo<CatalogCardProps>(
                                     gap: 0.5,
                                 }}
                             >
-                                {store?.mainStoreSettings?.prices && (
-                                    <CardPrice
-                                        currency={currency}
-                                        price={Number(shownModel?.originalPrice)}
-                                        discountPrice={Number(shownModel?.price)}
-                                    />
-                                )}
+                                <Box sx={{ minWidth: 75 }}>
+                                    {store?.mainStoreSettings?.prices && (
+                                        <CardPrice
+                                            currency={currency}
+                                            price={Number(shownModel?.originalPrice)}
+                                            discountPrice={Number(shownModel?.price)}
+                                        />
+                                    )}
+                                </Box>
 
                                 <Box
                                     sx={{
