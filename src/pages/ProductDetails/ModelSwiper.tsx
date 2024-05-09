@@ -36,7 +36,7 @@ const ModelSwiper = ({ images }) => {
         setTimeout(() => {
             setMaxHeight(imageRef?.current?.clientHeight as number);
         }, 100);
-    }, [WINDOW_WIDTH]); // eslint-disable-line
+    }, [WINDOW_WIDTH, sliderRef?.current?.clientWidth]); // eslint-disable-line
 
     return (
         <>

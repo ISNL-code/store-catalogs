@@ -98,7 +98,7 @@ const CatalogListCard = memo<CatalogCardProps>(
                         store?.productImagesOptions?.height
                 );
             }, 100);
-        }, [viewMode, WINDOW_WIDTH]); // eslint-disable-line
+        }, [viewMode, WINDOW_WIDTH, sliderRef?.current?.clientWidth]); // eslint-disable-line
 
         const SliderComponent = () => {
             return (
