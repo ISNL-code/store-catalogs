@@ -19,6 +19,7 @@ import ProductDetails from './components/ProductDetails';
 import { useCartApi } from 'api/useCartApi';
 import SuccessOrderingPage from 'components/atoms/SuccessOrdering/SuccessOrderingPage';
 import ClearListButton from 'components/molecules/ToolsButtons/ClearListButton';
+import { Colors } from 'colors';
 
 interface ProductListInterface {
     sizeId: number | null;
@@ -49,14 +50,22 @@ const Cart = () => {
     const { storeCode, storeName } = useParams();
     const mount = useIsMount();
     const navigate = useNavigate();
-    const { auth, cart, supportedLanguage, store, string, footerMenuHeight, appXPadding }: CatalogContextInterface =
-        useOutletContext();
+    const {
+        auth,
+        cart,
+        supportedLanguage,
+        store,
+        string,
+        footerMenuHeight,
+        appXPadding,
+        headerHeight,
+        instrumentalBarHeight,
+    }: CatalogContextInterface = useOutletContext();
     const [productIds, setProductIds] = useState<string[] | any[]>([]);
     const [cartProducts, setCartProducts] = useState<ProductVariantInterface[] | any[]>([]);
     const [isOpenModal, setIsOpenModal] = useState(false);
     const [finalPrice, setFinalPrice] = useState(0);
     const [successOrdering, setSuccessOrdering] = useState(false);
-    const [sliderHeight, setSliderHeight] = useState<number | string>(0);
     const [orderData, setOrderData] = useState<OrderDataInterface>({
         final_price: 0,
         productsList: [] as ProductListInterface[],
@@ -157,15 +166,6 @@ const Cart = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [auth, mount]);
 
-    useEffect(() => {
-        setTimeout(() => {
-            setSliderHeight(
-                ((sliderRef?.current?.clientWidth || 1) / store?.productImagesOptions?.width) *
-                    store?.productImagesOptions?.height
-            );
-        }, 100);
-    }, [sliderRef?.current?.clientWidth]); // eslint-disable-line
-
     if (successOrdering)
         return (
             <>
@@ -175,7 +175,7 @@ const Cart = () => {
         );
 
     return (
-        <Box p={sx ? 2 : appXPadding} pb={footerMenuHeight}>
+        <Box className="CartPageContainer" p={sx ? 2 : appXPadding} pb={appXPadding + footerMenuHeight}>
             {(loadCreateOrder || loading || loadProducts) && <Loader position="fixed" />}
             {isOpenModal && (
                 <DeleteModal
@@ -201,7 +201,7 @@ const Cart = () => {
                 )}
             />
             {cartProducts?.length ? (
-                <Grid xs={12} container sx={{ overflowY: 'scroll', position: 'relative' }}>
+                <Grid className="CartContainer" xs={12} container>
                     <Grid
                         xs={sx ? 12 : 8}
                         sx={{
@@ -212,6 +212,7 @@ const Cart = () => {
                         {cartProducts.map(el => {
                             return (
                                 <Grid
+                                    pb={2}
                                     ref={sliderRef}
                                     container
                                     xs={12}
@@ -233,9 +234,10 @@ const Cart = () => {
                                             display: 'flex',
                                             flexDirection: 'column',
                                             justifyContent: 'center',
-                                            // height: sliderHeight,
+                                            backgroundColor: Colors?.GRAY_100,
                                             alignItems: 'center',
                                         }}
+                                        p={2}
                                     >
                                         {el?.images?.length ? (
                                             <ImageComponent
@@ -248,7 +250,7 @@ const Cart = () => {
                                     </Grid>
                                     <Grid
                                         px={sx ? 1 : 4}
-                                        py={1}
+                                        py={2}
                                         xs={xs ? 12 : 6}
                                         sx={{
                                             border: !xs ? '1px solid #ccc' : '',
@@ -281,8 +283,18 @@ const Cart = () => {
                             );
                         })}
                     </Grid>
-                    <Grid sx={{ position: 'sticky', top: 0, zIndex: 1000 }}>
-                        <Box>
+                    <Grid
+                        className="CouponContainer"
+                        xs={sx ? 12 : 4}
+                        mb={sx ? 2 : 0}
+                        sx={{
+                            position: sx ? 'static' : 'sticky',
+                            top: headerHeight + instrumentalBarHeight + 24,
+                            zIndex: 100,
+                            height: 'fit-content',
+                        }}
+                    >
+                        <Box sx={{ pl: sx ? 0 : 2 }}>
                             <ConfirmCoupon
                                 createOrder={createOrder}
                                 orderData={orderData}

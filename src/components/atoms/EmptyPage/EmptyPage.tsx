@@ -6,9 +6,6 @@ import { Colors } from 'colors';
 
 const EmptyPage = ({ isShown = true }) => {
     const {
-        instrumentalBarHeight,
-        headerHeight,
-        footerHeight,
         string,
     }: {
         sortedStores: string;

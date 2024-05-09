@@ -113,7 +113,7 @@ export default function MainCatalog({ lang, setLang, auth, setAuth, userData, vi
                 user={userData}
             />
 
-            <Box mt={`${HEADER_HEIGHT + INSTRUMENTAL_BAR_HEIGHT}px`} flexGrow={1}>
+            <Box className="AppBody" mt={`${HEADER_HEIGHT + INSTRUMENTAL_BAR_HEIGHT}px`} flexGrow={1}>
                 <Outlet
                     context={
                         {

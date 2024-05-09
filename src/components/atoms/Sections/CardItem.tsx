@@ -12,6 +12,7 @@ const CardItem = ({ children, withHover = true }) => {
             ref={cardRef}
             sx={{
                 position: 'sticky',
+                top: 0,
                 backgroundColor: Colors?.WHITE,
                 border: '0.25px solid',
                 borderColor: Colors?.GRAY_500,
