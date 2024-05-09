@@ -201,9 +201,8 @@ const Cart = () => {
                 )}
             />
             {cartProducts?.length ? (
-                <Grid xs={12} container sx={{ position: 'relative' }}>
+                <Grid xs={12} container sx={{ overflowY: 'scroll', position: 'relative' }}>
                     <Grid
-                        className="RelativeElement"
                         xs={sx ? 12 : 8}
                         sx={{
                             rowGap: !xs ? 0 : 2,
@@ -282,8 +281,8 @@ const Cart = () => {
                             );
                         })}
                     </Grid>
-                    <Grid className="StickyElement" xs={sx ? 12 : 4}>
-                        <Box sx={{ position: 'sticky', top: 100 }}>
+                    <Grid sx={{ position: 'sticky', top: 0, zIndex: 1000 }}>
+                        <Box>
                             <ConfirmCoupon
                                 createOrder={createOrder}
                                 orderData={orderData}
