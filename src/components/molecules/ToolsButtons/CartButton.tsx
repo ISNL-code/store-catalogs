@@ -31,7 +31,7 @@ const CartButton = ({ isShown, action, selected }: CartButtonInterface) => {
                         }}
                     >
                         {selected ? (
-                            <ShoppingCartCheckoutIcon sx={{ color: 'white' }} />
+                            <ShoppingCartCheckoutIcon sx={{ color: 'white' }} fontSize="small" />
                         ) : (
                             <AddShoppingCartIcon sx={{ color: '#1976d2' }} fontSize="small" />
                         )}

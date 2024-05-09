@@ -20,6 +20,7 @@ import { ViewModeType } from 'constants/types';
 import CardView from './CardView';
 import GridLargeView from './GridLargeView';
 import GridMediumView from './GridMediumView';
+import { useWindowWidth } from '@react-hook/window-size';
 
 interface ShownModelInterface {
     price: string;
@@ -71,6 +72,7 @@ const CatalogListCard = memo<CatalogCardProps>(
         handleBodyPadding,
         handleCardSpacings,
     }) => {
+        const WINDOW_WIDTH = useWindowWidth();
         const { OPTIONS } = STORE_CONFIG;
         const { STORE_TYPE } = OPTIONS;
         const sliderRef = useRef<HTMLImageElement>(null);
@@ -96,7 +98,7 @@ const CatalogListCard = memo<CatalogCardProps>(
                         store?.productImagesOptions?.height
                 );
             }, 100);
-        }, [sliderRef?.current?.clientWidth, viewMode]); // eslint-disable-line
+        }, [viewMode, WINDOW_WIDTH]); // eslint-disable-line
 
         const SliderComponent = () => {
             return (

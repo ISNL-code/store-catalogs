@@ -7,8 +7,10 @@ import { useDevice } from 'hooks/useDevice';
 import { CatalogContextInterface } from 'types';
 import FullScreenSwiper from './FullScreenSwiper';
 import ImageComponent from 'components/atoms/Media/Image';
+import { useWindowWidth } from '@react-hook/window-size';
 
 const ModelSwiper = ({ images }) => {
+    const WINDOW_WIDTH = useWindowWidth();
     const sliderRef = useRef<HTMLImageElement>(null);
     const imageRef = useRef<HTMLImageElement>(null);
     const { headerHeight, instrumentalBarHeight, footerMenuHeight, store }: CatalogContextInterface =
@@ -34,7 +36,7 @@ const ModelSwiper = ({ images }) => {
         setTimeout(() => {
             setMaxHeight(imageRef?.current?.clientHeight as number);
         }, 100);
-    }, [sliderRef?.current?.clientWidth, imageRef?.current?.clientHeight]); // eslint-disable-line
+    }, [WINDOW_WIDTH]); // eslint-disable-line
 
     return (
         <>
