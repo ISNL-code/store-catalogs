@@ -7,9 +7,10 @@ import { Colors } from 'colors';
 interface ImageProps {
     imgUrl: string;
     height?;
+    imgHeight?;
 }
 
-const ImageComponent = React.forwardRef<HTMLImageElement, ImageProps>(({ imgUrl, height }, ref) => {
+const ImageComponent = React.forwardRef<HTMLImageElement, ImageProps>(({ imgUrl, height, imgHeight = 'auto' }, ref) => {
     const [imgLoaded, setImgLoaded] = useState(false);
     const [imgError, setImgError] = useState(false);
 
@@ -51,6 +52,7 @@ const ImageComponent = React.forwardRef<HTMLImageElement, ImageProps>(({ imgUrl,
                     style={{
                         width: '100%',
                         transition: 'all 250ms linear',
+                        height: imgHeight,
                     }}
                     alt="Loading..."
                     ref={ref}

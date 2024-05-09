@@ -79,12 +79,12 @@ const ModelSwiper = ({ images }) => {
                                     <Box
                                         sx={{
                                             height: sliderHeight,
-                                            // maxHeight: maxHeight
+                                            maxHeight: imageRef?.current?.clientHeight,
                                         }}
                                     >
                                         <Gradient dest="top" />
                                         <Gradient dest="bottom" />
-                                        <ImageComponent ref={imageRef} imgUrl={`${imageUrl}`} />
+                                        <ImageComponent ref={imageRef} imgUrl={`${imageUrl}`} imgHeight={'100%'} />
                                     </Box>
                                 </Box>
                             </Fragment>

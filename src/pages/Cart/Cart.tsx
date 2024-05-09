@@ -205,14 +205,13 @@ const Cart = () => {
                     <Grid
                         xs={sx ? 12 : 8}
                         sx={{
-                            rowGap: !xs ? 0 : 2,
+                            rowGap: 2,
                         }}
                         container
                     >
                         {cartProducts.map(el => {
                             return (
                                 <Grid
-                                    pb={2}
                                     ref={sliderRef}
                                     container
                                     xs={12}
@@ -249,8 +248,7 @@ const Cart = () => {
                                         )}
                                     </Grid>
                                     <Grid
-                                        px={sx ? 1 : 4}
-                                        py={2}
+                                        p={2}
                                         xs={xs ? 12 : 6}
                                         sx={{
                                             border: !xs ? '1px solid #ccc' : '',
@@ -286,7 +284,7 @@ const Cart = () => {
                     <Grid
                         className="CouponContainer"
                         xs={sx ? 12 : 4}
-                        mb={sx ? 2 : 0}
+                        my={sx ? 2 : 0}
                         sx={{
                             position: sx ? 'static' : 'sticky',
                             top: headerHeight + instrumentalBarHeight + 24,
