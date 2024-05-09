@@ -3,6 +3,7 @@ import { StoreType, ViewModeType } from 'constants/types';
 const prefix = 'abo';
 
 export const ALBERTO_BINI_OUTLET = {
+    active: true,
     URL: ['https://alberto-bini-outlet.netlify.app'],
     store_name: 'Alberto Bini Outlet',
     store_code: 'ALBERTO_BINI_SALES',

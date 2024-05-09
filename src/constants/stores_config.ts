@@ -20,6 +20,7 @@ const storeConfig = (): STORE_CONFIG_Interface => {
     const matchingDomain = stores.find(domain => domain.URL.some(url => currentUrl.includes(url)));
 
     return {
+        ACTIVE: matchingDomain?.active || true,
         STORE_NAME: matchingDomain?.store_name || '',
         STORE_CODE: matchingDomain?.store_code || '',
         BASE_URL: matchingDomain?.base_url || '',

@@ -21,8 +21,8 @@ const CartButton = ({ isShown, action, selected }: CartButtonInterface) => {
                         sx={{
                             border: selected ? '1px solid green' : '1px solid #1976d2',
                             backgroundColor: selected ? 'green' : '#fff',
-                            width: '33px',
-                            height: '33px',
+                            width: '30px',
+                            height: '30px',
                             '&:hover': { backgroundColor: selected ? 'green' : '#fff' },
                         }}
                         onClick={() => {

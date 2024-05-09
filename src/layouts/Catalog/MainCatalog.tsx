@@ -10,7 +10,7 @@ import { useStoresApi } from 'api/useStoresApi';
 import { useCategory } from './hooks/useCategory';
 import { useProducts } from './hooks/useProducts';
 import Modals from 'layouts/Modals';
-import { StoreInterface } from 'types';
+import { CatalogContextInterface, StoreInterface } from 'types';
 import { STORES_DATA } from 'dataBase/STORES';
 import { useAddToCart } from './hooks/useAddToCart';
 import { useAddToFavorites } from './hooks/useAddToFavorites';
@@ -21,10 +21,13 @@ export default function MainCatalog({ lang, setLang, auth, setAuth, userData, vi
     const { storeName, storeCode } = useParams();
     const navigate = useNavigate();
     const { sx } = useDevice();
-    const headerHeight = 50;
-    const footerHeight = sx ? 70 : 0;
-    const instrumentalBarHeight = 36;
-    const appXPadding = sx ? 2 : 4;
+    const HEADER_HEIGHT = 50;
+    const FOOTER_MENU_HEIGHT = sx ? '70px' : 0;
+    const INSTRUMENTAL_BAR_HEIGHT = 36;
+    const INSTRUMENTAL_BAR_PADDINGS = sx ? 2 : 4;
+    const HEADER_PADDINGS = sx ? 2 : 4;
+    const BODY_PADDINGS = sx ? 0 : 4;
+    const FOOTER_PADDINGS = sx ? 2 : 4;
     const [openModalType, setOpenModalType] = useState<string | null>(null);
     const { currentLanguage } = useGetLanguage({ lang });
     const [scrollPosition, setScrollPosition] = useState(0);
@@ -90,12 +93,12 @@ export default function MainCatalog({ lang, setLang, auth, setAuth, userData, vi
     if (!store) return <></>;
 
     return (
-        <Box>
+        <Box display="flex" flexDirection="column" justifyContent="space-between">
             <CssBaseline />
 
             <Header
-                headerHeight={headerHeight}
-                appXPadding={appXPadding}
+                headerHeight={HEADER_HEIGHT}
+                appXPadding={HEADER_PADDINGS}
                 string={currentLanguage?.string}
                 lang={supportedLanguage}
                 setLang={setLang}
@@ -110,58 +113,61 @@ export default function MainCatalog({ lang, setLang, auth, setAuth, userData, vi
                 user={userData}
             />
 
-            <Box sx={{ mt: `${headerHeight + instrumentalBarHeight}px`, mb: `${footerHeight}px` }}>
+            <Box mt={`${HEADER_HEIGHT + INSTRUMENTAL_BAR_HEIGHT}px`} flexGrow={1} overflow="hidden">
                 <Outlet
-                    context={{
-                        //main data | user options
-                        lang: lang,
-                        supportedLanguage: supportedLanguage,
-                        string: currentLanguage?.string,
-                        scrollPosition: scrollPosition,
-                        setScrollPosition: setScrollPosition,
-                        setOpenModalType: setOpenModalType,
-                        openModalType: openModalType,
-                        viewMode: viewMode,
-                        setViewMode: setViewMode,
+                    context={
+                        {
+                            //main data | user options
+                            lang: lang,
+                            supportedLanguage: supportedLanguage,
+                            string: currentLanguage?.string,
+                            scrollPosition: scrollPosition,
+                            setScrollPosition: setScrollPosition,
+                            setOpenModalType: setOpenModalType,
+                            openModalType: openModalType,
+                            viewMode: viewMode,
+                            setViewMode: setViewMode,
 
-                        //store data
-                        store,
+                            //store data
+                            store,
 
-                        //user data
-                        currentUserData: userData.currentUserData,
-                        loadingUserData: userData.isFetching,
-                        updateUserData: userData.updateUserData,
-                        setCurrentUserData: userData.setCurrentUserData,
+                            //user data
+                            auth: auth,
+                            currentUserData: userData.currentUserData,
+                            loadingUserData: userData.isFetching,
+                            updateUserData: userData.updateUserData,
+                            setCurrentUserData: userData.setCurrentUserData,
 
-                        //products data
-                        productsList: productsList,
-                        setProductsList: setProductsList,
-                        loadProducts: loadProducts,
-                        loadMoreProducts: loadMoreProducts,
-                        updateProducts: updateProducts,
-                        productCountPerPage: productCountPerPage,
-                        totalProductsCount: totalProductsCount,
-                        totalProductsPages: totalProductsPages,
-                        handleSetProductsPage: handleSetProductsPage,
-                        currentProductsPage: currentProductsPage,
+                            //products data
+                            productsList: productsList,
+                            setProductsList: setProductsList,
+                            loadProducts: loadProducts,
+                            loadMoreProducts: loadMoreProducts,
+                            updateProducts: updateProducts,
+                            productCountPerPage: productCountPerPage,
+                            totalProductsCount: totalProductsCount,
+                            totalProductsPages: totalProductsPages,
+                            handleSetProductsPage: handleSetProductsPage,
+                            currentProductsPage: currentProductsPage,
 
-                        //categories data
-                        categoriesList,
-                        queryCategories: queryCategories,
-                        setQueryCategories: setQueryCategories,
-                        handleCategoriesQuery: handleCategoriesQuery,
+                            //categories data
+                            categoriesList,
+                            queryCategories: queryCategories,
+                            setQueryCategories: setQueryCategories,
+                            handleCategoriesQuery: handleCategoriesQuery,
 
-                        //css data
-                        instrumentalBarHeight: instrumentalBarHeight,
-                        headerHeight: headerHeight,
-                        footerHeight: footerHeight,
-                        appXPadding: appXPadding,
-                        auth: auth,
+                            //css data
+                            instrumentalBarHeight: INSTRUMENTAL_BAR_HEIGHT,
+                            instrumentalBarPadding: INSTRUMENTAL_BAR_PADDINGS,
+                            headerHeight: HEADER_HEIGHT,
+                            footerMenuHeight: FOOTER_MENU_HEIGHT,
+                            appXPadding: BODY_PADDINGS,
 
-                        //cart & favorites
-                        cart: cart,
-                        favorites: favorites,
-                    }}
+                            //cart & favorites
+                            cart: cart,
+                            favorites: favorites,
+                        } as CatalogContextInterface
+                    }
                 />
             </Box>
             <Modals
@@ -172,7 +178,8 @@ export default function MainCatalog({ lang, setLang, auth, setAuth, userData, vi
                 setOpenModalType={setOpenModalType}
             />
             <MobileMenu
-                appXPadding={appXPadding}
+                menuHeight={FOOTER_MENU_HEIGHT}
+                appXPadding={FOOTER_PADDINGS}
                 string={currentLanguage?.string}
                 auth={auth}
                 isShown={!!sx}
@@ -182,7 +189,7 @@ export default function MainCatalog({ lang, setLang, auth, setAuth, userData, vi
                 openModalType={openModalType}
                 cart={cart}
                 favorites={favorites}
-                headerHeight={headerHeight}
+                headerHeight={HEADER_HEIGHT}
                 store={store}
                 user={userData}
             />

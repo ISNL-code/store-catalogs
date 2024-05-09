@@ -10,7 +10,7 @@ import Loader from 'components/atoms/Loader/Loader';
 import Grid from '@mui/material/Unstable_Grid2';
 import ImageComponent, { EmptyImage } from 'components/atoms/Media/Image';
 import { useDevice } from 'hooks/useDevice';
-import { Box, Button } from '@mui/material';
+import { Box } from '@mui/material';
 import AddSizesButtons from './components/AddSizesButtons';
 import AddButtons from './components/AddButtons';
 import DeleteModal from 'components/organisms/Modals/DeleteModal';
@@ -18,6 +18,7 @@ import ConfirmCoupon from './components/ConfirmCoupon';
 import ProductDetails from './components/ProductDetails';
 import { useCartApi } from 'api/useCartApi';
 import SuccessOrderingPage from 'components/atoms/SuccessOrdering/SuccessOrderingPage';
+import ClearListButton from 'components/molecules/ToolsButtons/ClearListButton';
 
 interface ProductListInterface {
     sizeId: number | null;
@@ -43,17 +44,19 @@ export interface OrderDataInterface {
 }
 
 const Cart = () => {
-    const imageRef = useRef<HTMLImageElement>(null);
+    const sliderRef = useRef<HTMLImageElement>(null);
     const { sx, xs } = useDevice();
     const { storeCode, storeName } = useParams();
     const mount = useIsMount();
     const navigate = useNavigate();
-    const { auth, cart, supportedLanguage, store, string }: CatalogContextInterface = useOutletContext();
+    const { auth, cart, supportedLanguage, store, string, footerMenuHeight, appXPadding }: CatalogContextInterface =
+        useOutletContext();
     const [productIds, setProductIds] = useState<string[] | any[]>([]);
     const [cartProducts, setCartProducts] = useState<ProductVariantInterface[] | any[]>([]);
     const [isOpenModal, setIsOpenModal] = useState(false);
     const [finalPrice, setFinalPrice] = useState(0);
     const [successOrdering, setSuccessOrdering] = useState(false);
+    const [sliderHeight, setSliderHeight] = useState<number | string>(0);
     const [orderData, setOrderData] = useState<OrderDataInterface>({
         final_price: 0,
         productsList: [] as ProductListInterface[],
@@ -154,6 +157,15 @@ const Cart = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [auth, mount]);
 
+    useEffect(() => {
+        setTimeout(() => {
+            setSliderHeight(
+                ((sliderRef?.current?.clientWidth || 1) / store?.productImagesOptions?.width) *
+                    store?.productImagesOptions?.height
+            );
+        }, 100);
+    }, [sliderRef?.current?.clientWidth]); // eslint-disable-line
+
     if (successOrdering)
         return (
             <>
@@ -163,7 +175,7 @@ const Cart = () => {
         );
 
     return (
-        <Box>
+        <Box p={sx ? 2 : appXPadding} pb={footerMenuHeight}>
             {(loadCreateOrder || loading || loadProducts) && <Loader position="fixed" />}
             {isOpenModal && (
                 <DeleteModal
@@ -179,25 +191,30 @@ const Cart = () => {
             <InstrumentalSubHeader
                 StartSlot={() => <BackButton nav={-1} action={() => {}} />}
                 EndSlot={() => (
-                    <Button
-                        disabled={!cartProducts?.length}
-                        variant="outlined"
-                        color="error"
-                        sx={{ backgroundColor: 'white' }}
-                        onClick={() => {
+                    <ClearListButton
+                        action={() => {
                             setIsOpenModal(true);
                         }}
-                    >
-                        {string?.clear_cart}
-                    </Button>
+                        isShown
+                        title={string?.clear_cart}
+                    />
                 )}
             />
             {cartProducts?.length ? (
-                <Grid xs={12} container sx={{ position: 'relative' }}>
-                    <Grid xs={sx ? 12 : 8} sx={{ rowGap: !xs ? 0 : 2 }} container>
+                <Grid xs={12} container>
+                    <Grid
+                        className="RelativeElement"
+                        xs={sx ? 12 : 8}
+                        sx={{
+                            rowGap: !xs ? 0 : 2,
+                            position: 'relative',
+                        }}
+                        container
+                    >
                         {cartProducts.map(el => {
                             return (
                                 <Grid
+                                    ref={sliderRef}
                                     container
                                     xs={12}
                                     sx={{
@@ -208,7 +225,6 @@ const Cart = () => {
                                     key={el.id}
                                 >
                                     <Grid
-                                        ref={imageRef}
                                         xs={xs ? 12 : 6}
                                         sx={{
                                             maxWidth: 450,
@@ -219,13 +235,14 @@ const Cart = () => {
                                             display: 'flex',
                                             flexDirection: 'column',
                                             justifyContent: 'center',
+                                            // height: sliderHeight,
                                             alignItems: 'center',
                                         }}
                                     >
                                         {el?.images?.length ? (
                                             <ImageComponent
                                                 imgUrl={el?.images ? el?.images[0]?.imageUrl : ''}
-                                                ref={imageRef}
+                                                ref={null}
                                             />
                                         ) : (
                                             <EmptyImage />
@@ -266,8 +283,8 @@ const Cart = () => {
                             );
                         })}
                     </Grid>
-                    <Grid xs={sx ? 12 : 4}>
-                        <Box sx={{ position: 'sticky' }}>
+                    <Grid className="StickyElement" xs={sx ? 12 : 4} sx={{ position: 'sticky', top: 0, zIndex: 1 }}>
+                        <Box>
                             <ConfirmCoupon
                                 createOrder={createOrder}
                                 orderData={orderData}

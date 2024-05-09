@@ -3,6 +3,7 @@ import { StoreType, ViewModeType } from 'constants/types';
 const prefix = 'kbs';
 
 export const KREMEN_BELTS_SALES = {
+    active: true,
     URL: ['https://kremen-belts-sales.netlify.app'],
     store_name: 'Kremen Belts Sales',
     store_code: 'kremen_belts_sales',

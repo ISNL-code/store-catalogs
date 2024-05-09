@@ -12,7 +12,7 @@ const ScrollButton = () => {
                 zIndex: 50,
                 position: 'fixed',
                 left: sx ? '24px' : '40px',
-                bottom: sx ? 80 : 20,
+                bottom: sx ? 90 : 10,
                 backgroundColor: '#ffffffbe',
             }}
             onClick={() => {

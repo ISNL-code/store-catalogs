@@ -6,7 +6,8 @@ import { CatalogContextInterface } from 'types';
 const SuccessOrderingPage = ({ isShown = true }) => {
     const { storeCode, storeName } = useParams();
     const navigate = useNavigate();
-    const { instrumentalBarHeight, headerHeight, footerHeight, string }: CatalogContextInterface = useOutletContext();
+    const { instrumentalBarHeight, headerHeight, footerMenuHeight, string }: CatalogContextInterface =
+        useOutletContext();
 
     if (isShown)
         return (
@@ -14,7 +15,7 @@ const SuccessOrderingPage = ({ isShown = true }) => {
                 sx={{
                     width: '100%',
                     display: 'flex',
-                    height: `calc(100vh - ${headerHeight}px - ${instrumentalBarHeight}px - ${footerHeight}px - 200px)`,
+                    height: `calc(100vh - ${headerHeight}px - ${instrumentalBarHeight}px - ${footerMenuHeight}px - 200px)`,
                     alignItems: 'center',
                     justifyContent: 'center',
                     flexDirection: 'column',

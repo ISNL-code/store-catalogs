@@ -21,6 +21,10 @@ export enum Colors {
     LIGHT_GREEN = '#51ce77',
     WHITE = '#fff',
     BLACK = '#000',
+
     // shadows
     SHADOW = `0 0 5px 3px #afafaf66`,
+
+    //typography
+    TEXT_GRAY = 'gray',
 }

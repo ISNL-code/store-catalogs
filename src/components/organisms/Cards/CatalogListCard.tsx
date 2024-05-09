@@ -6,8 +6,6 @@ import ColorIndicatorButton from 'components/atoms/ColorIndicatorButton/ColorInd
 import CartButton from 'components/molecules/ToolsButtons/CartButton';
 import FavoritesButton from 'components/molecules/ToolsButtons/FavoritesButton';
 import Slider from 'react-slick';
-import ExtraColorsButton from 'components/atoms/ColorIndicatorButton/ExtraColorsButton';
-import CollapseButton from 'components/molecules/ToolsButtons/СollapseButton';
 import { CatalogContextInterface } from 'types';
 import Grid from '@mui/material/Unstable_Grid2';
 import PromoTags from 'components/atoms/PromoTags/PromoTags';
@@ -54,6 +52,8 @@ interface CatalogCardProps {
         name?: string;
         code?: string;
     }[];
+    handleBodyPadding: (val) => void;
+    handleCardSpacings: (val) => void;
 }
 
 export const MemoizedColorIndicatorButton = memo(ColorIndicatorButton, (prevProps, nextProps) => {
@@ -61,7 +61,16 @@ export const MemoizedColorIndicatorButton = memo(ColorIndicatorButton, (prevProp
 });
 
 const CatalogListCard = memo<CatalogCardProps>(
-    ({ modelsVariants, name, productId, currency, setProductsList, promoTags }) => {
+    ({
+        modelsVariants,
+        name,
+        productId,
+        currency,
+        setProductsList,
+        promoTags,
+        handleBodyPadding,
+        handleCardSpacings,
+    }) => {
         const { OPTIONS } = STORE_CONFIG;
         const { STORE_TYPE } = OPTIONS;
         const sliderRef = useRef<HTMLImageElement>(null);
@@ -70,7 +79,6 @@ const CatalogListCard = memo<CatalogCardProps>(
         const colorsBoxRef = useRef(null);
         const { storeCode, storeName } = useParams();
         const [shownModel, setShownModel] = useState<ShownModelInterface | null>(null);
-        const [isExpanded, setIsExpanded] = useState(false);
         const [sliderHeight, setSliderHeight] = useState<number | string>(0);
 
         const absentProduct = Boolean(!shownModel?.quantity);
@@ -170,40 +178,29 @@ const CatalogListCard = memo<CatalogCardProps>(
                             sx={{
                                 display: 'flex',
                                 justifyContent: 'center',
-                                flexWrap: isExpanded ? 'wrap' : 'nowrap',
+                                flexWrap: 'nowrap',
                                 backgroundColor: Colors?.GRAY_100,
-                                height: isExpanded ? '75px' : '45px',
+                                height: '45px',
                                 pt: 1,
                                 px: 0.2,
                                 transition: 'height 250ms cubic-bezier(0, 0.4, 0.2, 1)',
                             }}
                         >
                             <Box
+                                px={0.25}
+                                className="CardColorsWrapper"
                                 sx={{
                                     display: 'flex',
-                                    justifyContent: 'center',
                                     gap: 0.4,
                                     rowGap: 0,
-                                    flexWrap: isExpanded ? 'wrap' : 'nowrap',
+                                    flexWrap: 'nowrap',
+                                    overflow: 'auto',
                                 }}
                             >
                                 {modelsVariants?.map((model, idx) => {
                                     const selected = model?.id === shownModel?.id;
 
                                     if (!setProductsList && !selected) return null; //used for favorites list
-                                    if (!isExpanded && idx > 6) return null;
-                                    if (!isExpanded && idx === 6 && modelsVariants.length > 7)
-                                        return (
-                                            <ExtraColorsButton
-                                                key={idx}
-                                                action={e => {
-                                                    e.stopPropagation();
-                                                    setIsExpanded(true);
-                                                }}
-                                                size={30}
-                                                sum={modelsVariants.length - 6}
-                                            />
-                                        );
 
                                     return (
                                         <MemoizedColorIndicatorButton
@@ -236,15 +233,6 @@ const CatalogListCard = memo<CatalogCardProps>(
                                 })}
                             </Box>
                         </Box>
-                        <Box
-                            sx={{
-                                mt: isExpanded ? -1 : -3,
-                                ml: 1,
-                                transition: 'all 350ms linear',
-                            }}
-                        >
-                            <CollapseButton collapse={setIsExpanded} isShown={isExpanded} />
-                        </Box>
                     </Box>
 
                     <Box onClick={e => e.stopPropagation()}>
@@ -269,7 +257,7 @@ const CatalogListCard = memo<CatalogCardProps>(
                                     textOverflow: 'ellipsis',
                                 }}
                             >
-                                {!isExpanded && name}
+                                {name}
                             </Typography>
 
                             <Box
@@ -280,43 +268,70 @@ const CatalogListCard = memo<CatalogCardProps>(
                                     alignItems: 'center',
                                     justifyContent: 'space-between',
                                     backgroundColor: Colors?.GRAY_100,
+                                    flexWrap: 'wrap',
+                                    gap: 0.5,
                                 }}
                             >
-                                {store?.mainStoreSettings?.prices && !isExpanded && (
+                                {store?.mainStoreSettings?.prices && (
                                     <CardPrice
                                         currency={currency}
                                         price={Number(shownModel?.originalPrice)}
                                         discountPrice={Number(shownModel?.price)}
                                     />
                                 )}
-                                <Box mx={0.5} sx={{ ml: 'auto' }}>
-                                    <CardSkuLabel sku={shownModel?.sku as string} />
-                                </Box>
 
-                                <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-                                    <CartButton
-                                        selected={cart?.cartItems?.find(item => item.sku === shownModel?.sku)}
-                                        isShown={store?.additionalStoreSettings?.cart}
-                                        action={() => {
-                                            cart?.handleSetCartItems({
-                                                sku: shownModel?.sku,
-                                                storeCode,
-                                                userId: currentUserData?.id,
-                                                productId: shownModel?.productId,
-                                            });
+                                <Box
+                                    sx={{
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'flex-end',
+                                        gap: 0.5,
+                                        maxWidth: '200px',
+                                        ml: 'auto',
+                                    }}
+                                >
+                                    <Box
+                                        sx={{
+                                            maxWidth: 92,
                                         }}
-                                    />
+                                    >
+                                        <CardSkuLabel sku={shownModel?.sku as string} />
+                                    </Box>
 
-                                    <ShareButton
-                                        isShown={store?.additionalStoreSettings?.promo}
-                                        path={`${
-                                            store?.webUrl
-                                        }/catalog/${storeCode}/${storeName}/details/${productId}/model/${shownModel?.sku?.replaceAll(
-                                            '/',
-                                            '_'
-                                        )}`}
-                                        text=""
-                                    />
+                                    <Box
+                                        sx={{
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            justifyContent: 'flex-end',
+                                            gap: 0.5,
+                                            my: 0.25,
+                                            minWidth: 60,
+                                        }}
+                                    >
+                                        <CartButton
+                                            selected={cart?.cartItems?.find(item => item.sku === shownModel?.sku)}
+                                            isShown={store?.additionalStoreSettings?.cart}
+                                            action={() => {
+                                                cart?.handleSetCartItems({
+                                                    sku: shownModel?.sku,
+                                                    storeCode,
+                                                    userId: currentUserData?.id,
+                                                    productId: shownModel?.productId,
+                                                });
+                                            }}
+                                        />
+
+                                        <ShareButton
+                                            isShown={store?.additionalStoreSettings?.promo}
+                                            path={`${
+                                                store?.webUrl
+                                            }/catalog/${storeCode}/${storeName}/details/${productId}/model/${shownModel?.sku?.replaceAll(
+                                                '/',
+                                                '_'
+                                            )}`}
+                                            text=""
+                                        />
+                                    </Box>
                                 </Box>
                             </Box>
                         </Box>
@@ -328,6 +343,7 @@ const CatalogListCard = memo<CatalogCardProps>(
         const CardDecoration = () => {
             return (
                 <>
+                    {!sliderHeight && <Box sx={{ height: '100vh' }}></Box>}
                     {Boolean(store?.additionalStoreSettings?.promo) && (
                         <Box
                             sx={{
@@ -387,26 +403,35 @@ const CatalogListCard = memo<CatalogCardProps>(
             <>
                 {Boolean(viewMode === ViewModeType?.grid_l) && (
                     <GridLargeView
+                        className="CatalogCard"
                         SliderComponent={SliderComponent}
                         CardDetails={CardDetails}
                         CardDecoration={CardDecoration}
                         opacity={Boolean(sliderHeight)}
+                        handleBodyPadding={handleBodyPadding}
+                        handleCardSpacings={handleCardSpacings}
                     />
                 )}
                 {Boolean(viewMode === ViewModeType?.grid_m) && (
                     <GridMediumView
+                        className="CatalogCard"
                         SliderComponent={SliderComponent}
                         CardDetails={CardDetails}
                         CardDecoration={CardDecoration}
                         opacity={Boolean(sliderHeight)}
+                        handleBodyPadding={handleBodyPadding}
+                        handleCardSpacings={handleCardSpacings}
                     />
                 )}
                 {Boolean(viewMode === ViewModeType?.card) && (
                     <CardView
+                        className="CatalogCard"
                         SliderComponent={SliderComponent}
                         CardDetails={CardDetails}
                         CardDecoration={CardDecoration}
                         opacity={Boolean(sliderHeight)}
+                        handleBodyPadding={handleBodyPadding}
+                        handleCardSpacings={handleCardSpacings}
                     />
                 )}
             </>

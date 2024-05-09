@@ -20,13 +20,13 @@ const UserOrders = () => {
     const { handleGetStatusParams } = useGetStatusParams();
     const { s } = useDevice();
     const { storeCode, storeName } = useParams();
-    const { string }: CatalogContextInterface = useOutletContext();
+    const { string, footerMenuHeight, appXPadding }: CatalogContextInterface = useOutletContext();
     const [orderData, setOrderData] = useState<OrderInterFace | any>(null);
     const { data: customerOrdersRes, isFetching: loadingOrders } = useUserApi().useGetCustomersOrders({
         storeCode,
     });
     const [isOpenDetails, setIsOpenDetails] = useState({ open: false, id: null });
-
+    const { sx } = useDevice();
     useEffect(() => {
         if (!customerOrdersRes || loadingOrders) return;
 
@@ -46,7 +46,7 @@ const UserOrders = () => {
     }, [customerOrdersRes, loadingOrders]);
 
     return (
-        <Box>
+        <Box p={sx ? 2 : appXPadding} pb={footerMenuHeight}>
             {loadingOrders && <Loader />}
             <InstrumentalSubHeader
                 StartSlot={() => <BackButton nav={`/catalog/${storeCode}/${storeName}`} action={() => {}} />}

@@ -33,10 +33,12 @@ const Catalog = () => {
         totalProductsCount,
         currentProductsPage,
         totalProductsPages,
+        footerMenuHeight,
     }: CatalogContextInterface = useOutletContext();
     const [showTopBtn, setShowTopBtn] = useState(false);
     const [showMobileStoresButton, setShowMobileStoresButton] = useState(true);
-
+    const [paddings, setPaddings] = useState(0);
+    const [spacings, setSpacings] = useState(0);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -67,8 +69,16 @@ const Catalog = () => {
         }, 150); // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
+    const handleBodyPadding = val => {
+        setPaddings(val);
+    };
+
+    const handleCardSpacings = val => {
+        setSpacings(val);
+    };
+
     return (
-        <Box pb={1}>
+        <Box pt={paddings} pb={footerMenuHeight} px={paddings}>
             {showTopBtn && <ScrollButton />}
             {showMobileStoresButton && (
                 <>
@@ -97,7 +107,7 @@ const Catalog = () => {
 
             {productsList?.length ? (
                 <TransitionBox dependency={loading} time="1250">
-                    <Grid className="CatalogList" xs={12} container>
+                    <Grid className="CatalogList" container spacing={spacings}>
                         {productsList?.map(product => {
                             return (
                                 <CatalogListCard
@@ -108,6 +118,8 @@ const Catalog = () => {
                                     currency={getCurrencySymbol(store?.currency)}
                                     setProductsList={setProductsList}
                                     promoTags={product?.promoTags}
+                                    handleBodyPadding={handleBodyPadding}
+                                    handleCardSpacings={handleCardSpacings}
                                 />
                             );
                         })}
@@ -116,16 +128,18 @@ const Catalog = () => {
             ) : (
                 <>{!loadProducts && !loading && <EmptyPage isShown />}</>
             )}
-            {Boolean(productsList?.length) && (
-                <PaginationButton
-                    setCurrentPage={handleSetProductsPage}
-                    totalCount={totalProductsCount}
-                    loadProducts={loadProducts}
-                    productsList={productsList}
-                    page={currentProductsPage}
-                    totalPages={totalProductsPages}
-                />
-            )}
+            <Grid my={2} xs={12} container>
+                {Boolean(productsList?.length) && (
+                    <PaginationButton
+                        setCurrentPage={handleSetProductsPage}
+                        totalCount={totalProductsCount}
+                        loadProducts={loadProducts}
+                        productsList={productsList}
+                        page={currentProductsPage}
+                        totalPages={totalProductsPages}
+                    />
+                )}
+            </Grid>
         </Box>
     );
 };

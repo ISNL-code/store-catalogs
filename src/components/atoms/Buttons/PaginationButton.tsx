@@ -1,4 +1,5 @@
 import { Box, Button, Typography } from '@mui/material';
+import { Colors } from 'colors';
 import { useRef } from 'react';
 import { useOutletContext } from 'react-router-dom';
 import Loader from '../Loader/Loader';
@@ -14,9 +15,7 @@ const PaginationButton = ({ setCurrentPage, totalCount, loadProducts, productsLi
             {loadProducts && <Loader position="fixed" />}
 
             <Box
-                mb={1}
                 ref={ref}
-                mt={1}
                 sx={{
                     width: '100%',
                     display: 'flex',
@@ -26,14 +25,11 @@ const PaginationButton = ({ setCurrentPage, totalCount, loadProducts, productsLi
                     gap: 1,
                 }}
             >
-                <Typography sx={{ color: 'grey' }}>
+                <Typography sx={{ color: Colors?.TEXT_GRAY }}>
                     {productsList?.length} {string?.out_of} {totalCount} {string?.shown}
                 </Typography>
-
                 <Button
                     sx={{
-                        px: 2,
-                        py: 1,
                         width: 200,
                         color: loadProducts ? '#ccc' : '',
                         borderColor: loadProducts ? '#ccc' : '',

@@ -91,6 +91,7 @@ a {
 
 *::-webkit-scrollbar {
     width: 6px; /* width of the entire scrollbar */
+    height: 6px;
 }
 
 *::-webkit-scrollbar-track {

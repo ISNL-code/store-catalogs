@@ -2,6 +2,7 @@ import { Box, Typography } from '@mui/material';
 import { useOutletContext } from 'react-router-dom';
 import SearchIcon from '@mui/icons-material/Search';
 import { useEffect, useState } from 'react';
+import { Colors } from 'colors';
 
 const EmptyPage = ({ isShown = true }) => {
     const {
@@ -35,16 +36,19 @@ const EmptyPage = ({ isShown = true }) => {
                 sx={{
                     width: '100%',
                     display: 'flex',
-                    height: `calc(100vh - ${headerHeight}px - ${instrumentalBarHeight}px - ${footerHeight}px - 200px)`,
                     alignItems: 'center',
                     justifyContent: 'center',
                     flexDirection: 'column',
                     overflow: 'hidden',
                     gap: 1,
+                    flexGrow: 1,
+                    height: 'calc(100vh  - 250px)',
                 }}
             >
-                <SearchIcon sx={{ fontSize: 100 }} />
-                <Typography variant="h3">{string?.nothing_was_found}</Typography>
+                <SearchIcon sx={{ fontSize: 100, color: Colors?.TEXT_GRAY }} />
+                <Typography variant="h3" sx={{ color: Colors?.TEXT_GRAY }}>
+                    {string?.nothing_was_found}
+                </Typography>
             </Box>
         );
     return null;

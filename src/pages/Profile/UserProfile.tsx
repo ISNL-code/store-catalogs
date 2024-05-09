@@ -11,7 +11,14 @@ import { useEffect, useState } from 'react';
 
 const UserProfile = () => {
     const { sx } = useDevice();
-    const { string, currentUserData, updateUserData, setCurrentUserData }: CatalogContextInterface = useOutletContext();
+    const {
+        string,
+        currentUserData,
+        updateUserData,
+        setCurrentUserData,
+        appXPadding,
+        footerMenuHeight,
+    }: CatalogContextInterface = useOutletContext();
     const { storeCode, storeName } = useParams();
     const { mutateAsync: updateProfile, isLoading } = useUserApi().useCustomerProfileUpdate();
     const [firstName, setFirstName] = useState(currentUserData?.delivery?.firstName);
@@ -30,7 +37,7 @@ const UserProfile = () => {
     }, [currentUserData]);
 
     return (
-        <Box>
+        <Box p={sx ? 2 : appXPadding} pb={footerMenuHeight}>
             {isLoading && <Loader />}
             <InstrumentalSubHeader
                 StartSlot={() => <BackButton nav={`/catalog/${storeCode}/${storeName}`} action={() => {}} />}

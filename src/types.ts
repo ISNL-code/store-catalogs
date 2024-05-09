@@ -1,44 +1,55 @@
 import { ViewModeType } from 'constants/types';
 
 export interface CatalogContextInterface {
+    //main data | user options
     lang: string;
+    supportedLanguage: string;
+    string: Record<string, any>;
+    scrollPosition: number;
+    setScrollPosition;
+    setOpenModalType;
+    openModalType: string | null;
     viewMode: ViewModeType;
     setViewMode;
-    string: any;
+
+    //store data
     store: StoreInterface;
-    categoriesList: {};
+
+    // user data
+    auth: boolean;
+    currentUserData: UserDataInterface | null;
+    loadingUserData: boolean;
+    updateUserData: any;
+    setCurrentUserData: any;
+
+    //products data
     productsList: LoadedProductListInterface[];
     setProductsList;
     loadProducts: boolean;
     loadMoreProducts: boolean;
     updateProducts;
-    scrollPosition: number;
-    setScrollPosition;
-    instrumentalBarHeight: number;
-    headerHeight: number;
-    footerHeight: number;
-    appXPadding: number;
     productCountPerPage: number;
     totalProductsCount: number;
     totalProductsPages: number;
     handleSetProductsPage: (val) => void;
     currentProductsPage: number;
-    auth: boolean;
+
+    //categories data
+    categoriesList: {};
     queryCategories: string[];
     setQueryCategories;
     handleCategoriesQuery;
-    setOpenModalType;
-    openModalType: string | null;
+
+    //css data
+    instrumentalBarHeight: number;
+    instrumentalBarPadding: number;
+    headerHeight: number;
+    footerMenuHeight: number;
+    appXPadding: number;
+
+    //cart & favorites
     cart: useAddToCartDataInterface;
     favorites: useAddToFavoriteDataInterface;
-    currentUserData: UserDataInterface | null;
-    loadingUserData: boolean;
-    updateUserData: any;
-    setCurrentUserData: any;
-    supportedLanguage: string;
-    favoritesList: FavoritesProductsInterface[];
-    updateFavorites;
-    loadFavorites: boolean;
 }
 
 export interface useAddToCartDataInterface {

@@ -1,5 +1,4 @@
 import { Button } from '@mui/material';
-import { Colors } from 'colors';
 
 interface Props {
     name: string;
@@ -7,7 +6,17 @@ interface Props {
 }
 const SideLink = ({ name, href }: Props) => {
     return (
-        <Button component="a" variant="outlined" href={href} color="error" sx={{ backgroundColor: Colors?.WHITE }}>
+        <Button
+            component="a"
+            variant="contained"
+            href={href}
+            sx={{
+                whiteSpace: 'nowrap',
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
+                fontSize: 12,
+            }}
+        >
             {name}
         </Button>
     );

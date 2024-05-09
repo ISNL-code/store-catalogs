@@ -11,58 +11,66 @@ const ViewModeButton = () => {
     const { setViewMode, viewMode }: CatalogContextInterface = useOutletContext();
 
     return (
-        <Box
-            sx={{
-                height: 30,
-                backgroundColor: '#fff',
-                mr: '2px',
-                border: '1px solid rgba(0, 0, 0, 0.120)',
-                display: 'flex',
-                alignItems: 'center',
-                borderRadius: 2,
-                overflow: 'hidden',
-            }}
-        >
-            <IconButton
+        <>
+            <Box
                 sx={{
-                    border: '1px solid rgba(0, 0, 0, 0.120)',
-                    borderRadius: 0,
                     height: 30,
-                    color: viewMode === ViewModeType?.card ? Colors?.BLUE : '',
-                }}
-                onClick={() => {
-                    setViewMode(ViewModeType?.card);
+                    backgroundColor: '#fff',
+                    mr: '2px',
+                    border: '1px solid rgba(0, 0, 0, 0.120)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    borderRadius: 2,
+                    overflow: 'hidden',
                 }}
             >
-                <ViewModuleIcon fontSize="small" />
-            </IconButton>
-            <IconButton
-                sx={{
-                    border: '1px solid rgba(0, 0, 0, 0.120)',
-                    borderRadius: 0,
-                    height: 30,
-                    color: viewMode === ViewModeType?.grid_l ? Colors?.BLUE : '',
-                }}
-                onClick={() => {
-                    setViewMode(ViewModeType?.grid_l);
-                }}
-            >
-                <CalendarViewMonthIcon fontSize="small" />
-            </IconButton>
-            <IconButton
-                sx={{
-                    border: '1px solid rgba(0, 0, 0, 0.120)',
-                    borderRadius: 0,
-                    height: 30,
-                    color: viewMode === ViewModeType?.grid_m ? Colors?.BLUE : '',
-                }}
-                onClick={() => {
-                    setViewMode(ViewModeType?.grid_m);
-                }}
-            >
-                <GridOnIcon fontSize="small" />
-            </IconButton>
-        </Box>
+                <IconButton
+                    sx={{
+                        border: '1px solid rgba(0, 0, 0, 0.120)',
+                        borderRadius: 0,
+                        height: 30,
+                        color: viewMode === ViewModeType?.card ? Colors?.BLUE : '',
+                        backgroundColor: viewMode === ViewModeType?.card ? Colors.GRAY_100 : '',
+                        boxShadow: viewMode === ViewModeType?.card ? 'inset 0 0 4px 0.25px #9b9b9b96' : '',
+                    }}
+                    onClick={() => {
+                        setViewMode(ViewModeType?.card);
+                    }}
+                >
+                    <ViewModuleIcon fontSize="small" />
+                </IconButton>
+                <IconButton
+                    sx={{
+                        border: '1px solid rgba(0, 0, 0, 0.120)',
+                        borderRadius: 0,
+                        height: 30,
+                        color: viewMode === ViewModeType?.grid_l ? Colors?.BLUE : '',
+                        backgroundColor: viewMode === ViewModeType?.grid_l ? Colors.GRAY_100 : '',
+                        boxShadow: viewMode === ViewModeType?.grid_l ? 'inset 0 0 4px 0.25px #9b9b9b96' : '',
+                    }}
+                    onClick={() => {
+                        setViewMode(ViewModeType?.grid_l);
+                    }}
+                >
+                    <CalendarViewMonthIcon fontSize="small" />
+                </IconButton>
+                <IconButton
+                    sx={{
+                        border: '1px solid rgba(0, 0, 0, 0.120)',
+                        borderRadius: 0,
+                        height: 30,
+                        color: viewMode === ViewModeType?.grid_m ? Colors?.BLUE : '',
+                        backgroundColor: viewMode === ViewModeType?.grid_m ? Colors.GRAY_100 : '',
+                        boxShadow: viewMode === ViewModeType?.grid_m ? 'inset 0 0 4px 0.25px #9b9b9b96' : '',
+                    }}
+                    onClick={() => {
+                        setViewMode(ViewModeType?.grid_m);
+                    }}
+                >
+                    <GridOnIcon fontSize="small" />
+                </IconButton>
+            </Box>
+        </>
     );
 };
 

@@ -1,6 +1,7 @@
 import { Box } from '@mui/material';
 import { ReactNode } from 'react';
 import { useOutletContext } from 'react-router-dom';
+import { CatalogContextInterface } from 'types';
 
 interface InstrumentalBarInterface {
     StartSlot?: () => ReactNode;
@@ -9,15 +10,11 @@ interface InstrumentalBarInterface {
 }
 
 const InstrumentalSubHeader = ({ StartSlot, CentralSlot, EndSlot }: InstrumentalBarInterface) => {
-    const {
-        instrumentalBarHeight,
-        headerHeight,
-        appXPadding,
-    }: { instrumentalBarHeight: number; headerHeight: number; appXPadding: number } = useOutletContext();
+    const { instrumentalBarHeight, headerHeight, instrumentalBarPadding }: CatalogContextInterface = useOutletContext();
 
     return (
         <Box
-            px={appXPadding}
+            px={instrumentalBarPadding}
             sx={{
                 display: 'flex',
                 alignItems: 'center',

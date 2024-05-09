@@ -10,6 +10,7 @@ export enum ViewModeType {
     card = 'card',
 }
 export interface STORE_CONFIG_Interface {
+    ACTIVE: boolean; // Show is web active or stopped
     STORE_NAME: string; // Real store name
     STORE_CODE: string; // use for get current store data
     ACCESS_TOKEN_KEY: string; // use for local storage key

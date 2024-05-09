@@ -14,11 +14,11 @@ const CardSkuLabel = ({ sku }: Props) => {
                 alignItems: 'center',
                 backgroundColor: '#fff',
                 borderRadius: '16px',
+                justifyContent: 'center',
             }}
         >
             <Typography
-                variant="h6"
-                sx={{ color: 'gray', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}
+                sx={{ color: 'gray', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', fontSize: 12 }}
             >
                 {sku}
             </Typography>

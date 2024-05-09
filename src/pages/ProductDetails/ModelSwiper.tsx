@@ -11,7 +11,8 @@ import ImageComponent from 'components/atoms/Media/Image';
 const ModelSwiper = ({ images }) => {
     const sliderRef = useRef<HTMLImageElement>(null);
     const imageRef = useRef<HTMLImageElement>(null);
-    const { headerHeight, instrumentalBarHeight, footerHeight, store }: CatalogContextInterface = useOutletContext();
+    const { headerHeight, instrumentalBarHeight, footerMenuHeight, store }: CatalogContextInterface =
+        useOutletContext();
     const [fullScreenMode, setFullScreenMode] = useState<boolean>(false);
     const { sm, sx } = useDevice();
     const [slide, setSlide] = useState(0);
@@ -45,7 +46,7 @@ const ModelSwiper = ({ images }) => {
             />
             <Box
                 sx={{
-                    maxHeight: `calc(100vh - ${headerHeight}px - ${instrumentalBarHeight}px - ${footerHeight}px - 8px)`,
+                    maxHeight: `calc(100vh - ${headerHeight}px - ${instrumentalBarHeight}px - ${footerMenuHeight}px - 8px)`,
                 }}
             >
                 <Box

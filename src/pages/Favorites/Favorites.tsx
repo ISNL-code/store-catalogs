@@ -22,13 +22,16 @@ import ClearListButton from 'components/molecules/ToolsButtons/ClearListButton';
 const Favorites = () => {
     const { OPTIONS } = STORE_CONFIG;
     const { STORE_TYPE } = OPTIONS;
-    const { store, favorites, supportedLanguage, string }: CatalogContextInterface = useOutletContext();
+    const { store, favorites, supportedLanguage, string, footerMenuHeight }: CatalogContextInterface =
+        useOutletContext();
     const { storeCode } = useParams();
     const mount = useIsMount();
     const [showTopBtn, setShowTopBtn] = useState(false);
     const [loading, setLoading] = useState(true);
     const [productIds, setProductIds] = useState<string[] | any[]>([]);
     const [favoriteProducts, setFavoriteProducts] = useState<ProductVariantInterface[] | any[]>([]);
+    const [paddings, setPaddings] = useState(0);
+    const [spacings, setSpacings] = useState(0);
     const [isOpenModal, setIsOpenModal] = useState(false);
 
     const { isFetching: loadProducts, refetch: updateFavoriteProductsRes } = useProductsApi().useGetProductByIDForCart({
@@ -127,8 +130,16 @@ const Favorites = () => {
 
     if (loading) return <Loader />;
 
+    const handleBodyPadding = val => {
+        setPaddings(val);
+    };
+
+    const handleCardSpacings = val => {
+        setSpacings(val);
+    };
+
     return (
-        <Box pb={1}>
+        <Box pt={paddings} pb={footerMenuHeight} px={paddings}>
             {showTopBtn && <ScrollButton />}
             {isOpenModal && (
                 <DeleteModal
@@ -153,6 +164,7 @@ const Favorites = () => {
                                 setIsOpenModal(true);
                             }}
                             isShown
+                            title={string?.clear_favorites}
                         />
                     </Box>
                 )}
@@ -160,7 +172,7 @@ const Favorites = () => {
 
             {favoriteProducts?.length ? (
                 <TransitionBox dependency={loading}>
-                    <Grid container xs={12}>
+                    <Grid className="CatalogList" container spacing={spacings}>
                         {favoriteProducts?.map(product => {
                             return (
                                 <CatalogListCard
@@ -170,6 +182,8 @@ const Favorites = () => {
                                     productId={product?.productId}
                                     currency={getCurrencySymbol(store?.currency)}
                                     promoTags={product?.promoTags}
+                                    handleCardSpacings={handleCardSpacings}
+                                    handleBodyPadding={handleBodyPadding}
                                 />
                             );
                         })}

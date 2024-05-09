@@ -7,8 +7,6 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import ProfileButton from 'components/molecules/ToolsButtons/ProfileButton';
 
-const menuHeight = '70px';
-
 const MobileMenu = ({
     appXPadding,
     string,
@@ -23,6 +21,7 @@ const MobileMenu = ({
     headerHeight,
     store,
     user,
+    menuHeight,
 }) => {
     const navigate = useNavigate();
     const { storeCode, storeName } = useParams();
@@ -101,6 +100,7 @@ const MobileMenu = ({
                             menuHeight={menuHeight}
                             user={user}
                             setOpenModalType={setOpenModalType}
+                            childPath={['orders', 'profile']}
                         />
                     )}
                 </Box>

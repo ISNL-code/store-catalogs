@@ -14,6 +14,10 @@ const ImageComponent = React.forwardRef<HTMLImageElement, ImageProps>(({ imgUrl,
     const [imgError, setImgError] = useState(false);
 
     useEffect(() => {
+        setImgLoaded(false);
+    }, [imgUrl]);
+
+    useEffect(() => {
         const img = new Image();
         img.src = imgUrl;
         img.onload = () => {

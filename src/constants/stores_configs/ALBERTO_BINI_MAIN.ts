@@ -3,6 +3,7 @@ import { StoreType, ViewModeType } from 'constants/types';
 const prefix = 'abm';
 
 export const ALBERTO_BINI_MAIN = {
+    active: true, // Поле которое запускает магазин true - работает false - остановлен / по тех. причина
     URL: ['https://alberto-bini.netlify.app'],
     store_name: 'Alberto Bini',
     store_code: 'ALBERTO_BINI',

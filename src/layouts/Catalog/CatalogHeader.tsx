@@ -122,6 +122,7 @@ const Header = ({
                             headerHeight={headerHeight}
                             user={user}
                             setOpenModalType={setOpenModalType}
+                            childPath={['orders', 'profile']}
                         />
                     )}
                     <LanguageButton

@@ -16,6 +16,7 @@ import UserOrders from 'pages/Orders/UserOrders';
 import { STORE_CONFIG } from 'constants/stores_config';
 import Head from 'layouts/Head';
 import { ViewModeType } from 'constants/types';
+// import StoppedForService from 'pages/TechPages/StoppedForService';
 
 const App = () => {
     const { ACCESS_TOKEN_KEY, STORE_CODE, LANGUAGE_KEY, APP_LANGUAGE, VIEW_MODE_KEY, USER_OPTIONS } = STORE_CONFIG;
@@ -121,6 +122,10 @@ const App = () => {
                                     <Route path={'/catalog/:storeCode/:storeName/profile'} element={<UserProfile />} />
 
                                     <Route path={'/catalog/:storeCode/:storeName/orders'} element={<UserOrders />} />
+                                    {/* <Route
+                                        path={'/catalog/:storeCode/:storeName/service-page'}
+                                        element={<StoppedForService />}
+                                    /> */}
                                 </Route>
                                 <Route path="*" element={<Navigate to="/catalog" replace />} />
                             </>

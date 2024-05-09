@@ -1,19 +1,18 @@
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { IconButton } from '@mui/material';
 import { Colors } from 'colors';
-import { useOutletContext } from 'react-router-dom';
 import StyledTooltip from '../StyledComponents/StyledTooltip';
 
 interface FilterButtonInterface {
     isShown: boolean;
     action?: (event: any) => void;
+    title: string;
 }
 
-const ClearListButton = ({ isShown, action = () => {} }: FilterButtonInterface) => {
-    const { string }: any = useOutletContext();
+const ClearListButton = ({ isShown, action = () => {}, title }: FilterButtonInterface) => {
     if (isShown)
         return (
-            <StyledTooltip title={string?.clear_favorites}>
+            <StyledTooltip title={title}>
                 <IconButton
                     sx={{
                         height: 30,

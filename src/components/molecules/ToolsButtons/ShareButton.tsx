@@ -43,8 +43,8 @@ const ShareButton = ({ orientation = 'up', path, text, size, color, isShown }: S
                             sx={{
                                 border: color ? '1px solid rgba(0, 0, 0, 0.120)' : '1px solid #00000054',
                                 backgroundColor: '#fff',
-                                width: size || '33px',
-                                height: size || '33px',
+                                width: size || '30px',
+                                height: size || '30px',
                             }}
                         >
                             <IosShareIcon sx={{ color: '#rgba(0, 0, 0, 0.54)' }} fontSize="small" />
@@ -65,30 +65,30 @@ const ShareButton = ({ orientation = 'up', path, text, size, color, isShown }: S
                             overflow: 'hidden',
                             position: 'absolute',
                             top: orientation === 'down' ? 30 : 'none',
-                            bottom: orientation === 'down' ? 'none' : 30,
+                            bottom: orientation === 'down' ? 'none' : 15,
                             zIndex: 1000,
                         }}
                     >
                         {open && (
                             <>
                                 <TelegramShareButton url={path} title={text}>
-                                    <TelegramIcon size={34} round={true} />
+                                    <TelegramIcon size={30} round={true} />
                                 </TelegramShareButton>
 
                                 <ViberShareButton url={path} title={text}>
-                                    <ViberIcon size={34} round={true} />
+                                    <ViberIcon size={30} round={true} />
                                 </ViberShareButton>
 
                                 <WhatsappShareButton url={path} title={text}>
-                                    <WhatsappIcon size={34} round={true} />
+                                    <WhatsappIcon size={30} round={true} />
                                 </WhatsappShareButton>
 
                                 <FacebookShareButton url={path} title={text}>
-                                    <FacebookIcon size={34} round={true} />
+                                    <FacebookIcon size={30} round={true} />
                                 </FacebookShareButton>
 
                                 <EmailShareButton url={path} title={text}>
-                                    <EmailIcon size={34} round={true} />
+                                    <EmailIcon size={30} round={true} />
                                 </EmailShareButton>
                             </>
                         )}

@@ -35,8 +35,14 @@ interface SelectedVarianInterface {
 
 const ProductDetails = () => {
     const mount = useIsMount();
-    const { store, headerHeight, instrumentalBarHeight, footerHeight, supportedLanguage }: CatalogContextInterface =
-        useOutletContext();
+    const {
+        store,
+        headerHeight,
+        instrumentalBarHeight,
+        footerMenuHeight,
+        supportedLanguage,
+        appXPadding,
+    }: CatalogContextInterface = useOutletContext();
     const { modelSku, storeCode, storeName, productId } = useParams();
     const [productDetails, setProductDetails] = useState<LoadedProductInterface | null>(null);
     const [selectedVariant, setSelectedVariant] = useState<SelectedVarianInterface | undefined | null>(null);
@@ -115,7 +121,7 @@ const ProductDetails = () => {
     if (!productDetails) return <Loader />;
 
     return (
-        <>
+        <Box p={appXPadding} pb={footerMenuHeight}>
             <InstrumentalSubHeader
                 StartSlot={() => <BackButton nav={`/catalog/${storeCode}/${storeName}`} action={() => {}} />}
                 EndSlot={() => (
@@ -161,7 +167,7 @@ const ProductDetails = () => {
                             overflow: 'scroll',
                             maxHeight: sx
                                 ? ''
-                                : `calc(100vh - ${headerHeight}px - ${instrumentalBarHeight}px - ${footerHeight}px - 16px)`,
+                                : `calc(100vh - ${headerHeight}px - ${instrumentalBarHeight}px - ${footerMenuHeight}px - 16px)`,
                             '&::-webkit-scrollbar': {
                                 display: m ? 'none' : '',
                             },
@@ -177,7 +183,7 @@ const ProductDetails = () => {
                     </Grid>
                 </Grid>
             </TransitionBox>
-        </>
+        </Box>
     );
 };
 
