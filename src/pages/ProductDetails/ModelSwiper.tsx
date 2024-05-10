@@ -60,7 +60,7 @@ const ModelSwiper = ({ images }) => {
                         setSlide(idx);
                     }}
                 >
-                    <Box sx={{ height: sliderHeight, maxHeight: maxHeight }}>
+                    <Box sx={{ height: sliderHeight, maxHeight: maxHeight || sliderHeight }}>
                         <ImageComponent ref={imageRef} imgUrl={imageUrl} loadControl={bool => setIsLoading(bool)} />
                     </Box>
                 </Box>
@@ -87,17 +87,14 @@ const ModelSwiper = ({ images }) => {
                     store?.productImagesOptions?.height
                 );
             };
-            if (sliderRef?.current?.clientWidth)
-                setTimeout(() => {
-                    setSliderHeight(calcSlideHeight());
-                }, 1000);
+            if (sliderRef?.current?.clientWidth) setSliderHeight(calcSlideHeight());
 
             if (imageRef?.current?.clientHeight || !isLoading)
                 setTimeout(() => {
                     setMaxHeight(imageRef?.current?.clientHeight as number);
                 }, 100);
         }, [isLoading]); // eslint-disable-line
-        console.log(idx, sliderHeight);
+
         const memoizedSlide = useMemo(
             () => (
                 <Box
@@ -117,7 +114,7 @@ const ModelSwiper = ({ images }) => {
                         setSlide(idx);
                     }}
                 >
-                    <Box sx={{ height: sliderHeight, maxHeight: maxHeight }}>
+                    <Box sx={{ height: sliderHeight, maxHeight: maxHeight || sliderHeight }}>
                         <ImageComponent ref={imageRef} imgUrl={imageUrl} loadControl={bool => setIsLoading(bool)} />
                     </Box>
                 </Box>
