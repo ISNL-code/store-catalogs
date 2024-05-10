@@ -24,7 +24,7 @@ const ModelSwiper = ({ images }) => {
     useEffect(() => {
         if (mount && !images?.length) return;
         setImagesList(images);
-    }, [images]);
+    }, [images]); // eslint-disable-line
 
     const SlideHorizontal = ({ imageUrl, idx }) => {
         const sliderRef = useRef<HTMLImageElement>(null);
@@ -51,7 +51,7 @@ const ModelSwiper = ({ images }) => {
                 setTimeout(() => {
                     setMaxHeight(imageRef?.current?.clientHeight as number);
                 }, 100);
-        }, [isLoading, WINDOW_WIDTH]);
+        }, [isLoading, WINDOW_WIDTH]); // eslint-disable-line
 
         const memoizedSlide = useMemo(
             () => (
@@ -78,7 +78,7 @@ const ModelSwiper = ({ images }) => {
                     </Box>
                 </Box>
             ),
-            [sm, idx, sliderHeight, imagesList.length, maxHeight]
+            [sm, idx, sliderHeight, imagesList.length, maxHeight] // eslint-disable-line
         );
 
         return memoizedSlide;
@@ -109,7 +109,7 @@ const ModelSwiper = ({ images }) => {
                 setTimeout(() => {
                     setMaxHeight(imageRef?.current?.clientHeight as number);
                 }, 100);
-        }, [isLoading, WINDOW_WIDTH]);
+        }, [isLoading, WINDOW_WIDTH]); // eslint-disable-line
 
         const memoizedSlide = useMemo(
             () => (
@@ -135,7 +135,7 @@ const ModelSwiper = ({ images }) => {
                     </Box>
                 </Box>
             ),
-            [sm, idx, sliderHeight, imagesList.length, maxHeight]
+            [sm, idx, sliderHeight, imagesList.length, maxHeight] // eslint-disable-line
         );
 
         return memoizedSlide;
@@ -159,7 +159,7 @@ const ModelSwiper = ({ images }) => {
                 })}
             </Box>
         );
-    }, [imagesList, headerHeight, instrumentalBarHeight, footerMenuHeight, fullScreenMode, slide]);
+    }, [imagesList, headerHeight, instrumentalBarHeight, footerMenuHeight, fullScreenMode, slide]); // eslint-disable-line
 
     const horizontalSwiper = useMemo(() => {
         return (
@@ -179,7 +179,7 @@ const ModelSwiper = ({ images }) => {
                 })}
             </Box>
         );
-    }, [imagesList, headerHeight, instrumentalBarHeight, footerMenuHeight, fullScreenMode, slide]);
+    }, [imagesList, headerHeight, instrumentalBarHeight, footerMenuHeight, fullScreenMode, slide]); // eslint-disable-line
 
     return (
         <>

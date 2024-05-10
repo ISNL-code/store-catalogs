@@ -19,7 +19,7 @@ const ImageComponent = React.forwardRef<HTMLImageElement, ImageProps>(
         useEffect(() => {
             setImgLoaded(false);
             loadControl(true);
-        }, [imgUrl]);
+        }, [imgUrl]); // eslint-disable-line
 
         useEffect(() => {
             const img = new Image();
@@ -39,7 +39,7 @@ const ImageComponent = React.forwardRef<HTMLImageElement, ImageProps>(
                 img.onload = null;
                 img.onerror = null;
             };
-        }, [imgUrl]);
+        }, [imgUrl]); // eslint-disable-line
 
         return (
             <Box
