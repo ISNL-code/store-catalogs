@@ -4,12 +4,13 @@ import LanguageButton from 'components/molecules/ToolsButtons/LanguageButton';
 import { useDevice } from 'hooks/useDevice';
 import { useLocation } from 'react-router-dom';
 import HomeIcon from '@mui/icons-material/Home';
-import HomeHeaderLogo from 'components/atoms/Logo/HomeHeaderLogo';
+// import HomeHeaderLogo from 'components/atoms/Logo/HomeHeaderLogo';
 import StorefrontIcon from '@mui/icons-material/Storefront';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import InfoIcon from '@mui/icons-material/Info';
 import { StoreInterface } from 'types';
-import { STORE_CODE } from 'constants/constants';
+import { STORE_CONFIG } from 'constants/stores_config';
+
 interface HeaderInterface {
     headerHeight;
     appXPadding;
@@ -17,10 +18,10 @@ interface HeaderInterface {
     lang;
     setLang;
     setOpenModalType;
-    store: StoreInterface | null;
 }
 
-const HomeHeader = ({ headerHeight, appXPadding, string, lang, setLang, setOpenModalType, store }: HeaderInterface) => {
+const HomeHeader = ({ headerHeight, appXPadding, string, lang, setLang, setOpenModalType }: HeaderInterface) => {
+    const { STORE_CODE, STORE_NAME } = STORE_CONFIG;
     const location = useLocation();
     const { sx } = useDevice();
     return (
@@ -41,19 +42,14 @@ const HomeHeader = ({ headerHeight, appXPadding, string, lang, setLang, setOpenM
         >
             <Box sx={{ height: headerHeight, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                 <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <HomeHeaderLogo />
+                    {/* <HomeHeaderLogo /> */}
                 </Box>
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                    <HeaderNavButton
-                        title={string?.home}
-                        path={`/`}
-                        icon={props => <HomeIcon {...props} />}
-                        isShown={!sx}
-                    />
+                    <HeaderNavButton title={string?.home} path={`/`} icon={() => <HomeIcon />} isShown={!sx} />
                     <HeaderNavButton
                         title={string?.wholesale_catalog}
-                        path={`/catalog/${STORE_CODE}/${'Alberto Bini EU'.replaceAll(' ', '-')}`}
-                        icon={props => <AttachMoneyIcon {...props} />}
+                        path={`/catalog/${STORE_CODE}/${STORE_NAME.replaceAll(' ', '-')}`}
+                        icon={() => <AttachMoneyIcon />}
                         isShown={!sx}
                         isActive={location.pathname.includes('details')}
                         action={() => {
@@ -62,8 +58,8 @@ const HomeHeader = ({ headerHeight, appXPadding, string, lang, setLang, setOpenM
                     />
                     <HeaderNavButton
                         title={string?.retail_catalog}
-                        path={`/catalog/${STORE_CODE}/${'Alberto Bini EU'.replaceAll(' ', '-')}`}
-                        icon={props => <StorefrontIcon {...props} />}
+                        path={`/catalog/${STORE_CODE}/${STORE_NAME.replaceAll(' ', '-')}`}
+                        icon={() => <StorefrontIcon />}
                         isShown={!sx}
                         isActive={location.pathname.includes('details')}
                         action={() => {
@@ -73,7 +69,7 @@ const HomeHeader = ({ headerHeight, appXPadding, string, lang, setLang, setOpenM
                     <HeaderNavButton
                         title={string?.info}
                         path={`/info`}
-                        icon={props => <InfoIcon {...props} />}
+                        icon={() => <InfoIcon />}
                         isShown={!sx}
                         action={() => {}}
                     />

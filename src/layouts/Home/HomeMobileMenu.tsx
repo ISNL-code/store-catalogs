@@ -5,11 +5,12 @@ import Grid from '@mui/material/Unstable_Grid2';
 import StorefrontIcon from '@mui/icons-material/Storefront';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import InfoIcon from '@mui/icons-material/Info';
-import { STORE_CODE } from 'constants/constants';
+import { STORE_CONFIG } from 'constants/stores_config';
 
 const menuHeight = '70px';
 
-const HomeMobileMenu = ({ appXPadding, isShown, string, store }) => {
+const HomeMobileMenu = ({ appXPadding, isShown, string }) => {
+    const { STORE_CODE, STORE_NAME } = STORE_CONFIG;
     if (isShown)
         return (
             <Box
@@ -37,7 +38,7 @@ const HomeMobileMenu = ({ appXPadding, isShown, string, store }) => {
                     </Grid>
                     <Grid xs={3}>
                         <MobileNavButton
-                            path={`/catalog/${STORE_CODE}/${'Alberto Bini EU'.replaceAll(' ', '-')}`}
+                            path={`/catalog/${STORE_CODE}/${STORE_NAME.replaceAll(' ', '-')}`}
                             title={string?.wholesale_catalog}
                             icon={p => <AttachMoneyIcon {...p} />}
                             action={() => {
@@ -47,7 +48,7 @@ const HomeMobileMenu = ({ appXPadding, isShown, string, store }) => {
                     </Grid>
                     <Grid xs={3}>
                         <MobileNavButton
-                            path={`/catalog/${STORE_CODE}/${'Alberto Bini EU'.replaceAll(' ', '-')}`}
+                            path={`/catalog/${STORE_CODE}/${STORE_NAME.replaceAll(' ', '-')}`}
                             title={string?.retail_catalog}
                             icon={p => <StorefrontIcon {...p} />}
                             action={() => {

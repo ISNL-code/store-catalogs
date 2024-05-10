@@ -6,12 +6,13 @@ import { useDevice } from 'hooks/useDevice';
 import { useEffect, useState } from 'react';
 import HomeHeader from './HomeHeader';
 import HomeMobileMenu from './HomeMobileMenu';
-import { STORE_CODE } from 'constants/constants';
 import { StoreInterface } from 'types';
 import { useStoresApi } from 'api/useStoresApi';
 import { STORES_DATA } from 'dataBase/STORES';
+import { STORE_CONFIG } from 'constants/stores_config';
 
 export default function Home({ lang, setLang }) {
+    const { STORE_CODE } = STORE_CONFIG;
     const { sx, l, xs } = useDevice();
     const headerHeight = xs ? 50 : 65;
     const footerHeight = sx ? 70 : 0;
@@ -44,7 +45,6 @@ export default function Home({ lang, setLang }) {
                 lang={lang}
                 setLang={setLang}
                 setOpenModalType={setOpenModalType}
-                store={store}
             />
 
             <Box
@@ -73,7 +73,7 @@ export default function Home({ lang, setLang }) {
                     }}
                 />
             </Box>
-            <HomeMobileMenu appXPadding={appXPadding} isShown={!!sx} string={currentLanguage?.string} store={store} />
+            <HomeMobileMenu appXPadding={appXPadding} isShown={!!sx} string={currentLanguage?.string} />
         </Box>
     );
 }
