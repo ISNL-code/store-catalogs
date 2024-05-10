@@ -43,9 +43,16 @@ export const useAddToCart = ({
         }
     };
 
+    const handleClearCartItems = skuArray => {
+        if (!auth) return;
+
+        setCartItems(cartItems.filter(el => !skuArray?.includes(el?.sku)));
+    };
+
     const handleClearCart = () => {
+        if (!auth) return;
         setCartItems([]);
     };
 
-    return { cartItems, handleSetCartItems, handleClearCart };
+    return { cartItems, handleSetCartItems, handleClearCart, handleClearCartItems };
 };

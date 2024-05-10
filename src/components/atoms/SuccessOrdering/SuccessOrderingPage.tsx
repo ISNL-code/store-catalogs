@@ -3,10 +3,10 @@ import { useNavigate, useOutletContext, useParams } from 'react-router-dom';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import { CatalogContextInterface } from 'types';
 
-const SuccessOrderingPage = ({ isShown = true }) => {
+const SuccessOrderingPage = ({ isShown = true, setSuccessOrdering }) => {
     const { storeCode, storeName } = useParams();
     const navigate = useNavigate();
-    const { instrumentalBarHeight, headerHeight, footerMenuHeight, string }: CatalogContextInterface =
+    const { instrumentalBarHeight, headerHeight, footerMenuHeight, string, cart }: CatalogContextInterface =
         useOutletContext();
 
     if (isShown)
@@ -27,7 +27,11 @@ const SuccessOrderingPage = ({ isShown = true }) => {
                 <Typography variant="h3">{string?.order_sent_successfully}</Typography>
                 <Button
                     onClick={() => {
-                        navigate(`catalog/${storeCode}/${storeName}`);
+                        if (cart?.cartItems?.length) {
+                            setSuccessOrdering(false);
+                        } else {
+                            navigate(`catalog/${storeCode}/${storeName}`);
+                        }
                     }}
                 >
                     {string?.back_to_shopping}

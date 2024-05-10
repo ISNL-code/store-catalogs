@@ -26,9 +26,10 @@ const AddButtons = ({ productPrice, setOrderData, productData }: Props) => {
                     {
                         sizeId: null,
                         colorId: productData?.id,
-                        sku: productData?.variantSku,
+                        productSku: productData?.variantSku,
                         quantity: 1,
                         price: productPrice,
+                        sku: productData?.sku,
                     },
                 ],
             };
@@ -47,7 +48,7 @@ const AddButtons = ({ productPrice, setOrderData, productData }: Props) => {
                         return {
                             ...prev,
                             productsList: prev.productsList.map(item => {
-                                if (item.sku === productData?.variantSku && Number(item.quantity) > 1)
+                                if (item.productSku === productData?.variantSku && Number(item.quantity) > 1)
                                     return { ...item, quantity: Number(item.quantity) - 1 };
                                 return item;
                             }),

@@ -26,5 +26,5 @@ export const KREMEN_BELTS_MAIN = {
         google_analytics_id: 'G-7G98583PY1',
         store_logo: 'kremen_belts_logo.png',
     },
-    user_options: { view_mode: ViewModeType?.grid_l },
+    user_options: { view_mode: ViewModeType?.card },
 };

@@ -146,7 +146,7 @@ const ConfirmCoupon = ({
                         variant="contained"
                         sx={{ width: '100%' }}
                         onClick={() => {
-                            createOrder({
+                            return createOrder({
                                 lang: supportedLanguage,
                                 storeCode,
                                 data: {
@@ -164,7 +164,7 @@ const ConfirmCoupon = ({
                                                     variant: true,
                                                 },
                                             ],
-                                            product: item?.sku,
+                                            product: item?.productSku,
                                             quantity: item?.quantity,
                                         };
                                     }),
@@ -203,8 +203,10 @@ const ConfirmCoupon = ({
                                             text: `${STORE_NAME} Заказ`,
                                         });
                                     } catch (error) {}
+                                    cart?.handleClearCartItems([
+                                        ...new Set(orderData.productsList.map(item => item?.sku)),
+                                    ]);
                                     setSuccessOrdering(true);
-                                    cart?.handleClearCart();
                                 })
                                 .catch(err => console.log(err));
                         }}

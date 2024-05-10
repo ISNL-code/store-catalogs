@@ -24,9 +24,10 @@ import { Colors } from 'colors';
 interface ProductListInterface {
     sizeId: number | null;
     colorId: number;
-    sku: string;
+    productSku: string;
     quantity: number;
     price: string | number;
+    sku: string;
 }
 
 export interface OrderDataInterface {
@@ -170,7 +171,7 @@ const Cart = () => {
         return (
             <>
                 <InstrumentalSubHeader StartSlot={() => <BackButton nav={-1} action={() => {}} />} />
-                <SuccessOrderingPage />
+                <SuccessOrderingPage setSuccessOrdering={setSuccessOrdering} />
             </>
         );
 

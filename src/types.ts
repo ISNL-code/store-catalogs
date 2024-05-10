@@ -55,6 +55,7 @@ export interface CatalogContextInterface {
 export interface useAddToCartDataInterface {
     cartItems: any[];
     handleSetCartItems: (data: any) => void;
+    handleClearCartItems: (array: string[]) => void;
     handleClearCart: () => void;
 }
 

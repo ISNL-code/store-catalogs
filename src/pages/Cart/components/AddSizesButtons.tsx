@@ -56,9 +56,10 @@ const AddSizesButtons = ({
                                                         {
                                                             sizeId: el?.id,
                                                             colorId: productData?.id,
-                                                            sku: productData?.variantSku,
+                                                            productSku: productData?.variantSku,
                                                             quantity: 1,
                                                             price: productPrice,
+                                                            sku: productData?.sku,
                                                         },
                                                     ],
                                                 };

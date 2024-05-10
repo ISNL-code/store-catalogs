@@ -190,7 +190,7 @@ const Favorites = () => {
                     </Grid>
                 </TransitionBox>
             ) : (
-                <>{!loading && <EmptyPage isShown />}</>
+                <>{!loadProducts && !loading && <EmptyPage isShown />}</>
             )}
             {favoriteProducts?.length <= 12 && <Box sx={{ height: 50 }}></Box>}
         </Box>
