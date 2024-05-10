@@ -40,7 +40,7 @@ const ModelSwiper = ({ images }) => {
             if (imageRef?.current?.clientHeight || !isLoading)
                 setTimeout(() => {
                     setMaxHeight(imageRef?.current?.clientHeight as number);
-                }, 150);
+                }, 250);
         }, [isLoading, imageRef?.current?.clientHeight]); // eslint-disable-line
 
         const memoizedSlide = useMemo(
@@ -95,7 +95,7 @@ const ModelSwiper = ({ images }) => {
             if (imageRef?.current?.clientHeight || !isLoading)
                 setTimeout(() => {
                     setMaxHeight(imageRef?.current?.clientHeight as number);
-                }, 150);
+                }, 250);
         }, [isLoading, imageRef?.current?.clientHeight]); // eslint-disable-line
 
         const memoizedSlide = useMemo(
