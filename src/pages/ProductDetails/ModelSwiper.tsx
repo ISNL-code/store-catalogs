@@ -40,7 +40,7 @@ const ModelSwiper = ({ images }) => {
             if (imageRef?.current?.clientHeight || !isLoading)
                 setTimeout(() => {
                     setMaxHeight(imageRef?.current?.clientHeight as number);
-                }, 250);
+                }, 200);
         }, [isLoading, imageRef?.current?.clientHeight]); // eslint-disable-line
 
         const memoizedSlide = useMemo(
@@ -63,7 +63,13 @@ const ModelSwiper = ({ images }) => {
                         setSlide(idx);
                     }}
                 >
-                    <Box sx={{ height: sliderHeight, maxHeight: maxHeight || sliderHeight }}>
+                    <Box
+                        sx={{
+                            height: sliderHeight,
+                            maxHeight: maxHeight || sliderHeight,
+                            transition: 'all 100ms linear',
+                        }}
+                    >
                         <ImageComponent ref={imageRef} imgUrl={imageUrl} loadControl={bool => setIsLoading(bool)} />
                     </Box>
                 </Box>
@@ -95,7 +101,7 @@ const ModelSwiper = ({ images }) => {
             if (imageRef?.current?.clientHeight || !isLoading)
                 setTimeout(() => {
                     setMaxHeight(imageRef?.current?.clientHeight as number);
-                }, 250);
+                }, 200);
         }, [isLoading, imageRef?.current?.clientHeight]); // eslint-disable-line
 
         const memoizedSlide = useMemo(
@@ -117,7 +123,13 @@ const ModelSwiper = ({ images }) => {
                         setSlide(idx);
                     }}
                 >
-                    <Box sx={{ height: sliderHeight, maxHeight: maxHeight || sliderHeight }}>
+                    <Box
+                        sx={{
+                            height: sliderHeight,
+                            maxHeight: maxHeight || sliderHeight,
+                            transition: 'all 100ms linear',
+                        }}
+                    >
                         <ImageComponent ref={imageRef} imgUrl={imageUrl} loadControl={bool => setIsLoading(bool)} />
                     </Box>
                 </Box>
