@@ -1,6 +1,4 @@
 import { Box } from '@mui/material';
-import Gradient from 'components/atoms/Gradient/Gradient';
-
 import { Fragment, useEffect, useMemo, useRef, useState } from 'react';
 import { useOutletContext } from 'react-router-dom';
 import { useDevice } from 'hooks/useDevice';
@@ -9,6 +7,7 @@ import FullScreenSwiper from './FullScreenSwiper';
 import ImageComponent from 'components/atoms/Media/Image';
 import { useWindowWidth } from '@react-hook/window-size';
 import { useIsMount } from 'hooks/useIsMount';
+import { Colors } from 'colors';
 
 const ModelSwiper = ({ images }) => {
     const WINDOW_WIDTH = useWindowWidth();
@@ -45,19 +44,15 @@ const ModelSwiper = ({ images }) => {
                 setTimeout(() => {
                     setMaxHeight(imageRef?.current?.clientHeight as number);
                 }, 100);
-        }, [isLoading, WINDOW_WIDTH]); // eslint-disable-line
+        }, [isLoading]); // eslint-disable-line
 
         const memoizedSlide = useMemo(
             () => (
                 <Box
                     ref={sliderRef}
                     sx={{
-                        minWidth: images.length === 1 ? '100%' : '70%',
-                        position: 'relative',
-                        overflow: 'hidden',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
+                        width: images.length === 1 ? '100%' : '70%',
+                        maxWidth: '400px',
                         border: '1px solid white',
                     }}
                     onClick={() => {
@@ -66,8 +61,6 @@ const ModelSwiper = ({ images }) => {
                     }}
                 >
                     <Box sx={{ height: sliderHeight, maxHeight: maxHeight }}>
-                        <Gradient dest="top" />
-                        <Gradient dest="bottom" />
                         <ImageComponent ref={imageRef} imgUrl={imageUrl} loadControl={bool => setIsLoading(bool)} />
                     </Box>
                 </Box>
@@ -103,19 +96,21 @@ const ModelSwiper = ({ images }) => {
                 setTimeout(() => {
                     setMaxHeight(imageRef?.current?.clientHeight as number);
                 }, 100);
-        }, [isLoading, WINDOW_WIDTH]); // eslint-disable-line
+        }, [isLoading]); // eslint-disable-line
 
         const memoizedSlide = useMemo(
             () => (
                 <Box
                     ref={sliderRef}
                     sx={{
+                        width: '100%',
                         position: 'relative',
                         overflow: 'hidden',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        border: '1px solid white',
+                        border: '1px solid',
+                        borderColor: Colors?.GRAY_300,
                     }}
                     onClick={() => {
                         setFullScreenMode(true);
@@ -123,8 +118,6 @@ const ModelSwiper = ({ images }) => {
                     }}
                 >
                     <Box sx={{ height: sliderHeight, maxHeight: maxHeight }}>
-                        <Gradient dest="top" />
-                        <Gradient dest="bottom" />
                         <ImageComponent ref={imageRef} imgUrl={imageUrl} loadControl={bool => setIsLoading(bool)} />
                     </Box>
                 </Box>
@@ -153,7 +146,7 @@ const ModelSwiper = ({ images }) => {
                 })}
             </Box>
         );
-    }, [images, headerHeight, instrumentalBarHeight, footerMenuHeight]); // eslint-disable-line
+    }, [images, headerHeight, instrumentalBarHeight, footerMenuHeight, WINDOW_WIDTH]); // eslint-disable-line
 
     const horizontalSwiper = useMemo(() => {
         return (
@@ -173,7 +166,7 @@ const ModelSwiper = ({ images }) => {
                 })}
             </Box>
         );
-    }, [images, headerHeight, instrumentalBarHeight, footerMenuHeight]); // eslint-disable-line
+    }, [images, headerHeight, instrumentalBarHeight, footerMenuHeight, WINDOW_WIDTH]); // eslint-disable-line
 
     return (
         <>
