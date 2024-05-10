@@ -97,7 +97,7 @@ const ModelSwiper = ({ images }) => {
                     setMaxHeight(imageRef?.current?.clientHeight as number);
                 }, 100);
         }, [isLoading]); // eslint-disable-line
-
+        console.log(sliderHeight);
         const memoizedSlide = useMemo(
             () => (
                 <Box
