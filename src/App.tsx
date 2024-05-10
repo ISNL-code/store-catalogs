@@ -16,6 +16,9 @@ import UserOrders from 'pages/Orders/UserOrders';
 import { STORE_CONFIG } from 'constants/stores_config';
 import Head from 'layouts/Head';
 import { ViewModeType } from 'constants/types';
+import Home from 'layouts/Home/Home';
+import HomePage from 'pages/Home/HomePage';
+import InformationPage from 'pages/Information/InformationPage';
 // import StoppedForService from 'pages/TechPages/StoppedForService';
 
 const App = () => {
