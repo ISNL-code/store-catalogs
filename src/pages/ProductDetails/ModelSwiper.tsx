@@ -41,7 +41,7 @@ const ModelSwiper = ({ images }) => {
                 setTimeout(() => {
                     setMaxHeight(imageRef?.current?.clientHeight as number);
                 }, 150);
-        }, [isLoading]); // eslint-disable-line
+        }, [isLoading, imageRef?.current?.clientHeight]); // eslint-disable-line
 
         const memoizedSlide = useMemo(
             () => (
@@ -90,7 +90,7 @@ const ModelSwiper = ({ images }) => {
                 setTimeout(() => {
                     setMaxHeight(imageRef?.current?.clientHeight as number);
                 }, 150);
-        }, [isLoading]); // eslint-disable-line
+        }, [isLoading, imageRef?.current?.clientHeight]); // eslint-disable-line
 
         const memoizedSlide = useMemo(
             () => (
