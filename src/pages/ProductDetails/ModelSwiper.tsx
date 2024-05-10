@@ -35,15 +35,12 @@ const ModelSwiper = ({ images }) => {
                     store?.productImagesOptions?.height
                 );
             };
-            if (sliderRef?.current?.clientWidth)
-                setTimeout(() => {
-                    setSliderHeight(calcSlideHeight());
-                }, 100);
+            if (sliderRef?.current?.clientWidth) setSliderHeight(calcSlideHeight());
 
             if (imageRef?.current?.clientHeight || !isLoading)
                 setTimeout(() => {
                     setMaxHeight(imageRef?.current?.clientHeight as number);
-                }, 100);
+                }, 1000);
         }, [isLoading]); // eslint-disable-line
 
         const memoizedSlide = useMemo(
@@ -92,7 +89,7 @@ const ModelSwiper = ({ images }) => {
             if (imageRef?.current?.clientHeight || !isLoading)
                 setTimeout(() => {
                     setMaxHeight(imageRef?.current?.clientHeight as number);
-                }, 100);
+                }, 1000);
         }, [isLoading]); // eslint-disable-line
 
         const memoizedSlide = useMemo(
