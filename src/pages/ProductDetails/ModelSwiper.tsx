@@ -17,14 +17,8 @@ const ModelSwiper = ({ images }) => {
     const { headerHeight, instrumentalBarHeight, footerMenuHeight, store }: CatalogContextInterface =
         useOutletContext();
     const [fullScreenMode, setFullScreenMode] = useState<boolean>(false);
-    const { sm, sx } = useDevice();
+    const { sx } = useDevice();
     const [slide, setSlide] = useState(0);
-    const [imagesList, setImagesList] = useState<{ imageUrl: string }[] | []>([]);
-
-    useEffect(() => {
-        if (mount && !images?.length) return;
-        setImagesList(images);
-    }, [images]); // eslint-disable-line
 
     const SlideHorizontal = ({ imageUrl, idx }) => {
         const sliderRef = useRef<HTMLImageElement>(null);
@@ -58,7 +52,7 @@ const ModelSwiper = ({ images }) => {
                 <Box
                     ref={sliderRef}
                     sx={{
-                        minWidth: imagesList.length === 1 ? '100%' : sm ? '65%' : '40%',
+                        minWidth: images.length === 1 ? '100%' : '70%',
                         position: 'relative',
                         overflow: 'hidden',
                         display: 'flex',
@@ -78,7 +72,7 @@ const ModelSwiper = ({ images }) => {
                     </Box>
                 </Box>
             ),
-            [sm, idx, sliderHeight, imagesList.length, maxHeight] // eslint-disable-line
+            [sliderHeight, images?.length, maxHeight] // eslint-disable-line
         );
 
         return memoizedSlide;
@@ -135,7 +129,7 @@ const ModelSwiper = ({ images }) => {
                     </Box>
                 </Box>
             ),
-            [sm, idx, sliderHeight, imagesList.length, maxHeight] // eslint-disable-line
+            [sliderHeight, maxHeight] // eslint-disable-line
         );
 
         return memoizedSlide;
@@ -150,7 +144,7 @@ const ModelSwiper = ({ images }) => {
                     flexDirection: 'column',
                 }}
             >
-                {imagesList?.map(({ imageUrl }, idx) => {
+                {images?.map(({ imageUrl }, idx) => {
                     return (
                         <Fragment key={idx}>
                             <SlideVertical imageUrl={imageUrl} idx={idx} />
@@ -159,7 +153,7 @@ const ModelSwiper = ({ images }) => {
                 })}
             </Box>
         );
-    }, [imagesList, headerHeight, instrumentalBarHeight, footerMenuHeight]); // eslint-disable-line
+    }, [images, headerHeight, instrumentalBarHeight, footerMenuHeight]); // eslint-disable-line
 
     const horizontalSwiper = useMemo(() => {
         return (
@@ -170,7 +164,7 @@ const ModelSwiper = ({ images }) => {
                     flexDirection: 'row',
                 }}
             >
-                {imagesList?.map(({ imageUrl }, idx) => {
+                {images?.map(({ imageUrl }, idx) => {
                     return (
                         <Fragment key={idx}>
                             <SlideHorizontal imageUrl={imageUrl} idx={idx} />
@@ -179,12 +173,12 @@ const ModelSwiper = ({ images }) => {
                 })}
             </Box>
         );
-    }, [imagesList, headerHeight, instrumentalBarHeight, footerMenuHeight]); // eslint-disable-line
+    }, [images, headerHeight, instrumentalBarHeight, footerMenuHeight]); // eslint-disable-line
 
     return (
         <>
             <FullScreenSwiper
-                images={imagesList}
+                images={images}
                 setFullScreen={setFullScreenMode}
                 fullScreenMode={fullScreenMode}
                 slide={slide}
