@@ -90,7 +90,7 @@ const ModelSwiper = ({ images }) => {
             if (sliderRef?.current?.clientWidth)
                 setTimeout(() => {
                     setSliderHeight(calcSlideHeight());
-                }, 100);
+                }, 1000);
 
             if (imageRef?.current?.clientHeight || !isLoading)
                 setTimeout(() => {
