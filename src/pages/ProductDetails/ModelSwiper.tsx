@@ -50,7 +50,13 @@ const ModelSwiper = ({ images }) => {
                     sx={{
                         width: images.length === 1 ? '100%' : '70%',
                         maxWidth: '400px',
-                        border: '1px solid white',
+                        position: 'relative',
+                        overflow: 'hidden',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        border: '1px solid',
+                        borderColor: Colors?.GRAY_300,
                     }}
                     onClick={() => {
                         setFullScreenMode(true);
