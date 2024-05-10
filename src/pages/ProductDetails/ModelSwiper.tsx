@@ -65,7 +65,7 @@ const ModelSwiper = ({ images }) => {
                     </Box>
                 </Box>
             ),
-            [sliderHeight, images?.length, maxHeight] // eslint-disable-line
+            [maxHeight] // eslint-disable-line
         );
 
         return memoizedSlide;
@@ -122,7 +122,7 @@ const ModelSwiper = ({ images }) => {
                     </Box>
                 </Box>
             ),
-            [sliderHeight, maxHeight] // eslint-disable-line
+            [maxHeight] // eslint-disable-line
         );
 
         return memoizedSlide;
@@ -146,7 +146,7 @@ const ModelSwiper = ({ images }) => {
                 })}
             </Box>
         );
-    }, [images, headerHeight, instrumentalBarHeight, footerMenuHeight, WINDOW_WIDTH]); // eslint-disable-line
+    }, [images?.length, headerHeight, instrumentalBarHeight, footerMenuHeight, WINDOW_WIDTH]); // eslint-disable-line
 
     const horizontalSwiper = useMemo(() => {
         return (
