@@ -78,7 +78,7 @@ const ModelSwiper = ({ images }) => {
                     </Box>
                 </Box>
             ),
-            [sm, imageUrl, idx, sliderHeight, imagesList.length, maxHeight]
+            [sm, idx, sliderHeight, imagesList.length, maxHeight]
         );
 
         return memoizedSlide;
@@ -135,7 +135,7 @@ const ModelSwiper = ({ images }) => {
                     </Box>
                 </Box>
             ),
-            [sm, imageUrl, idx, sliderHeight, imagesList.length, maxHeight]
+            [sm, idx, sliderHeight, imagesList.length, maxHeight]
         );
 
         return memoizedSlide;
