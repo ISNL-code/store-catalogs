@@ -159,7 +159,7 @@ const ModelSwiper = ({ images }) => {
                 })}
             </Box>
         );
-    }, [imagesList, headerHeight, instrumentalBarHeight, footerMenuHeight, fullScreenMode, slide]); // eslint-disable-line
+    }, [imagesList, headerHeight, instrumentalBarHeight, footerMenuHeight]); // eslint-disable-line
 
     const horizontalSwiper = useMemo(() => {
         return (
@@ -179,7 +179,7 @@ const ModelSwiper = ({ images }) => {
                 })}
             </Box>
         );
-    }, [imagesList, headerHeight, instrumentalBarHeight, footerMenuHeight, fullScreenMode, slide]); // eslint-disable-line
+    }, [imagesList, headerHeight, instrumentalBarHeight, footerMenuHeight]); // eslint-disable-line
 
     return (
         <>
