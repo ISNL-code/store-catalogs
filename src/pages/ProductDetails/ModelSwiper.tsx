@@ -12,6 +12,7 @@ import { Colors } from 'colors';
 const ModelSwiper = ({ images }) => {
     const WINDOW_WIDTH = useWindowWidth();
     const mount = useIsMount();
+    const [memoHeight, setMemoHeight] = useState<number | null>(null);
 
     const { headerHeight, instrumentalBarHeight, footerMenuHeight, store }: CatalogContextInterface =
         useOutletContext();
@@ -22,7 +23,7 @@ const ModelSwiper = ({ images }) => {
     const SlideHorizontal = ({ imageUrl, idx }) => {
         const sliderRef = useRef<HTMLImageElement>(null);
         const imageRef = useRef<HTMLImageElement>(null);
-        const [sliderHeight, setSliderHeight] = useState<number | string>(0);
+        const [sliderHeight, setSliderHeight] = useState<number | null>(memoHeight);
         const [maxHeight, setMaxHeight] = useState<number | null>(null);
         const [isLoading, setIsLoading] = useState(false);
 
@@ -40,6 +41,7 @@ const ModelSwiper = ({ images }) => {
             if (imageRef?.current?.clientHeight || !isLoading)
                 setTimeout(() => {
                     setMaxHeight(imageRef?.current?.clientHeight as number);
+                    setMemoHeight(imageRef?.current?.clientHeight as number);
                 }, 200);
         }, [isLoading, imageRef?.current?.clientHeight]); // eslint-disable-line
 
@@ -48,9 +50,8 @@ const ModelSwiper = ({ images }) => {
                 <Box
                     ref={sliderRef}
                     sx={{
-                        width: images.length === 1 ? '100%' : '70%',
-                        maxWidth: '400px',
-                        position: 'relative',
+                        minWidth: images?.length === 1 ? '100%' : (WINDOW_WIDTH / 3) * 2,
+                        width: 'auto',
                         overflow: 'hidden',
                         display: 'flex',
                         alignItems: 'center',
@@ -67,7 +68,7 @@ const ModelSwiper = ({ images }) => {
                         sx={{
                             height: sliderHeight,
                             maxHeight: maxHeight || sliderHeight,
-                            transition: 'all 100ms linear',
+                            transition: 'all 150ms linear',
                         }}
                     >
                         <ImageComponent ref={imageRef} imgUrl={imageUrl} loadControl={bool => setIsLoading(bool)} />
@@ -101,7 +102,7 @@ const ModelSwiper = ({ images }) => {
             if (imageRef?.current?.clientHeight || !isLoading)
                 setTimeout(() => {
                     setMaxHeight(imageRef?.current?.clientHeight as number);
-                }, 200);
+                }, 250);
         }, [isLoading, imageRef?.current?.clientHeight]); // eslint-disable-line
 
         const memoizedSlide = useMemo(
@@ -110,7 +111,6 @@ const ModelSwiper = ({ images }) => {
                     ref={sliderRef}
                     sx={{
                         width: '100%',
-                        position: 'relative',
                         overflow: 'hidden',
                         display: 'flex',
                         alignItems: 'center',
@@ -142,13 +142,7 @@ const ModelSwiper = ({ images }) => {
 
     const verticalSwiper = useMemo(() => {
         return (
-            <Box
-                pb={1}
-                sx={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                }}
-            >
+            <Box pt={1}>
                 {images?.map(({ imageUrl }, idx) => {
                     return (
                         <Fragment key={idx}>
@@ -163,7 +157,7 @@ const ModelSwiper = ({ images }) => {
     const horizontalSwiper = useMemo(() => {
         return (
             <Box
-                pb={1}
+                p={images?.length <= 1 ? 2 : 0}
                 sx={{
                     display: 'flex',
                     flexDirection: 'row',
