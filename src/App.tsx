@@ -84,6 +84,12 @@ const App = () => {
                     <Routes>
                         {
                             <>
+                                {' '}
+                                <Route path={'/'} element={<Home lang={lang} setLang={setLang} />}>
+                                    <Route path={'/'} element={<HomePage />} />
+                                    {/* <Route path={'/:storeCode/:storeName/contacts'} element={<ContactsManagePage />} /> */}
+                                    <Route path={'/info'} element={<InformationPage />} />
+                                </Route>
                                 <Route
                                     path={'/catalog'}
                                     element={
