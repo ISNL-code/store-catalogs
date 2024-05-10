@@ -9,7 +9,7 @@ declare global {
 }
 
 const Head: React.FC = () => {
-    const { WEB_HEAD_DATA, STORE_NAME } = STORE_CONFIG;
+    const { WEB_HEAD_DATA, STORE_NAME, HTML_LANG } = STORE_CONFIG;
     const { STORE_TITLE, STORE_DESCRIPTION, GOOGLE_ANALYTICS_ID, STORE_LOGO } = WEB_HEAD_DATA;
 
     // Используем useState для хранения данных манифеста
@@ -63,6 +63,7 @@ const Head: React.FC = () => {
     return (
         <HelmetProvider>
             <Helmet>
+                <html lang={HTML_LANG} />
                 <meta name="theme-color" content="#000000" />
                 <title>{STORE_TITLE}</title>
                 <meta name="description" content={STORE_DESCRIPTION} />

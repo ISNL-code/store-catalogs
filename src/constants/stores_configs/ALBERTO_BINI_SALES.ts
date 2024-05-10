@@ -5,6 +5,7 @@ const prefix = 'abs';
 export const ALBERTO_BINI_SALES = {
     active: true,
     URL: ['https://alberto-bini-sales.netlify.app'],
+    web_lang: 'uk', // html lang
     store_name: 'Alberto Bini Sales',
     store_code: 'ALBERTO_BINI_SALES',
     token_key: `${prefix}-tkn`,

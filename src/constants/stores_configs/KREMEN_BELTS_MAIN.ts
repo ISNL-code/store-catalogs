@@ -5,6 +5,7 @@ const prefix = 'kbm';
 export const KREMEN_BELTS_MAIN = {
     active: true,
     URL: ['https://kremen-belts.netlify.app'],
+    web_lang: 'uk', // html lang
     store_name: 'Kremen Belts',
     store_code: 'DEFAULT',
     token_key: `${prefix}-tkn`,

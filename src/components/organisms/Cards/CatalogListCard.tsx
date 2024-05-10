@@ -1,4 +1,4 @@
-import { Box, Typography } from '@mui/material';
+import { Box } from '@mui/material';
 import ShareButton from 'components/molecules/ToolsButtons/ShareButton';
 import { memo, useEffect, useRef, useState } from 'react';
 import { useNavigate, useOutletContext, useParams } from 'react-router-dom';
@@ -15,12 +15,13 @@ import CardSkuLabel from 'components/atoms/Labels/CardSkuLabel';
 import SaleTag from 'components/atoms/PromoTags/SaleTag';
 import { STORE_CONFIG } from 'constants/stores_config';
 import { Colors } from 'colors';
-import { SampleNextArrow, SamplePrevArrow } from './SliderArrows';
+import { SampleNextArrow, SamplePrevArrow } from '../../atoms/Elements/SliderArrows';
 import { ViewModeType } from 'constants/types';
 import CardView from './CardView';
 import GridLargeView from './GridLargeView';
 import GridMediumView from './GridMediumView';
 import { useWindowWidth } from '@react-hook/window-size';
+import CardDescriptionComponent from 'components/atoms/DescriptionComponents/CardDescriptionComponent';
 
 interface ShownModelInterface {
     price: string;
@@ -246,22 +247,7 @@ const CatalogListCard = memo<CatalogCardProps>(
                                 backgroundColor: Colors?.GRAY_100,
                             }}
                         >
-                            <Typography
-                                px={1}
-                                py={0.5}
-                                variant="h4"
-                                sx={{
-                                    height: 19,
-                                    fontSize: 14,
-                                    fontWeight: 500,
-                                    whiteSpace: 'nowrap',
-                                    overflow: 'hidden',
-                                    textOverflow: 'ellipsis',
-                                }}
-                            >
-                                {name}
-                            </Typography>
-
+                            <CardDescriptionComponent title={name} />
                             <Box
                                 px={1}
                                 pb={0.25}

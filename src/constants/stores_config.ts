@@ -1,3 +1,5 @@
+import { ALBERTO_BINI_EU } from './stores_configs/ALBERTO_BINI_EU';
+import { ALBERTO_BINI_KZ } from './stores_configs/ALBERTO_BINI_KZ';
 import { ALBERTO_BINI_MAIN } from './stores_configs/ALBERTO_BINI_MAIN';
 import { ALBERTO_BINI_OUTLET } from './stores_configs/ALBERTO_BINI_OUTLET';
 import { ALBERTO_BINI_SALES } from './stores_configs/ALBERTO_BINI_SALES';
@@ -10,6 +12,8 @@ const stores = [
     DEVELOP_STORE,
     ALBERTO_BINI_OUTLET,
     ALBERTO_BINI_MAIN,
+    ALBERTO_BINI_KZ,
+    ALBERTO_BINI_EU,
     KREMEN_BELTS_MAIN,
     ALBERTO_BINI_SALES,
     KREMEN_BELTS_SALES,
@@ -29,6 +33,7 @@ const storeConfig = (): STORE_CONFIG_Interface => {
         FAVORITE_KEY: matchingDomain?.favorite_url || 'sales_nest_favorite',
         LANGUAGE_KEY: matchingDomain?.lang_key || 'sales_nest_lang',
         APP_LANGUAGE: matchingDomain?.app_lang || 'en',
+        HTML_LANG: matchingDomain?.web_lang || 'en',
         VIEW_MODE_KEY: 'sales_nest_view_mode',
         OPTIONS: {
             MAIN_PRICE_MULTIPLICATION: matchingDomain?.options?.main_price_multiplication || 1,

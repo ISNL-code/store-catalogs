@@ -5,6 +5,7 @@ const prefix = 'abm';
 export const ALBERTO_BINI_MAIN = {
     active: true, // Поле которое запускает магазин true - работает false - остановлен / по тех. причина
     URL: ['https://alberto-bini.netlify.app'],
+    web_lang: 'uk', // html lang
     store_name: 'Alberto Bini',
     store_code: 'ALBERTO_BINI',
     token_key: `${prefix}-tkn`,

@@ -5,6 +5,7 @@ const prefix = 'abo';
 export const ALBERTO_BINI_OUTLET = {
     active: true,
     URL: ['https://alberto-bini-outlet.netlify.app'],
+    web_lang: 'uk', // html lang
     store_name: 'Alberto Bini Outlet',
     store_code: 'ALBERTO_BINI_SALES',
     token_key: `${prefix}-tkn`,

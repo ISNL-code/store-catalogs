@@ -7,7 +7,7 @@ interface Props {
     children: JSX.Element;
     maxWidth?: number;
     hidden?: boolean;
-    position?: 'bottom-end' | 'top';
+    position?: 'bottom-end' | 'top' | 'top-start';
 }
 
 const StyledTooltip = ({

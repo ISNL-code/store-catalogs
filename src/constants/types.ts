@@ -19,6 +19,7 @@ export interface STORE_CONFIG_Interface {
     FAVORITE_KEY: string; // use for local storage key
     LANGUAGE_KEY: string; // use for local storage key
     APP_LANGUAGE: string; // init app language
+    HTML_LANG: string;
     VIEW_MODE_KEY: string; // use for local storage key
     OPTIONS: {
         MAIN_PRICE_MULTIPLICATION: number; // use in custom catalogs for multiple main prices
