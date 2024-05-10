@@ -103,6 +103,7 @@ const CatalogListCard = memo<CatalogCardProps>(
         const SliderComponent = () => {
             return (
                 <Grid
+                    ref={sliderRef}
                     container
                     xs={12}
                     sx={{
@@ -118,7 +119,6 @@ const CatalogListCard = memo<CatalogCardProps>(
                     }}
                 >
                     <Grid
-                        ref={sliderRef}
                         xs={12}
                         sx={{
                             backgroundColor: Colors?.WHITE,
@@ -274,7 +274,7 @@ const CatalogListCard = memo<CatalogCardProps>(
                                     gap: 0.5,
                                 }}
                             >
-                                <Box sx={{ minWidth: 75 }}>
+                                <Box sx={{ width: 95 }}>
                                     {store?.mainStoreSettings?.prices && (
                                         <CardPrice
                                             currency={currency}
@@ -290,13 +290,14 @@ const CatalogListCard = memo<CatalogCardProps>(
                                         alignItems: 'center',
                                         justifyContent: 'flex-end',
                                         gap: 0.5,
-                                        maxWidth: '200px',
+                                        width: '150px',
                                         ml: 'auto',
                                     }}
                                 >
                                     <Box
                                         sx={{
-                                            maxWidth: 92,
+                                            width: '100%',
+                                            maxWidth: 85,
                                         }}
                                     >
                                         <CardSkuLabel sku={shownModel?.sku as string} />
@@ -309,7 +310,7 @@ const CatalogListCard = memo<CatalogCardProps>(
                                             justifyContent: 'flex-end',
                                             gap: 0.5,
                                             my: 0.25,
-                                            minWidth: 60,
+                                            width: 64,
                                         }}
                                     >
                                         <CartButton

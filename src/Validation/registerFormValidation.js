@@ -6,7 +6,11 @@ const registerFormValidation = yup.object().shape({
     confirmPassword: yup.string().test('passwords-match', 'passwords_do_not_match', function (value) {
         return this.parent.password === value;
     }),
-    phoneNumber: yup.string().required('enter_phone_number').min(7, 'phone_length_minimum_7_characters'),
+    phoneNumber: yup
+        .string()
+        .required('enter_phone_number')
+        .min(7, 'phone_length_minimum_7_characters')
+        .max(14, 'phone_length_max_14_characters'),
     firstName: yup.string().required('enter_first_name'),
     lastName: yup.string().required('enter_last_name'),
     country: yup.string().required(),

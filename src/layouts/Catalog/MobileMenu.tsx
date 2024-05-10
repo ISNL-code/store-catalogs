@@ -6,6 +6,8 @@ import GridViewIcon from '@mui/icons-material/GridView';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import ProfileButton from 'components/molecules/ToolsButtons/ProfileButton';
+import { useEffect, useState } from 'react';
+import { useWindowWidth } from '@react-hook/window-size';
 
 const MobileMenu = ({
     appXPadding,
@@ -23,8 +25,14 @@ const MobileMenu = ({
     user,
     menuHeight,
 }) => {
+    const WINDOW_WIDTH = useWindowWidth();
     const navigate = useNavigate();
     const { storeCode, storeName } = useParams();
+    const [position, setPosition] = useState(0);
+
+    useEffect(() => {
+        setPosition(0);
+    }, [WINDOW_WIDTH]);
 
     if (isShown)
         return (
@@ -33,8 +41,8 @@ const MobileMenu = ({
                 sx={{
                     height: menuHeight,
                     position: 'fixed',
-                    left: 0,
-                    bottom: 0,
+                    left: position,
+                    bottom: position,
                     width: '100%',
                     background: '#000',
                     zIndex: 4000,

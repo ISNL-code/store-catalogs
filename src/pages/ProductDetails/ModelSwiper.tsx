@@ -1,42 +1,185 @@
 import { Box } from '@mui/material';
 import Gradient from 'components/atoms/Gradient/Gradient';
 
-import { Fragment, useEffect, useRef, useState } from 'react';
+import { Fragment, useEffect, useMemo, useRef, useState } from 'react';
 import { useOutletContext } from 'react-router-dom';
 import { useDevice } from 'hooks/useDevice';
 import { CatalogContextInterface } from 'types';
 import FullScreenSwiper from './FullScreenSwiper';
 import ImageComponent from 'components/atoms/Media/Image';
 import { useWindowWidth } from '@react-hook/window-size';
+import { useIsMount } from 'hooks/useIsMount';
 
 const ModelSwiper = ({ images }) => {
     const WINDOW_WIDTH = useWindowWidth();
-    const sliderRef = useRef<HTMLImageElement>(null);
-    const imageRef = useRef<HTMLImageElement>(null);
+    const mount = useIsMount();
+
     const { headerHeight, instrumentalBarHeight, footerMenuHeight, store }: CatalogContextInterface =
         useOutletContext();
     const [fullScreenMode, setFullScreenMode] = useState<boolean>(false);
     const { sm, sx } = useDevice();
     const [slide, setSlide] = useState(0);
     const [imagesList, setImagesList] = useState<{ imageUrl: string }[] | []>([]);
-    const [sliderHeight, setSliderHeight] = useState<number | string>(0);
-    // const [maxHeight, setMaxHeight] = useState<number | string>(0);
 
     useEffect(() => {
+        if (mount && !images?.length) return;
         setImagesList(images);
     }, [images]);
 
-    useEffect(() => {
-        setTimeout(() => {
-            setSliderHeight(
-                ((sliderRef?.current?.clientWidth || 1) / store?.productImagesOptions?.width) *
+    const SlideHorizontal = ({ imageUrl, idx }) => {
+        const sliderRef = useRef<HTMLImageElement>(null);
+        const imageRef = useRef<HTMLImageElement>(null);
+        const [sliderHeight, setSliderHeight] = useState<number | string>(0);
+        const [maxHeight, setMaxHeight] = useState<number | null>(null);
+        const [isLoading, setIsLoading] = useState(false);
+
+        useEffect(() => {
+            if (mount) return;
+
+            const calcSlideHeight = () => {
+                return (
+                    ((sliderRef?.current?.clientWidth || 1) / store?.productImagesOptions?.width) *
                     store?.productImagesOptions?.height
-            );
-        }, 100);
-        // setTimeout(() => {
-        //     setMaxHeight(imageRef?.current?.clientHeight as number);
-        // }, 100);
-    }, [WINDOW_WIDTH, sliderRef?.current?.clientWidth]); // eslint-disable-line
+                );
+            };
+            if (sliderRef?.current?.clientWidth)
+                setTimeout(() => {
+                    setSliderHeight(calcSlideHeight());
+                }, 100);
+
+            if (imageRef?.current?.clientHeight || !isLoading)
+                setTimeout(() => {
+                    setMaxHeight(imageRef?.current?.clientHeight as number);
+                }, 100);
+        }, [isLoading, WINDOW_WIDTH]);
+
+        const memoizedSlide = useMemo(
+            () => (
+                <Box
+                    ref={sliderRef}
+                    sx={{
+                        minWidth: imagesList.length === 1 ? '100%' : sm ? '65%' : '40%',
+                        position: 'relative',
+                        overflow: 'hidden',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        border: '1px solid white',
+                    }}
+                    onClick={() => {
+                        setFullScreenMode(true);
+                        setSlide(idx);
+                    }}
+                >
+                    <Box sx={{ height: sliderHeight, maxHeight: maxHeight }}>
+                        <Gradient dest="top" />
+                        <Gradient dest="bottom" />
+                        <ImageComponent ref={imageRef} imgUrl={imageUrl} loadControl={bool => setIsLoading(bool)} />
+                    </Box>
+                </Box>
+            ),
+            [sm, imageUrl, idx, sliderHeight, imagesList.length, maxHeight]
+        );
+
+        return memoizedSlide;
+    };
+
+    const SlideVertical = ({ imageUrl, idx }) => {
+        const sliderRef = useRef<HTMLImageElement>(null);
+        const imageRef = useRef<HTMLImageElement>(null);
+        const [sliderHeight, setSliderHeight] = useState<number | string>(0);
+        const [maxHeight, setMaxHeight] = useState<number | null>(null);
+        const [isLoading, setIsLoading] = useState(false);
+
+        useEffect(() => {
+            if (mount) return;
+
+            const calcSlideHeight = () => {
+                return (
+                    ((sliderRef?.current?.clientWidth || 1) / store?.productImagesOptions?.width) *
+                    store?.productImagesOptions?.height
+                );
+            };
+            if (sliderRef?.current?.clientWidth)
+                setTimeout(() => {
+                    setSliderHeight(calcSlideHeight());
+                }, 100);
+
+            if (imageRef?.current?.clientHeight || !isLoading)
+                setTimeout(() => {
+                    setMaxHeight(imageRef?.current?.clientHeight as number);
+                }, 100);
+        }, [isLoading, WINDOW_WIDTH]);
+
+        const memoizedSlide = useMemo(
+            () => (
+                <Box
+                    ref={sliderRef}
+                    sx={{
+                        position: 'relative',
+                        overflow: 'hidden',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        border: '1px solid white',
+                    }}
+                    onClick={() => {
+                        setFullScreenMode(true);
+                        setSlide(idx);
+                    }}
+                >
+                    <Box sx={{ height: sliderHeight, maxHeight: maxHeight }}>
+                        <Gradient dest="top" />
+                        <Gradient dest="bottom" />
+                        <ImageComponent ref={imageRef} imgUrl={imageUrl} loadControl={bool => setIsLoading(bool)} />
+                    </Box>
+                </Box>
+            ),
+            [sm, imageUrl, idx, sliderHeight, imagesList.length, maxHeight]
+        );
+
+        return memoizedSlide;
+    };
+
+    const verticalSwiper = useMemo(() => {
+        return (
+            <Box
+                pb={1}
+                sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                }}
+            >
+                {imagesList?.map(({ imageUrl }, idx) => {
+                    return (
+                        <Fragment key={idx}>
+                            <SlideVertical imageUrl={imageUrl} idx={idx} />
+                        </Fragment>
+                    );
+                })}
+            </Box>
+        );
+    }, [imagesList, headerHeight, instrumentalBarHeight, footerMenuHeight, fullScreenMode, slide]);
+
+    const horizontalSwiper = useMemo(() => {
+        return (
+            <Box
+                pb={1}
+                sx={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                }}
+            >
+                {imagesList?.map(({ imageUrl }, idx) => {
+                    return (
+                        <Fragment key={idx}>
+                            <SlideHorizontal imageUrl={imageUrl} idx={idx} />
+                        </Fragment>
+                    );
+                })}
+            </Box>
+        );
+    }, [imagesList, headerHeight, instrumentalBarHeight, footerMenuHeight, fullScreenMode, slide]);
 
     return (
         <>
@@ -51,46 +194,7 @@ const ModelSwiper = ({ images }) => {
                     maxHeight: `calc(100vh - ${headerHeight}px - ${instrumentalBarHeight}px - ${footerMenuHeight}px - 8px)`,
                 }}
             >
-                <Box
-                    pb={1}
-                    sx={{
-                        display: 'flex',
-                        flexDirection: sx ? 'row' : 'column',
-                    }}
-                >
-                    {imagesList?.map(({ imageUrl }, idx) => {
-                        return (
-                            <Fragment key={idx}>
-                                <Box
-                                    ref={sliderRef}
-                                    sx={{
-                                        minWidth: imagesList.length === 1 ? '100%' : sm ? '65%' : '40%',
-                                        position: 'relative',
-                                        overflow: 'hidden',
-                                        display: 'flex',
-                                        alignItems: 'center',
-                                        justifyContent: 'center',
-                                    }}
-                                    onClick={() => {
-                                        setFullScreenMode(true);
-                                        setSlide(idx);
-                                    }}
-                                >
-                                    <Box
-                                        sx={{
-                                            height: sliderHeight,
-                                            maxHeight: 'fit-content',
-                                        }}
-                                    >
-                                        <Gradient dest="top" />
-                                        <Gradient dest="bottom" />
-                                        <ImageComponent ref={imageRef} imgUrl={`${imageUrl}`} imgHeight={'100%'} />
-                                    </Box>
-                                </Box>
-                            </Fragment>
-                        );
-                    })}
-                </Box>
+                {sx ? horizontalSwiper : verticalSwiper}
             </Box>
         </>
     );

@@ -8,61 +8,66 @@ interface ImageProps {
     imgUrl: string;
     height?;
     imgHeight?;
+    loadControl?;
 }
 
-const ImageComponent = React.forwardRef<HTMLImageElement, ImageProps>(({ imgUrl, height, imgHeight = 'auto' }, ref) => {
-    const [imgLoaded, setImgLoaded] = useState(false);
-    const [imgError, setImgError] = useState(false);
+const ImageComponent = React.forwardRef<HTMLImageElement, ImageProps>(
+    ({ imgUrl, height = '100%', imgHeight = 'auto', loadControl = () => {} }, ref) => {
+        const [imgLoaded, setImgLoaded] = useState(false);
+        const [imgError, setImgError] = useState(false);
 
-    useEffect(() => {
-        setImgLoaded(false);
-    }, [imgUrl]);
+        useEffect(() => {
+            setImgLoaded(false);
+            loadControl(true);
+        }, [imgUrl]);
 
-    useEffect(() => {
-        const img = new Image();
-        img.src = imgUrl;
-        img.onload = () => {
-            setImgLoaded(true);
-        };
-        img.onerror = () => {
-            setImgLoaded(true);
-            setImgError(true); // Handle error case
-        };
+        useEffect(() => {
+            const img = new Image();
+            img.src = imgUrl;
+            img.onload = () => {
+                setImgLoaded(true);
+                loadControl(false);
+            };
+            img.onerror = () => {
+                loadControl(false);
+                setImgLoaded(true);
+                setImgError(true); // Handle error case
+            };
 
-        return () => {
-            // Clean up if the component unmounts before the image is loaded
-            img.onload = null;
-            img.onerror = null;
-        };
-    }, [imgUrl]);
+            return () => {
+                // Clean up if the component unmounts before the image is loaded
+                img.onload = null;
+                img.onerror = null;
+            };
+        }, [imgUrl]);
 
-    return (
-        <Box
-            sx={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                height: height,
-            }}
-        >
-            {imgLoaded && !imgError ? (
-                <img
-                    loading="lazy"
-                    src={imgUrl}
-                    style={{
-                        width: '100%',
-                        transition: 'all 250ms linear',
-                        height: imgHeight,
-                    }}
-                    alt="Loading..."
-                    ref={ref}
-                />
-            ) : (
-                <CircularProgress sx={{ color: Colors?.GRAY }} thickness={2} />
-            )}
-        </Box>
-    );
-});
+        return (
+            <Box
+                sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    height: height,
+                }}
+            >
+                {imgLoaded && !imgError ? (
+                    <img
+                        loading="lazy"
+                        src={imgUrl}
+                        style={{
+                            width: '100%',
+                            height: imgHeight,
+                        }}
+                        alt="Loading..."
+                        ref={ref}
+                    />
+                ) : (
+                    <CircularProgress sx={{ color: Colors?.GRAY }} thickness={2} />
+                )}
+            </Box>
+        );
+    }
+);
 
 export default ImageComponent;
 

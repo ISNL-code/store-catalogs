@@ -7,9 +7,17 @@ interface Props {
     children: JSX.Element;
     maxWidth?: number;
     hidden?: boolean;
+    position?: 'bottom-end' | 'top';
 }
 
-const StyledTooltip = ({ data = [], title = '', children, maxWidth = 500, hidden = false }: Props) => {
+const StyledTooltip = ({
+    data = [],
+    title = '',
+    children,
+    maxWidth = 500,
+    hidden = false,
+    position = 'bottom-end',
+}: Props) => {
     return (
         <Tooltip
             sx={{ cursor: 'default', zIndex: 5000 }}
@@ -27,7 +35,7 @@ const StyledTooltip = ({ data = [], title = '', children, maxWidth = 500, hidden
                 )) as JSX.Element
             }
             arrow
-            placement="bottom-end"
+            placement={position}
             componentsProps={{
                 tooltip: {
                     sx: {
