@@ -10,6 +10,10 @@ import InfoIcon from '@mui/icons-material/Info';
 import HeaderLogo from 'components/atoms/Logo/HeaderLogo';
 import { Colors } from 'colors';
 import { STORE_CONFIG } from 'constants/stores_config';
+import ProfileButton from 'components/molecules/ToolsButtons/ProfileButton';
+import PermIdentityIcon from '@mui/icons-material/PermIdentity';
+import { StoreType } from 'constants/types';
+import GridViewIcon from '@mui/icons-material/GridView';
 
 interface HeaderInterface {
     headerHeight;
@@ -22,6 +26,9 @@ interface HeaderInterface {
     storeHeaderName;
     storeCode;
     store;
+    auth;
+    user;
+    openModalType;
 }
 
 const HomeHeader = ({
@@ -35,9 +42,12 @@ const HomeHeader = ({
     storeHeaderName,
     storeCode,
     store,
+    auth,
+    user,
+    openModalType,
 }: HeaderInterface) => {
     const { OPTIONS } = STORE_CONFIG;
-    const { CUSTOM_LOGO } = OPTIONS;
+    const { CUSTOM_LOGO, STORE_TYPE, INFORMATION_PAGE_ACTIVE } = OPTIONS;
     const location = useLocation();
     const { sx } = useDevice();
 
@@ -63,33 +73,67 @@ const HomeHeader = ({
                 </Box>
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
                     <HeaderNavButton title={string?.home} path={`/`} icon={() => <HomeIcon />} isShown={!sx} />
-                    <HeaderNavButton
-                        title={string?.wholesale_catalog}
-                        path={`/catalog/${storeCode}/${storeHeaderName?.replaceAll(' ', '-').toLowerCase()}`}
-                        icon={() => <AttachMoneyIcon />}
-                        isShown={!sx}
-                        isActive={location.pathname.includes('details')}
-                        action={() => {
-                            localStorage.setItem('catalog_mode', JSON.stringify(1));
-                        }}
-                    />
-                    <HeaderNavButton
-                        title={string?.retail_catalog}
-                        path={`/catalog/${storeCode}/${storeHeaderName?.replaceAll(' ', '-').toLowerCase()}`}
-                        icon={() => <StorefrontIcon />}
-                        isShown={!sx}
-                        isActive={location.pathname.includes('details')}
-                        action={() => {
-                            localStorage.setItem('catalog_mode', JSON.stringify(3));
-                        }}
-                    />
-                    <HeaderNavButton
-                        title={string?.info}
-                        path={`/info`}
-                        icon={() => <InfoIcon />}
-                        isShown={!sx}
-                        action={() => {}}
-                    />
+                    {STORE_TYPE !== StoreType?.both && (
+                        <HeaderNavButton
+                            title={string?.catalog}
+                            path={`/catalog/${storeCode}/${storeHeaderName?.replaceAll(' ', '-').toLowerCase()}`}
+                            icon={() => <GridViewIcon />}
+                            isShown={!sx}
+                            isActive={location.pathname.includes('details')}
+                        />
+                    )}
+                    {STORE_TYPE === StoreType?.both && (
+                        <HeaderNavButton
+                            title={string?.wholesale_catalog}
+                            path={`/catalog/${storeCode}/${storeHeaderName?.replaceAll(' ', '-').toLowerCase()}`}
+                            icon={() => <AttachMoneyIcon />}
+                            isShown={!sx}
+                            isActive={location.pathname.includes('details')}
+                            action={() => {
+                                localStorage.setItem('catalog_mode', JSON.stringify(1));
+                            }}
+                        />
+                    )}
+                    {STORE_TYPE === StoreType?.both && (
+                        <HeaderNavButton
+                            title={string?.retail_catalog}
+                            path={`/catalog/${storeCode}/${storeHeaderName?.replaceAll(' ', '-').toLowerCase()}`}
+                            icon={() => <StorefrontIcon />}
+                            isShown={!sx}
+                            isActive={location.pathname.includes('details')}
+                            action={() => {
+                                localStorage.setItem('catalog_mode', JSON.stringify(3));
+                            }}
+                        />
+                    )}
+                    {INFORMATION_PAGE_ACTIVE && (
+                        <HeaderNavButton
+                            title={string?.info}
+                            path={`/info`}
+                            icon={() => <InfoIcon />}
+                            isShown={!sx}
+                            action={() => {}}
+                        />
+                    )}
+                    {!auth && (
+                        <HeaderNavButton
+                            title={string?.login}
+                            icon={() => <PermIdentityIcon />}
+                            isShown={!sx}
+                            action={() => setOpenModalType('login')}
+                            isActive={['login', 'register', 'forgot-password'].includes(openModalType)}
+                        />
+                    )}
+                    {!sx && auth && (
+                        <ProfileButton
+                            store={store}
+                            string={string}
+                            headerHeight={headerHeight}
+                            user={user}
+                            setOpenModalType={setOpenModalType}
+                            childPath={['orders', 'profile']}
+                        />
+                    )}
                     <LanguageButton
                         setLang={setLang}
                         string={string}

@@ -7,8 +7,11 @@ import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import PermIdentityIcon from '@mui/icons-material/PermIdentity';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import LogoutIcon from '@mui/icons-material/Logout';
+import { STORE_CONFIG } from 'constants/stores_config';
 
 const ProfileButton = ({ string, headerHeight, menuHeight = '', user, setOpenModalType, store, childPath }) => {
+    const { OPTIONS } = STORE_CONFIG;
+    const { PLAN_OPTIONS } = OPTIONS;
     const location = useLocation();
     const navigate = useNavigate();
     const { storeCode, storeName } = useParams();
@@ -134,7 +137,7 @@ const ProfileButton = ({ string, headerHeight, menuHeight = '', user, setOpenMod
                                     </Box>
                                 </ListItemText>
                             </MenuItem>
-                            {store?.additionalStoreSettings?.cart && (
+                            {PLAN_OPTIONS?.cart && (
                                 <MenuItem
                                     sx={{
                                         cursor: 'pointer',

@@ -74,22 +74,21 @@ const Loader = ({
                         position: 'relative',
                     }}
                 >
-                    <CircularProgress size={75} thickness={1.5} sx={{ color: Colors?.LIGHT_BLUE }} />
+                    <CircularProgress size={75} thickness={2} sx={{ color: Colors?.LIGHT_BLUE }} />
                     <Box
                         sx={{
                             position: 'absolute',
                             overflow: 'hidden',
-                            height: 70,
-                            width: 70,
+                            height: 65,
+                            width: 65,
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'center',
-                            backgroundColor: '#fff',
                             borderRadius: '50%',
                             opacity: 0.6,
                         }}
                     >
-                        <img src={require('assets/img/logo.png')} style={{ height: '65px' }} alt="img" />
+                        <img src={require('assets/img/logo.png')} style={{ height: '67px' }} alt="img" />
                     </Box>
                 </Box>
             )}

@@ -1,7 +1,15 @@
 import { Box, IconButton, Typography } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 
-const ModalWindow = ({ children, type = '', title, text = '', closeAction = () => {} }) => {
+interface Props {
+    children?;
+    type?;
+    title;
+    text?;
+    closeAction;
+}
+
+const ModalWindow = ({ children, type = '', title, text = '', closeAction = null }: Props) => {
     const headerColor = () => {
         if (type === 'warning') return 'linear-gradient(to right , #ed6c02 40%, #f08c52 65%, #ffb388);';
         if (type === 'error') return 'linear-gradient(to right , #ed2502 40%, #f07252 65%, #ffa088);';
@@ -24,13 +32,13 @@ const ModalWindow = ({ children, type = '', title, text = '', closeAction = () =
             }}
             onClick={e => {
                 e.stopPropagation();
-                closeAction();
+                if (closeAction) closeAction();
             }}
         >
             <Box
                 onClick={e => {
                     e.stopPropagation();
-                    closeAction();
+                    if (closeAction) closeAction();
                 }}
                 pb={4}
                 sx={{
@@ -73,22 +81,24 @@ const ModalWindow = ({ children, type = '', title, text = '', closeAction = () =
                             borderBottom: '1px solid #ccc',
                         }}
                     >
-                        <IconButton
-                            sx={{
-                                p: 0.25,
-                                border: '1px solid #ccc',
-                                background: '#fff',
-                                '&:hover': {
-                                    backgroundColor: 'white',
-                                },
-                            }}
-                            onClick={() => {
-                                closeAction();
-                            }}
-                            size="small"
-                        >
-                            <CloseIcon fontSize="small" />
-                        </IconButton>
+                        {closeAction && (
+                            <IconButton
+                                sx={{
+                                    p: 0.25,
+                                    border: '1px solid #ccc',
+                                    background: '#fff',
+                                    '&:hover': {
+                                        backgroundColor: 'white',
+                                    },
+                                }}
+                                onClick={() => {
+                                    if (closeAction) closeAction();
+                                }}
+                                size="small"
+                            >
+                                <CloseIcon fontSize="small" />
+                            </IconButton>
+                        )}
                     </Box>
                     {(text || title) && (
                         <Box p={1.5} px={2} sx={{ flexGrow: 1 }}>

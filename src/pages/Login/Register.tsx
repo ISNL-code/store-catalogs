@@ -145,10 +145,14 @@ export default function Register({ setAuth, lang, string, close, setOpenModalTyp
             {isLoading && <Loader />}
             <ModalWindow
                 title={string?.register}
-                closeAction={() => {
-                    close();
-                    setError(false);
-                }}
+                closeAction={
+                    close
+                        ? () => {
+                              close();
+                              setError(false);
+                          }
+                        : null
+                }
             >
                 {error && (
                     <Box mt={1} sx={{ width: '100%', textAlign: 'center' }}>

@@ -104,14 +104,14 @@ export default function MainCatalog({ lang, setLang, auth, setAuth, userData, vi
                 string={currentLanguage?.string}
                 lang={supportedLanguage}
                 setLang={setLang}
-                auth={auth}
                 logo={store?.logo?.path}
                 storeHeaderName={store?.name}
                 setOpenModalType={setOpenModalType}
-                openModalType={openModalType}
                 store={store}
                 cart={cart}
                 favorites={favorites}
+                openModalType={openModalType}
+                auth={auth}
                 user={userData}
             />
 

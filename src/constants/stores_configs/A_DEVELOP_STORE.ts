@@ -1,6 +1,6 @@
+import { ALBERTO_BINI_MAIN } from './ALBERTO_BINI_MAIN'; // eslint-disable-line
 import { ALBERTO_BINI_EU } from './ALBERTO_BINI_EU'; // eslint-disable-line
 import { ALBERTO_BINI_KZ } from './ALBERTO_BINI_KZ'; // eslint-disable-line
-import { ALBERTO_BINI_MAIN } from './ALBERTO_BINI_MAIN'; // eslint-disable-line
 import { ALBERTO_BINI_OUTLET } from './ALBERTO_BINI_OUTLET'; // eslint-disable-line
 import { ALBERTO_BINI_SALES } from './ALBERTO_BINI_SALES'; // eslint-disable-line
 import { KREMEN_BELTS_MAIN } from './KREMEN_BELTS_MAIN'; // eslint-disable-line

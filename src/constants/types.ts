@@ -1,6 +1,7 @@
 export enum StoreType {
     sales = 'sales',
     wholesales = 'wholesales',
+    both = 'both',
     default = 'default',
 }
 
@@ -22,7 +23,7 @@ export interface STORE_CONFIG_Interface {
     FAVORITE_KEY: string; // use for local storage key
     LANGUAGE_KEY: string; // use for local storage key
     APP_LANGUAGE: string; // init app language
-    HTML_LANG: string;
+    HTML_LANG: string; // web html lang
     VIEW_MODE_KEY: string; // use for local storage key
     SIDE_LINKS: { name: string; href: string; description: string }[] | [];
     OPTIONS: {
@@ -33,6 +34,7 @@ export interface STORE_CONFIG_Interface {
         CUSTOM_CURRENCY: string | null; // use in custom catalogs  if use different from default currency
         STORE_TYPE: StoreType; // use in custom catalogs for identification of store type
         HOME_PAGE_ACTIVE: boolean; // use if catalog had home page
+        INFORMATION_PAGE_ACTIVE: boolean; // use for info page (privacy policy....etc)
         CUSTOM_LOGO: boolean; // use for custom header logo
         PLAN_OPTIONS: {
             prices: boolean;

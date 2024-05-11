@@ -54,6 +54,9 @@ export default function Home({ lang, setLang, auth, setAuth, userData }) {
                 storeHeaderName={store?.name}
                 storeCode={store?.code}
                 store={store}
+                openModalType={openModalType}
+                auth={auth}
+                user={userData}
             />
 
             <Box className="HomeBody" mt={`${HEADER_HEIGHT}px`} flexGrow={1}>
@@ -72,6 +75,9 @@ export default function Home({ lang, setLang, auth, setAuth, userData }) {
                             headerHeight: HEADER_HEIGHT,
                             footerMenuHeight: FOOTER_MENU_HEIGHT,
                             appXPadding: BODY_PADDINGS,
+
+                            //store data
+                            store,
                         } as HomeContextInterface
                     }
                 />

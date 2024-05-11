@@ -12,6 +12,7 @@ import ProfileButton from 'components/molecules/ToolsButtons/ProfileButton';
 import { StoreInterface, useAddToCartDataInterface, useAddToFavoriteDataInterface } from 'types';
 import { Colors } from 'colors';
 import { STORE_CONFIG } from 'constants/stores_config';
+import HomeIcon from '@mui/icons-material/Home';
 
 interface HeaderInterface {
     headerHeight;
@@ -37,17 +38,17 @@ const Header = ({
     lang,
     setLang,
     auth,
+    user,
+    openModalType,
     logo,
     storeHeaderName,
     setOpenModalType,
-    openModalType,
     store,
     cart,
     favorites,
-    user,
 }: HeaderInterface) => {
     const { OPTIONS } = STORE_CONFIG;
-    const { CUSTOM_LOGO, PLAN_OPTIONS } = OPTIONS;
+    const { CUSTOM_LOGO, PLAN_OPTIONS, HOME_PAGE_ACTIVE } = OPTIONS;
     const navigate = useNavigate();
     const location = useLocation();
     const { sx } = useDevice();
@@ -74,6 +75,9 @@ const Header = ({
                     <HeaderLogo title={storeHeaderName} imgUrl={logo} custom={CUSTOM_LOGO} />
                 </Box>
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                    {HOME_PAGE_ACTIVE && (
+                        <HeaderNavButton title={string?.home} path={`/`} icon={() => <HomeIcon />} isShown={!sx} />
+                    )}
                     <HeaderNavButton
                         title={string?.catalog}
                         path={`/catalog/${storeCode}/${storeName}`}

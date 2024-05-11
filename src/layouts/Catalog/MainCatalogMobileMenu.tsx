@@ -8,6 +8,7 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import ProfileButton from 'components/molecules/ToolsButtons/ProfileButton';
 import { useEffect, useState } from 'react';
 import { useWindowWidth } from '@react-hook/window-size';
+import HomeIcon from '@mui/icons-material/Home';
 
 const MobileMenu = ({
     appXPadding,
@@ -58,6 +59,7 @@ const MobileMenu = ({
                         gap: 2,
                     }}
                 >
+                    <MobileNavButton path={`/`} title={string?.home} icon={p => <HomeIcon {...p} />} />
                     <MobileNavButton
                         path={`/catalog/${storeCode}/${storeName}`}
                         childPath={['/details', '/contacts', 'model']}

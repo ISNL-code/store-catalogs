@@ -1,0 +1,69 @@
+import { Box } from '@mui/material';
+import LanguageButton from 'components/molecules/ToolsButtons/LanguageButton';
+import HeaderLogo from 'components/atoms/Logo/HeaderLogo';
+import { Colors } from 'colors';
+import { STORE_CONFIG } from 'constants/stores_config';
+
+interface HeaderInterface {
+    headerHeight;
+    appXPadding;
+    string;
+    lang;
+    setLang;
+    setOpenModalType;
+    logo;
+    storeHeaderName;
+    store;
+}
+
+const HomeHeader = ({
+    headerHeight,
+    appXPadding,
+    string,
+    lang,
+    setLang,
+    setOpenModalType,
+    logo,
+    storeHeaderName,
+    store,
+}: HeaderInterface) => {
+    const { OPTIONS } = STORE_CONFIG;
+    const { CUSTOM_LOGO } = OPTIONS;
+
+    return (
+        <Box
+            px={appXPadding}
+            sx={{
+                height: headerHeight,
+                borderBottom: '1px solid',
+                borderColor: Colors?.GRAY_300,
+                position: 'fixed',
+                width: '100%',
+                left: 0,
+                top: 0,
+                zIndex: 4000,
+                backgroundColor: Colors?.WHITE,
+                overflow: 'hidden',
+            }}
+        >
+            <Box sx={{ height: headerHeight, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <HeaderLogo title={storeHeaderName} imgUrl={logo} custom={CUSTOM_LOGO} />
+                </Box>
+                <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                    <LanguageButton
+                        setLang={setLang}
+                        string={string}
+                        lang={lang}
+                        setOpenModalType={setOpenModalType}
+                        storeLanguages={store?.supportedLanguages?.map(el => {
+                            return el?.code;
+                        })}
+                    />
+                </Box>
+            </Box>
+        </Box>
+    );
+};
+
+export default HomeHeader;

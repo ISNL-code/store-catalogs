@@ -19,6 +19,7 @@ import { ViewModeType } from 'constants/types';
 import Home from 'layouts/Home/Home';
 import HomePage from 'pages/Home/HomePage';
 import InformationPage from 'pages/Information/InformationPage';
+import Login from 'layouts/Login/Login';
 // import StoppedForService from 'pages/TechPages/StoppedForService';
 
 const App = () => {
@@ -89,6 +90,16 @@ const App = () => {
         }
     }, []); // eslint-disable-line
 
+    const handleRedirect = () => {
+        if (!HOME_PAGE_ACTIVE) {
+            if (REQUIRED_REGISTRATION && !auth) {
+                return '/';
+            }
+            return '/catalog';
+        }
+        return '/';
+    };
+
     return (
         <>
             <Head />
@@ -97,23 +108,10 @@ const App = () => {
                     <Routes>
                         {
                             <>
-                                {REQUIRED_REGISTRATION && (
+                                {REQUIRED_REGISTRATION && !auth && (
                                     <Route
                                         path={'/'}
-                                        element={
-                                            <Home
-                                                lang={lang}
-                                                setLang={setLang}
-                                                auth={auth}
-                                                setAuth={setAuth}
-                                                userData={{
-                                                    currentUserData,
-                                                    isFetching,
-                                                    updateUserData,
-                                                    setCurrentUserData,
-                                                }}
-                                            />
-                                        }
+                                        element={<Login lang={lang} setLang={setLang} auth={auth} setAuth={setAuth} />}
                                     />
                                 )}
                                 {HOME_PAGE_ACTIVE && (
@@ -137,52 +135,58 @@ const App = () => {
                                         <Route path={'/'} element={<HomePage />} />
                                         <Route path={'/contacts'} element={<ContactsManagePage />} />
                                         <Route path={'/info'} element={<InformationPage />} />
+                                        <Route path="*" element={<Navigate to={'/'} replace />} />
                                     </Route>
                                 )}
-                                <Route
-                                    path={'/catalog'}
-                                    element={
-                                        <Catalog
-                                            lang={lang}
-                                            setLang={setLang}
-                                            viewMode={viewMode}
-                                            setViewMode={setViewMode}
-                                            auth={auth}
-                                            setAuth={setAuth}
-                                            userData={{
-                                                currentUserData,
-                                                isFetching,
-                                                updateUserData,
-                                                setCurrentUserData,
-                                            }}
+                                {((REQUIRED_REGISTRATION && auth) || !REQUIRED_REGISTRATION) && (
+                                    <Route
+                                        path={'/catalog'}
+                                        element={
+                                            <Catalog
+                                                lang={lang}
+                                                setLang={setLang}
+                                                viewMode={viewMode}
+                                                setViewMode={setViewMode}
+                                                auth={auth}
+                                                setAuth={setAuth}
+                                                userData={{
+                                                    currentUserData,
+                                                    isFetching,
+                                                    updateUserData,
+                                                    setCurrentUserData,
+                                                }}
+                                            />
+                                        }
+                                    >
+                                        <Route path={'/catalog/:storeCode/:storeName'} element={<CatalogPage />} />
+                                        <Route
+                                            path={'/catalog/:storeCode/:storeName/contacts'}
+                                            element={<ContactsManagePage />}
                                         />
-                                    }
-                                >
-                                    <Route path={'/catalog/:storeCode/:storeName'} element={<CatalogPage />} />
-                                    <Route
-                                        path={'/catalog/:storeCode/:storeName/contacts'}
-                                        element={<ContactsManagePage />}
-                                    />
-                                    <Route
-                                        path={'/catalog/:storeCode/:storeName/details/:productId/model/:modelSku'}
-                                        element={<ProductDetailsPage />}
-                                    />
-                                    <Route path={'/catalog/:storeCode/:storeName/cart'} element={<CartPage />} />
+                                        <Route
+                                            path={'/catalog/:storeCode/:storeName/details/:productId/model/:modelSku'}
+                                            element={<ProductDetailsPage />}
+                                        />
+                                        <Route path={'/catalog/:storeCode/:storeName/cart'} element={<CartPage />} />
 
-                                    <Route
-                                        path={'/catalog/:storeCode/:storeName/favorites'}
-                                        element={<FavoritesPage />}
-                                    />
+                                        <Route
+                                            path={'/catalog/:storeCode/:storeName/favorites'}
+                                            element={<FavoritesPage />}
+                                        />
 
-                                    <Route path={'/catalog/:storeCode/:storeName/profile'} element={<UserProfile />} />
+                                        <Route
+                                            path={'/catalog/:storeCode/:storeName/profile'}
+                                            element={<UserProfile />}
+                                        />
 
-                                    <Route path={'/catalog/:storeCode/:storeName/orders'} element={<UserOrders />} />
-                                    {/* <Route
-                                        path={'/catalog/:storeCode/:storeName/service-page'}
-                                        element={<StoppedForService />}
-                                    /> */}
-                                </Route>
-                                <Route path="*" element={<Navigate to="/catalog" replace />} />
+                                        <Route
+                                            path={'/catalog/:storeCode/:storeName/orders'}
+                                            element={<UserOrders />}
+                                        />
+                                        <Route path="*" element={<Navigate to={'/catalog'} replace />} />
+                                    </Route>
+                                )}
+                                <Route path="*" element={<Navigate to={handleRedirect()} replace />} />
                             </>
                         }
                     </Routes>

@@ -7,6 +7,9 @@ export interface HomeContextInterface {
     setOpenModalType;
     openModalType: string | null;
 
+    //store data
+    store: StoreInterface;
+
     //css data
     instrumentalBarHeight: number;
     instrumentalBarPadding: number;

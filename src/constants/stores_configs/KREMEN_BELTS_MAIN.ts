@@ -26,6 +26,7 @@ export const KREMEN_BELTS_MAIN = {
         custom_currency: null,
         store_type: StoreType?.default,
         home_page_active: false,
+        informative_page_active: false,
         custom_logo: false,
         plan_options: {
             prices: true,

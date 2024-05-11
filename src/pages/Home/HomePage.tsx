@@ -49,11 +49,11 @@ const HomePage = () => {
                     Elegance in Outerwear
                 </Typography>
             </Grid>
+            <Box sx={{ height: sx ? '90vh' : 5 }}></Box>
             <Grid
-                mb={sx ? 18 : 0}
+                mb={sx ? '100vh' : 0}
                 xs={12}
                 container
-                mt={sx ? '90vh' : 10}
                 sx={{
                     flexWrap: 'wrap',
                     display: 'flex',

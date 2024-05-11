@@ -5,10 +5,8 @@ import StorefrontIcon from '@mui/icons-material/Storefront';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import InfoIcon from '@mui/icons-material/Info';
 import ProfileButton from 'components/molecules/ToolsButtons/ProfileButton';
-import GridViewIcon from '@mui/icons-material/GridView';
+
 import PermIdentityIcon from '@mui/icons-material/PermIdentity';
-import { STORE_CONFIG } from 'constants/stores_config';
-import { StoreType } from 'constants/types';
 
 const HomeMobileMenu = ({
     appXPadding,
@@ -24,9 +22,6 @@ const HomeMobileMenu = ({
     setOpenModalType,
     openModalType,
 }) => {
-    const { OPTIONS } = STORE_CONFIG;
-    const { STORE_TYPE, INFORMATION_PAGE_ACTIVE } = OPTIONS;
-
     if (isShown)
         return (
             <Box
@@ -52,43 +47,31 @@ const HomeMobileMenu = ({
                     }}
                 >
                     <MobileNavButton path={`/`} title={string?.home} icon={p => <HomeIcon {...p} />} />
-                    {STORE_TYPE !== StoreType?.both && (
-                        <MobileNavButton
-                            path={`/catalog/${storeCode}/${storeHeaderName.replaceAll(' ', '-').toLowerCase()}`}
-                            childPath={['/details', '/contacts', 'model']}
-                            title={string?.catalog}
-                            icon={p => <GridViewIcon {...p} />}
-                        />
-                    )}
-                    {STORE_TYPE === StoreType?.both && (
-                        <MobileNavButton
-                            path={`/catalog/${storeCode}/${storeHeaderName.replaceAll(' ', '-').toLowerCase()}`}
-                            title={string?.wholesale_catalog}
-                            icon={p => <AttachMoneyIcon {...p} />}
-                            action={() => {
-                                localStorage.setItem('catalog_mode', JSON.stringify(1));
-                            }}
-                        />
-                    )}
-                    {STORE_TYPE === StoreType?.both && (
-                        <MobileNavButton
-                            path={`/catalog/${storeCode}/${storeHeaderName.replaceAll(' ', '-').toLowerCase()}`}
-                            title={string?.retail_catalog}
-                            icon={p => <StorefrontIcon {...p} />}
-                            action={() => {
-                                localStorage.setItem('catalog_mode', JSON.stringify(3));
-                            }}
-                        />
-                    )}
 
-                    {INFORMATION_PAGE_ACTIVE && (
-                        <MobileNavButton
-                            path={`/info`}
-                            title={string?.info}
-                            icon={p => <InfoIcon {...p} />}
-                            action={() => {}}
-                        />
-                    )}
+                    <MobileNavButton
+                        path={`/catalog/${storeCode}/${storeHeaderName.replaceAll(' ', '-').toLowerCase()}`}
+                        title={string?.wholesale_catalog}
+                        icon={p => <AttachMoneyIcon {...p} />}
+                        action={() => {
+                            localStorage.setItem('catalog_mode', JSON.stringify(1));
+                        }}
+                    />
+
+                    <MobileNavButton
+                        path={`/catalog/${storeCode}/${storeHeaderName.replaceAll(' ', '-').toLowerCase()}`}
+                        title={string?.retail_catalog}
+                        icon={p => <StorefrontIcon {...p} />}
+                        action={() => {
+                            localStorage.setItem('catalog_mode', JSON.stringify(3));
+                        }}
+                    />
+
+                    <MobileNavButton
+                        path={`/info`}
+                        title={string?.info}
+                        icon={p => <InfoIcon {...p} />}
+                        action={() => {}}
+                    />
                     {!auth && (
                         <MobileNavButton
                             title={string?.login}

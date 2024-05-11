@@ -11,7 +11,7 @@ interface InstrumentalBarInterface {
     opacity?: number;
 }
 
-const InstrumentalSubHeader = ({ StartSlot, CentralSlot, EndSlot, opacity = 0.75 }: InstrumentalBarInterface) => {
+const InstrumentalSubHeader = ({ StartSlot, CentralSlot, EndSlot }: InstrumentalBarInterface) => {
     const { instrumentalBarHeight, headerHeight, instrumentalBarPadding }: CatalogContextInterface = useOutletContext();
 
     return (
@@ -27,8 +27,7 @@ const InstrumentalSubHeader = ({ StartSlot, CentralSlot, EndSlot, opacity = 0.75
                 top: headerHeight,
                 left: 0,
                 zIndex: 200,
-                backgroundColor: Colors?.GRAY_300,
-                opacity,
+                backgroundColor: Colors?.GRAY_300_75,
             }}
         >
             {StartSlot && <Box sx={{ width: '100%' }}>{StartSlot()}</Box>}

@@ -55,10 +55,14 @@ export default function Login({ setAuth, string, close, setOpenModalType }) {
             {isLoading && <Loader />}
             <ModalWindow
                 title={string?.login + ' ' + string?.in + ' ' + `"${STORE_NAME}"` + ' ' + string?.catalog} // eslint-disable-line
-                closeAction={() => {
-                    close();
-                    setError(false);
-                }}
+                closeAction={
+                    close
+                        ? () => {
+                              close();
+                              setError(false);
+                          }
+                        : null
+                }
             >
                 {error && (
                     <Box px={1} mt={-1} mb={1} sx={{ width: '100%', textAlign: 'center' }}>
