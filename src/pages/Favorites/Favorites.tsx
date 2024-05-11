@@ -153,7 +153,7 @@ const Favorites = () => {
             )}
             {loading && <Loader />}
             {PLAN_OPTIONS?.contacts && (
-                <CallBackButton path={`/catalog/${STORE_CODE}/${STORE_NAME?.replaceAll(' ', '-').toLowerCase()}`} />
+                <CallBackButton path={`/catalog/${STORE_CODE}/${STORE_NAME?.replaceAll(' ', '-').toLowerCase()}/`} />
             )}
             <InstrumentalSubHeader
                 StartSlot={() => <BackButton nav={-1} action={() => {}} />}
