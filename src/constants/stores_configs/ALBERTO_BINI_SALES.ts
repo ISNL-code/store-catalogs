@@ -25,7 +25,7 @@ export const ALBERTO_BINI_SALES = {
         currency_multiplication: 1,
         custom_currency: null,
         store_type: StoreType?.default,
-        home_page_active: false,
+        home_page_active: true,
         informative_page_active: false,
         custom_logo: false,
         plan_options: {

@@ -25,7 +25,7 @@ export const ALBERTO_BINI_OUTLET = {
         currency_multiplication: 40,
         custom_currency: '₴',
         store_type: StoreType?.sales,
-        home_page_active: false,
+        home_page_active: true,
         informative_page_active: false,
         custom_logo: false,
         plan_options: {
