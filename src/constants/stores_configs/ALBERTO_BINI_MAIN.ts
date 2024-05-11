@@ -4,7 +4,7 @@ const prefix = 'abm';
 
 export const ALBERTO_BINI_MAIN = {
     active: true, // Поле которое запускает магазин true - работает false - остановлен / по тех. причина
-    required_registration: false,
+    required_registration: true,
     URL: ['https://alberto-bini.netlify.app'],
     appStoreUrl: null,
     playMarketUrl: null,

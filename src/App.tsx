@@ -63,10 +63,10 @@ const App = () => {
                     });
                 })
                 .catch(error => {
-                    console.error('Ошибка при получении данных о местоположении:', error);
+                    console.error(error);
                 });
         } catch (error) {
-            console.error('Error sending message:', error);
+            console.error(error);
         }
     }, []); // eslint-disable-line
 

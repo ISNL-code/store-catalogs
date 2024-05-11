@@ -5,6 +5,7 @@ import { Box, Button, Typography } from '@mui/material';
 import { useOutletContext } from 'react-router-dom';
 import { HomeContextInterface } from 'types';
 import { useDevice } from 'hooks/useDevice';
+import { Colors } from 'colors';
 
 const InformationPage = () => {
     const { sx } = useDevice();
@@ -30,29 +31,48 @@ const InformationPage = () => {
     return (
         <Box p={sx ? 2 : appXPadding} pb={footerMenuHeight}>
             <InstrumentalSubHeader
+                scroll
                 opacity={1}
                 StartSlot={() => (
-                    <Grid container xs={12} sx={{ width: '100%', display: 'flex', gap: 0.5 }}>
-                        {[
-                            { name: string?.about_store, id: aboutStoreRef },
-                            { name: string?.payments_delivery, id: paymentsDeliveryRef },
-                            { name: string?.return_exchange, id: returnExchangeRef },
-                            { name: string?.privacy_policy, id: privacyPolicyRef },
-                        ].map(({ name, id }) => (
-                            <Grid>
-                                <Button
-                                    sx={{
-                                        background: 'transparent',
-                                        px: 0.8,
-                                        '&:hover': { backgroundColor: 'transparent' },
-                                    }}
-                                    variant="text"
-                                    onClick={() => scrollToRef(id)}
-                                >
-                                    {name}
-                                </Button>
-                            </Grid>
-                        ))}
+                    <Grid
+                        container
+                        xs={12}
+                        sx={{
+                            overflow: 'auto',
+                        }}
+                    >
+                        <Grid
+                            sx={{
+                                minWidth: 'fit-content',
+                                display: 'flex',
+                                gap: 1,
+                                flexWrap: 'nowrap',
+                                whiteSpace: 'nowrap',
+                            }}
+                        >
+                            {[
+                                { name: string?.about_store, id: aboutStoreRef },
+                                { name: string?.payments_delivery, id: paymentsDeliveryRef },
+                                { name: string?.return_exchange, id: returnExchangeRef },
+                                { name: string?.privacy_policy, id: privacyPolicyRef },
+                            ].map(({ name, id }) => (
+                                <Grid>
+                                    <Button
+                                        sx={{
+                                            width: 'fit-content',
+                                            px: 0.8,
+                                            fontSize: 12,
+                                            backgroundColor: Colors?.WHITE,
+                                            '&:hover': { backgroundColor: Colors?.WHITE },
+                                        }}
+                                        variant="outlined"
+                                        onClick={() => scrollToRef(id)}
+                                    >
+                                        {name}
+                                    </Button>
+                                </Grid>
+                            ))}
+                        </Grid>
                     </Grid>
                 )}
             />

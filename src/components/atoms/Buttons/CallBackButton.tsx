@@ -20,6 +20,7 @@ const CallBackButton = ({ animated = false, path }) => {
                 border: sx ? 'none' : '1px solid ',
                 borderColor: Colors?.GREEN,
                 backgroundColor: sx ? 'none' : Colors?.GREEN,
+                opacity: 0.75,
                 borderRadius: 50,
                 p: s ? 0 : 0.25,
                 display: 'flex',

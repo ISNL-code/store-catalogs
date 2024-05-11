@@ -3,74 +3,293 @@ export const INFORMATION = {
         info_text_1:
             'Alberto Bini is a Ukrainian brand clothing manufacturer that has been creating high-quality women`s apparel for over 10 years. The production utilizes the latest materials and technologies, allowing for the creation of modern, high-quality, and practical clothing that is valued and in demand worldwide.',
         info_text_2: `1. PAYMENT:\n
-After placing an order, payment is made by transferring funds to the specified bank account.
-Payments are accepted to the bank account of the company SPULKA, registered in Poland.\n\n
-2. DELIVERY:\n
-- FOR RETAIL ORDERS:\n
-If the item is available at the warehouse in Poland, delivery is made within 2 business days.
-If the item is located at the warehouse in Ukraine, delivery will take up to 2 weeks.\n
-- FOR WHOLESALE ORDERS:\n
-Delivery time depends on the volume of the order and its location, typically within 1 month.\n\n
-After the order is placed, a manager will contact you to provide more detailed information regarding payment methods, bank account details, and delivery terms.`,
+             After placing an order, payment is made by transferring funds to the specified bank account.
+             Payments are accepted to the bank account of the company "Alberto Bini".\n\n 
+             2. DELIVERY:\n
+             - FOR RETAIL ORDERS:\n
+             Delivery is carried out within 2 to 15 working days.\n
+             - FOR WHOLESALE ORDERS:\n
+             Delivery time depends on the volume of the order, usually within 1 month.\n\n
+             After placing the order, a manager will contact you to provide more detailed information about payment methods, bank account details, and delivery terms.`,
         info_text_3: `RETURNS:\n
-- We accept returns within 30 days of the purchase date.
-- Items must be unused, in their original packaging, and accompanied by a proof of purchase.
-- Return shipping costs are the responsibility of the customer unless the return is due to a product defect or error on our part.\n
-EXCHANGE:\n
-- Exchanges are permitted within 30 days of the purchase date.
-- Items eligible for exchange must be in unused condition and in their original packaging.
-- Exchange shipping costs are covered by the customer, unless the exchange is due to a product defect or our error.\n
-REFUNDS:\n
-- Refunds will be issued to the original form of payment within 7-10 business days after the returned item is received and inspected.
-- Shipping fees are non-refundable unless the return is due to a product defect or our error.
-- Please note that certain items may be subject to additional return restrictions. For further assistance or to initiate a return or exchange, please contact our customer service team.`,
+             - We accept returns within 30 days of the purchase date.
+             - Items must be unused, in their original packaging, and accompanied by a proof of purchase.
+             - Return shipping costs are the responsibility of the customer unless the return is due to a product defect or error on our part.\n
+             EXCHANGE:\n
+             - Exchanges are permitted within 30 days of the purchase date.
+             - Items eligible for exchange must be in unused condition and in their original packaging.
+             - Exchange shipping costs are covered by the customer, unless the exchange is due to a product defect or our error.\n
+             REFUNDS:\n
+             - Refunds will be issued to the original form of payment within 7-10 business days after the returned item is received and inspected.
+             - Shipping fees are non-refundable unless the return is due to a product defect or our error.
+             - Please note that certain items may be subject to additional return restrictions. For further assistance or to initiate a return or exchange, please contact our customer service team.`,
         info_text_4: `1. GENERAL PROVISIONS\n
-- 1.1. User's use of the site constitutes agreement with this Privacy Policy and the terms of the user's personal data processing.\n
-- 1.2. In case of disagreement with the terms of the Privacy Policy, the user must stop using the site.\n
-- 1.3. This Privacy Policy applies only to this site. The site administration does not control and is not responsible for third-party websites that the user may access through links available on the site.\n
-- 1.4. The site administration does not verify the accuracy of personal data provided by the user.\n
-\n
-2. PRIVACY POLICY SUBJECT\n
-- 2.1. This Privacy Policy establishes the obligations of the site administration to not disclose and to protect the privacy of personal data that the user provides at the request of the site administration.\n
-- 2.2. Personal data permitted for processing under this Privacy Policy are provided by the user by filling out the registration form on the site.\n
-\n
-3. PURPOSES OF COLLECTING USER PERSONAL INFORMATION\n
-- 3.1. The site administration may use the user's personal data for the purposes of:\n
-- 3.1.1. Identifying the user to process an order.\n
-- 3.1.2. Providing the user with access to personalized site resources.\n
-- 3.1.3. Establishing contact with the user, including sending notifications, inquiries concerning the use of the site, provision of services, and processing user requests and applications.\n
-- 3.1.4. Determining the user's location to ensure security and prevent fraud.\n
-- 3.1.5. Confirming the accuracy and completeness of personal data provided by the user.\n
-- 3.1.6. Informing the user of the site about the status of the order.\n
-- 3.1.7. Providing effective customer and technical support in case of problems related to the use of the site.\n
-- 3.1.8. Providing the user, with their consent, updates on products, special offers, pricing information, newsletters, and other information on behalf of the site or its partners.\n
-- 3.1.9. Conducting advertising activities with the consent of the user.\n
-- 3.1.10. Providing the user access to partner sites or services to obtain products, updates, and services.\n
-\n
-4. PARTIES' OBLIGATIONS\n
-- 4.1. The user is obligated to:\n
-- 4.1.1. Provide personal data necessary for using the site.\n
-- 4.1.2. Update and supplement the provided personal data information in case of any changes.\n
-- 4.2. The site administration is obligated to:\n
-- 4.2.1. Use the information obtained exclusively for the purposes specified in clause 3 of this Privacy Policy.\n
-- 4.2.2. Keep the confidential information secret, not disclose it without the user's prior written consent, and not sell, exchange, publish, or disclose the user's personal data by any other means.\n
-- 4.2.3. Take precautions to protect the confidentiality of the user's personal data according to the procedure normally used to protect such information in existing business transactions.\n
-- 4.2.4. Block personal data relating to the respective user from the moment the user or their legal representative or an authorized body for the protection of personal data subjects makes a request or inquiry, during the period of verification, in case of inaccurate personal data or unlawful actions.\n
-\n
-5. PARTIES' LIABILITY\n
-- 5.1. The site administration, having failed to fulfill its obligations, is liable for losses incurred by the user due to the unlawful use of personal data, in accordance with the laws of Ukraine.\n
-- 5.2. In the event of loss or disclosure of Confidential Information, the site administration is not responsible if such confidential information:\n
-- 5.2.1. Became public domain before its loss or disclosure.\n
-- 5.2.2. Was received from a third party before it was obtained by the site administration.\n
-- 5.2.3. Was disclosed with the consent of the user.\n
-\n
-6. DISPUTE RESOLUTION\n
-- 6.1. Before filing a lawsuit with disputes arising from the relations between the site user and the site administration, it is mandatory to submit a claim (a written proposal for voluntary dispute resolution).\n
-- 6.2. The recipient of the claim must notify the claimant in writing of the results of the claim consideration within 30 calendar days from the day of receiving the claim.\n
-- 6.3. If an agreement is not reached, the dispute will be referred to a judicial body in accordance with the current legislation of Ukraine.\n
-\n
-7. ADDITIONAL TERMS\n
-- 7.1. The site administration has the right to make changes to this Privacy Policy without the user's consent.\n
-- 7.2. The new Privacy Policy comes into effect from the moment it is posted on the e-commerce site, unless otherwise provided by the new edition of the Policy.`,
+                  - 1.1. User's use of the site constitutes agreement with this Privacy Policy and the terms of the user's personal data processing.\n
+                  - 1.2. In case of disagreement with the terms of the Privacy Policy, the user must stop using the site.\n
+                  - 1.3. This Privacy Policy applies only to this site. The site administration does not control and is not responsible for third-party websites that the user may access through links available on the site.\n
+                  - 1.4. The site administration does not verify the accuracy of personal data provided by the user.\n
+                  \n
+                  2. PRIVACY POLICY SUBJECT\n
+                  - 2.1. This Privacy Policy establishes the obligations of the site administration to not disclose and to protect the privacy of personal data that the user provides at the request of the site administration.\n
+                  - 2.2. Personal data permitted for processing under this Privacy Policy are provided by the user by filling out the registration form on the site.\n
+                  \n
+                  3. PURPOSES OF COLLECTING USER PERSONAL INFORMATION\n
+                  - 3.1. The site administration may use the user's personal data for the purposes of:\n
+                  - 3.1.1. Identifying the user to process an order.\n
+                  - 3.1.2. Providing the user with access to personalized site resources.\n
+                  - 3.1.3. Establishing contact with the user, including sending notifications, inquiries concerning the use of the site, provision of services, and processing user requests and applications.\n
+                  - 3.1.4. Determining the user's location to ensure security and prevent fraud.\n
+                  - 3.1.5. Confirming the accuracy and completeness of personal data provided by the user.\n
+                  - 3.1.6. Informing the user of the site about the status of the order.\n
+                  - 3.1.7. Providing effective customer and technical support in case of problems related to the use of the site.\n
+                  - 3.1.8. Providing the user, with their consent, updates on products, special offers, pricing information, newsletters, and other information on behalf of the site or its partners.\n
+                  - 3.1.9. Conducting advertising activities with the consent of the user.\n
+                  - 3.1.10. Providing the user access to partner sites or services to obtain products, updates, and services.\n
+                  \n
+                  4. PARTIES' OBLIGATIONS\n
+                  - 4.1. The user is obligated to:\n
+                  - 4.1.1. Provide personal data necessary for using the site.\n
+                  - 4.1.2. Update and supplement the provided personal data information in case of any changes.\n
+                  - 4.2. The site administration is obligated to:\n
+                  - 4.2.1. Use the information obtained exclusively for the purposes specified in clause 3 of this Privacy Policy.\n
+                  - 4.2.2. Keep the confidential information secret, not disclose it without the user's prior written consent, and not sell, exchange, publish, or disclose the user's personal data by any other means.\n
+                  - 4.2.3. Take precautions to protect the confidentiality of the user's personal data according to the procedure normally used to protect such information in existing business transactions.\n
+                  - 4.2.4. Block personal data relating to the respective user from the moment the user or their legal representative or an authorized body for the protection of personal data subjects makes a request or inquiry, during the period of verification, in case of inaccurate personal data or unlawful actions.\n
+                  \n
+                  5. PARTIES' LIABILITY\n
+                  - 5.1. The site administration, having failed to fulfill its obligations, is liable for losses incurred by the user due to the unlawful use of personal data, in accordance with the laws of Ukraine.\n
+                  - 5.2. In the event of loss or disclosure of Confidential Information, the site administration is not responsible if such confidential information:\n
+                  - 5.2.1. Became public domain before its loss or disclosure.\n
+                  - 5.2.2. Was received from a third party before it was obtained by the site administration.\n
+                  - 5.2.3. Was disclosed with the consent of the user.\n
+                  \n
+                  6. DISPUTE RESOLUTION\n
+                  - 6.1. Before filing a lawsuit with disputes arising from the relations between the site user and the site administration, it is mandatory to submit a claim (a written proposal for voluntary dispute resolution).\n
+                  - 6.2. The recipient of the claim must notify the claimant in writing of the results of the claim consideration within 30 calendar days from the day of receiving the claim.\n
+                  - 6.3. If an agreement is not reached, the dispute will be referred to a judicial body in accordance with the current legislation of Ukraine.\n
+                  \n
+                  7. ADDITIONAL TERMS\n
+                  - 7.1. The site administration has the right to make changes to this Privacy Policy without the user's consent.\n
+                  - 7.2. The new Privacy Policy comes into effect from the moment it is posted on the e-commerce site, unless otherwise provided by the new edition of the Policy.`,
+    },
+    ru: {
+        info_text_1:
+            'Alberto Bini - это украинский бренд-производитель женской одежды, который уже более 10 лет создает качественную женскую одежду. Производство использует последние материалы и технологии, что позволяет создавать современную, качественную и практичную одежду, которая ценится и востребована по всему миру.',
+        info_text_2: `1. ОПЛАТА:\n
+             После оформления заказа оплата производится путем перевода средств на указанный банковский счет.
+             Платежи принимаются на банковский счет компании Alberto Bini.\n\n
+             2. ДОСТАВКА:\n
+             - ДЛЯ РОЗНИЧНЫХ ЗАКАЗОВ:\n
+             Доставка осуществляется от 2 до 15 рабочих дней.\n
+             - ДЛЯ ОПТОВЫХ ЗАКАЗОВ:\n
+             Время доставки зависит от объема заказа, обычно в течение 1 месяца.\n\n
+             После оформления заказа с вами свяжется менеджер для предоставления более подробной информации о методах оплаты, реквизитах банковского счета и условиях доставки.`,
+        info_text_3: `ВОЗВРАТЫ:\n
+             - Мы принимаем возвраты в течение 30 дней с даты покупки.
+             - Товар должен быть не использован, в оригинальной упаковке и с доказательством покупки.
+             - Расходы на обратную доставку несет покупатель, если возврат не связан с дефектом товара или ошибкой с нашей стороны.\n
+             ОБМЕН:\n
+             - Обмен допускается в течение 30 дней с даты покупки.
+             - Товары, допустимые к обмену, должны быть не использованы и в оригинальной упаковке.
+             - Расходы на доставку обмена несет покупатель, если обмен не связан с дефектом товара или нашей ошибкой.\n
+             ВОЗВРАТ СРЕДСТВ:\n
+             - Возврат денежных средств осуществляется на первоначальную форму оплаты в течение 7-10 рабочих дней после получения и проверки возвращенного товара.
+             - Стоимость доставки не возвращается, если возврат не связан с дефектом товара или нашей ошибкой.
+             - Обратите внимание, что некоторые товары могут подлежать дополнительным ограничениям на возврат. Для дополнительной помощи или начала процесса возврата или обмена, пожалуйста, свяжитесь с нашей службой поддержки клиентов.`,
+        info_text_4: `1. ОБЩИЕ ПОЛОЖЕНИЯ\n
+             - 1.1. Использование сайта пользователем означает согласие с этой Политикой конфиденциальности и условиями обработки персональных данных пользователя.\n
+             - 1.2. В случае несогласия с условиями Политики конфиденциальности пользователь должен прекратить использование сайта.\n
+             - 1.3. Эта Политика конфиденциальности применяется только к этому сайту. Администрация сайта не контролирует и не несет ответственности за сторонние сайты, на которые пользователь может перейти по ссылкам, доступным на сайте.\n
+             - 1.4. Администрация сайта не проверяет достоверность персональных данных, предоставляемых пользователем.\n
+             \n
+             2. ПРЕДМЕТ ПОЛИТИКИ КОНФИДЕНЦИАЛЬНОСТИ\n
+             - 2.1. Эта Политика конфиденциальности устанавливает обязательства администрации сайта по неразглашению и обеспечению режима защиты конфиденциальности персональных данных, которые пользователь предоставляет по запросу администрации сайта.\n
+             - 2.2. Персональные данные, разрешенные к обработке в рамках этой Политики конфиденциальности, предоставляются пользователем путем заполнения регистрационной формы на сайте.\n
+             \n
+             3. ЦЕЛИ СБОРА ПЕРСОНАЛЬНОЙ ИНФОРМАЦИИ ПОЛЬЗОВАТЕЛЯ\n
+             - 3.1. Администрация сайта может использовать персональные данные пользователя в целях:\n
+             - 3.1.1. Идентификации пользователя для обработки заказа.\n
+             - 3.1.2. Предоставления пользователю доступа к персонализированным ресурсам сайта.\n
+             - 3.1.3. Установления контакта с пользователем, включая отправку уведомлений, запросов, касающихся использования сайта, предоставления услуг, а также обработки запросов и заявок пользователя.\n
+             - 3.1.4. Определения местоположения пользователя для обеспечения безопасности и предотвращения мошенничества.\n
+             - 3.1.5. Подтверждения достоверности и полноты персональных данных, предоставленных пользователем.\n
+             - 3.1.6. Информирования пользователя о состоянии заказа.\n
+             - 3.1.7. Предоставления эффективной клиентской и технической поддержки при возникновении проблем, связанных с использованием сайта.\n
+             - 3.1.8. Предоставления пользователю, с его согласия, обновлений о продуктах, специальных предложениях, информации о ценах, новостных рассылках и другой информации от имени сайта или его партнеров.\n
+             - 3.1.9. Проведения рекламных мероприятий с согласия пользователя.\n
+             - 3.1.10. Предоставления пользователю доступа к сайтам или услугам партнеров для получения продуктов, обновлений и услуг.\n
+             \n
+             4. ОБЯЗАННОСТИ СТОРОН\n
+             - 4.1. Пользователь обязан:\n
+             - 4.1.1. Предоставить персональные данные, необходимые для использования сайта.\n
+             - 4.1.2. Обновлять и дополнять предоставленные персональные данные в случае изменений.\n
+             - 4.2. Администрация сайта обязана:\n
+             - 4.2.1. Использовать информацию, полученную исключительно для целей, указанных в пункте 3 этой Политики конфиденциальности.\n
+             - 4.2.2. Сохранять в тайне конфиденциальную информацию, не разглашать ее без предварительного письменного согласия пользователя и не продавать, не обменивать, не публиковать, а также не раскрывать персональные данные пользователя иным способом.\n
+             - 4.2.3. Принимать меры предосторожности для защиты конфиденциальности персональных данных пользователя в соответствии с порядком, обычно используемым для защиты такой информации в существующих деловых операциях.\n
+             - 4.2.4. Блокировать персональные данные, относящиеся к соответствующему пользователю, с момента обращения пользователя или его законного представителя или уполномоченного органа по защите прав субъектов персональных данных, в период проверки, в случае выявления неточных данных или неправомерных действий.\n
+             \n
+             5. ОТВЕТСТВЕННОСТЬ СТОРОН\n
+             - 5.1. Администрация сайта, не выполнив свои обязательства, несет ответственность за убытки, понесенные пользователем в результате незаконного использования персональных данных, в соответствии с законодательством Украины.\n
+             - 5.2. В случае потери или разглашения Конфиденциальной информации администрация сайта не несет ответственности, если такая конфиденциальная информация:\n
+             - 5.2.1. Стала общедоступной до ее потери или разглашения.\n
+             - 5.2.2. Была получена от третьей стороны до того, как ее получила администрация сайта.\n
+             - 5.2.3. Была разглашена с согласия пользователя.\n
+             \n
+             6. РАЗРЕШЕНИЕ СПОРОВ\n
+             - 6.1. Перед подачей иска по спорам, возникающим из отношений между пользователем сайта и администрацией сайта, обязательно предъявление претензии (письменное предложение о добровольном урегулировании спора).\n
+             - 6.2. Получатель претензии должен уведомить заявителя письменно о результатах рассмотрения претензии в течение 30 календарных дней с дня получения претензии.\n
+             - 6.3. Если соглашение не достигнуто, спор направляется на рассмотрение в судебный орган в соответствии с действующим законодательством Украины.\n
+             \n
+             7. ДОПОЛНИТЕЛЬНЫЕ УСЛОВИЯ\n
+             - 7.1. Администрация сайта имеет право вносить изменения в эту Политику конфиденциальности без согласия пользователя.\n
+             - 7.2. Новая Политика конфиденциальности вступает в силу с момента ее размещения на сайте электронной коммерции, если иное не предусмотрено новой редакцией Политики.`,
+    },
+    ua: {
+        info_text_1:
+            'Alberto Bini - це український бренд-виробник жіночого одягу, який вже понад 10 років створює якісний жіночий одяг. Виробництво використовує останні матеріали та технології, що дозволяє створювати сучасний, якісний та практичний одяг, який цінується та затребуваний у всьому світі.',
+        info_text_2: `1. ОПЛАТА:\n
+             Після оформлення замовлення оплата здійснюється шляхом перерахування коштів на вказаний банківський рахунок.
+             Платежі приймаються на банківський рахунок компанії Alberto Bini.\n\n
+             2. ДОСТАВКА:\n
+             - ДЛЯ РОЗДРІБНИХ ЗАМОВЛЕНЬ:\n
+             Доставка виконується протягом від 2 до 15 робочих днів.\n
+             - ДЛЯ ОПТОВИХ ЗАМОВЛЕНЬ:\n
+             Час доставки залежить від обсягу замовлення, зазвичай протягом 1 місяця.\n\n
+             Після розміщення замовлення з вами зв'яжеться менеджер для надання детальнішої інформації про методи оплати, реквізити банківського рахунку та умови доставки.
+        `,
+        info_text_3: `ПОВЕРНЕННЯ:\n
+             - Ми приймаємо повернення протягом 30 днів з дати покупки.
+             - Товари мають бути не використаними, в оригінальній упаковці та з доказом покупки.
+             - Витрати на повернення доставки лежать на покупцеві, якщо повернення не пов'язане з дефектом товару або помилкою з нашого боку.\n
+             ОБМІН:\n
+             - Обмін допускається протягом 30 днів з дати покупки.
+             - Товари, допустимі до обміну, повинні бути не використаними та в оригінальній упаковці.
+             - Витрати на доставку обміну покриває покупець, якщо обмін не пов'язаний з дефектом товару або нашою помилкою.\n
+             ПОВЕРНЕННЯ КОШТІВ:\n
+             - Повернення коштів здійснюється на первісну форму оплати протягом 7-10 робочих днів після отримання та перевірки повернутого товару.
+             - Витрати на доставку не повертаються, якщо повернення не пов'язане з дефектом товару або нашою помилкою.
+             - Зверніть увагу, що деякі товари можуть підлягати додатковим обмеженням на повернення. Для отримання додаткової допомоги або для початку процесу повернення або обміну, будь ласка, зверніться до нашої служби підтримки клієнтів.`,
+        info_text_4: `1. ЗАГАЛЬНІ ПОЛОЖЕННЯ\n
+             - 1.1. Використання сайту користувачем є згодою з цією Політикою конфіденційності та умовами обробки особистих даних користувача.\n
+             - 1.2. У разі незгоди з умовами Політики конфіденційності користувач має припинити використання сайту.\n
+             - 1.3. Ця Політика конфіденційності застосовується лише до цього сайту. Адміністрація сайту не контролює та не несе відповідальності за сторонні вебсайти, до яких користувач може отримати доступ через посилання, доступні на сайті.\n
+             - 1.4. Адміністрація сайту не перевіряє достовірність особистих даних, наданих користувачем.\n
+             \n
+             2. ПРЕДМЕТ ПОЛІТИКИ КОНФІДЕНЦІЙНОСТІ\n
+             - 2.1. Ця Політика конфіденційності встановлює обов'язки адміністрації сайту не розголошувати та захищати конфіденційність особистих даних, які користувач надає за запитом адміністрації сайту.\n
+             - 2.2. Особисті дані, дозволені для обробки за цією Політикою конфіденційності, надаються користувачем шляхом заповнення реєстраційної форми на сайті.\n
+             \n
+             3. МЕТИ ЗБОРУ ОСОБИСТОЇ ІНФОРМАЦІЇ КОРИСТУВАЧА\n
+             - 3.1. Адміністрація сайту може використовувати особисті дані користувача з метою:\n
+             - 3.1.1. Ідентифікації користувача для обробки замовлення.\n
+             - 3.1.2. Забезпечення користувачу доступу до персоналізованих ресурсів сайту.\n
+             - 3.1.3. Налагодження контакту з користувачем, включаючи відправлення повідомлень, запитів щодо використання сайту, надання послуг та обробки запитів та заявок користувача.\n
+             - 3.1.4. Визначення місцезнаходження користувача для забезпечення безпеки та запобігання шахрайству.\n
+             - 3.1.5. Підтвердження достовірності та повноти особистих даних, наданих користувачем.\n
+             - 3.1.6. Інформування користувача сайту про статус замовлення.\n
+             - 3.1.7. Забезпечення ефективної клієнтської та технічної підтримки у разі проблем, пов'язаних з використанням сайту.\n
+             - 3.1.8. Надання користувачу, за його згодою, оновлень продуктів, спеціальних пропозицій, інформації про ціни, новинних бюлетенів та іншої інформації від імені сайту або його партнерів.\n
+             - 3.1.9. Проведення рекламних заходів за згодою користувача.\n
+             - 3.1.10. Надання користувачу доступу до сайтів або послуг партнерів для отримання продуктів, оновлень і послуг.\n
+             \n
+             4. ОБОВ'ЯЗКИ СТОРІН\n
+             - 4.1. Користувач зобов'язаний:\n
+             - 4.1.1. Надати особисті дані, необхідні для використання сайту.\n
+             - 4.1.2. Оновлювати та доповнювати надану інформацію про особисті дані у разі будь-яких змін.\n
+             - 4.2. Адміністрація сайту зобов'язана:\n
+             - 4.2.1. Використовувати отриману інформацію виключно для цілей, вказаних у пункті 3 цієї Політики конфіденційності.\n
+             - 4.2.2. Зберігати в таємниці конфіденційну інформацію, не розголошувати її без попередньої письмової згоди користувача та не продавати, не обмінювати, не публікувати або розголошувати особисті дані користувача будь-яким іншим способом.\n
+             - 4.2.3. Вживати заходів обережності для захисту конфіденційності особистих даних користувача відповідно до процедури, яка зазвичай використовується для захисту такої інформації у наявних ділових операціях.\n
+             - 4.2.4. Блокувати особисті дані, що стосуються відповідного користувача, з моменту звернення користувача або його законного представника чи уповноваженого органу з захисту прав суб'єктів особистих даних, під час періоду перевірки, у разі неточних особистих даних або протиправних дій.\n
+             \n
+             5. ВІДПОВІДАЛЬНІСТЬ СТОРІН\n
+             - 5.1. Адміністрація сайту, яка не виконала свої зобов'язання, несе відповідальність за збитки, завдані користувачу через незаконне використання особистих даних, відповідно до законодавства України.\n
+             - 5.2. У разі втрати або розголошення Конфіденційної інформації адміністрація сайту не несе відповідальності, якщо така конфіденційна інформація:\n
+             - 5.2.1. Стала загальнодоступною до її втрати або розголошення.\n
+             - 5.2.2. Була отримана від третьої сторони до того, як її отримала адміністрація сайту.\n
+             - 5.2.3. Була розголошена за згодою користувача.\n
+             \n
+             6. ВИРІШЕННЯ СПОРІВ\n
+             - 6.1. Перед поданням позову зі спорів, що виникають з відносин між користувачем сайту та адміністрацією сайту, обов'язково подати претензію (письмову пропозицію про добровільне врегулювання спору).\n
+             - 6.2. Отримувач претензії повинен повідомити заявника письмово про результати розгляду претензії протягом 30 календарних днів з дня її отримання.\n
+             - 6.3. Якщо домовленість не досягнута, спір направляється до судового органу відповідно до чинного законодавства України.\n
+             \n
+             7. ДОДАТКОВІ УМОВИ\n
+             - 7.1. Адміністрація сайту має право вносити зміни до цієї Політики конфіденційності без згоди користувача.\n
+             - 7.2. Нова Політика конфіденційності набуває чинності з моменту її розміщення на сайті електронної комерції, якщо інше не передбачено новою редакцією Політики.`,
+    },
+    kz: {
+        info_text_1:
+            'Alberto Bini - бұл 10 жылдан астам уақыт бойы сапалы әйелдер киімін шығаратын украин бренді. Өндіріс ең соңғы материалдар мен технологияларды пайдаланады, бұл заманауи, сапалы және тәжірибелі киімдерді жасауға мүмкіндік береді, олар бүкіл әлемде бағаланады және сұранысқа ие.',
+        info_text_2: `1. ТӨЛЕМ:\n
+             Тапсырыс бергеннен кейін, төлем банктік шотқа аударым арқылы жүзеге асырылады.
+             Alberto Bini компаниясының банктік шотына төлемдер қабылданады.\n
+             2. ЖЕТКІЗУ:\n
+             - БӨЛШЕК САТУ ТАПСЫРЫСТАРЫ ҮШІН:\n
+             Жеткізу мерзімі 2-ден 15 жұмыс күніне дейін.\n
+             - ОПТОВЫЙ ЗАКАЗДАР ҮШІН:\n
+             Жеткізу уақыты тапсырыс көлеміне байланысты, әдетте 1 ай ішінде.\n\n
+             Тапсырыс берілгеннен кейін, сізбен байланысқа шығу үшін менеджер жауап береді, ол төлем әдістері, банктік шот реквизиттері және жеткізу шарттары туралы толығырақ ақпарат береді.`,
+        info_text_3: `ҚАЙТАРУ:\n
+             - Сатып алынған күннен бастап 30 күн ішінде қайтарымдар қабылданады.
+             - Заттар пайдаланылмауы керек, олардың түпнұсқа қаптамасында және сатып алу туралы дәлелмен болуы керек.
+             - Қайтару жөнелтілім шығындары тауардың ақауы немесе біздің жағымыздағы қате болған жағдайда ғана клиенттің жауапкершілігіне жатпайды.\n
+             АУЫСТЫРУ:\n
+             - Сатып алынған күннен бастап 30 күн ішінде ауыстыруға рұқсат етіледі.
+             - Ауыстыруға рұқсат етілген заттар пайдаланылмауы және түпнұсқа қаптамасында болуы керек.
+             - Ауыстыру жөнелтілім шығындарын клиент жабады, егер ауыстыру тауардың ақауы немесе біздің қатемізге байланысты болмаса.\n
+             ҚАРАЖАТТАРДЫ ҚАЙТАРУ:\n
+             - Қайтарылған зат алынғаннан және тексерілгеннен кейін 7-10 жұмыс күні ішінде бастапқы төлем формасы бойынша қаржы қайтарылады.
+             - Жеткізу шығындары тауардың ақауы немесе біздің қатемізге байланысты болған жағдайда ғана қайтарылады.
+             - Кейбір заттар қосымша қайтару шектеулеріне жатуы мүмкін екенін ескеріңіз. Қосымша көмек алу немесе қайтару немесе ауыстыруды бастау үшін клиенттерді қолдау қызметімен байланысыңыз.`,
+        info_text_4: `1. ЖАЛПЫ ЕРЕЖЕЛЕР\n
+             - 1.1. Пайдаланушының сайтты пайдалануы осы Құпиялылық саясатымен және пайдаланушының жеке деректерін өңдеу шарттарымен келісім білдіреді.\n
+             - 1.2. Құпиялылық саясаты шарттарымен келіспеген жағдайда пайдаланушы сайтты пайдалануды тоқтатуы тиіс.\n
+             - 1.3. Бұл Құпиялылық саясаты тек осы сайтқа қолданылады. Сайт әкімшілігі пайдаланушының сайтта қолжетімді сілтемелер арқылы өтуі мүмкін үшінші тарап сайттарын бақыламайды және олар үшін жауапты емес.\n
+             - 1.4. Сайт әкімшілігі пайдаланушы ұсынған жеке деректердің дәлдігін тексермейді.\n
+             \n
+             2. ҚҰПИЯЛЫЛЫҚ САЯСАТЫНЫҢ ПӘНІ\n
+             - 2.1. Бұл Құпиялылық саясаты сайт әкімшілігінің пайдаланушы ұсынған жеке деректердің құпиялылығын сақтауға және ашпауға міндеттемелерін айқындайды.\n
+             - 2.2. Осы Құпиялылық саясаты бойынша өңдеуге рұқсат етілген жеке деректер пайдаланушы сайттағы тіркеу формасын толтыру арқылы беріледі.\n
+             \n
+             3. ПАЙДАЛАНУШЫНЫҢ ЖЕКЕ АҚПАРАТЫН ЖИНАУ МАҚСАТТАРЫ\n
+             - 3.1. Сайт әкімшілігі пайдаланушының жеке деректерін келесі мақсаттар үшін пайдалануы мүмкін:\n
+             - 3.1.1. Тапсырысты өңдеу үшін пайдаланушыны анықтау.\n
+             - 3.1.2. Пайдаланушыға сайт ресурстарына жеке қолжетімділікті қамтамасыз ету.\n
+             - 3.1.3. Пайдаланушымен байланыс орнату, оның ішінде сайтты пайдалануға, қызметтер көрсетуге, пайдаланушы сұраныстары мен өтініштерін өңдеуге байланысты хабарламалар жіберу.\n
+             - 3.1.4. Қауіпсіздікті қамтамасыз ету және алаяқтықтың алдын алу үшін пайдаланушының орналасқан жерін анықтау.\n
+             - 3.1.5. Пайдаланушы ұсынған жеке деректердің дәлдігі мен толықтығын растау.\n
+             - 3.1.6. Пайдаланушыны сайттағы тапсырыс күйі туралы хабардар ету.\n
+             - 3.1.7. Сайтты пайдалануға байланысты мәселелер туындаған жағдайда тиімді клиенттік және техникалық қолдау көрсету.\n
+             - 3.1.8. Пайдаланушының келісімімен сайттың немесе оның серіктестерінің атынан өнімдер, арнайы ұсыныстар, баға ақпараты, жаңалықтар бюллетендері және басқа да ақпараттармен жаңартулар беру.\n
+             - 3.1.9. Пайдаланушының келісімімен жарнамалық іс-шаралар өткізу.\n
+             - 3.1.10. Пайдаланушыға серіктес сайттарына немесе өнімдер, жаңартулар және қызметтер алу үшін қызметтерге қолжетімділік беру.\n
+             \n
+             4. ТАРАПТАРДЫҢ МІНДЕТТЕМЕЛЕРІ\n
+             - 4.1. Пайдаланушы міндетті:\n
+             - 4.1.1. Сайтты пайдалану үшін қажетті жеке деректерді ұсыну.\n
+             - 4.1.2. Кез келген өзгерістер туындаған жағдайда ұсынылған жеке деректер ақпаратын жаңарту және толықтыру.\n
+             - 4.2. Сайт әкімшілігі міндетті:\n
+             - 4.2.1. Осы Құпиялылық саясатының 3-тармағында көрсетілген мақсаттар үшін алынған ақпаратты пайдалану.\n
+             - 4.2.2. Конфиденциалды ақпаратты құпия сақтау, оны пайдаланушының алдын ала жазбаша келісімінсіз ашпау және сатпау, айырбастамау, жарияламау немесе басқа да құралдар арқылы пайдаланушының жеке деректерін ашпау.\n
+             - 4.2.3. Бар бизнес операцияларда қолданылатын әдістеме бойынша пайдаланушының жеке деректерінің құпиялығын қорғау үшін қауіпсіздік шараларын қолдану.\n
+             - 4.2.4. Пайдаланушының немесе оның заңды өкілінің немесе жеке деректер субъектілерін қорғау бойынша уәкілетті органның сұрауы немесе сұрауынан бастап, тексеру кезеңінде, жеке деректердің дұрыс еместігі немесе заңсыз әрекеттер жағдайында тиісті пайдаланушыға қатысты жеке деректерді блоктау.\n
+             \n
+             5. ТАРАПТАРДЫҢ ЖАУАПКЕРШІЛІГІ\n
+             - 5.1. Өз міндеттемелерін орындамаған сайт әкімшілігі, пайдаланушының жеке деректерін заңсыз пайдаланудан келтірілген шығындар үшін Украина заңдарына сәйкес жауапты.\n
+             - 5.2. Құпия ақпараттың жоғалуы немесе ашылуы жағдайында сайт әкімшілігі жауапты емес, егер мұндай құпия ақпарат:\n
+             - 5.2.1. Жоғалуы немесе ашылуына дейін жалпыға қолжетімді болған.\n
+             - 5.2.2. Оны сайт әкімшілігі алмас бұрын үшінші тараптан алынған.\n
+             - 5.2.3. Пайдаланушының келісімімен ашылған.\n
+             \n
+             6. ДАУЛАРДЫ ШЕШУ\n
+             - 6.1. Сайт пайдаланушысы мен сайт әкімшілігі арасындағы қатынастардан туындаған даулар бойынша шағым түсіру алдында дауды ерікті түрде реттеу үшін шағым (жазбаша ұсыныс) беру міндетті.\n
+             - 6.2. Шағым алушы шағымды қарау нәтижелері туралы шағымды алған күннен бастап 30 күнтізбелік күн ішінде шағым берушіге жазбаша хабарлауы тиіс.\n
+             - 6.3. Келісімге қол жеткізілмеген жағдайда, дау Украина қолданыстағы заңнамасына сәйкес сот органына жолданады.\n
+             \n
+             7. ҚОСЫМША ШАРТТАР\n
+             - 7.1. Сайт әкімшілігі пайдаланушының келісімінсіз осы Құпиялылық саясатына өзгерістер енгізуге құқылы.\n
+             - 7.2. Жаңа Құпиялылық саясаты оны электрондық коммерция сайтында жариялаған сәттен бастап күшіне енеді, егер жаңа редакцияда басқаша көзделмесе.`,
     },
 };

@@ -19,6 +19,7 @@ const MessageButton = ({ from = 'catalog', action }) => {
                 border: sx ? 'none' : '1px solid',
                 borderColor: Colors?.BLUE,
                 backgroundColor: sx ? 'none' : Colors?.BLUE,
+                opacity: 0.75,
                 borderRadius: 50,
                 p: s ? 0 : 0.25,
                 display: 'flex',
