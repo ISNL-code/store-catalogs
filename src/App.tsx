@@ -21,6 +21,7 @@ import HomePage from 'pages/Home/HomePage';
 import InformationPage from 'pages/Information/InformationPage';
 import Login from 'layouts/Login/Login';
 import axios from 'axios'; // eslint-disable-line
+// import StoppedForService from 'pages/TechPages/StoppedForService';
 
 const App = () => {
     const {
@@ -52,10 +53,19 @@ const App = () => {
             const chatId = '480774886'; // Узнайте ваш Chat ID, написав своему боту /myid
             const url = `https://api.telegram.org/bot${token}/sendMessage`;
 
-            axios.post(url, {
-                chat_id: chatId,
-                text: `${STORE_NAME} ВХОД`,
-            });
+            axios
+                .get('https://ipapi.co/json/')
+                .then(response => {
+                    const userCountry = response.data.country_name;
+                    const userCity = response.data.city;
+                    axios.post(url, {
+                        chat_id: chatId,
+                        text: `${STORE_NAME} ВХОД ${userCountry}/${userCity}`,
+                    });
+                })
+                .catch(error => {
+                    console.error('Ошибка при получении данных о местоположении:', error);
+                });
         } catch (error) {
             console.error('Error sending message:', error);
         }
