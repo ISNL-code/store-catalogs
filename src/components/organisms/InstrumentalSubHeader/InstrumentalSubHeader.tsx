@@ -1,4 +1,5 @@
 import { Box } from '@mui/material';
+import { Colors } from 'colors';
 import { ReactNode } from 'react';
 import { useOutletContext } from 'react-router-dom';
 import { CatalogContextInterface } from 'types';
@@ -7,9 +8,10 @@ interface InstrumentalBarInterface {
     StartSlot?: () => ReactNode;
     CentralSlot?: () => ReactNode;
     EndSlot?: () => ReactNode;
+    opacity?: number;
 }
 
-const InstrumentalSubHeader = ({ StartSlot, CentralSlot, EndSlot }: InstrumentalBarInterface) => {
+const InstrumentalSubHeader = ({ StartSlot, CentralSlot, EndSlot, opacity = 0.75 }: InstrumentalBarInterface) => {
     const { instrumentalBarHeight, headerHeight, instrumentalBarPadding }: CatalogContextInterface = useOutletContext();
 
     return (
@@ -25,7 +27,8 @@ const InstrumentalSubHeader = ({ StartSlot, CentralSlot, EndSlot }: Instrumental
                 top: headerHeight,
                 left: 0,
                 zIndex: 200,
-                backgroundColor: '#cccccc3b',
+                backgroundColor: Colors?.GRAY_300,
+                opacity,
             }}
         >
             {StartSlot && <Box sx={{ width: '100%' }}>{StartSlot()}</Box>}

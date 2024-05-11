@@ -11,6 +11,7 @@ import GridViewIcon from '@mui/icons-material/GridView';
 import ProfileButton from 'components/molecules/ToolsButtons/ProfileButton';
 import { StoreInterface, useAddToCartDataInterface, useAddToFavoriteDataInterface } from 'types';
 import { Colors } from 'colors';
+import { STORE_CONFIG } from 'constants/stores_config';
 
 interface HeaderInterface {
     headerHeight;
@@ -45,6 +46,8 @@ const Header = ({
     favorites,
     user,
 }: HeaderInterface) => {
+    const { OPTIONS } = STORE_CONFIG;
+    const { CUSTOM_LOGO, PLAN_OPTIONS } = OPTIONS;
     const navigate = useNavigate();
     const location = useLocation();
     const { sx } = useDevice();
@@ -68,7 +71,7 @@ const Header = ({
         >
             <Box sx={{ height: headerHeight, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                 <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <HeaderLogo title={storeHeaderName} imgUrl={logo} headerHeight={headerHeight} />
+                    <HeaderLogo title={storeHeaderName} imgUrl={logo} custom={CUSTOM_LOGO} />
                 </Box>
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
                     <HeaderNavButton
@@ -79,7 +82,7 @@ const Header = ({
                         isActive={location.pathname.includes('details')}
                     />
 
-                    {store?.additionalStoreSettings?.favorites && (
+                    {PLAN_OPTIONS?.favorites && (
                         <HeaderNavButton
                             path={`/catalog/${storeCode}/${storeName}/favorites`}
                             title={string?.favorites}
@@ -92,7 +95,7 @@ const Header = ({
                             protectedPath={!auth}
                         />
                     )}
-                    {store?.additionalStoreSettings?.cart && (
+                    {PLAN_OPTIONS?.cart && (
                         <HeaderNavButton
                             path={`/catalog/${storeCode}/${storeName}/cart`}
                             title={string?.cart}

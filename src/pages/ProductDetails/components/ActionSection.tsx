@@ -5,10 +5,13 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import { CatalogContextInterface } from 'types';
+import { STORE_CONFIG } from 'constants/stores_config';
 
 const ActionSection = ({ isShown, selectedVariant }) => {
+    const { OPTIONS } = STORE_CONFIG;
+    const { PLAN_OPTIONS } = OPTIONS;
     const { storeCode } = useParams();
-    const { store, string, setOpenModalType, auth, cart, favorites }: CatalogContextInterface = useOutletContext();
+    const { string, setOpenModalType, auth, cart, favorites }: CatalogContextInterface = useOutletContext();
 
     const selectedToCart = cart?.cartItems?.find(item => item.sku === selectedVariant?.sku);
     const selectedToFavorite = favorites?.favoriteItems?.find(item => item.sku === selectedVariant?.sku);
@@ -16,7 +19,7 @@ const ActionSection = ({ isShown, selectedVariant }) => {
     if (isShown)
         return (
             <Box mb={0.5} sx={{ display: 'flex', gap: 1 }}>
-                {store?.additionalStoreSettings?.cart && (
+                {PLAN_OPTIONS?.cart && (
                     <Button
                         sx={{
                             cursor: 'pointer',
@@ -45,7 +48,7 @@ const ActionSection = ({ isShown, selectedVariant }) => {
                         {selectedToCart ? string?.added : string?.add_to}
                     </Button>
                 )}
-                {store?.additionalStoreSettings?.favorites && (
+                {PLAN_OPTIONS?.favorites && (
                     <Button
                         sx={{
                             cursor: 'pointer',

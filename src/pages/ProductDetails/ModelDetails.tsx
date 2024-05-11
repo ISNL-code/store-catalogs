@@ -1,7 +1,6 @@
 import { Box } from '@mui/material';
+import { STORE_CONFIG } from 'constants/stores_config';
 import { useDevice } from 'hooks/useDevice';
-import { useOutletContext } from 'react-router-dom';
-import { CatalogContextInterface } from 'types';
 import ActionSection from './components/ActionSection';
 import ArticleDetails from './components/ArticleDetails';
 import ColorsDetails from './components/ColorsDetails';
@@ -11,7 +10,8 @@ import SizesDetails from './components/SizesDetails';
 import TitleDetails from './components/TitleDetails';
 
 const ModelDetails = ({ productDetails, selectedVariant, setSelectedVariant }) => {
-    const { store }: CatalogContextInterface = useOutletContext();
+    const { OPTIONS } = STORE_CONFIG;
+    const { PLAN_OPTIONS } = OPTIONS;
     const { m } = useDevice();
     return (
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: m ? 1.5 : 3 }}>
@@ -21,20 +21,20 @@ const ModelDetails = ({ productDetails, selectedVariant, setSelectedVariant }) =
             <Box>
                 <ActionSection
                     selectedVariant={selectedVariant}
-                    isShown={store?.additionalStoreSettings?.cart || store?.additionalStoreSettings?.favorites}
+                    isShown={PLAN_OPTIONS?.cart || PLAN_OPTIONS?.favorites}
                 />
             </Box>
-            {store?.mainStoreSettings?.prices && (
+            {PLAN_OPTIONS?.prices && (
                 <Box sx={{ display: 'flex', gap: 1 }}>
                     <Box sx={{ width: '100%' }}>
                         <PriceDetails
                             productDetails={productDetails}
                             selectedVariant={selectedVariant}
-                            isShown={store?.mainStoreSettings?.prices}
+                            isShown={PLAN_OPTIONS?.prices}
                         />
                     </Box>
                     <Box sx={{ width: '100%' }}>
-                        <ArticleDetails isShown={store?.mainStoreSettings?.prices} />
+                        <ArticleDetails isShown={PLAN_OPTIONS?.prices} />
                     </Box>
                 </Box>
             )}
@@ -45,9 +45,9 @@ const ModelDetails = ({ productDetails, selectedVariant, setSelectedVariant }) =
                     setSelectedVariant={setSelectedVariant}
                 />
             </Box>
-            {store?.mainStoreSettings?.sizes && (
+            {PLAN_OPTIONS.sizes && (
                 <Box>
-                    <SizesDetails productDetails={productDetails} isShown={store?.mainStoreSettings?.sizes} />
+                    <SizesDetails productDetails={productDetails} isShown={PLAN_OPTIONS?.sizes} />
                 </Box>
             )}
             <Box mb={1}>

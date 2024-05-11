@@ -17,7 +17,8 @@ import { useAddToFavorites } from './hooks/useAddToFavorites';
 import { STORE_CONFIG } from 'constants/stores_config';
 
 export default function MainCatalog({ lang, setLang, auth, setAuth, userData, viewMode, setViewMode }) {
-    const { STORE_CODE } = STORE_CONFIG;
+    const { OPTIONS, STORE_CODE } = STORE_CONFIG;
+    const { PLAN_OPTIONS } = OPTIONS;
     const { storeName, storeCode } = useParams();
     const navigate = useNavigate();
     const { sx } = useDevice();
@@ -29,7 +30,7 @@ export default function MainCatalog({ lang, setLang, auth, setAuth, userData, vi
     const BODY_PADDINGS = sx ? 0 : 4;
     const FOOTER_PADDINGS = sx ? 2 : 4;
     const [openModalType, setOpenModalType] = useState<string | null>(null);
-    const { currentLanguage } = useGetLanguage({ lang });
+    const { currentLanguage } = useGetLanguage({ lang, storeName: storeName });
     const [scrollPosition, setScrollPosition] = useState(0);
     const [queryCategories, setQueryCategories] = useState<string[] | []>([]);
     const [store, setStore] = useState<StoreInterface | null>(null);
@@ -184,8 +185,8 @@ export default function MainCatalog({ lang, setLang, auth, setAuth, userData, vi
                 string={currentLanguage?.string}
                 auth={auth}
                 isShown={!!sx}
-                withCart={store?.additionalStoreSettings?.cart}
-                withShare={store?.mainStoreSettings?.productShare}
+                withCart={PLAN_OPTIONS?.cart}
+                withShare={PLAN_OPTIONS?.productShare}
                 setOpenModalType={setOpenModalType}
                 openModalType={openModalType}
                 cart={cart}

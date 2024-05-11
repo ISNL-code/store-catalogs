@@ -15,6 +15,7 @@ import { CatalogContextInterface, ProductVariantInterface } from 'types';
 import ModelDetails from './ModelDetails';
 import ModelSwiper from './ModelSwiper';
 import { scrollToTopNewPage } from 'helpers/scroll';
+import { STORE_CONFIG } from 'constants/stores_config';
 
 interface LoadedProductInterface {
     id?: number;
@@ -34,9 +35,10 @@ interface SelectedVarianInterface {
 }
 
 const ProductDetails = () => {
+    const { OPTIONS } = STORE_CONFIG;
+    const { PLAN_OPTIONS } = OPTIONS;
     const mount = useIsMount();
     const {
-        store,
         headerHeight,
         instrumentalBarHeight,
         footerMenuHeight,
@@ -126,19 +128,14 @@ const ProductDetails = () => {
                 StartSlot={() => <BackButton nav={`/catalog/${storeCode}/${storeName}`} action={() => {}} />}
                 EndSlot={() => (
                     <Box sx={{ display: 'flex', gap: 0.75 }}>
-                        {store?.mainStoreSettings?.skuSearch && <SkuSearch />}
+                        <SkuSearch />
                         <ShareButton
-                            path={`${
-                                store?.webUrl
-                            }/catalog/${storeCode}/${storeName}/details/${productId}/model/${modelSku?.replaceAll(
-                                '/',
-                                '_'
-                            )}`}
+                            path={window.location.href}
                             text=""
                             color="#ccc"
                             size={30}
                             orientation="down"
-                            isShown={store?.mainStoreSettings?.productShare}
+                            isShown={PLAN_OPTIONS.productShare}
                         />
                     </Box>
                 )}

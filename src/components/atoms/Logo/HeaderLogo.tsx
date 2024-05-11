@@ -1,23 +1,22 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Box, Typography, CircularProgress } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { useDevice } from 'hooks/useDevice';
-import { STORE_CONFIG } from 'constants/stores_config';
 import { Colors } from 'colors';
+import CustomLogo from './CustomLogo';
 
 interface Props {
     title: string;
     font?: string;
     imgUrl: string;
-    headerHeight: string | number;
+    custom?: boolean;
 }
 
 const specialWords = ['outlet', 'sale', 'sales', 'discount'];
 
-const HeaderLogo = ({ title, font = 'Roboto', imgUrl, headerHeight }: Props) => {
-    const { STORE_CODE, STORE_NAME } = STORE_CONFIG;
+const HeaderLogo = ({ title, font = 'Roboto', imgUrl, custom = false }: Props) => {
     const navigate = useNavigate();
-    const { xxxs, xxs } = useDevice();
+    const { xxxs } = useDevice();
     const [imgLoaded, setImgLoaded] = useState(false);
     const [imgError, setImgError] = useState(false);
 
@@ -41,6 +40,8 @@ const HeaderLogo = ({ title, font = 'Roboto', imgUrl, headerHeight }: Props) => 
             img.onerror = null;
         };
     }, [imgUrl]);
+
+    if (custom) return <CustomLogo />;
 
     const words = title?.split(' ');
 
@@ -76,7 +77,7 @@ const HeaderLogo = ({ title, font = 'Roboto', imgUrl, headerHeight }: Props) => 
                 width: 50,
             }}
             onClick={() => {
-                navigate(`/catalog/${STORE_CODE}/${STORE_NAME.replaceAll(' ', '-').toLowerCase()}`);
+                navigate(`/`);
             }}
         >
             {imgLoaded && !imgError ? (

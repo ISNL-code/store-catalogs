@@ -20,6 +20,7 @@ import { useCartApi } from 'api/useCartApi';
 import SuccessOrderingPage from 'components/atoms/SuccessOrdering/SuccessOrderingPage';
 import ClearListButton from 'components/molecules/ToolsButtons/ClearListButton';
 import { Colors } from 'colors';
+import { STORE_CONFIG } from 'constants/stores_config';
 
 interface ProductListInterface {
     sizeId: number | null;
@@ -46,6 +47,8 @@ export interface OrderDataInterface {
 }
 
 const Cart = () => {
+    const { OPTIONS } = STORE_CONFIG;
+    const { PLAN_OPTIONS } = OPTIONS;
     const sliderRef = useRef<HTMLImageElement>(null);
     const { sx, xs } = useDevice();
     const { storeCode, storeName } = useParams();
@@ -55,7 +58,6 @@ const Cart = () => {
         auth,
         cart,
         supportedLanguage,
-        store,
         string,
         footerMenuHeight,
         appXPadding,
@@ -262,7 +264,7 @@ const Cart = () => {
                                         }}
                                     >
                                         <ProductDetails data={el} setOrderData={setOrderData} />
-                                        {store?.mainStoreSettings?.sizes ? (
+                                        {PLAN_OPTIONS?.sizes ? (
                                             <AddSizesButtons
                                                 sizes={el?.sizes}
                                                 orderData={orderData}

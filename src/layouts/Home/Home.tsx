@@ -12,15 +12,17 @@ import { STORES_DATA } from 'dataBase/STORES';
 import { STORE_CONFIG } from 'constants/stores_config';
 
 export default function Home({ lang, setLang }) {
-    const { STORE_CODE } = STORE_CONFIG;
+    const { STORE_CODE, STORE_NAME } = STORE_CONFIG;
     const { sx } = useDevice();
+    const INSTRUMENTAL_BAR_HEIGHT = 36;
+    const INSTRUMENTAL_BAR_PADDINGS = sx ? 2 : 4;
     const HEADER_HEIGHT = 50;
     const FOOTER_MENU_HEIGHT = sx ? '70px' : 0;
     const HEADER_PADDINGS = sx ? 2 : 4;
     const BODY_PADDINGS = sx ? 0 : 4;
     const FOOTER_PADDINGS = sx ? 2 : 4;
     const [openModalType, setOpenModalType] = useState<string | null>(null);
-    const { currentLanguage } = useGetLanguage({ lang });
+    const { currentLanguage } = useGetLanguage({ lang, storeName: STORE_NAME });
 
     const [store, setStore] = useState<StoreInterface | null>(null);
 
@@ -64,6 +66,8 @@ export default function Home({ lang, setLang }) {
                             setOpenModalType: setOpenModalType,
 
                             //css data
+                            instrumentalBarHeight: INSTRUMENTAL_BAR_HEIGHT,
+                            instrumentalBarPadding: INSTRUMENTAL_BAR_PADDINGS,
                             headerHeight: HEADER_HEIGHT,
                             footerMenuHeight: FOOTER_MENU_HEIGHT,
                             appXPadding: BODY_PADDINGS,

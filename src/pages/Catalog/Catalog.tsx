@@ -18,8 +18,11 @@ import PaginationButton from 'components/atoms/Buttons/PaginationButton';
 import SideLink from 'components/atoms/Buttons/SideLink';
 import ViewModeButton from 'components/molecules/ToolsButtons/ViewModeButton';
 import CatalogListCard from 'components/organisms/Cards/CatalogListCard';
+import { STORE_CONFIG } from 'constants/stores_config';
 
 const Catalog = () => {
+    const { OPTIONS, SIDE_LINKS } = STORE_CONFIG;
+    const { PLAN_OPTIONS } = OPTIONS;
     const {
         store,
         productsList,
@@ -82,15 +85,15 @@ const Catalog = () => {
             {showTopBtn && <ScrollButton />}
             {showMobileStoresButton && (
                 <>
-                    {store?.additionalStoreSettings?.appleStore && <AppleStoreButton />}
-                    {store?.additionalStoreSettings?.playMarket && <PlayMarketButton />}
+                    {PLAN_OPTIONS?.appleStore && <AppleStoreButton />}
+                    {PLAN_OPTIONS?.playMarket && <PlayMarketButton />}
                 </>
             )}
             {((loadProducts && !productsList?.length) || loading) && <Loader position="fixed" />}
-            {store?.mainStoreSettings?.contacts && <CallBackButton />}
+            {PLAN_OPTIONS?.contacts && <CallBackButton />}
             <InstrumentalSubHeader
                 StartSlot={() =>
-                    store?.links.map(({ name, href }) => (
+                    SIDE_LINKS?.map(({ name, href }) => (
                         <Box sx={{ display: 'flex' }} key={href}>
                             <SideLink name={name} href={href} />
                         </Box>
@@ -99,8 +102,8 @@ const Catalog = () => {
                 EndSlot={() => (
                     <Box sx={{ display: 'flex', gap: 0.75 }}>
                         <ViewModeButton />
-                        {store?.mainStoreSettings?.skuSearch && <SkuSearch />}
-                        <FilterCategories isShown={store?.mainStoreSettings?.categories} />
+                        <SkuSearch />
+                        <FilterCategories isShown={PLAN_OPTIONS?.categories} />
                     </Box>
                 )}
             />

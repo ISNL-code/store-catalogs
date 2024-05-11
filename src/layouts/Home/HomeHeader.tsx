@@ -4,14 +4,12 @@ import LanguageButton from 'components/molecules/ToolsButtons/LanguageButton';
 import { useDevice } from 'hooks/useDevice';
 import { useLocation } from 'react-router-dom';
 import HomeIcon from '@mui/icons-material/Home';
-import CatalogHeaderLogo from 'components/atoms/Logo/CatalogHeaderLogo';
 import StorefrontIcon from '@mui/icons-material/Storefront';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import InfoIcon from '@mui/icons-material/Info';
-import { StoreInterface } from 'types';
-import { STORE_CONFIG } from 'constants/stores_config';
 import HeaderLogo from 'components/atoms/Logo/HeaderLogo';
 import { Colors } from 'colors';
+import { STORE_CONFIG } from 'constants/stores_config';
 
 interface HeaderInterface {
     headerHeight;
@@ -38,6 +36,8 @@ const HomeHeader = ({
     storeCode,
     store,
 }: HeaderInterface) => {
+    const { OPTIONS } = STORE_CONFIG;
+    const { CUSTOM_LOGO } = OPTIONS;
     const location = useLocation();
     const { sx } = useDevice();
 
@@ -53,14 +53,13 @@ const HomeHeader = ({
                 left: 0,
                 top: 0,
                 zIndex: 4000,
-                backgroundColor: Colors?.WHITE_100,
+                backgroundColor: Colors?.WHITE,
                 overflow: 'hidden',
             }}
         >
             <Box sx={{ height: headerHeight, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                 <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <HeaderLogo title={storeHeaderName} imgUrl={logo} headerHeight={headerHeight} />
-                    {/* <CatalogHeaderLogo /> */}
+                    <HeaderLogo title={storeHeaderName} imgUrl={logo} custom={CUSTOM_LOGO} />
                 </Box>
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
                     <HeaderNavButton title={string?.home} path={`/`} icon={() => <HomeIcon />} isShown={!sx} />

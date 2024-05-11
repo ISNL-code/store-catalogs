@@ -21,7 +21,7 @@ import ClearListButton from 'components/molecules/ToolsButtons/ClearListButton';
 
 const Favorites = () => {
     const { OPTIONS } = STORE_CONFIG;
-    const { STORE_TYPE } = OPTIONS;
+    const { STORE_TYPE, PLAN_OPTIONS } = OPTIONS;
     const { store, favorites, supportedLanguage, string, footerMenuHeight }: CatalogContextInterface =
         useOutletContext();
     const { storeCode } = useParams();
@@ -153,7 +153,7 @@ const Favorites = () => {
                 />
             )}
             {loading && <Loader />}
-            {store?.mainStoreSettings?.contacts && <CallBackButton />}
+            {PLAN_OPTIONS?.contacts && <CallBackButton />}
             <InstrumentalSubHeader
                 StartSlot={() => <BackButton nav={-1} action={() => {}} />}
                 EndSlot={() => (

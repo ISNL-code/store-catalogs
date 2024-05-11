@@ -8,14 +8,16 @@ import ImageComponent from 'components/atoms/Media/Image';
 import { useWindowWidth } from '@react-hook/window-size';
 import { useIsMount } from 'hooks/useIsMount';
 import { Colors } from 'colors';
+import { STORE_CONFIG } from 'constants/stores_config';
 
 const ModelSwiper = ({ images }) => {
+    const { OPTIONS } = STORE_CONFIG;
+    const { PRODUCT_IMAGE_OPTIONS } = OPTIONS;
     const WINDOW_WIDTH = useWindowWidth();
     const mount = useIsMount();
     const [memoHeight, setMemoHeight] = useState<number | null>(null);
 
-    const { headerHeight, instrumentalBarHeight, footerMenuHeight, store }: CatalogContextInterface =
-        useOutletContext();
+    const { headerHeight, instrumentalBarHeight, footerMenuHeight }: CatalogContextInterface = useOutletContext();
     const [fullScreenMode, setFullScreenMode] = useState<boolean>(false);
     const { sx } = useDevice();
     const [slide, setSlide] = useState(0);
@@ -32,8 +34,8 @@ const ModelSwiper = ({ images }) => {
 
             const calcSlideHeight = () => {
                 return (
-                    ((sliderRef?.current?.clientWidth || 1) / store?.productImagesOptions?.width) *
-                    store?.productImagesOptions?.height
+                    ((sliderRef?.current?.clientWidth || 1) / PRODUCT_IMAGE_OPTIONS?.width) *
+                    PRODUCT_IMAGE_OPTIONS?.height
                 );
             };
             if (sliderRef?.current?.clientWidth) setSliderHeight(calcSlideHeight());
@@ -93,8 +95,8 @@ const ModelSwiper = ({ images }) => {
 
             const calcSlideHeight = () => {
                 return (
-                    ((sliderRef?.current?.clientWidth || 1) / store?.productImagesOptions?.width) *
-                    store?.productImagesOptions?.height
+                    ((sliderRef?.current?.clientWidth || 1) / PRODUCT_IMAGE_OPTIONS?.width) *
+                    PRODUCT_IMAGE_OPTIONS?.height
                 );
             };
             if (sliderRef?.current?.clientWidth) setSliderHeight(calcSlideHeight());

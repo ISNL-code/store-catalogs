@@ -5,9 +5,12 @@ import { useOutletContext } from 'react-router-dom';
 import StraightenIcon from '@mui/icons-material/Straighten';
 import { useDevice } from 'hooks/useDevice';
 import { CatalogContextInterface } from 'types';
+import { STORE_CONFIG } from 'constants/stores_config';
 
 const SizesDetails = ({ productDetails, isShown }) => {
-    const { string, store }: CatalogContextInterface = useOutletContext();
+    const { OPTIONS } = STORE_CONFIG;
+    const { PLAN_OPTIONS } = OPTIONS;
+    const { string }: CatalogContextInterface = useOutletContext();
     const { sm } = useDevice();
 
     if (isShown)
@@ -41,7 +44,7 @@ const SizesDetails = ({ productDetails, isShown }) => {
                                     </Typography>
                                 )}
                             </Box>
-                            {store?.additionalStoreSettings?.tableSizes && (
+                            {PLAN_OPTIONS?.tableSizes && (
                                 <Box
                                     sx={{
                                         display: 'flex',

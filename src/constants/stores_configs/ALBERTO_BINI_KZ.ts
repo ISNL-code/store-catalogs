@@ -1,10 +1,12 @@
 import { StoreType, ViewModeType } from 'constants/types';
 
-const prefix = 'ab_eu';
+const prefix = 'ab_kz';
 
 export const ALBERTO_BINI_KZ = {
     active: true, // Поле которое запускает магазин true - работает false - остановлен / по тех. причина
     URL: ['https://albertobini-kz.com'],
+    appStoreUrl: null,
+    playMarketUrl: null,
     web_lang: 'en', // html lang
     store_name: 'Alberto Bini KZ',
     store_code: 'alberto_bini_europe',
@@ -14,13 +16,35 @@ export const ALBERTO_BINI_KZ = {
     base_url: 'https://kremen-belts.com/api',
     lang_key: `${prefix}-lang`,
     app_lang: 'kz',
+    links: [],
     options: {
+        product_image_options: { width: 6, height: 9 },
         main_price_multiplication: 1,
         sale_price_multiplication: 1,
         currency_multiplication: 1,
         custom_currency: null,
         store_type: StoreType?.default,
         home_page_active: true,
+        custom_logo: true,
+        plan_options: {
+            prices: true,
+            sizes: true,
+            contacts: true,
+            categories: true,
+            productShare: true,
+            cart: true,
+            favorites: true,
+            video: false,
+            tableSizes: true,
+            platformAvailable: true,
+            appleStore: false,
+            playMarket: false,
+            admins: 5,
+            products: 200,
+            productModels: 10,
+            photos: 10,
+            videos: null,
+        },
     },
     web_head_data: {
         store_title: 'Alberto Bini Оптовы каталогы | Alberto Bini Wholesales Catalog',

@@ -1,11 +1,14 @@
 import React, { useRef } from 'react';
 import InstrumentalSubHeader from 'components/organisms/InstrumentalSubHeader/InstrumentalSubHeader';
 import Grid from '@mui/material/Unstable_Grid2';
-import { Button, Typography } from '@mui/material';
+import { Box, Button, Typography } from '@mui/material';
 import { useOutletContext } from 'react-router-dom';
+import { HomeContextInterface } from 'types';
+import { useDevice } from 'hooks/useDevice';
 
 const InformationPage = () => {
-    const { string }: any = useOutletContext();
+    const { sx } = useDevice();
+    const { appXPadding, footerMenuHeight, string }: HomeContextInterface = useOutletContext();
     const aboutStoreRef = useRef(null);
     const paymentsDeliveryRef = useRef(null);
     const returnExchangeRef = useRef(null);
@@ -25,46 +28,31 @@ const InformationPage = () => {
     ];
 
     return (
-        <>
+        <Box p={sx ? 2 : appXPadding} pb={footerMenuHeight}>
             <InstrumentalSubHeader
+                opacity={1}
                 StartSlot={() => (
                     <Grid container xs={12} sx={{ width: '100%', display: 'flex', gap: 0.5 }}>
-                        <Grid>
-                            <Button
-                                sx={{ background: '#fff', px: 0.8, '&:hover': { backgroundColor: '#fff' } }}
-                                variant="outlined"
-                                onClick={() => scrollToRef(aboutStoreRef)}
-                            >
-                                {string?.about_store}
-                            </Button>
-                        </Grid>
-                        <Grid>
-                            <Button
-                                sx={{ background: '#fff', px: 0.8, '&:hover': { backgroundColor: '#fff' } }}
-                                variant="outlined"
-                                onClick={() => scrollToRef(paymentsDeliveryRef)}
-                            >
-                                {string?.payments_delivery}
-                            </Button>
-                        </Grid>
-                        <Grid>
-                            <Button
-                                sx={{ background: '#fff', px: 0.8, '&:hover': { backgroundColor: '#fff' } }}
-                                variant="outlined"
-                                onClick={() => scrollToRef(returnExchangeRef)}
-                            >
-                                {string?.return_exchange}
-                            </Button>
-                        </Grid>
-                        <Grid>
-                            <Button
-                                sx={{ background: '#fff', px: 0.8, '&:hover': { backgroundColor: '#fff' } }}
-                                variant="outlined"
-                                onClick={() => scrollToRef(privacyPolicyRef)}
-                            >
-                                {string?.privacy_policy}
-                            </Button>
-                        </Grid>
+                        {[
+                            { name: string?.about_store, id: aboutStoreRef },
+                            { name: string?.payments_delivery, id: paymentsDeliveryRef },
+                            { name: string?.return_exchange, id: returnExchangeRef },
+                            { name: string?.privacy_policy, id: privacyPolicyRef },
+                        ].map(({ name, id }) => (
+                            <Grid>
+                                <Button
+                                    sx={{
+                                        background: 'transparent',
+                                        px: 0.8,
+                                        '&:hover': { backgroundColor: 'transparent' },
+                                    }}
+                                    variant="text"
+                                    onClick={() => scrollToRef(id)}
+                                >
+                                    {name}
+                                </Button>
+                            </Grid>
+                        ))}
                     </Grid>
                 )}
             />
@@ -89,7 +77,7 @@ const InformationPage = () => {
                     </Grid>
                 ))}
             </Grid>
-        </>
+        </Box>
     );
 };
 

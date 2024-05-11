@@ -1,15 +1,14 @@
 import { Box } from '@mui/material';
 import { AppleIcon } from 'assets/svg/apple_icon';
+import { STORE_CONFIG } from 'constants/stores_config';
 import { useDevice } from 'hooks/useDevice';
-import { useOutletContext } from 'react-router-dom';
-import { CatalogContextInterface } from 'types';
 
 const AppleStoreButton = () => {
+    const { APP_STORE_URL } = STORE_CONFIG;
     const { s, sx } = useDevice();
-    const { store }: CatalogContextInterface = useOutletContext();
 
     return (
-        <a href={store?.appStoreUrl}>
+        <a href={APP_STORE_URL || ''}>
             <Box
                 sx={{
                     display: 'flex',

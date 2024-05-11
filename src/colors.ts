@@ -1,26 +1,14 @@
 export enum Colors {
-    VIOLET = '#a622ce',
-    GREEN = '#07802b',
-    GREEN_100 = '#ebffeb',
-    YELLOW = '#ebb92f',
-    YELLOW_100 = '#fff2cd',
+    LIGHT_BLUE = 'rgb(137, 185, 182)',
     BLUE = '#1976d2',
-    DARK_BLUE = 'rgb(35, 48, 68)',
-    DARK_BLUE_900 = 'rgb(30, 42, 56)',
     GRAY = '#949494',
     GRAY_100 = 'rgb(250, 250, 250)',
     GRAY_300 = 'rgb(240, 240, 240)',
     GRAY_500 = 'rgb(200, 200, 200)',
     GRAY_900 = '#505050',
     RED = '#db3214',
-    RED_100 = '#ffebeb',
     RED_300 = '#f88d8d',
-    ORANGE = '#ff5722',
-    YELLOW_GREEN = '#9ACD32', // used for temp tools
-    TEAL = '#008080',
-    LIGHT_GREEN = '#51ce77',
     WHITE = '#fff',
-    WHITE_100 = '#ffffffe6',
     BLACK = '#000',
 
     // shadows

@@ -75,10 +75,10 @@ const CatalogListCard = memo<CatalogCardProps>(
     }) => {
         const WINDOW_WIDTH = useWindowWidth();
         const { OPTIONS } = STORE_CONFIG;
-        const { STORE_TYPE } = OPTIONS;
+        const { STORE_TYPE, PLAN_OPTIONS, PRODUCT_IMAGE_OPTIONS } = OPTIONS;
         const sliderRef = useRef<HTMLImageElement>(null);
         const navigate = useNavigate();
-        const { store, cart, favorites, currentUserData, viewMode }: CatalogContextInterface = useOutletContext();
+        const { cart, favorites, currentUserData, viewMode }: CatalogContextInterface = useOutletContext();
         const colorsBoxRef = useRef(null);
         const { storeCode, storeName } = useParams();
         const [shownModel, setShownModel] = useState<ShownModelInterface | null>(null);
@@ -95,8 +95,8 @@ const CatalogListCard = memo<CatalogCardProps>(
         useEffect(() => {
             setTimeout(() => {
                 setSliderHeight(
-                    ((sliderRef?.current?.clientWidth || 1) / store?.productImagesOptions?.width) *
-                        store?.productImagesOptions?.height
+                    ((sliderRef?.current?.clientWidth || 1) / PRODUCT_IMAGE_OPTIONS?.width) *
+                        PRODUCT_IMAGE_OPTIONS?.height
                 );
             }, 100);
         }, [viewMode, WINDOW_WIDTH, sliderRef?.current?.clientWidth]); // eslint-disable-line
@@ -261,7 +261,7 @@ const CatalogListCard = memo<CatalogCardProps>(
                                 }}
                             >
                                 <Box sx={{ width: 95 }}>
-                                    {store?.mainStoreSettings?.prices && (
+                                    {PLAN_OPTIONS?.prices && (
                                         <CardPrice
                                             currency={currency}
                                             price={Number(shownModel?.originalPrice)}
@@ -301,7 +301,7 @@ const CatalogListCard = memo<CatalogCardProps>(
                                     >
                                         <CartButton
                                             selected={cart?.cartItems?.find(item => item.sku === shownModel?.sku)}
-                                            isShown={store?.additionalStoreSettings?.cart}
+                                            isShown={PLAN_OPTIONS?.cart}
                                             action={() => {
                                                 cart?.handleSetCartItems({
                                                     sku: shownModel?.sku,
@@ -313,13 +313,10 @@ const CatalogListCard = memo<CatalogCardProps>(
                                         />
 
                                         <ShareButton
-                                            isShown={store?.additionalStoreSettings?.promo}
+                                            isShown
                                             path={`${
-                                                store?.webUrl
-                                            }/catalog/${storeCode}/${storeName}/details/${productId}/model/${shownModel?.sku?.replaceAll(
-                                                '/',
-                                                '_'
-                                            )}`}
+                                                window.location.href
+                                            }/details/${productId}/model/${shownModel?.sku?.replaceAll('/', '_')}`}
                                             text=""
                                         />
                                     </Box>
@@ -335,41 +332,41 @@ const CatalogListCard = memo<CatalogCardProps>(
             return (
                 <>
                     {!sliderHeight && <Box sx={{ height: '100vh' }}></Box>}
-                    {Boolean(store?.additionalStoreSettings?.promo) && (
-                        <Box
-                            sx={{
-                                position: 'absolute',
-                                top: 8,
-                                left: 8,
-                                zIndex: 1,
-                                display: 'flex',
-                                gap: 0.5,
-                            }}
-                        >
-                            {Boolean(promoTags?.length) && (
-                                <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.5 }}>
-                                    {promoTags?.map(el => (
-                                        <PromoTags
-                                            key={el.id}
-                                            value={el.name || el.code}
-                                            code={el.code}
-                                            size={20}
-                                            selected={true}
-                                            disabled={true}
-                                        />
-                                    ))}
-                                </Box>
-                            )}
-                            <Box>
-                                {STORE_TYPE === 'sales' && (
-                                    <SaleTag
-                                        price={Number(shownModel?.originalPrice)}
-                                        discountPrice={Number(shownModel?.price)}
+
+                    <Box
+                        sx={{
+                            position: 'absolute',
+                            top: 8,
+                            left: 8,
+                            zIndex: 1,
+                            display: 'flex',
+                            gap: 0.5,
+                        }}
+                    >
+                        {Boolean(promoTags?.length) && (
+                            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.5 }}>
+                                {promoTags?.map(el => (
+                                    <PromoTags
+                                        key={el.id}
+                                        value={el.name || el.code}
+                                        code={el.code}
+                                        size={20}
+                                        selected={true}
+                                        disabled={true}
                                     />
-                                )}
+                                ))}
                             </Box>
+                        )}
+                        <Box>
+                            {STORE_TYPE === 'sales' && (
+                                <SaleTag
+                                    price={Number(shownModel?.originalPrice)}
+                                    discountPrice={Number(shownModel?.price)}
+                                />
+                            )}
                         </Box>
-                    )}
+                    </Box>
+
                     <Box
                         sx={{ position: 'absolute', top: 8, right: 8, zIndex: 1, display: 'flex', gap: 0.5 }}
                         onClick={() => {
@@ -382,7 +379,7 @@ const CatalogListCard = memo<CatalogCardProps>(
                         }}
                     >
                         <FavoritesButton
-                            isShown={store?.additionalStoreSettings?.favorites}
+                            isShown={PLAN_OPTIONS?.favorites}
                             selected={favorites?.favoriteItems?.find(item => item.sku === shownModel?.sku)}
                         />
                     </Box>

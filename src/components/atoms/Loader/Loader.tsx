@@ -1,4 +1,5 @@
 import { Box, CircularProgress, LinearProgress, Stack, Typography } from '@mui/material';
+import { Colors } from 'colors';
 
 interface LoaderInterface {
     height?: string;
@@ -50,10 +51,10 @@ const Loader = ({
                         color="inherit"
                         sx={{
                             width: '100%',
-                            color: '#3d3d3d',
+                            color: Colors?.GRAY_500,
                             position: 'fixed',
                             top: `${50 - 2}px`,
-                            height: '4px',
+                            height: '3px',
                             zIndex: 5000,
                         }}
                     />
@@ -73,13 +74,13 @@ const Loader = ({
                         position: 'relative',
                     }}
                 >
-                    <CircularProgress size={90} thickness={1.5} sx={{ color: '#757575' }} />
+                    <CircularProgress size={75} thickness={1.5} sx={{ color: Colors?.LIGHT_BLUE }} />
                     <Box
                         sx={{
                             position: 'absolute',
                             overflow: 'hidden',
-                            height: 85,
-                            width: 85,
+                            height: 70,
+                            width: 70,
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'center',
@@ -88,7 +89,7 @@ const Loader = ({
                             opacity: 0.6,
                         }}
                     >
-                        <img src={require('assets/img/logo.png')} style={{ height: '80px' }} alt="img" />
+                        <img src={require('assets/img/logo.png')} style={{ height: '65px' }} alt="img" />
                     </Box>
                 </Box>
             )}

@@ -1,18 +1,26 @@
 import { Box, Typography } from '@mui/material';
 import { STORE_CONFIG } from 'constants/stores_config';
 import { useDevice } from 'hooks/useDevice';
+import { useNavigate } from 'react-router-dom';
 
-const CatalogHeaderLogo = () => {
+const CustomLogo = () => {
+    const navigate = useNavigate();
     const { WEB_HEAD_DATA } = STORE_CONFIG;
     const { STORE_LOGO } = WEB_HEAD_DATA;
-    const { xs } = useDevice();
+    const { sx } = useDevice();
+
     return (
-        <Box sx={{ display: 'flex', alignItems: 'center', cursor: 'pointer', gap: xs ? 0.25 : 0.25 }}>
+        <Box
+            sx={{ display: 'flex', alignItems: 'center', cursor: 'pointer', gap: 0.5 }}
+            onClick={() => {
+                navigate(`/`);
+            }}
+        >
             <Box sx={{ boxShadow: '0 0 5px 1px #414141c5', borderRadius: '50%', border: '2.2px solid #383838' }}>
                 <Box
                     sx={{
-                        width: xs ? 36 : 55,
-                        height: xs ? 36 : 55,
+                        width: 38,
+                        height: 38,
                         borderRadius: '50%',
                         overflow: 'hidden',
                         display: 'flex',
@@ -23,8 +31,8 @@ const CatalogHeaderLogo = () => {
                     <img
                         src={require(`dataBase/images/logos/${STORE_LOGO}`)}
                         style={{
-                            width: xs ? 58 : 78,
-                            height: xs ? 58 : 78,
+                            width: 58,
+                            height: 58,
                             position: 'absolute',
                             top: '50%',
                             left: '50%',
@@ -37,22 +45,14 @@ const CatalogHeaderLogo = () => {
 
             <Box
                 sx={{
-                    pt: 0.3,
-                    pb: -1.5,
-                    display: 'flex',
-                    gap: 0.05,
-                    alignItems: 'center',
-                    mt: 0.5,
-                    // borderBottom: '2px double #616161c6',
-                    px: 0.25,
                     position: 'relative',
-                    mb: 0.5,
+                    display: 'flex',
                 }}
             >
                 <Typography
                     sx={{
                         fontFamily: 'Young Serif',
-                        fontSize: xs ? 24 : 32,
+                        fontSize: sx ? 20 : 28,
                         fontWeight: 600,
                         color: '#161616',
                         textShadow: '#0000006a 0 0 2px',
@@ -65,7 +65,7 @@ const CatalogHeaderLogo = () => {
                 <Typography
                     sx={{
                         fontFamily: 'Young Serif',
-                        fontSize: xs ? 24 : 32,
+                        fontSize: sx ? 20 : 28,
                         fontWeight: 500,
                         color: '#616161c6',
                         textShadow: '#000000 0 0 1.25px',
@@ -76,7 +76,7 @@ const CatalogHeaderLogo = () => {
                 <Typography
                     sx={{
                         fontFamily: 'Young Serif',
-                        fontSize: xs ? 24 : 32,
+                        fontSize: sx ? 20 : 28,
                         fontWeight: 500,
                         color: '#616161c6',
                         textShadow: '#000000 0 0 1.25px',
@@ -87,7 +87,7 @@ const CatalogHeaderLogo = () => {
                 <Typography
                     sx={{
                         fontFamily: 'Young Serif',
-                        fontSize: xs ? 24 : 32,
+                        fontSize: sx ? 20 : 28,
                         fontWeight: 500,
                         color: '#616161c6',
                         textShadow: '#000000 0 0 1.25px',
@@ -98,7 +98,7 @@ const CatalogHeaderLogo = () => {
                 <Typography
                     sx={{
                         fontFamily: 'Young Serif',
-                        fontSize: xs ? 24 : 32,
+                        fontSize: sx ? 20 : 28,
                         fontWeight: 500,
                         color: '#616161c6',
                         textShadow: '#000000 0 0 1.25px',
@@ -109,7 +109,7 @@ const CatalogHeaderLogo = () => {
                 <Typography
                     sx={{
                         fontFamily: 'Young Serif',
-                        fontSize: xs ? 24 : 32,
+                        fontSize: sx ? 20 : 28,
                         fontWeight: 500,
                         color: '#616161c6',
                         textShadow: '#000000 0 0 1.25px',
@@ -120,7 +120,7 @@ const CatalogHeaderLogo = () => {
                 <Typography
                     sx={{
                         fontFamily: 'Young Serif',
-                        fontSize: xs ? 24 : 32,
+                        fontSize: sx ? 20 : 28,
                         fontWeight: 500,
                         color: '#616161c6',
                         textShadow: '#000000 0 0 1.25px',
@@ -132,7 +132,7 @@ const CatalogHeaderLogo = () => {
                     sx={{
                         ml: 1,
                         fontFamily: 'Young Serif',
-                        fontSize: xs ? 24 : 32,
+                        fontSize: sx ? 20 : 28,
                         fontWeight: 600,
                         color: '#161616',
                         textShadow: '#0000006a 0 0 2px',
@@ -145,7 +145,7 @@ const CatalogHeaderLogo = () => {
                 <Typography
                     sx={{
                         fontFamily: 'Young Serif',
-                        fontSize: xs ? 24 : 32,
+                        fontSize: sx ? 20 : 28,
                         fontWeight: 500,
                         color: '#616161c6',
                         textShadow: '#000000 0 0 1.25px',
@@ -156,7 +156,7 @@ const CatalogHeaderLogo = () => {
                 <Typography
                     sx={{
                         fontFamily: 'Young Serif',
-                        fontSize: xs ? 24 : 32,
+                        fontSize: sx ? 20 : 28,
                         fontWeight: 500,
                         color: '#616161c6',
                         textShadow: '#000000 0 0 1.25px',
@@ -167,7 +167,7 @@ const CatalogHeaderLogo = () => {
                 <Typography
                     sx={{
                         fontFamily: 'Young Serif',
-                        fontSize: xs ? 24 : 32,
+                        fontSize: sx ? 20 : 28,
                         fontWeight: 500,
                         color: '#616161c6',
                         textShadow: '#000000 0 0 1.25px',
@@ -200,4 +200,4 @@ const CatalogHeaderLogo = () => {
     );
 };
 
-export default CatalogHeaderLogo;
+export default CustomLogo;

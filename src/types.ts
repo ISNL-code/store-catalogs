@@ -8,6 +8,8 @@ export interface HomeContextInterface {
     openModalType: string | null;
 
     //css data
+    instrumentalBarHeight: number;
+    instrumentalBarPadding: number;
     headerHeight: number;
     footerMenuHeight: number;
     appXPadding: number;
@@ -136,16 +138,8 @@ export interface StoreInterface {
         user: string;
     };
     //add
-    links: { name: string; href: string }[];
-    webUrl: string;
-    appStoreUrl: string;
-    playMarketUrl: string;
     mainImage: string;
     descriptions: any;
-    productImagesOptions: any;
-    mainStoreSettings: any;
-    additionalStoreSettings: any;
-    dataBaseStoreSettings: any;
     securityStoreSettings: any;
     storeProductTypes: any;
     description: any;

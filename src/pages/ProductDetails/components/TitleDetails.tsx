@@ -2,13 +2,10 @@ import { Box, Divider, Typography } from '@mui/material';
 import PromoTags from 'components/atoms/PromoTags/PromoTags';
 import SaleTag from 'components/atoms/PromoTags/SaleTag';
 import { STORE_CONFIG } from 'constants/stores_config';
-import { useOutletContext } from 'react-router-dom';
-import { CatalogContextInterface } from 'types';
 
 const TitleDetails = ({ productDetails, selectedVariant }) => {
     const { OPTIONS } = STORE_CONFIG;
     const { STORE_TYPE } = OPTIONS;
-    const { store }: CatalogContextInterface = useOutletContext();
 
     return (
         <>
@@ -23,30 +20,27 @@ const TitleDetails = ({ productDetails, selectedVariant }) => {
                 }}
             >
                 <Typography>{productDetails?.title}</Typography>
-                {store?.additionalStoreSettings?.promo && (
-                    <Box sx={{ display: 'flex', gap: 0.5 }}>
-                        {productDetails?.promo.map(el => (
-                            <PromoTags
-                                key={el.id}
-                                value={el.name}
-                                size={15}
-                                selected={true}
-                                disabled={true}
-                                code={el?.code}
+
+                <Box sx={{ display: 'flex', gap: 0.5 }}>
+                    {productDetails?.promo.map(el => (
+                        <PromoTags
+                            key={el.id}
+                            value={el.name}
+                            size={15}
+                            selected={true}
+                            disabled={true}
+                            code={el?.code}
+                        />
+                    ))}
+                    <Box>
+                        {STORE_TYPE === 'sales' && (
+                            <SaleTag
+                                price={Number(productDetails?.originalPrice)}
+                                discountPrice={Number(selectedVariant?.inventory[0]?.price?.replace(/[^0-9.]/g, ''))}
                             />
-                        ))}
-                        <Box>
-                            {STORE_TYPE === 'sales' && (
-                                <SaleTag
-                                    price={Number(productDetails?.originalPrice)}
-                                    discountPrice={Number(
-                                        selectedVariant?.inventory[0]?.price?.replace(/[^0-9.]/g, '')
-                                    )}
-                                />
-                            )}
-                        </Box>
+                        )}
                     </Box>
-                )}
+                </Box>
             </Box>
             <Divider />
         </>
