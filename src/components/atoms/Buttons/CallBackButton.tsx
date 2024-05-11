@@ -1,14 +1,13 @@
 import { Box, Fab, Typography } from '@mui/material';
 import PhoneCallbackIcon from '@mui/icons-material/PhoneCallback';
-import { useLocation, useNavigate, useOutletContext } from 'react-router-dom';
+import { useNavigate, useOutletContext } from 'react-router-dom';
 import { useDevice } from 'hooks/useDevice';
 import { Colors } from 'colors';
 
-const CallBackButton = ({ animated = false }) => {
+const CallBackButton = ({ animated = false, path }) => {
     const { string }: any = useOutletContext();
     const { sx, s } = useDevice();
     const navigate = useNavigate();
-    const location = useLocation();
 
     return (
         <Box
@@ -29,11 +28,7 @@ const CallBackButton = ({ animated = false }) => {
                 cursor: 'pointer',
             }}
             onClick={() => {
-                navigate(
-                    location?.pathname === '/'
-                        ? `${location?.pathname + 'contacts'}` // eslint-disable-line
-                        : `${location?.pathname + '/' + 'contacts'}` // eslint-disable-line
-                );
+                navigate(`${path}contacts`);
             }}
         >
             {!sx && (

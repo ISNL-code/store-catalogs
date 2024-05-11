@@ -100,7 +100,7 @@ const HomeMobileMenu = ({
                     )}
                     {auth && (
                         <ProfileButton
-                            store={store}
+                            path={`/`}
                             string={string}
                             headerHeight={headerHeight}
                             menuHeight={menuHeight}

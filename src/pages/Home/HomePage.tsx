@@ -34,7 +34,7 @@ const HomePage = () => {
                 }}
             />
             {openSuccessModal && <SuccessModel setOpenModal={setOpenSuccessModal} />}
-            <CallBackButton />
+            <CallBackButton path="/" />
             <HomeImages />
             <Grid container xs={12}>
                 <Typography

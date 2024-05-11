@@ -126,7 +126,7 @@ const Header = ({
                     )}
                     {!sx && auth && (
                         <ProfileButton
-                            store={store}
+                            path={`/catalog/${storeCode}/${storeName}/`}
                             string={string}
                             headerHeight={headerHeight}
                             user={user}

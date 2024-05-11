@@ -126,7 +126,7 @@ const HomeHeader = ({
                     )}
                     {!sx && auth && (
                         <ProfileButton
-                            store={store}
+                            path={`/`}
                             string={string}
                             headerHeight={headerHeight}
                             user={user}

@@ -39,7 +39,7 @@ const App = () => {
     const mount = useIsMount();
     const [lang, setLang] = useState<string>(APP_LANGUAGE);
     const [viewMode, setViewMode] = useState<ViewModeType | null>(null);
-    const [auth, setAuth] = useState<boolean | null>(false);
+    const [auth, setAuth] = useState<boolean | null>(null);
     const { refetch: updateUserData, isFetching } = useUserApi().useGetUserData({
         storeCode: STORE_CODE,
     });
@@ -100,6 +100,8 @@ const App = () => {
         return '/';
     };
 
+    if (auth === null) return <></>;
+
     return (
         <>
             <Head />
@@ -134,6 +136,8 @@ const App = () => {
                                     >
                                         <Route path={'/'} element={<HomePage />} />
                                         <Route path={'/contacts'} element={<ContactsManagePage />} />
+                                        <Route path={'/profile'} element={<UserProfile />} />
+                                        <Route path={'/orders'} element={<UserOrders />} />
                                         <Route path={'/info'} element={<InformationPage />} />
                                         <Route path="*" element={<Navigate to={'/'} replace />} />
                                     </Route>

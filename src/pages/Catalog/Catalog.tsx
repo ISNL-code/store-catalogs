@@ -21,7 +21,7 @@ import CatalogListCard from 'components/organisms/Cards/CatalogListCard';
 import { STORE_CONFIG } from 'constants/stores_config';
 
 const Catalog = () => {
-    const { OPTIONS, SIDE_LINKS } = STORE_CONFIG;
+    const { OPTIONS, SIDE_LINKS, STORE_CODE, STORE_NAME } = STORE_CONFIG;
     const { PLAN_OPTIONS } = OPTIONS;
     const {
         store,
@@ -90,7 +90,9 @@ const Catalog = () => {
                 </>
             )}
             {((loadProducts && !productsList?.length) || loading) && <Loader position="fixed" />}
-            {PLAN_OPTIONS?.contacts && <CallBackButton animated />}
+            {PLAN_OPTIONS?.contacts && (
+                <CallBackButton path={`/catalog/${STORE_CODE}/${STORE_NAME?.replaceAll(' ', '-').toLowerCase()}/`} />
+            )}
             <InstrumentalSubHeader
                 StartSlot={() =>
                     SIDE_LINKS?.map(({ name, href }) => (

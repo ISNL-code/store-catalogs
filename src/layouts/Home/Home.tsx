@@ -59,7 +59,7 @@ export default function Home({ lang, setLang, auth, setAuth, userData }) {
                 user={userData}
             />
 
-            <Box className="HomeBody" mt={`${HEADER_HEIGHT}px`} flexGrow={1}>
+            <Box className="HomeBody" mt={`${HEADER_HEIGHT + INSTRUMENTAL_BAR_HEIGHT}px`} flexGrow={1}>
                 <Outlet
                     context={
                         {

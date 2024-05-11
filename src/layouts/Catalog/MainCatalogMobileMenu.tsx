@@ -104,7 +104,7 @@ const MobileMenu = ({
 
                     {auth && (
                         <ProfileButton
-                            store={store}
+                            path={`/catalog/${storeCode}/${storeName}/`}
                             string={string}
                             headerHeight={headerHeight}
                             menuHeight={menuHeight}

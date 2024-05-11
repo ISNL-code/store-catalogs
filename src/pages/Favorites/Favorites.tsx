@@ -1,7 +1,7 @@
 import { Box } from '@mui/material';
 import Loader from 'components/atoms/Loader/Loader';
 import { useEffect, useState } from 'react';
-import { useOutletContext, useParams } from 'react-router-dom';
+import { useOutletContext } from 'react-router-dom';
 import { getCurrencySymbol } from 'helpers/getCurrencySymbol';
 import ScrollButton from 'components/atoms/Buttons/ScrollButton';
 import InstrumentalSubHeader from 'components/organisms/InstrumentalSubHeader/InstrumentalSubHeader';
@@ -20,11 +20,10 @@ import CatalogListCard from 'components/organisms/Cards/CatalogListCard';
 import ClearListButton from 'components/molecules/ToolsButtons/ClearListButton';
 
 const Favorites = () => {
-    const { OPTIONS } = STORE_CONFIG;
+    const { OPTIONS, STORE_CODE, STORE_NAME } = STORE_CONFIG;
     const { STORE_TYPE, PLAN_OPTIONS } = OPTIONS;
     const { store, favorites, supportedLanguage, string, footerMenuHeight }: CatalogContextInterface =
         useOutletContext();
-    const { storeCode } = useParams();
     const mount = useIsMount();
     const [showTopBtn, setShowTopBtn] = useState(false);
     const [loading, setLoading] = useState(true);
@@ -37,7 +36,7 @@ const Favorites = () => {
     const { isFetching: loadProducts, refetch: updateFavoriteProductsRes } = useProductsApi().useGetProductByIDForCart({
         id: productIds,
         lang: supportedLanguage,
-        storeCode,
+        storeCode: STORE_CODE,
     });
 
     useEffect(() => {
@@ -153,7 +152,9 @@ const Favorites = () => {
                 />
             )}
             {loading && <Loader />}
-            {PLAN_OPTIONS?.contacts && <CallBackButton />}
+            {PLAN_OPTIONS?.contacts && (
+                <CallBackButton path={`/catalog/${STORE_CODE}/${STORE_NAME?.replaceAll(' ', '-').toLowerCase()}`} />
+            )}
             <InstrumentalSubHeader
                 StartSlot={() => <BackButton nav={-1} action={() => {}} />}
                 EndSlot={() => (
