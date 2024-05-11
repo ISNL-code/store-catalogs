@@ -20,6 +20,7 @@ export const ALBERTO_BINI_SALES = {
         currency_multiplication: 1,
         custom_currency: null,
         store_type: StoreType?.default,
+        home_page_active: false,
     },
     web_head_data: {
         store_title: 'Alberto Bini Wholesales Catalog | Alberto Bini Оптовий Каталог',

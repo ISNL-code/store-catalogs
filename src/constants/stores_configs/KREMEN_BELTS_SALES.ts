@@ -20,6 +20,7 @@ export const KREMEN_BELTS_SALES = {
         currency_multiplication: 1,
         custom_currency: null,
         store_type: StoreType?.sales,
+        home_page_active: false,
     },
     web_head_data: {
         store_title: ' Kremen Belts Оптовий Каталог | Kremen Belts Wholesales Catalog',

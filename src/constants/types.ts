@@ -27,6 +27,7 @@ export interface STORE_CONFIG_Interface {
         CURRENCY_MULTIPLICATION: number; // use in custom catalogs for multiple  prices if use different from default currency
         CUSTOM_CURRENCY: string | null; // use in custom catalogs  if use different from default currency
         STORE_TYPE: StoreType; // use in custom catalogs for identification of store type
+        HOME_PAGE_ACTIVE: boolean; // use if catalog had home page
     };
     WEB_HEAD_DATA: { STORE_TITLE: string; STORE_DESCRIPTION: string; GOOGLE_ANALYTICS_ID: string; STORE_LOGO: string };
     USER_OPTIONS: { VIEW_MODE: ViewModeType }; // use for product list view}

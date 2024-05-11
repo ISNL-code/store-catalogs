@@ -29,15 +29,14 @@ const HeaderLogo = ({ title, font = 'Roboto', imgUrl, headerHeight }: Props) => 
         };
         img.onerror = () => {
             setImgLoaded(true);
-            setImgError(true); // Handle error case
+            setImgError(true);
         };
 
         img.onload = () => {
-            setImgLoaded(true); // Сигнализирует об успешной загрузке изображения
+            setImgLoaded(true);
         };
 
         return () => {
-            // Clean up if the component unmounts before the image is loaded
             img.onload = null;
             img.onerror = null;
         };
@@ -45,8 +44,8 @@ const HeaderLogo = ({ title, font = 'Roboto', imgUrl, headerHeight }: Props) => 
 
     const words = title?.split(' ');
 
-    const titleComponents = words.map((word, index) => {
-        const isSpecial = specialWords.includes(word.toLowerCase());
+    const titleComponents = words?.map((word, index) => {
+        const isSpecial = specialWords?.includes(word.toLowerCase());
 
         return (
             <Typography
@@ -74,23 +73,28 @@ const HeaderLogo = ({ title, font = 'Roboto', imgUrl, headerHeight }: Props) => 
                 position: 'relative',
                 transition: 'opacity 500ms cubic-bezier(0.4, 0, 0.2, 1)',
                 gap: 1,
+                width: 50,
             }}
             onClick={() => {
                 navigate(`/catalog/${STORE_CODE}/${STORE_NAME.replaceAll(' ', '-').toLowerCase()}`);
             }}
         >
-            {(!imgLoaded || imgError) && <CircularProgress sx={{ color: Colors?.GRAY }} thickness={1} />}
-            <img
-                src={imgUrl}
-                style={{
-                    height: xxs ? Number(headerHeight) - 12 : Number(headerHeight) - 6,
-                    border: '1px solid #ccc',
-                    borderRadius: 8,
-                    padding: '0 2px',
-                    display: !imgLoaded || imgError ? 'none' : 'block',
-                }}
-                alt="img"
-            />
+            {imgLoaded && !imgError ? (
+                <img
+                    src={imgUrl}
+                    style={{
+                        width: '100%',
+                        height: 'auto',
+                        border: '1px solid #ccc',
+                        borderRadius: 8,
+                        padding: '0 2px',
+                    }}
+                    alt="img"
+                />
+            ) : (
+                <CircularProgress sx={{ color: Colors?.GRAY }} thickness={1} />
+            )}
+
             {titleComponents}
         </Box>
     );

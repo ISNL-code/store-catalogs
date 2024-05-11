@@ -6,21 +6,21 @@ import { useDevice } from 'hooks/useDevice';
 import { useEffect, useState } from 'react';
 import HomeHeader from './HomeHeader';
 import HomeMobileMenu from './HomeMobileMenu';
-import { StoreInterface } from 'types';
+import { HomeContextInterface, StoreInterface } from 'types';
 import { useStoresApi } from 'api/useStoresApi';
 import { STORES_DATA } from 'dataBase/STORES';
 import { STORE_CONFIG } from 'constants/stores_config';
 
 export default function Home({ lang, setLang }) {
     const { STORE_CODE } = STORE_CONFIG;
-    const { sx, l, xs } = useDevice();
-    const headerHeight = xs ? 50 : 65;
-    const footerHeight = sx ? 70 : 0;
-    const instrumentalBarHeight = 36;
-    const appXPadding = l ? 2 : 4;
+    const { sx } = useDevice();
+    const HEADER_HEIGHT = 50;
+    const FOOTER_MENU_HEIGHT = sx ? '70px' : 0;
+    const HEADER_PADDINGS = sx ? 2 : 4;
+    const BODY_PADDINGS = sx ? 0 : 4;
+    const FOOTER_PADDINGS = sx ? 2 : 4;
     const [openModalType, setOpenModalType] = useState<string | null>(null);
-    const { currentLanguage } = useGetLanguage({ lang: lang?.code });
-    const [scrollPosition, setScrollPosition] = useState(0);
+    const { currentLanguage } = useGetLanguage({ lang });
 
     const [store, setStore] = useState<StoreInterface | null>(null);
 
@@ -34,46 +34,51 @@ export default function Home({ lang, setLang }) {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [storeDataRes]);
 
+    if (!store) return <></>;
+
     return (
         <Box>
             <CssBaseline />
 
             <HomeHeader
-                headerHeight={headerHeight}
-                appXPadding={appXPadding}
+                headerHeight={HEADER_HEIGHT}
+                appXPadding={HEADER_PADDINGS}
                 string={currentLanguage?.string}
                 lang={lang}
                 setLang={setLang}
                 setOpenModalType={setOpenModalType}
+                logo={store?.logo?.path}
+                storeHeaderName={store?.name}
+                storeCode={store?.code}
+                store={store}
             />
 
-            <Box
-                px={appXPadding}
-                pt={1}
-                sx={{ mt: `${headerHeight + instrumentalBarHeight}px`, mb: `${footerHeight}px` }}
-            >
+            <Box className="HomeBody" mt={`${HEADER_HEIGHT}px`} flexGrow={1}>
                 <Outlet
-                    context={{
-                        //main data
-                        lang: lang?.code,
-                        string: currentLanguage?.string,
-                        scrollPosition: scrollPosition,
-                        setScrollPosition: setScrollPosition,
-                        setOpenModalType: setOpenModalType,
-                        openModalType: openModalType,
+                    context={
+                        {
+                            //main data
+                            lang: lang?.code,
+                            string: currentLanguage?.string,
+                            openModalType: openModalType,
+                            setOpenModalType: setOpenModalType,
 
-                        //css data
-                        instrumentalBarHeight: instrumentalBarHeight,
-                        headerHeight: headerHeight,
-                        footerHeight: footerHeight,
-                        appXPadding: appXPadding,
-
-                        //store data
-                        store,
-                    }}
+                            //css data
+                            headerHeight: HEADER_HEIGHT,
+                            footerMenuHeight: FOOTER_MENU_HEIGHT,
+                            appXPadding: BODY_PADDINGS,
+                        } as HomeContextInterface
+                    }
                 />
             </Box>
-            <HomeMobileMenu appXPadding={appXPadding} isShown={!!sx} string={currentLanguage?.string} />
+            <HomeMobileMenu
+                menuHeight={FOOTER_MENU_HEIGHT}
+                appXPadding={FOOTER_PADDINGS}
+                isShown={!!sx}
+                string={currentLanguage?.string}
+                storeHeaderName={store?.name}
+                storeCode={store?.code}
+            />
         </Box>
     );
 }

@@ -1,5 +1,18 @@
 import { ViewModeType } from 'constants/types';
 
+export interface HomeContextInterface {
+    //main data | user options
+    lang: string;
+    string: Record<string, any>;
+    setOpenModalType;
+    openModalType: string | null;
+
+    //css data
+    headerHeight: number;
+    footerMenuHeight: number;
+    appXPadding: number;
+}
+
 export interface CatalogContextInterface {
     //main data | user options
     lang: string;

@@ -22,7 +22,9 @@ import InformationPage from 'pages/Information/InformationPage';
 // import StoppedForService from 'pages/TechPages/StoppedForService';
 
 const App = () => {
-    const { ACCESS_TOKEN_KEY, STORE_CODE, LANGUAGE_KEY, APP_LANGUAGE, VIEW_MODE_KEY, USER_OPTIONS } = STORE_CONFIG;
+    const { ACCESS_TOKEN_KEY, STORE_CODE, LANGUAGE_KEY, APP_LANGUAGE, VIEW_MODE_KEY, USER_OPTIONS, OPTIONS } =
+        STORE_CONFIG;
+    const { HOME_PAGE_ACTIVE } = OPTIONS;
     const { VIEW_MODE } = USER_OPTIONS;
     const token = localStorage.getItem(ACCESS_TOKEN_KEY);
     const mount = useIsMount();
@@ -87,12 +89,13 @@ const App = () => {
                     <Routes>
                         {
                             <>
-                                {' '}
-                                <Route path={'/'} element={<Home lang={lang} setLang={setLang} />}>
-                                    <Route path={'/'} element={<HomePage />} />
-                                    {/* <Route path={'/:storeCode/:storeName/contacts'} element={<ContactsManagePage />} /> */}
-                                    <Route path={'/info'} element={<InformationPage />} />
-                                </Route>
+                                {HOME_PAGE_ACTIVE && (
+                                    <Route path={'/'} element={<Home lang={lang} setLang={setLang} />}>
+                                        <Route path={'/'} element={<HomePage />} />
+                                        {/* <Route path={'/:storeCode/:storeName/contacts'} element={<ContactsManagePage />} /> */}
+                                        <Route path={'/info'} element={<InformationPage />} />
+                                    </Route>
+                                )}
                                 <Route
                                     path={'/catalog'}
                                     element={

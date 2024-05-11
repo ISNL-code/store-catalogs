@@ -5,12 +5,8 @@ import Grid from '@mui/material/Unstable_Grid2';
 import StorefrontIcon from '@mui/icons-material/Storefront';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import InfoIcon from '@mui/icons-material/Info';
-import { STORE_CONFIG } from 'constants/stores_config';
 
-const menuHeight = '70px';
-
-const HomeMobileMenu = ({ appXPadding, isShown, string }) => {
-    const { STORE_CODE, STORE_NAME } = STORE_CONFIG;
+const HomeMobileMenu = ({ appXPadding, menuHeight, isShown, string, storeHeaderName, storeCode }) => {
     if (isShown)
         return (
             <Box
@@ -38,7 +34,7 @@ const HomeMobileMenu = ({ appXPadding, isShown, string }) => {
                     </Grid>
                     <Grid xs={3}>
                         <MobileNavButton
-                            path={`/catalog/${STORE_CODE}/${STORE_NAME.replaceAll(' ', '-')}`}
+                            path={`/catalog/${storeCode}/${storeHeaderName.replaceAll(' ', '-').toLowerCase()}`}
                             title={string?.wholesale_catalog}
                             icon={p => <AttachMoneyIcon {...p} />}
                             action={() => {
@@ -48,7 +44,7 @@ const HomeMobileMenu = ({ appXPadding, isShown, string }) => {
                     </Grid>
                     <Grid xs={3}>
                         <MobileNavButton
-                            path={`/catalog/${STORE_CODE}/${STORE_NAME.replaceAll(' ', '-')}`}
+                            path={`/catalog/${storeCode}/${storeHeaderName.replaceAll(' ', '-').toLowerCase()}`}
                             title={string?.retail_catalog}
                             icon={p => <StorefrontIcon {...p} />}
                             action={() => {

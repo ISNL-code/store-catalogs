@@ -20,6 +20,7 @@ export const ALBERTO_BINI_OUTLET = {
         currency_multiplication: 40,
         custom_currency: '₴',
         store_type: StoreType?.sales,
+        home_page_active: false,
     },
     web_head_data: {
         store_title: 'Alberto Bini Каталог | Alberto Bini Outlet Catalog ',

@@ -1,8 +1,8 @@
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
-import Header from './CatalogHeader';
-import MobileMenu from './MobileMenu';
+import Header from './MainCatalogHeader';
+import MobileMenu from './MainCatalogMobileMenu';
 import { useGetLanguage } from 'hooks/useGetLanguage';
 import { useDevice } from 'hooks/useDevice';
 import { useEffect, useState } from 'react';
@@ -55,6 +55,7 @@ export default function MainCatalog({ lang, setLang, auth, setAuth, userData, vi
         store: STORE_CODE,
         queryCategories,
         setQueryCategories,
+        viewMode,
     });
 
     const { categoriesList, handleCategoriesQuery } = useCategory({

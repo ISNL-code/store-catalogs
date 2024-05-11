@@ -88,7 +88,7 @@ const Loader = ({
                             opacity: 0.6,
                         }}
                     >
-                        <img src={require('assets/img/logo.jpg')} style={{ height: '56px' }} alt="img" />
+                        <img src={require('assets/img/logo.png')} style={{ height: '80px' }} alt="img" />
                     </Box>
                 </Box>
             )}

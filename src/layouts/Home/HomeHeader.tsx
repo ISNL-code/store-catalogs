@@ -4,12 +4,14 @@ import LanguageButton from 'components/molecules/ToolsButtons/LanguageButton';
 import { useDevice } from 'hooks/useDevice';
 import { useLocation } from 'react-router-dom';
 import HomeIcon from '@mui/icons-material/Home';
-// import HomeHeaderLogo from 'components/atoms/Logo/HomeHeaderLogo';
+import CatalogHeaderLogo from 'components/atoms/Logo/CatalogHeaderLogo';
 import StorefrontIcon from '@mui/icons-material/Storefront';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import InfoIcon from '@mui/icons-material/Info';
 import { StoreInterface } from 'types';
 import { STORE_CONFIG } from 'constants/stores_config';
+import HeaderLogo from 'components/atoms/Logo/HeaderLogo';
+import { Colors } from 'colors';
 
 interface HeaderInterface {
     headerHeight;
@@ -18,37 +20,53 @@ interface HeaderInterface {
     lang;
     setLang;
     setOpenModalType;
+    logo;
+    storeHeaderName;
+    storeCode;
+    store;
 }
 
-const HomeHeader = ({ headerHeight, appXPadding, string, lang, setLang, setOpenModalType }: HeaderInterface) => {
-    const { STORE_CODE, STORE_NAME } = STORE_CONFIG;
+const HomeHeader = ({
+    headerHeight,
+    appXPadding,
+    string,
+    lang,
+    setLang,
+    setOpenModalType,
+    logo,
+    storeHeaderName,
+    storeCode,
+    store,
+}: HeaderInterface) => {
     const location = useLocation();
     const { sx } = useDevice();
+
     return (
         <Box
-            pr={appXPadding}
-            pl={1}
+            px={appXPadding}
             sx={{
                 height: headerHeight,
-                borderBottom: '1px solid #cccccc78',
+                borderBottom: '1px solid',
+                borderColor: Colors?.GRAY_300,
                 position: 'fixed',
                 width: '100%',
                 left: 0,
                 top: 0,
                 zIndex: 4000,
-                backgroundColor: '#ffffffe6',
+                backgroundColor: Colors?.WHITE_100,
                 overflow: 'hidden',
             }}
         >
             <Box sx={{ height: headerHeight, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                 <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    {/* <HomeHeaderLogo /> */}
+                    <HeaderLogo title={storeHeaderName} imgUrl={logo} headerHeight={headerHeight} />
+                    {/* <CatalogHeaderLogo /> */}
                 </Box>
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
                     <HeaderNavButton title={string?.home} path={`/`} icon={() => <HomeIcon />} isShown={!sx} />
                     <HeaderNavButton
                         title={string?.wholesale_catalog}
-                        path={`/catalog/${STORE_CODE}/${STORE_NAME.replaceAll(' ', '-')}`}
+                        path={`/catalog/${storeCode}/${storeHeaderName?.replaceAll(' ', '-').toLowerCase()}`}
                         icon={() => <AttachMoneyIcon />}
                         isShown={!sx}
                         isActive={location.pathname.includes('details')}
@@ -58,7 +76,7 @@ const HomeHeader = ({ headerHeight, appXPadding, string, lang, setLang, setOpenM
                     />
                     <HeaderNavButton
                         title={string?.retail_catalog}
-                        path={`/catalog/${STORE_CODE}/${STORE_NAME.replaceAll(' ', '-')}`}
+                        path={`/catalog/${storeCode}/${storeHeaderName?.replaceAll(' ', '-').toLowerCase()}`}
                         icon={() => <StorefrontIcon />}
                         isShown={!sx}
                         isActive={location.pathname.includes('details')}
@@ -73,7 +91,15 @@ const HomeHeader = ({ headerHeight, appXPadding, string, lang, setLang, setOpenM
                         isShown={!sx}
                         action={() => {}}
                     />
-                    <LanguageButton setLang={setLang} string={string} lang={lang} setOpenModalType={setOpenModalType} />
+                    <LanguageButton
+                        setLang={setLang}
+                        string={string}
+                        lang={lang}
+                        setOpenModalType={setOpenModalType}
+                        storeLanguages={store?.supportedLanguages?.map(el => {
+                            return el?.code;
+                        })}
+                    />
                 </Box>
             </Box>
         </Box>

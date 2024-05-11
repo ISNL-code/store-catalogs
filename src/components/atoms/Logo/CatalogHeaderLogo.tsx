@@ -1,7 +1,10 @@
 import { Box, Typography } from '@mui/material';
+import { STORE_CONFIG } from 'constants/stores_config';
 import { useDevice } from 'hooks/useDevice';
 
 const CatalogHeaderLogo = () => {
+    const { WEB_HEAD_DATA } = STORE_CONFIG;
+    const { STORE_LOGO } = WEB_HEAD_DATA;
     const { xs } = useDevice();
     return (
         <Box sx={{ display: 'flex', alignItems: 'center', cursor: 'pointer', gap: xs ? 0.25 : 0.25 }}>
@@ -18,7 +21,7 @@ const CatalogHeaderLogo = () => {
                     }}
                 >
                     <img
-                        src={require('assets/img/logo.png')}
+                        src={require(`dataBase/images/logos/${STORE_LOGO}`)}
                         style={{
                             width: xs ? 58 : 78,
                             height: xs ? 58 : 78,

@@ -8,8 +8,10 @@ import { motion } from 'framer-motion';
 import QuestionForm from './QuestionForm';
 import { useState } from 'react';
 import SuccessModel from './SuccessModel';
+import { HomeContextInterface } from 'types';
 
 const HomePage = () => {
+    const { appXPadding, footerMenuHeight }: HomeContextInterface = useOutletContext();
     const [openQuestionForm, setOpenQuestionForm] = useState(false);
     const [openSuccessModal, setOpenSuccessModal] = useState(false);
     const { string }: any = useOutletContext();
@@ -20,7 +22,7 @@ const HomePage = () => {
     };
 
     return (
-        <>
+        <Box p={sx ? 2 : appXPadding} pb={footerMenuHeight}>
             <QuestionForm
                 isOpen={openQuestionForm}
                 setIsOpen={setOpenQuestionForm}
@@ -99,7 +101,7 @@ const HomePage = () => {
                     </Marquee>
                 </Box>
             </Box>
-            <Grid container xs={12} mt={-4} sx={{ position: 'fixed' }}>
+            <Grid container xs={12}>
                 <Typography
                     variant="h1"
                     sx={{
@@ -153,7 +155,7 @@ const HomePage = () => {
                     </motion.div>
                 ))}
             </Grid>
-        </>
+        </Box>
     );
 };
 export default HomePage;

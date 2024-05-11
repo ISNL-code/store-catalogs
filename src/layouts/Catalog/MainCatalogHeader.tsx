@@ -10,6 +10,7 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import GridViewIcon from '@mui/icons-material/GridView';
 import ProfileButton from 'components/molecules/ToolsButtons/ProfileButton';
 import { StoreInterface, useAddToCartDataInterface, useAddToFavoriteDataInterface } from 'types';
+import { Colors } from 'colors';
 
 interface HeaderInterface {
     headerHeight;
@@ -54,13 +55,14 @@ const Header = ({
             px={appXPadding}
             sx={{
                 height: headerHeight,
-                borderBottom: '1px solid #ccc',
+                borderBottom: '1px solid',
+                borderColor: Colors?.GRAY_300,
                 position: 'fixed',
                 width: '100%',
                 left: 0,
                 top: 0,
                 zIndex: 4000,
-                backgroundColor: '#fff',
+                backgroundColor: Colors?.WHITE,
                 overflow: 'hidden',
             }}
         >

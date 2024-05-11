@@ -20,6 +20,7 @@ export enum Colors {
     TEAL = '#008080',
     LIGHT_GREEN = '#51ce77',
     WHITE = '#fff',
+    WHITE_100 = '#ffffffe6',
     BLACK = '#000',
 
     // shadows

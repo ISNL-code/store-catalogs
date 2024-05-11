@@ -41,6 +41,7 @@ const storeConfig = (): STORE_CONFIG_Interface => {
             CURRENCY_MULTIPLICATION: matchingDomain?.options?.currency_multiplication || 1,
             CUSTOM_CURRENCY: matchingDomain?.options?.custom_currency || null,
             STORE_TYPE: matchingDomain?.options?.store_type || StoreType?.default,
+            HOME_PAGE_ACTIVE: matchingDomain?.options?.home_page_active || false,
         },
         WEB_HEAD_DATA: {
             STORE_TITLE: matchingDomain?.web_head_data?.store_title || '',
