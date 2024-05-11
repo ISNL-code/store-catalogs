@@ -24,7 +24,7 @@ import { STORE_CONFIG } from 'constants/stores_config';
 import axios from 'axios';
 
 export default function Register({ setAuth, lang, string, close, setOpenModalType }) {
-    const { ACCESS_TOKEN_KEY, STORE_NAME } = STORE_CONFIG;
+    const { ACCESS_TOKEN_KEY, STORE_CODE, STORE_NAME } = STORE_CONFIG;
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -118,7 +118,7 @@ export default function Register({ setAuth, lang, string, close, setOpenModalTyp
                 country: values.country,
                 phone: values.phoneNumber,
                 lang,
-                storeCode: STORE_NAME,
+                storeCode: STORE_CODE,
             })
                 .then(res => {
                     localStorage.setItem(ACCESS_TOKEN_KEY, JSON.stringify(res.data.token));
