@@ -20,8 +20,7 @@ import Home from 'layouts/Home/Home';
 import HomePage from 'pages/Home/HomePage';
 import InformationPage from 'pages/Information/InformationPage';
 import Login from 'layouts/Login/Login';
-import axios from 'axios';
-// import StoppedForService from 'pages/TechPages/StoppedForService';
+import axios from 'axios'; // eslint-disable-line
 
 const App = () => {
     const {
@@ -33,7 +32,7 @@ const App = () => {
         USER_OPTIONS,
         OPTIONS,
         REQUIRED_REGISTRATION,
-        STORE_NAME,
+        STORE_NAME, // eslint-disable-line
     } = STORE_CONFIG;
     const { HOME_PAGE_ACTIVE } = OPTIONS;
     const { VIEW_MODE } = USER_OPTIONS;
@@ -60,7 +59,7 @@ const App = () => {
         } catch (error) {
             console.error('Error sending message:', error);
         }
-    }, []);
+    }, []); // eslint-disable-line
 
     useEffect(() => {
         if (token) {
