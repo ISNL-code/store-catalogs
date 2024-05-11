@@ -1505,10 +1505,7 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 payments_delivery: 'Төлемдер мен жеткізу',
                 return_exchange: 'Қайтару және айырбастау',
                 privacy_policy: 'Құпиялылық саясаты',
-                about_store: 'Магазин туралы',
-                payments_delivery: 'Төлем және жеткізілім',
-                return_exchange: 'Қайтару және алмастыру',
-                privacy_policy: 'Құпиялылық саясаты',
+
                 info_title_1: `${storeName} туралы`,
                 info_title_2: 'Төлемдер мен жеткізу',
                 info_title_3: 'Қайтару және айырбастау',
