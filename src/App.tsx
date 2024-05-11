@@ -82,7 +82,10 @@ const App = () => {
                     setCurrentUserData(res?.data?.data);
                 }
             });
-        } // eslint-disable-next-line react-hooks/exhaustive-deps
+        } else {
+            setAuth(false);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [token]);
 
     useEffect(() => {
