@@ -69,6 +69,13 @@ export default function Home({ lang, setLang, auth, setAuth, userData }) {
                             openModalType: openModalType,
                             setOpenModalType: setOpenModalType,
 
+                            //user data
+                            auth: auth,
+                            currentUserData: userData.currentUserData,
+                            loadingUserData: userData.isFetching,
+                            updateUserData: userData.updateUserData,
+                            setCurrentUserData: userData.setCurrentUserData,
+
                             //css data
                             instrumentalBarHeight: INSTRUMENTAL_BAR_HEIGHT,
                             instrumentalBarPadding: INSTRUMENTAL_BAR_PADDINGS,

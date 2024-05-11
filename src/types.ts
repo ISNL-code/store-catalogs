@@ -10,6 +10,13 @@ export interface HomeContextInterface {
     //store data
     store: StoreInterface;
 
+    // user data
+    auth: boolean;
+    currentUserData: UserDataInterface | null;
+    loadingUserData: boolean;
+    updateUserData: any;
+    setCurrentUserData: any;
+
     //css data
     instrumentalBarHeight: number;
     instrumentalBarPadding: number;

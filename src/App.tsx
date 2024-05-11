@@ -21,7 +21,6 @@ import HomePage from 'pages/Home/HomePage';
 import InformationPage from 'pages/Information/InformationPage';
 import Login from 'layouts/Login/Login';
 import axios from 'axios'; // eslint-disable-line
-// import StoppedForService from 'pages/TechPages/StoppedForService';
 
 const App = () => {
     const {

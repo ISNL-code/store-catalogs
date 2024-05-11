@@ -9,6 +9,7 @@ import ProfileButton from 'components/molecules/ToolsButtons/ProfileButton';
 import { useEffect, useState } from 'react';
 import { useWindowWidth } from '@react-hook/window-size';
 import HomeIcon from '@mui/icons-material/Home';
+import { STORE_CONFIG } from 'constants/stores_config';
 
 const MobileMenu = ({
     appXPadding,
@@ -22,10 +23,11 @@ const MobileMenu = ({
     cart,
     favorites,
     headerHeight,
-    store,
     user,
     menuHeight,
 }) => {
+    const { OPTIONS } = STORE_CONFIG;
+    const { HOME_PAGE_ACTIVE } = OPTIONS;
     const WINDOW_WIDTH = useWindowWidth();
     const navigate = useNavigate();
     const { storeCode, storeName } = useParams();
@@ -59,7 +61,9 @@ const MobileMenu = ({
                         gap: 2,
                     }}
                 >
-                    <MobileNavButton path={`/`} title={string?.home} icon={p => <HomeIcon {...p} />} />
+                    {HOME_PAGE_ACTIVE && (
+                        <MobileNavButton path={`/`} title={string?.home} icon={p => <HomeIcon {...p} />} />
+                    )}
                     <MobileNavButton
                         path={`/catalog/${storeCode}/${storeName}`}
                         childPath={['/details', '/contacts', 'model']}

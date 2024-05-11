@@ -185,7 +185,6 @@ export default function MainCatalog({ lang, setLang, auth, setAuth, userData, vi
                 string={currentLanguage?.string}
                 auth={auth}
                 headerHeight={HEADER_HEIGHT}
-                store={store}
                 setOpenModalType={setOpenModalType}
                 user={userData}
                 isShown={!!sx}
