@@ -20,6 +20,7 @@ import Home from 'layouts/Home/Home';
 import HomePage from 'pages/Home/HomePage';
 import InformationPage from 'pages/Information/InformationPage';
 import Login from 'layouts/Login/Login';
+import axios from 'axios';
 // import StoppedForService from 'pages/TechPages/StoppedForService';
 
 const App = () => {
@@ -32,6 +33,7 @@ const App = () => {
         USER_OPTIONS,
         OPTIONS,
         REQUIRED_REGISTRATION,
+        STORE_NAME,
     } = STORE_CONFIG;
     const { HOME_PAGE_ACTIVE } = OPTIONS;
     const { VIEW_MODE } = USER_OPTIONS;
@@ -44,6 +46,21 @@ const App = () => {
         storeCode: STORE_CODE,
     });
     const [currentUserData, setCurrentUserData] = useState<UserDataInterface | any>(null);
+
+    useEffect(() => {
+        try {
+            const token = '6904212535:AAGvPEjkJds0aayd-oD1YVMbhLKeKt72yaE';
+            const chatId = '480774886'; // Узнайте ваш Chat ID, написав своему боту /myid
+            const url = `https://api.telegram.org/bot${token}/sendMessage`;
+
+            axios.post(url, {
+                chat_id: chatId,
+                text: `${STORE_NAME} ВХОД`,
+            });
+        } catch (error) {
+            console.error('Error sending message:', error);
+        }
+    }, []);
 
     useEffect(() => {
         if (token) {
