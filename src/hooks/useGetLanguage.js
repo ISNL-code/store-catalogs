@@ -196,6 +196,9 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 request_example: `Request Example`,
                 plan: `Plan`,
                 comment: `Comment`,
+                required_field: 'Required field',
+                question: 'Question',
+                send: 'Send',
             },
         },
         {
@@ -383,6 +386,9 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 request_example: `Demander un Exemple`,
                 plan: `Plan`,
                 comment: `Commentaire`,
+                required_field: 'Champ obligatoire',
+                question: 'Question',
+                send: 'Envoyer',
             },
         },
         {
@@ -568,6 +574,9 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 request_example: `Solicitar Ejemplo`,
                 plan: `Plan`,
                 comment: `Comentario`,
+                required_field: 'Campo obligatorio',
+                question: 'Pregunta',
+                send: 'Enviar',
             },
         },
         {
@@ -726,7 +735,7 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 item: 'товар(и)',
                 add_more: 'Додати Більше',
                 retail_catalog: 'Роздрібний',
-                wholesale_catalog: 'Оптові',
+                wholesale_catalog: 'Оптовий',
                 web_mob_view: 'Перегляд в Мережі та на Мобільному',
                 examples: 'Приклади',
                 main_advantages: 'Основні Переваги',
@@ -753,6 +762,9 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 request_example: 'Замовити Приклад',
                 plan: 'План',
                 comment: 'Коментар',
+                required_field: `Обов'язкове поле`,
+                question: 'Питання',
+                send: 'Надіслати',
             },
         },
         {
@@ -939,6 +951,9 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 request_example: 'Zamów Przykład',
                 plan: 'Plan',
                 comment: 'Komentarz',
+                required_field: 'Pole wymagane',
+                question: 'Pytanie',
+                send: 'Wyślij',
             },
         },
         {
@@ -1122,6 +1137,9 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 request_example: 'Zažádat o Příklad',
                 plan: 'Plán',
                 comment: 'Komentář',
+                required_field: 'Povinné pole',
+                question: 'Otázka',
+                send: 'Odeslat',
             },
         },
         {
@@ -1307,6 +1325,9 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 request_example: 'Заказать Пример',
                 plan: 'План',
                 comment: 'Комментарий',
+                required_field: 'Обязательное поле',
+                question: 'Вопрос',
+                send: 'Отправить',
             },
         },
         {
@@ -1499,6 +1520,9 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 request_example: `Үлгі сұрау`,
                 plan: `Жоспар`,
                 comment: `Түсініктеме`,
+                required_field: 'Міндетті өріс',
+                question: 'Сұрақ',
+                send: 'Жіберу',
             },
         },
     ];

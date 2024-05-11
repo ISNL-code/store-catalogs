@@ -1,24 +1,26 @@
 import { Box, Fab, Typography } from '@mui/material';
 import PhoneCallbackIcon from '@mui/icons-material/PhoneCallback';
-import { useNavigate, useOutletContext, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useOutletContext } from 'react-router-dom';
 import { useDevice } from 'hooks/useDevice';
+import { Colors } from 'colors';
 
-const CallBackButton = () => {
-    const { storeCode, storeName } = useParams();
+const CallBackButton = ({ animated = false }) => {
     const { string }: any = useOutletContext();
     const { sx, s } = useDevice();
     const navigate = useNavigate();
+    const location = useLocation();
 
     return (
         <Box
             sx={{
+                width: sx ? 'fit-content' : 140,
                 zIndex: 2000,
                 position: 'fixed',
                 right: sx ? '24px' : '40px',
                 bottom: sx ? 90 : 10,
-                width: 'fit-content',
-                border: sx ? 'none' : '1px solid #1976d2',
-                backgroundColor: sx ? 'none' : '#1976d2df',
+                border: sx ? 'none' : '1px solid ',
+                borderColor: Colors?.GREEN,
+                backgroundColor: sx ? 'none' : Colors?.GREEN,
                 borderRadius: 50,
                 p: s ? 0 : 0.25,
                 display: 'flex',
@@ -27,18 +29,29 @@ const CallBackButton = () => {
                 cursor: 'pointer',
             }}
             onClick={() => {
-                navigate(`/catalog/${storeCode}/${storeName}/contacts`);
+                navigate(
+                    location?.pathname === '/'
+                        ? `${location?.pathname + 'contacts'}` // eslint-disable-line
+                        : `${location?.pathname + '/' + 'contacts'}` // eslint-disable-line
+                );
             }}
         >
             {!sx && (
-                <Typography m={0.75} sx={{ fontSize: 14, fontWeight: '700', color: '#fff' }}>
+                <Typography
+                    m={0.75}
+                    sx={{ fontSize: 12, fontWeight: '700', color: '#fff', minWidth: 80, textAlign: 'center' }}
+                >
                     {string?.contacts}
                 </Typography>
             )}
             <Fab
                 size={sx ? 'medium' : 'small'}
                 sx={{
-                    backgroundColor: '#ffffff',
+                    p: 2,
+                    backgroundColor: Colors?.WHITE,
+                    animation: animated ? `fadeIn 4s infinite ease` : '',
+                    border: '1px solid #ccc',
+                    boxShadow: `0 0 5px 2px ${Colors?.GREEN}`,
                     '@keyframes fadeIn': {
                         '0%': { transform: 'translate(2px,2px)' },
                         '1%': { transform: 'translate(-2px,2px)' },
@@ -51,12 +64,9 @@ const CallBackButton = () => {
                         '14%': { transform: 'translate(0,0)' },
                         '100%': { transform: 'translate(0,0)' },
                     },
-
-                    animation: `fadeIn 4s infinite ease`,
-                    border: '1px solid #ccc',
                 }}
             >
-                <PhoneCallbackIcon color="primary" />
+                <PhoneCallbackIcon color="success" />
             </Fab>
         </Box>
     );

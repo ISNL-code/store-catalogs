@@ -4,6 +4,7 @@ const prefix = 'kbs';
 
 export const KREMEN_BELTS_SALES = {
     active: true,
+    required_registration: false,
     URL: ['https://kremen-belts-sales.netlify.app'],
     appStoreUrl: null,
     playMarketUrl: null,

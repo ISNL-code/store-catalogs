@@ -90,7 +90,7 @@ const Catalog = () => {
                 </>
             )}
             {((loadProducts && !productsList?.length) || loading) && <Loader position="fixed" />}
-            {PLAN_OPTIONS?.contacts && <CallBackButton />}
+            {PLAN_OPTIONS?.contacts && <CallBackButton animated />}
             <InstrumentalSubHeader
                 StartSlot={() =>
                     SIDE_LINKS?.map(({ name, href }) => (

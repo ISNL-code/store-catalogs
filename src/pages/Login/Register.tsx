@@ -18,14 +18,13 @@ import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
 import ModalWindow from 'components/atoms/ModalWindow/ModalWindow';
 import Loader from 'components/atoms/Loader/Loader';
-import { useParams } from 'react-router-dom';
 import { useFormik } from 'formik';
 import registerFormValidation from 'Validation/registerFormValidation';
 import { STORE_CONFIG } from 'constants/stores_config';
 
 export default function Register({ setAuth, lang, string, close, setOpenModalType }) {
-    const { ACCESS_TOKEN_KEY } = STORE_CONFIG;
-    const { storeCode } = useParams();
+    const { ACCESS_TOKEN_KEY, STORE_NAME } = STORE_CONFIG;
+
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
@@ -118,7 +117,7 @@ export default function Register({ setAuth, lang, string, close, setOpenModalTyp
                 country: values.country,
                 phone: values.phoneNumber,
                 lang,
-                storeCode: storeCode || 'DEFAULT',
+                storeCode: STORE_NAME,
             })
                 .then(res => {
                     localStorage.setItem(ACCESS_TOKEN_KEY, JSON.stringify(res.data.token));

@@ -8,13 +8,13 @@ import Loader from 'components/atoms/Loader/Loader';
 import ModalWindow from 'components/atoms/ModalWindow/ModalWindow';
 import { useFormik } from 'formik';
 import emailFormValidations from 'Validation/emailFormValidations';
-import { useParams } from 'react-router-dom';
+import { STORE_CONFIG } from 'constants/stores_config';
 
 export default function ForgotPasswordForm({ string, close, setOpenModalType }) {
+    const { STORE_CODE } = STORE_CONFIG;
     const [successReset, setSuccessReset] = useState(false);
     const [username, setUsername] = useState('');
     const [error, setError] = useState(false);
-    const { storeCode } = useParams();
 
     const { mutateAsync: resetPassword, isLoading } = useUserApi().useResetCustomerPassword();
 
@@ -22,7 +22,7 @@ export default function ForgotPasswordForm({ string, close, setOpenModalType }) 
         initialValues: { username: '' },
         validationSchema: emailFormValidations,
         onSubmit: values => {
-            resetPassword({ username: values.username, storeCode })
+            resetPassword({ username: values.username, storeCode: STORE_CODE })
                 .then(() => {
                     setSuccessReset(true);
                 })

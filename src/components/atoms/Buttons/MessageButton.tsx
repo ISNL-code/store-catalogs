@@ -2,6 +2,7 @@ import { Box, Fab, Typography } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
 import { useOutletContext } from 'react-router-dom';
 import { useDevice } from 'hooks/useDevice';
+import { Colors } from 'colors';
 
 const MessageButton = ({ from = 'catalog', action }) => {
     const { string }: any = useOutletContext();
@@ -10,14 +11,14 @@ const MessageButton = ({ from = 'catalog', action }) => {
     return (
         <Box
             sx={{
-                opacity: 0.85,
+                width: sx ? 'fit-content' : 140,
                 zIndex: 2000,
                 position: 'fixed',
-                right: sx ? '75px' : '40px',
-                bottom: sx ? 80 : 75,
-                width: 'fit-content',
-                border: sx ? 'none' : '1px solid #3486d8',
-                backgroundColor: sx ? 'none' : '#5396da',
+                right: sx ? '80px' : '40px',
+                bottom: sx ? 90 : 60,
+                border: sx ? 'none' : '1px solid',
+                borderColor: Colors?.BLUE,
+                backgroundColor: sx ? 'none' : Colors?.BLUE,
                 borderRadius: 50,
                 p: s ? 0 : 0.25,
                 display: 'flex',
@@ -42,9 +43,8 @@ const MessageButton = ({ from = 'catalog', action }) => {
                 sx={{
                     p: 2,
                     backgroundColor: '#ffffff',
-                    animation: `fadeIn 4s infinite ease`,
                     border: '1px solid #ccc',
-                    boxShadow: '0 0 5px 2px #1976d2',
+                    boxShadow: `0 0 5px 2px ${Colors?.BLUE}`,
                 }}
             >
                 <SendIcon color="primary" />

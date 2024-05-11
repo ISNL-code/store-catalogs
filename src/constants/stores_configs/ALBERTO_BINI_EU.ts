@@ -4,6 +4,7 @@ const prefix = 'ab_eu';
 
 export const ALBERTO_BINI_EU = {
     active: true, // Поле которое запускает магазин true - работает false - остановлен / по тех. причина
+    required_registration: false,
     URL: ['https://albertobini-brandeurope.com'],
     appStoreUrl: null,
     playMarketUrl: null,

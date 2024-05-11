@@ -4,6 +4,7 @@ const prefix = 'abs';
 
 export const ALBERTO_BINI_SALES = {
     active: true,
+    required_registration: true,
     URL: ['https://alberto-bini-sales.netlify.app'],
     appStoreUrl: null,
     playMarketUrl: null,

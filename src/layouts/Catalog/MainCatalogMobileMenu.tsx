@@ -13,11 +13,11 @@ const MobileMenu = ({
     appXPadding,
     string,
     auth,
-    isShown,
-    withCart,
-    withShare,
-    openModalType,
     setOpenModalType,
+    isShown,
+    withFavorites,
+    withCart,
+    openModalType,
     cart,
     favorites,
     headerHeight,
@@ -64,7 +64,7 @@ const MobileMenu = ({
                         title={string?.catalog}
                         icon={p => <GridViewIcon {...p} />}
                     />
-                    {withShare && (
+                    {withFavorites && (
                         <MobileNavButton
                             path={`/catalog/${storeCode}/${storeName}/favorites`}
                             title={string?.favorites}

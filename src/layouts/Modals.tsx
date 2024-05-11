@@ -3,7 +3,6 @@ import Logout from 'pages/Login/Logout';
 import Register from 'pages/Login/Register';
 import ForgotPassword from 'pages/Login/ForgotPassword';
 import RegisterWarning from 'pages/Login/RegisterWarning';
-import StoreSecretKey from 'pages/Login/StoreSecretKey';
 
 interface ModalsInterface {
     string;
@@ -23,14 +22,6 @@ const Modals = ({ string, setAuth, lang, openModalType, setOpenModalType, storeT
                     string={string}
                     close={() => setOpenModalType(null)}
                     setOpenModalType={setOpenModalType}
-                />
-            )}
-            {openModalType === 'enter-store-key' && (
-                <StoreSecretKey
-                    string={string}
-                    setOpenModalType={setOpenModalType}
-                    close={() => setOpenModalType(null)}
-                    storeToApprove={storeToApprove}
                 />
             )}
             {openModalType === 'store-password' && (

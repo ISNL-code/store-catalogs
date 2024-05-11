@@ -184,16 +184,16 @@ export default function MainCatalog({ lang, setLang, auth, setAuth, userData, vi
                 appXPadding={FOOTER_PADDINGS}
                 string={currentLanguage?.string}
                 auth={auth}
+                headerHeight={HEADER_HEIGHT}
+                store={store}
+                setOpenModalType={setOpenModalType}
+                user={userData}
                 isShown={!!sx}
                 withCart={PLAN_OPTIONS?.cart}
-                withShare={PLAN_OPTIONS?.productShare}
-                setOpenModalType={setOpenModalType}
+                withFavorites={PLAN_OPTIONS?.favorites}
                 openModalType={openModalType}
                 cart={cart}
                 favorites={favorites}
-                headerHeight={HEADER_HEIGHT}
-                store={store}
-                user={userData}
             />
         </Box>
     );

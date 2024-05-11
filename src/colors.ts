@@ -10,6 +10,7 @@ export enum Colors {
     RED_300 = '#f88d8d',
     WHITE = '#fff',
     BLACK = '#000',
+    GREEN = 'green',
 
     // shadows
     SHADOW = `0 0 5px 3px #afafaf66`,

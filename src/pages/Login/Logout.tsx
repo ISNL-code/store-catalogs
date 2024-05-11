@@ -1,12 +1,11 @@
 import ModalWindow from 'components/atoms/ModalWindow/ModalWindow';
 import { Box, Button } from '@mui/material';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { STORE_CONFIG } from 'constants/stores_config';
 
 export default function Logout({ setAuth, string, close }) {
-    const { ACCESS_TOKEN_KEY } = STORE_CONFIG;
+    const { ACCESS_TOKEN_KEY, STORE_NAME, STORE_CODE } = STORE_CONFIG;
     const navigate = useNavigate();
-    const { storeCode, storeName } = useParams();
 
     return (
         <>
@@ -32,7 +31,7 @@ export default function Logout({ setAuth, string, close }) {
                             localStorage.removeItem(ACCESS_TOKEN_KEY);
                             setAuth(false);
                             close();
-                            navigate(`/catalog/${storeCode}/${storeName}`);
+                            navigate(`/catalog/${STORE_CODE}/${STORE_NAME}`);
                         }}
                     >
                         {string?.logout}

@@ -16,8 +16,8 @@ import Grid from '@mui/material/Unstable_Grid2';
 import CardItem from 'components/atoms/Sections/CardItem';
 
 const ContactsManagePage = () => {
-    const { store, string }: CatalogContextInterface = useOutletContext();
-    const { sm } = useDevice();
+    const { store, string, footerMenuHeight, appXPadding }: CatalogContextInterface = useOutletContext();
+    const { sm, sx } = useDevice();
 
     useEffect(() => {
         window.scrollTo({
@@ -29,7 +29,7 @@ const ContactsManagePage = () => {
     if (!store?.managers.length) return <EmptyPage />;
 
     return (
-        <>
+        <Box p={sx ? 2 : appXPadding} pb={footerMenuHeight}>
             <InstrumentalSubHeader StartSlot={() => <BackButton nav={-1} action={() => {}} />} />
 
             {store?.managers.map((manager, idx) => {
@@ -226,7 +226,7 @@ const ContactsManagePage = () => {
                     </Typography>
                 </Grid>
             </Box>
-        </>
+        </Box>
     );
 };
 

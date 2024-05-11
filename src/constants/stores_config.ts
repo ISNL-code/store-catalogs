@@ -27,6 +27,7 @@ const storeConfig = (): STORE_CONFIG_Interface => {
         APP_STORE_URL: matchingDomain?.appStoreUrl || null,
         PLAY_MARKET_URL: matchingDomain?.playMarketUrl || null,
         ACTIVE: matchingDomain?.active || true,
+        REQUIRED_REGISTRATION: matchingDomain?.required_registration || false,
         STORE_NAME: matchingDomain?.store_name || '',
         STORE_CODE: matchingDomain?.store_code || '',
         BASE_URL: matchingDomain?.base_url || '',

@@ -4,6 +4,7 @@ const prefix = 'abo';
 
 export const ALBERTO_BINI_OUTLET = {
     active: true,
+    required_registration: true,
     URL: ['https://alberto-bini-outlet.netlify.app'],
     appStoreUrl: null,
     playMarketUrl: null,

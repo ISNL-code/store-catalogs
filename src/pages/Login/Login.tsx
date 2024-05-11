@@ -8,15 +8,14 @@ import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
 import ModalWindow from 'components/atoms/ModalWindow/ModalWindow';
 import Loader from 'components/atoms/Loader/Loader';
-import { useParams } from 'react-router-dom';
 import { useFormik } from 'formik';
 import loginFormValidations from 'Validation/loginFormValidations';
 import { STORE_CONFIG } from 'constants/stores_config';
 import { Colors } from 'colors';
 
 export default function Login({ setAuth, string, close, setOpenModalType }) {
-    const { ACCESS_TOKEN_KEY, STORE_NAME } = STORE_CONFIG;
-    const { storeCode } = useParams();
+    const { ACCESS_TOKEN_KEY, STORE_NAME, STORE_CODE } = STORE_CONFIG;
+
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState(false);
@@ -27,7 +26,7 @@ export default function Login({ setAuth, string, close, setOpenModalType }) {
         initialValues: { password: '', username: '' },
         validationSchema: loginFormValidations,
         onSubmit: values => {
-            loginCustomer({ ...values, storeCode: storeCode })
+            loginCustomer({ ...values, storeCode: STORE_CODE })
                 .then(res => {
                     if (res.data.token) {
                         localStorage.setItem(ACCESS_TOKEN_KEY, JSON.stringify(res.data.token));

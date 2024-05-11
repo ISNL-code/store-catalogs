@@ -4,6 +4,7 @@ const prefix = 'ab_kz';
 
 export const ALBERTO_BINI_KZ = {
     active: true, // Поле которое запускает магазин true - работает false - остановлен / по тех. причина
+    required_registration: false,
     URL: ['https://albertobini-kz.com'],
     appStoreUrl: null,
     playMarketUrl: null,
@@ -15,7 +16,7 @@ export const ALBERTO_BINI_KZ = {
     favorite_url: `${prefix}-favorites`,
     base_url: 'https://kremen-belts.com/api',
     lang_key: `${prefix}-lang`,
-    app_lang: 'kz',
+    app_lang: 'kk',
     links: [],
     options: {
         product_image_options: { width: 6, height: 9 },

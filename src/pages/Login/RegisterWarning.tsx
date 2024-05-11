@@ -1,9 +1,11 @@
 import { Box, Button } from '@mui/material';
 import ModalWindow from 'components/atoms/ModalWindow/ModalWindow';
+import { STORE_CONFIG } from 'constants/stores_config';
 import { useNavigate, useParams } from 'react-router-dom';
 
 const RegisterWarning = ({ string, setOpenModalType, close }) => {
-    const { storeCode, storeName, modelSku } = useParams();
+    const { STORE_NAME, STORE_CODE } = STORE_CONFIG;
+    const { modelSku } = useParams();
     const navigate = useNavigate();
     return (
         <ModalWindow
@@ -12,7 +14,7 @@ const RegisterWarning = ({ string, setOpenModalType, close }) => {
             text={string?.in_order_to_use_this_option_you_must_log_in_or_register}
             closeAction={() => {
                 if (modelSku) return close();
-                navigate(storeCode ? `/catalog/${storeCode}/${storeName}` : '/');
+                navigate(STORE_CODE ? `/catalog/${STORE_CODE}/${STORE_NAME}` : '/');
                 close();
             }}
         >
@@ -21,7 +23,7 @@ const RegisterWarning = ({ string, setOpenModalType, close }) => {
                     variant="outlined"
                     onClick={() => {
                         if (modelSku) return close();
-                        navigate(storeCode ? `/catalog/${storeCode}/${storeName}` : '/');
+                        navigate(STORE_CODE ? `/catalog/${STORE_CODE}/${STORE_NAME}` : '/');
                         close();
                     }}
                 >

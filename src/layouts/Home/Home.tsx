@@ -10,8 +10,9 @@ import { HomeContextInterface, StoreInterface } from 'types';
 import { useStoresApi } from 'api/useStoresApi';
 import { STORES_DATA } from 'dataBase/STORES';
 import { STORE_CONFIG } from 'constants/stores_config';
+import Modals from 'layouts/Modals';
 
-export default function Home({ lang, setLang }) {
+export default function Home({ lang, setLang, auth, setAuth, userData }) {
     const { STORE_CODE, STORE_NAME } = STORE_CONFIG;
     const { sx } = useDevice();
     const INSTRUMENTAL_BAR_HEIGHT = 36;
@@ -82,6 +83,19 @@ export default function Home({ lang, setLang }) {
                 string={currentLanguage?.string}
                 storeHeaderName={store?.name}
                 storeCode={store?.code}
+                auth={auth}
+                headerHeight={HEADER_HEIGHT}
+                store={store}
+                setOpenModalType={setOpenModalType}
+                openModalType={openModalType}
+                user={userData}
+            />
+            <Modals
+                string={currentLanguage?.string as string}
+                setAuth={setAuth}
+                lang={lang}
+                openModalType={openModalType}
+                setOpenModalType={setOpenModalType}
             />
         </Box>
     );

@@ -1,22 +1,22 @@
 import { Box, Typography } from '@mui/material';
 import { useDevice } from 'hooks/useDevice';
-import Marquee from 'react-fast-marquee';
 import Grid from '@mui/material/Unstable_Grid2';
 import { useOutletContext } from 'react-router-dom';
-// import MessageButton from 'components/atoms/Buttons/MessageButton';
+import MessageButton from 'components/atoms/Buttons/MessageButton';
 import { motion } from 'framer-motion';
 import QuestionForm from './QuestionForm';
 import { useState } from 'react';
 import SuccessModel from './SuccessModel';
 import { HomeContextInterface } from 'types';
+import HomeImages from './HomeImages';
+import CallBackButton from 'components/atoms/Buttons/CallBackButton';
 
 const HomePage = () => {
     const { appXPadding, footerMenuHeight }: HomeContextInterface = useOutletContext();
     const [openQuestionForm, setOpenQuestionForm] = useState(false);
     const [openSuccessModal, setOpenSuccessModal] = useState(false);
     const { string }: any = useOutletContext();
-    const { sx, s } = useDevice();
-
+    const { sx } = useDevice();
     const variants = num => {
         return { hidden: { opacity: sx ? 0 : 1, y: sx ? 100 * num : 0 }, visible: { opacity: 1, y: 0 } };
     };
@@ -28,79 +28,14 @@ const HomePage = () => {
                 setIsOpen={setOpenQuestionForm}
                 setOpenSuccessModal={setOpenSuccessModal}
             />
-            {/* <MessageButton
+            <MessageButton
                 action={() => {
                     setOpenQuestionForm(true);
                 }}
-            /> */}
+            />
             {openSuccessModal && <SuccessModel setOpenModal={setOpenSuccessModal} />}
-            {/* <ContactsButton /> */}
-            <Box sx={{ position: 'fixed', top: 0, left: 0, zIndex: 0 }}>
-                <Box style={{ overflow: 'hidden', maxHeight: '100vh', background: '#ccc', maxWidth: '100vw' }}>
-                    <Marquee loop={0} speed={75} gradient gradientColor="#6666664e" gradientWidth={s ? 100 : 300}>
-                        <img
-                            style={{ maxHeight: '100vh', overflow: 'hidden' }}
-                            src={require(`./images/${1}.jpg`)}
-                            alt={`Loading...`}
-                        />
-                        <img
-                            style={{ maxHeight: '100vh', overflow: 'hidden' }}
-                            src={require(`./images/${2}.jpg`)}
-                            alt={`Loading ...`}
-                        />
-                        <img
-                            style={{ maxHeight: '100vh', overflow: 'hidden' }}
-                            src={require(`./images/${3}.jpg`)}
-                            alt={`Loading ...`}
-                        />
-                        <img
-                            style={{ maxHeight: '100vh', overflow: 'hidden' }}
-                            src={require(`./images/${4}.jpg`)}
-                            alt={`Loading ...`}
-                        />
-                        <img
-                            style={{ maxHeight: '100vh', overflow: 'hidden' }}
-                            src={require(`./images/${5}.jpg`)}
-                            alt={`Loading ...`}
-                        />
-                        <img
-                            style={{ maxHeight: '100vh', overflow: 'hidden' }}
-                            src={require(`./images/${6}.jpg`)}
-                            alt={`Loading ...`}
-                        />
-                        <img
-                            style={{ maxHeight: '100vh', overflow: 'hidden' }}
-                            src={require(`./images/${7}.jpg`)}
-                            alt={`Loading ...`}
-                        />
-                        <img
-                            style={{ maxHeight: '100vh', overflow: 'hidden' }}
-                            src={require(`./images/${8}.jpg`)}
-                            alt={`Loading ...`}
-                        />
-                        <img
-                            style={{ maxHeight: '100vh', overflow: 'hidden' }}
-                            src={require(`./images/${9}.jpg`)}
-                            alt={`Loading ...`}
-                        />
-                        <img
-                            style={{ maxHeight: '100vh', overflow: 'hidden' }}
-                            src={require(`./images/${10}.jpg`)}
-                            alt={`Loading ...`}
-                        />
-                        <img
-                            style={{ maxHeight: '100vh', overflow: 'hidden' }}
-                            src={require(`./images/${11}.jpg`)}
-                            alt={`Loading ...`}
-                        />
-                        <img
-                            style={{ maxHeight: '100vh', overflow: 'hidden' }}
-                            src={require(`./images/${12}.jpg`)}
-                            alt={`Loading ...`}
-                        />
-                    </Marquee>
-                </Box>
-            </Box>
+            <CallBackButton />
+            <HomeImages />
             <Grid container xs={12}>
                 <Typography
                     variant="h1"

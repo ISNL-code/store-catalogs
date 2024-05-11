@@ -6,12 +6,14 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import { StoresContextInterface } from 'types';
 import { useOutletContext } from 'react-router-dom';
-import { StyledTextField } from './StyledTextField';
 import { useFormik } from 'formik';
 import requestQuestionValidation from 'Validation/requestQuestionValidation';
 import axios from 'axios';
+import { StyledTextField } from 'components/molecules/StyledComponents/StyledTextField';
+import { STORE_CONFIG } from 'constants/stores_config';
 
 export default function QuestionForm({ isOpen = false, setIsOpen, setOpenSuccessModal }) {
+    const { STORE_NAME } = STORE_CONFIG;
     const { string }: StoresContextInterface = useOutletContext();
     const [formValues, setFormValues] = React.useState<any>({
         subject: '',
@@ -19,7 +21,7 @@ export default function QuestionForm({ isOpen = false, setIsOpen, setOpenSuccess
         name: '',
         phone: '',
         email: '',
-        comment: '',
+        question: '',
     });
     const [open, setOpen] = React.useState(isOpen);
 
@@ -34,7 +36,7 @@ export default function QuestionForm({ isOpen = false, setIsOpen, setOpenSuccess
             name: '',
             phone: '',
             email: '',
-            comment: '',
+            question: '',
         },
         validationSchema: requestQuestionValidation,
         onSubmit: values => {
@@ -46,16 +48,13 @@ export default function QuestionForm({ isOpen = false, setIsOpen, setOpenSuccess
 
                 axios.post(url, {
                     chat_id: chatId,
-                    text: `alberto_bini_europe|Вопрос, Привет, меня зовут ${
+                    text: `${STORE_NAME}|Вопрос, Привет, меня зовут ${
                         values.name || '<Заказчик>'
-                    }, мои контакты: email: ${values.email || '<не указан>'}, тел: ${values.phone || '<не указан>'}, 
-                     вопрос: ${values.comment || '<не оставил>'}`,
+                    }, мои контакты: email: ${values.email}, тел: ${values.phone}, 
+                     вопрос: ${values.question}`,
                 });
                 setOpenSuccessModal(true);
-                console.log('Message sent successfully');
-            } catch (error) {
-                console.error('Error sending message:', error);
-            }
+            } catch (error) {}
         },
     });
 
@@ -70,7 +69,7 @@ export default function QuestionForm({ isOpen = false, setIsOpen, setOpenSuccess
             name: '',
             phone: '',
             email: '',
-            comment: '',
+            question: '',
         });
     };
 
@@ -88,7 +87,7 @@ export default function QuestionForm({ isOpen = false, setIsOpen, setOpenSuccess
                     },
                 }}
             >
-                <DialogTitle sx={{ fontSize: 20, color: 'gray' }}>{string?.support}</DialogTitle>
+                <DialogTitle sx={{ fontSize: 20, color: 'gray' }}>{string?.message}: </DialogTitle>
                 <DialogContent sx={{ display: 'flex', flexDirection: 'column', gap: 2.5 }}>
                     <StyledTextField
                         value={formValues.name || ''}
@@ -115,7 +114,7 @@ export default function QuestionForm({ isOpen = false, setIsOpen, setOpenSuccess
                         size="small"
                         fullWidth
                         error={Boolean(formik.errors.phone && formik.touched.phone)}
-                        helperText={string?.phone_length_minimum_7_characters}
+                        helperText={formik.errors.phone && string[formik.errors.phone]}
                         type="number"
                     />
                     <StyledTextField
@@ -129,21 +128,21 @@ export default function QuestionForm({ isOpen = false, setIsOpen, setOpenSuccess
                         size="small"
                         fullWidth
                         error={Boolean(formik.errors.email && formik.touched.email)}
-                        helperText={string?.enter_valid_email}
+                        helperText={formik.errors.email && string[formik.errors.email]}
                     />
 
                     <StyledTextField
-                        value={formValues.comment || ''}
+                        value={formValues.question || ''}
                         onChange={e => {
                             setFormValues(prev => {
-                                return { ...prev, comment: e.target.value };
+                                return { ...prev, question: e.target.value };
                             });
                         }}
-                        label={string?.ask_question}
+                        label={string?.question}
                         size="small"
                         fullWidth
-                        error={Boolean(formik.errors.comment && formik.touched.comment)}
-                        helperText={''}
+                        error={Boolean(formik.errors.question && formik.touched.question)}
+                        helperText={formik.errors.question && string[formik.errors.question]}
                         multiline
                         minRows={1}
                     />
@@ -156,7 +155,7 @@ export default function QuestionForm({ isOpen = false, setIsOpen, setOpenSuccess
                     >
                         {string?.cancel}
                     </Button>
-                    <Button type="submit">{string?.submit}</Button>
+                    <Button type="submit">{string?.send}</Button>
                 </DialogActions>
             </Dialog>
         </React.Fragment>
