@@ -23,7 +23,7 @@ export default function MainCatalog({ lang, setLang, auth, setAuth, userData, vi
     const navigate = useNavigate();
     const { sx } = useDevice();
     const HEADER_HEIGHT = 50;
-    const FOOTER_MENU_HEIGHT = sx ? '70px' : 0;
+    const FOOTER_MENU_HEIGHT = sx ? '65px' : 0;
     const INSTRUMENTAL_BAR_HEIGHT = 36;
     const INSTRUMENTAL_BAR_PADDINGS = sx ? 2 : 4;
     const HEADER_PADDINGS = sx ? 2 : 4;

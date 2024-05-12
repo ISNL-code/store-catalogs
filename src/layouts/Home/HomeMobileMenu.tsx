@@ -1,16 +1,15 @@
 import { Box } from '@mui/material';
 import MobileNavButton from 'components/atoms/Buttons/MobileNavButton';
 import HomeIcon from '@mui/icons-material/Home';
-import StorefrontIcon from '@mui/icons-material/Storefront';
-import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import InfoIcon from '@mui/icons-material/Info';
 import ProfileButton from 'components/molecules/ToolsButtons/ProfileButton';
 import GridViewIcon from '@mui/icons-material/GridView';
 import PermIdentityIcon from '@mui/icons-material/PermIdentity';
 import { STORE_CONFIG } from 'constants/stores_config';
-import { StoreType } from 'constants/types';
 import { useEffect, useState } from 'react';
 import { useWindowWidth } from '@react-hook/window-size';
+import { MdDiscount } from 'react-icons/md';
+import { MdOutlineDiscount } from 'react-icons/md';
 
 const HomeMobileMenu = ({
     appXPadding,
@@ -20,7 +19,6 @@ const HomeMobileMenu = ({
     storeHeaderName,
     storeCode,
     headerHeight,
-    store,
     user,
     auth,
     setOpenModalType,
@@ -28,7 +26,7 @@ const HomeMobileMenu = ({
 }) => {
     const WINDOW_WIDTH = useWindowWidth();
     const { OPTIONS } = STORE_CONFIG;
-    const { STORE_TYPE, INFORMATION_PAGE_ACTIVE } = OPTIONS;
+    const { INFORMATION_PAGE_ACTIVE } = OPTIONS;
 
     const [position, setPosition] = useState(0);
 
@@ -61,34 +59,31 @@ const HomeMobileMenu = ({
                     }}
                 >
                     <MobileNavButton path={`/`} title={string?.home} icon={p => <HomeIcon {...p} />} />
-                    {STORE_TYPE !== StoreType?.both && (
-                        <MobileNavButton
-                            path={`/catalog/${storeCode}/${storeHeaderName.replaceAll(' ', '-').toLowerCase()}`}
-                            childPath={['/details', '/contacts', 'model']}
-                            title={string?.catalog}
-                            icon={p => <GridViewIcon {...p} />}
-                        />
-                    )}
-                    {STORE_TYPE === StoreType?.both && (
-                        <MobileNavButton
-                            path={`/catalog/${storeCode}/${storeHeaderName.replaceAll(' ', '-').toLowerCase()}`}
-                            title={string?.wholesale_catalog}
-                            icon={p => <AttachMoneyIcon {...p} />}
-                            action={() => {
-                                localStorage.setItem('catalog_mode', JSON.stringify(1));
-                            }}
-                        />
-                    )}
-                    {STORE_TYPE === StoreType?.both && (
-                        <MobileNavButton
-                            path={`/catalog/${storeCode}/${storeHeaderName.replaceAll(' ', '-').toLowerCase()}`}
-                            title={string?.retail_catalog}
-                            icon={p => <StorefrontIcon {...p} />}
-                            action={() => {
-                                localStorage.setItem('catalog_mode', JSON.stringify(3));
-                            }}
-                        />
-                    )}
+
+                    <MobileNavButton
+                        path={`/catalog/${storeCode}/${storeHeaderName.replaceAll(' ', '-').toLowerCase()}`}
+                        childPath={['/details', '/contacts', 'model']}
+                        title={string?.catalog}
+                        icon={p => <GridViewIcon {...p} />}
+                    />
+
+                    <MobileNavButton
+                        path={`/catalog/${storeCode}/${storeHeaderName.replaceAll(' ', '-').toLowerCase()}`}
+                        title={string?.wholesale_catalog}
+                        icon={p => <MdDiscount {...p} color={p?.sx?.color} fontSize={24} />}
+                        action={() => {
+                            localStorage.setItem('catalog_mode', JSON.stringify(1));
+                        }}
+                    />
+
+                    <MobileNavButton
+                        path={`/catalog/${storeCode}/${storeHeaderName.replaceAll(' ', '-').toLowerCase()}`}
+                        title={string?.retail_catalog}
+                        icon={p => <MdOutlineDiscount {...p} color={p?.sx?.color} fontSize={24} />}
+                        action={() => {
+                            localStorage.setItem('catalog_mode', JSON.stringify(3));
+                        }}
+                    />
 
                     {INFORMATION_PAGE_ACTIVE && (
                         <MobileNavButton

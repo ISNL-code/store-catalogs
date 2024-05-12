@@ -120,7 +120,7 @@ const LanguageButton = ({
                                     currentLabel = string?.polish;
                                     break;
                                 case 'kz':
-                                    currentLabel = string?.kazakhstani;
+                                    currentLabel = string?.kazakh;
                                     break;
                                 case 'cz':
                                     currentLabel = string?.czech;

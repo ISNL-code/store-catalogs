@@ -31,7 +31,7 @@ const MobileNavButton = ({
     const active = location.pathname === path || childPath?.some(child => location.pathname.includes(child));
 
     return (
-        <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 0.7 }}>
+        <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 0.5 }}>
             <IconButton
                 onClick={() => {
                     if (active) return;
@@ -42,11 +42,12 @@ const MobileNavButton = ({
                     if (!protectedPath) navigate(path);
                     clearSort();
                 }}
-                size="small"
                 sx={{
+                    width: 33,
+                    height: 33,
                     border: '2px solid',
                     borderColor: active || isActive ? '#1976d2' : '#fff',
-                    borderRadius: '8px',
+                    borderRadius: '12px',
                     p: 0.5,
                 }}
             >
@@ -68,7 +69,7 @@ const MobileNavButton = ({
             </IconButton>
             <Typography
                 variant="subtitle1"
-                sx={{ color: active || isActive ? '#1976d2' : '#fff', textTransform: 'uppercase' }}
+                sx={{ color: active || isActive ? '#1976d2' : '#fff', textTransform: 'uppercase', fontSize: 8 }}
             >
                 {title}
             </Typography>
