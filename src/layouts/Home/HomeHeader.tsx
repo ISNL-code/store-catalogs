@@ -44,7 +44,7 @@ const HomeHeader = ({
     openModalType,
 }: HeaderInterface) => {
     const { OPTIONS } = STORE_CONFIG;
-    const { CUSTOM_LOGO, STORE_TYPE, INFORMATION_PAGE_ACTIVE } = OPTIONS;
+    const { CUSTOM_LOGO, INFORMATION_PAGE_ACTIVE } = OPTIONS;
     const location = useLocation();
     const { sx } = useDevice();
 

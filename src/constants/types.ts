@@ -1,7 +1,6 @@
 export enum StoreType {
     sales = 'sales',
     wholesales = 'wholesales',
-    both = 'both',
     default = 'default',
 }
 

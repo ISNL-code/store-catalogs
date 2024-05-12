@@ -24,7 +24,7 @@ export const ALBERTO_BINI_KZ = {
         sale_price_multiplication: 1,
         currency_multiplication: 1,
         custom_currency: null,
-        store_type: StoreType?.both,
+        store_type: StoreType?.wholesales,
         home_page_active: true,
         informative_page_active: true,
         custom_logo: true,
