@@ -34,13 +34,7 @@ const InformationPage = () => {
                 scroll
                 opacity={1}
                 StartSlot={() => (
-                    <Grid
-                        container
-                        xs={12}
-                        sx={{
-                            overflow: 'auto',
-                        }}
-                    >
+                    <Grid container xs={12}>
                         <Grid
                             sx={{
                                 minWidth: 'fit-content',
@@ -77,7 +71,6 @@ const InformationPage = () => {
                 )}
             />
             <Grid
-                mt={5}
                 xs={12}
                 container
                 sx={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', alignItems: 'center' }}

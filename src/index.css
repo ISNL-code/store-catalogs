@@ -102,3 +102,7 @@ a {
     background-color: rgb(199, 198, 198); /* color of the scroll thumb */
     border-radius: 20px; /* roundness of the scroll thumb */
 }
+
+.HiddenScroll::-webkit-scrollbar {
+    display: none;
+}

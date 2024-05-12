@@ -8,7 +8,6 @@ interface Props {
     string;
     lang: string | null;
     storeLanguages?: string[];
-    setOpenModalType;
 }
 
 const LanguageButton = ({
@@ -16,7 +15,6 @@ const LanguageButton = ({
     string,
     lang,
     storeLanguages = ['ua', 'en', 'kz', 'pl', 'cz', 'ru', 'es', 'fr'],
-    setOpenModalType = _ => {},
 }: Props) => {
     const [anchorElLang, setAnchorElLang] = useState(null);
     const open = Boolean(anchorElLang);
@@ -78,7 +76,6 @@ const LanguageButton = ({
             <IconButton
                 onClick={e => {
                     handleClick(e);
-                    setOpenModalType(null);
                 }}
                 id="lang-menu"
                 aria-controls={open ? 'lang-menu' : undefined}

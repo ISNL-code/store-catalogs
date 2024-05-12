@@ -10,6 +10,7 @@ import { STORES_DATA } from 'dataBase/STORES';
 import { STORE_CONFIG } from 'constants/stores_config';
 import Login from 'pages/Login/Login';
 import Register from 'pages/Login/Register';
+import HomeImages from 'pages/Home/HomeImages';
 
 export default function LoginLayout({ lang, setLang, auth, setAuth }) {
     const { STORE_CODE, STORE_NAME } = STORE_CONFIG;
@@ -53,7 +54,7 @@ export default function LoginLayout({ lang, setLang, auth, setAuth }) {
                 storeHeaderName={store?.name}
                 store={store}
             />
-
+            <HomeImages />
             {openModalType === 'login' && (
                 <Login
                     setAuth={setAuth}

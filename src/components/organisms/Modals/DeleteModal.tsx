@@ -5,7 +5,7 @@ export default function DeleteModal({ string, close, text, action, title }) {
     return (
         <>
             <ModalWindow type={'warning'} title={title} text={text} closeAction={() => close()}>
-                <Box mt={4} px={2} pb={1.5} sx={{ display: 'flex', justifyContent: 'flex-end', gap: 1 }}>
+                <Box sx={{ display: 'flex', justifyContent: 'flex-end', gap: 1 }}>
                     <Button
                         variant="contained"
                         onClick={() => {

@@ -55,7 +55,6 @@ const HomeHeader = ({
                         setLang={setLang}
                         string={string}
                         lang={lang}
-                        setOpenModalType={setOpenModalType}
                         storeLanguages={store?.supportedLanguages?.map(el => {
                             return el?.code;
                         })}

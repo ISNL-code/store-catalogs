@@ -63,6 +63,7 @@ const Cart = () => {
         appXPadding,
         headerHeight,
         instrumentalBarHeight,
+        setOpenModalType,
     }: CatalogContextInterface = useOutletContext();
     const [productIds, setProductIds] = useState<string[] | any[]>([]);
     const [cartProducts, setCartProducts] = useState<ProductVariantInterface[] | any[]>([]);

@@ -22,6 +22,7 @@ import { useFormik } from 'formik';
 import registerFormValidation from 'Validation/registerFormValidation';
 import { STORE_CONFIG } from 'constants/stores_config';
 import axios from 'axios';
+import { TRANSLATED_COUNTRIES } from 'dataBase/COUNTRY_LIST';
 
 export default function Register({ setAuth, lang, string, close, setOpenModalType }) {
     const { ACCESS_TOKEN_KEY, STORE_CODE, STORE_NAME } = STORE_CONFIG;
@@ -32,66 +33,9 @@ export default function Register({ setAuth, lang, string, close, setOpenModalTyp
     const [confirmPassword, setConfirmPassword] = useState('');
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
-    const [country, setCountry] = useState('UA');
+    const [country, setCountry] = useState<string | null>(null);
     const [error, setError] = useState(false);
-    const countryList = [
-        { code: 'CZ', country: string?.czechia },
-        { code: 'IT', country: string?.italy },
-        { code: 'KZ', country: string?.kazakhstan },
-        { code: 'PL', country: string?.poland },
-        { code: 'TR', country: string?.turkey },
-        { code: 'UA', country: string?.ukraine },
-        { code: 'AL', country: 'Albania' },
-        { code: 'AD', country: 'Andorra' },
-        { code: 'AM', country: 'Armenia' },
-        { code: 'AT', country: 'Austria' },
-        { code: 'AZ', country: 'Azerbaijan' },
-        { code: 'BY', country: 'Belarus' },
-        { code: 'BE', country: 'Belgium' },
-        { code: 'BA', country: 'Bosnia and Herzegovina' },
-        { code: 'BG', country: 'Bulgaria' },
-        { code: 'HR', country: 'Croatia' },
-        { code: 'CY', country: 'Cyprus' },
-        { code: 'DK', country: 'Denmark' },
-        { code: 'EE', country: 'Estonia' },
-        { code: 'FO', country: 'Faroe Islands' },
-        { code: 'FI', country: 'Finland' },
-        { code: 'FR', country: 'France' },
-        { code: 'GE', country: 'Georgia' },
-        { code: 'DE', country: 'Germany' },
-        { code: 'GI', country: 'Gibraltar' },
-        { code: 'GR', country: 'Greece' },
-        { code: 'GG', country: 'Guernsey' },
-        { code: 'HU', country: 'Hungary' },
-        { code: 'IS', country: 'Iceland' },
-        { code: 'IE', country: 'Ireland' },
-        { code: 'IM', country: 'Isle of Man' },
-        { code: 'JE', country: 'Jersey' },
-        { code: 'XK', country: 'Kosovo' },
-        { code: 'LV', country: 'Latvia' },
-        { code: 'LI', country: 'Liechtenstein' },
-        { code: 'LT', country: 'Lithuania' },
-        { code: 'LU', country: 'Luxembourg' },
-        { code: 'MT', country: 'Malta' },
-        { code: 'MD', country: 'Moldova' },
-        { code: 'MC', country: 'Monaco' },
-        { code: 'ME', country: 'Montenegro' },
-        { code: 'NL', country: 'Netherlands' },
-        { code: 'MK', country: 'North Macedonia' },
-        { code: 'NO', country: 'Norway' },
-        { code: 'PT', country: 'Portugal' },
-        { code: 'RO', country: 'Romania' },
-        { code: 'RU', country: 'Russia' },
-        { code: 'SM', country: 'San Marino' },
-        { code: 'RS', country: 'Serbia' },
-        { code: 'SK', country: 'Slovakia' },
-        { code: 'SI', country: 'Slovenia' },
-        { code: 'ES', country: 'Spain' },
-        { code: 'SJ', country: 'Svalbard and Jan Mayen' },
-        { code: 'SE', country: 'Sweden' },
-        { code: 'GB', country: 'United Kingdom' },
-        { code: 'VA', country: 'Vatican City' },
-    ];
+
     const [passwordVisible, setPasswordVisible] = useState(false);
     const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
 
@@ -105,8 +49,8 @@ export default function Register({ setAuth, lang, string, close, setOpenModalTyp
             confirmPassword: '',
             firstName: '',
             lastName: '',
-            country: '',
-        },
+            country: null,
+        } as any,
         validationSchema: registerFormValidation,
         onSubmit: values => {
             register({
@@ -194,7 +138,7 @@ export default function Register({ setAuth, lang, string, close, setOpenModalTyp
                         },
                     }}
                     error={!!(formik.errors.username && formik.touched.username)}
-                    helperText={formik.errors.username && string[formik.errors.username]}
+                    helperText={formik.errors.username && string[formik.errors.username as string]}
                 />
                 <TextField
                     size="small"
@@ -225,7 +169,7 @@ export default function Register({ setAuth, lang, string, close, setOpenModalTyp
                         ),
                     }}
                     error={!!(formik.errors.password && formik.touched.password)}
-                    helperText={formik.errors.password && string[formik.errors.password]}
+                    helperText={formik.errors.password && string[formik.errors.password as string]}
                 />
                 <TextField
                     size="small"
@@ -256,7 +200,7 @@ export default function Register({ setAuth, lang, string, close, setOpenModalTyp
                         ),
                     }}
                     error={!!(formik.errors.confirmPassword && formik.touched.confirmPassword)}
-                    helperText={formik.errors.confirmPassword && string[formik.errors.confirmPassword]}
+                    helperText={formik.errors.confirmPassword && string[formik.errors.confirmPassword as string]}
                 />
                 <TextField
                     size="small"
@@ -276,7 +220,7 @@ export default function Register({ setAuth, lang, string, close, setOpenModalTyp
                         },
                     }}
                     error={!!(formik.errors.firstName && formik.touched.firstName)}
-                    helperText={formik.errors.firstName && string[formik.errors.firstName]}
+                    helperText={formik.errors.firstName && string[formik.errors.firstName as string]}
                 />
                 <TextField
                     size="small"
@@ -296,7 +240,7 @@ export default function Register({ setAuth, lang, string, close, setOpenModalTyp
                         },
                     }}
                     error={!!(formik.errors.lastName && formik.touched.lastName)}
-                    helperText={formik.errors.lastName && string[formik.errors.lastName]}
+                    helperText={formik.errors.lastName && string[formik.errors.lastName as string]}
                 />
                 <TextField
                     size="small"
@@ -322,9 +266,14 @@ export default function Register({ setAuth, lang, string, close, setOpenModalTyp
                         },
                     }}
                     error={!!(formik.errors.phoneNumber && formik.touched.phoneNumber)}
-                    helperText={formik.errors.phoneNumber && string[formik.errors.phoneNumber]}
+                    helperText={formik.errors.phoneNumber && string[formik.errors.phoneNumber as string]}
                 />
-                <FormControl fullWidth sx={{ minWidth: 250, mt: 1, zIndex: 5000 }} size="small">
+                <FormControl
+                    error={!!(formik.errors.country && formik.touched.country)}
+                    fullWidth
+                    sx={{ minWidth: 250, mt: 1, zIndex: 5000 }}
+                    size="small"
+                >
                     <InputLabel sx={{ color: '#696666' }} id="country-label">
                         {string?.country}
                     </InputLabel>
@@ -338,9 +287,9 @@ export default function Register({ setAuth, lang, string, close, setOpenModalTyp
                         input={<OutlinedInput label={string?.country} />}
                         sx={{ zIndex: 5000 }}
                     >
-                        {countryList.map(item => (
+                        {TRANSLATED_COUNTRIES.map(item => (
                             <MenuItem key={item.code} value={item.code} sx={{ zIndex: 5000 }}>
-                                {item.country}
+                                {string[item.country]}
                             </MenuItem>
                         ))}
                     </Select>

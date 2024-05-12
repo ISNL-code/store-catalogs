@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { INFORMATION } from 'dataBase/translations/information';
 import { HOME_PAGE } from 'dataBase/translations/home_page';
+import { COUNTRIES } from 'dataBase/translations/countries';
 
 export const useGetLanguage = ({ lang, storeName }) => {
     const [currentLanguage, setCurrentLanguage] = useState({ code: '', string: {} });
@@ -11,6 +12,7 @@ export const useGetLanguage = ({ lang, storeName }) => {
             string: {
                 ...INFORMATION?.en,
                 ...HOME_PAGE?.en,
+                ...COUNTRIES?.en,
                 to: 'to',
                 in: 'in',
                 no_available_sizes: 'No available sizes',
@@ -84,12 +86,6 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 price: 'Price',
                 logout: 'Logout',
                 submit: 'Submit',
-                ukraine: 'Ukraine',
-                czechia: 'Czechia',
-                italy: 'Italy',
-                kazakhstan: 'Kazakhstan',
-                poland: 'Poland',
-                turkey: 'Turkey',
                 description: 'Description',
                 added: 'Added',
                 add_to: 'Add To',
@@ -206,6 +202,7 @@ export const useGetLanguage = ({ lang, storeName }) => {
             string: {
                 ...INFORMATION?.fr,
                 ...HOME_PAGE?.fr,
+                ...COUNTRIES?.fr,
                 to: 'à',
                 in: 'dans',
                 no_available_sizes: 'Aucune taille disponible',
@@ -280,12 +277,6 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 price: 'Prix',
                 logout: 'Déconnexion',
                 submit: 'Soumettre',
-                ukraine: 'Ukraine',
-                czechia: 'Tchéquie',
-                italy: 'Italie',
-                kazakhstan: 'Kazakhstan',
-                poland: 'Pologne',
-                turkey: 'Turquie',
                 description: 'Description',
                 added: 'Ajouté',
                 add_to: 'Ajouter à',
@@ -397,6 +388,7 @@ export const useGetLanguage = ({ lang, storeName }) => {
         {
             code: 'es',
             string: {
+                ...COUNTRIES?.es,
                 ...INFORMATION?.es,
                 ...HOME_PAGE?.es,
                 to: 'a',
@@ -472,12 +464,6 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 price: 'Precio',
                 logout: 'Cerrar sesión',
                 submit: 'Enviar',
-                ukraine: 'Ucrania',
-                czechia: 'Chequia',
-                italy: 'Italia',
-                kazakhstan: 'Kazajstán',
-                poland: 'Polonia',
-                turkey: 'Turquía',
                 description: 'Descripción',
                 added: 'Agregado',
                 first_name: 'Nombre de pila',
@@ -589,6 +575,7 @@ export const useGetLanguage = ({ lang, storeName }) => {
         {
             code: 'ua',
             string: {
+                ...COUNTRIES?.ua,
                 ...INFORMATION?.ua,
                 ...HOME_PAGE?.ua,
                 to: 'до',
@@ -664,12 +651,6 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 price: 'Ціна',
                 logout: 'Вийти',
                 submit: 'Підтвердити',
-                ukraine: 'Україна',
-                czechia: 'Чехія',
-                italy: 'Італія',
-                kazakhstan: 'Казахстан',
-                poland: 'Польща',
-                turkey: 'Туреччина',
                 description: 'Опис',
                 added: 'Додано',
                 add_to: 'Додати до',
@@ -781,6 +762,7 @@ export const useGetLanguage = ({ lang, storeName }) => {
         {
             code: 'pl',
             string: {
+                ...COUNTRIES?.pl,
                 ...INFORMATION?.pl,
                 ...HOME_PAGE?.pl,
                 to: 'do',
@@ -857,12 +839,6 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 price: 'Cena',
                 logout: 'Wyloguj',
                 submit: 'Składać',
-                ukraine: 'Ukraina',
-                czechia: 'Czechy',
-                italy: 'Włochy',
-                kazakhstan: 'Kazachstan',
-                poland: 'Polska',
-                turkey: 'Turcja',
                 description: 'Opis',
                 added: 'Dodano',
                 add_to: 'Dodaj do',
@@ -974,6 +950,7 @@ export const useGetLanguage = ({ lang, storeName }) => {
         {
             code: 'cz',
             string: {
+                ...COUNTRIES?.cz,
                 ...INFORMATION?.cz,
                 ...HOME_PAGE?.cz,
                 to: 'do',
@@ -1048,12 +1025,6 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 price: 'Cena',
                 logout: 'Odhlásit',
                 submit: 'Předložit',
-                ukraine: 'Ukrajina',
-                czechia: 'Czechia',
-                italy: 'Itálie',
-                kazakhstan: 'Kazachstán',
-                poland: 'Polsko',
-                turkey: 'Turecko',
                 description: 'Popis',
                 added: 'Přidáno',
                 add_to: 'Přidat do',
@@ -1164,6 +1135,7 @@ export const useGetLanguage = ({ lang, storeName }) => {
         {
             code: 'ru',
             string: {
+                ...COUNTRIES?.ru,
                 ...INFORMATION?.ru,
                 ...HOME_PAGE?.ru,
                 to: 'к',
@@ -1239,12 +1211,6 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 price: 'Цена',
                 logout: 'Выход',
                 submit: 'Подтвердить',
-                ukraine: 'Украина',
-                czechia: 'Чехия',
-                italy: 'Италия',
-                kazakhstan: 'Казахстан',
-                poland: 'Польша',
-                turkey: 'Турция',
                 description: 'Описание',
                 added: 'Добавлено',
                 add_to: 'Добавить в',
@@ -1356,6 +1322,7 @@ export const useGetLanguage = ({ lang, storeName }) => {
         {
             code: 'kz',
             string: {
+                ...COUNTRIES?.kz,
                 ...INFORMATION?.kz,
                 ...HOME_PAGE?.kz,
                 to: 'қарай',
@@ -1432,12 +1399,6 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 price: 'Баға',
                 logout: 'Шығу',
                 submit: 'Жіберу',
-                ukraine: 'Украина',
-                czechia: 'Чехия',
-                italy: 'Италия',
-                kazakhstan: 'Қазақстан',
-                poland: 'Польша',
-                turkey: 'Түркия',
                 description: 'Сипаттама',
                 added: 'Қосылған',
                 add_to: 'Қосу',

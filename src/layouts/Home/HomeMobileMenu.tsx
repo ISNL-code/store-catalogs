@@ -9,6 +9,8 @@ import GridViewIcon from '@mui/icons-material/GridView';
 import PermIdentityIcon from '@mui/icons-material/PermIdentity';
 import { STORE_CONFIG } from 'constants/stores_config';
 import { StoreType } from 'constants/types';
+import { useEffect, useState } from 'react';
+import { useWindowWidth } from '@react-hook/window-size';
 
 const HomeMobileMenu = ({
     appXPadding,
@@ -24,8 +26,15 @@ const HomeMobileMenu = ({
     setOpenModalType,
     openModalType,
 }) => {
+    const WINDOW_WIDTH = useWindowWidth();
     const { OPTIONS } = STORE_CONFIG;
     const { STORE_TYPE, INFORMATION_PAGE_ACTIVE } = OPTIONS;
+
+    const [position, setPosition] = useState(0);
+
+    useEffect(() => {
+        setPosition(0);
+    }, [WINDOW_WIDTH]);
 
     if (isShown)
         return (
@@ -35,7 +44,7 @@ const HomeMobileMenu = ({
                     height: menuHeight,
                     position: 'fixed',
                     left: 0,
-                    bottom: 0,
+                    bottom: position,
                     width: '100%',
                     background: '#000',
                     zIndex: 4000,
