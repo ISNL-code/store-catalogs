@@ -35,7 +35,7 @@ const ProfileButton = ({ string, headerHeight, menuHeight = '', user, setOpenMod
                 {[sx ? 'bottom' : 'right'].map(anchor => (
                     <Fragment key={anchor}>
                         <Box
-                            sx={sx ? { display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 0.7 } : {}}
+                            sx={sx ? { display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 0.4 } : {}}
                         >
                             <IconButton
                                 sx={
@@ -43,7 +43,9 @@ const ProfileButton = ({ string, headerHeight, menuHeight = '', user, setOpenMod
                                         ? {
                                               border: '2px solid',
                                               borderColor: active ? '#1976d2' : '#fff',
-                                              borderRadius: '8px',
+                                              width: 33,
+                                              height: 33,
+                                              borderRadius: '12px',
                                               p: 0.5,
                                           }
                                         : {
@@ -66,8 +68,8 @@ const ProfileButton = ({ string, headerHeight, menuHeight = '', user, setOpenMod
                                 )}
                             </IconButton>
                             {sx && (
-                                <Typography sx={{ fontSize: 10, color: active ? '#1976d2' : 'white' }}>
-                                    {string?.my_profile}
+                                <Typography sx={{ fontSize: 8, color: active ? '#1976d2' : 'white' }}>
+                                    {string?.my_profile.toUpperCase()}
                                 </Typography>
                             )}
                         </Box>

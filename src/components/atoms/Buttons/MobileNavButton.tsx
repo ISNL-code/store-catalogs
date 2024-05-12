@@ -31,7 +31,7 @@ const MobileNavButton = ({
     const active = location.pathname === path || childPath?.some(child => location.pathname.includes(child));
 
     return (
-        <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 0.5 }}>
+        <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 0.4 }}>
             <IconButton
                 onClick={() => {
                     if (active) return;
@@ -45,9 +45,9 @@ const MobileNavButton = ({
                 sx={{
                     width: 33,
                     height: 33,
+                    borderRadius: '12px',
                     border: '2px solid',
                     borderColor: active || isActive ? '#1976d2' : '#fff',
-                    borderRadius: '12px',
                     p: 0.5,
                 }}
             >
