@@ -103,7 +103,7 @@ const Catalog = () => {
                                 <SideLink name={name} href={href} />
                             </Box>
                         ))}
-                        <Toggler />
+                        {/* <Toggler /> */}
                     </>
                 )}
                 EndSlot={() => (
@@ -117,7 +117,7 @@ const Catalog = () => {
 
             {productsList?.length ? (
                 <TransitionBox dependency={loading} time="1250">
-                    {isShowAlert && (
+                    {!isShowAlert && (
                         <Box mt={-paddings}>
                             <Alert
                                 severity="warning"
