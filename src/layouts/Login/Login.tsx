@@ -27,7 +27,6 @@ export default function LoginLayout({ lang, setLang, auth, setAuth }) {
     });
 
     useEffect(() => {
-        console.log(openModalType);
         if (!openModalType) setOpenModalType('login');
     }, [openModalType]);
 

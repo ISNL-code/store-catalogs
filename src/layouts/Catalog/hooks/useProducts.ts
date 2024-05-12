@@ -1,6 +1,6 @@
 import { useProductsApi } from 'api/useProductsApi';
 import { STORE_CONFIG } from 'constants/stores_config';
-import { ViewModeType } from 'constants/types';
+import { StoreType, ViewModeType } from 'constants/types';
 import { useDevice } from 'hooks/useDevice';
 import { useIsMount } from 'hooks/useIsMount';
 import { useEffect, useState } from 'react';
@@ -50,7 +50,7 @@ export const useProducts = ({ store, lang, queryCategories, setQueryCategories, 
         setProductsList(
             productsRes.data.products?.map(product => {
                 const originalPrice =
-                    STORE_TYPE === 'sales'
+                    STORE_TYPE === StoreType.sales
                         ? Math.max(...product.variants?.map(el => Number(el.inventory[0]?.price)))
                         : Number(product.price);
 
@@ -59,7 +59,7 @@ export const useProducts = ({ store, lang, queryCategories, setQueryCategories, 
                     variants: product.variants
                         .sort((a, b) => a.sortOrder - b.sortOrder)
                         .filter(el => {
-                            return STORE_TYPE === 'sales' ? el.images.length : true;
+                            return STORE_TYPE === StoreType.sales ? el.images.length : true;
                         })
                         .map((variant, idx) => {
                             return {
@@ -101,7 +101,7 @@ export const useProducts = ({ store, lang, queryCategories, setQueryCategories, 
                     ...prevData,
                     ...res?.data?.data?.products?.map(product => {
                         const originalPrice =
-                            STORE_TYPE === 'sales'
+                            STORE_TYPE === StoreType.sales
                                 ? Math.max(...product.variants?.map(el => Number(el.inventory[0]?.price)))
                                 : Number(product.price);
 
@@ -110,7 +110,7 @@ export const useProducts = ({ store, lang, queryCategories, setQueryCategories, 
                             variants: product.variants
                                 .sort((a, b) => a.sortOrder - b.sortOrder)
                                 .filter(el => {
-                                    return STORE_TYPE === 'sales' ? el.images.length : true;
+                                    return STORE_TYPE === StoreType.sales ? el.images.length : true;
                                 })
                                 .map((variant, idx) => {
                                     return {

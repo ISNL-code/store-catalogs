@@ -114,7 +114,7 @@ export default function QuestionForm({ isOpen = false, setIsOpen, setOpenSuccess
                         size="small"
                         fullWidth
                         error={Boolean(formik.errors.phone && formik.touched.phone)}
-                        helperText={formik.errors.phone && string[formik.errors.phone]}
+                        helperText={formik.errors?.phone && string?.[formik.errors.phone]}
                         type="number"
                     />
                     <StyledTextField
@@ -128,7 +128,7 @@ export default function QuestionForm({ isOpen = false, setIsOpen, setOpenSuccess
                         size="small"
                         fullWidth
                         error={Boolean(formik.errors.email && formik.touched.email)}
-                        helperText={formik.errors.email && string[formik.errors.email]}
+                        helperText={formik.errors.email && string?.[formik.errors.email]}
                     />
 
                     <StyledTextField
@@ -142,7 +142,7 @@ export default function QuestionForm({ isOpen = false, setIsOpen, setOpenSuccess
                         size="small"
                         fullWidth
                         error={Boolean(formik.errors.question && formik.touched.question)}
-                        helperText={formik.errors.question && string[formik.errors.question]}
+                        helperText={formik.errors.question && string?.[formik.errors.question]}
                         multiline
                         minRows={1}
                     />

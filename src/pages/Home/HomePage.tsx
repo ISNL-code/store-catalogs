@@ -19,7 +19,7 @@ const HomePage = () => {
     const variants = num => {
         return { hidden: { opacity: sx ? 0 : 1, y: sx ? 100 * num : 0 }, visible: { opacity: 1, y: 0 } };
     };
-    console.log(`calc(100vh - 120px)`);
+
     return (
         <Box p={sx ? 2 : appXPadding} pb={footerMenuHeight}>
             <QuestionForm

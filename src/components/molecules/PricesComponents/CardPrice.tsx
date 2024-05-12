@@ -1,6 +1,7 @@
 import CardPriceDefault from 'components/molecules/PricesComponents/CardPriceDefault';
 import CardPriceSales from 'components/molecules/PricesComponents/CardPriceSales';
 import { STORE_CONFIG } from 'constants/stores_config';
+import { StoreType } from 'constants/types';
 
 interface Props {
     currency: string;
@@ -20,13 +21,13 @@ const CardPrice = ({ currency, price, discountPrice = null }: Props) => {
     return (
         <>
             <>
-                {Boolean(STORE_TYPE === 'wholesales' || STORE_TYPE === 'default') && (
+                {Boolean(STORE_TYPE !== StoreType.sales) && (
                     <CardPriceDefault
                         currency={CUSTOM_CURRENCY || currency}
                         price={Number(price) * MAIN_PRICE_MULTIPLICATION * CURRENCY_MULTIPLICATION}
                     />
                 )}
-                {Boolean(STORE_TYPE === 'sales') && (
+                {Boolean(STORE_TYPE === StoreType.sales) && (
                     <CardPriceSales
                         currency={CUSTOM_CURRENCY || currency}
                         price={Number(price) * MAIN_PRICE_MULTIPLICATION * CURRENCY_MULTIPLICATION}

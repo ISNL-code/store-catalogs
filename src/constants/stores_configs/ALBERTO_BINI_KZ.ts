@@ -8,7 +8,7 @@ export const ALBERTO_BINI_KZ = {
     URL: ['https://albertobini-kz.com'],
     appStoreUrl: null,
     playMarketUrl: null,
-    web_lang: 'en', // html lang
+    web_lang: 'kk', // html lang
     store_name: 'Alberto Bini KZ',
     store_code: 'alberto_bini_europe',
     token_key: `${prefix}-tkn`,
@@ -16,7 +16,7 @@ export const ALBERTO_BINI_KZ = {
     favorite_url: `${prefix}-favorites`,
     base_url: 'https://kremen-belts.com/api',
     lang_key: `${prefix}-lang`,
-    app_lang: 'kk',
+    app_lang: 'kz',
     links: [],
     options: {
         product_image_options: { width: 6, height: 9 },

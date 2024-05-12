@@ -138,7 +138,7 @@ export default function Register({ setAuth, lang, string, close, setOpenModalTyp
                         },
                     }}
                     error={!!(formik.errors.username && formik.touched.username)}
-                    helperText={formik.errors.username && string[formik.errors.username as string]}
+                    helperText={formik.errors.username && string?.[formik.errors.username as string]}
                 />
                 <TextField
                     size="small"
@@ -169,7 +169,7 @@ export default function Register({ setAuth, lang, string, close, setOpenModalTyp
                         ),
                     }}
                     error={!!(formik.errors.password && formik.touched.password)}
-                    helperText={formik.errors.password && string[formik.errors.password as string]}
+                    helperText={formik.errors.password && string?.[formik.errors.password as string]}
                 />
                 <TextField
                     size="small"
@@ -200,7 +200,7 @@ export default function Register({ setAuth, lang, string, close, setOpenModalTyp
                         ),
                     }}
                     error={!!(formik.errors.confirmPassword && formik.touched.confirmPassword)}
-                    helperText={formik.errors.confirmPassword && string[formik.errors.confirmPassword as string]}
+                    helperText={formik.errors.confirmPassword && string?.[formik.errors.confirmPassword as string]}
                 />
                 <TextField
                     size="small"
@@ -220,7 +220,7 @@ export default function Register({ setAuth, lang, string, close, setOpenModalTyp
                         },
                     }}
                     error={!!(formik.errors.firstName && formik.touched.firstName)}
-                    helperText={formik.errors.firstName && string[formik.errors.firstName as string]}
+                    helperText={formik.errors.firstName && string?.[formik.errors.firstName as string]}
                 />
                 <TextField
                     size="small"
@@ -240,7 +240,7 @@ export default function Register({ setAuth, lang, string, close, setOpenModalTyp
                         },
                     }}
                     error={!!(formik.errors.lastName && formik.touched.lastName)}
-                    helperText={formik.errors.lastName && string[formik.errors.lastName as string]}
+                    helperText={formik.errors.lastName && string?.[formik.errors.lastName as string]}
                 />
                 <TextField
                     size="small"
@@ -266,7 +266,7 @@ export default function Register({ setAuth, lang, string, close, setOpenModalTyp
                         },
                     }}
                     error={!!(formik.errors.phoneNumber && formik.touched.phoneNumber)}
-                    helperText={formik.errors.phoneNumber && string[formik.errors.phoneNumber as string]}
+                    helperText={formik.errors.phoneNumber && string?.[formik.errors.phoneNumber as string]}
                 />
                 <FormControl
                     error={!!(formik.errors.country && formik.touched.country)}
@@ -289,7 +289,7 @@ export default function Register({ setAuth, lang, string, close, setOpenModalTyp
                     >
                         {TRANSLATED_COUNTRIES.map(item => (
                             <MenuItem key={item.code} value={item.code} sx={{ zIndex: 5000 }}>
-                                {string[item.country]}
+                                {string?.[item.country]}
                             </MenuItem>
                         ))}
                     </Select>

@@ -20,8 +20,8 @@ export interface HomeContextInterface {
     //css data
     instrumentalBarHeight: number;
     instrumentalBarPadding: number;
-    headerHeight: number;
-    footerMenuHeight: number;
+    headerHeight: number | string;
+    footerMenuHeight: number | string;
     appXPadding: number;
 }
 

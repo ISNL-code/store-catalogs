@@ -18,6 +18,7 @@ import { STORE_CONFIG } from 'constants/stores_config';
 import ViewModeButton from 'components/molecules/ToolsButtons/ViewModeButton';
 import CatalogListCard from 'components/organisms/Cards/CatalogListCard';
 import ClearListButton from 'components/molecules/ToolsButtons/ClearListButton';
+import { StoreType } from 'constants/types';
 
 const Favorites = () => {
     const { OPTIONS, STORE_CODE, STORE_NAME } = STORE_CONFIG;
@@ -73,7 +74,7 @@ const Favorites = () => {
                         ?.variants.sort((a, b) => a.sortOrder - b.sortOrder)
                         .map(variant => {
                             const originalPrice =
-                                STORE_TYPE === 'sales'
+                                STORE_TYPE === StoreType.sales
                                     ? Math.max(
                                           ...products
                                               .find(el => el.variants.map(({ sku }) => sku).includes(sku))

@@ -16,7 +16,7 @@ import SaleTag from 'components/atoms/PromoTags/SaleTag';
 import { STORE_CONFIG } from 'constants/stores_config';
 import { Colors } from 'colors';
 import { SampleNextArrow, SamplePrevArrow } from '../../atoms/Elements/SliderArrows';
-import { ViewModeType } from 'constants/types';
+import { StoreType, ViewModeType } from 'constants/types';
 import CardView from './CardView';
 import GridLargeView from './GridLargeView';
 import GridMediumView from './GridMediumView';
@@ -358,7 +358,7 @@ const CatalogListCard = memo<CatalogCardProps>(
                             </Box>
                         )}
                         <Box>
-                            {STORE_TYPE === 'sales' && (
+                            {STORE_TYPE === StoreType.sales && (
                                 <SaleTag
                                     price={Number(shownModel?.originalPrice)}
                                     discountPrice={Number(shownModel?.price)}

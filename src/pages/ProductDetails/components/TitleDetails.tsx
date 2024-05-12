@@ -2,6 +2,7 @@ import { Box, Divider, Typography } from '@mui/material';
 import PromoTags from 'components/atoms/PromoTags/PromoTags';
 import SaleTag from 'components/atoms/PromoTags/SaleTag';
 import { STORE_CONFIG } from 'constants/stores_config';
+import { StoreType } from 'constants/types';
 
 const TitleDetails = ({ productDetails, selectedVariant }) => {
     const { OPTIONS } = STORE_CONFIG;
@@ -33,7 +34,7 @@ const TitleDetails = ({ productDetails, selectedVariant }) => {
                         />
                     ))}
                     <Box>
-                        {STORE_TYPE === 'sales' && (
+                        {STORE_TYPE === StoreType.sales && (
                             <SaleTag
                                 price={Number(productDetails?.originalPrice)}
                                 discountPrice={Number(selectedVariant?.inventory[0]?.price?.replace(/[^0-9.]/g, ''))}

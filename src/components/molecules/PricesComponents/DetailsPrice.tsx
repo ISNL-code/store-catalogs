@@ -1,4 +1,5 @@
 import { STORE_CONFIG } from 'constants/stores_config';
+import { StoreType } from 'constants/types';
 import DetailsPriceDefault from './DetailsPriceDefault';
 import DetailsPriceSales from './DetailsPriceSales';
 
@@ -20,13 +21,13 @@ const DetailsPrice = ({ currency, price, discountPrice = null }: Props) => {
     return (
         <>
             <>
-                {Boolean(STORE_TYPE === 'wholesales' || STORE_TYPE === 'default') && (
+                {Boolean(STORE_TYPE !== StoreType.sales) && (
                     <DetailsPriceDefault
                         currency={CUSTOM_CURRENCY || currency}
                         price={Number(price) * MAIN_PRICE_MULTIPLICATION * CURRENCY_MULTIPLICATION}
                     />
                 )}
-                {Boolean(STORE_TYPE === 'sales') && (
+                {Boolean(STORE_TYPE === StoreType.sales) && (
                     <DetailsPriceSales
                         currency={CUSTOM_CURRENCY || currency}
                         price={Number(price) * MAIN_PRICE_MULTIPLICATION * CURRENCY_MULTIPLICATION}
