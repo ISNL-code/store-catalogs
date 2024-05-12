@@ -1,4 +1,4 @@
-import { Box } from '@mui/material';
+import { Alert, Box } from '@mui/material';
 import Loader from 'components/atoms/Loader/Loader';
 import { useEffect, useState } from 'react';
 import { useOutletContext } from 'react-router-dom';
@@ -19,6 +19,7 @@ import SideLink from 'components/atoms/Buttons/SideLink';
 import ViewModeButton from 'components/molecules/ToolsButtons/ViewModeButton';
 import CatalogListCard from 'components/organisms/Cards/CatalogListCard';
 import { STORE_CONFIG } from 'constants/stores_config';
+import Toggler from 'components/atoms/Buttons/Toggler';
 
 const Catalog = () => {
     const { OPTIONS, SIDE_LINKS, STORE_CODE, STORE_NAME } = STORE_CONFIG;
@@ -40,9 +41,10 @@ const Catalog = () => {
     }: CatalogContextInterface = useOutletContext();
     const [showTopBtn, setShowTopBtn] = useState(false);
     const [showMobileStoresButton, setShowMobileStoresButton] = useState(true);
-    const [paddings, setPaddings] = useState(0);
+    const [paddings, setPaddings] = useState(2);
     const [spacings, setSpacings] = useState(0);
     const [loading, setLoading] = useState(true);
+    const [isShowAlert, setIsShowAlert] = useState(true);
 
     useEffect(() => {
         if (loadProducts || !productsList) return;
@@ -94,13 +96,16 @@ const Catalog = () => {
                 <CallBackButton path={`/catalog/${STORE_CODE}/${STORE_NAME?.replaceAll(' ', '-').toLowerCase()}/`} />
             )}
             <InstrumentalSubHeader
-                StartSlot={() =>
-                    SIDE_LINKS?.map(({ name, href }) => (
-                        <Box sx={{ display: 'flex' }} key={href}>
-                            <SideLink name={name} href={href} />
-                        </Box>
-                    ))
-                }
+                StartSlot={() => (
+                    <>
+                        {SIDE_LINKS?.map(({ name, href }) => (
+                            <Box sx={{ display: 'flex' }} key={href}>
+                                <SideLink name={name} href={href} />
+                            </Box>
+                        ))}
+                        <Toggler />
+                    </>
+                )}
                 EndSlot={() => (
                     <Box sx={{ display: 'flex', gap: 0.75 }}>
                         <ViewModeButton />
@@ -112,6 +117,26 @@ const Catalog = () => {
 
             {productsList?.length ? (
                 <TransitionBox dependency={loading} time="1250">
+                    {isShowAlert && (
+                        <Box mt={-paddings}>
+                            <Alert
+                                severity="warning"
+                                onClose={() => {
+                                    setIsShowAlert(false);
+                                }}
+                                sx={{
+                                    my: 2,
+                                    fontSize: 14,
+                                    p: 1,
+                                    '.css-ki1hdl-MuiAlert-action': { p: 0 },
+                                    '.MuiAlert-message': { p: 0 },
+                                }}
+                            >
+                                Вы в оптовом режиме, минимальное количество товара для покупки 10 едениц.
+                                {/* You're in 'Wholesales' mode: A minimum of 10 items must be purchased. */}
+                            </Alert>
+                        </Box>
+                    )}
                     <Grid className="CatalogList" container spacing={spacings}>
                         {productsList?.map(product => {
                             return (

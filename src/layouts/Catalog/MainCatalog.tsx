@@ -16,7 +16,17 @@ import { useAddToCart } from './hooks/useAddToCart';
 import { useAddToFavorites } from './hooks/useAddToFavorites';
 import { STORE_CONFIG } from 'constants/stores_config';
 
-export default function MainCatalog({ lang, setLang, auth, setAuth, userData, viewMode, setViewMode }) {
+export default function MainCatalog({
+    lang,
+    setLang,
+    auth,
+    setAuth,
+    userData,
+    viewMode,
+    setViewMode,
+    saleModeKef,
+    setSaleModeKef,
+}) {
     const { OPTIONS, STORE_CODE } = STORE_CONFIG;
     const { PLAN_OPTIONS } = OPTIONS;
     const { storeName, storeCode } = useParams();

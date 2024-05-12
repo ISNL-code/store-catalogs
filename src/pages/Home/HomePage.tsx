@@ -69,6 +69,7 @@ const HomePage = () => {
                         style={{ maxWidth: '1000px', zIndex: 2 }}
                     >
                         <Grid
+                            item
                             px={sx ? 2 : 4}
                             py={sx ? 1 : 2}
                             container

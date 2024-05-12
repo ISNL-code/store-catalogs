@@ -41,6 +41,7 @@ const App = () => {
     const [lang, setLang] = useState<string>(APP_LANGUAGE);
     const [viewMode, setViewMode] = useState<ViewModeType | null>(null);
     const [auth, setAuth] = useState<boolean | null>(null);
+    const [saleModeKef, setSaleModeKef] = useState(1);
     const { refetch: updateUserData, isFetching } = useUserApi().useGetUserData({
         storeCode: STORE_CODE,
     });
@@ -181,6 +182,8 @@ const App = () => {
                                                 setViewMode={setViewMode}
                                                 auth={auth}
                                                 setAuth={setAuth}
+                                                saleModeKef={saleModeKef}
+                                                setSaleModeKef={setSaleModeKef}
                                                 userData={{
                                                     currentUserData,
                                                     isFetching,
