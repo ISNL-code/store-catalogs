@@ -19,7 +19,7 @@ import SideLink from 'components/atoms/Buttons/SideLink';
 import ViewModeButton from 'components/molecules/ToolsButtons/ViewModeButton';
 import CatalogListCard from 'components/organisms/Cards/CatalogListCard';
 import { STORE_CONFIG } from 'constants/stores_config';
-import Toggler from 'components/atoms/Buttons/Toggler';
+// import Toggler from 'components/atoms/Buttons/Toggler';
 
 const Catalog = () => {
     const { OPTIONS, SIDE_LINKS, STORE_CODE, STORE_NAME } = STORE_CONFIG;
