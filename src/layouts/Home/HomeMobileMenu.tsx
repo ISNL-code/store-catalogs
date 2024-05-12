@@ -8,8 +8,6 @@ import PermIdentityIcon from '@mui/icons-material/PermIdentity';
 import { STORE_CONFIG } from 'constants/stores_config';
 import { useEffect, useState } from 'react';
 import { useWindowWidth } from '@react-hook/window-size';
-import { MdDiscount } from 'react-icons/md';
-import { MdOutlineDiscount } from 'react-icons/md';
 
 const HomeMobileMenu = ({
     appXPadding,
@@ -65,24 +63,6 @@ const HomeMobileMenu = ({
                         childPath={['/details', '/contacts', 'model']}
                         title={string?.catalog}
                         icon={p => <GridViewIcon {...p} />}
-                    />
-
-                    <MobileNavButton
-                        path={`/catalog/${storeCode}/${storeHeaderName.replaceAll(' ', '-').toLowerCase()}`}
-                        title={string?.wholesale_catalog}
-                        icon={p => <MdDiscount {...p} color={p?.sx?.color} fontSize={24} />}
-                        action={() => {
-                            localStorage.setItem('catalog_mode', JSON.stringify(1));
-                        }}
-                    />
-
-                    <MobileNavButton
-                        path={`/catalog/${storeCode}/${storeHeaderName.replaceAll(' ', '-').toLowerCase()}`}
-                        title={string?.retail_catalog}
-                        icon={p => <MdOutlineDiscount {...p} color={p?.sx?.color} fontSize={24} />}
-                        action={() => {
-                            localStorage.setItem('catalog_mode', JSON.stringify(3));
-                        }}
                     />
 
                     {INFORMATION_PAGE_ACTIVE && (
