@@ -15,6 +15,7 @@ import { STORES_DATA } from 'dataBase/STORES';
 import { useAddToCart } from './hooks/useAddToCart';
 import { useAddToFavorites } from './hooks/useAddToFavorites';
 import { STORE_CONFIG } from 'constants/stores_config';
+import Loader from 'components/atoms/Loader/Loader';
 
 export default function MainCatalog({ lang, setLang, auth, setAuth, userData, viewMode, setViewMode, country }) {
     const { OPTIONS, STORE_CODE } = STORE_CONFIG;
@@ -114,64 +115,66 @@ export default function MainCatalog({ lang, setLang, auth, setAuth, userData, vi
                 auth={auth}
                 user={userData}
             />
+            {country !== 'Ukraine' && <Loader />}
+            {country === 'Ukraine' && (
+                <Box className="AppBody" mt={`${HEADER_HEIGHT + INSTRUMENTAL_BAR_HEIGHT}px`} flexGrow={1}>
+                    <Outlet
+                        context={
+                            {
+                                //main data | user options
+                                lang: lang,
+                                supportedLanguage: supportedLanguage,
+                                string: currentLanguage?.string,
+                                scrollPosition: scrollPosition,
+                                setScrollPosition: setScrollPosition,
+                                setOpenModalType: setOpenModalType,
+                                openModalType: openModalType,
+                                viewMode: viewMode,
+                                setViewMode: setViewMode,
 
-            <Box className="AppBody" mt={`${HEADER_HEIGHT + INSTRUMENTAL_BAR_HEIGHT}px`} flexGrow={1}>
-                <Outlet
-                    context={
-                        {
-                            //main data | user options
-                            lang: lang,
-                            supportedLanguage: supportedLanguage,
-                            string: currentLanguage?.string,
-                            scrollPosition: scrollPosition,
-                            setScrollPosition: setScrollPosition,
-                            setOpenModalType: setOpenModalType,
-                            openModalType: openModalType,
-                            viewMode: viewMode,
-                            setViewMode: setViewMode,
+                                //store data
+                                store,
 
-                            //store data
-                            store,
+                                //user data
+                                auth: auth,
+                                currentUserData: userData.currentUserData,
+                                loadingUserData: userData.isFetching,
+                                updateUserData: userData.updateUserData,
+                                setCurrentUserData: userData.setCurrentUserData,
 
-                            //user data
-                            auth: auth,
-                            currentUserData: userData.currentUserData,
-                            loadingUserData: userData.isFetching,
-                            updateUserData: userData.updateUserData,
-                            setCurrentUserData: userData.setCurrentUserData,
+                                //products data
+                                productsList: productsList,
+                                setProductsList: setProductsList,
+                                loadProducts: loadProducts,
+                                loadMoreProducts: loadMoreProducts,
+                                updateProducts: updateProducts,
+                                productCountPerPage: productCountPerPage,
+                                totalProductsCount: totalProductsCount,
+                                totalProductsPages: totalProductsPages,
+                                handleSetProductsPage: handleSetProductsPage,
+                                currentProductsPage: currentProductsPage,
 
-                            //products data
-                            productsList: productsList,
-                            setProductsList: setProductsList,
-                            loadProducts: loadProducts,
-                            loadMoreProducts: loadMoreProducts,
-                            updateProducts: updateProducts,
-                            productCountPerPage: productCountPerPage,
-                            totalProductsCount: totalProductsCount,
-                            totalProductsPages: totalProductsPages,
-                            handleSetProductsPage: handleSetProductsPage,
-                            currentProductsPage: currentProductsPage,
+                                //categories data
+                                categoriesList,
+                                queryCategories: queryCategories,
+                                setQueryCategories: setQueryCategories,
+                                handleCategoriesQuery: handleCategoriesQuery,
 
-                            //categories data
-                            categoriesList,
-                            queryCategories: queryCategories,
-                            setQueryCategories: setQueryCategories,
-                            handleCategoriesQuery: handleCategoriesQuery,
+                                //css data
+                                instrumentalBarHeight: INSTRUMENTAL_BAR_HEIGHT,
+                                instrumentalBarPadding: INSTRUMENTAL_BAR_PADDINGS,
+                                headerHeight: HEADER_HEIGHT,
+                                footerMenuHeight: FOOTER_MENU_HEIGHT,
+                                appXPadding: BODY_PADDINGS,
 
-                            //css data
-                            instrumentalBarHeight: INSTRUMENTAL_BAR_HEIGHT,
-                            instrumentalBarPadding: INSTRUMENTAL_BAR_PADDINGS,
-                            headerHeight: HEADER_HEIGHT,
-                            footerMenuHeight: FOOTER_MENU_HEIGHT,
-                            appXPadding: BODY_PADDINGS,
-
-                            //cart & favorites
-                            cart: cart,
-                            favorites: favorites,
-                        } as CatalogContextInterface
-                    }
-                />
-            </Box>
+                                //cart & favorites
+                                cart: cart,
+                                favorites: favorites,
+                            } as CatalogContextInterface
+                        }
+                    />
+                </Box>
+            )}
             <Modals
                 string={currentLanguage?.string as string}
                 setAuth={setAuth}

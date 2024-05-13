@@ -184,8 +184,6 @@ const App = () => {
                                                 setViewMode={setViewMode}
                                                 auth={auth}
                                                 setAuth={setAuth}
-                                                saleModeKef={saleModeKef}
-                                                setSaleModeKef={setSaleModeKef}
                                                 country={country}
                                                 userData={{
                                                     currentUserData,
