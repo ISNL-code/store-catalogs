@@ -269,17 +269,11 @@ export default function Register({ setAuth, lang, string, close, setOpenModalTyp
                     <Select
                         size="small"
                         value={country}
-                        onClick={e => e.stopPropagation()}
                         onChange={e => {
                             e.stopPropagation();
                             setCountry(e.target.value);
                         }}
-                        onMouseEnter={e => e.stopPropagation()}
-                        onMouseLeave={e => e.stopPropagation()}
                         label={string?.country}
-                        onClose={e => {
-                            e.stopPropagation(); // Добавляем остановку распространения и здесь
-                        }}
                         MenuProps={{
                             onClick: e => e.stopPropagation(),
                             PaperProps: {
