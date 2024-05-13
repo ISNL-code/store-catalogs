@@ -15,7 +15,7 @@ const MessageButton = ({ from = 'catalog', action }) => {
                 zIndex: 2000,
                 position: 'fixed',
                 right: sx ? '80px' : '40px',
-                bottom: sx ? 90 : 60,
+                bottom: sx ? 90 : 70,
                 border: sx ? 'none' : '1px solid',
                 borderColor: Colors?.BLUE,
                 backgroundColor: sx ? 'none' : Colors?.BLUE,
