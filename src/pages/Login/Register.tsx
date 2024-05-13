@@ -279,7 +279,9 @@ export default function Register({ setAuth, lang, string, close, setOpenModalTyp
                             onClick: e => e.stopPropagation(),
                             PaperProps: {
                                 style: {
-                                    maxHeight: 400,
+                                    maxHeight: 300,
+                                    position: 'absolute',
+                                    zIndex: 2000,
                                 },
                             },
                             anchorOrigin: {
