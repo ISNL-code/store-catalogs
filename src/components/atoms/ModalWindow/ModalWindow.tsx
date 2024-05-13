@@ -1,6 +1,7 @@
 import { Box, ClickAwayListener, IconButton, Typography } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import { Colors } from 'colors';
+import { useEffect } from 'react';
 
 interface Props {
     children?;
@@ -17,6 +18,14 @@ const ModalWindow = ({ children, type = '', title, text = '', closeAction = null
         if (type === 'success') return 'linear-gradient(to right , green 40%, #30a72c 65%, #07c500);';
         return 'linear-gradient(to right , #1976d2 40%, #5ea1e4 65%, #5daeff);';
     };
+
+    useEffect(() => {
+        document.body.style.overflow = 'hidden';
+
+        return () => {
+            document.body.style.overflow = '';
+        };
+    }, []);
 
     return (
         <ClickAwayListener
