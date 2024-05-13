@@ -1,18 +1,12 @@
 import { Box, IconButton } from '@mui/material';
-import ViewModuleIcon from '@mui/icons-material/ViewModule';
-import CalendarViewMonthIcon from '@mui/icons-material/CalendarViewMonth';
-import GridOnIcon from '@mui/icons-material/GridOn';
 import { useOutletContext } from 'react-router-dom';
 import { CatalogContextInterface } from 'types';
 import { ViewModeType } from 'constants/types';
 import { Colors } from 'colors';
-import { GrGrid } from 'react-icons/gr';
-import { RiLayoutGridLine } from 'react-icons/ri';
 import { BsGrid } from 'react-icons/bs';
 import { IoMdGrid } from 'react-icons/io';
 import { RxGrid } from 'react-icons/rx';
 import { useEffect, useState } from 'react';
-import { STORE_CONFIG } from 'constants/stores_config';
 
 const ViewModeButton = () => {
     const { setViewMode, viewMode }: CatalogContextInterface = useOutletContext();
@@ -20,6 +14,7 @@ const ViewModeButton = () => {
 
     useEffect(() => {
         setViewMode(mode);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [mode]);
 
     return (

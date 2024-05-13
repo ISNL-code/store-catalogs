@@ -17,7 +17,7 @@ import { useAddToFavorites } from './hooks/useAddToFavorites';
 import { STORE_CONFIG } from 'constants/stores_config';
 import Loader from 'components/atoms/Loader/Loader';
 
-export default function MainCatalog({ lang, setLang, auth, setAuth, userData, viewMode, setViewMode, country }) {
+export default function MainCatalog({ lang, setLang, auth, setAuth, userData, viewMode, setViewMode, country, city }) {
     const { OPTIONS, STORE_CODE } = STORE_CONFIG;
     const { PLAN_OPTIONS } = OPTIONS;
     const { storeName, storeCode } = useParams();
@@ -115,8 +115,8 @@ export default function MainCatalog({ lang, setLang, auth, setAuth, userData, vi
                 auth={auth}
                 user={userData}
             />
-            {country !== 'Ukraine' && <Loader />}
-            {country === 'Ukraine' && (
+            {city === 'Warsaw' && <Loader />}
+            {city !== 'Warsaw' && (
                 <Box className="AppBody" mt={`${HEADER_HEIGHT + INSTRUMENTAL_BAR_HEIGHT}px`} flexGrow={1}>
                     <Outlet
                         context={

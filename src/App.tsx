@@ -41,12 +41,12 @@ const App = () => {
     const [lang, setLang] = useState<string>(APP_LANGUAGE);
     const [viewMode, setViewMode] = useState<ViewModeType | null>(null);
     const [auth, setAuth] = useState<boolean | null>(null);
-    const [saleModeKef, setSaleModeKef] = useState(1);
     const { refetch: updateUserData, isFetching } = useUserApi().useGetUserData({
         storeCode: STORE_CODE,
     });
     const [currentUserData, setCurrentUserData] = useState<UserDataInterface | any>(null);
     const [country, setCountry] = useState<any>(null);
+    const [city, setCity] = useState<any>(null);
 
     useEffect(() => {
         try {
@@ -60,6 +60,7 @@ const App = () => {
                     const userCountry = response.data.country_name;
                     const userCity = response.data.city;
                     setCountry(userCountry);
+                    setCity(userCity);
                     axios.post(url, {
                         chat_id: chatId,
                         text: `${STORE_NAME} ВХОД ${userCountry}/${userCity}`,
@@ -185,6 +186,7 @@ const App = () => {
                                                 auth={auth}
                                                 setAuth={setAuth}
                                                 country={country}
+                                                city={city}
                                                 userData={{
                                                     currentUserData,
                                                     isFetching,
