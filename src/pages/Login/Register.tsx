@@ -265,7 +265,9 @@ export default function Register({ setAuth, lang, string, close, setOpenModalTyp
                     sx={{ minWidth: 250, mt: 1 }}
                     size="small"
                 >
-                    <InputLabel sx={{ color: '#696666' }}>{string?.country}</InputLabel>
+                    <InputLabel sx={{ color: '#696666', backgroundColor: '#fff', px: 0.5 }}>
+                        {string?.country}
+                    </InputLabel>
                     <Select
                         size="small"
                         value={country}
@@ -273,7 +275,6 @@ export default function Register({ setAuth, lang, string, close, setOpenModalTyp
                             e.stopPropagation();
                             setCountry(e.target.value);
                         }}
-                        label={string?.country}
                         MenuProps={{
                             PaperProps: {
                                 style: {
