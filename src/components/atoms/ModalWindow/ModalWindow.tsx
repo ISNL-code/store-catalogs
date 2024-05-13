@@ -20,9 +20,11 @@ const ModalWindow = ({ children, type = '', title, text = '', closeAction = null
 
     return (
         <ClickAwayListener
+            disableReactTree
             onClickAway={() => {
                 if (closeAction) closeAction();
             }}
+            mouseEvent={false}
         >
             <Box
                 sx={{

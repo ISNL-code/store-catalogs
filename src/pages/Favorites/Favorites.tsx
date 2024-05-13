@@ -82,7 +82,7 @@ const Favorites = () => {
 
         switch (viewMode) {
             case ViewModeType.card:
-                padding = 2;
+                padding = sx ? 2 : 4;
                 spacing = 2;
                 break;
             case ViewModeType.grid_l:

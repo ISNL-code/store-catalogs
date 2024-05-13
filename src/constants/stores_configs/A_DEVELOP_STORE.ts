@@ -9,9 +9,9 @@ import { ALBERTO_BINI_EU_RETAIL } from './ALBERTO_BINI_EU_RETAIL'; // eslint-dis
 import { ALBERTO_BINI_KZ_RETAIL } from './ALBERTO_BINI_KZ_RETAIL'; // eslint-disable-line
 
 export const DEVELOP_STORE = {
-    // ...ALBERTO_BINI_MAIN,
-    // ...ALBERTO_BINI_EU_WS,
+    ...ALBERTO_BINI_MAIN,
     ...ALBERTO_BINI_EU_RETAIL,
+    // ...ALBERTO_BINI_EU_WS,
     // ...ALBERTO_BINI_KZ_RETAIL,
     // ...ALBERTO_BINI_KZ_WS,
     // ...ALBERTO_BINI_OUTLET,

@@ -1,15 +1,6 @@
 import Button from '@mui/material/Button';
 import DialogActions from '@mui/material/DialogActions';
-import {
-    FormControl,
-    InputAdornment,
-    InputLabel,
-    MenuItem,
-    OutlinedInput,
-    Select,
-    TextField,
-    Typography,
-} from '@mui/material';
+import { FormControl, InputAdornment, InputLabel, MenuItem, Select, TextField, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import { useUserApi } from 'api/useUserApi';
 import { useEffect, useState } from 'react';
@@ -271,24 +262,23 @@ export default function Register({ setAuth, lang, string, close, setOpenModalTyp
                 <FormControl
                     error={!!(formik.errors.country && formik.touched.country)}
                     fullWidth
-                    sx={{ minWidth: 250, mt: 1, zIndex: 5000 }}
+                    sx={{ minWidth: 250, mt: 1 }}
                     size="small"
                 >
-                    <InputLabel sx={{ color: '#696666' }} id="country-label">
-                        {string?.country}
-                    </InputLabel>
+                    <InputLabel sx={{ color: '#696666' }}>{string?.country}</InputLabel>
                     <Select
                         size="small"
-                        id="country-select"
                         value={country}
                         onChange={e => {
+                            e.stopPropagation();
                             setCountry(e.target.value);
                         }}
-                        input={<OutlinedInput label={string?.country} />}
-                        sx={{ zIndex: 5000 }}
+                        onMouseEnter={e => e.stopPropagation()}
+                        onMouseLeave={e => e.stopPropagation()}
+                        label={string?.country}
                     >
                         {TRANSLATED_COUNTRIES.map(item => (
-                            <MenuItem key={item.code} value={item.code} sx={{ zIndex: 5000 }}>
+                            <MenuItem key={item.code} value={item.code} onClick={e => e?.preventDefault()}>
                                 {string?.[item.country]}
                             </MenuItem>
                         ))}

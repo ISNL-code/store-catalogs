@@ -16,7 +16,8 @@ import { STORE_CONFIG } from 'constants/stores_config';
 
 const UserOrders = () => {
     const { OPTIONS } = STORE_CONFIG;
-    const { CURRENCY_MULTIPLICATION, CUSTOM_CURRENCY, SALE_PRICE_MULTIPLICATION } = OPTIONS;
+    const { CURRENCY_MULTIPLICATION, CUSTOM_CURRENCY, SALE_PRICE_MULTIPLICATION, RETAIL_PRICE_MULTIPLICATION } =
+        OPTIONS;
     const { handleGetStatusParams } = useGetStatusParams();
     const { s } = useDevice();
     const { storeCode, storeName } = useParams();
@@ -27,6 +28,14 @@ const UserOrders = () => {
     });
     const [isOpenDetails, setIsOpenDetails] = useState({ open: false, id: null });
     const { sx } = useDevice();
+
+    useEffect(() => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'auto',
+        });
+    }, []);
+
     useEffect(() => {
         if (!customerOrdersRes || loadingOrders) return;
 
@@ -250,7 +259,8 @@ const UserOrders = () => {
                                                             {CUSTOM_CURRENCY || getCurrencySymbol(order?.currency)}
                                                             {Number(price.replace(/[^0-9.]/g, '')) *
                                                                 SALE_PRICE_MULTIPLICATION *
-                                                                CURRENCY_MULTIPLICATION}
+                                                                CURRENCY_MULTIPLICATION *
+                                                                RETAIL_PRICE_MULTIPLICATION}
                                                         </Typography>
                                                     </Grid>
                                                     <Grid
@@ -292,7 +302,8 @@ const UserOrders = () => {
                                                     {CUSTOM_CURRENCY || getCurrencySymbol(order?.currency)}
                                                     {Number(order?.total?.value?.toString()?.replace(/[^0-9.]/g, '')) *
                                                         SALE_PRICE_MULTIPLICATION *
-                                                        CURRENCY_MULTIPLICATION}
+                                                        CURRENCY_MULTIPLICATION *
+                                                        RETAIL_PRICE_MULTIPLICATION}
                                                 </Typography>
                                             </Grid>
                                         </Grid>

@@ -93,6 +93,13 @@ const Cart = () => {
     const { mutateAsync: createOrder, isLoading: loadCreateOrder } = useCartApi().useCreateOrder();
 
     useEffect(() => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'auto',
+        });
+    }, []);
+
+    useEffect(() => {
         if (!cart?.cartItems.length) return setCartProducts([]);
         setProductIds(cart?.cartItems.map(el => el.productId));
     }, [cart.cartItems]);

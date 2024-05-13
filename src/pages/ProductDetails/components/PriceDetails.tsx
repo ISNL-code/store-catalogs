@@ -9,8 +9,8 @@ const PriceDetails = ({ productDetails, isShown, selectedVariant }) => {
             <DetailsSection label={string?.price}>
                 <DetailsPrice
                     currency={store?.currency}
-                    price={Number(productDetails?.originalPrice)}
-                    discountPrice={Number(selectedVariant?.inventory[0]?.price?.replace(/[^0-9.]/g, ''))}
+                    price={Number(productDetails?.originalPrice).toFixed(2)}
+                    discountPrice={Number(selectedVariant?.inventory[0]?.price?.replace(/[^0-9.]/g, '')).toFixed(2)}
                 />
             </DetailsSection>
         );

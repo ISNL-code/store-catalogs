@@ -10,6 +10,7 @@ import axios from 'axios';
 import CouponPrice from 'components/molecules/PricesComponents/CouponPrice';
 import { STORE_CONFIG } from 'constants/stores_config';
 import ConfirmOrderModal from 'components/organisms/Modals/ConfirmOrderModal';
+import { useUserApi } from 'api/useUserApi';
 
 interface Props {
     createOrder;
@@ -24,11 +25,14 @@ const ConfirmCoupon = ({ createOrder, orderData, finalPrice, setSuccessOrdering,
     const { MIN_ITEMS_TO_BUY } = OPTIONS;
     const { storeCode } = useParams();
     const { string, store, supportedLanguage, currentUserData, cart }: CatalogContextInterface = useOutletContext();
-    const [firstName, setFirstName] = useState(currentUserData?.delivery?.firstName || '');
-    const [lastName, setLastName] = useState(currentUserData?.delivery?.lastName || '');
-    const [phone, setPhone] = useState(currentUserData?.delivery?.phone || '');
-    const [city, setCity] = useState(currentUserData?.delivery?.city || '');
-    const [address, setAddress] = useState(currentUserData?.delivery?.address || '');
+    const [firstName, setFirstName] = useState(
+        currentUserData?.delivery?.firstName || currentUserData?.billing?.firstName
+    );
+    const { mutateAsync: updateProfile } = useUserApi().useCustomerProfileUpdate({ storeCode });
+    const [lastName, setLastName] = useState(currentUserData?.delivery?.lastName || currentUserData?.billing?.lastName);
+    const [phone, setPhone] = useState(currentUserData?.delivery?.phone || currentUserData?.billing?.phone);
+    const [city, setCity] = useState(currentUserData?.delivery?.city || currentUserData?.billing?.city);
+    const [address, setAddress] = useState(currentUserData?.delivery?.address || currentUserData?.billing?.address);
     const [openModal, setOpenModal] = useState(false);
 
     const handleConfirmOrder = () => {
@@ -102,6 +106,17 @@ const ConfirmCoupon = ({ createOrder, orderData, finalPrice, setSuccessOrdering,
                         };
                     });
                     setSuccessOrdering(true);
+                    updateProfile({
+                        data: {
+                            delivery: {
+                                firstName,
+                                lastName,
+                                city,
+                                phone,
+                                address,
+                            },
+                        },
+                    });
                 })
                 .catch(err => console.log(err));
     };

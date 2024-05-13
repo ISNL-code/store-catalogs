@@ -30,6 +30,7 @@ export interface STORE_CONFIG_Interface {
         MAIN_PRICE_MULTIPLICATION: number; // use in custom catalogs for multiple main prices
         SALE_PRICE_MULTIPLICATION: number; // use in custom catalogs for multiple sales prices
         CURRENCY_MULTIPLICATION: number; // use in custom catalogs for multiple  prices if use different from default currency
+        RETAIL_PRICE_MULTIPLICATION: number; // use for custom catalog when use wholesales prices for retail
         CUSTOM_CURRENCY: string | null; // use in custom catalogs  if use different from default currency
         MIN_ITEMS_TO_BUY: number; // use to set min items for ordering
         STORE_TYPE: StoreType; // use in custom catalogs for identification of store type

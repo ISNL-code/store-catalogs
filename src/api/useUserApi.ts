@@ -104,10 +104,10 @@ export const useUserApi = () => {
             }
         );
 
-    const useCustomerProfileUpdate = () =>
+    const useCustomerProfileUpdate = ({ storeCode }) =>
         useMutation(({ data }: any) => {
             return patch({
-                url: `v1/auth/customer/`,
+                url: `v1/auth/customer?store=${storeCode}`,
                 body: {
                     ...data,
                 },

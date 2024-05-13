@@ -20,12 +20,19 @@ const UserProfile = () => {
         footerMenuHeight,
     }: CatalogContextInterface = useOutletContext();
     const { storeCode, storeName } = useParams();
-    const { mutateAsync: updateProfile, isLoading } = useUserApi().useCustomerProfileUpdate();
+    const { mutateAsync: updateProfile, isLoading } = useUserApi().useCustomerProfileUpdate({ storeCode });
     const [firstName, setFirstName] = useState(currentUserData?.delivery?.firstName);
     const [lastName, setLastName] = useState(currentUserData?.delivery?.lastName);
     const [phone, setPhone] = useState(currentUserData?.delivery?.phone);
     const [city, setCity] = useState(currentUserData?.delivery?.city);
     const [address, setAddress] = useState(currentUserData?.delivery?.address);
+
+    useEffect(() => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'auto',
+        });
+    }, []);
 
     useEffect(() => {
         if (!currentUserData) return;

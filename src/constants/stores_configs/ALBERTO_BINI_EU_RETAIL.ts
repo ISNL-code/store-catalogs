@@ -20,9 +20,10 @@ export const ALBERTO_BINI_EU_RETAIL = {
     links: [{ name: 'Wholesales', href: 'https://albertobini-brandeurope.com', description: 'WEB' }],
     options: {
         product_image_options: { width: 6, height: 9 },
-        main_price_multiplication: 2.5,
+        main_price_multiplication: 1,
         sale_price_multiplication: 1,
         currency_multiplication: 1,
+        retail_price_multiplication: 2.4,
         min_items_to_buy: 1,
         custom_currency: null,
         store_type: StoreType?.default,

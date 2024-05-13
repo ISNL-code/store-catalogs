@@ -9,13 +9,19 @@ interface Props {
 
 const CartModelPrice = ({ price, currency }: Props) => {
     const { OPTIONS } = STORE_CONFIG;
-    const { CURRENCY_MULTIPLICATION, CUSTOM_CURRENCY, SALE_PRICE_MULTIPLICATION } = OPTIONS;
+    const { CURRENCY_MULTIPLICATION, CUSTOM_CURRENCY, SALE_PRICE_MULTIPLICATION, RETAIL_PRICE_MULTIPLICATION } =
+        OPTIONS;
 
     return (
         <>
             <Typography variant="h3" sx={{ color: 'gray' }}>
                 {CUSTOM_CURRENCY || getCurrencySymbol(currency)}
-                {Number(price) * SALE_PRICE_MULTIPLICATION * CURRENCY_MULTIPLICATION}
+                {(
+                    Number(price) *
+                    SALE_PRICE_MULTIPLICATION *
+                    CURRENCY_MULTIPLICATION *
+                    RETAIL_PRICE_MULTIPLICATION
+                ).toFixed(2)}
             </Typography>
         </>
     );

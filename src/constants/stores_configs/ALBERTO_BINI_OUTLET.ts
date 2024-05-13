@@ -22,6 +22,7 @@ export const ALBERTO_BINI_OUTLET = {
         product_image_options: { width: 6, height: 9 },
         main_price_multiplication: 3,
         sale_price_multiplication: 2,
+        retail_price_multiplication: 1,
         currency_multiplication: 40,
         custom_currency: '₴',
         min_items_to_buy: 1,

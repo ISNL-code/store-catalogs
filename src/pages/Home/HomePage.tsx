@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Box, Typography, Grid } from '@mui/material';
 import { useDevice } from 'hooks/useDevice';
 import { useOutletContext } from 'react-router-dom';
@@ -15,6 +15,13 @@ const HomePage = () => {
     const [openQuestionForm, setOpenQuestionForm] = useState(false);
     const [openSuccessModal, setOpenSuccessModal] = useState(false);
     const { sx } = useDevice();
+
+    useEffect(() => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'auto',
+        });
+    }, []);
 
     const variants = num => {
         return { hidden: { opacity: sx ? 0 : 1, y: sx ? 100 * num : 0 }, visible: { opacity: 1, y: 0 } };

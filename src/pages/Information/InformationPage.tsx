@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import InstrumentalSubHeader from 'components/organisms/InstrumentalSubHeader/InstrumentalSubHeader';
 import Grid from '@mui/material/Unstable_Grid2';
 import { Box, Button, Typography } from '@mui/material';
@@ -14,6 +14,13 @@ const InformationPage = () => {
     const paymentsDeliveryRef = useRef(null);
     const returnExchangeRef = useRef(null);
     const privacyPolicyRef = useRef(null);
+
+    useEffect(() => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'auto',
+        });
+    }, []);
 
     const scrollToRef = (ref: React.RefObject<HTMLDivElement>) => {
         if (ref.current) {

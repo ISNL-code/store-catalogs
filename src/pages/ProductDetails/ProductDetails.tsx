@@ -50,6 +50,13 @@ const ProductDetails = () => {
     const [selectedVariant, setSelectedVariant] = useState<SelectedVarianInterface | undefined | null>(null);
     const [loading, setLoading] = useState(true);
 
+    useEffect(() => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'auto',
+        });
+    }, []);
+
     const {
         data: productRes,
         isFetching: loadProduct,

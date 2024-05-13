@@ -9,7 +9,7 @@ interface Props {
 const SideLink = ({ name, href }: Props) => {
     const { sx } = useDevice();
     return (
-        <a href={href} style={{ textDecoration: 'none' }}>
+        <a href={href} style={{ textDecoration: 'none' }} target="_blank" rel="noreferrer">
             <Box
                 sx={{
                     display: 'flex',
