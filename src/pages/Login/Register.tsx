@@ -275,6 +275,7 @@ export default function Register({ setAuth, lang, string, close, setOpenModalTyp
                         }}
                         label={string?.country}
                         MenuProps={{
+                            disablePortal: true,
                             onClick: e => e.stopPropagation(),
                             PaperProps: {
                                 style: {
