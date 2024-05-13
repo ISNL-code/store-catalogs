@@ -160,7 +160,7 @@ const Cart = () => {
 
         setTimeout(() => {
             setLoading(false);
-        }, 1000);
+        }, 200);
     }, [loadProducts, loading]);
 
     useEffect(() => {
@@ -301,6 +301,7 @@ const Cart = () => {
                                 orderData={orderData}
                                 finalPrice={finalPrice}
                                 setSuccessOrdering={setSuccessOrdering}
+                                setOrderData={setOrderData}
                             />
                         </Box>
                     </Grid>

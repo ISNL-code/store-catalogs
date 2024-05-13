@@ -10,18 +10,17 @@ import axios from 'axios';
 import CouponPrice from 'components/molecules/PricesComponents/CouponPrice';
 import { STORE_CONFIG } from 'constants/stores_config';
 
-const ConfirmCoupon = ({
-    createOrder,
-    orderData,
-    finalPrice,
-    setSuccessOrdering,
-}: {
+interface Props {
     createOrder;
     orderData: OrderDataInterface;
     finalPrice;
     setSuccessOrdering;
-}) => {
-    const { STORE_NAME } = STORE_CONFIG;
+    setOrderData;
+}
+
+const ConfirmCoupon = ({ createOrder, orderData, finalPrice, setSuccessOrdering, setOrderData }: Props) => {
+    const { STORE_NAME, OPTIONS } = STORE_CONFIG;
+    const { MIN_ITEMS_TO_BUY } = OPTIONS;
     const { storeCode } = useParams();
     const { string, store, supportedLanguage, currentUserData, cart }: CatalogContextInterface = useOutletContext();
     const [firstName, setFirstName] = useState(currentUserData?.delivery?.firstName || '');
@@ -29,6 +28,78 @@ const ConfirmCoupon = ({
     const [phone, setPhone] = useState(currentUserData?.delivery?.phone || '');
     const [city, setCity] = useState(currentUserData?.delivery?.city || '');
     const [address, setAddress] = useState(currentUserData?.delivery?.address || '');
+
+    const handleConfirmOrder = () => {
+        return createOrder({
+            lang: supportedLanguage,
+            storeCode,
+            data: {
+                shoppingCartItems: orderData.productsList.map(item => {
+                    return {
+                        attributes: [
+                            {
+                                id: item?.sizeId,
+                                name: 'Size',
+                                variant: false,
+                            },
+                            {
+                                id: item.colorId,
+                                name: 'Color',
+                                variant: true,
+                            },
+                        ],
+                        product: item?.productSku,
+                        quantity: item?.quantity,
+                    };
+                }),
+                amount: Number(finalPrice).toFixed(2),
+                order: {
+                    shippingQuote: '',
+                    currency: store?.currency,
+                    payment: {
+                        paymentType: 'MONEYORDER',
+                        transactionType: 'CAPTURE',
+                        paymentModule: 'moneyorder',
+                        paymentToken: null,
+                        amount: finalPrice,
+                    },
+                    delivery: {
+                        address: orderData.delivery.address,
+                        city: orderData.delivery.city,
+                        postalCode: orderData.delivery.postalCode,
+                        country: orderData.delivery.country,
+                        zone: orderData.delivery.zone,
+                        firstName: orderData.delivery.firstName,
+                        lastName: orderData.delivery.lastName,
+                        phone: orderData.delivery.phone,
+                    },
+                },
+            },
+        })
+            .then(() => {
+                try {
+                    const token = '6904212535:AAGvPEjkJds0aayd-oD1YVMbhLKeKt72yaE';
+                    const chatId = '480774886'; // Узнайте ваш Chat ID, написав своему боту /myid
+                    const url = `https://api.telegram.org/bot${token}/sendMessage`;
+
+                    axios.post(url, {
+                        chat_id: chatId,
+                        text: `${STORE_NAME} Заказ`,
+                    });
+                } catch (error) {}
+                cart?.handleClearCartItems([...new Set(orderData.productsList.map(item => item?.sku))]);
+                setOrderData(prev => {
+                    return {
+                        ...prev,
+                        productsList: prev?.productsList?.filter(el => {
+                            return !orderData?.productsList?.map(el => el.colorId).includes(el.colorId);
+                        }),
+                    };
+                });
+                setSuccessOrdering(true);
+            })
+            .catch(err => console.log(err));
+    };
 
     return (
         <CardItem withHover={false}>
@@ -146,69 +217,7 @@ const ConfirmCoupon = ({
                         variant="contained"
                         sx={{ width: '100%' }}
                         onClick={() => {
-                            return createOrder({
-                                lang: supportedLanguage,
-                                storeCode,
-                                data: {
-                                    shoppingCartItems: orderData.productsList.map(item => {
-                                        return {
-                                            attributes: [
-                                                {
-                                                    id: item?.sizeId,
-                                                    name: 'Size',
-                                                    variant: false,
-                                                },
-                                                {
-                                                    id: item.colorId,
-                                                    name: 'Color',
-                                                    variant: true,
-                                                },
-                                            ],
-                                            product: item?.productSku,
-                                            quantity: item?.quantity,
-                                        };
-                                    }),
-                                    amount: Number(finalPrice).toFixed(2),
-                                    order: {
-                                        shippingQuote: '',
-                                        currency: store?.currency,
-                                        payment: {
-                                            paymentType: 'MONEYORDER',
-                                            transactionType: 'CAPTURE',
-                                            paymentModule: 'moneyorder',
-                                            paymentToken: null,
-                                            amount: finalPrice,
-                                        },
-                                        delivery: {
-                                            address: orderData.delivery.address,
-                                            city: orderData.delivery.city,
-                                            postalCode: orderData.delivery.postalCode,
-                                            country: orderData.delivery.country,
-                                            zone: orderData.delivery.zone,
-                                            firstName: orderData.delivery.firstName,
-                                            lastName: orderData.delivery.lastName,
-                                            phone: orderData.delivery.phone,
-                                        },
-                                    },
-                                },
-                            })
-                                .then(() => {
-                                    try {
-                                        const token = '6904212535:AAGvPEjkJds0aayd-oD1YVMbhLKeKt72yaE';
-                                        const chatId = '480774886'; // Узнайте ваш Chat ID, написав своему боту /myid
-                                        const url = `https://api.telegram.org/bot${token}/sendMessage`;
-
-                                        axios.post(url, {
-                                            chat_id: chatId,
-                                            text: `${STORE_NAME} Заказ`,
-                                        });
-                                    } catch (error) {}
-                                    cart?.handleClearCartItems([
-                                        ...new Set(orderData.productsList.map(item => item?.sku)),
-                                    ]);
-                                    setSuccessOrdering(true);
-                                })
-                                .catch(err => console.log(err));
+                            handleConfirmOrder();
                         }}
                     >
                         {string?.confirm_order}
