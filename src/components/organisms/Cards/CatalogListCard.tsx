@@ -54,6 +54,7 @@ interface CatalogCardProps {
         name?: string;
         code?: string;
     }[];
+    viewMode;
 }
 
 export const MemoizedColorIndicatorButton = memo(ColorIndicatorButton, (prevProps, nextProps) => {
@@ -61,13 +62,13 @@ export const MemoizedColorIndicatorButton = memo(ColorIndicatorButton, (prevProp
 });
 
 const CatalogListCard = memo<CatalogCardProps>(
-    ({ modelsVariants, name, productId, currency, setProductsList, promoTags }) => {
+    ({ modelsVariants, name, productId, currency, setProductsList, promoTags, viewMode }) => {
         const WINDOW_WIDTH = useWindowWidth();
         const { OPTIONS } = STORE_CONFIG;
         const { STORE_TYPE, PLAN_OPTIONS, PRODUCT_IMAGE_OPTIONS } = OPTIONS;
         const sliderRef = useRef<HTMLImageElement>(null);
         const navigate = useNavigate();
-        const { cart, favorites, currentUserData, viewMode }: CatalogContextInterface = useOutletContext();
+        const { cart, favorites, currentUserData }: CatalogContextInterface = useOutletContext();
         const colorsBoxRef = useRef(null);
         const { storeCode, storeName } = useParams();
         const [shownModel, setShownModel] = useState<ShownModelInterface | null>(null);

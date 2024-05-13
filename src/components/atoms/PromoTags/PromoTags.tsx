@@ -34,8 +34,8 @@ const PromoTags = ({ value, size, selected = false, action = () => {}, disabled 
                 };
             if (code.toLowerCase() === 'autumn')
                 return {
-                    border: '2px solid #867901',
-                    background: `linear-gradient(135deg, #e2ad1a 60%, #e9cfcf) padding-box, linear-gradient(90deg, #997e08dc 70%, #eaf5b8) border-box`,
+                    border: '2px solid #dbd06d',
+                    background: `linear-gradient(135deg, #e2ad1a 60%, #f5b8b8) padding-box, linear-gradient(90deg, #997e08dc 70%, #eaf5b8) border-box`,
                     color: 'white',
                     fontWeight: 700,
                 };

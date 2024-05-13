@@ -72,25 +72,28 @@ const Catalog = () => {
     }: CatalogContextInterface = useOutletContext();
     const [showTopBtn, setShowTopBtn] = useState(false);
     const [showMobileStoresButton, setShowMobileStoresButton] = useState(true);
-    const [paddings, setPaddings] = useState(2);
-    const [spacings, setSpacings] = useState(0);
+
     const [loading, setLoading] = useState(true);
     const [open, setOpen] = useState(true);
 
-    useEffect(() => {
+    const getGridSpacing = () => {
+        let spacing;
+        let padding;
+
         switch (viewMode) {
             case ViewModeType.card:
-                setPaddings(2);
-                setSpacings(2);
+                padding = sx ? 2 : 4;
+                spacing = 2;
                 break;
             case ViewModeType.grid_l:
             case ViewModeType.grid_m:
-                setPaddings(sx ? 0 : 4);
-                setSpacings(0);
+                padding = sx ? 0 : 4;
+                spacing = 0;
                 break;
         }
-        setLoading(true);
-    }, [viewMode, sx]);
+
+        return { spacing, padding };
+    };
 
     useEffect(() => {
         if (loadProducts || !productsList) return;
@@ -117,14 +120,14 @@ const Catalog = () => {
                 behavior: 'auto',
             });
             setScrollPosition(0);
-        }, 150); // eslint-disable-next-line react-hooks/exhaustive-deps
+        }, 300); // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (
         <Box
-            pt={paddings}
+            pt={getGridSpacing()?.padding}
             pb={footerMenuHeight}
-            px={paddings}
+            px={getGridSpacing()?.padding}
             sx={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}
         >
             {showTopBtn && <ScrollButton />}
@@ -142,50 +145,49 @@ const Catalog = () => {
 
             {productsList?.length ? (
                 <Box sx={{ flexGrow: 1 }}>
-                    {MIN_ITEMS_TO_BUY > 1 && (
-                        <Collapse in={open}>
-                            <Box mb={2}>
-                                <Alert
-                                    variant="standard"
-                                    severity="info"
-                                    color="warning"
-                                    sx={{ fontSize: sx ? 14 : 18 }}
-                                    action={
-                                        <IconButton
-                                            aria-label="close"
-                                            color="inherit"
-                                            size="small"
-                                            onClick={() => {
-                                                setOpen(false);
-                                            }}
-                                        >
-                                            <CloseIcon fontSize="inherit" />
-                                        </IconButton>
-                                    }
-                                >
-                                    {string?.wholesales_ordering_limitation_message}
-                                </Alert>
-                            </Box>
-                        </Collapse>
-                    )}
-                    <TransitionBox dependency={loading} time="1250">
-                        {!loading && (
-                            <Grid className="CatalogList" container spacing={spacings}>
-                                {productsList?.map(product => {
-                                    return (
-                                        <CatalogListCard
-                                            key={product.id}
-                                            modelsVariants={product.variants as any}
-                                            name={product.name}
-                                            productId={product.id}
-                                            currency={getCurrencySymbol(store?.currency)}
-                                            setProductsList={setProductsList}
-                                            promoTags={product?.promoTags}
-                                        />
-                                    );
-                                })}
-                            </Grid>
+                    <TransitionBox dependency={loading} time={250}>
+                        {MIN_ITEMS_TO_BUY > 1 && (
+                            <Collapse in={open}>
+                                <Box mb={2}>
+                                    <Alert
+                                        variant="standard"
+                                        severity="info"
+                                        color="warning"
+                                        sx={{ fontSize: sx ? 14 : 18 }}
+                                        action={
+                                            <IconButton
+                                                aria-label="close"
+                                                color="inherit"
+                                                size="small"
+                                                onClick={() => {
+                                                    setOpen(false);
+                                                }}
+                                            >
+                                                <CloseIcon fontSize="inherit" />
+                                            </IconButton>
+                                        }
+                                    >
+                                        {string?.wholesales_ordering_limitation_message}
+                                    </Alert>
+                                </Box>
+                            </Collapse>
                         )}
+                        <Grid className="CatalogList" container spacing={getGridSpacing()?.spacing}>
+                            {productsList?.map(product => {
+                                return (
+                                    <CatalogListCard
+                                        key={product.id}
+                                        modelsVariants={product.variants as any}
+                                        name={product.name}
+                                        productId={product.id}
+                                        currency={getCurrencySymbol(store?.currency)}
+                                        setProductsList={setProductsList}
+                                        promoTags={product?.promoTags}
+                                        viewMode={viewMode}
+                                    />
+                                );
+                            })}
+                        </Grid>
                     </TransitionBox>
                 </Box>
             ) : (

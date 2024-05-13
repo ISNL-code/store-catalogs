@@ -67,8 +67,7 @@ const Favorites = () => {
     const [loading, setLoading] = useState(true);
     const [productIds, setProductIds] = useState<string[] | any[]>([]);
     const [favoriteProducts, setFavoriteProducts] = useState<ProductVariantInterface[] | any[]>([]);
-    const [paddings, setPaddings] = useState(2);
-    const [spacings, setSpacings] = useState(0);
+
     const [isOpenModal, setIsOpenModal] = useState(false);
 
     const { isFetching: loadProducts, refetch: updateFavoriteProductsRes } = useProductsApi().useGetProductByIDForCart({
@@ -77,20 +76,24 @@ const Favorites = () => {
         storeCode: STORE_CODE,
     });
 
-    useEffect(() => {
+    const getGridSpacing = () => {
+        let spacing;
+        let padding;
+
         switch (viewMode) {
             case ViewModeType.card:
-                setPaddings(2);
-                setSpacings(2);
+                padding = 2;
+                spacing = 2;
                 break;
             case ViewModeType.grid_l:
             case ViewModeType.grid_m:
-                setPaddings(sx ? 0 : 4);
-                setSpacings(0);
+                padding = sx ? 0 : 4;
+                spacing = 0;
                 break;
         }
-        setLoading(true);
-    }, [viewMode, sx]);
+
+        return { spacing, padding };
+    };
 
     useEffect(() => {
         if (loadProducts) return;
@@ -189,7 +192,12 @@ const Favorites = () => {
     }, []);
 
     return (
-        <Box pt={paddings} px={paddings} sx={{ pb: `calc(${footerMenuHeight} + 16px)` }}>
+        <Box
+            pt={getGridSpacing()?.padding}
+            pb={footerMenuHeight}
+            px={getGridSpacing()?.padding}
+            sx={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}
+        >
             {showTopBtn && <ScrollButton />}
             {isOpenModal && (
                 <DeleteModal
@@ -210,8 +218,8 @@ const Favorites = () => {
 
             {favoriteProducts?.length ? (
                 <Box sx={{ minHeight: loading ? '100vh' : 'auto' }}>
-                    <TransitionBox dependency={loading} time="1250">
-                        <Grid className="CatalogList" container spacing={spacings}>
+                    <TransitionBox dependency={loading} time={250}>
+                        <Grid className="CatalogList" container spacing={getGridSpacing()?.spacing}>
                             {favoriteProducts?.map(product => {
                                 return (
                                     <CatalogListCard
@@ -221,6 +229,7 @@ const Favorites = () => {
                                         productId={product?.productId}
                                         currency={getCurrencySymbol(store?.currency)}
                                         promoTags={product?.promoTags}
+                                        viewMode={viewMode}
                                     />
                                 );
                             })}

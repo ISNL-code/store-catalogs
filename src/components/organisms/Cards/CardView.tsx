@@ -19,7 +19,7 @@ const CardView = ({ SliderComponent, CardDetails, CardDecoration, opacity, ...re
     };
 
     return (
-        <Grid xs={getGridValue()} sx={{ opacity: opacity ? 1 : 0, transition: 'all 250ms linear' }} {...rest}>
+        <Grid xs={getGridValue()} sx={{ opacity: opacity ? 1 : 0 }} {...rest}>
             <Box
                 ref={cardRef}
                 sx={{
@@ -30,7 +30,6 @@ const CardView = ({ SliderComponent, CardDetails, CardDecoration, opacity, ...re
                     display: 'flex',
                     flexDirection: 'column',
                     justifyContent: 'space-between',
-                    transition: 'all 500ms cubic-bezier(0.4, 0, 0.2, 1)',
                     position: 'relative',
                 }}
                 onClick={() => {

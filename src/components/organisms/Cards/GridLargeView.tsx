@@ -20,7 +20,7 @@ const GridLargeView = ({ SliderComponent, CardDetails, CardDecoration, opacity, 
     };
 
     return (
-        <Grid xs={getGridValue()} sx={{ opacity: opacity ? 1 : 0, transition: 'all 500ms linear' }} {...rest}>
+        <Grid xs={getGridValue()} sx={{ opacity: opacity ? 1 : 0 }} {...rest}>
             <Box
                 ref={cardRef}
                 sx={{
@@ -34,7 +34,6 @@ const GridLargeView = ({ SliderComponent, CardDetails, CardDecoration, opacity, 
                     display: 'flex',
                     flexDirection: 'column',
                     justifyContent: 'space-between',
-                    transition: 'all 500ms cubic-bezier(0.4, 0, 0.2, 1)',
                 }}
                 onClick={() => {
                     setScrollPosition(cardRef?.current?.offsetTop);
