@@ -30,75 +30,78 @@ const ConfirmCoupon = ({ createOrder, orderData, finalPrice, setSuccessOrdering,
     const [address, setAddress] = useState(currentUserData?.delivery?.address || '');
 
     const handleConfirmOrder = () => {
-        return createOrder({
-            lang: supportedLanguage,
-            storeCode,
-            data: {
-                shoppingCartItems: orderData.productsList.map(item => {
-                    return {
-                        attributes: [
-                            {
-                                id: item?.sizeId,
-                                name: 'Size',
-                                variant: false,
-                            },
-                            {
-                                id: item.colorId,
-                                name: 'Color',
-                                variant: true,
-                            },
-                        ],
-                        product: item?.productSku,
-                        quantity: item?.quantity,
-                    };
-                }),
-                amount: Number(finalPrice).toFixed(2),
-                order: {
-                    shippingQuote: '',
-                    currency: store?.currency,
-                    payment: {
-                        paymentType: 'MONEYORDER',
-                        transactionType: 'CAPTURE',
-                        paymentModule: 'moneyorder',
-                        paymentToken: null,
-                        amount: finalPrice,
-                    },
-                    delivery: {
-                        address: orderData.delivery.address,
-                        city: orderData.delivery.city,
-                        postalCode: orderData.delivery.postalCode,
-                        country: orderData.delivery.country,
-                        zone: orderData.delivery.zone,
-                        firstName: orderData.delivery.firstName,
-                        lastName: orderData.delivery.lastName,
-                        phone: orderData.delivery.phone,
+        if (orderData?.productsList?.reduce((acc, el) => acc + 1 * Number(el?.quantity), 0) < MIN_ITEMS_TO_BUY) {
+            alert('low');
+        } else
+            return createOrder({
+                lang: supportedLanguage,
+                storeCode,
+                data: {
+                    shoppingCartItems: orderData.productsList.map(item => {
+                        return {
+                            attributes: [
+                                {
+                                    id: item?.sizeId,
+                                    name: 'Size',
+                                    variant: false,
+                                },
+                                {
+                                    id: item.colorId,
+                                    name: 'Color',
+                                    variant: true,
+                                },
+                            ],
+                            product: item?.productSku,
+                            quantity: item?.quantity,
+                        };
+                    }),
+                    amount: Number(finalPrice).toFixed(2),
+                    order: {
+                        shippingQuote: '',
+                        currency: store?.currency,
+                        payment: {
+                            paymentType: 'MONEYORDER',
+                            transactionType: 'CAPTURE',
+                            paymentModule: 'moneyorder',
+                            paymentToken: null,
+                            amount: finalPrice,
+                        },
+                        delivery: {
+                            address: orderData.delivery.address,
+                            city: orderData.delivery.city,
+                            postalCode: orderData.delivery.postalCode,
+                            country: orderData.delivery.country,
+                            zone: orderData.delivery.zone,
+                            firstName: orderData.delivery.firstName,
+                            lastName: orderData.delivery.lastName,
+                            phone: orderData.delivery.phone,
+                        },
                     },
                 },
-            },
-        })
-            .then(() => {
-                try {
-                    const token = '6904212535:AAGvPEjkJds0aayd-oD1YVMbhLKeKt72yaE';
-                    const chatId = '480774886'; // Узнайте ваш Chat ID, написав своему боту /myid
-                    const url = `https://api.telegram.org/bot${token}/sendMessage`;
-
-                    axios.post(url, {
-                        chat_id: chatId,
-                        text: `${STORE_NAME} Заказ`,
-                    });
-                } catch (error) {}
-                cart?.handleClearCartItems([...new Set(orderData.productsList.map(item => item?.sku))]);
-                setOrderData(prev => {
-                    return {
-                        ...prev,
-                        productsList: prev?.productsList?.filter(el => {
-                            return !orderData?.productsList?.map(el => el.colorId).includes(el.colorId);
-                        }),
-                    };
-                });
-                setSuccessOrdering(true);
             })
-            .catch(err => console.log(err));
+                .then(() => {
+                    try {
+                        const token = '6904212535:AAGvPEjkJds0aayd-oD1YVMbhLKeKt72yaE';
+                        const chatId = '480774886'; // Узнайте ваш Chat ID, написав своему боту /myid
+                        const url = `https://api.telegram.org/bot${token}/sendMessage`;
+
+                        axios.post(url, {
+                            chat_id: chatId,
+                            text: `${STORE_NAME} Заказ`,
+                        });
+                    } catch (error) {}
+                    cart?.handleClearCartItems([...new Set(orderData.productsList.map(item => item?.sku))]);
+                    setOrderData(prev => {
+                        return {
+                            ...prev,
+                            productsList: prev?.productsList?.filter(el => {
+                                return !orderData?.productsList?.map(el => el.colorId).includes(el.colorId);
+                            }),
+                        };
+                    });
+                    setSuccessOrdering(true);
+                })
+                .catch(err => console.log(err));
     };
 
     return (
