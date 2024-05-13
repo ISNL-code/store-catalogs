@@ -1,6 +1,6 @@
 import { Alert, Box, Collapse, IconButton } from '@mui/material';
 import Loader from 'components/atoms/Loader/Loader';
-import { useEffect, useState } from 'react';
+import { memo, useEffect, useState } from 'react';
 import { useOutletContext } from 'react-router-dom';
 import { getCurrencySymbol } from 'helpers/getCurrencySymbol';
 import ScrollButton from 'components/atoms/Buttons/ScrollButton';
@@ -21,26 +21,54 @@ import CatalogListCard from 'components/organisms/Cards/CatalogListCard';
 import CloseIcon from '@mui/icons-material/Close';
 import { useDevice } from 'hooks/useDevice';
 import { STORE_CONFIG } from 'constants/stores_config';
+import { ViewModeType } from 'constants/types';
+
+const InstrumentalSubHeaderMemo = memo(() => {
+    const { OPTIONS, SIDE_LINKS } = STORE_CONFIG;
+    const { PLAN_OPTIONS } = OPTIONS;
+
+    return (
+        <InstrumentalSubHeader
+            StartSlot={() => (
+                <>
+                    {SIDE_LINKS?.map(({ name, href }) => (
+                        <Box sx={{ display: 'flex' }} key={href}>
+                            <SideLink name={name} href={href} />
+                        </Box>
+                    ))}
+                </>
+            )}
+            EndSlot={() => (
+                <Box sx={{ display: 'flex', gap: 0.75 }}>
+                    <ViewModeButton />
+                    <SkuSearch />
+                    <FilterCategories isShown={PLAN_OPTIONS?.categories} />
+                </Box>
+            )}
+        />
+    );
+});
 
 const Catalog = () => {
-    const { OPTIONS, SIDE_LINKS, STORE_CODE, STORE_NAME } = STORE_CONFIG;
+    const { OPTIONS, STORE_CODE, STORE_NAME } = STORE_CONFIG;
     const { PLAN_OPTIONS, MIN_ITEMS_TO_BUY } = OPTIONS;
     const { sx } = useDevice();
     const {
         store,
         productsList,
         scrollPosition,
+        instrumentalBarHeight,
+        headerHeight,
         loadProducts,
         setScrollPosition,
         setProductsList,
-        instrumentalBarHeight,
-        headerHeight,
         handleSetProductsPage,
         totalProductsCount,
         currentProductsPage,
         totalProductsPages,
         footerMenuHeight,
         string,
+        viewMode,
     }: CatalogContextInterface = useOutletContext();
     const [showTopBtn, setShowTopBtn] = useState(false);
     const [showMobileStoresButton, setShowMobileStoresButton] = useState(true);
@@ -50,12 +78,27 @@ const Catalog = () => {
     const [open, setOpen] = useState(true);
 
     useEffect(() => {
+        switch (viewMode) {
+            case ViewModeType.card:
+                setPaddings(2);
+                setSpacings(2);
+                break;
+            case ViewModeType.grid_l:
+            case ViewModeType.grid_m:
+                setPaddings(sx ? 0 : 4);
+                setSpacings(0);
+                break;
+        }
+        setLoading(true);
+    }, [viewMode, sx]);
+
+    useEffect(() => {
         if (loadProducts || !productsList) return;
 
         setTimeout(() => {
             setLoading(false);
-        }, 100); // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [loadProducts, loading]);
+        }, 300); // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [loading]);
 
     useEffect(() => {
         window.addEventListener('scroll', () => {
@@ -77,16 +120,13 @@ const Catalog = () => {
         }, 150); // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    const handleBodyPadding = val => {
-        setPaddings(val);
-    };
-
-    const handleCardSpacings = val => {
-        setSpacings(val);
-    };
-
     return (
-        <Box pt={paddings} pb={footerMenuHeight} px={paddings}>
+        <Box
+            pt={paddings}
+            pb={footerMenuHeight}
+            px={paddings}
+            sx={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}
+        >
             {showTopBtn && <ScrollButton />}
             {showMobileStoresButton && (
                 <>
@@ -98,35 +138,18 @@ const Catalog = () => {
             {PLAN_OPTIONS?.contacts && (
                 <CallBackButton path={`/catalog/${STORE_CODE}/${STORE_NAME?.replaceAll(' ', '-').toLowerCase()}/`} />
             )}
-            <InstrumentalSubHeader
-                StartSlot={() => (
-                    <>
-                        {SIDE_LINKS?.map(({ name, href }) => (
-                            <Box sx={{ display: 'flex' }} key={href}>
-                                <SideLink name={name} href={href} />
-                            </Box>
-                        ))}
-                    </>
-                )}
-                EndSlot={() => (
-                    <Box sx={{ display: 'flex', gap: 0.75 }}>
-                        <ViewModeButton />
-                        <SkuSearch />
-                        <FilterCategories isShown={PLAN_OPTIONS?.categories} />
-                    </Box>
-                )}
-            />
+            <InstrumentalSubHeaderMemo />
 
             {productsList?.length ? (
-                <TransitionBox dependency={loading} time="1250">
+                <Box sx={{ flexGrow: 1 }}>
                     {MIN_ITEMS_TO_BUY > 1 && (
                         <Collapse in={open}>
-                            <Box mt={-paddings}>
+                            <Box mb={2}>
                                 <Alert
                                     variant="standard"
                                     severity="info"
                                     color="warning"
-                                    sx={{ my: 2, fontSize: sx ? 14 : 18 }}
+                                    sx={{ fontSize: sx ? 14 : 18 }}
                                     action={
                                         <IconButton
                                             aria-label="close"
@@ -145,24 +168,26 @@ const Catalog = () => {
                             </Box>
                         </Collapse>
                     )}
-                    <Grid className="CatalogList" container spacing={spacings}>
-                        {productsList?.map(product => {
-                            return (
-                                <CatalogListCard
-                                    key={product.id}
-                                    modelsVariants={product.variants as any}
-                                    name={product.name}
-                                    productId={product.id}
-                                    currency={getCurrencySymbol(store?.currency)}
-                                    setProductsList={setProductsList}
-                                    promoTags={product?.promoTags}
-                                    handleBodyPadding={handleBodyPadding}
-                                    handleCardSpacings={handleCardSpacings}
-                                />
-                            );
-                        })}
-                    </Grid>
-                </TransitionBox>
+                    <TransitionBox dependency={loading} time="1250">
+                        {!loading && (
+                            <Grid className="CatalogList" container spacing={spacings}>
+                                {productsList?.map(product => {
+                                    return (
+                                        <CatalogListCard
+                                            key={product.id}
+                                            modelsVariants={product.variants as any}
+                                            name={product.name}
+                                            productId={product.id}
+                                            currency={getCurrencySymbol(store?.currency)}
+                                            setProductsList={setProductsList}
+                                            promoTags={product?.promoTags}
+                                        />
+                                    );
+                                })}
+                            </Grid>
+                        )}
+                    </TransitionBox>
+                </Box>
             ) : (
                 <>{!loadProducts && !loading && <EmptyPage isShown />}</>
             )}
@@ -171,7 +196,7 @@ const Catalog = () => {
                     <PaginationButton
                         setCurrentPage={handleSetProductsPage}
                         totalCount={totalProductsCount}
-                        loadProducts={loadProducts}
+                        loading={loading || loadProducts}
                         productsList={productsList}
                         page={currentProductsPage}
                         totalPages={totalProductsPages}

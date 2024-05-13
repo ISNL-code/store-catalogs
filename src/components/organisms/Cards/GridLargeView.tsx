@@ -1,19 +1,11 @@
 import { Box } from '@mui/material';
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
 import { useOutletContext } from 'react-router-dom';
 import { useDevice } from 'hooks/useDevice';
 import Grid from '@mui/material/Unstable_Grid2';
 import { Colors } from 'colors';
 
-const GridLargeView = ({
-    SliderComponent,
-    CardDetails,
-    CardDecoration,
-    opacity,
-    handleBodyPadding,
-    handleCardSpacings,
-    ...rest
-}) => {
+const GridLargeView = ({ SliderComponent, CardDetails, CardDecoration, opacity, ...rest }) => {
     const cardRef = useRef<HTMLElement>(null);
     const { setScrollPosition }: any = useOutletContext();
     const { s, sx, mx, m, ls } = useDevice();
@@ -26,11 +18,6 @@ const GridLargeView = ({
         if (ls) return 2.4;
         return 2;
     };
-
-    useEffect(() => {
-        handleBodyPadding(sx ? 0 : 4);
-        handleCardSpacings(0);
-    }, [sx]); // eslint-disable-line
 
     return (
         <Grid xs={getGridValue()} sx={{ opacity: opacity ? 1 : 0, transition: 'all 500ms linear' }} {...rest}>

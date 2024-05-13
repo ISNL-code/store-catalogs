@@ -1,6 +1,6 @@
 import { Box } from '@mui/material';
 import Loader from 'components/atoms/Loader/Loader';
-import { useEffect, useState } from 'react';
+import { memo, useEffect, useState } from 'react';
 import { useOutletContext } from 'react-router-dom';
 import { getCurrencySymbol } from 'helpers/getCurrencySymbol';
 import ScrollButton from 'components/atoms/Buttons/ScrollButton';
@@ -18,19 +18,56 @@ import { STORE_CONFIG } from 'constants/stores_config';
 import ViewModeButton from 'components/molecules/ToolsButtons/ViewModeButton';
 import CatalogListCard from 'components/organisms/Cards/CatalogListCard';
 import ClearListButton from 'components/molecules/ToolsButtons/ClearListButton';
-import { StoreType } from 'constants/types';
+import { StoreType, ViewModeType } from 'constants/types';
+import { useDevice } from 'hooks/useDevice';
+
+interface InstrumentalBarProps {
+    setIsOpenModal;
+}
+
+const InstrumentalSubHeaderMemo = memo<InstrumentalBarProps>(({ setIsOpenModal }) => {
+    const { string }: CatalogContextInterface = useOutletContext();
+    return (
+        <InstrumentalSubHeader
+            StartSlot={() => <BackButton nav={-1} action={() => {}} />}
+            EndSlot={() => (
+                <Box sx={{ display: 'flex', gap: 0.75 }}>
+                    <ViewModeButton />
+                    <ClearListButton
+                        action={() => {
+                            setIsOpenModal(true);
+                        }}
+                        isShown
+                        title={string?.clear_favorites}
+                    />
+                </Box>
+            )}
+        />
+    );
+});
 
 const Favorites = () => {
+    const { sx } = useDevice();
     const { OPTIONS, STORE_CODE, STORE_NAME } = STORE_CONFIG;
     const { STORE_TYPE, PLAN_OPTIONS } = OPTIONS;
-    const { store, favorites, supportedLanguage, string, footerMenuHeight }: CatalogContextInterface =
-        useOutletContext();
+    const {
+        store,
+        favorites,
+        supportedLanguage,
+        string,
+        footerMenuHeight,
+        viewMode,
+        scrollPosition,
+        instrumentalBarHeight,
+        headerHeight,
+        setScrollPosition,
+    }: CatalogContextInterface = useOutletContext();
     const mount = useIsMount();
     const [showTopBtn, setShowTopBtn] = useState(false);
     const [loading, setLoading] = useState(true);
     const [productIds, setProductIds] = useState<string[] | any[]>([]);
     const [favoriteProducts, setFavoriteProducts] = useState<ProductVariantInterface[] | any[]>([]);
-    const [paddings, setPaddings] = useState(0);
+    const [paddings, setPaddings] = useState(2);
     const [spacings, setSpacings] = useState(0);
     const [isOpenModal, setIsOpenModal] = useState(false);
 
@@ -39,6 +76,29 @@ const Favorites = () => {
         lang: supportedLanguage,
         storeCode: STORE_CODE,
     });
+
+    useEffect(() => {
+        switch (viewMode) {
+            case ViewModeType.card:
+                setPaddings(2);
+                setSpacings(2);
+                break;
+            case ViewModeType.grid_l:
+            case ViewModeType.grid_m:
+                setPaddings(sx ? 0 : 4);
+                setSpacings(0);
+                break;
+        }
+        setLoading(true);
+    }, [viewMode, sx]);
+
+    useEffect(() => {
+        if (loadProducts) return;
+
+        setTimeout(() => {
+            setLoading(false);
+        }, 100);
+    }, [loadProducts, loading]);
 
     useEffect(() => {
         if (!favorites?.favoriteItems?.length) return setFavoriteProducts([]);
@@ -111,14 +171,6 @@ const Favorites = () => {
     }, [productIds, supportedLanguage]);
 
     useEffect(() => {
-        if (loadProducts) return;
-
-        setTimeout(() => {
-            setLoading(false);
-        }, 1000);
-    }, [loadProducts, loading]);
-
-    useEffect(() => {
         window.addEventListener('scroll', () => {
             if (window.scrollY > 500) {
                 setShowTopBtn(true);
@@ -126,20 +178,18 @@ const Favorites = () => {
                 setShowTopBtn(false);
             }
         });
+
+        setTimeout(() => {
+            window.scrollTo({
+                top: scrollPosition - (instrumentalBarHeight + headerHeight),
+                behavior: 'auto',
+            });
+            setScrollPosition(0);
+        }, 150); // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    if (loading) return <Loader />;
-
-    const handleBodyPadding = val => {
-        setPaddings(val);
-    };
-
-    const handleCardSpacings = val => {
-        setSpacings(val);
-    };
-
     return (
-        <Box pt={paddings} pb={footerMenuHeight} px={paddings}>
+        <Box pt={paddings} px={paddings} sx={{ pb: `calc(${footerMenuHeight} + 16px)` }}>
             {showTopBtn && <ScrollButton />}
             {isOpenModal && (
                 <DeleteModal
@@ -156,45 +206,30 @@ const Favorites = () => {
             {PLAN_OPTIONS?.contacts && (
                 <CallBackButton path={`/catalog/${STORE_CODE}/${STORE_NAME?.replaceAll(' ', '-').toLowerCase()}/`} />
             )}
-            <InstrumentalSubHeader
-                StartSlot={() => <BackButton nav={-1} action={() => {}} />}
-                EndSlot={() => (
-                    <Box sx={{ display: 'flex', gap: 0.75 }}>
-                        <ViewModeButton />
-                        <ClearListButton
-                            action={() => {
-                                setIsOpenModal(true);
-                            }}
-                            isShown
-                            title={string?.clear_favorites}
-                        />
-                    </Box>
-                )}
-            />
+            <InstrumentalSubHeaderMemo setIsOpenModal={setIsOpenModal} />
 
             {favoriteProducts?.length ? (
-                <TransitionBox dependency={loading}>
-                    <Grid className="CatalogList" container spacing={spacings}>
-                        {favoriteProducts?.map(product => {
-                            return (
-                                <CatalogListCard
-                                    key={product?.id}
-                                    modelsVariants={product?.variants}
-                                    name={product?.name}
-                                    productId={product?.productId}
-                                    currency={getCurrencySymbol(store?.currency)}
-                                    promoTags={product?.promoTags}
-                                    handleCardSpacings={handleCardSpacings}
-                                    handleBodyPadding={handleBodyPadding}
-                                />
-                            );
-                        })}
-                    </Grid>
-                </TransitionBox>
+                <Box sx={{ minHeight: loading ? '100vh' : 'auto' }}>
+                    <TransitionBox dependency={loading} time="1250">
+                        <Grid className="CatalogList" container spacing={spacings}>
+                            {favoriteProducts?.map(product => {
+                                return (
+                                    <CatalogListCard
+                                        key={product?.id}
+                                        modelsVariants={product?.variants}
+                                        name={product?.name}
+                                        productId={product?.productId}
+                                        currency={getCurrencySymbol(store?.currency)}
+                                        promoTags={product?.promoTags}
+                                    />
+                                );
+                            })}
+                        </Grid>
+                    </TransitionBox>
+                </Box>
             ) : (
                 <>{!loadProducts && !loading && <EmptyPage isShown />}</>
             )}
-            {favoriteProducts?.length <= 12 && <Box sx={{ height: 50 }}></Box>}
         </Box>
     );
 };

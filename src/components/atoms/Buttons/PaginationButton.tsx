@@ -2,9 +2,8 @@ import { Box, Button, Typography } from '@mui/material';
 import { Colors } from 'colors';
 import { useRef } from 'react';
 import { useOutletContext } from 'react-router-dom';
-import Loader from '../Loader/Loader';
 
-const PaginationButton = ({ setCurrentPage, totalCount, loadProducts, productsList, page, totalPages }) => {
+const PaginationButton = ({ setCurrentPage, totalCount, loading, productsList, page, totalPages }) => {
     const { string }: any = useOutletContext();
     const ref = useRef(null);
 
@@ -12,8 +11,6 @@ const PaginationButton = ({ setCurrentPage, totalCount, loadProducts, productsLi
 
     return (
         <>
-            {loadProducts && <Loader position="fixed" />}
-
             <Box
                 ref={ref}
                 sx={{
@@ -31,12 +28,12 @@ const PaginationButton = ({ setCurrentPage, totalCount, loadProducts, productsLi
                 <Button
                     sx={{
                         width: 200,
-                        color: loadProducts ? '#ccc' : '',
-                        borderColor: loadProducts ? '#ccc' : '',
-                        cursor: loadProducts ? 'default' : 'pointer',
+                        color: loading ? '#ccc' : '',
+                        borderColor: loading ? '#ccc' : '',
+                        cursor: loading ? 'default' : 'pointer',
                         '&:hover': {
-                            color: loadProducts ? '#ccc' : '',
-                            borderColor: loadProducts ? '#ccc' : '',
+                            color: loading ? '#ccc' : '',
+                            borderColor: loading ? '#ccc' : '',
                         },
                         fontSize: '14px',
                         textTransform: 'capitalize',
@@ -46,7 +43,7 @@ const PaginationButton = ({ setCurrentPage, totalCount, loadProducts, productsLi
                     color="primary"
                     disabled={!productsList?.length || totalPages === page + 1}
                 >
-                    {loadProducts ? string?.loading + '...' : string?.load_more}
+                    {loading ? string?.loading + '...' : string?.load_more}
                 </Button>
             </Box>
         </>

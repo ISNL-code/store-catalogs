@@ -15,7 +15,6 @@ import { STORES_DATA } from 'dataBase/STORES';
 import { useAddToCart } from './hooks/useAddToCart';
 import { useAddToFavorites } from './hooks/useAddToFavorites';
 import { STORE_CONFIG } from 'constants/stores_config';
-import Loader from 'components/atoms/Loader/Loader';
 
 export default function MainCatalog({ lang, setLang, auth, setAuth, userData, viewMode, setViewMode, country, city }) {
     const { OPTIONS, STORE_CODE } = STORE_CONFIG;
@@ -24,7 +23,7 @@ export default function MainCatalog({ lang, setLang, auth, setAuth, userData, vi
     const navigate = useNavigate();
     const { sx } = useDevice();
     const HEADER_HEIGHT = 50;
-    const FOOTER_MENU_HEIGHT = sx ? '65px' : 0;
+    const FOOTER_MENU_HEIGHT = sx ? '65px' : '0';
     const INSTRUMENTAL_BAR_HEIGHT = 36;
     const INSTRUMENTAL_BAR_PADDINGS = sx ? 2 : 4;
     const HEADER_PADDINGS = sx ? 2 : 4;
@@ -115,66 +114,65 @@ export default function MainCatalog({ lang, setLang, auth, setAuth, userData, vi
                 auth={auth}
                 user={userData}
             />
-            {city === 'Warsaw' && <Loader />}
-            {city !== 'Warsaw' && (
-                <Box className="AppBody" mt={`${HEADER_HEIGHT + INSTRUMENTAL_BAR_HEIGHT}px`} flexGrow={1}>
-                    <Outlet
-                        context={
-                            {
-                                //main data | user options
-                                lang: lang,
-                                supportedLanguage: supportedLanguage,
-                                string: currentLanguage?.string,
-                                scrollPosition: scrollPosition,
-                                setScrollPosition: setScrollPosition,
-                                setOpenModalType: setOpenModalType,
-                                openModalType: openModalType,
-                                viewMode: viewMode,
-                                setViewMode: setViewMode,
 
-                                //store data
-                                store,
+            <Box className="AppBody" mt={`${HEADER_HEIGHT + INSTRUMENTAL_BAR_HEIGHT}px`} sx={{ minHeight: '100vh' }}>
+                <Outlet
+                    context={
+                        {
+                            //main data | user options
+                            lang: lang,
+                            supportedLanguage: supportedLanguage,
+                            string: currentLanguage?.string,
+                            scrollPosition: scrollPosition,
+                            setScrollPosition: setScrollPosition,
+                            setOpenModalType: setOpenModalType,
+                            openModalType: openModalType,
+                            viewMode: viewMode,
+                            setViewMode: setViewMode,
 
-                                //user data
-                                auth: auth,
-                                currentUserData: userData.currentUserData,
-                                loadingUserData: userData.isFetching,
-                                updateUserData: userData.updateUserData,
-                                setCurrentUserData: userData.setCurrentUserData,
+                            //store data
+                            store,
 
-                                //products data
-                                productsList: productsList,
-                                setProductsList: setProductsList,
-                                loadProducts: loadProducts,
-                                loadMoreProducts: loadMoreProducts,
-                                updateProducts: updateProducts,
-                                productCountPerPage: productCountPerPage,
-                                totalProductsCount: totalProductsCount,
-                                totalProductsPages: totalProductsPages,
-                                handleSetProductsPage: handleSetProductsPage,
-                                currentProductsPage: currentProductsPage,
+                            //user data
+                            auth: auth,
+                            currentUserData: userData.currentUserData,
+                            loadingUserData: userData.isFetching,
+                            updateUserData: userData.updateUserData,
+                            setCurrentUserData: userData.setCurrentUserData,
 
-                                //categories data
-                                categoriesList,
-                                queryCategories: queryCategories,
-                                setQueryCategories: setQueryCategories,
-                                handleCategoriesQuery: handleCategoriesQuery,
+                            //products data
+                            productsList: productsList,
+                            setProductsList: setProductsList,
+                            loadProducts: loadProducts,
+                            loadMoreProducts: loadMoreProducts,
+                            updateProducts: updateProducts,
+                            productCountPerPage: productCountPerPage,
+                            totalProductsCount: totalProductsCount,
+                            totalProductsPages: totalProductsPages,
+                            handleSetProductsPage: handleSetProductsPage,
+                            currentProductsPage: currentProductsPage,
 
-                                //css data
-                                instrumentalBarHeight: INSTRUMENTAL_BAR_HEIGHT,
-                                instrumentalBarPadding: INSTRUMENTAL_BAR_PADDINGS,
-                                headerHeight: HEADER_HEIGHT,
-                                footerMenuHeight: FOOTER_MENU_HEIGHT,
-                                appXPadding: BODY_PADDINGS,
+                            //categories data
+                            categoriesList,
+                            queryCategories: queryCategories,
+                            setQueryCategories: setQueryCategories,
+                            handleCategoriesQuery: handleCategoriesQuery,
 
-                                //cart & favorites
-                                cart: cart,
-                                favorites: favorites,
-                            } as CatalogContextInterface
-                        }
-                    />
-                </Box>
-            )}
+                            //css data
+                            instrumentalBarHeight: INSTRUMENTAL_BAR_HEIGHT,
+                            instrumentalBarPadding: INSTRUMENTAL_BAR_PADDINGS,
+                            headerHeight: HEADER_HEIGHT,
+                            footerMenuHeight: FOOTER_MENU_HEIGHT,
+                            appXPadding: BODY_PADDINGS,
+
+                            //cart & favorites
+                            cart: cart,
+                            favorites: favorites,
+                        } as CatalogContextInterface
+                    }
+                />
+            </Box>
+
             <Modals
                 string={currentLanguage?.string as string}
                 setAuth={setAuth}

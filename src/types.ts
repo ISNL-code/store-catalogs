@@ -69,7 +69,7 @@ export interface CatalogContextInterface {
     instrumentalBarHeight: number;
     instrumentalBarPadding: number;
     headerHeight: number;
-    footerMenuHeight: number;
+    footerMenuHeight: number | string;
     appXPadding: number;
 
     //cart & favorites

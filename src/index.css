@@ -95,7 +95,7 @@ a {
 }
 
 *::-webkit-scrollbar-track {
-    background: 'none'; /* color of the tracking area */
+    background: none; /* color of the tracking area */
 }
 
 *::-webkit-scrollbar-thumb {

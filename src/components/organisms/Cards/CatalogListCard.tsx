@@ -54,8 +54,6 @@ interface CatalogCardProps {
         name?: string;
         code?: string;
     }[];
-    handleBodyPadding: (val) => void;
-    handleCardSpacings: (val) => void;
 }
 
 export const MemoizedColorIndicatorButton = memo(ColorIndicatorButton, (prevProps, nextProps) => {
@@ -63,16 +61,7 @@ export const MemoizedColorIndicatorButton = memo(ColorIndicatorButton, (prevProp
 });
 
 const CatalogListCard = memo<CatalogCardProps>(
-    ({
-        modelsVariants,
-        name,
-        productId,
-        currency,
-        setProductsList,
-        promoTags,
-        handleBodyPadding,
-        handleCardSpacings,
-    }) => {
+    ({ modelsVariants, name, productId, currency, setProductsList, promoTags }) => {
         const WINDOW_WIDTH = useWindowWidth();
         const { OPTIONS } = STORE_CONFIG;
         const { STORE_TYPE, PLAN_OPTIONS, PRODUCT_IMAGE_OPTIONS } = OPTIONS;
@@ -230,7 +219,7 @@ const CatalogListCard = memo<CatalogCardProps>(
                                             }}
                                             selected={selected}
                                             color={model.colorCode}
-                                            size={30}
+                                            size={viewMode === ViewModeType?.grid_m ? 28 : 30}
                                         />
                                     );
                                 })}
@@ -396,8 +385,6 @@ const CatalogListCard = memo<CatalogCardProps>(
                         CardDetails={CardDetails}
                         CardDecoration={CardDecoration}
                         opacity={Boolean(sliderHeight)}
-                        handleBodyPadding={handleBodyPadding}
-                        handleCardSpacings={handleCardSpacings}
                     />
                 )}
                 {Boolean(viewMode === ViewModeType?.grid_m) && (
@@ -407,8 +394,6 @@ const CatalogListCard = memo<CatalogCardProps>(
                         CardDetails={CardDetails}
                         CardDecoration={CardDecoration}
                         opacity={Boolean(sliderHeight)}
-                        handleBodyPadding={handleBodyPadding}
-                        handleCardSpacings={handleCardSpacings}
                     />
                 )}
                 {Boolean(viewMode === ViewModeType?.card) && (
@@ -418,8 +403,6 @@ const CatalogListCard = memo<CatalogCardProps>(
                         CardDetails={CardDetails}
                         CardDecoration={CardDecoration}
                         opacity={Boolean(sliderHeight)}
-                        handleBodyPadding={handleBodyPadding}
-                        handleCardSpacings={handleCardSpacings}
                     />
                 )}
             </>

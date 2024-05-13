@@ -178,7 +178,7 @@ const Cart = () => {
         );
 
     return (
-        <Box className="CartPageContainer" p={sx ? 2 : appXPadding} pb={appXPadding + footerMenuHeight}>
+        <Box className="CartPageContainer" p={sx ? 2 : appXPadding} sx={{ pb: `calc(${footerMenuHeight} + 16px)` }}>
             {(loadCreateOrder || loading || loadProducts) && <Loader position="fixed" />}
             {isOpenModal && (
                 <DeleteModal

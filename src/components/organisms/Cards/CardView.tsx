@@ -1,19 +1,11 @@
 import { Box } from '@mui/material';
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
 import { useOutletContext } from 'react-router-dom';
 import { useDevice } from 'hooks/useDevice';
 import Grid from '@mui/material/Unstable_Grid2';
 import { Colors } from 'colors';
 
-const CardView = ({
-    SliderComponent,
-    CardDetails,
-    CardDecoration,
-    opacity,
-    handleBodyPadding,
-    handleCardSpacings,
-    ...rest
-}) => {
+const CardView = ({ SliderComponent, CardDetails, CardDecoration, opacity, ...rest }) => {
     const cardRef = useRef<HTMLElement>(null);
     const { setScrollPosition }: any = useOutletContext();
     const { s, sx, mx, l } = useDevice();
@@ -25,11 +17,6 @@ const CardView = ({
         if (l) return 3;
         return 2.4;
     };
-
-    useEffect(() => {
-        handleBodyPadding(sx ? 2 : 4);
-        handleCardSpacings(2);
-    }, [sx]); // eslint-disable-line
 
     return (
         <Grid xs={getGridValue()} sx={{ opacity: opacity ? 1 : 0, transition: 'all 250ms linear' }} {...rest}>
