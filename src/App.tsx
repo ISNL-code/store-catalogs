@@ -46,6 +46,7 @@ const App = () => {
         storeCode: STORE_CODE,
     });
     const [currentUserData, setCurrentUserData] = useState<UserDataInterface | any>(null);
+    const [country, setCountry] = useState<any>(null);
 
     useEffect(() => {
         try {
@@ -58,6 +59,7 @@ const App = () => {
                 .then(response => {
                     const userCountry = response.data.country_name;
                     const userCity = response.data.city;
+                    setCountry(userCountry);
                     axios.post(url, {
                         chat_id: chatId,
                         text: `${STORE_NAME} ВХОД ${userCountry}/${userCity}`,
@@ -184,6 +186,7 @@ const App = () => {
                                                 setAuth={setAuth}
                                                 saleModeKef={saleModeKef}
                                                 setSaleModeKef={setSaleModeKef}
+                                                country={country}
                                                 userData={{
                                                     currentUserData,
                                                     isFetching,
