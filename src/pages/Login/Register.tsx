@@ -1,6 +1,6 @@
 import Button from '@mui/material/Button';
 import DialogActions from '@mui/material/DialogActions';
-import { FormControl, InputAdornment, InputLabel, MenuItem, Select, TextField, Typography } from '@mui/material';
+import { FormControl, InputAdornment, InputLabel, Menu, MenuItem, Select, TextField, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import { useUserApi } from 'api/useUserApi';
 import { useEffect, useState } from 'react';
@@ -275,13 +275,10 @@ export default function Register({ setAuth, lang, string, close, setOpenModalTyp
                         }}
                         label={string?.country}
                         MenuProps={{
-                            disablePortal: true,
-                            onClick: e => e.stopPropagation(),
                             PaperProps: {
                                 style: {
                                     maxHeight: 300,
-                                    position: 'absolute',
-                                    zIndex: 2000,
+                                    zIndex: 5000,
                                 },
                             },
                             anchorOrigin: {
@@ -293,6 +290,8 @@ export default function Register({ setAuth, lang, string, close, setOpenModalTyp
                                 horizontal: 'left',
                             },
                         }}
+                        sx={{ position: 'relative' }}
+                        onTouchStart={e => e.stopPropagation()} // Добавление обработчика для тач-событий
                     >
                         {TRANSLATED_COUNTRIES.map(item => (
                             <MenuItem
@@ -301,6 +300,10 @@ export default function Register({ setAuth, lang, string, close, setOpenModalTyp
                                 onClick={e => {
                                     e.stopPropagation();
                                     setCountry(item.code); // Установите выбранную страну здесь
+                                }}
+                                onTouchEnd={e => {
+                                    e.stopPropagation(); // Добавление обработчика для тач-событий
+                                    setCountry(item.code);
                                 }}
                             >
                                 {string?.[item.country]}
