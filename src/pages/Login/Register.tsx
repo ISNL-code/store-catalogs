@@ -269,6 +269,7 @@ export default function Register({ setAuth, lang, string, close, setOpenModalTyp
                     <Select
                         size="small"
                         value={country}
+                        onClick={e => e.stopPropagation()}
                         onChange={e => {
                             e.stopPropagation();
                             setCountry(e.target.value);
@@ -276,14 +277,41 @@ export default function Register({ setAuth, lang, string, close, setOpenModalTyp
                         onMouseEnter={e => e.stopPropagation()}
                         onMouseLeave={e => e.stopPropagation()}
                         label={string?.country}
+                        onClose={e => {
+                            e.stopPropagation(); // Добавляем остановку распространения и здесь
+                        }}
+                        MenuProps={{
+                            onClick: e => e.stopPropagation(),
+                            PaperProps: {
+                                style: {
+                                    maxHeight: 400,
+                                },
+                            },
+                            anchorOrigin: {
+                                vertical: 'top',
+                                horizontal: 'left',
+                            },
+                            transformOrigin: {
+                                vertical: 'bottom',
+                                horizontal: 'left',
+                            },
+                        }}
                     >
                         {TRANSLATED_COUNTRIES.map(item => (
-                            <MenuItem key={item.code} value={item.code} onClick={e => e?.preventDefault()}>
+                            <MenuItem
+                                key={item.code}
+                                value={item.code}
+                                onClick={e => {
+                                    e.stopPropagation();
+                                    setCountry(item.code); // Установите выбранную страну здесь
+                                }}
+                            >
                                 {string?.[item.country]}
                             </MenuItem>
                         ))}
                     </Select>
                 </FormControl>
+
                 <DialogActions sx={{ justifyContent: 'center', flexDirection: 'column' }}>
                     <Button
                         onClick={() => {

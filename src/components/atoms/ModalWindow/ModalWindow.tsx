@@ -25,6 +25,7 @@ const ModalWindow = ({ children, type = '', title, text = '', closeAction = null
                 if (closeAction) closeAction();
             }}
             mouseEvent={false}
+            touchEvent={false}
         >
             <Box
                 sx={{
