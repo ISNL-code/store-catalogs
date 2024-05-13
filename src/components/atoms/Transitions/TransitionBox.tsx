@@ -12,7 +12,7 @@ const TransitionBox = ({ children, dependency, time = 250 }) => {
                 setOpacity(1);
             }, time);
         }
-    }, [dependency]);
+    }, [dependency]); // eslint-disable-line
 
     return (
         <Box
