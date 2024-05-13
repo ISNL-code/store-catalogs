@@ -198,6 +198,8 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 send: 'Send',
                 wholesales_ordering_limitation_message:
                     'Welcome to our wholesale catalog, where each order starts with 10 units. For those interested in retail purchases, please visit our retail catalog.',
+                manger_will_contact_message:
+                    'Our manager will be in touch with you shortly to provide detailed information regarding your purchase.',
             },
         },
         {
@@ -389,6 +391,8 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 send: 'Envoyer',
                 wholesales_ordering_limitation_message:
                     'Bienvenue dans notre catalogue de gros, où chaque commande commence par 10 unités. Pour ceux intéressés par des achats au détail, veuillez visiter notre catalogue de détail.',
+                manger_will_contact_message:
+                    'Notre gestionnaire vous contactera sous peu pour vous fournir des informations détaillées concernant votre achat.',
             },
         },
         {
@@ -579,6 +583,8 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 send: 'Enviar',
                 wholesales_ordering_limitation_message:
                     'Bienvenido a nuestro catálogo mayorista, donde cada pedido comienza con 10 unidades. Para aquellos interesados en compras al por menor, por favor visite nuestro catálogo minorista.',
+                manger_will_contact_message:
+                    'Nuestro gerente se pondrá en contacto con usted en breve para proporcionarle información detallada sobre su compra.',
             },
         },
         {
@@ -769,6 +775,7 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 send: 'Надіслати',
                 wholesales_ordering_limitation_message:
                     'Ласкаво просимо до нашого оптового каталогу, де кожне замовлення починається з 10 одиниць. Для тих, хто зацікавлений у роздрібних покупках, будь ласка, відвідайте наш роздрібний каталог.',
+                manger_will_contact_message: `Наш менеджер зв'яжеться з вами найближчим часом, щоб надати детальну інформацію щодо вашої покупки.`,
             },
         },
         {
@@ -960,6 +967,8 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 send: 'Wyślij',
                 wholesales_ordering_limitation_message:
                     'Witamy w naszym katalogu hurtowym, gdzie każde zamówienie zaczyna się od 10 jednostek. Osoby zainteresowane zakupami detalicznymi prosimy o odwiedzenie naszego katalogu detalicznego.',
+                manger_will_contact_message:
+                    'Nasz menedżer skontaktuje się z Państwem wkrótce, aby udzielić szczegółowych informacji dotyczących Państwa zakupu.',
             },
         },
         {
@@ -1148,6 +1157,8 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 send: 'Odeslat',
                 wholesales_ordering_limitation_message:
                     'Vítejte v našem velkoobchodním katalogu, kde každá objednávka začíná 10 kusy. Pro ty, kteří mají zájem o maloobchodní nákupy, navštivte prosím náš maloobchodní katalog.',
+                manger_will_contact_message:
+                    'Náš manažer se s vámi brzy spojí, aby vám poskytl podrobné informace o vašem nákupu.',
             },
         },
         {
@@ -1338,6 +1349,8 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 send: 'Отправить',
                 wholesales_ordering_limitation_message:
                     'Добро пожаловать в наш оптовый каталог, где каждый заказ начинается с 10 единиц. Для тех, кто заинтересован в розничной покупке, посетите наш розничный каталог.',
+                manger_will_contact_message:
+                    'Наш менеджер свяжется с вами в ближайшее время, чтобы предоставить подробную информацию о вашей покупке.',
             },
         },
         {
@@ -1532,6 +1545,8 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 send: 'Жіберу',
                 wholesales_ordering_limitation_message:
                     'Біздің көтерме сауда каталогымызға қош келдіңіздер, мұнда әрбір тапсырыс кемінде 10 бірліктен басталады. Көтерме сатып алуға қызығушылық танытқандар үшін, өтінеміз, біздің көтерме сауда каталогымызды қараңыздар.',
+                manger_will_contact_message:
+                    'Біздің менеджер жақын арада сізбен байланыса алады, сатып алуға қатысты толық ақпаратты ұсыну үшін.',
             },
         },
     ];

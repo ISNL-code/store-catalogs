@@ -1,6 +1,7 @@
 import { Box, Button } from '@mui/material';
 import ModalWindow from 'components/atoms/ModalWindow/ModalWindow';
 import { useOutletContext } from 'react-router-dom';
+import LinkIcon from '@mui/icons-material/Link';
 
 export default function ConfirmOrderModal({ close = () => {}, text = '', action = () => {}, title = '' }) {
     const { string }: any = useOutletContext();
@@ -14,6 +15,7 @@ export default function ConfirmOrderModal({ close = () => {}, text = '', action 
                             action();
                             close();
                         }}
+                        startIcon={<LinkIcon />}
                     >
                         {string?.retail_catalog}
                     </Button>

@@ -12,6 +12,7 @@ const SuccessOrderingPage = ({ isShown = true, setSuccessOrdering }) => {
     if (isShown)
         return (
             <Box
+                p={2}
                 sx={{
                     width: '100%',
                     display: 'flex',
@@ -25,6 +26,9 @@ const SuccessOrderingPage = ({ isShown = true, setSuccessOrdering }) => {
             >
                 <CheckCircleOutlineIcon sx={{ fontSize: 100 }} color="success" />
                 <Typography variant="h3">{string?.order_sent_successfully}</Typography>
+                <Typography variant="h4" sx={{ textAlign: 'center' }}>
+                    {string?.manger_will_contact_message}
+                </Typography>
                 <Button
                     onClick={() => {
                         if (cart?.cartItems?.length) {

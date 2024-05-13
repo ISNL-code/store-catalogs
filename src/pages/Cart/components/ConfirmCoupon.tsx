@@ -9,6 +9,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import CouponPrice from 'components/molecules/PricesComponents/CouponPrice';
 import { STORE_CONFIG } from 'constants/stores_config';
+import ConfirmOrderModal from 'components/organisms/Modals/ConfirmOrderModal';
 
 interface Props {
     createOrder;
@@ -19,7 +20,7 @@ interface Props {
 }
 
 const ConfirmCoupon = ({ createOrder, orderData, finalPrice, setSuccessOrdering, setOrderData }: Props) => {
-    const { STORE_NAME, OPTIONS } = STORE_CONFIG;
+    const { STORE_NAME, OPTIONS, SIDE_LINKS } = STORE_CONFIG;
     const { MIN_ITEMS_TO_BUY } = OPTIONS;
     const { storeCode } = useParams();
     const { string, store, supportedLanguage, currentUserData, cart }: CatalogContextInterface = useOutletContext();
@@ -28,10 +29,11 @@ const ConfirmCoupon = ({ createOrder, orderData, finalPrice, setSuccessOrdering,
     const [phone, setPhone] = useState(currentUserData?.delivery?.phone || '');
     const [city, setCity] = useState(currentUserData?.delivery?.city || '');
     const [address, setAddress] = useState(currentUserData?.delivery?.address || '');
+    const [openModal, setOpenModal] = useState(false);
 
     const handleConfirmOrder = () => {
         if (orderData?.productsList?.reduce((acc, el) => acc + 1 * Number(el?.quantity), 0) < MIN_ITEMS_TO_BUY) {
-            alert('low');
+            setOpenModal(true);
         } else
             return createOrder({
                 lang: supportedLanguage,
@@ -106,6 +108,17 @@ const ConfirmCoupon = ({ createOrder, orderData, finalPrice, setSuccessOrdering,
 
     return (
         <CardItem withHover={false}>
+            {openModal && (
+                <ConfirmOrderModal
+                    action={() => {
+                        const href = SIDE_LINKS?.find(el => el?.description === 'WEB')?.href as string;
+                        window.open(href, '_blank');
+                    }}
+                    close={() => setOpenModal(false)}
+                    title={string?.min_purchase}
+                    text={string?.wholesales_ordering_limitation_message}
+                />
+            )}
             <Box p={2} sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
                 <Grid mb={1} xs={12} sx={{ display: 'flex', alignItems: 'center', gap: 0.25 }}>
                     <Typography variant="h3">{string?.delivery_information}</Typography>
