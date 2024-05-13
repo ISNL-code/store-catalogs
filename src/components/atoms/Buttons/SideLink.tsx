@@ -1,4 +1,4 @@
-import { Box, Button, IconButton } from '@mui/material';
+import { Box, IconButton } from '@mui/material';
 import LinkIcon from '@mui/icons-material/Link';
 import { Colors } from 'colors';
 import { useDevice } from 'hooks/useDevice';
