@@ -291,6 +291,22 @@ export default function Register({ setAuth, lang, string, close, setOpenModalTyp
                     }}
                     fullWidth
                     sx={{ mt: 1 }}
+                    slotProps={{
+                        popper: {
+                            placement: 'top-start', // Position dropdown above the input
+                            modifiers: [
+                                {
+                                    name: 'preventOverflow',
+                                    enabled: true,
+                                    options: {
+                                        // Adjust these values for optimal positioning
+                                        boundaries: 'viewport',
+                                        tether: true,
+                                    },
+                                },
+                            ],
+                        },
+                    }}
                 />
 
                 <DialogActions sx={{ justifyContent: 'center', flexDirection: 'column' }}>
