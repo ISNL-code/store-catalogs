@@ -1,6 +1,7 @@
 import Button from '@mui/material/Button';
 import DialogActions from '@mui/material/DialogActions';
 import {
+    Autocomplete,
     FormControl,
     InputAdornment,
     InputLabel,
@@ -33,7 +34,7 @@ export default function Register({ setAuth, lang, string, close, setOpenModalTyp
     const [confirmPassword, setConfirmPassword] = useState('');
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
-    const [country, setCountry] = useState<string | null>(null);
+    const [country, setCountry] = useState<{ country: string; code: string } | null>(null);
     const [error, setError] = useState(false);
 
     const [passwordVisible, setPasswordVisible] = useState(false);
@@ -90,7 +91,15 @@ export default function Register({ setAuth, lang, string, close, setOpenModalTyp
     });
 
     useEffect(() => {
-        formik.setValues({ password, username, phoneNumber, confirmPassword, firstName, lastName, country });
+        formik.setValues({
+            password,
+            username,
+            phoneNumber,
+            confirmPassword,
+            firstName,
+            lastName,
+            country: country?.code,
+        });
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [password, username, phoneNumber, confirmPassword, firstName, lastName, country]);
 
@@ -120,7 +129,6 @@ export default function Register({ setAuth, lang, string, close, setOpenModalTyp
                         </Typography>
                     </Box>
                 )}
-
                 <TextField
                     size="small"
                     onChange={e => {
@@ -268,60 +276,32 @@ export default function Register({ setAuth, lang, string, close, setOpenModalTyp
                     error={!!(formik.errors.phoneNumber && formik.touched.phoneNumber)}
                     helperText={formik.errors.phoneNumber && string?.[formik.errors.phoneNumber as string]}
                 />
-                <FormControl
-                    error={!!(formik.errors.country && formik.touched.country)}
-                    fullWidth
-                    sx={{ minWidth: 250, mt: 1 }}
+
+                <Autocomplete
                     size="small"
-                >
-                    <InputLabel sx={{ color: '#696666', backgroundColor: '#fff', px: 0.5 }}>
-                        {string?.country}
-                    </InputLabel>
-                    <Select
-                        size="small"
-                        value={country}
-                        onChange={e => {
-                            e.stopPropagation();
-                            setCountry(e.target.value);
-                        }}
-                        MenuProps={{
-                            PaperProps: {
-                                style: {
-                                    maxHeight: 300,
-                                    zIndex: 5000,
-                                },
-                            },
-                            anchorOrigin: {
-                                vertical: 'top',
-                                horizontal: 'left',
-                            },
-                            transformOrigin: {
-                                vertical: 'bottom',
-                                horizontal: 'left',
-                            },
-                        }}
-                        input={<OutlinedInput label={string?.country} />}
-                        sx={{ position: 'relative' }}
-                        onTouchStart={e => e.stopPropagation()} // Добавление обработчика для тач-событий
-                    >
-                        {TRANSLATED_COUNTRIES.map(item => (
-                            <MenuItem
-                                key={item.code}
-                                value={item.code}
-                                onClick={e => {
-                                    e.stopPropagation();
-                                    setCountry(item.code); // Установите выбранную страну здесь
-                                }}
-                                onTouchEnd={e => {
-                                    e.stopPropagation(); // Добавление обработчика для тач-событий
-                                    setCountry(item.code);
-                                }}
-                            >
-                                {string?.[item.country]}
-                            </MenuItem>
-                        ))}
-                    </Select>
-                </FormControl>
+                    disablePortal
+                    value={country}
+                    options={TRANSLATED_COUNTRIES}
+                    getOptionLabel={option => {
+                        return option.country
+                            ?.split(' ')
+                            .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+                            .join(' ');
+                    }}
+                    renderInput={params => (
+                        <TextField
+                            {...params}
+                            label={string?.country}
+                            error={!!(formik.errors.country && formik.touched.country)}
+                            helperText={formik.errors.country && string?.[formik.errors.country as string]}
+                        />
+                    )}
+                    onChange={(_e, newValue) => {
+                        setCountry(newValue);
+                    }}
+                    fullWidth
+                    sx={{ mt: 1 }}
+                />
 
                 <DialogActions sx={{ justifyContent: 'center', flexDirection: 'column' }}>
                     <Button
