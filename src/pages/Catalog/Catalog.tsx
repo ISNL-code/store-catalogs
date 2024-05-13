@@ -1,4 +1,4 @@
-import { Alert, Box } from '@mui/material';
+import { Alert, Box, Collapse, IconButton } from '@mui/material';
 import Loader from 'components/atoms/Loader/Loader';
 import { useEffect, useState } from 'react';
 import { useOutletContext } from 'react-router-dom';
@@ -18,12 +18,14 @@ import PaginationButton from 'components/atoms/Buttons/PaginationButton';
 import SideLink from 'components/atoms/Buttons/SideLink';
 import ViewModeButton from 'components/molecules/ToolsButtons/ViewModeButton';
 import CatalogListCard from 'components/organisms/Cards/CatalogListCard';
+import CloseIcon from '@mui/icons-material/Close';
+import { useDevice } from 'hooks/useDevice';
 import { STORE_CONFIG } from 'constants/stores_config';
-// import Toggler from 'components/atoms/Buttons/Toggler';
 
 const Catalog = () => {
     const { OPTIONS, SIDE_LINKS, STORE_CODE, STORE_NAME } = STORE_CONFIG;
-    const { PLAN_OPTIONS } = OPTIONS;
+    const { PLAN_OPTIONS, MIN_ITEMS_TO_BUY } = OPTIONS;
+    const { sx } = useDevice();
     const {
         store,
         productsList,
@@ -38,13 +40,14 @@ const Catalog = () => {
         currentProductsPage,
         totalProductsPages,
         footerMenuHeight,
+        string,
     }: CatalogContextInterface = useOutletContext();
     const [showTopBtn, setShowTopBtn] = useState(false);
     const [showMobileStoresButton, setShowMobileStoresButton] = useState(true);
     const [paddings, setPaddings] = useState(2);
     const [spacings, setSpacings] = useState(0);
     const [loading, setLoading] = useState(true);
-    const [isShowAlert, setIsShowAlert] = useState(true);
+    const [open, setOpen] = useState(true);
 
     useEffect(() => {
         if (loadProducts || !productsList) return;
@@ -103,7 +106,6 @@ const Catalog = () => {
                                 <SideLink name={name} href={href} />
                             </Box>
                         ))}
-                        {/* <Toggler /> */}
                     </>
                 )}
                 EndSlot={() => (
@@ -117,25 +119,31 @@ const Catalog = () => {
 
             {productsList?.length ? (
                 <TransitionBox dependency={loading} time="1250">
-                    {!isShowAlert && (
-                        <Box mt={-paddings}>
-                            <Alert
-                                severity="warning"
-                                onClose={() => {
-                                    setIsShowAlert(false);
-                                }}
-                                sx={{
-                                    my: 2,
-                                    fontSize: 14,
-                                    p: 1,
-                                    '.css-ki1hdl-MuiAlert-action': { p: 0 },
-                                    '.MuiAlert-message': { p: 0 },
-                                }}
-                            >
-                                Вы в оптовом режиме, минимальное количество товара для покупки 10 едениц.
-                                {/* You're in 'Wholesales' mode: A minimum of 10 items must be purchased. */}
-                            </Alert>
-                        </Box>
+                    {MIN_ITEMS_TO_BUY > 1 && (
+                        <Collapse in={open}>
+                            <Box mt={-paddings}>
+                                <Alert
+                                    variant="standard"
+                                    severity="info"
+                                    color="warning"
+                                    sx={{ my: 2, fontSize: sx ? 14 : 18 }}
+                                    action={
+                                        <IconButton
+                                            aria-label="close"
+                                            color="inherit"
+                                            size="small"
+                                            onClick={() => {
+                                                setOpen(false);
+                                            }}
+                                        >
+                                            <CloseIcon fontSize="inherit" />
+                                        </IconButton>
+                                    }
+                                >
+                                    {string?.wholesales_ordering_limitation_message}
+                                </Alert>
+                            </Box>
+                        </Collapse>
                     )}
                     <Grid className="CatalogList" container spacing={spacings}>
                         {productsList?.map(product => {

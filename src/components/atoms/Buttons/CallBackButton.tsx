@@ -16,7 +16,7 @@ const CallBackButton = ({ animated = false, path }) => {
                 zIndex: 2000,
                 position: 'fixed',
                 right: sx ? '24px' : '40px',
-                bottom: sx ? 90 : 10,
+                bottom: sx ? 90 : 16,
                 border: sx ? 'none' : '1px solid ',
                 borderColor: Colors?.GREEN,
                 backgroundColor: sx ? 'none' : Colors?.GREEN,

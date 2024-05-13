@@ -1,15 +1,15 @@
 import { StoreType, ViewModeType } from 'constants/types';
 
-const prefix = 'ab_eu';
+const prefix = 'ab_eu_retail';
 
-export const ALBERTO_BINI_EU = {
+export const ALBERTO_BINI_EU_RETAIL = {
     active: true, // Поле которое запускает магазин true - работает false - остановлен / по тех. причина
     required_registration: false,
-    URL: ['https://albertobini-brandeurope.com'],
+    URL: ['https://albertobini-brandeurope-retail.netlify.app'],
     appStoreUrl: null,
     playMarketUrl: null,
     web_lang: 'en', // html lang
-    store_name: 'Alberto Bini EU',
+    store_name: 'Alberto Bini EU Retail',
     store_code: 'alberto_bini_europe',
     token_key: `${prefix}-tkn`,
     cart_key: `${prefix}-cart`,
@@ -17,14 +17,15 @@ export const ALBERTO_BINI_EU = {
     base_url: 'https://kremen-belts.com/api',
     lang_key: `${prefix}-lang`,
     app_lang: 'en',
-    links: [],
+    links: [{ name: 'Wholesales', href: 'https://albertobini-brandeurope.com', description: 'WEB' }],
     options: {
         product_image_options: { width: 6, height: 9 },
-        main_price_multiplication: 1,
+        main_price_multiplication: 2.5,
         sale_price_multiplication: 1,
         currency_multiplication: 1,
+        min_items_to_buy: 1,
         custom_currency: null,
-        store_type: StoreType?.wholesales,
+        store_type: StoreType?.default,
         home_page_active: true,
         informative_page_active: true,
         custom_logo: true,
@@ -49,9 +50,9 @@ export const ALBERTO_BINI_EU = {
         },
     },
     web_head_data: {
-        store_title: 'Alberto Bini Wholesales Catalog',
+        store_title: 'Alberto Bini Catalog',
         store_description: `Welcome to Alberto Bini — the world of exquisite women's outerwear! Explore our wide selection of high-quality stylish coats, trenches, and jackets. Immerse yourself in unique style and comfort with Alberto Bini!`,
-        google_analytics_id: 'G-SPMQE8GHGM',
+        google_analytics_id: 'G-FSCN3VRY6E',
         store_logo: 'alberto_bini_logo.png',
     },
     user_options: { view_mode: ViewModeType?.card },

@@ -1,26 +1,26 @@
 import { StoreType, ViewModeType } from 'constants/types';
 
-const prefix = 'abm';
+const prefix = 'ab_kz_retail';
 
-export const ALBERTO_BINI_MAIN = {
+export const ALBERTO_BINI_KZ_RETAIL = {
     active: true, // Поле которое запускает магазин true - работает false - остановлен / по тех. причина
     required_registration: false,
-    URL: ['https://alberto-bini.netlify.app'],
+    URL: ['https://albertobini-kz-retail.netlify.app'],
     appStoreUrl: null,
     playMarketUrl: null,
-    web_lang: 'uk', // html lang
-    store_name: 'Alberto Bini',
-    store_code: 'ALBERTO_BINI',
+    web_lang: 'kk', // html lang
+    store_name: 'Alberto Bini KZ Retail',
+    store_code: 'alberto_bini_europe',
     token_key: `${prefix}-tkn`,
     cart_key: `${prefix}-cart`,
     favorite_url: `${prefix}-favorites`,
     base_url: 'https://kremen-belts.com/api',
     lang_key: `${prefix}-lang`,
-    app_lang: 'ua',
-    links: [],
+    app_lang: 'kz',
+    links: [{ name: 'Wholesales', href: 'https://albertobini-kz.com', description: 'WEB' }],
     options: {
         product_image_options: { width: 6, height: 9 },
-        main_price_multiplication: 1,
+        main_price_multiplication: 2.5,
         sale_price_multiplication: 1,
         currency_multiplication: 1,
         custom_currency: null,
@@ -50,9 +50,10 @@ export const ALBERTO_BINI_MAIN = {
         },
     },
     web_head_data: {
-        store_title: 'Alberto Bini Wholesales Catalog | Alberto Bini Оптовий Каталог',
-        store_description: `Ласкаво просимо до Alberto Bini — світу вишуканого жіночого верхнього одягу! Дослідіть наш широкий вибір високоякісних стильних пальт, тренчів та курток. Погрузіться в унікальний стиль та комфорт з Alberto Bini!  Welcome to Alberto Bini — the world of exquisite women's outerwear! Explore our wide selection of high-quality stylish coats, trenches, and jackets. Immerse yourself in unique style and comfort with Alberto Bini!`,
-        google_analytics_id: 'G-C4TDRX7K5V',
+        store_title: 'Alberto Bini',
+        store_description: `
+        Қош келдіңіз Alberto Bini - жарлы жігерлі әйелдер үшін қонақтардың еліне! Біздің жанындағы көбінесе мол, артық өлшемдердің қолайлы қызметті көптық кепіл таңбаларын, тренчи, және жакеттерді зерттеңіз. Alberto Bini менің ерекше стильім мен комфорттық көріңіз! | Welcome to Alberto Bini — the world of exquisite women's outerwear! Explore our wide selection of high-quality stylish coats, trenches, and jackets. Immerse yourself in unique style and comfort with Alberto Bini!`,
+        google_analytics_id: 'G-6MGSF1BQDN',
         store_logo: 'alberto_bini_logo.png',
     },
     user_options: { view_mode: ViewModeType?.card },

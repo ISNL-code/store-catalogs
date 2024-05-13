@@ -31,6 +31,7 @@ export interface STORE_CONFIG_Interface {
         SALE_PRICE_MULTIPLICATION: number; // use in custom catalogs for multiple sales prices
         CURRENCY_MULTIPLICATION: number; // use in custom catalogs for multiple  prices if use different from default currency
         CUSTOM_CURRENCY: string | null; // use in custom catalogs  if use different from default currency
+        MIN_ITEMS_TO_BUY: number; // use to set min items for ordering
         STORE_TYPE: StoreType; // use in custom catalogs for identification of store type
         HOME_PAGE_ACTIVE: boolean; // use if catalog had home page
         INFORMATION_PAGE_ACTIVE: boolean; // use for info page (privacy policy....etc)

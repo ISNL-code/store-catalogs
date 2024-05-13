@@ -1,5 +1,7 @@
-import { ALBERTO_BINI_EU } from './stores_configs/ALBERTO_BINI_EU';
-import { ALBERTO_BINI_KZ } from './stores_configs/ALBERTO_BINI_KZ';
+import { ALBERTO_BINI_EU_RETAIL } from './stores_configs/ALBERTO_BINI_EU_RETAIL';
+import { ALBERTO_BINI_EU_WS } from './stores_configs/ALBERTO_BINI_EU_WS';
+import { ALBERTO_BINI_KZ_RETAIL } from './stores_configs/ALBERTO_BINI_KZ_RETAIL';
+import { ALBERTO_BINI_KZ_WS } from './stores_configs/ALBERTO_BINI_KZ_WS';
 import { ALBERTO_BINI_MAIN } from './stores_configs/ALBERTO_BINI_MAIN';
 import { ALBERTO_BINI_OUTLET } from './stores_configs/ALBERTO_BINI_OUTLET';
 import { ALBERTO_BINI_SALES } from './stores_configs/ALBERTO_BINI_SALES';
@@ -12,8 +14,10 @@ const stores = [
     DEVELOP_STORE,
     ALBERTO_BINI_OUTLET,
     ALBERTO_BINI_MAIN,
-    ALBERTO_BINI_KZ,
-    ALBERTO_BINI_EU,
+    ALBERTO_BINI_KZ_WS,
+    ALBERTO_BINI_EU_WS,
+    ALBERTO_BINI_EU_RETAIL,
+    ALBERTO_BINI_KZ_RETAIL,
     KREMEN_BELTS_MAIN,
     ALBERTO_BINI_SALES,
     KREMEN_BELTS_SALES,
@@ -45,6 +49,7 @@ const storeConfig = (): STORE_CONFIG_Interface => {
             SALE_PRICE_MULTIPLICATION: matchingDomain?.options?.sale_price_multiplication || 1,
             CURRENCY_MULTIPLICATION: matchingDomain?.options?.currency_multiplication || 1,
             CUSTOM_CURRENCY: matchingDomain?.options?.custom_currency || null,
+            MIN_ITEMS_TO_BUY: matchingDomain?.options?.min_items_to_buy || 1,
             STORE_TYPE: matchingDomain?.options?.store_type || StoreType?.default,
             HOME_PAGE_ACTIVE: matchingDomain?.options?.home_page_active || false,
             INFORMATION_PAGE_ACTIVE: matchingDomain?.options?.informative_page_active || false,

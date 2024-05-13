@@ -196,6 +196,8 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 required_field: 'Required field',
                 question: 'Question',
                 send: 'Send',
+                wholesales_ordering_limitation_message:
+                    'Welcome to our wholesale catalog, where each order starts with 10 units. For those interested in retail purchases, please visit our retail catalog.',
             },
         },
         {
@@ -385,6 +387,8 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 required_field: 'Champ obligatoire',
                 question: 'Question',
                 send: 'Envoyer',
+                wholesales_ordering_limitation_message:
+                    'Bienvenue dans notre catalogue de gros, où chaque commande commence par 10 unités. Pour ceux intéressés par des achats au détail, veuillez visiter notre catalogue de détail.',
             },
         },
         {
@@ -573,6 +577,8 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 required_field: 'Campo obligatorio',
                 question: 'Pregunta',
                 send: 'Enviar',
+                wholesales_ordering_limitation_message:
+                    'Bienvenido a nuestro catálogo mayorista, donde cada pedido comienza con 10 unidades. Para aquellos interesados en compras al por menor, por favor visite nuestro catálogo minorista.',
             },
         },
         {
@@ -761,6 +767,8 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 required_field: `Обов'язкове поле`,
                 question: 'Питання',
                 send: 'Надіслати',
+                wholesales_ordering_limitation_message:
+                    'Ласкаво просимо до нашого оптового каталогу, де кожне замовлення починається з 10 одиниць. Для тих, хто зацікавлений у роздрібних покупках, будь ласка, відвідайте наш роздрібний каталог.',
             },
         },
         {
@@ -950,6 +958,8 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 required_field: 'Pole wymagane',
                 question: 'Pytanie',
                 send: 'Wyślij',
+                wholesales_ordering_limitation_message:
+                    'Witamy w naszym katalogu hurtowym, gdzie każde zamówienie zaczyna się od 10 jednostek. Osoby zainteresowane zakupami detalicznymi prosimy o odwiedzenie naszego katalogu detalicznego.',
             },
         },
         {
@@ -1136,6 +1146,8 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 required_field: 'Povinné pole',
                 question: 'Otázka',
                 send: 'Odeslat',
+                wholesales_ordering_limitation_message:
+                    'Vítejte v našem velkoobchodním katalogu, kde každá objednávka začíná 10 kusy. Pro ty, kteří mají zájem o maloobchodní nákupy, navštivte prosím náš maloobchodní katalog.',
             },
         },
         {
@@ -1324,6 +1336,8 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 required_field: 'Обязательное поле',
                 question: 'Вопрос',
                 send: 'Отправить',
+                wholesales_ordering_limitation_message:
+                    'Добро пожаловать в наш оптовый каталог, где каждый заказ начинается с 10 единиц. Для тех, кто заинтересован в розничной покупке, посетите наш розничный каталог.',
             },
         },
         {
@@ -1516,6 +1530,8 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 required_field: 'Міндетті өріс',
                 question: 'Сұрақ',
                 send: 'Жіберу',
+                wholesales_ordering_limitation_message:
+                    'Біздің көтерме сауда каталогымызға қош келдіңіздер, мұнда әрбір тапсырыс кемінде 10 бірліктен басталады. Көтерме сатып алуға қызығушылық танытқандар үшін, өтінеміз, біздің көтерме сауда каталогымызды қараңыздар.',
             },
         },
     ];

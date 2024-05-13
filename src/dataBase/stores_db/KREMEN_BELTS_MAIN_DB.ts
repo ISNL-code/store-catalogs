@@ -1,5 +1,5 @@
 export const KREMEN_BELTS_MAIN_DB = {
-    code: 'DEFAULT',
+    code: 'DEFAULT', //main
     mainImage: require('../images/posters/belts.jpeg'),
     descriptions: [
         {

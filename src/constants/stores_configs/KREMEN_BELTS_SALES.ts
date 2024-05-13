@@ -24,6 +24,7 @@ export const KREMEN_BELTS_SALES = {
         sale_price_multiplication: 1,
         currency_multiplication: 1,
         custom_currency: null,
+        min_items_to_buy: 1,
         store_type: StoreType?.sales,
         home_page_active: false,
         informative_page_active: false,

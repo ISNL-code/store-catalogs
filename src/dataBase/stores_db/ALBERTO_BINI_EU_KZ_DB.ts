@@ -1,5 +1,5 @@
-export const ALBERTO_BINI_EU_DB = {
-    code: 'alberto_bini_europe',
+export const ALBERTO_BINI_EU_KZ_DB = {
+    code: 'alberto_bini_europe', //eu, kz, ws, retail
     mainImage: require('../images/posters/alb.jpeg'),
     descriptions: [
         {

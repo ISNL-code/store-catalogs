@@ -1,5 +1,5 @@
 export const ALBERTO_BINI_OUTLET_DB = {
-    code: 'ALBERTO_BINI_SALES',
+    code: 'ALBERTO_BINI_SALES', // sales outlet
     mainImage: require('../images/posters/alb.jpeg'),
     descriptions: [
         {

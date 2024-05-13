@@ -1,5 +1,5 @@
 export const KREMEN_BELTS_SALES_DB = {
-    code: 'kremen_belts_sales',
+    code: 'kremen_belts_sales', // sales
     mainImage: require('../images/posters/belts.jpeg'),
     descriptions: [
         {

@@ -22,10 +22,10 @@ const PaginationButton = ({ setCurrentPage, totalCount, loadProducts, productsLi
                     flexDirection: 'column',
                     justifyContent: 'center',
                     alignItems: 'center',
-                    gap: 1,
+                    gap: 0.5,
                 }}
             >
-                <Typography sx={{ color: Colors?.TEXT_GRAY }}>
+                <Typography sx={{ color: Colors?.TEXT_GRAY, fontSize: 14 }}>
                     {productsList?.length} {string?.out_of} {totalCount} {string?.shown}
                 </Typography>
                 <Button
@@ -39,7 +39,6 @@ const PaginationButton = ({ setCurrentPage, totalCount, loadProducts, productsLi
                             borderColor: loadProducts ? '#ccc' : '',
                         },
                         fontSize: '14px',
-                        borderRadius: 16,
                         textTransform: 'capitalize',
                     }}
                     variant="contained"

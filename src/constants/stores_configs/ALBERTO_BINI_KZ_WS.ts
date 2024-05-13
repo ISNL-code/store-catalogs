@@ -1,15 +1,15 @@
 import { StoreType, ViewModeType } from 'constants/types';
 
-const prefix = 'ab_kz';
+const prefix = 'ab_kz_ws';
 
-export const ALBERTO_BINI_KZ = {
+export const ALBERTO_BINI_KZ_WS = {
     active: true, // Поле которое запускает магазин true - работает false - остановлен / по тех. причина
     required_registration: false,
     URL: ['https://albertobini-kz.com'],
     appStoreUrl: null,
     playMarketUrl: null,
     web_lang: 'kk', // html lang
-    store_name: 'Alberto Bini KZ',
+    store_name: 'Alberto Bini Kazakhstan',
     store_code: 'alberto_bini_europe',
     token_key: `${prefix}-tkn`,
     cart_key: `${prefix}-cart`,
@@ -17,13 +17,14 @@ export const ALBERTO_BINI_KZ = {
     base_url: 'https://kremen-belts.com/api',
     lang_key: `${prefix}-lang`,
     app_lang: 'kz',
-    links: [],
+    links: [{ name: 'Retail', href: 'https://albertobini-kz-retail.netlify.app', description: 'WEB' }],
     options: {
         product_image_options: { width: 6, height: 9 },
         main_price_multiplication: 1,
         sale_price_multiplication: 1,
         currency_multiplication: 1,
         custom_currency: null,
+        min_items_to_buy: 10,
         store_type: StoreType?.wholesales,
         home_page_active: true,
         informative_page_active: true,
