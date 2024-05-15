@@ -75,7 +75,7 @@ export const useUserApi = () => {
             return post({
                 url: `v1/customer/password/reset/request?store=${storeCode}`,
                 body: {
-                    returnUrl: window.location.origin,
+                    returnUrl: '',
                     username: username,
                 },
             });
