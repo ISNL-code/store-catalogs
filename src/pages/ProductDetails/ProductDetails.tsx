@@ -15,7 +15,8 @@ import { CatalogContextInterface, ProductVariantInterface } from 'types';
 import ModelDetails from './ModelDetails';
 import ModelSwiper from './ModelSwiper';
 import { scrollToTopNewPage } from 'helpers/scroll';
-import { STORE_CONFIG } from 'constants/stores_config';
+import { STORE_CONFIG } from 'store_constants/stores_config';
+import { STORE_ROUTE } from 'constants/routes';
 
 interface LoadedProductInterface {
     id?: number;
@@ -35,7 +36,7 @@ interface SelectedVarianInterface {
 }
 
 const ProductDetails = () => {
-    const { OPTIONS } = STORE_CONFIG;
+    const { OPTIONS, STORE_CODE } = STORE_CONFIG;
     const { PLAN_OPTIONS } = OPTIONS;
     const mount = useIsMount();
     const {
@@ -45,7 +46,7 @@ const ProductDetails = () => {
         supportedLanguage,
         appXPadding,
     }: CatalogContextInterface = useOutletContext();
-    const { modelSku, storeCode, storeName, productId } = useParams();
+    const { modelSku, storeCode, productId } = useParams();
     const [productDetails, setProductDetails] = useState<LoadedProductInterface | null>(null);
     const [selectedVariant, setSelectedVariant] = useState<SelectedVarianInterface | undefined | null>(null);
     const [loading, setLoading] = useState(true);
@@ -132,7 +133,7 @@ const ProductDetails = () => {
     return (
         <Box px={appXPadding} pb={footerMenuHeight}>
             <InstrumentalSubHeader
-                StartSlot={() => <BackButton nav={`/catalog/${storeCode}/${storeName}`} action={() => {}} />}
+                StartSlot={() => <BackButton nav={STORE_ROUTE?.root(STORE_CODE)} action={() => {}} />}
                 EndSlot={() => (
                     <Box sx={{ display: 'flex', gap: 0.75 }}>
                         <SkuSearch />

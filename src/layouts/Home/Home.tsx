@@ -1,4 +1,4 @@
-import { Outlet } from 'react-router-dom';
+import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 import { useGetLanguage } from 'hooks/useGetLanguage';
@@ -9,11 +9,19 @@ import HomeMobileMenu from './HomeMobileMenu';
 import { HomeContextInterface, StoreInterface } from 'types';
 import { useStoresApi } from 'api/useStoresApi';
 import { STORES_DATA } from 'dataBase/STORES';
-import { STORE_CONFIG } from 'constants/stores_config';
-import Modals from 'layouts/Modals';
+import { STORE_CONFIG } from 'store_constants/stores_config';
+import { useFormsApp } from 'layouts/hooks/useFormsApp';
+import DialogApp from 'layouts/DialogApp';
+import { HOME_ROUTE } from 'constants/routes';
+
+const OutletContainer = ({ context }: { context: HomeContextInterface }) => {
+    return <Outlet context={context} />;
+};
 
 export default function Home({ lang, setLang, auth, setAuth, userData }) {
     const { STORE_CODE, STORE_NAME } = STORE_CONFIG;
+    const { storeCode } = useParams();
+    const navigate = useNavigate();
     const { sx } = useDevice();
     const INSTRUMENTAL_BAR_HEIGHT = 36;
     const INSTRUMENTAL_BAR_PADDINGS = sx ? 2 : 4;
@@ -22,9 +30,8 @@ export default function Home({ lang, setLang, auth, setAuth, userData }) {
     const HEADER_PADDINGS = sx ? 2 : 4;
     const BODY_PADDINGS = sx ? 0 : 4;
     const FOOTER_PADDINGS = sx ? 2 : 4;
-    const [openModalType, setOpenModalType] = useState<string | null>(null);
     const { currentLanguage } = useGetLanguage({ lang, storeName: STORE_NAME });
-
+    const { activeDialogWindow, handleOpenDialog } = useFormsApp();
     const [store, setStore] = useState<StoreInterface | null>(null);
 
     const { data: storeDataRes, isFetching: loadStore } = useStoresApi().useGetStoreByCode({
@@ -36,6 +43,16 @@ export default function Home({ lang, setLang, auth, setAuth, userData }) {
         setStore({ ...STORES_DATA.find(el => el.code === STORE_CODE), ...storeDataRes.data });
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [storeDataRes]);
+
+    useEffect(() => {
+        if (storeCode) {
+            if (STORE_CODE !== storeCode) navigate(HOME_ROUTE?.root(STORE_CODE));
+        }
+    }, [storeCode, STORE_CODE]); // eslint-disable-line
+
+    useEffect(() => {
+        navigate(HOME_ROUTE?.root(STORE_CODE)); // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [store]);
 
     if (!store) return <></>;
 
@@ -49,44 +66,36 @@ export default function Home({ lang, setLang, auth, setAuth, userData }) {
                 string={currentLanguage?.string}
                 lang={lang}
                 setLang={setLang}
-                setOpenModalType={setOpenModalType}
                 logo={store?.logo?.path}
                 storeHeaderName={store?.name}
-                storeCode={store?.code}
                 store={store}
-                openModalType={openModalType}
                 auth={auth}
                 user={userData}
+                handleOpenDialog={handleOpenDialog}
             />
 
             <Box className="HomeBody" mt={`${HEADER_HEIGHT + INSTRUMENTAL_BAR_HEIGHT}px`} flexGrow={1}>
-                <Outlet
-                    context={
-                        {
-                            //main data
-                            lang: lang?.code,
-                            string: currentLanguage?.string,
-                            openModalType: openModalType,
-                            setOpenModalType: setOpenModalType,
-
-                            //user data
-                            auth: auth,
-                            currentUserData: userData.currentUserData,
-                            loadingUserData: userData.isFetching,
-                            updateUserData: userData.updateUserData,
-                            setCurrentUserData: userData.setCurrentUserData,
-
-                            //css data
-                            instrumentalBarHeight: INSTRUMENTAL_BAR_HEIGHT,
-                            instrumentalBarPadding: INSTRUMENTAL_BAR_PADDINGS,
-                            headerHeight: HEADER_HEIGHT,
-                            footerMenuHeight: FOOTER_MENU_HEIGHT,
-                            appXPadding: BODY_PADDINGS,
-
-                            //store data
-                            store,
-                        } as HomeContextInterface
-                    }
+                <OutletContainer
+                    context={{
+                        //main data
+                        lang: lang?.code,
+                        string: currentLanguage?.string,
+                        handleOpenDialog,
+                        //user data
+                        auth: auth,
+                        currentUserData: userData.currentUserData,
+                        loadingUserData: userData.isFetching,
+                        updateUserData: userData.updateUserData,
+                        setCurrentUserData: userData.setCurrentUserData,
+                        //css data
+                        instrumentalBarHeight: INSTRUMENTAL_BAR_HEIGHT,
+                        instrumentalBarPadding: INSTRUMENTAL_BAR_PADDINGS,
+                        headerHeight: HEADER_HEIGHT,
+                        footerMenuHeight: FOOTER_MENU_HEIGHT,
+                        appXPadding: BODY_PADDINGS,
+                        //store data
+                        store,
+                    }}
                 />
             </Box>
             <HomeMobileMenu
@@ -94,20 +103,17 @@ export default function Home({ lang, setLang, auth, setAuth, userData }) {
                 appXPadding={FOOTER_PADDINGS}
                 isShown={!!sx}
                 string={currentLanguage?.string}
-                storeHeaderName={store?.name}
-                storeCode={store?.code}
                 auth={auth}
                 headerHeight={HEADER_HEIGHT}
-                setOpenModalType={setOpenModalType}
-                openModalType={openModalType}
                 user={userData}
+                handleOpenDialog={handleOpenDialog}
             />
-            <Modals
-                string={currentLanguage?.string as string}
+            <DialogApp
+                location={HOME_ROUTE?.root(STORE_CODE)}
+                string={currentLanguage?.string}
+                activeDialogWindow={activeDialogWindow}
+                handleOpenDialog={handleOpenDialog}
                 setAuth={setAuth}
-                lang={lang}
-                openModalType={openModalType}
-                setOpenModalType={setOpenModalType}
             />
         </Box>
     );

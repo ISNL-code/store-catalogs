@@ -19,7 +19,7 @@ const UserProfile = () => {
         appXPadding,
         footerMenuHeight,
     }: CatalogContextInterface = useOutletContext();
-    const { storeCode, storeName } = useParams();
+    const { storeCode } = useParams();
     const { mutateAsync: updateProfile, isLoading } = useUserApi().useCustomerProfileUpdate({ storeCode });
     const [firstName, setFirstName] = useState(currentUserData?.delivery?.firstName);
     const [lastName, setLastName] = useState(currentUserData?.delivery?.lastName);
@@ -47,7 +47,7 @@ const UserProfile = () => {
         <Box p={sx ? 2 : appXPadding} pb={footerMenuHeight}>
             {isLoading && <Loader />}
             <InstrumentalSubHeader
-                StartSlot={() => <BackButton nav={`/catalog/${storeCode}/${storeName}`} action={() => {}} />}
+                StartSlot={() => <BackButton nav={-1} action={() => {}} />}
                 EndSlot={() => (
                     <Button
                         variant="outlined"

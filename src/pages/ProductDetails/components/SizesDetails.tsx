@@ -5,7 +5,7 @@ import { useOutletContext } from 'react-router-dom';
 import StraightenIcon from '@mui/icons-material/Straighten';
 import { useDevice } from 'hooks/useDevice';
 import { CatalogContextInterface } from 'types';
-import { STORE_CONFIG } from 'constants/stores_config';
+import { STORE_CONFIG } from 'store_constants/stores_config';
 
 const SizesDetails = ({ productDetails, isShown }) => {
     const { OPTIONS } = STORE_CONFIG;

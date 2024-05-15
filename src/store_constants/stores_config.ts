@@ -41,6 +41,7 @@ const storeConfig = (): STORE_CONFIG_Interface => {
         LANGUAGE_KEY: matchingDomain?.lang_key || 'sales_nest_lang',
         APP_LANGUAGE: matchingDomain?.app_lang || 'en',
         HTML_LANG: matchingDomain?.web_lang || 'en',
+        SUPPORTED_COUNTRIES: matchingDomain?.supported_countries || null,
         VIEW_MODE_KEY: 'sales_nest_view_mode',
         SIDE_LINKS: matchingDomain?.links || [],
         OPTIONS: {

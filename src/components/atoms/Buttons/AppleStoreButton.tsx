@@ -1,6 +1,6 @@
 import { Box } from '@mui/material';
 import { AppleIcon } from 'assets/svg/apple_icon';
-import { STORE_CONFIG } from 'constants/stores_config';
+import { STORE_CONFIG } from 'store_constants/stores_config';
 import { useDevice } from 'hooks/useDevice';
 
 const AppleStoreButton = () => {

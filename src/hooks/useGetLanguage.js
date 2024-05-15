@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { INFORMATION } from 'dataBase/translations/information';
 import { HOME_PAGE } from 'dataBase/translations/home_page';
 import { COUNTRIES } from 'dataBase/translations/countries';
+import { LONG_PHRASES } from 'dataBase/translations/long_phrases';
 
 export const useGetLanguage = ({ lang, storeName }) => {
     const [currentLanguage, setCurrentLanguage] = useState({ code: '', string: {} });
@@ -10,9 +11,11 @@ export const useGetLanguage = ({ lang, storeName }) => {
         {
             code: 'en',
             string: {
+                ...LONG_PHRASES?.en,
                 ...INFORMATION?.en,
                 ...HOME_PAGE?.en,
                 ...COUNTRIES?.en,
+                hero_text: `An online product catalog is a software solution that allows creating electronic catalogs with product descriptions. It provides features for easy addition of products, classification, description, adding photos, and other important information. Users can organize products into different categories, set up convenient filters, perform searches to simplify navigation. It is often used by companies to create virtual trade catalogs, visualize preliminary projects, online stores, present products at exhibitions, and presentations.`,
                 to: 'to',
                 in: 'in',
                 no_available_sizes: 'No available sizes',
@@ -50,10 +53,6 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 delete: 'Delete',
                 select_sizes: 'Select Sizes',
                 shown: 'Shown',
-                call_back_messageA:
-                    'Hello! If you have questions, comments or need assistance, please contact us. We are ready to help you with your choice, provide you with additional information about the product or help you place your order.',
-                call_back_messageB: 'You can contact us in any messenger available or by phone.',
-                call_back_messageC: 'Thank you for your interest in our online catalogue!',
                 languages: 'Languages',
                 back_to_stores: 'Back to stores',
                 ok: 'Ok',
@@ -79,8 +78,6 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 my_stores: 'My stores',
                 login: 'Login',
                 register: 'Register',
-                wrong_password_or_user_not_registered_in:
-                    'Incorrect password or user with this email is not registered in',
                 forgot_password: 'Forgot password?',
                 cart: 'Cart',
                 vendor_code: 'Product code',
@@ -99,7 +96,6 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 confirm_password: 'Confirm password',
                 company_name: 'Company Name',
                 already_registered: 'Already registered',
-                do_want_to_logout: 'Are you sure you want to leave your account?',
                 cancel: 'Cancel',
                 clear_cart: 'Clear cart',
                 do_you_want_to_clear_cart: 'Do you want to clear cart?',
@@ -116,10 +112,6 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 e_a: 'e.a.',
                 reset_password: 'Reset Password',
                 close: 'Close',
-                please_enter_your_email_address_you_will_receive_a_link_to_create_a_new_password_via_email:
-                    'Please enter your email address. You will receive a link to create a new password via email.',
-                user_with_this_email_not_found: 'User with this email not found',
-                an_email_with_a_link_has_been_sent_to_your_email: 'An email with a link has been sent to your email',
                 find_by_vendor_code: 'Find by product code',
                 colors: 'Colors',
                 color: 'Color',
@@ -140,10 +132,6 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 sended: 'Sended',
                 store_key: 'Store key',
                 enter_store_key: 'Enter store key!',
-                this_catalog_is_private_in_order_to_enter_you_must_enter_the_key:
-                    'This catalog is private, in order to enter you must enter the key.',
-                this_catalog_does_not_support_the_current_language_to_continue_select_a_language_from_the_list_in_the_languages_menu:
-                    'This catalog does not support the current language, to continue, select a language from the list in the languages ​​menu',
                 language_error: 'Language error!',
                 spanish: 'Spain',
                 french: 'French',
@@ -153,16 +141,12 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 payments_delivery: 'Payments & Delivery',
                 return_exchange: 'Returns & Exchange',
                 privacy_policy: 'Privacy Policy',
-
-                ///
                 info_title_1: `About ${storeName}`,
                 info_title_2: 'Payments & Delivery',
                 info_title_3: 'Returns & Exchange',
                 info_title_4: 'Privacy Policy',
                 message: 'Message',
                 info: 'Info',
-                min_purchase: 'Minimum Purchase Requirement',
-                min_purchase_text: `Welcome to the Wholesale ${storeName} Catalog. Please note that a minimum order of 10 items is required. For purchases of fewer than 10 items, kindly visit our Retail Catalog. Thank you for choosing ${storeName}!`,
                 item: 'item(s)',
                 add_more: 'Add more',
                 retail_catalog: 'Retail',
@@ -171,10 +155,8 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 examples: 'Examples',
                 main_advantages: 'Main Advantages',
                 online_catalog_for_your_business: 'Online Catalog for your business',
-                request_sended_successfully: 'The request has been sent successfully! We will contact you shortly.',
                 first_month_free: 'First month free',
                 home: 'Home',
-                hero_text: `An online product catalog is a software solution that allows creating electronic catalogs with product descriptions. It provides features for easy addition of products, classification, description, adding photos, and other important information. Users can organize products into different categories, set up convenient filters, perform searches to simplify navigation. It is often used by companies to create virtual trade catalogs, visualize preliminary projects, online stores, present products at exhibitions, and presentations.`,
                 main_function: `Main Functionality`,
                 admin_panel: `Admin Panel`,
                 admin: `Administrators`,
@@ -196,15 +178,16 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 required_field: 'Required field',
                 question: 'Question',
                 send: 'Send',
-                wholesales_ordering_limitation_message:
-                    'Welcome to our wholesale catalog, where each order starts with 10 units. For those interested in retail purchases, please visit our retail catalog.',
-                manger_will_contact_message:
-                    'Our manager will be in touch with you shortly to provide detailed information regarding your purchase.',
+                request_sended_successfully: 'The request has been sent successfully! We will contact you shortly.',
+                wrong_password_or_user_not_registered_in:
+                    'Incorrect password or user with this email is not registered in',
+                do_want_to_logout: 'Are you sure you want to leave your account?',
             },
         },
         {
             code: 'fr',
             string: {
+                ...LONG_PHRASES?.fr,
                 ...INFORMATION?.fr,
                 ...HOME_PAGE?.fr,
                 ...COUNTRIES?.fr,
@@ -245,12 +228,6 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 delete: 'Supprimer',
                 select_sizes: 'Sélectionner les tailles',
                 show: 'ShAffichéown',
-                call_back_messageA:
-                    'Bonjour! Si vous avez des questions, des commentaires ou avez besoin d`aide, veuillez nous contacter. Nous sommes prêts à vous aider dans votre choix, à vous fournir des informations complémentaires sur le produit ou à vous aider à passer votre commande.',
-
-                call_back_messageB:
-                    'Vous pouvez nous contacter dans n`importe quel messager disponible ou par téléphone.',
-                call_back_messageC: 'Merci de l`intérêt que vous portez à notre catalogue en ligne!',
                 languages: 'Langues',
                 back_to_stores: 'Retour aux magasins',
                 ok: 'Ok',
@@ -312,10 +289,6 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 e_a: 'e.a.',
                 reset_password: 'Réinitialiser le mot de passe',
                 close: 'Fermer',
-                please_enter_your_email_address_you_will_receive_a_link_to_create_a_new_password_via_email:
-                    'Veuillez entrer votre adresse e-mail. Vous recevrez un lien pour créer un nouveau mot de passe par e-mail.',
-                user_with_this_email_not_found: 'Utilisateur avec cet email introuvable',
-                an_email_with_a_link_has_been_sent_to_your_email: 'Un email avec un lien a été envoyé à votre email',
                 find_by_vendor_code: 'Rechercher par code fournisseur',
                 colors: 'Couleurs',
                 color: 'Couleur',
@@ -336,10 +309,6 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 sended: 'Envoyé',
                 store_key: 'Clé du magasin',
                 enter_store_key: 'Entrez la clé du magasin!',
-                this_catalog_is_private_in_order_to_enter_you_must_enter_the_key:
-                    'Ce catalogue ne supporte pas la langue actuelle, pour continuer, sélectionnez une langue dans la liste du menu langues',
-                this_catalog_does_not_support_the_current_language_to_continue_select_a_language_from_the_list_in_the_languages_menu:
-                    'This catalog does not support the current language, to continue, select a language from the list in the languages ​​menu',
                 language_error: 'Erreur de langue !',
                 spanish: 'Espagne',
                 french: 'Français',
@@ -353,8 +322,6 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 info_title_4: 'Politique de Confidentialité',
                 message: 'Message',
                 info: 'Information',
-                min_purchase: 'Achat Minimum Requis',
-                min_purchase_text: `Bienvenue sur le Catalogue ${storeName} de Gros. Veuillez noter qu'une commande minimum de 10 articles est requise. Pour des achats de moins de 10 articles, veuillez visiter notre Catalogue de Détail. Merci d'avoir choisi ${storeName} !`,
                 item: 'article(s)',
                 add_more: 'Ajouter Plus',
                 retail_catalog: 'Détail',
@@ -389,15 +356,12 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 required_field: 'Champ obligatoire',
                 question: 'Question',
                 send: 'Envoyer',
-                wholesales_ordering_limitation_message:
-                    'Bienvenue dans notre catalogue de gros, où chaque commande commence par 10 unités. Pour ceux intéressés par des achats au détail, veuillez visiter notre catalogue de détail.',
-                manger_will_contact_message:
-                    'Notre gestionnaire vous contactera sous peu pour vous fournir des informations détaillées concernant votre achat.',
             },
         },
         {
             code: 'es',
             string: {
+                ...LONG_PHRASES?.es,
                 ...COUNTRIES?.es,
                 ...INFORMATION?.es,
                 ...HOME_PAGE?.es,
@@ -438,10 +402,7 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 delete: 'Eliminar',
                 select_sizes: 'Seleccionar tamaños',
                 show: 'Mostrado',
-                call_back_messageA:
-                    'Hola! Si tiene preguntas, comentarios o necesita ayuda, por favor contáctenos. Estamos listos para ayudarle con su elección, brindarle información adicional sobre el producto o ayudarlo a realizar su pedido.',
-                call_back_messageB: 'Puedes contactarnos en cualquier messenger disponible o por teléfono.',
-                call_back_messageC: 'Gracias por su interés en nuestro catálogo en línea!',
+
                 languages: 'Idiomas',
                 back_to_stores: 'Volver a las tiendas',
                 ok: 'Ok',
@@ -503,11 +464,6 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 e_a: 'e.a.',
                 reset_password: 'Restablecer contraseña',
                 close: 'Cerca',
-                please_enter_your_email_address_you_will_receive_a_link_to_create_a_new_password_via_email:
-                    'Por favor, introduzca su dirección de correo electrónico. Recibirás un enlace para crear una nueva contraseña por correo electrónico.',
-                user_with_this_email_not_found: 'Usuario con este correo electrónico no encontrado',
-                an_email_with_a_link_has_been_sent_to_your_email:
-                    'Se ha enviado un correo electrónico con un enlace a su correo electrónico',
                 find_by_vendor_code: 'Buscar por código de proveedor',
                 colors: 'Colores',
                 color: 'Color',
@@ -528,10 +484,6 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 sended: 'Enviado',
                 store_key: 'Guardar clave',
                 enter_store_key: 'Ingrese la clave de la tienda!',
-                this_catalog_is_private_in_order_to_enter_you_must_enter_the_key:
-                    'Este catálogo es privado, para poder ingresar debes ingresar la clave.',
-                this_catalog_does_not_support_the_current_language_to_continue_select_a_language_from_the_list_in_the_languages_menu:
-                    'Este catálogo no soporta el idioma actual, para continuar, seleccione un idioma de la lista en el menú de idiomas',
                 language_error: 'Error de idioma!',
                 spanish: 'España',
                 french: 'Francés',
@@ -545,8 +497,6 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 info_title_4: 'Política de Privacidad',
                 message: 'Mensaje',
                 info: 'Información',
-                min_purchase: 'Compra Mínima Requerida',
-                min_purchase_text: `Bienvenido al Catálogo ${storeName} al por Mayor. Tenga en cuenta que se requiere un pedido mínimo de 10 artículos. Para compras de menos de 10 artículos, visite nuestro Catálogo Minorista. ¡Gracias por elegir ${storeName}!`,
                 item: 'artículo(s)',
                 add_more: 'Agregar Más',
                 retail_catalog: 'Minorista',
@@ -581,15 +531,12 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 required_field: 'Campo obligatorio',
                 question: 'Pregunta',
                 send: 'Enviar',
-                wholesales_ordering_limitation_message:
-                    'Bienvenido a nuestro catálogo mayorista, donde cada pedido comienza con 10 unidades. Para aquellos interesados en compras al por menor, por favor visite nuestro catálogo minorista.',
-                manger_will_contact_message:
-                    'Nuestro gerente se pondrá en contacto con usted en breve para proporcionarle información detallada sobre su compra.',
             },
         },
         {
             code: 'ua',
             string: {
+                ...LONG_PHRASES?.ua,
                 ...COUNTRIES?.ua,
                 ...INFORMATION?.ua,
                 ...HOME_PAGE?.ua,
@@ -630,10 +577,6 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 delete: 'Видалити',
                 select_sizes: 'Оберіть розміри',
                 shown: 'Зображено',
-                call_back_messageA:
-                    'Привіт! Якщо у вас є запитання, коментарі або потрібна допомога, зв’яжіться з нами. Ми готові допомогти вам з вибором, надати додаткову інформацію про товар або допомогти оформити замовлення.',
-                call_back_messageB: 'Ви можете зв’язатися з нами в будь-якому доступному месенджері або по телефону.',
-                call_back_messageC: 'Дякуємо за інтерес до нашого онлайн-каталогу!',
                 languages: 'Мови',
                 back_to_stores: 'Повернутися до магазинiв',
                 ok: 'Ок',
@@ -696,11 +639,6 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 e_a: 'од.',
                 reset_password: 'Скинути пароль',
                 close: 'Закрити',
-                please_enter_your_email_address_you_will_receive_a_link_to_create_a_new_password_via_email:
-                    'Будь ласка, введіть адресу електронної пошти. Ви отримаєте електронною поштою посилання для створення нового пароля.',
-                an_email_with_a_link_has_been_sent_to_your_email:
-                    'На Вашу електронну пошту надіслано листа з посиланням',
-                user_with_this_email_not_found: 'Користувача з такою електронною поштою не знайдено',
                 find_by_vendor_code: 'Знайти модель за артикулом',
                 colors: 'Кольори',
                 color: 'Колiр',
@@ -721,10 +659,6 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 sended: 'Надіслано',
                 store_key: 'Ключ магазину',
                 enter_store_key: 'Введіть ключ магазину!',
-                this_catalog_is_private_in_order_to_enter_you_must_enter_the_key:
-                    'Цей каталог є приватним, щоб увійти необхідно ввести ключ каталогу.',
-                this_catalog_does_not_support_the_current_language_to_continue_select_a_language_from_the_list_in_the_languages_menu:
-                    'Цей каталог не підтримує поточну мову, щоб продовжити, виберіть мову зі списку в меню мов',
                 language_error: 'Помилка мови!',
                 spanish: 'Іспанська',
                 french: 'Французька',
@@ -738,8 +672,6 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 info_title_4: 'Політика конфіденційності',
                 message: 'Повідомлення',
                 info: 'Інформація',
-                min_purchase: 'Мінімальна Вимога до Закупівлі',
-                min_purchase_text: `Ласкаво просимо до Оптового каталогу ${storeName}. Зверніть увагу, що для замовлення потрібна мінімальна кількість 10 товарів. Для покупок менше 10 товарів, будь ласка, відвідайте наш Роздрібний каталог. Дякуємо, що вибрали ${storeName}!`,
                 item: 'товар(и)',
                 add_more: 'Додати Більше',
                 retail_catalog: 'Роздрібний',
@@ -773,14 +705,12 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 required_field: `Обов'язкове поле`,
                 question: 'Питання',
                 send: 'Надіслати',
-                wholesales_ordering_limitation_message:
-                    'Ласкаво просимо до нашого оптового каталогу, де кожне замовлення починається з 10 одиниць. Для тих, хто зацікавлений у роздрібних покупках, будь ласка, відвідайте наш роздрібний каталог.',
-                manger_will_contact_message: `Наш менеджер зв'яжеться з вами найближчим часом, щоб надати детальну інформацію щодо вашої покупки.`,
             },
         },
         {
             code: 'pl',
             string: {
+                ...LONG_PHRASES?.pl,
                 ...COUNTRIES?.pl,
                 ...INFORMATION?.pl,
                 ...HOME_PAGE?.pl,
@@ -821,11 +751,7 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 delete: 'Usuwać',
                 select_sizes: 'Wybierz rozmiary',
                 shown: 'Pokazano',
-                call_back_messageA:
-                    'Cześć! Jeśli masz pytania, uwagi lub potrzebujesz pomocy, skontaktuj się z nami. Chętnie pomożemy w dokonaniu wyboru, udzielimy dodatkowych informacji o produkcie lub pomożemy w złożeniu zamówienia.',
-                call_back_messageB:
-                    'Można się z nami skontaktować w dowolnym komunikatorze dostępnym lub telefonicznie.',
-                call_back_messageC: 'Dziękujemy za zainteresowanie naszym katalogiem online!',
+
                 languages: 'Języki',
                 back_to_stores: 'Wróć do sklepów',
                 ok: 'Ok',
@@ -888,11 +814,6 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 e_a: 'e.a.',
                 reset_password: 'Zresetuj hasło',
                 close: 'Zamknij',
-                please_enter_your_email_address_you_will_receive_a_link_to_create_a_new_password_via_email:
-                    'Podaj swój adres e-mail. Otrzymasz wiadomość e-mail z linkiem do utworzenia nowego hasła.',
-                user_with_this_email_not_found: 'Nie znaleziono użytkownika z tym adresem e-mail',
-                an_email_with_a_link_has_been_sent_to_your_email:
-                    'E-mail z linkiem został wysłany na Twój adres e-mail',
                 find_by_vendor_code: 'Znajdź według kodu dostawcy',
                 colors: 'Kolory',
                 color: 'Kolor',
@@ -913,10 +834,6 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 sended: 'Wysłano',
                 store_key: 'Klucz sklepu',
                 enter_store_key: 'Wprowadź klucz sklepu',
-                this_catalog_is_private_in_order_to_enter_you_must_enter_the_key:
-                    'Ten katalog jest prywatny, aby do niego wejść, musisz wprowadzić klucz katalogu.',
-                this_catalog_does_not_support_the_current_language_to_continue_select_a_language_from_the_list_in_the_languages_menu:
-                    'Ten katalog nie obsługuje bieżącego języka, aby kontynuować, wybierz język z listy w menu języków',
                 language_error: 'Błąd językowy!',
                 spanish: 'Hiszpański',
                 french: 'Francuski',
@@ -930,8 +847,6 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 info_title_4: 'Polityka Prywatności',
                 message: 'Wiadomość',
                 info: 'Informacje',
-                min_purchase: 'Minimalna Wymagana Kwota Zakupu',
-                min_purchase_text: `Witaj w Hurtowym Katalogu ${storeName}. Należy pamiętać, że minimalne zamówienie wynosi 10 sztuk. Aby dokonać zakupu mniejszej ilości niż 10 sztuk, prosimy odwiedzić nasz Katalog Detaliczny. Dziękujemy za wybór ${storeName}!`,
                 item: 'produkt(y)',
                 add_more: 'Dodaj Więcej',
                 retail_catalog: 'Detaliczny',
@@ -965,15 +880,12 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 required_field: 'Pole wymagane',
                 question: 'Pytanie',
                 send: 'Wyślij',
-                wholesales_ordering_limitation_message:
-                    'Witamy w naszym katalogu hurtowym, gdzie każde zamówienie zaczyna się od 10 jednostek. Osoby zainteresowane zakupami detalicznymi prosimy o odwiedzenie naszego katalogu detalicznego.',
-                manger_will_contact_message:
-                    'Nasz menedżer skontaktuje się z Państwem wkrótce, aby udzielić szczegółowych informacji dotyczących Państwa zakupu.',
             },
         },
         {
             code: 'cz',
             string: {
+                ...LONG_PHRASES?.cz,
                 ...COUNTRIES?.cz,
                 ...INFORMATION?.cz,
                 ...HOME_PAGE?.cz,
@@ -1014,9 +926,7 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 delete: 'Vymazat',
                 select_sizes: 'Vyberte velikosti',
                 shown: 'Zobrazeno',
-                call_back_messageA:
-                    'Ahoj! Pokud máte dotazy, připomínky nebo potřebujete pomoc, kontaktujte nás. Jsme připraveni vám pomoci s výběrem, poskytnout doplňující informace o produktu nebo pomoci s objednávkou.',
-                call_back_messageB: 'Můžete nás kontaktovat v jakémkoli uvedeném messengeru nebo telefonicky.',
+
                 languages: 'Jazyky',
                 back_to_stores: 'Vraťte se do obchodů',
                 ok: 'Ok',
@@ -1079,10 +989,6 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 e_a: 'e.a.',
                 reset_password: 'Resetovat heslo',
                 close: 'Zavřít',
-                please_enter_your_email_address_you_will_receive_a_link_to_create_a_new_password_via_email:
-                    'Prosím zadejte svou e-mailovou adresu. E-mailem obdržíte odkaz pro vytvoření nového hesla.',
-                user_with_this_email_not_found: 'Uživatel s tímto e-mailem nebyl nalezen',
-                an_email_with_a_link_has_been_sent_to_your_email: 'Na váš e-mail byl odeslán e-mail s odkazem',
                 find_by_vendor_code: 'Najít podle kódu dodavatele',
                 colors: 'Barvy',
                 color: 'Barva',
@@ -1103,10 +1009,6 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 sended: 'Odesláno',
                 store_key: 'Klíč obchodu',
                 enter_store_key: 'Zadejte klíč obchodu!',
-                this_catalog_is_private_in_order_to_enter_you_must_enter_the_key:
-                    'Tento adresář je soukromý, pro vstup musíte zadat klíč adresáře.',
-                this_catalog_does_not_support_the_current_language_to_continue_select_a_language_from_the_list_in_the_languages_menu:
-                    'Tento katalog nepodporuje aktuální jazyk, pro pokračování vyberte jazyk ze seznamu v nabídce jazyků',
                 language_error: 'Jazyková chyba!',
                 spanish: 'Spanělština',
                 french: 'Francouzština',
@@ -1120,8 +1022,6 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 info_title_4: 'Zásady Ochrany Soukromí',
                 message: 'Zpráva',
                 info: 'Informace',
-                min_purchase: 'Minimální Požadovaná Výše Nákupu',
-                min_purchase_text: `Vítejte ve Velkoobchodním Katalogu ${storeName}. Upozorňujeme, že minimální objednávka je 10 položek. Pro nákupy menší než 10 položek navštivte prosím náš Maloobchodní Katalog. Děkujeme, že jste si vybrali ${storeName}!`,
                 item: 'produkt(y)',
                 add_more: 'Přidat Další',
                 retail_catalog: 'Maloobchodní',
@@ -1155,15 +1055,12 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 required_field: 'Povinné pole',
                 question: 'Otázka',
                 send: 'Odeslat',
-                wholesales_ordering_limitation_message:
-                    'Vítejte v našem velkoobchodním katalogu, kde každá objednávka začíná 10 kusy. Pro ty, kteří mají zájem o maloobchodní nákupy, navštivte prosím náš maloobchodní katalog.',
-                manger_will_contact_message:
-                    'Náš manažer se s vámi brzy spojí, aby vám poskytl podrobné informace o vašem nákupu.',
             },
         },
         {
             code: 'ru',
             string: {
+                ...LONG_PHRASES?.ru,
                 ...COUNTRIES?.ru,
                 ...INFORMATION?.ru,
                 ...HOME_PAGE?.ru,
@@ -1204,10 +1101,6 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 delete: 'Удалить',
                 select_sizes: 'Выбереите размеры',
                 shown: 'Показано',
-                call_back_messageA:
-                    'Привет! Если у вас есть вопросы, комментарии или нужна помощь, пожалуйста, обратитесь к нам. Мы готовы помочь вам с выбором, предоставить вам дополнительную информацию о продукте или помочь с оформлением заказа.',
-                call_back_messageB: 'Вы можете связаться с нами в любом доступном мессенджере или по телефону.',
-                call_back_messageC: 'Спасибо за ваш интерес к нашему интернет-каталогу!',
                 languages: 'Языки',
                 back_to_stores: 'Вернуться к магазинам',
                 ok: 'Ок',
@@ -1270,11 +1163,6 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 e_a: 'ед.',
                 reset_password: 'Сбросить пароль',
                 close: 'Закрыть',
-                please_enter_your_email_address_you_will_receive_a_link_to_create_a_new_password_via_email:
-                    'Пожалуйста, введите Ваш адрес электронной почты. Вы получите ссылку для создания нового пароля по электронной почте.',
-                user_with_this_email_not_found: 'Пользователь с этим адресом электронной почты не найден',
-                an_email_with_a_link_has_been_sent_to_your_email:
-                    'На ваш адрес электронной почты отправлено письмо со ссылкой',
                 find_by_vendor_code: 'Найти по артикулу',
                 colors: 'Цвета',
                 color: 'Цвет',
@@ -1295,10 +1183,6 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 sended: 'Отправлено',
                 store_key: 'Ключ магазина',
                 enter_store_key: 'Введите ключ магазина!',
-                this_catalog_is_private_in_order_to_enter_you_must_enter_the_key:
-                    'Этот каталог приватный, для того чтобы войти вы должны ввести ключ.',
-                this_catalog_does_not_support_the_current_language_to_continue_select_a_language_from_the_list_in_the_languages_menu:
-                    'Этот каталог не поддерживает текущий язык, для продолжения выберите язык из списка в меню языков',
                 language_error: 'Ошибка языка!',
                 spanish: 'Испанский',
                 french: 'Французкий',
@@ -1312,8 +1196,6 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 info_title_4: 'Политика конфиденциальности',
                 message: 'Сообщение',
                 info: 'Информация',
-                min_purchase: 'Минимальное Требование к Покупке',
-                min_purchase_text: `Добро пожаловать в Оптовый каталог ${storeName}. Обратите внимание, что для заказа требуется минимальное количество 10 товаров. Для покупок менее 10 товаров, пожалуйста, посетите наш Розничный каталог. Спасибо, что выбрали ${storeName}!`,
                 item: 'товар(ы)',
                 add_more: 'Добавить Больше',
                 retail_catalog: 'Розничный',
@@ -1347,15 +1229,12 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 required_field: 'Обязательное поле',
                 question: 'Вопрос',
                 send: 'Отправить',
-                wholesales_ordering_limitation_message:
-                    'Добро пожаловать в наш оптовый каталог, где каждый заказ начинается с 10 единиц. Для тех, кто заинтересован в розничной покупке, посетите наш розничный каталог.',
-                manger_will_contact_message:
-                    'Наш менеджер свяжется с вами в ближайшее время, чтобы предоставить подробную информацию о вашей покупке.',
             },
         },
         {
             code: 'kz',
             string: {
+                ...LONG_PHRASES?.kz,
                 ...COUNTRIES?.kz,
                 ...INFORMATION?.kz,
                 ...HOME_PAGE?.kz,
@@ -1396,11 +1275,6 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 delete: 'Жою',
                 select_sizes: 'Өлшемдерді таңдау',
                 shown: 'Көрсетілген',
-                call_back_messageA:
-                    'Сәлеметсіз бе! Егер сізде сұрақтарыңыз, пікірлеріңіз болса немесе көмек қажет болса, бізбен хабарласыңыз. Біз сізге тауар таңдауда, қосымша ақпарат беруде көмектесе аламыз немесе тапсырыс беру процесінде көмек көрсете аламыз.',
-                call_back_messageB:
-                    'Сіз бізбен қол жетімді кез келген мессенджер арқылы немесе телефонмен хабарласа аласыз.',
-                call_back_messageC: 'Біздің онлайн каталогымызға қызығушылық танытқаныңыз үшін рахмет!',
                 languages: 'Тілдер',
                 back_to_stores: 'Дүкендерге қайту',
                 ok: 'Жарайды',
@@ -1463,11 +1337,6 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 e_a: 'e.a.',
                 reset_password: 'Құпия сөзді қалпына келтіру',
                 close: 'Жабу',
-                please_enter_your_email_address_you_will_receive_a_link_to_create_a_new_password_via_email:
-                    'Электрондық пошта мекенжайыңызды енгізіңіз. Жаңа құпия сөз жасау үшін сізге сілтеме жіберіледі.',
-                user_with_this_email_not_found: 'Бұл электрондық поштамен пайдаланушы табылған жоқ',
-                an_email_with_a_link_has_been_sent_to_your_email:
-                    'Сіздің электрондық поштаңызға сілтеме бар хат жіберілді',
                 find_by_vendor_code: 'Өнім коды бойынша табу',
                 colors: 'Түстер',
                 color: 'Түс',
@@ -1488,10 +1357,6 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 sended: 'Жіберілді',
                 store_key: 'Дүкен кілті',
                 enter_store_key: 'Дүкен кілтін енгізіңіз!',
-                this_catalog_is_private_in_order_to_enter_you_must_enter_the_key:
-                    'Бұл каталог жеке, кіру үшін сіз кілтті енгізуіңіз керек.',
-                this_catalog_does_not_support_the_current_language_to_continue_select_a_language_from_the_list_in_the_languages_menu:
-                    'Бұл каталог қазіргі тілді қолдамайды, жалғастыру үшін тілдер мәзіріндегі тізімнен тілді таңдаңыз',
                 language_error: 'Тіл қатесі!',
                 spanish: 'Испан',
                 french: 'Француз',
@@ -1501,15 +1366,12 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 payments_delivery: 'Төлемдер мен жеткізу',
                 return_exchange: 'Қайтару және айырбастау',
                 privacy_policy: 'Құпиялылық саясаты',
-
                 info_title_1: `${storeName} туралы`,
                 info_title_2: 'Төлемдер мен жеткізу',
                 info_title_3: 'Қайтару және айырбастау',
                 info_title_4: 'Құпиялылық саясаты',
                 message: 'Хабарлама',
                 info: 'Ақпарат',
-                min_purchase: 'Ең аз сатып алу талабы',
-                min_purchase_text: `Wholesale ${storeName} каталогына қош келдіңіз. Кемінде 10 бөлшек тапсырыс қажет. 10 бөлшектен аз сатып алу үшін біздің Retail каталогымызды қараңыз. ${storeName} таңдағаныңыз үшін рахмет!`,
                 item: 'зат(тар)',
                 add_more: 'Көбірек қосу',
                 retail_catalog: 'Бөлшек сауда',
@@ -1543,10 +1405,6 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 required_field: 'Міндетті өріс',
                 question: 'Сұрақ',
                 send: 'Жіберу',
-                wholesales_ordering_limitation_message:
-                    'Біздің көтерме сауда каталогымызға қош келдіңіздер, мұнда әрбір тапсырыс кемінде 10 бірліктен басталады. Көтерме сатып алуға қызығушылық танытқандар үшін, өтінеміз, біздің көтерме сауда каталогымызды қараңыздар.',
-                manger_will_contact_message:
-                    'Біздің менеджер жақын арада сізбен байланыса алады, сатып алуға қатысты толық ақпаратты ұсыну үшін.',
             },
         },
     ];

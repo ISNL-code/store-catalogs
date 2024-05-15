@@ -1,5 +1,5 @@
 import { Typography } from '@mui/material';
-import { STORE_CONFIG } from 'constants/stores_config';
+import { STORE_CONFIG } from 'store_constants/stores_config';
 import { getCurrencySymbol } from 'helpers/getCurrencySymbol';
 
 interface Props {

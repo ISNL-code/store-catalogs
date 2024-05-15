@@ -7,10 +7,12 @@ import HomeIcon from '@mui/icons-material/Home';
 import InfoIcon from '@mui/icons-material/Info';
 import HeaderLogo from 'components/atoms/Logo/HeaderLogo';
 import { Colors } from 'colors';
-import { STORE_CONFIG } from 'constants/stores_config';
+import { STORE_CONFIG } from 'store_constants/stores_config';
 import ProfileButton from 'components/molecules/ToolsButtons/ProfileButton';
 import PermIdentityIcon from '@mui/icons-material/PermIdentity';
 import GridViewIcon from '@mui/icons-material/GridView';
+import { DialogWindowType } from 'layouts/hooks/useFormsApp';
+import { HOME_ROUTE, STORE_ROUTE } from 'constants/routes';
 
 interface HeaderInterface {
     headerHeight;
@@ -18,14 +20,12 @@ interface HeaderInterface {
     string;
     lang;
     setLang;
-    setOpenModalType;
+    handleOpenDialog;
     logo;
     storeHeaderName;
-    storeCode;
     store;
     auth;
     user;
-    openModalType;
 }
 
 const HomeHeader = ({
@@ -34,16 +34,14 @@ const HomeHeader = ({
     string,
     lang,
     setLang,
-    setOpenModalType,
     logo,
     storeHeaderName,
-    storeCode,
+    handleOpenDialog,
     store,
     auth,
     user,
-    openModalType,
 }: HeaderInterface) => {
-    const { OPTIONS } = STORE_CONFIG;
+    const { OPTIONS, STORE_CODE } = STORE_CONFIG;
     const { CUSTOM_LOGO, INFORMATION_PAGE_ACTIVE } = OPTIONS;
     const location = useLocation();
     const { sx } = useDevice();
@@ -69,11 +67,16 @@ const HomeHeader = ({
                     <HeaderLogo title={storeHeaderName} imgUrl={logo} custom={CUSTOM_LOGO} />
                 </Box>
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                    <HeaderNavButton title={string?.home} path={`/`} icon={() => <HomeIcon />} isShown={!sx} />
+                    <HeaderNavButton
+                        title={string?.home}
+                        path={HOME_ROUTE?.root(STORE_CODE)}
+                        icon={() => <HomeIcon />}
+                        isShown={!sx}
+                    />
 
                     <HeaderNavButton
                         title={string?.catalog}
-                        path={`/catalog/${storeCode}/${storeHeaderName?.replaceAll(' ', '-').toLowerCase()}`}
+                        path={STORE_ROUTE?.root(STORE_CODE)}
                         icon={() => <GridViewIcon />}
                         isShown={!sx}
                         isActive={location.pathname.includes('details')}
@@ -82,7 +85,7 @@ const HomeHeader = ({
                     {INFORMATION_PAGE_ACTIVE && (
                         <HeaderNavButton
                             title={string?.info}
-                            path={`/info`}
+                            path={HOME_ROUTE?.info(STORE_CODE)}
                             icon={() => <InfoIcon />}
                             isShown={!sx}
                             action={() => {}}
@@ -93,17 +96,16 @@ const HomeHeader = ({
                             title={string?.login}
                             icon={() => <PermIdentityIcon />}
                             isShown={!sx}
-                            action={() => setOpenModalType('login')}
-                            isActive={['login', 'register', 'forgot-password'].includes(openModalType)}
+                            action={() => handleOpenDialog(DialogWindowType?.LOGIN)}
                         />
                     )}
                     {!sx && auth && (
                         <ProfileButton
-                            path={`/`}
+                            path={HOME_ROUTE?.root(STORE_CODE)}
                             string={string}
                             headerHeight={headerHeight}
                             user={user}
-                            setOpenModalType={setOpenModalType}
+                            handleOpenDialog={handleOpenDialog}
                             childPath={['orders', 'profile']}
                         />
                     )}

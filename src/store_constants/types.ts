@@ -22,6 +22,7 @@ export interface STORE_CONFIG_Interface {
     FAVORITE_KEY: string; // use for local storage key
     LANGUAGE_KEY: string; // use for local storage key
     APP_LANGUAGE: string; // init app language
+    SUPPORTED_COUNTRIES: { code: string; country: string }[] | null; // use for limitation of supported countries
     HTML_LANG: string; // web html lang
     VIEW_MODE_KEY: string; // use for local storage key
     SIDE_LINKS: { name: string; href: string; description: string }[] | [];

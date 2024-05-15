@@ -9,24 +9,25 @@ import ProfileButton from 'components/molecules/ToolsButtons/ProfileButton';
 import { useEffect, useState } from 'react';
 import { useWindowWidth } from '@react-hook/window-size';
 import HomeIcon from '@mui/icons-material/Home';
-import { STORE_CONFIG } from 'constants/stores_config';
+import { STORE_CONFIG } from 'store_constants/stores_config';
+import { DialogWindowType } from 'layouts/hooks/useFormsApp';
+import { HOME_ROUTE, STORE_ROUTE } from 'constants/routes';
 
 const MobileMenu = ({
     appXPadding,
     string,
     auth,
-    setOpenModalType,
     isShown,
     withFavorites,
     withCart,
-    openModalType,
     cart,
     favorites,
     headerHeight,
     user,
     menuHeight,
+    handleOpenDialog,
 }) => {
-    const { OPTIONS } = STORE_CONFIG;
+    const { OPTIONS, STORE_CODE } = STORE_CONFIG;
     const { HOME_PAGE_ACTIVE } = OPTIONS;
     const WINDOW_WIDTH = useWindowWidth();
     const navigate = useNavigate();
@@ -62,36 +63,42 @@ const MobileMenu = ({
                     }}
                 >
                     {HOME_PAGE_ACTIVE && (
-                        <MobileNavButton path={`/`} title={string?.home} icon={p => <HomeIcon {...p} />} />
+                        <MobileNavButton
+                            path={HOME_ROUTE?.root(STORE_CODE)}
+                            title={string?.home}
+                            icon={p => <HomeIcon {...p} />}
+                        />
                     )}
                     <MobileNavButton
-                        path={`/catalog/${storeCode}/${storeName}`}
+                        path={STORE_ROUTE?.root(STORE_CODE)}
                         childPath={['/details', '/contacts', 'model']}
                         title={string?.catalog}
                         icon={p => <GridViewIcon {...p} />}
                     />
                     {withFavorites && (
                         <MobileNavButton
-                            path={`/catalog/${storeCode}/${storeName}/favorites`}
+                            path={STORE_ROUTE?.favorites(STORE_CODE)}
                             title={string?.favorites}
                             icon={p => <FavoriteIcon {...p} />}
                             badgeCount={favorites?.favoriteItems?.length}
                             action={() => {
-                                navigate(`/catalog/${storeCode}/${storeName}/favorites`);
+                                navigate(
+                                    `/catalog/${storeCode}/${storeName?.replaceAll(' ', '-').toLowerCase()}/favorites`
+                                );
                             }}
                             protectedPath={!auth}
                         />
                     )}
                     {withCart && (
                         <MobileNavButton
-                            path={`/catalog/${storeCode}/${storeName}/cart`}
+                            path={STORE_ROUTE?.cart(STORE_CODE)}
                             title={string?.cart}
                             icon={p => <ShoppingCartIcon {...p} />}
                             badgeCount={cart?.cartItems?.length}
                             action={() => {
                                 if (auth) {
-                                    navigate(`/catalog/${storeCode}/${storeName}/cart`);
-                                } else setOpenModalType('login');
+                                    navigate(STORE_ROUTE?.cart(STORE_CODE));
+                                } else handleOpenDialog(DialogWindowType?.AUTH_WARN);
                             }}
                             protectedPath={!auth}
                         />
@@ -101,19 +108,18 @@ const MobileMenu = ({
                             title={string?.login}
                             icon={p => <PermIdentityIcon {...p} />}
                             clearSort={() => {}}
-                            action={() => setOpenModalType('login')}
-                            isActive={['login', 'register', 'forgot-password'].includes(openModalType)}
+                            action={() => handleOpenDialog(DialogWindowType?.LOGIN)}
                         />
                     )}
 
                     {auth && (
                         <ProfileButton
-                            path={`/catalog/${storeCode}/${storeName}/`}
+                            path={STORE_ROUTE?.root(STORE_CODE)}
                             string={string}
                             headerHeight={headerHeight}
                             menuHeight={menuHeight}
                             user={user}
-                            setOpenModalType={setOpenModalType}
+                            handleOpenDialog={handleOpenDialog}
                             childPath={['orders', 'profile']}
                         />
                     )}

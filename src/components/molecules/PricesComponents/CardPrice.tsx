@@ -1,7 +1,7 @@
 import CardPriceDefault from 'components/molecules/PricesComponents/CardPriceDefault';
 import CardPriceSales from 'components/molecules/PricesComponents/CardPriceSales';
-import { STORE_CONFIG } from 'constants/stores_config';
-import { StoreType } from 'constants/types';
+import { STORE_CONFIG } from 'store_constants/stores_config';
+import { StoreType } from 'store_constants/types';
 
 interface Props {
     currency: string;

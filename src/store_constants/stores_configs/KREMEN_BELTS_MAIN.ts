@@ -1,32 +1,33 @@
-import { StoreType, ViewModeType } from 'constants/types';
+import { StoreType, ViewModeType } from 'store_constants/types';
 
-const prefix = 'kbs';
+const prefix = 'kbm';
 
-export const KREMEN_BELTS_SALES = {
+export const KREMEN_BELTS_MAIN = {
     active: true,
     required_registration: false,
-    URL: ['https://kremen-belts-sales.netlify.app'],
+    URL: ['https://kremen-belts.netlify.app'],
     appStoreUrl: null,
     playMarketUrl: null,
     web_lang: 'uk', // html lang
-    store_name: 'Kremen Belts Sales',
-    store_code: 'kremen_belts_sales',
+    store_name: 'Kremen Belts',
+    store_code: 'DEFAULT',
     token_key: `${prefix}-tkn`,
     cart_key: `${prefix}-cart`,
     favorite_url: `${prefix}-favorites`,
     base_url: 'https://kremen-belts.com/api',
     lang_key: `${prefix}-lang`,
     app_lang: 'ua',
-    links: [{ name: 'Kremen Belts', href: 'https://kremen-belts.netlify.app', description: 'WEB' }],
+    supported_countries: [{ code: 'UA', country: 'ukraine' }],
+    links: [{ name: 'Kremen Belts Sales', href: 'https://kremen-belts-sales.netlify.app', description: 'WEB' }],
     options: {
-        product_image_options: { width: 3, height: 2 },
+        product_image_options: { width: 4, height: 3 },
         main_price_multiplication: 1,
         sale_price_multiplication: 1,
         currency_multiplication: 1,
         retail_price_multiplication: 1,
         custom_currency: null,
         min_items_to_buy: 1,
-        store_type: StoreType?.sales,
+        store_type: StoreType?.default,
         home_page_active: false,
         informative_page_active: false,
         custom_logo: false,
@@ -51,7 +52,7 @@ export const KREMEN_BELTS_SALES = {
         },
     },
     web_head_data: {
-        store_title: ' Kremen Belts Оптовий Каталог | Kremen Belts Wholesales Catalog',
+        store_title: 'Kremen Belts Wholesales Catalog | Kremen Belts Оптовий Каталог',
         store_description: `Ласкаво просимо до Kremen Belts — вашого найкращого джерела стильних ременів та аксесуарів! | Welcome to Kremen Belts — your ultimate source for stylish belts and accessories!`,
         google_analytics_id: 'G-7G98583PY1',
         store_logo: 'kremen_belts_logo.png',

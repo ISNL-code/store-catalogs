@@ -1,7 +1,7 @@
 import { Box, IconButton } from '@mui/material';
 import { useOutletContext } from 'react-router-dom';
 import { CatalogContextInterface } from 'types';
-import { ViewModeType } from 'constants/types';
+import { ViewModeType } from 'store_constants/types';
 import { Colors } from 'colors';
 import { BsGrid } from 'react-icons/bs';
 import { IoMdGrid } from 'react-icons/io';

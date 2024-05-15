@@ -2,7 +2,7 @@ import { Box } from '@mui/material';
 import LanguageButton from 'components/molecules/ToolsButtons/LanguageButton';
 import HeaderLogo from 'components/atoms/Logo/HeaderLogo';
 import { Colors } from 'colors';
-import { STORE_CONFIG } from 'constants/stores_config';
+import { STORE_CONFIG } from 'store_constants/stores_config';
 
 interface HeaderInterface {
     headerHeight;

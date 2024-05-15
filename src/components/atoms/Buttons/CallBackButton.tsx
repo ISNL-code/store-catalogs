@@ -29,7 +29,7 @@ const CallBackButton = ({ animated = false, path }) => {
                 cursor: 'pointer',
             }}
             onClick={() => {
-                navigate(`${path}contacts`);
+                navigate(path);
             }}
         >
             {!sx && (

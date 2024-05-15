@@ -20,7 +20,7 @@ import { useCartApi } from 'api/useCartApi';
 import SuccessOrderingPage from 'components/atoms/SuccessOrdering/SuccessOrderingPage';
 import ClearListButton from 'components/molecules/ToolsButtons/ClearListButton';
 import { Colors } from 'colors';
-import { STORE_CONFIG } from 'constants/stores_config';
+import { STORE_CONFIG } from 'store_constants/stores_config';
 
 interface ProductListInterface {
     sizeId: number | null;

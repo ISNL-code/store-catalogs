@@ -1,5 +1,5 @@
 import { Box } from '@mui/material';
-import { STORE_CONFIG } from 'constants/stores_config';
+import { STORE_CONFIG } from 'store_constants/stores_config';
 import { useDevice } from 'hooks/useDevice';
 import ActionSection from './components/ActionSection';
 import ArticleDetails from './components/ArticleDetails';

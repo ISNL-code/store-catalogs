@@ -14,12 +14,13 @@ import CallBackButton from 'components/atoms/Buttons/CallBackButton';
 import { useIsMount } from 'hooks/useIsMount';
 import { useProductsApi } from 'api/useProductsApi';
 import DeleteModal from 'components/organisms/Modals/DeleteModal';
-import { STORE_CONFIG } from 'constants/stores_config';
+import { STORE_CONFIG } from 'store_constants/stores_config';
 import ViewModeButton from 'components/molecules/ToolsButtons/ViewModeButton';
 import CatalogListCard from 'components/organisms/Cards/CatalogListCard';
 import ClearListButton from 'components/molecules/ToolsButtons/ClearListButton';
-import { StoreType, ViewModeType } from 'constants/types';
+import { StoreType, ViewModeType } from 'store_constants/types';
 import { useDevice } from 'hooks/useDevice';
+import { STORE_ROUTE } from 'constants/routes';
 
 interface InstrumentalBarProps {
     setIsOpenModal;
@@ -48,7 +49,7 @@ const InstrumentalSubHeaderMemo = memo<InstrumentalBarProps>(({ setIsOpenModal }
 
 const Favorites = () => {
     const { sx } = useDevice();
-    const { OPTIONS, STORE_CODE, STORE_NAME } = STORE_CONFIG;
+    const { OPTIONS, STORE_CODE } = STORE_CONFIG;
     const { STORE_TYPE, PLAN_OPTIONS } = OPTIONS;
     const {
         store,
@@ -211,9 +212,7 @@ const Favorites = () => {
                 />
             )}
             {loading && <Loader />}
-            {PLAN_OPTIONS?.contacts && (
-                <CallBackButton path={`/catalog/${STORE_CODE}/${STORE_NAME?.replaceAll(' ', '-').toLowerCase()}/`} />
-            )}
+            {PLAN_OPTIONS?.contacts && <CallBackButton path={STORE_ROUTE?.contacts(STORE_CODE)} />}
             <InstrumentalSubHeaderMemo setIsOpenModal={setIsOpenModal} />
 
             {favoriteProducts?.length ? (

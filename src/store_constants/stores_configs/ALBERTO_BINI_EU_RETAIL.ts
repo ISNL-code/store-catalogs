@@ -1,4 +1,4 @@
-import { StoreType, ViewModeType } from 'constants/types';
+import { StoreType, ViewModeType } from 'store_constants/types';
 
 const prefix = 'ab_eu_retail';
 
@@ -17,13 +17,14 @@ export const ALBERTO_BINI_EU_RETAIL = {
     base_url: 'https://kremen-belts.com/api',
     lang_key: `${prefix}-lang`,
     app_lang: 'en',
+    supported_countries: null,
     links: [{ name: 'Wholesales', href: 'https://albertobini-brandeurope.com', description: 'WEB' }],
     options: {
         product_image_options: { width: 6, height: 9 },
         main_price_multiplication: 1,
         sale_price_multiplication: 1,
         currency_multiplication: 1,
-        retail_price_multiplication: 2.4,
+        retail_price_multiplication: 2.2,
         min_items_to_buy: 1,
         custom_currency: null,
         store_type: StoreType?.default,

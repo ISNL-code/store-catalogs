@@ -2,10 +2,11 @@ import { Box, Button, Typography } from '@mui/material';
 import { useNavigate, useOutletContext } from 'react-router-dom';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import { CatalogContextInterface } from 'types';
-import { STORE_CONFIG } from 'constants/stores_config';
+import { STORE_CONFIG } from 'store_constants/stores_config';
+import { STORE_ROUTE } from 'constants/routes';
 
 const SuccessOrderingPage = ({ isShown = true, setSuccessOrdering }) => {
-    const { STORE_CODE, STORE_NAME } = STORE_CONFIG;
+    const { STORE_CODE } = STORE_CONFIG;
     const navigate = useNavigate();
     const { instrumentalBarHeight, headerHeight, footerMenuHeight, string, cart }: CatalogContextInterface =
         useOutletContext();
@@ -35,7 +36,7 @@ const SuccessOrderingPage = ({ isShown = true, setSuccessOrdering }) => {
                         if (cart?.cartItems?.length) {
                             setSuccessOrdering(false);
                         } else {
-                            navigate(`/catalog/${STORE_CODE}/${STORE_NAME}`);
+                            navigate(STORE_ROUTE?.root(STORE_CODE));
                         }
                     }}
                 >

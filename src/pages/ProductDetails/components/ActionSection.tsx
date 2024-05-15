@@ -5,13 +5,13 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import { CatalogContextInterface } from 'types';
-import { STORE_CONFIG } from 'constants/stores_config';
+import { STORE_CONFIG } from 'store_constants/stores_config';
 
 const ActionSection = ({ isShown, selectedVariant }) => {
     const { OPTIONS } = STORE_CONFIG;
     const { PLAN_OPTIONS } = OPTIONS;
     const { storeCode } = useParams();
-    const { string, setOpenModalType, auth, cart, favorites }: CatalogContextInterface = useOutletContext();
+    const { string, cart, favorites }: CatalogContextInterface = useOutletContext();
 
     const selectedToCart = cart?.cartItems?.find(item => item.sku === selectedVariant?.sku);
     const selectedToFavorite = favorites?.favoriteItems?.find(item => item.sku === selectedVariant?.sku);
@@ -28,7 +28,7 @@ const ActionSection = ({ isShown, selectedVariant }) => {
                         }}
                         variant={selectedToCart ? 'contained' : 'outlined'}
                         onClick={() => {
-                            if (!auth) return setOpenModalType('register-warning');
+                            // if (!auth) return setOpenModalType('register-warning');
                             cart?.handleSetCartItems({
                                 sku: selectedVariant?.sku,
                                 storeCode,

@@ -1,11 +1,10 @@
-import { ViewModeType } from 'constants/types';
+import { ViewModeType } from 'store_constants/types';
 
 export interface HomeContextInterface {
     //main data | user options
     lang: string;
     string: Record<string, any>;
-    setOpenModalType;
-    openModalType: string | null;
+    handleOpenDialog;
 
     //store data
     store: StoreInterface;
@@ -28,14 +27,13 @@ export interface HomeContextInterface {
 export interface CatalogContextInterface {
     //main data | user options
     lang: string;
-    supportedLanguage: string;
+    supportedLanguage: string | null;
     string: Record<string, any>;
     scrollPosition: number;
     setScrollPosition;
-    setOpenModalType;
-    openModalType: string | null;
     viewMode: ViewModeType;
     setViewMode;
+    handleOpenDialog;
 
     //store data
     store: StoreInterface;
@@ -48,7 +46,7 @@ export interface CatalogContextInterface {
     setCurrentUserData: any;
 
     //products data
-    productsList: LoadedProductListInterface[];
+    productsList: LoadedProductListInterface[] | null | [];
     setProductsList;
     loadProducts: boolean;
     loadMoreProducts: boolean;

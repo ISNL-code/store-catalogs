@@ -8,7 +8,7 @@ import { OrderDataInterface } from '../Cart';
 import { useState } from 'react';
 import axios from 'axios';
 import CouponPrice from 'components/molecules/PricesComponents/CouponPrice';
-import { STORE_CONFIG } from 'constants/stores_config';
+import { STORE_CONFIG } from 'store_constants/stores_config';
 import ConfirmOrderModal from 'components/organisms/Modals/ConfirmOrderModal';
 import { useUserApi } from 'api/useUserApi';
 

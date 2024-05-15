@@ -5,25 +5,15 @@ import InfoIcon from '@mui/icons-material/Info';
 import ProfileButton from 'components/molecules/ToolsButtons/ProfileButton';
 import GridViewIcon from '@mui/icons-material/GridView';
 import PermIdentityIcon from '@mui/icons-material/PermIdentity';
-import { STORE_CONFIG } from 'constants/stores_config';
+import { STORE_CONFIG } from 'store_constants/stores_config';
 import { useEffect, useState } from 'react';
 import { useWindowWidth } from '@react-hook/window-size';
+import { DialogWindowType } from 'layouts/hooks/useFormsApp';
+import { HOME_ROUTE, STORE_ROUTE } from 'constants/routes';
 
-const HomeMobileMenu = ({
-    appXPadding,
-    menuHeight,
-    isShown,
-    string,
-    storeHeaderName,
-    storeCode,
-    headerHeight,
-    user,
-    auth,
-    setOpenModalType,
-    openModalType,
-}) => {
+const HomeMobileMenu = ({ appXPadding, menuHeight, isShown, string, handleOpenDialog, headerHeight, user, auth }) => {
     const WINDOW_WIDTH = useWindowWidth();
-    const { OPTIONS } = STORE_CONFIG;
+    const { OPTIONS, STORE_CODE } = STORE_CONFIG;
     const { INFORMATION_PAGE_ACTIVE } = OPTIONS;
 
     const [position, setPosition] = useState(0);
@@ -56,10 +46,14 @@ const HomeMobileMenu = ({
                         gap: 2,
                     }}
                 >
-                    <MobileNavButton path={`/`} title={string?.home} icon={p => <HomeIcon {...p} />} />
+                    <MobileNavButton
+                        path={HOME_ROUTE?.root(STORE_CODE)}
+                        title={string?.home}
+                        icon={p => <HomeIcon {...p} />}
+                    />
 
                     <MobileNavButton
-                        path={`/catalog/${storeCode}/${storeHeaderName.replaceAll(' ', '-').toLowerCase()}`}
+                        path={STORE_ROUTE?.root(STORE_CODE)}
                         childPath={['/details', '/contacts', 'model']}
                         title={string?.catalog}
                         icon={p => <GridViewIcon {...p} />}
@@ -67,7 +61,7 @@ const HomeMobileMenu = ({
 
                     {INFORMATION_PAGE_ACTIVE && (
                         <MobileNavButton
-                            path={`/info`}
+                            path={HOME_ROUTE?.info(STORE_CODE)}
                             title={string?.info}
                             icon={p => <InfoIcon {...p} />}
                             action={() => {}}
@@ -78,18 +72,17 @@ const HomeMobileMenu = ({
                             title={string?.login}
                             icon={p => <PermIdentityIcon {...p} />}
                             clearSort={() => {}}
-                            action={() => setOpenModalType('login')}
-                            isActive={['login', 'register', 'forgot-password'].includes(openModalType)}
+                            action={() => handleOpenDialog(DialogWindowType?.LOGIN)}
                         />
                     )}
                     {auth && (
                         <ProfileButton
-                            path={`/`}
+                            path={HOME_ROUTE?.root(STORE_CODE)}
                             string={string}
                             headerHeight={headerHeight}
                             menuHeight={menuHeight}
                             user={user}
-                            setOpenModalType={setOpenModalType}
+                            handleOpenDialog={handleOpenDialog}
                             childPath={['orders', 'profile']}
                         />
                     )}

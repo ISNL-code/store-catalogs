@@ -8,7 +8,7 @@ import ImageComponent from 'components/atoms/Media/Image';
 import { useWindowWidth } from '@react-hook/window-size';
 import { useIsMount } from 'hooks/useIsMount';
 import { Colors } from 'colors';
-import { STORE_CONFIG } from 'constants/stores_config';
+import { STORE_CONFIG } from 'store_constants/stores_config';
 
 const ModelSwiper = ({ images }) => {
     const { OPTIONS } = STORE_CONFIG;

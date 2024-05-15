@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { STORE_CONFIG } from 'constants/stores_config';
+import { STORE_CONFIG } from 'store_constants/stores_config';
 
 const AuthInterceptor = () => {
     const { ACCESS_TOKEN_KEY, BASE_URL } = STORE_CONFIG;

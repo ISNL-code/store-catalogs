@@ -1,8 +1,8 @@
-import Login from 'pages/Login/Login';
-import Logout from 'pages/Login/Logout';
-import Register from 'pages/Login/Register';
-import ForgotPassword from 'pages/Login/ForgotPassword';
-import RegisterWarning from 'pages/Login/RegisterWarning';
+import Login from 'pages/DialogApp/Login';
+import Logout from 'pages/DialogApp/Logout';
+import Register from 'pages/DialogApp/Register';
+import ForgotPassword from 'pages/DialogApp/ForgotPassword';
+import RegisterWarning from 'pages/DialogApp/RegisterWarning';
 
 interface ModalsInterface {
     string;
@@ -16,26 +16,10 @@ interface ModalsInterface {
 const Modals = ({ string, setAuth, lang, openModalType, setOpenModalType, storeToApprove }: ModalsInterface) => {
     return (
         <>
-            {openModalType === 'login' && (
-                <Login
-                    setAuth={setAuth}
-                    string={string}
-                    close={() => setOpenModalType(null)}
-                    setOpenModalType={setOpenModalType}
-                />
-            )}
-            {openModalType === 'store-password' && (
-                <Login
-                    setAuth={setAuth}
-                    string={string}
-                    close={() => setOpenModalType(null)}
-                    setOpenModalType={setOpenModalType}
-                />
-            )}
-            {openModalType === 'logout' && (
+            {/* {openModalType === 'logout' && (
                 <Logout setAuth={setAuth} string={string} close={() => setOpenModalType(null)} />
-            )}
-            {openModalType === 'register' && (
+            )} */}
+            {/* {openModalType === 'register' && (
                 <Register
                     setAuth={setAuth}
                     lang={lang}
@@ -43,14 +27,14 @@ const Modals = ({ string, setAuth, lang, openModalType, setOpenModalType, storeT
                     close={() => setOpenModalType(null)}
                     setOpenModalType={setOpenModalType}
                 />
-            )}
-            {openModalType === 'forgot-password' && (
+            )} */}
+            {/* {openModalType === 'forgot-password' && (
                 <ForgotPassword
                     string={string}
                     close={() => setOpenModalType(null)}
                     setOpenModalType={setOpenModalType}
                 />
-            )}
+            )} */}
             {openModalType === 'register-warning' && (
                 <RegisterWarning
                     string={string}

@@ -20,8 +20,9 @@ import ViewModeButton from 'components/molecules/ToolsButtons/ViewModeButton';
 import CatalogListCard from 'components/organisms/Cards/CatalogListCard';
 import CloseIcon from '@mui/icons-material/Close';
 import { useDevice } from 'hooks/useDevice';
-import { STORE_CONFIG } from 'constants/stores_config';
-import { ViewModeType } from 'constants/types';
+import { STORE_CONFIG } from 'store_constants/stores_config';
+import { ViewModeType } from 'store_constants/types';
+import { STORE_ROUTE } from 'constants/routes';
 
 const InstrumentalSubHeaderMemo = memo(() => {
     const { OPTIONS, SIDE_LINKS } = STORE_CONFIG;
@@ -50,7 +51,7 @@ const InstrumentalSubHeaderMemo = memo(() => {
 });
 
 const Catalog = () => {
-    const { OPTIONS, STORE_CODE, STORE_NAME } = STORE_CONFIG;
+    const { OPTIONS, STORE_CODE } = STORE_CONFIG;
     const { PLAN_OPTIONS, MIN_ITEMS_TO_BUY } = OPTIONS;
     const { sx } = useDevice();
     const {
@@ -138,9 +139,7 @@ const Catalog = () => {
                 </>
             )}
             {((loadProducts && !productsList?.length) || loading) && <Loader position="fixed" />}
-            {PLAN_OPTIONS?.contacts && (
-                <CallBackButton path={`/catalog/${STORE_CODE}/${STORE_NAME?.replaceAll(' ', '-').toLowerCase()}/`} />
-            )}
+            {PLAN_OPTIONS?.contacts && <CallBackButton path={STORE_ROUTE?.contacts(STORE_CODE)} />}
             <InstrumentalSubHeaderMemo />
 
             {productsList?.length ? (

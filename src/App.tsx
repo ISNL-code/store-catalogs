@@ -13,14 +13,15 @@ import { useUserApi } from 'api/useUserApi';
 import { UserDataInterface } from 'types';
 import UserProfile from 'pages/Profile/UserProfile';
 import UserOrders from 'pages/Orders/UserOrders';
-import { STORE_CONFIG } from 'constants/stores_config';
+import { STORE_CONFIG } from 'store_constants/stores_config';
 import Head from 'layouts/Head';
-import { ViewModeType } from 'constants/types';
+import { ViewModeType } from 'store_constants/types';
 import Home from 'layouts/Home/Home';
 import HomePage from 'pages/Home/HomePage';
 import InformationPage from 'pages/Information/InformationPage';
 import Login from 'layouts/Login/Login';
 import axios from 'axios'; // eslint-disable-line
+import { HOME_ROUTE, LOGIN_ROUTE, STORE_ROUTE } from 'constants/routes';
 
 const App = () => {
     const {
@@ -125,9 +126,15 @@ const App = () => {
     const handleRedirect = () => {
         if (!HOME_PAGE_ACTIVE) {
             if (REQUIRED_REGISTRATION && !auth) {
-                return '/';
+                return LOGIN_ROUTE?.root();
             }
-            return '/catalog';
+            return STORE_ROUTE?.root(STORE_CODE);
+        }
+        if (HOME_PAGE_ACTIVE) {
+            if (REQUIRED_REGISTRATION && !auth) {
+                return LOGIN_ROUTE?.root();
+            }
+            return HOME_ROUTE?.root(STORE_CODE);
         }
         return '/';
     };
@@ -144,13 +151,13 @@ const App = () => {
                             <>
                                 {REQUIRED_REGISTRATION && !auth && (
                                     <Route
-                                        path={'/'}
+                                        path={'/login'}
                                         element={<Login lang={lang} setLang={setLang} auth={auth} setAuth={setAuth} />}
                                     />
                                 )}
                                 {HOME_PAGE_ACTIVE && (
                                     <Route
-                                        path={'/'}
+                                        path={'/home'}
                                         element={
                                             <Home
                                                 lang={lang}
@@ -166,17 +173,17 @@ const App = () => {
                                             />
                                         }
                                     >
-                                        <Route path={'/'} element={<HomePage />} />
-                                        <Route path={'/contacts'} element={<ContactsManagePage />} />
-                                        <Route path={'/profile'} element={<UserProfile />} />
-                                        <Route path={'/orders'} element={<UserOrders />} />
-                                        <Route path={'/info'} element={<InformationPage />} />
+                                        <Route index path={'/home/:storeCode'} element={<HomePage />} />
+                                        <Route path={'/home/:storeCode/contacts'} element={<ContactsManagePage />} />
+                                        <Route path={'/home/:storeCode/profile'} element={<UserProfile />} />
+                                        <Route path={'/home/:storeCode/orders'} element={<UserOrders />} />
+                                        <Route path={'/home/:storeCode/info'} element={<InformationPage />} />
                                         <Route path="*" element={<Navigate to={'/'} replace />} />
                                     </Route>
                                 )}
                                 {((REQUIRED_REGISTRATION && auth) || !REQUIRED_REGISTRATION) && (
                                     <Route
-                                        path={'/catalog'}
+                                        path={'/store'}
                                         element={
                                             <Catalog
                                                 lang={lang}
@@ -196,32 +203,19 @@ const App = () => {
                                             />
                                         }
                                     >
-                                        <Route path={'/catalog/:storeCode/:storeName'} element={<CatalogPage />} />
+                                        <Route index path={'/store/:storeCode/'} element={<CatalogPage />} />
+                                        <Route path={'/store/:storeCode/contacts'} element={<ContactsManagePage />} />
                                         <Route
-                                            path={'/catalog/:storeCode/:storeName/contacts'}
-                                            element={<ContactsManagePage />}
-                                        />
-                                        <Route
-                                            path={'/catalog/:storeCode/:storeName/details/:productId/model/:modelSku'}
+                                            path={'/store/:storeCode/product/:productId/model/:modelSku'}
                                             element={<ProductDetailsPage />}
                                         />
-                                        <Route path={'/catalog/:storeCode/:storeName/cart'} element={<CartPage />} />
+                                        <Route path={'/store/:storeCode/cart'} element={<CartPage />} />
 
-                                        <Route
-                                            path={'/catalog/:storeCode/:storeName/favorites'}
-                                            element={<FavoritesPage />}
-                                        />
+                                        <Route path={'/store/:storeCode/favorites'} element={<FavoritesPage />} />
 
-                                        <Route
-                                            path={'/catalog/:storeCode/:storeName/profile'}
-                                            element={<UserProfile />}
-                                        />
+                                        <Route path={'/store/:storeCode/profile'} element={<UserProfile />} />
 
-                                        <Route
-                                            path={'/catalog/:storeCode/:storeName/orders'}
-                                            element={<UserOrders />}
-                                        />
-                                        <Route path="*" element={<Navigate to={'/catalog'} replace />} />
+                                        <Route path={'/store/:storeCode/orders'} element={<UserOrders />} />
                                     </Route>
                                 )}
                                 <Route path="*" element={<Navigate to={handleRedirect()} replace />} />

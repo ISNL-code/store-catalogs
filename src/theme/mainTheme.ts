@@ -26,6 +26,18 @@ const mainTheme = createTheme({
     },
     components: {
         MuiLink: {},
+        MuiFormHelperText: {
+            styleOverrides: {
+                root: {
+                    marginBottom: -8,
+                    marginLeft: 6,
+                    marginTop: 1,
+                    color: 'rgba(0, 0, 0, 0.4)',
+                    fontSize: '11px',
+                    fontWeight: 500,
+                },
+            },
+        },
     },
 });
 

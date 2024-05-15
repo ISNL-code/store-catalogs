@@ -1,12 +1,14 @@
 import { Box } from '@mui/material';
 import ColorIndicatorButton from 'components/atoms/ColorIndicatorButton/ColorIndicatorButton';
 import DetailsSection from 'components/atoms/Sections/DetailsSection';
+import { STORE_ROUTE } from 'constants/routes';
 import { useDevice } from 'hooks/useDevice';
-import { useNavigate, useOutletContext, useParams } from 'react-router-dom';
+import { useNavigate, useOutletContext } from 'react-router-dom';
+import { STORE_CONFIG } from 'store_constants/stores_config';
 
 const ColorsDetails = ({ productDetails, selectedVariant, setSelectedVariant }) => {
+    const { STORE_CODE } = STORE_CONFIG;
     const navigate = useNavigate();
-    const { storeName, storeCode } = useParams();
     const { string }: any = useOutletContext();
     const { sm } = useDevice();
 
@@ -30,11 +32,7 @@ const ColorsDetails = ({ productDetails, selectedVariant, setSelectedVariant }) 
                                     setSelectedVariant(
                                         productDetails?.variants?.find(product => product.id === model?.id)
                                     );
-                                    navigate(
-                                        `/catalog/${storeCode}/${storeName}/details/${
-                                            productDetails?.id
-                                        }/model/${model?.sku.replaceAll('/', '_')}`
-                                    );
+                                    navigate(STORE_ROUTE?.product(STORE_CODE, productDetails?.id, model?.sku));
                                 }}
                                 selected={selected}
                                 color={model.variation.optionValue.code}

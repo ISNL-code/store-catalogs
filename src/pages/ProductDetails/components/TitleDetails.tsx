@@ -1,8 +1,8 @@
 import { Box, Divider, Typography } from '@mui/material';
 import PromoTags from 'components/atoms/PromoTags/PromoTags';
 import SaleTag from 'components/atoms/PromoTags/SaleTag';
-import { STORE_CONFIG } from 'constants/stores_config';
-import { StoreType } from 'constants/types';
+import { STORE_CONFIG } from 'store_constants/stores_config';
+import { StoreType } from 'store_constants/types';
 
 const TitleDetails = ({ productDetails, selectedVariant }) => {
     const { OPTIONS } = STORE_CONFIG;

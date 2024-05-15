@@ -13,15 +13,16 @@ import ImageComponent, { EmptyImage } from 'components/atoms/Media/Image';
 import CardPrice from 'components/molecules/PricesComponents/CardPrice';
 import CardSkuLabel from 'components/atoms/Labels/CardSkuLabel';
 import SaleTag from 'components/atoms/PromoTags/SaleTag';
-import { STORE_CONFIG } from 'constants/stores_config';
+import { STORE_CONFIG } from 'store_constants/stores_config';
 import { Colors } from 'colors';
 import { SampleNextArrow, SamplePrevArrow } from '../../atoms/Elements/SliderArrows';
-import { StoreType, ViewModeType } from 'constants/types';
+import { StoreType, ViewModeType } from 'store_constants/types';
 import CardView from './CardView';
 import GridLargeView from './GridLargeView';
 import GridMediumView from './GridMediumView';
 import { useWindowWidth } from '@react-hook/window-size';
 import CardDescriptionComponent from 'components/atoms/DescriptionComponents/CardDescriptionComponent';
+import { SHARE_PATH, STORE_ROUTE } from 'constants/routes';
 
 interface ShownModelInterface {
     price: string;
@@ -64,13 +65,13 @@ export const MemoizedColorIndicatorButton = memo(ColorIndicatorButton, (prevProp
 const CatalogListCard = memo<CatalogCardProps>(
     ({ modelsVariants, name, productId, currency, setProductsList, promoTags, viewMode }) => {
         const WINDOW_WIDTH = useWindowWidth();
-        const { OPTIONS } = STORE_CONFIG;
+        const { OPTIONS, STORE_CODE } = STORE_CONFIG;
         const { STORE_TYPE, PLAN_OPTIONS, PRODUCT_IMAGE_OPTIONS } = OPTIONS;
         const sliderRef = useRef<HTMLImageElement>(null);
         const navigate = useNavigate();
         const { cart, favorites, currentUserData }: CatalogContextInterface = useOutletContext();
         const colorsBoxRef = useRef(null);
-        const { storeCode, storeName } = useParams();
+        const { storeCode } = useParams();
         const [shownModel, setShownModel] = useState<ShownModelInterface | null>(null);
         const [sliderHeight, setSliderHeight] = useState<number | string>(0);
 
@@ -101,12 +102,7 @@ const CatalogListCard = memo<CatalogCardProps>(
                         cursor: 'pointer',
                     }}
                     onClick={() => {
-                        navigate(
-                            `/catalog/${storeCode}/${storeName}/details/${productId}/model/${shownModel?.sku?.replaceAll(
-                                '/',
-                                '_'
-                            )}`
-                        );
+                        navigate(STORE_ROUTE?.product(STORE_CODE, productId, shownModel?.sku));
                     }}
                 >
                     <Grid
@@ -304,9 +300,7 @@ const CatalogListCard = memo<CatalogCardProps>(
 
                                         <ShareButton
                                             isShown
-                                            path={`${
-                                                window.location.href
-                                            }/details/${productId}/model/${shownModel?.sku?.replaceAll('/', '_')}`}
+                                            path={SHARE_PATH?.share_product_sku(STORE_CODE, productId, shownModel?.sku)}
                                             text=""
                                         />
                                     </Box>

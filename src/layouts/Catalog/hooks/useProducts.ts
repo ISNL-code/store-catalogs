@@ -1,7 +1,6 @@
 import { useProductsApi } from 'api/useProductsApi';
-import { STORE_CONFIG } from 'constants/stores_config';
-import { StoreType, ViewModeType } from 'constants/types';
-import { useDevice } from 'hooks/useDevice';
+import { STORE_CONFIG } from 'store_constants/stores_config';
+import { StoreType, ViewModeType } from 'store_constants/types';
 import { useIsMount } from 'hooks/useIsMount';
 import { useEffect, useState } from 'react';
 import { LoadedProductListInterface } from 'types';
@@ -15,11 +14,11 @@ interface Props {
 }
 
 export const useProducts = ({ store, lang, queryCategories, setQueryCategories, viewMode }: Props) => {
-    const { sx } = useDevice();
     const { OPTIONS } = STORE_CONFIG;
     const { STORE_TYPE } = OPTIONS;
     const mount = useIsMount();
-    const count = viewMode !== ViewModeType?.grid_m ? 30 : sx ? 30 : 35;
+    const count = viewMode === ViewModeType?.grid_m ? 28 : 30;
+
     const [currentProductsPage, setCurrentProductsPage] = useState(0);
     const [productsList, setProductsList] = useState<LoadedProductListInterface[] | [] | null>(null);
     const [totalCount, setTotalCount] = useState(0);

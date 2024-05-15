@@ -7,9 +7,10 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import PermIdentityIcon from '@mui/icons-material/PermIdentity';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import LogoutIcon from '@mui/icons-material/Logout';
-import { STORE_CONFIG } from 'constants/stores_config';
+import { STORE_CONFIG } from 'store_constants/stores_config';
+import { DialogWindowType } from 'layouts/hooks/useFormsApp';
 
-const ProfileButton = ({ string, headerHeight, menuHeight = '', user, setOpenModalType, path, childPath }) => {
+const ProfileButton = ({ string, headerHeight, menuHeight = '', user, path, childPath, handleOpenDialog }) => {
     const { OPTIONS } = STORE_CONFIG;
     const { PLAN_OPTIONS } = OPTIONS;
     const location = useLocation();
@@ -127,7 +128,7 @@ const ProfileButton = ({ string, headerHeight, menuHeight = '', user, setOpenMod
                                     minWidth: 200,
                                 }}
                                 onClick={() => {
-                                    navigate(`${path}profile`);
+                                    navigate(`${path}/profile`);
                                     setState({ right: false, bottom: false });
                                 }}
                             >
@@ -146,7 +147,7 @@ const ProfileButton = ({ string, headerHeight, menuHeight = '', user, setOpenMod
                                     }}
                                     onClick={() => {
                                         setState({ right: false, bottom: false });
-                                        navigate(`${path}orders`);
+                                        navigate(`${path}/orders`);
                                     }}
                                 >
                                     <ListItemText onClick={toggleDrawer(anchor, false)}>
@@ -163,7 +164,7 @@ const ProfileButton = ({ string, headerHeight, menuHeight = '', user, setOpenMod
                                     minWidth: 200,
                                 }}
                                 onClick={() => {
-                                    setOpenModalType('logout');
+                                    handleOpenDialog(DialogWindowType?.LOGOUT);
                                     toggleDrawer(anchor, true);
                                 }}
                             >

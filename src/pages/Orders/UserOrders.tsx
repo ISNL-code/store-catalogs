@@ -10,17 +10,13 @@ import { useUserApi } from 'api/useUserApi';
 import { CatalogContextInterface, OrderInterFace } from 'types';
 import { useEffect, useState } from 'react';
 import { useGetStatusParams } from 'hooks/useGetStatusParams';
-import { getCurrencySymbol } from 'helpers/getCurrencySymbol';
 import Loader from 'components/atoms/Loader/Loader';
-import { STORE_CONFIG } from 'constants/stores_config';
+import OrderPrice from 'components/molecules/PricesComponents/OrderPrice';
 
 const UserOrders = () => {
-    const { OPTIONS } = STORE_CONFIG;
-    const { CURRENCY_MULTIPLICATION, CUSTOM_CURRENCY, SALE_PRICE_MULTIPLICATION, RETAIL_PRICE_MULTIPLICATION } =
-        OPTIONS;
     const { handleGetStatusParams } = useGetStatusParams();
     const { s } = useDevice();
-    const { storeCode, storeName } = useParams();
+    const { storeCode } = useParams();
     const { string, footerMenuHeight, appXPadding }: CatalogContextInterface = useOutletContext();
     const [orderData, setOrderData] = useState<OrderInterFace | any>(null);
     const { data: customerOrdersRes, isFetching: loadingOrders } = useUserApi().useGetCustomersOrders({
@@ -57,9 +53,7 @@ const UserOrders = () => {
     return (
         <Box p={sx ? 2 : appXPadding} pb={footerMenuHeight}>
             {loadingOrders && <Loader />}
-            <InstrumentalSubHeader
-                StartSlot={() => <BackButton nav={`/catalog/${storeCode}/${storeName}`} action={() => {}} />}
-            />
+            <InstrumentalSubHeader StartSlot={() => <BackButton nav={-1} action={() => {}} />} />
             {orderData?.map(order => {
                 const status = handleGetStatusParams(order?.orderStatus, string);
                 return (
@@ -255,13 +249,7 @@ const UserOrders = () => {
                                                             </Typography>
                                                         )}
 
-                                                        <Typography variant="h5">
-                                                            {CUSTOM_CURRENCY || getCurrencySymbol(order?.currency)}
-                                                            {Number(price.replace(/[^0-9.]/g, '')) *
-                                                                SALE_PRICE_MULTIPLICATION *
-                                                                CURRENCY_MULTIPLICATION *
-                                                                RETAIL_PRICE_MULTIPLICATION}
-                                                        </Typography>
+                                                        <OrderPrice currency={order?.currency} price={price} />
                                                     </Grid>
                                                     <Grid
                                                         xs={s ? 12 : 3}
@@ -298,13 +286,8 @@ const UserOrders = () => {
                                                 <Typography variant="h5" sx={{ color: '#7c7c7c' }}>
                                                     {string?.final_price}
                                                 </Typography>
-                                                <Typography variant="h5">
-                                                    {CUSTOM_CURRENCY || getCurrencySymbol(order?.currency)}
-                                                    {Number(order?.total?.value?.toString()?.replace(/[^0-9.]/g, '')) *
-                                                        SALE_PRICE_MULTIPLICATION *
-                                                        CURRENCY_MULTIPLICATION *
-                                                        RETAIL_PRICE_MULTIPLICATION}
-                                                </Typography>
+
+                                                <OrderPrice currency={order?.currency} price={order?.total?.value} />
                                             </Grid>
                                         </Grid>
                                     }

@@ -1,21 +1,14 @@
 import { Box, Typography } from '@mui/material';
-import { STORE_CONFIG } from 'constants/stores_config';
+import { STORE_CONFIG } from 'store_constants/stores_config';
 import { useDevice } from 'hooks/useDevice';
-import { useNavigate } from 'react-router-dom';
 
 const CustomLogo = () => {
-    const navigate = useNavigate();
     const { WEB_HEAD_DATA } = STORE_CONFIG;
     const { STORE_LOGO } = WEB_HEAD_DATA;
     const { sx } = useDevice();
 
     return (
-        <Box
-            sx={{ display: 'flex', alignItems: 'center', cursor: 'pointer', gap: 0.5 }}
-            onClick={() => {
-                navigate(`/`);
-            }}
-        >
+        <Box sx={{ display: 'flex', alignItems: 'center', cursor: 'pointer', gap: 0.5 }}>
             <Box sx={{ boxShadow: '0 0 5px 1px #414141c5', borderRadius: '50%', border: '2.2px solid #383838' }}>
                 <Box
                     sx={{
