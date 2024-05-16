@@ -10,24 +10,12 @@ interface HeaderInterface {
     string;
     lang;
     setLang;
-    setOpenModalType;
     logo;
-    storeHeaderName;
     store;
 }
 
-const HomeHeader = ({
-    headerHeight,
-    appXPadding,
-    string,
-    lang,
-    setLang,
-    setOpenModalType,
-    logo,
-    storeHeaderName,
-    store,
-}: HeaderInterface) => {
-    const { OPTIONS } = STORE_CONFIG;
+const HomeHeader = ({ headerHeight, appXPadding, string, lang, setLang, logo, store }: HeaderInterface) => {
+    const { OPTIONS, STORE_NAME } = STORE_CONFIG;
     const { CUSTOM_LOGO } = OPTIONS;
 
     return (
@@ -48,7 +36,7 @@ const HomeHeader = ({
         >
             <Box sx={{ height: headerHeight, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                 <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <HeaderLogo title={storeHeaderName} imgUrl={logo} custom={CUSTOM_LOGO} />
+                    <HeaderLogo title={STORE_NAME} imgUrl={logo} custom={CUSTOM_LOGO} />
                 </Box>
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
                     <LanguageButton

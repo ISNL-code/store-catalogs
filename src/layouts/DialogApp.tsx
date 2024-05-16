@@ -4,7 +4,9 @@ import Login from 'pages/DialogApp/Login';
 import Logout from 'pages/DialogApp/Logout';
 import Register from 'pages/DialogApp/Register';
 import { DialogWindowType } from './hooks/useFormsApp';
-import SuccessWindow from 'pages/DialogApp/SuccessWindow';
+import SuccessRequest from 'pages/DialogApp/SuccessRequest';
+import SuccessMailSent from 'pages/DialogApp/SuccessMailSent';
+import SuccessOrdering from 'pages/DialogApp/SuccessOrdering';
 
 interface Props {
     location;
@@ -58,11 +60,25 @@ const DialogApp = ({ location, string, activeDialogWindow, handleOpenDialog, set
                 setAuth={setAuth}
             />
 
-            {/* <> * confirm modals * </> */}
+            {/* <> * info modals * </> */}
 
-            <SuccessWindow
+            <SuccessRequest
                 location={location}
-                isOpen={activeDialogWindow === DialogWindowType?.SUCCESS}
+                isOpen={activeDialogWindow === DialogWindowType?.SUCCESS_REQUEST}
+                setIsOpen={handleOpenDialog}
+                string={string}
+            />
+
+            <SuccessMailSent
+                location={location}
+                isOpen={activeDialogWindow === DialogWindowType?.SUCCESS_MAIL_SENT}
+                setIsOpen={handleOpenDialog}
+                string={string}
+            />
+
+            <SuccessOrdering
+                location={location}
+                isOpen={activeDialogWindow === DialogWindowType?.SUCCESS_ORDERING}
                 setIsOpen={handleOpenDialog}
                 string={string}
             />

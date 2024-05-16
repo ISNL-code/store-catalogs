@@ -1,7 +1,7 @@
 // Login
 
 export const LOGIN_ROUTE = {
-    root: () => `/login`,
+    root: () => `/`,
 };
 
 // Home

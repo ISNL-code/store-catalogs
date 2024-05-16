@@ -71,11 +71,11 @@ export const useUserApi = () => {
         });
 
     const useResetCustomerPassword = () =>
-        useMutation(({ username, storeCode }: { username: string; storeCode: any }) => {
+        useMutation(({ username, resetLink }: { username: string; resetLink: string }) => {
             return post({
                 url: `v1/customer/password/reset/request/`,
                 body: {
-                    returnUrl: window.location.origin,
+                    returnUrl: resetLink,
                     username: username,
                 },
             });

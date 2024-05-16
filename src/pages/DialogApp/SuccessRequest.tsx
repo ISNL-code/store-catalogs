@@ -1,6 +1,6 @@
 import InfoDialog from 'components/organisms/Modals/InfoDialog';
 
-const SuccessWindow = ({ isOpen, setIsOpen, string, location }) => {
+const SuccessRequest = ({ isOpen, setIsOpen, string, location }) => {
     if (!isOpen) return null;
 
     return (
@@ -23,4 +23,4 @@ const SuccessWindow = ({ isOpen, setIsOpen, string, location }) => {
     );
 };
 
-export default SuccessWindow;
+export default SuccessRequest;

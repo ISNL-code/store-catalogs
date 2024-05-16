@@ -5,7 +5,9 @@ export enum DialogWindowType {
     LOGIN = 'login',
     REGISTER = 'register',
     LOGOUT = 'logout',
-    SUCCESS = 'success',
+    SUCCESS_REQUEST = 'success_request',
+    SUCCESS_MAIL_SENT = 'success_mail_sent',
+    SUCCESS_ORDERING = 'success_ordering',
     QUESTION = 'question',
     AUTH_WARN = 'auth_warn',
 }

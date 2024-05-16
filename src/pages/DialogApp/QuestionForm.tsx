@@ -43,7 +43,7 @@ export default function QuestionForm({ isOpen, setIsOpen, string, location }) {
                     }, мои контакты: email: ${values.email}, тел: ${values.phone}, 
                      вопрос: ${values.question}`,
                 });
-                setIsOpen(DialogWindowType?.SUCCESS);
+                setIsOpen(DialogWindowType?.SUCCESS_REQUEST);
             } catch (error) {}
         },
     });

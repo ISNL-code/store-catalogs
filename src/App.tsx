@@ -136,7 +136,7 @@ const App = () => {
             }
             return HOME_ROUTE?.root(STORE_CODE);
         }
-        return '/';
+        return LOGIN_ROUTE?.root();
     };
 
     if (auth === null) return <></>;
@@ -149,12 +149,11 @@ const App = () => {
                     <Routes>
                         {
                             <>
-                                {REQUIRED_REGISTRATION && !auth && (
-                                    <Route
-                                        path={'/login'}
-                                        element={<Login lang={lang} setLang={setLang} auth={auth} setAuth={setAuth} />}
-                                    />
-                                )}
+                                <Route
+                                    path={'/'}
+                                    element={<Login lang={lang} setLang={setLang} auth={auth} setAuth={setAuth} />}
+                                />
+
                                 {HOME_PAGE_ACTIVE && (
                                     <Route
                                         path={'/home'}

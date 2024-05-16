@@ -110,7 +110,12 @@ export default function Register({ isOpen, setIsOpen, string, location, setAuth 
             {isLoading && <Loader />}
             <FormDialog
                 variant="info"
-                link={null}
+                link={{
+                    name: string?.already_registered,
+                    action: () => {
+                        setIsOpen(DialogWindowType?.LOGIN);
+                    },
+                }}
                 string={string}
                 onRefresh={() => {
                     setInitialValue();
@@ -123,11 +128,7 @@ export default function Register({ isOpen, setIsOpen, string, location, setAuth 
                 fullWidth
                 buttons={[
                     {
-                        type: 'action',
-                        name: string?.login,
-                        action: () => {
-                            setIsOpen(DialogWindowType?.LOGIN);
-                        },
+                        type: 'close',
                     },
                     { type: 'submit', name: string?.register },
                 ]}

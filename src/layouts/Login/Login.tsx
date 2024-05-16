@@ -8,24 +8,43 @@ import { StoreInterface } from 'types';
 import { useStoresApi } from 'api/useStoresApi';
 import { STORES_DATA } from 'dataBase/STORES';
 import { STORE_CONFIG } from 'store_constants/stores_config';
+import DialogApp from 'layouts/DialogApp';
+import { HOME_ROUTE, LOGIN_ROUTE, STORE_ROUTE } from 'constants/routes';
+import { DialogWindowType, useFormsApp } from 'layouts/hooks/useFormsApp';
+import { useNavigate } from 'react-router-dom';
 
 export default function LoginLayout({ lang, setLang, auth, setAuth }) {
-    const { STORE_CODE, STORE_NAME } = STORE_CONFIG;
+    const navigate = useNavigate();
+    const { STORE_CODE, STORE_NAME, REQUIRED_REGISTRATION, OPTIONS } = STORE_CONFIG;
     const { sx } = useDevice();
     const HEADER_HEIGHT = 50;
     const HEADER_PADDINGS = sx ? 2 : 4;
-    const [openModalType, setOpenModalType] = useState<string | null>(null);
     const { currentLanguage } = useGetLanguage({ lang, storeName: STORE_NAME });
-
     const [store, setStore] = useState<StoreInterface | null>(null);
-
     const { data: storeDataRes, isFetching: loadStore } = useStoresApi().useGetStoreByCode({
         code: STORE_CODE,
     });
+    const { activeDialogWindow, handleOpenDialog } = useFormsApp();
 
     useEffect(() => {
-        if (!openModalType) setOpenModalType('login');
-    }, [openModalType]);
+        if (REQUIRED_REGISTRATION) {
+            if (auth) {
+                if (OPTIONS?.HOME_PAGE_ACTIVE) {
+                    navigate(HOME_ROUTE?.root(STORE_CODE));
+                } else {
+                    navigate(STORE_ROUTE?.root(STORE_CODE));
+                }
+            } else {
+                handleOpenDialog(DialogWindowType?.LOGIN);
+            }
+        } else {
+            if (OPTIONS?.HOME_PAGE_ACTIVE) {
+                navigate(HOME_ROUTE?.root(STORE_CODE));
+            } else {
+                navigate(STORE_ROUTE?.root(STORE_CODE));
+            }
+        }
+    }, []);
 
     useEffect(() => {
         if (!storeDataRes || loadStore) return;
@@ -44,10 +63,16 @@ export default function LoginLayout({ lang, setLang, auth, setAuth }) {
                 string={currentLanguage?.string}
                 lang={lang}
                 setLang={setLang}
-                setOpenModalType={setOpenModalType}
                 logo={store?.logo?.path}
-                storeHeaderName={store?.name}
                 store={store}
+            />
+
+            <DialogApp
+                location={LOGIN_ROUTE?.root()}
+                string={currentLanguage?.string}
+                activeDialogWindow={activeDialogWindow}
+                handleOpenDialog={handleOpenDialog}
+                setAuth={setAuth}
             />
         </Box>
     );

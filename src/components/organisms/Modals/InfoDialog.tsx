@@ -14,7 +14,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 
 const SuccessComponent = () => (
-    <Box mt={2} sx={{ display: 'flex', justifyContent: 'center' }}>
+    <Box sx={{ display: 'flex', justifyContent: 'center' }}>
         <CheckCircleOutlineIcon sx={{ fontSize: 100 }} color="success" />
     </Box>
 );
@@ -103,7 +103,7 @@ const InfoDialog = ({
                     py={0.5}
                     sx={{ display: 'flex', justifyContent: 'flex-end', backgroundColor: getBackgroundColor(variant) }}
                 >
-                    <Box sx={{ display: 'flex', gap: 0.5 }}>
+                    <Box>
                         {closeIcon && (
                             <IconButton
                                 sx={{
@@ -123,15 +123,15 @@ const InfoDialog = ({
                         )}
                     </Box>
                 </Box>
-                {title && <DialogTitle sx={{ fontSize: 20, color: 'gray' }}>{title} </DialogTitle>}
+                {title && <DialogTitle sx={{ fontSize: 20, color: 'gray', py: 0, my: 0 }}>{title} </DialogTitle>}
                 {component === 'success request' && <SuccessComponent />}
                 {description && (
-                    <DialogContentText sx={{ px: 3, pt: 3, pb: 3, textAlign: 'center' }}>
+                    <DialogContentText sx={{ py: 0, my: 0, px: 3, textAlign: 'center' }}>
                         {description}
                     </DialogContentText>
                 )}
 
-                <DialogActions sx={{ px: 3, pb: 2, flexWrap: 'wrap' }}>
+                <DialogActions sx={{ py: 2, my: 0, px: 3, flexWrap: 'wrap' }}>
                     <Box sx={{ display: 'flex', gap: 1, ml: 'auto' }}>
                         <Button variant="contained" onClick={handleClose}>
                             {string?.ok}

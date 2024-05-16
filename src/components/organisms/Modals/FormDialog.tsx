@@ -12,6 +12,7 @@ import {
     InputAdornment,
     Autocomplete,
     TextField,
+    Divider,
 } from '@mui/material';
 import { Colors } from 'colors';
 import CloseIcon from '@mui/icons-material/Close';
@@ -277,17 +278,7 @@ const FormDialog = ({
                         })}
                     </DialogContent>
                 )}
-                {link && (
-                    <DialogActions sx={{ px: 3, pb: 2, width: '100%', justifyContent: 'center' }}>
-                        <Button
-                            onClick={() => {
-                                link.action();
-                            }}
-                        >
-                            {link?.name}
-                        </Button>
-                    </DialogActions>
-                )}
+
                 {buttons && (
                     <DialogActions sx={{ px: 3, pb: 2 }}>
                         <Box sx={{ display: 'flex', gap: 1, ml: 'auto' }}>
@@ -333,6 +324,20 @@ const FormDialog = ({
                             })}
                         </Box>
                     </DialogActions>
+                )}
+                {link && (
+                    <>
+                        <Divider />
+                        <DialogActions sx={{ px: 3, py: 0.5, width: '100%', justifyContent: 'center' }}>
+                            <Button
+                                onClick={() => {
+                                    link.action();
+                                }}
+                            >
+                                {link?.name}
+                            </Button>
+                        </DialogActions>
+                    </>
                 )}
             </Dialog>
         </ClickAwayListener>

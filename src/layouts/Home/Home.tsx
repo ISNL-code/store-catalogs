@@ -33,22 +33,21 @@ export default function Home({ lang, setLang, auth, setAuth, userData }) {
     const { currentLanguage } = useGetLanguage({ lang, storeName: STORE_NAME });
     const { activeDialogWindow, handleOpenDialog } = useFormsApp();
     const [store, setStore] = useState<StoreInterface | null>(null);
-
     const { data: storeDataRes, isFetching: loadStore } = useStoresApi().useGetStoreByCode({
         code: STORE_CODE,
     });
-
-    useEffect(() => {
-        if (!storeDataRes || loadStore) return;
-        setStore({ ...STORES_DATA.find(el => el.code === STORE_CODE), ...storeDataRes.data });
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [storeDataRes]);
 
     useEffect(() => {
         if (storeCode) {
             if (STORE_CODE !== storeCode) navigate(HOME_ROUTE?.root(STORE_CODE));
         }
     }, [storeCode, STORE_CODE]); // eslint-disable-line
+
+    useEffect(() => {
+        if (!storeDataRes || loadStore) return;
+        setStore({ ...STORES_DATA.find(el => el.code === STORE_CODE), ...storeDataRes.data });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [storeDataRes]);
 
     useEffect(() => {
         navigate(HOME_ROUTE?.root(STORE_CODE)); // eslint-disable-next-line react-hooks/exhaustive-deps
