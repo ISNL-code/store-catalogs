@@ -162,7 +162,7 @@ const LanguageButton = ({
                                         >
                                             <img
                                                 style={{ height: 30 }}
-                                                src={require(`assets/img/flags/${code}.png`)}
+                                                src={require(`assets/img/flags/${code.toLowerCase()}.png`)}
                                                 alt="Broken Img"
                                             />
                                         </Box>
