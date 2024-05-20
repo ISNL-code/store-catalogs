@@ -2,6 +2,7 @@ import { useState } from 'react';
 
 export enum DialogWindowType {
     RESET_PASSWORD = 'reset_password',
+    NEW_PASSWORD = 'new-password',
     LOGIN = 'login',
     REGISTER = 'register',
     LOGOUT = 'logout',
@@ -10,6 +11,7 @@ export enum DialogWindowType {
     SUCCESS_ORDERING = 'success_ordering',
     QUESTION = 'question',
     AUTH_WARN = 'auth_warn',
+    WENT_WRONG = 'went_wong',
 }
 
 interface Res {

@@ -19,9 +19,10 @@ import { ViewModeType } from 'store_constants/types';
 import Home from 'layouts/Home/Home';
 import HomePage from 'pages/Home/HomePage';
 import InformationPage from 'pages/Information/InformationPage';
-import Login from 'layouts/Login/Login';
 import axios from 'axios'; // eslint-disable-line
-import { HOME_ROUTE, LOGIN_ROUTE, STORE_ROUTE } from 'constants/routes';
+import { HOME_ROUTE, LOGIN_ROUTE, ROUTES, STORE_ROUTE } from 'constants/routes';
+import SecurityLayout from 'layouts/Security/Security';
+import NewPassword from 'layouts/Security/NewPassword';
 
 const App = () => {
     const {
@@ -35,6 +36,7 @@ const App = () => {
         REQUIRED_REGISTRATION,
         STORE_NAME, // eslint-disable-line
     } = STORE_CONFIG;
+
     const { HOME_PAGE_ACTIVE } = OPTIONS;
     const { VIEW_MODE } = USER_OPTIONS;
     const token = localStorage.getItem(ACCESS_TOKEN_KEY);
@@ -123,23 +125,28 @@ const App = () => {
         }
     }, []); // eslint-disable-line
 
-    const handleRedirect = () => {
-        if (!HOME_PAGE_ACTIVE) {
-            if (REQUIRED_REGISTRATION && !auth) {
-                return LOGIN_ROUTE?.root();
-            }
-            return STORE_ROUTE?.root(STORE_CODE);
+    const handleCheckAccess = (route: string | null) => {
+        switch (route) {
+            case ROUTES.SECURITY:
+                return Boolean(REQUIRED_REGISTRATION && !auth);
+            case ROUTES.HOME:
+                return Boolean(HOME_PAGE_ACTIVE && (!REQUIRED_REGISTRATION || (REQUIRED_REGISTRATION && auth)));
+            case ROUTES.STORE:
+                return Boolean(!REQUIRED_REGISTRATION || (REQUIRED_REGISTRATION && auth));
+            default:
+                return false;
         }
-        if (HOME_PAGE_ACTIVE) {
-            if (REQUIRED_REGISTRATION && !auth) {
-                return LOGIN_ROUTE?.root();
-            }
-            return HOME_ROUTE?.root(STORE_CODE);
-        }
-        return LOGIN_ROUTE?.root();
     };
 
-    if (auth === null) return <></>;
+    if (auth === null || !STORE_CODE) return <></>;
+
+    const handleRedirect = () => {
+        if (!REQUIRED_REGISTRATION || auth) {
+            return HOME_PAGE_ACTIVE ? HOME_ROUTE?.root(STORE_CODE) : STORE_ROUTE?.root(STORE_CODE);
+        } else {
+            return LOGIN_ROUTE?.root(STORE_CODE, 'login');
+        }
+    };
 
     return (
         <>
@@ -147,79 +154,118 @@ const App = () => {
             <ThemeProvider theme={mainTheme}>
                 <Router>
                     <Routes>
-                        {
-                            <>
+                        <>
+                            <Route>
                                 <Route
-                                    path={'/'}
-                                    element={<Login lang={lang} setLang={setLang} auth={auth} setAuth={setAuth} />}
+                                    path={`${ROUTES?.NEW_PASSWORD}/:storeCode/:tokenId`}
+                                    element={
+                                        <NewPassword lang={lang} setLang={setLang} auth={auth} setAuth={setAuth} />
+                                    }
                                 />
 
-                                {HOME_PAGE_ACTIVE && (
-                                    <Route
-                                        path={'/home'}
-                                        element={
-                                            <Home
-                                                lang={lang}
-                                                setLang={setLang}
-                                                auth={auth}
-                                                setAuth={setAuth}
-                                                userData={{
-                                                    currentUserData,
-                                                    isFetching,
-                                                    updateUserData,
-                                                    setCurrentUserData,
-                                                }}
-                                            />
-                                        }
-                                    >
-                                        <Route index path={'/home/:storeCode'} element={<HomePage />} />
-                                        <Route path={'/home/:storeCode/contacts'} element={<ContactsManagePage />} />
-                                        <Route path={'/home/:storeCode/profile'} element={<UserProfile />} />
-                                        <Route path={'/home/:storeCode/orders'} element={<UserOrders />} />
-                                        <Route path={'/home/:storeCode/info'} element={<InformationPage />} />
-                                        <Route path="*" element={<Navigate to={'/'} replace />} />
-                                    </Route>
-                                )}
-                                {((REQUIRED_REGISTRATION && auth) || !REQUIRED_REGISTRATION) && (
-                                    <Route
-                                        path={'/store'}
-                                        element={
-                                            <Catalog
-                                                lang={lang}
-                                                setLang={setLang}
-                                                viewMode={viewMode}
-                                                setViewMode={setViewMode}
-                                                auth={auth}
-                                                setAuth={setAuth}
-                                                country={country}
-                                                city={city}
-                                                userData={{
-                                                    currentUserData,
-                                                    isFetching,
-                                                    updateUserData,
-                                                    setCurrentUserData,
-                                                }}
-                                            />
-                                        }
-                                    >
-                                        <Route index path={'/store/:storeCode/'} element={<CatalogPage />} />
-                                        <Route path={'/store/:storeCode/contacts'} element={<ContactsManagePage />} />
+                                {REQUIRED_REGISTRATION && !auth && (
+                                    <>
                                         <Route
-                                            path={'/store/:storeCode/product/:productId/model/:modelSku'}
-                                            element={<ProductDetailsPage />}
+                                            path={`${ROUTES?.SECURITY}/:storeCode/:formType`}
+                                            element={
+                                                <SecurityLayout
+                                                    lang={lang}
+                                                    setLang={setLang}
+                                                    auth={auth}
+                                                    setAuth={setAuth}
+                                                />
+                                            }
                                         />
-                                        <Route path={'/store/:storeCode/cart'} element={<CartPage />} />
 
-                                        <Route path={'/store/:storeCode/favorites'} element={<FavoritesPage />} />
-
-                                        <Route path={'/store/:storeCode/profile'} element={<UserProfile />} />
-
-                                        <Route path={'/store/:storeCode/orders'} element={<UserOrders />} />
-                                    </Route>
+                                        <Route
+                                            path="*"
+                                            element={
+                                                <Navigate
+                                                    to={
+                                                        REQUIRED_REGISTRATION
+                                                            ? LOGIN_ROUTE?.root(STORE_CODE, 'login')
+                                                            : handleRedirect()
+                                                    }
+                                                    replace
+                                                />
+                                            }
+                                        />
+                                    </>
                                 )}
-                                <Route path="*" element={<Navigate to={handleRedirect()} replace />} />
-                            </>
-                        }
+                            </Route>
+                            {handleCheckAccess(ROUTES?.HOME) && (
+                                <Route
+                                    path={ROUTES?.HOME}
+                                    element={
+                                        <Home
+                                            lang={lang}
+                                            setLang={setLang}
+                                            auth={auth}
+                                            setAuth={setAuth}
+                                            userData={{
+                                                currentUserData,
+                                                isFetching,
+                                                updateUserData,
+                                                setCurrentUserData,
+                                            }}
+                                        />
+                                    }
+                                >
+                                    <Route index path={`${ROUTES?.HOME}/:storeCode`} element={<HomePage />} />
+                                    <Route
+                                        path={`${ROUTES?.HOME}/:storeCode/contacts`}
+                                        element={<ContactsManagePage />}
+                                    />
+                                    <Route path={`${ROUTES?.HOME}/:storeCode/profile`} element={<UserProfile />} />
+                                    <Route path={`${ROUTES?.HOME}/:storeCode/orders`} element={<UserOrders />} />
+                                    <Route path={`${ROUTES?.HOME}/:storeCode/info`} element={<InformationPage />} />
+                                    <Route path="*" element={<Navigate to={ROUTES?.HOME} replace />} />
+                                </Route>
+                            )}
+
+                            {handleCheckAccess(ROUTES?.STORE) && (
+                                <Route
+                                    path={ROUTES?.STORE}
+                                    element={
+                                        <Catalog
+                                            lang={lang}
+                                            setLang={setLang}
+                                            viewMode={viewMode}
+                                            setViewMode={setViewMode}
+                                            auth={auth}
+                                            setAuth={setAuth}
+                                            country={country}
+                                            city={city}
+                                            userData={{
+                                                currentUserData,
+                                                isFetching,
+                                                updateUserData,
+                                                setCurrentUserData,
+                                            }}
+                                        />
+                                    }
+                                >
+                                    <Route index path={`${ROUTES?.STORE}/:storeCode/`} element={<CatalogPage />} />
+                                    <Route
+                                        path={`${ROUTES?.STORE}/:storeCode/contacts`}
+                                        element={<ContactsManagePage />}
+                                    />
+                                    <Route
+                                        path={`${ROUTES?.STORE}/:storeCode/product/:productId/model/:modelSku`}
+                                        element={<ProductDetailsPage />}
+                                    />
+                                    <Route path={`${ROUTES?.STORE}/:storeCode/cart`} element={<CartPage />} />
+
+                                    <Route path={`${ROUTES?.STORE}/:storeCode/favorites`} element={<FavoritesPage />} />
+
+                                    <Route path={`${ROUTES?.STORE}/:storeCode/profile`} element={<UserProfile />} />
+
+                                    <Route path={`${ROUTES?.STORE}/:storeCode/orders`} element={<UserOrders />} />
+                                    <Route path="*" element={<Navigate to={ROUTES?.STORE} replace />} />
+                                </Route>
+                            )}
+                        </>
+                        <Route path="*" element={<Navigate to={handleRedirect()} replace />} />
                     </Routes>
                 </Router>
             </ThemeProvider>

@@ -10,6 +10,7 @@ export enum Colors {
     RED = '#db3214',
     RED_300 = '#f88d8d',
     WHITE = '#fff',
+    WHITE_100 = '#fff50',
     BLACK = '#000',
     GREEN = 'green',
     ORANGE = '#f38620',

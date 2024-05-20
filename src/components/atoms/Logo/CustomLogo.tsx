@@ -8,7 +8,7 @@ const CustomLogo = () => {
     const { sx } = useDevice();
 
     return (
-        <Box sx={{ display: 'flex', alignItems: 'center', cursor: 'pointer', gap: 0.5 }}>
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
             <Box sx={{ boxShadow: '0 0 5px 1px #414141c5', borderRadius: '50%', border: '2.2px solid #383838' }}>
                 <Box
                     sx={{

@@ -3,19 +3,21 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { useGetLanguage } from 'hooks/useGetLanguage';
 import { useDevice } from 'hooks/useDevice';
 import { useEffect, useState } from 'react';
-import HomeHeader from './LoginHeader';
+import HomeHeader from './SecurityHeader';
 import { StoreInterface } from 'types';
 import { useStoresApi } from 'api/useStoresApi';
 import { STORES_DATA } from 'dataBase/STORES';
 import { STORE_CONFIG } from 'store_constants/stores_config';
 import DialogApp from 'layouts/DialogApp';
-import { HOME_ROUTE, LOGIN_ROUTE, STORE_ROUTE } from 'constants/routes';
+import { HOME_ROUTE, LOGIN_ROUTE, ROUTES, STORE_ROUTE } from 'constants/routes';
 import { DialogWindowType, useFormsApp } from 'layouts/hooks/useFormsApp';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useIsMount } from 'hooks/useIsMount';
 
-export default function LoginLayout({ lang, setLang, auth, setAuth }) {
+export default function NewPassword({ lang, setLang, auth, setAuth }) {
     const navigate = useNavigate();
-    const { STORE_CODE, STORE_NAME, REQUIRED_REGISTRATION, OPTIONS } = STORE_CONFIG;
+    const { storeCode, resetToken } = useParams();
+    const { STORE_CODE, STORE_NAME } = STORE_CONFIG;
     const { sx } = useDevice();
     const HEADER_HEIGHT = 50;
     const HEADER_PADDINGS = sx ? 2 : 4;
@@ -27,23 +29,15 @@ export default function LoginLayout({ lang, setLang, auth, setAuth }) {
     const { activeDialogWindow, handleOpenDialog } = useFormsApp();
 
     useEffect(() => {
-        if (REQUIRED_REGISTRATION) {
-            if (auth) {
-                if (OPTIONS?.HOME_PAGE_ACTIVE) {
-                    navigate(HOME_ROUTE?.root(STORE_CODE));
-                } else {
-                    navigate(STORE_ROUTE?.root(STORE_CODE));
-                }
-            } else {
-                handleOpenDialog(DialogWindowType?.LOGIN);
-            }
-        } else {
-            if (OPTIONS?.HOME_PAGE_ACTIVE) {
-                navigate(HOME_ROUTE?.root(STORE_CODE));
-            } else {
-                navigate(STORE_ROUTE?.root(STORE_CODE));
+        if (storeCode || !resetToken) {
+            if (STORE_CODE !== storeCode) {
+                navigate('/');
             }
         }
+    }, [storeCode, STORE_CODE, store, resetToken]); // eslint-disable-line
+
+    useEffect(() => {
+        handleOpenDialog(DialogWindowType?.NEW_PASSWORD);
     }, []);
 
     useEffect(() => {
@@ -66,9 +60,23 @@ export default function LoginLayout({ lang, setLang, auth, setAuth }) {
                 logo={store?.logo?.path}
                 store={store}
             />
+            <Box
+                sx={{
+                    position: 'fixed',
+                    top: HEADER_HEIGHT,
+                    left: 0,
+                    minWidth: '100vw',
+                    minHeight: '100vh',
+                    backgroundImage: sx
+                        ? `url(${require('assets/img/login_img_mob.webp')})`
+                        : `url(${require('assets/img/login_img.webp')})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                }}
+            ></Box>
 
             <DialogApp
-                location={LOGIN_ROUTE?.root()}
+                location={ROUTES?.NEW_PASSWORD}
                 string={currentLanguage?.string}
                 activeDialogWindow={activeDialogWindow}
                 handleOpenDialog={handleOpenDialog}

@@ -16,7 +16,7 @@ import { useAddToFavorites } from './hooks/useAddToFavorites';
 import { STORE_CONFIG } from 'store_constants/stores_config';
 import { useFormsApp } from 'layouts/hooks/useFormsApp';
 import DialogApp from 'layouts/DialogApp';
-import { STORE_ROUTE } from 'constants/routes';
+import { ROUTES, STORE_ROUTE } from 'constants/routes';
 
 const OutletContainer = ({ context }: { context: CatalogContextInterface }) => {
     return <Outlet context={context} />;
@@ -79,9 +79,11 @@ export default function MainCatalog({ lang, setLang, auth, setAuth, userData, vi
 
     useEffect(() => {
         if (storeCode) {
-            if (STORE_CODE !== storeCode) navigate(STORE_ROUTE?.root(STORE_CODE));
+            if (STORE_CODE !== storeCode) {
+                navigate(STORE_ROUTE?.root(STORE_CODE));
+            }
         }
-    }, [storeCode, STORE_CODE]); // eslint-disable-line
+    }, [storeCode, STORE_CODE, store]); // eslint-disable-line
 
     useEffect(() => {
         if (!storeDataRes || loadStore) return;
@@ -92,10 +94,6 @@ export default function MainCatalog({ lang, setLang, auth, setAuth, userData, vi
         if (!store?.supportedLanguages) return;
         setSupportedLanguage(store?.supportedLanguages?.find(el => el.code === lang) ? lang : 'en');
     }, [lang, store?.supportedLanguages]);
-
-    useEffect(() => {
-        navigate(STORE_ROUTE?.root(STORE_CODE)); // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [store]);
 
     if (!store) return <></>;
 
@@ -189,7 +187,7 @@ export default function MainCatalog({ lang, setLang, auth, setAuth, userData, vi
                 handleOpenDialog={handleOpenDialog}
             />
             <DialogApp
-                location={STORE_ROUTE?.root(STORE_CODE)}
+                location={ROUTES?.STORE}
                 string={currentLanguage?.string}
                 activeDialogWindow={activeDialogWindow}
                 handleOpenDialog={handleOpenDialog}

@@ -1,7 +1,22 @@
+// ROOT
+
+export const ROUTES = {
+    SECURITY: '/security',
+    HOME: '/home',
+    STORE: '/store',
+    NEW_PASSWORD: '/new-password',
+};
+
+// New Password
+
+export const NEW_PASSWORD_ROUTE = {
+    root: (storeCode, token) => `/new-password/${storeCode}/${token}`,
+};
+
 // Login
 
 export const LOGIN_ROUTE = {
-    root: () => `/`,
+    root: (storeCode, formType) => `/security/${storeCode}/${formType}`,
 };
 
 // Home

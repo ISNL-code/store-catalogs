@@ -86,7 +86,7 @@ export default function QuestionForm({ isOpen, setIsOpen, string, location }) {
                 buttons={[{ type: 'submit', name: string?.send }]}
                 onSubmit={() => formik.handleSubmit()}
                 description={string?.question_form_message}
-                closeIcon
+                closeAvailable
                 error={null}
                 fields={[
                     {

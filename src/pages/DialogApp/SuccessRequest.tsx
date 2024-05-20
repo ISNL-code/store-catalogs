@@ -16,7 +16,7 @@ const SuccessRequest = ({ isOpen, setIsOpen, string, location }) => {
                 fullWidth
                 onSubmit={() => {}}
                 description={string?.request_sended_successfully}
-                closeIcon
+                closeAvailable
                 component="success request"
             />
         </>

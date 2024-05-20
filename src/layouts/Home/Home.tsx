@@ -12,7 +12,7 @@ import { STORES_DATA } from 'dataBase/STORES';
 import { STORE_CONFIG } from 'store_constants/stores_config';
 import { useFormsApp } from 'layouts/hooks/useFormsApp';
 import DialogApp from 'layouts/DialogApp';
-import { HOME_ROUTE } from 'constants/routes';
+import { HOME_ROUTE, ROUTES } from 'constants/routes';
 
 const OutletContainer = ({ context }: { context: HomeContextInterface }) => {
     return <Outlet context={context} />;
@@ -39,19 +39,17 @@ export default function Home({ lang, setLang, auth, setAuth, userData }) {
 
     useEffect(() => {
         if (storeCode) {
-            if (STORE_CODE !== storeCode) navigate(HOME_ROUTE?.root(STORE_CODE));
+            if (STORE_CODE !== storeCode) {
+                navigate(HOME_ROUTE?.root(STORE_CODE));
+            }
         }
-    }, [storeCode, STORE_CODE]); // eslint-disable-line
+    }, [storeCode, STORE_CODE, store]); // eslint-disable-line
 
     useEffect(() => {
         if (!storeDataRes || loadStore) return;
         setStore({ ...STORES_DATA.find(el => el.code === STORE_CODE), ...storeDataRes.data });
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [storeDataRes]);
-
-    useEffect(() => {
-        navigate(HOME_ROUTE?.root(STORE_CODE)); // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [store]);
 
     if (!store) return <></>;
 
@@ -108,7 +106,7 @@ export default function Home({ lang, setLang, auth, setAuth, userData }) {
                 handleOpenDialog={handleOpenDialog}
             />
             <DialogApp
-                location={HOME_ROUTE?.root(STORE_CODE)}
+                location={ROUTES?.HOME}
                 string={currentLanguage?.string}
                 activeDialogWindow={activeDialogWindow}
                 handleOpenDialog={handleOpenDialog}

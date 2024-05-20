@@ -12,10 +12,17 @@ import {
 import { Colors } from 'colors';
 import CloseIcon from '@mui/icons-material/Close';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
+import WarningAmberIcon from '@mui/icons-material/WarningAmber';
 
 const SuccessComponent = () => (
     <Box sx={{ display: 'flex', justifyContent: 'center' }}>
         <CheckCircleOutlineIcon sx={{ fontSize: 100 }} color="success" />
+    </Box>
+);
+
+const ErrorComponent = () => (
+    <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+        <WarningAmberIcon sx={{ fontSize: 100 }} color="error" />
     </Box>
 );
 
@@ -42,9 +49,9 @@ interface Props {
     description: string | null;
     onClose: () => void;
     fullWidth: boolean;
-    closeIcon: boolean;
+    closeAvailable: boolean;
     onSubmit: () => void;
-    component: 'success request';
+    component: 'success request' | 'bad request';
 }
 
 const InfoDialog = ({
@@ -54,7 +61,7 @@ const InfoDialog = ({
     description,
     onClose,
     fullWidth,
-    closeIcon,
+    closeAvailable,
     onSubmit,
     component,
 }: Props) => {
@@ -72,7 +79,7 @@ const InfoDialog = ({
     return (
         <ClickAwayListener
             onClickAway={() => {
-                handleClose();
+                if (closeAvailable) handleClose();
             }}
             mouseEvent={false}
             touchEvent={false}
@@ -82,7 +89,9 @@ const InfoDialog = ({
                 BackdropProps={{ style: { zIndex: 5000 } }}
                 open={open}
                 fullWidth={fullWidth}
-                onClose={handleClose}
+                onClose={() => {
+                    if (closeAvailable) handleClose();
+                }}
                 hideBackdrop
                 PaperProps={{
                     component: 'form',
@@ -104,7 +113,7 @@ const InfoDialog = ({
                     sx={{ display: 'flex', justifyContent: 'flex-end', backgroundColor: getBackgroundColor(variant) }}
                 >
                     <Box>
-                        {closeIcon && (
+                        {closeAvailable && (
                             <IconButton
                                 sx={{
                                     backgroundColor: Colors?.WHITE,
@@ -125,6 +134,7 @@ const InfoDialog = ({
                 </Box>
                 {title && <DialogTitle sx={{ fontSize: 20, color: 'gray', py: 0, my: 0 }}>{title} </DialogTitle>}
                 {component === 'success request' && <SuccessComponent />}
+                {component === 'bad request' && <ErrorComponent />}
                 {description && (
                     <DialogContentText sx={{ py: 0, my: 0, px: 3, textAlign: 'center' }}>
                         {description}

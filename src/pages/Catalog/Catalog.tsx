@@ -102,7 +102,7 @@ const Catalog = () => {
         setTimeout(() => {
             setLoading(false);
         }, 300); // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [loading]);
+    }, [loading, productsList]);
 
     useEffect(() => {
         window.addEventListener('scroll', () => {

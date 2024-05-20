@@ -16,7 +16,7 @@ const SuccessOrdering = ({ isOpen, setIsOpen, string, location }) => {
                 fullWidth
                 onSubmit={() => {}}
                 description={string?.an_email_with_a_link_has_been_sent_to_your_email}
-                closeIcon
+                closeAvailable
                 component="success request"
             />
         </>

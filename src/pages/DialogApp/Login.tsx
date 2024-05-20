@@ -6,6 +6,7 @@ import loginFormValidations from 'Validation/loginFormValidations';
 import { STORE_CONFIG } from 'store_constants/stores_config';
 import { DialogWindowType } from 'layouts/hooks/useFormsApp';
 import FormDialog from 'components/organisms/Modals/FormDialog';
+import { LOGIN_ROUTE, ROUTES } from 'constants/routes';
 
 export default function Login({ isOpen, setIsOpen, string, location, setAuth }) {
     const { ACCESS_TOKEN_KEY, STORE_NAME, STORE_CODE } = STORE_CONFIG;
@@ -84,7 +85,7 @@ export default function Login({ isOpen, setIsOpen, string, location, setAuth }) 
                     text: string?.wrong_password_or_user_not_registered_in + ' ' + STORE_NAME,
                     shown: isError,
                 }}
-                closeIcon
+                closeAvailable={Boolean(!location.includes(ROUTES?.SECURITY))}
                 fields={[
                     {
                         component: 'textfield',

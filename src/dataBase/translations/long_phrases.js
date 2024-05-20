@@ -2,6 +2,7 @@ import { STORE_CONFIG } from 'store_constants/stores_config';
 
 export const LONG_PHRASES = {
     en: {
+        something_went_wrong: 'Something went wrong, please try again',
         question_form_message:
             'If you have any questions or difficulties, please do not hesitate to contact us. We will make every effort to respond to you as quickly as possible.',
         call_back_messageA:
@@ -21,6 +22,7 @@ export const LONG_PHRASES = {
         min_purchase_text: `Welcome to the Wholesale ${STORE_CONFIG?.STORE_NAME} Catalog. Please note that a minimum order of 10 items is required. For purchases of fewer than 10 items, kindly visit our Retail Catalog. Thank you for choosing ${STORE_CONFIG?.STORE_NAME}!`,
     },
     fr: {
+        something_went_wrong: 'Un problème est survenu, veuillez réessayer plus tard !',
         question_form_message: `Si vous avez des questions ou des difficultés, n'hésitez pas à nous contacter. Nous ferons tout notre possible pour vous répondre dans les plus brefs délais.`,
         call_back_messageA:
             'Bonjour! Si vous avez des questions, des commentaires ou avez besoin d`aide, veuillez nous contacter. Nous sommes prêts à vous aider dans votre choix, à vous fournir des informations complémentaires sur le produit ou à vous aider à passer votre commande.',
@@ -39,6 +41,7 @@ export const LONG_PHRASES = {
             'Notre gestionnaire vous contactera sous peu pour vous fournir des informations détaillées concernant votre achat.',
     },
     es: {
+        something_went_wrong: 'Algo salió mal, ¡intenta de nuevo más tarde!',
         question_form_message:
             'Si tienes alguna pregunta o dificultad, no dudes en contactarnos. Haremos todo lo posible para responder lo más rápido posible.',
         call_back_messageA:
@@ -58,6 +61,7 @@ export const LONG_PHRASES = {
             'Nuestro gerente se pondrá en contacto con usted en breve para proporcionarle información detallada sobre su compra.',
     },
     ua: {
+        something_went_wrong: 'Щось пішло не так, будь ласка, спробуйте пізніше!',
         question_form_message:
             'Якщо у вас виникли питання або труднощі, будь ласка, не соромтеся звертатися до нас. Ми докладемо всіх зусиль, щоб відповісти вам якомога швидше.',
         call_back_messageA:
@@ -75,6 +79,7 @@ export const LONG_PHRASES = {
         manger_will_contact_message: `Наш менеджер зв'яжеться з вами найближчим часом, щоб надати детальну інформацію щодо вашої покупки.`,
     },
     pl: {
+        something_went_wrong: 'Coś poszło nie tak, spróbuj ponownie później!',
         question_form_message:
             'Jeśli masz jakiekolwiek pytania lub problemy, prosimy o kontakt. Dołożymy wszelkich starań, aby odpowiedzieć jak najszybciej.',
         call_back_messageA:
@@ -93,6 +98,7 @@ export const LONG_PHRASES = {
             'Nasz menedżer skontaktuje się z Państwem wkrótce, aby udzielić szczegółowych informacji dotyczących Państwa zakupu.',
     },
     cs: {
+        something_went_wrong: 'Něco se pokazilo, zkuste to prosím později!',
         question_form_message:
             'Pokud máte jakékoli dotazy nebo potíže, neváhejte nás kontaktovat. Uděláme vše pro to, abychom vám odpověděli co nejdříve.',
         call_back_messageA:
@@ -111,6 +117,7 @@ export const LONG_PHRASES = {
             'Náš manažer se s vámi brzy spojí, aby vám poskytl podrobné informace o vašem nákupu.',
     },
     ru: {
+        something_went_wrong: 'Что-то пошло не так, пожалуйста, попробуйте позже!',
         question_form_message:
             'Если у вас есть вопросы или трудности, не стесняйтесь обращаться к нам. Мы сделаем все возможное, чтобы ответить вам как можно скорее.',
         call_back_messageA:
@@ -130,6 +137,7 @@ export const LONG_PHRASES = {
         an_email_with_a_link_has_been_sent_to_your_email: 'На ваш адрес электронной почты отправлено письмо со ссылкой',
     },
     kz: {
+        something_went_wrong: 'Бір нәрсе дұрыс болмады, кейінірек қайталап көріңіз!',
         question_form_message:
             'Егер сізде сұрақтар немесе қиындықтар туындаса, бізге хабарласудан тартынбаңыз. Біз сізге мүмкіндігінше тез жауап беруге барлық күш-жігерімізді саламыз.',
         call_back_messageA:

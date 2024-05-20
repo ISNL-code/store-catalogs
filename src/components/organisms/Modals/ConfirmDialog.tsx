@@ -35,7 +35,7 @@ interface Props {
     onClose: () => void;
     fullWidth: boolean;
     buttons: { type: 'link' | 'submit' | 'close' | 'action'; name?: string; action?: () => void }[];
-    closeIcon: boolean;
+    closeAvailable: boolean;
     onSubmit: () => void;
 }
 
@@ -47,7 +47,7 @@ const ConfirmDialog = ({
     onClose,
     fullWidth,
     buttons,
-    closeIcon,
+    closeAvailable,
     onSubmit,
 }: Props) => {
     const [open, setOpen] = useState<boolean>(false);
@@ -64,7 +64,7 @@ const ConfirmDialog = ({
     return (
         <ClickAwayListener
             onClickAway={() => {
-                handleClose();
+                if (closeAvailable) handleClose();
             }}
             mouseEvent={false}
             touchEvent={false}
@@ -74,7 +74,9 @@ const ConfirmDialog = ({
                 BackdropProps={{ style: { zIndex: 5000 } }}
                 open={open}
                 fullWidth={fullWidth}
-                onClose={handleClose}
+                onClose={() => {
+                    if (closeAvailable) handleClose();
+                }}
                 hideBackdrop
                 PaperProps={{
                     component: 'form',
@@ -96,7 +98,7 @@ const ConfirmDialog = ({
                     sx={{ display: 'flex', justifyContent: 'flex-end', backgroundColor: getBackgroundColor(variant) }}
                 >
                     <Box sx={{ display: 'flex', gap: 0.5 }}>
-                        {closeIcon && (
+                        {closeAvailable && (
                             <IconButton
                                 sx={{
                                     backgroundColor: Colors?.WHITE,

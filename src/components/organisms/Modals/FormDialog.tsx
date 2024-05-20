@@ -13,6 +13,7 @@ import {
     Autocomplete,
     TextField,
     Divider,
+    Typography,
 } from '@mui/material';
 import { Colors } from 'colors';
 import CloseIcon from '@mui/icons-material/Close';
@@ -43,7 +44,7 @@ interface Props {
     title: string | null;
     description: string | null;
     onClose: () => void;
-    onRefresh?: () => void;
+    onRefresh: () => void;
     fullWidth: boolean;
     error: { text: string; shown: boolean } | null;
     fields:
@@ -60,7 +61,7 @@ interface Props {
           }[]
         | null;
     buttons: { type: 'link' | 'submit' | 'close' | 'action'; name?: string; action?: () => void }[] | null;
-    closeIcon: boolean;
+    closeAvailable: boolean;
     onSubmit: () => void;
 }
 
@@ -74,7 +75,7 @@ const FormDialog = ({
     fullWidth,
     fields,
     buttons,
-    closeIcon,
+    closeAvailable,
     onSubmit,
     error,
     onRefresh,
@@ -88,23 +89,29 @@ const FormDialog = ({
     };
 
     useEffect(() => {
+        if (!open) return () => onRefresh();
+    }, [open]);
+
+    useEffect(() => {
         setOpen(true);
     }, []);
 
     return (
         <ClickAwayListener
             onClickAway={() => {
-                handleClose();
+                if (closeAvailable) handleClose();
             }}
             mouseEvent={false}
             touchEvent={false}
         >
             <Dialog
-                sx={{ zIndex: 4500 }}
+                sx={{ zIndex: 2000 }}
                 BackdropProps={{ style: { zIndex: 5000 } }}
                 open={open}
                 fullWidth={fullWidth}
-                onClose={handleClose}
+                onClose={() => {
+                    if (closeAvailable) handleClose();
+                }}
                 hideBackdrop
                 PaperProps={{
                     component: 'form',
@@ -125,25 +132,28 @@ const FormDialog = ({
                     py={0.5}
                     sx={{ display: 'flex', justifyContent: 'flex-end', backgroundColor: getBackgroundColor(variant) }}
                 >
-                    <Box sx={{ display: 'flex', gap: 0.5 }}>
+                    <Box sx={{ display: 'flex', justifyContent: 'space-between', flexGrow: 1 }}>
                         {onRefresh && (
-                            <IconButton
-                                sx={{
-                                    backgroundColor: Colors?.WHITE,
-                                    '&:hover': { backgroundColor: Colors?.WHITE },
-                                    width: 26,
-                                    height: 26,
-                                    display: 'flex',
-                                    justifyContent: 'center',
-                                }}
-                                onClick={() => {
-                                    onRefresh();
-                                }}
-                            >
-                                <RefreshIcon sx={{ fontSize: 16 }} />
-                            </IconButton>
+                            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                                <IconButton
+                                    sx={{
+                                        backgroundColor: Colors?.WHITE,
+                                        '&:hover': { backgroundColor: Colors?.WHITE },
+                                        width: 26,
+                                        height: 26,
+                                        display: 'flex',
+                                        justifyContent: 'center',
+                                    }}
+                                    onClick={() => {
+                                        onRefresh();
+                                    }}
+                                >
+                                    <RefreshIcon sx={{ fontSize: 16 }} />
+                                </IconButton>
+                                <Typography sx={{ color: Colors?.WHITE }}>{string?.clear_form}</Typography>
+                            </Box>
                         )}
-                        {closeIcon && (
+                        {closeAvailable && (
                             <IconButton
                                 sx={{
                                     backgroundColor: Colors?.WHITE,

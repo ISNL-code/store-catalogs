@@ -7,6 +7,8 @@ import { DialogWindowType } from './hooks/useFormsApp';
 import SuccessRequest from 'pages/DialogApp/SuccessRequest';
 import SuccessMailSent from 'pages/DialogApp/SuccessMailSent';
 import SuccessOrdering from 'pages/DialogApp/SuccessOrdering';
+import NewPassword from 'pages/DialogApp/NewPassword';
+import SomethingWentWrong from 'pages/DialogApp/SomethingWentWrong';
 
 interface Props {
     location;
@@ -49,6 +51,12 @@ const DialogApp = ({ location, string, activeDialogWindow, handleOpenDialog, set
                 setIsOpen={handleOpenDialog}
                 string={string}
             />
+            <NewPassword
+                location={location}
+                isOpen={activeDialogWindow === DialogWindowType?.NEW_PASSWORD}
+                setIsOpen={handleOpenDialog}
+                string={string}
+            />
 
             {/* <> * confirm modals * </> */}
 
@@ -79,6 +87,12 @@ const DialogApp = ({ location, string, activeDialogWindow, handleOpenDialog, set
             <SuccessOrdering
                 location={location}
                 isOpen={activeDialogWindow === DialogWindowType?.SUCCESS_ORDERING}
+                setIsOpen={handleOpenDialog}
+                string={string}
+            />
+            <SomethingWentWrong
+                location={location}
+                isOpen={activeDialogWindow === DialogWindowType?.WENT_WRONG}
                 setIsOpen={handleOpenDialog}
                 string={string}
             />

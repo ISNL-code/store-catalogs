@@ -66,7 +66,6 @@ const HeaderLogo = ({ title, font = 'Roboto', imgUrl, custom = false }: Props) =
     return (
         <Box
             sx={{
-                cursor: 'pointer',
                 display: 'flex',
                 alignItems: 'center',
                 position: 'relative',

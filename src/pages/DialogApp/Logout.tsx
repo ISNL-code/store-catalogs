@@ -34,7 +34,7 @@ export default function Logout({ isOpen, setIsOpen, string, location, setAuth })
                     setIsOpen(null);
                 }}
                 description={string?.do_want_to_logout}
-                closeIcon
+                closeAvailable
             />
         </>
     );

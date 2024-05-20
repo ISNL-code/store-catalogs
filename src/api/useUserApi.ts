@@ -84,18 +84,18 @@ export const useUserApi = () => {
     const useUpdateCustomerPassword = () =>
         useMutation(
             ({
-                store,
-                code,
+                storeCode,
+                resetToken,
                 password,
                 repeatPassword,
             }: {
-                store: string;
-                code: string;
+                storeCode: string;
+                resetToken: string;
                 password: string;
                 repeatPassword: string;
             }) => {
                 return post({
-                    url: `v1/customer/${store}/password/${code}`,
+                    url: `v1/customer/${storeCode}/password/${resetToken}`,
                     body: {
                         password: password,
                         repeatPassword: repeatPassword,

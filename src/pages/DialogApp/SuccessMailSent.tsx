@@ -1,4 +1,5 @@
 import InfoDialog from 'components/organisms/Modals/InfoDialog';
+import { DialogWindowType } from 'layouts/hooks/useFormsApp';
 
 const SuccessMailSent = ({ isOpen, setIsOpen, string, location }) => {
     if (!isOpen) return null;
@@ -10,13 +11,13 @@ const SuccessMailSent = ({ isOpen, setIsOpen, string, location }) => {
                 link={null}
                 string={string}
                 onClose={() => {
-                    setIsOpen(null);
+                    setIsOpen(DialogWindowType?.LOGIN);
                 }}
                 title={null}
                 fullWidth
                 onSubmit={() => {}}
                 description={string?.an_email_with_a_link_has_been_sent_to_your_email}
-                closeIcon
+                closeAvailable
                 component="success request"
             />
         </>

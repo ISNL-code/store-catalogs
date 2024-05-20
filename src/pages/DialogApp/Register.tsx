@@ -8,6 +8,7 @@ import axios from 'axios';
 import { TRANSLATED_COUNTRIES } from 'dataBase/COUNTRY_LIST';
 import FormDialog from 'components/organisms/Modals/FormDialog';
 import { DialogWindowType } from 'layouts/hooks/useFormsApp';
+import { ROUTES } from 'constants/routes';
 
 const INITIAL_VALUES = {
     password: '',
@@ -23,13 +24,13 @@ export default function Register({ isOpen, setIsOpen, string, location, setAuth 
     const { ACCESS_TOKEN_KEY, STORE_CODE, STORE_NAME, LANGUAGE_KEY, SUPPORTED_COUNTRIES } = STORE_CONFIG;
 
     const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
+    const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
+    const [isError, setIsError] = useState(false);
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [country, setCountry] = useState('');
-    const [isError, setIsError] = useState(false);
 
     const { mutateAsync: register, isLoading } = useUserApi().useCustomerRegister();
 
@@ -86,8 +87,6 @@ export default function Register({ isOpen, setIsOpen, string, location, setAuth 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [password, email, phoneNumber, confirmPassword, firstName, lastName, country]);
 
-    if (!isOpen) return null;
-
     const setInitialValue = () => {
         formik.resetForm();
         setIsError(false);
@@ -105,6 +104,7 @@ export default function Register({ isOpen, setIsOpen, string, location, setAuth 
         return string?.[val];
     };
 
+    if (!isOpen) return null;
     return (
         <>
             {isLoading && <Loader />}
@@ -126,19 +126,14 @@ export default function Register({ isOpen, setIsOpen, string, location, setAuth 
                 }}
                 title={string?.register + ' ' + string?.in + ' ' + `"${STORE_NAME}"` + ' ' + string?.catalog} // eslint-disable-line
                 fullWidth
-                buttons={[
-                    {
-                        type: 'close',
-                    },
-                    { type: 'submit', name: string?.register },
-                ]}
+                buttons={[{ type: 'submit', name: string?.register }]}
                 onSubmit={() => formik.handleSubmit()}
                 description={null}
                 error={{
                     text: string?.already_registered,
                     shown: isError,
                 }}
-                closeIcon
+                closeAvailable={Boolean(!location.includes(ROUTES?.SECURITY))}
                 fields={[
                     {
                         component: 'textfield',

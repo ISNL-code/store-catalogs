@@ -26,6 +26,15 @@ const LanguageButton = ({
     const handleClose = () => {
         setAnchorElLang(null);
     };
+
+    const getFlagSrc = code => {
+        try {
+            return require(`assets/img/flags/${code.toLowerCase()}.png`);
+        } catch (error) {
+            return require('assets/img/flags/en.png');
+        }
+    };
+
     const selectLangFlag = () => {
         return (
             <Box
@@ -135,10 +144,22 @@ const LanguageButton = ({
                                 case 'fr':
                                     currentLabel = string?.french;
                                     break;
+                                case 'it':
+                                    currentLabel = string?.italian;
+                                    break;
+                                case 'tk':
+                                    currentLabel = string?.turkish;
+                                    break;
+                                case 'de':
+                                    currentLabel = string?.german;
+                                    break;
 
                                 default:
-                                    currentLabel = string?.ukrainian;
+                                    currentLabel = string?.lang_unknown;
                             }
+
+                            const flagSrc = getFlagSrc(code);
+
                             return (
                                 <Fragment key={code}>
                                     <MenuItem
@@ -160,11 +181,7 @@ const LanguageButton = ({
                                                 justifyContent: 'center',
                                             }}
                                         >
-                                            <img
-                                                style={{ height: 30 }}
-                                                src={require(`assets/img/flags/${code.toLowerCase()}.png`)}
-                                                alt="Broken Img"
-                                            />
+                                            <img style={{ height: 30 }} src={flagSrc} alt="Flag" />
                                         </Box>
                                         <ListItemText>{currentLabel}</ListItemText>
                                     </MenuItem>
