@@ -90,6 +90,7 @@ const FormDialog = ({
 
     useEffect(() => {
         if (!open) return () => onRefresh();
+        // eslint-disable-next-line
     }, [open]);
 
     useEffect(() => {

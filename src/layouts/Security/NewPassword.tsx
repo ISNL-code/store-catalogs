@@ -9,10 +9,9 @@ import { useStoresApi } from 'api/useStoresApi';
 import { STORES_DATA } from 'dataBase/STORES';
 import { STORE_CONFIG } from 'store_constants/stores_config';
 import DialogApp from 'layouts/DialogApp';
-import { HOME_ROUTE, LOGIN_ROUTE, ROUTES, STORE_ROUTE } from 'constants/routes';
+import { ROUTES } from 'constants/routes';
 import { DialogWindowType, useFormsApp } from 'layouts/hooks/useFormsApp';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useIsMount } from 'hooks/useIsMount';
 
 export default function NewPassword({ lang, setLang, auth, setAuth }) {
     const navigate = useNavigate();
@@ -38,7 +37,7 @@ export default function NewPassword({ lang, setLang, auth, setAuth }) {
 
     useEffect(() => {
         handleOpenDialog(DialogWindowType?.NEW_PASSWORD);
-    }, []);
+    }, []); // eslint-disable-line
 
     useEffect(() => {
         if (!storeDataRes || loadStore) return;
