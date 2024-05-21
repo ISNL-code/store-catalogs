@@ -2,7 +2,7 @@ import { Box, Fab, Typography } from '@mui/material';
 import PhoneCallbackIcon from '@mui/icons-material/PhoneCallback';
 import { useNavigate, useOutletContext } from 'react-router-dom';
 import { useDevice } from 'hooks/useDevice';
-import { Colors } from 'colors';
+import { Color, Colors } from 'colors';
 
 const CallBackButton = ({ animated = false, path }) => {
     const { string }: any = useOutletContext();
@@ -18,8 +18,8 @@ const CallBackButton = ({ animated = false, path }) => {
                 right: sx ? '20px' : '36px',
                 bottom: sx ? 80 : 16,
                 border: sx ? 'none' : '1px solid ',
-                borderColor: Colors?.GREEN,
-                backgroundColor: sx ? 'none' : Colors?.GREEN,
+                borderColor: Color?.SUCCESS,
+                backgroundColor: sx ? 'none' : Color?.SUCCESS,
                 opacity: 0.75,
                 borderRadius: 50,
                 p: s ? 0 : 0.25,
@@ -47,7 +47,7 @@ const CallBackButton = ({ animated = false, path }) => {
                     backgroundColor: Colors?.WHITE,
                     animation: animated ? `fadeIn 4s infinite ease` : '',
                     border: '1px solid #ccc',
-                    boxShadow: `0 0 5px 2px ${Colors?.GREEN}`,
+                    boxShadow: `0 0 5px 2px ${Color.PRIMARY}`,
                     '@keyframes fadeIn': {
                         '0%': { transform: 'translate(2px,2px)' },
                         '1%': { transform: 'translate(-2px,2px)' },

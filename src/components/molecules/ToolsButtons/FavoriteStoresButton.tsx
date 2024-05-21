@@ -7,6 +7,7 @@ import { useStoresApi } from 'api/useStoresApi';
 import { useOutletContext } from 'react-router-dom';
 import { StoresContextInterface } from 'types';
 import { STORES_DATA } from 'dataBase/STORES';
+import { Color } from 'colors';
 
 interface FavoriteStoresButtonInterface {
     storeCode: string;
@@ -63,7 +64,12 @@ const FavoriteStoresButton = ({ storeCode, isFavorite }: FavoriteStoresButtonInt
                 ) : (
                     <IconButton
                         size="small"
-                        sx={{ border: '1px solid #1976d2', backgroundColor: '#fff', width: '33px', height: '33px' }}
+                        sx={{
+                            border: `1px solid ${Color?.PRIMARY}`,
+                            backgroundColor: '#fff',
+                            width: '33px',
+                            height: '33px',
+                        }}
                         onClick={() =>
                             addStoreToFavorites({ storeCode }).then(() =>
                                 updateFavoritesRes().then(res => {
@@ -82,7 +88,7 @@ const FavoriteStoresButton = ({ storeCode, isFavorite }: FavoriteStoresButtonInt
                             )
                         }
                     >
-                        <IoBagAdd color="primary" style={{ fontSize: 30, color: '#1976d2' }} />
+                        <IoBagAdd color="primary" style={{ fontSize: 30, color: Color?.PRIMARY }} />
                     </IconButton>
                 )}
             </Box>

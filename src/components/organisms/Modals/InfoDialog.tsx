@@ -10,7 +10,7 @@ import {
     ClickAwayListener,
     Divider,
 } from '@mui/material';
-import { Colors } from 'colors';
+import { Color, Colors } from 'colors';
 import CloseIcon from '@mui/icons-material/Close';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import WarningAmberIcon from '@mui/icons-material/WarningAmber';
@@ -38,13 +38,13 @@ const WarnComponent = () => (
 const getBackgroundColor = variant => {
     switch (variant) {
         case 'info':
-            return Colors.BLUE;
+            return Color.PRIMARY;
         case 'warning':
             return Colors.ORANGE;
         case 'error':
-            return Colors.RED;
+            return Color?.ERROR;
         case 'success':
-            return Colors.GREEN;
+            return Color.PRIMARY;
         default:
             return Colors.GRAY;
     }

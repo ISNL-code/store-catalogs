@@ -84,7 +84,7 @@ const Favorites = () => {
                 padding = sx ? 2 : 4;
                 spacing = 2;
                 break;
-            case ViewModeType.grid_l:
+
             case ViewModeType.grid_m:
                 padding = sx ? 0 : 4;
                 spacing = 0;

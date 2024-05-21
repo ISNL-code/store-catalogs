@@ -4,6 +4,7 @@ import { StoreType } from 'store_constants/types';
 import { useIsMount } from 'hooks/useIsMount';
 import { useEffect, useState } from 'react';
 import { LoadedProductListInterface } from 'types';
+import { useDevice } from 'hooks/useDevice';
 
 interface Props {
     store;
@@ -14,10 +15,11 @@ interface Props {
 }
 
 export const useProducts = ({ store, lang, queryCategories, setQueryCategories, viewMode }: Props) => {
+    const { sx } = useDevice();
     const { OPTIONS } = STORE_CONFIG;
     const { STORE_TYPE } = OPTIONS;
     const mount = useIsMount();
-    const count = 42;
+    const count = sx ? 30 : 35;
 
     const [currentProductsPage, setCurrentProductsPage] = useState(0);
     const [productsList, setProductsList] = useState<LoadedProductListInterface[] | [] | null>(null);

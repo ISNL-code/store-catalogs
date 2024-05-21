@@ -1,6 +1,7 @@
 import { Badge, Box, IconButton, Typography } from '@mui/material';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { ReactNode } from 'react';
+import { Color } from 'colors';
 
 interface MobileNavButtonInterface {
     icon: (props) => ReactNode;
@@ -47,7 +48,7 @@ const MobileNavButton = ({
                     height: 33,
                     borderRadius: '12px',
                     border: '2px solid',
-                    borderColor: active || isActive ? '#1976d2' : '#fff',
+                    borderColor: active || isActive ? Color?.PRIMARY : '#fff',
                     p: 0.5,
                 }}
             >
@@ -64,12 +65,12 @@ const MobileNavButton = ({
                         },
                     }}
                 >
-                    {icon({ sx: { color: active || isActive ? '#1976d2' : '#fff' } })}
+                    {icon({ sx: { color: active || isActive ? Color?.PRIMARY : '#fff' } })}
                 </Badge>
             </IconButton>
             <Typography
                 variant="subtitle1"
-                sx={{ color: active || isActive ? '#1976d2' : '#fff', textTransform: 'uppercase', fontSize: 8 }}
+                sx={{ color: active || isActive ? Color?.PRIMARY : '#fff', textTransform: 'uppercase', fontSize: 8 }}
             >
                 {title}
             </Typography>

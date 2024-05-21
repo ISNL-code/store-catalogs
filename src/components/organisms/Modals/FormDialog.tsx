@@ -15,7 +15,7 @@ import {
     Divider,
     Typography,
 } from '@mui/material';
-import { Colors } from 'colors';
+import { Color, Colors } from 'colors';
 import CloseIcon from '@mui/icons-material/Close';
 import { StyledTextField } from 'components/molecules/StyledComponents/StyledTextField';
 import VisibilityIcon from '@mui/icons-material/Visibility';
@@ -25,13 +25,13 @@ import RefreshIcon from '@mui/icons-material/Refresh';
 const getBackgroundColor = variant => {
     switch (variant) {
         case 'info':
-            return Colors.BLUE;
+            return Color.PRIMARY;
         case 'warning':
             return Colors.ORANGE;
         case 'error':
-            return Colors.RED;
+            return Color?.ERROR;
         case 'success':
-            return Colors.GREEN;
+            return Color.PRIMARY;
         default:
             return Colors.GRAY;
     }
@@ -180,7 +180,7 @@ const FormDialog = ({
                     <DialogContentText sx={{ px: 3, pt: 3, pb: buttons ? 0 : 3 }}>{description}</DialogContentText>
                 )}
                 {error?.shown && (
-                    <DialogContentText sx={{ px: 6, mt: 1, textAlign: 'center', color: Colors?.RED }}>
+                    <DialogContentText sx={{ px: 6, mt: 1, textAlign: 'center', color: Color?.ERROR }}>
                         {error?.text}
                     </DialogContentText>
                 )}

@@ -43,8 +43,8 @@ const ShareButton = ({ orientation = 'up', path, text, size, color, isShown }: S
                             sx={{
                                 border: color ? '1px solid rgba(0, 0, 0, 0.120)' : '1px solid #00000054',
                                 backgroundColor: '#fff',
-                                width: size || '30px',
-                                height: size || '30px',
+                                width: size || '28px',
+                                height: size || '28px',
                             }}
                         >
                             <IosShareIcon sx={{ color: '#rgba(0, 0, 0, 0.54)' }} fontSize="small" />

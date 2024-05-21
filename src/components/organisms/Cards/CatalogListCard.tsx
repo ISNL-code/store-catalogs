@@ -18,7 +18,6 @@ import { Colors } from 'colors';
 import { SampleNextArrow, SamplePrevArrow } from '../../atoms/Elements/SliderArrows';
 import { StoreType, ViewModeType } from 'store_constants/types';
 import CardView from './CardView';
-import GridLargeView from './GridLargeView';
 import GridMediumView from './GridMediumView';
 import { useWindowWidth } from '@react-hook/window-size';
 import CardDescriptionComponent from 'components/atoms/DescriptionComponents/CardDescriptionComponent';
@@ -226,6 +225,7 @@ const CatalogListCard = memo<CatalogCardProps>(
 
                     <Box onClick={e => e.stopPropagation()}>
                         <Box
+                            p={1}
                             sx={{
                                 display: 'flex',
                                 flexDirection: 'column',
@@ -234,78 +234,51 @@ const CatalogListCard = memo<CatalogCardProps>(
                             }}
                         >
                             <CardDescriptionComponent title={name} />
+
                             <Box
-                                px={1}
-                                pb={0.25}
                                 sx={{
+                                    flexGrow: 1,
                                     display: 'flex',
-                                    alignItems: 'center',
                                     justifyContent: 'space-between',
-                                    backgroundColor: Colors?.GRAY_100,
-                                    flexWrap: 'wrap',
-                                    gap: 0.5,
+                                    alignItems: 'center',
                                 }}
                             >
-                                <Box sx={{ width: 95 }}>
-                                    {PLAN_OPTIONS?.prices && (
-                                        <CardPrice
-                                            currency={currency}
-                                            price={Number(shownModel?.originalPrice)}
-                                            discountPrice={Number(shownModel?.price)}
-                                        />
-                                    )}
-                                </Box>
+                                {PLAN_OPTIONS?.prices && (
+                                    <CardPrice
+                                        currency={currency}
+                                        price={Number(shownModel?.originalPrice)}
+                                        discountPrice={Number(shownModel?.price)}
+                                    />
+                                )}
 
-                                <Box
-                                    sx={{
-                                        display: 'flex',
-                                        alignItems: 'center',
-                                        justifyContent: 'flex-end',
-                                        gap: 0.5,
-                                        width: '150px',
-                                        ml: 'auto',
-                                    }}
-                                >
+                                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                                     <Box
                                         sx={{
-                                            width: '100%',
                                             maxWidth: 85,
                                         }}
                                     >
                                         <CardSkuLabel sku={shownModel?.sku as string} />
                                     </Box>
-
-                                    <Box
-                                        sx={{
-                                            display: 'flex',
-                                            alignItems: 'center',
-                                            justifyContent: 'flex-end',
-                                            gap: 0.5,
-                                            my: 0.25,
-                                            width: 64,
-                                        }}
-                                    >
-                                        <CartButton
-                                            selected={cart?.cartItems?.find(item => item.sku === shownModel?.sku)}
-                                            isShown={PLAN_OPTIONS?.cart}
-                                            action={() => {
-                                                cart?.handleSetCartItems({
-                                                    sku: shownModel?.sku,
-                                                    storeCode,
-                                                    userId: currentUserData?.id,
-                                                    productId: shownModel?.productId,
-                                                });
-                                            }}
-                                        />
-
-                                        <ShareButton
-                                            isShown
-                                            path={SHARE_PATH?.share_product_sku(STORE_CODE, productId, shownModel?.sku)}
-                                            text=""
-                                        />
-                                    </Box>
+                                    <ShareButton
+                                        isShown
+                                        path={SHARE_PATH?.share_product_sku(STORE_CODE, productId, shownModel?.sku)}
+                                        text=""
+                                    />
                                 </Box>
                             </Box>
+
+                            <CartButton
+                                selected={cart?.cartItems?.find(item => item.sku === shownModel?.sku)}
+                                isShown={PLAN_OPTIONS?.cart}
+                                action={() => {
+                                    cart?.handleSetCartItems({
+                                        sku: shownModel?.sku,
+                                        storeCode,
+                                        userId: currentUserData?.id,
+                                        productId: shownModel?.productId,
+                                    });
+                                }}
+                            />
                         </Box>
                     </Box>
                 </>
@@ -373,15 +346,6 @@ const CatalogListCard = memo<CatalogCardProps>(
 
         return (
             <>
-                {Boolean(viewMode === ViewModeType?.grid_l) && (
-                    <GridLargeView
-                        className="CatalogCard"
-                        SliderComponent={SliderComponent}
-                        CardDetails={CardDetails}
-                        CardDecoration={CardDecoration}
-                        opacity={Boolean(sliderHeight)}
-                    />
-                )}
                 {Boolean(viewMode === ViewModeType?.grid_m) && (
                     <GridMediumView
                         className="CatalogCard"

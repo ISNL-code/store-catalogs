@@ -5,8 +5,6 @@ const CardDescriptionComponent = ({ title }) => {
     return (
         <StyledTooltip title={title} position="top-start">
             <Typography
-                px={1}
-                py={0.5}
                 variant="h4"
                 sx={{
                     height: 19,

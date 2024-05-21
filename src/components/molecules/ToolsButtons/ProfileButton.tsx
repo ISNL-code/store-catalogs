@@ -13,6 +13,7 @@ import { DialogWindowType } from 'layouts/hooks/useFormsApp';
 import InfoIcon from '@mui/icons-material/Info';
 import PhoneCallbackIcon from '@mui/icons-material/PhoneCallback';
 import { STORE_ROUTE } from 'constants/routes';
+import { Color } from 'colors';
 
 const ProfileButton = ({ string, headerHeight, menuHeight = '', user, childPath, handleOpenDialog, auth }) => {
     const { OPTIONS, STORE_CODE } = STORE_CONFIG;
@@ -48,7 +49,7 @@ const ProfileButton = ({ string, headerHeight, menuHeight = '', user, childPath,
                                     sx
                                         ? {
                                               border: '2px solid',
-                                              borderColor: active ? '#1976d2' : '#fff',
+                                              borderColor: active ? Color?.PRIMARY : '#fff',
                                               width: 33,
                                               height: 33,
                                               borderRadius: '12px',
@@ -64,17 +65,17 @@ const ProfileButton = ({ string, headerHeight, menuHeight = '', user, childPath,
                                 color={active ? `primary` : 'default'}
                                 onClick={toggleDrawer(anchor, !state[anchor])}
                             >
-                                <AccountCircleIcon sx={{ color: sx ? (active ? '#1976d2' : '#fff') : '' }} />
+                                <AccountCircleIcon sx={{ color: sx ? (active ? Color?.PRIMARY : '#fff') : '' }} />
                                 {!sx && (
                                     <Typography
-                                        sx={{ fontSize: 10, color: active ? '#1976d2' : 'rgba(0, 0, 0, 0.54)' }}
+                                        sx={{ fontSize: 10, color: active ? Color?.PRIMARY : 'rgba(0, 0, 0, 0.54)' }}
                                     >
                                         {string?.my_profile}
                                     </Typography>
                                 )}
                             </IconButton>
                             {sx && (
-                                <Typography sx={{ fontSize: 8, color: active ? '#1976d2' : 'white' }}>
+                                <Typography sx={{ fontSize: 8, color: active ? Color?.PRIMARY : 'white' }}>
                                     {string?.my_profile.toUpperCase()}
                                 </Typography>
                             )}

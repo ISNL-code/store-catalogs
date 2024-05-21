@@ -82,7 +82,7 @@ const storeConfig = (): STORE_CONFIG_Interface => {
             GOOGLE_ANALYTICS_ID: matchingDomain?.web_head_data?.google_analytics_id || '',
             STORE_LOGO: matchingDomain?.web_head_data?.store_logo || '',
         },
-        USER_OPTIONS: { VIEW_MODE: matchingDomain?.user_options?.view_mode || ViewModeType?.grid_l },
+        USER_OPTIONS: { VIEW_MODE: matchingDomain?.user_options?.view_mode || ViewModeType?.card },
     };
 };
 

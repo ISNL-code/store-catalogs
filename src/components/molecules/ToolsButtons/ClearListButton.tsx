@@ -1,6 +1,6 @@
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { IconButton } from '@mui/material';
-import { Colors } from 'colors';
+import { Color, Colors } from 'colors';
 import StyledTooltip from '../StyledComponents/StyledTooltip';
 
 interface FilterButtonInterface {
@@ -21,12 +21,12 @@ const ClearListButton = ({ isShown, action = () => {}, title, disabled = false }
                         backgroundColor: Colors?.WHITE,
                         mr: '2px',
                         border: '1px solid',
-                        borderColor: disabled ? Colors?.GRAY_500 : Colors?.RED,
+                        borderColor: disabled ? Colors?.GRAY_500 : Color.ERROR,
                     }}
                     onClick={action}
                     disabled={disabled}
                 >
-                    <DeleteForeverIcon fontSize="small" sx={{ color: disabled ? Colors?.GRAY_500 : Colors?.RED }} />
+                    <DeleteForeverIcon fontSize="small" sx={{ color: disabled ? Colors?.GRAY_500 : Color.ERROR }} />
                 </IconButton>
             </StyledTooltip>
         );

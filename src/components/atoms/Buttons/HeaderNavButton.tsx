@@ -1,6 +1,7 @@
 import { Badge, IconButton, Typography } from '@mui/material';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { ReactNode } from 'react';
+import { Color } from 'colors';
 
 interface HeaderNavButtonInterface {
     icon: () => ReactNode;
@@ -61,7 +62,7 @@ const HeaderNavButton = ({
                 >
                     {icon()}
                 </Badge>
-                <Typography sx={{ fontSize: 10, color: active || isActive ? '#1976d2' : 'rgba(0, 0, 0, 0.54)' }}>
+                <Typography sx={{ fontSize: 10, color: active || isActive ? Color?.PRIMARY : 'rgba(0, 0, 0, 0.54)' }}>
                     {title}
                 </Typography>
             </IconButton>

@@ -5,7 +5,6 @@ export enum StoreType {
 }
 
 export enum ViewModeType {
-    grid_l = 'grid_l',
     grid_m = 'grid_m',
     card = 'card',
 }

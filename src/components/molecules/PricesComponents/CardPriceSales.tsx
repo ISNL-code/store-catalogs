@@ -1,5 +1,5 @@
 import { Box, Typography } from '@mui/material';
-import { Colors } from 'colors';
+import { Color, Colors } from 'colors';
 
 interface Props {
     currency;
@@ -16,7 +16,7 @@ const CardPriceSales = ({ currency, price, discountPrice }: Props) => {
                     {Number(price)}
                 </Typography>
                 /
-                <Typography sx={{ color: Colors?.RED, fontSize: 20, fontWeight: 700 }}>
+                <Typography sx={{ color: Color.ERROR, fontSize: 20, fontWeight: 700 }}>
                     {currency}
                     {Number(discountPrice)}
                 </Typography>

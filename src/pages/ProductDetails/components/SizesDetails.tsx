@@ -6,6 +6,7 @@ import StraightenIcon from '@mui/icons-material/Straighten';
 import { useDevice } from 'hooks/useDevice';
 import { CatalogContextInterface } from 'types';
 import { STORE_CONFIG } from 'store_constants/stores_config';
+import { Color } from 'colors';
 
 const SizesDetails = ({ productDetails, isShown }) => {
     const { OPTIONS } = STORE_CONFIG;
@@ -58,13 +59,13 @@ const SizesDetails = ({ productDetails, isShown }) => {
                                         onClick={() => {}}
                                         size="small"
                                         sx={{
-                                            border: '1px solid #1976d2',
+                                            border: `1px solid ${Color?.PRIMARY}`,
                                             borderRadius: '8px',
                                         }}
                                     >
                                         <Typography
                                             variant="subtitle1"
-                                            sx={{ color: '#1976d2', textTransform: 'uppercase' }}
+                                            sx={{ color: Color?.PRIMARY, textTransform: 'uppercase' }}
                                         >
                                             {string?.sizes_table}
                                         </Typography>

@@ -1,5 +1,6 @@
 import { Box, Button, Typography } from '@mui/material';
 import Grid from '@mui/material/Unstable_Grid2';
+import { Color } from 'colors';
 import CartModelPrice from 'components/molecules/PricesComponents/CartModelPrice';
 import { STORE_ROUTE } from 'constants/routes';
 import { useNavigate, useOutletContext } from 'react-router-dom';
@@ -32,7 +33,7 @@ const ProductDetails = ({ data, setOrderData }) => {
                             navigate(STORE_ROUTE?.product(STORE_CODE, data?.productId, data?.sku));
                         }}
                         variant="h3"
-                        sx={{ color: '#1976d2', fontWeight: 700, cursor: 'pointer' }}
+                        sx={{ color: Color?.PRIMARY, fontWeight: 700, cursor: 'pointer' }}
                     >
                         {data?.sku}
                     </Typography>

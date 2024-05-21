@@ -3,7 +3,7 @@ import { Box } from '@mui/system';
 import { STORE_CONFIG } from 'store_constants/stores_config';
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 import ForwardIcon from '@mui/icons-material/Forward';
-import { Colors } from 'colors';
+import { Color, Colors } from 'colors';
 import { useDevice } from 'hooks/useDevice';
 import { useNavigate } from 'react-router-dom';
 
@@ -50,7 +50,7 @@ const ErrorComponent = ({ code, title, withLink }: Props) => {
                     opacity: 0.97,
                 }}
             >
-                <ErrorOutlineIcon sx={{ position: 'absolute', top: 5, left: 5, color: Colors?.RED, fontSize: 48 }} />
+                <ErrorOutlineIcon sx={{ position: 'absolute', top: 5, left: 5, color: Color?.ERROR, fontSize: 48 }} />
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
                     <Typography
                         sx={{
@@ -66,7 +66,7 @@ const ErrorComponent = ({ code, title, withLink }: Props) => {
                         {code}
                     </Typography>
                 </Box>
-                <Box sx={{ display: 'flex', color: Colors?.RED, gap: 1 }}>
+                <Box sx={{ display: 'flex', color: Color?.ERROR, gap: 1 }}>
                     <Typography
                         sx={{
                             fontSize: 18,
