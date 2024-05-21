@@ -1,7 +1,7 @@
-import React from 'react';
+import ErrorComponent from './ErrorComponent';
 
-const Page401 = () => {
-    return <div>401</div>;
+const PAGE_401 = () => {
+    return <ErrorComponent code="401" title="Authorization ERROR" withLink />;
 };
 
-export default Page401;
+export default PAGE_401;

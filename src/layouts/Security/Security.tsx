@@ -69,7 +69,7 @@ export default function SecurityLayout({ lang, setLang, auth, setAuth }) {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [storeDataRes]);
 
-    if (!store) return <Loader type="circular" size="large" />;
+    if (!store) return <Loader type="circular" />;
 
     return (
         <Box>

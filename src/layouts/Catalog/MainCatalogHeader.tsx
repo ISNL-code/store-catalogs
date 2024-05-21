@@ -2,7 +2,6 @@ import { Box } from '@mui/material';
 import HeaderNavButton from 'components/atoms/Buttons/HeaderNavButton';
 import HeaderLogo from 'components/atoms/Logo/HeaderLogo';
 import LanguageButton from 'components/molecules/ToolsButtons/LanguageButton';
-import PermIdentityIcon from '@mui/icons-material/PermIdentity';
 import { useDevice } from 'hooks/useDevice';
 import { useLocation } from 'react-router-dom';
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -13,7 +12,6 @@ import { StoreInterface, useAddToCartDataInterface, useAddToFavoriteDataInterfac
 import { Colors } from 'colors';
 import { STORE_CONFIG } from 'store_constants/stores_config';
 import HomeIcon from '@mui/icons-material/Home';
-import { DialogWindowType } from 'layouts/hooks/useFormsApp';
 import { HOME_ROUTE, STORE_ROUTE } from 'constants/routes';
 
 interface HeaderInterface {
@@ -108,17 +106,9 @@ const Header = ({
                         />
                     )}
 
-                    {!auth && (
-                        <HeaderNavButton
-                            title={string?.login}
-                            icon={() => <PermIdentityIcon />}
-                            isShown={!sx}
-                            action={() => handleOpenDialog(DialogWindowType?.LOGIN)}
-                        />
-                    )}
-                    {!sx && auth && (
+                    {!sx && (
                         <ProfileButton
-                            path={STORE_ROUTE?.root(STORE_CODE)}
+                            auth={auth}
                             string={string}
                             headerHeight={headerHeight}
                             user={user}

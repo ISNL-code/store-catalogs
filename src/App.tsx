@@ -23,6 +23,10 @@ import axios from 'axios'; // eslint-disable-line
 import { HOME_ROUTE, LOGIN_ROUTE, ROUTES, STORE_ROUTE } from 'constants/routes';
 import SecurityLayout from 'layouts/Security/Security';
 import NewPassword from 'layouts/Security/NewPassword';
+import PAGE_401 from 'pages/TechPages/401';
+import PAGE_403 from 'pages/TechPages/403';
+import PAGE_404 from 'pages/TechPages/404';
+import PAGE_500 from 'pages/TechPages/500';
 
 const App = () => {
     const {
@@ -48,8 +52,8 @@ const App = () => {
         storeCode: STORE_CODE,
     });
     const [currentUserData, setCurrentUserData] = useState<UserDataInterface | any>(null);
-    const [country, setCountry] = useState<any>(null);
-    const [city, setCity] = useState<any>(null);
+    const [country, setCountry] = useState<any>(null); // eslint-disable-line
+    const [city, setCity] = useState<any>(null); // eslint-disable-line
 
     useEffect(() => {
         try {
@@ -108,7 +112,7 @@ const App = () => {
         const getLang = localStorage.getItem(LANGUAGE_KEY);
         const getViewMode = localStorage.getItem(VIEW_MODE_KEY);
 
-        if (!getViewMode) {
+        if (!getViewMode || !Object.values(ViewModeType).includes(getViewMode as ViewModeType)) {
             setViewMode(VIEW_MODE);
             localStorage.setItem(VIEW_MODE_KEY, JSON.stringify(VIEW_MODE));
         } else {
@@ -162,6 +166,10 @@ const App = () => {
                                         <NewPassword lang={lang} setLang={setLang} auth={auth} setAuth={setAuth} />
                                     }
                                 />
+                                <Route path={`${ROUTES?.PAGE_401}`} element={<PAGE_401 />} />
+                                <Route path={`${ROUTES?.PAGE_403}`} element={<PAGE_403 />} />
+                                <Route path={`${ROUTES?.PAGE_404}`} element={<PAGE_404 />} />
+                                <Route path={`${ROUTES?.PAGE_500}`} element={<PAGE_500 />} />
 
                                 {REQUIRED_REGISTRATION && !auth && (
                                     <>
@@ -212,14 +220,7 @@ const App = () => {
                                     }
                                 >
                                     <Route index path={`${ROUTES?.HOME}/:storeCode`} element={<HomePage />} />
-                                    <Route
-                                        path={`${ROUTES?.HOME}/:storeCode/contacts`}
-                                        element={<ContactsManagePage />}
-                                    />
-                                    <Route path={`${ROUTES?.HOME}/:storeCode/profile`} element={<UserProfile />} />
-                                    <Route path={`${ROUTES?.HOME}/:storeCode/orders`} element={<UserOrders />} />
-                                    <Route path={`${ROUTES?.HOME}/:storeCode/info`} element={<InformationPage />} />
-                                    <Route path="*" element={<Navigate to={ROUTES?.HOME} replace />} />
+                                    <Route path="*" element={<Navigate to={HOME_ROUTE?.root(STORE_CODE)} replace />} />
                                 </Route>
                             )}
 
@@ -234,8 +235,6 @@ const App = () => {
                                             setViewMode={setViewMode}
                                             auth={auth}
                                             setAuth={setAuth}
-                                            country={country}
-                                            city={city}
                                             userData={{
                                                 currentUserData,
                                                 isFetching,
@@ -247,22 +246,19 @@ const App = () => {
                                 >
                                     <Route index path={`${ROUTES?.STORE}/:storeCode`} element={<CatalogPage />} />
                                     <Route
-                                        path={`${ROUTES?.STORE}/:storeCode/contacts`}
-                                        element={<ContactsManagePage />}
-                                    />
-                                    <Route
                                         path={`${ROUTES?.STORE}/:storeCode/product/:productId/model/:modelSku`}
                                         element={<ProductDetailsPage />}
                                     />
                                     <Route path={`${ROUTES?.STORE}/:storeCode/cart`} element={<CartPage />} />
-
                                     <Route path={`${ROUTES?.STORE}/:storeCode/favorites`} element={<FavoritesPage />} />
-
-                                    <Route path={`${ROUTES?.STORE}/:storeCode/profile`} element={<UserProfile />} />
-
-                                    <Route path={`${ROUTES?.STORE}/:storeCode/orders`} element={<UserOrders />} />
                                     <Route path={`${ROUTES?.STORE}/:storeCode/info`} element={<InformationPage />} />
-                                    <Route path="*" element={<Navigate to={ROUTES?.STORE} replace />} />
+                                    <Route path={`${ROUTES?.STORE}/:storeCode/profile`} element={<UserProfile />} />
+                                    <Route
+                                        path={`${ROUTES?.STORE}/:storeCode/contacts`}
+                                        element={<ContactsManagePage />}
+                                    />
+                                    <Route path={`${ROUTES?.STORE}/:storeCode/orders`} element={<UserOrders />} />
+                                    <Route path="*" element={<Navigate to={STORE_ROUTE?.root(STORE_CODE)} replace />} />
                                 </Route>
                             )}
                         </>

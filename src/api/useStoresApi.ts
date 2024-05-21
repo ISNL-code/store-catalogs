@@ -53,14 +53,7 @@ export const useStoresApi = () => {
         );
     };
 
-    const useEnterStoreKey = ({ storeKey, storeCode }) => {
-        const checkedStore =
-            STORES_DATA.find(el => el.code === storeCode)?.securityStoreSettings?.securityKey === storeKey;
-        return checkedStore;
-    };
-
     return {
-        useEnterStoreKey,
         useGetAllStores,
         useAddStoreToFavorite,
         useGetAllFavoritesStores,

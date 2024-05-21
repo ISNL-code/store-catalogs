@@ -129,7 +129,7 @@ const Catalog = () => {
             pt={getGridSpacing()?.padding}
             pb={footerMenuHeight}
             px={getGridSpacing()?.padding}
-            sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}
+            sx={{ minHeight: '100%' }}
         >
             {showTopBtn && <ScrollButton />}
             {showMobileStoresButton && (
@@ -143,7 +143,7 @@ const Catalog = () => {
             <InstrumentalSubHeaderMemo />
 
             {productsList?.length ? (
-                <Box sx={{ flexGrow: 1 }}>
+                <Box sx={{ minHeight: '100%' }}>
                     <TransitionBox dependency={loading} time={250}>
                         {MIN_ITEMS_TO_BUY > 1 && (
                             <Collapse in={open}>

@@ -195,7 +195,7 @@ const Favorites = () => {
             pt={getGridSpacing()?.padding}
             pb={footerMenuHeight}
             px={getGridSpacing()?.padding}
-            sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}
+            sx={{ minHeight: '100%' }}
         >
             {showTopBtn && <ScrollButton />}
             {loading && <Loader />}
@@ -203,7 +203,7 @@ const Favorites = () => {
             <InstrumentalSubHeaderMemo favoriteLength={Boolean(favoriteProducts?.length)} />
 
             {favoriteProducts?.length ? (
-                <Box pb={2} sx={{ minHeight: loading ? '100vh' : 'auto' }}>
+                <Box pb={2} sx={{ minHeight: '100%' }}>
                     <TransitionBox dependency={loading} time={250}>
                         <Grid className="CatalogList" container spacing={getGridSpacing()?.spacing}>
                             {favoriteProducts?.map(product => {

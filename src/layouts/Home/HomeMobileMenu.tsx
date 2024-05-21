@@ -3,11 +3,9 @@ import MobileNavButton from 'components/atoms/Buttons/MobileNavButton';
 import HomeIcon from '@mui/icons-material/Home';
 import ProfileButton from 'components/molecules/ToolsButtons/ProfileButton';
 import GridViewIcon from '@mui/icons-material/GridView';
-import PermIdentityIcon from '@mui/icons-material/PermIdentity';
 import { STORE_CONFIG } from 'store_constants/stores_config';
 import { useEffect, useState } from 'react';
 import { useWindowWidth } from '@react-hook/window-size';
-import { DialogWindowType } from 'layouts/hooks/useFormsApp';
 import { HOME_ROUTE, STORE_ROUTE } from 'constants/routes';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
@@ -86,25 +84,16 @@ const HomeMobileMenu = ({
                             badgeCount={cart?.cartItems?.length}
                         />
                     )}
-                    {!auth && (
-                        <MobileNavButton
-                            title={string?.login}
-                            icon={p => <PermIdentityIcon {...p} />}
-                            clearSort={() => {}}
-                            action={() => handleOpenDialog(DialogWindowType?.LOGIN)}
-                        />
-                    )}
-                    {auth && (
-                        <ProfileButton
-                            path={HOME_ROUTE?.root(STORE_CODE)}
-                            string={string}
-                            headerHeight={headerHeight}
-                            menuHeight={menuHeight}
-                            user={user}
-                            handleOpenDialog={handleOpenDialog}
-                            childPath={['orders', 'profile', 'info', 'contacts']}
-                        />
-                    )}
+
+                    <ProfileButton
+                        auth={auth}
+                        string={string}
+                        headerHeight={headerHeight}
+                        menuHeight={menuHeight}
+                        user={user}
+                        handleOpenDialog={handleOpenDialog}
+                        childPath={['orders', 'profile', 'info', 'contacts']}
+                    />
                 </Box>
             </Box>
         );

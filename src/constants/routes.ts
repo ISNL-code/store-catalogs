@@ -5,43 +5,55 @@ export const ROUTES = {
     HOME: '/home',
     STORE: '/store',
     NEW_PASSWORD: '/new-password',
+
+    PAGE_401: '/auth-error',
+    PAGE_403: '/bad-request',
+    PAGE_404: '/page-not-found',
+    PAGE_500: '/server-error',
 };
 
 // New Password
 
 export const NEW_PASSWORD_ROUTE = {
-    root: (storeCode, token) => `/new-password/${storeCode}/${token}`,
+    root: (storeCode, token) => `${ROUTES?.NEW_PASSWORD}/${storeCode}/${token}`,
 };
 
 // Login
 
 export const LOGIN_ROUTE = {
-    root: (storeCode, formType) => `/security/${storeCode}/${formType}`,
+    root: (storeCode, formType) => `${ROUTES?.SECURITY}/${storeCode}/${formType}`,
 };
 
 // Home
 
 export const HOME_ROUTE = {
-    root: storeCode => `/home/${storeCode}`,
-    contacts: storeCode => `/home/${storeCode}/contacts`,
-    profile: storeCode => `/home/${storeCode}/profile`,
-    orders: storeCode => `/home/${storeCode}/orders`,
-    info: storeCode => `/home/${storeCode}/info`,
+    root: storeCode => `${ROUTES?.HOME}/${storeCode}`,
 };
 
 // Catalog
 
 export const STORE_ROUTE = {
-    root: storeCode => `/store/${storeCode}`,
-    contacts: storeCode => `/store/${storeCode}/contacts`,
-    profile: storeCode => `/store/${storeCode}/profile`,
-    orders: storeCode => `/store/${storeCode}/orders`,
+    root: storeCode => `${ROUTES?.STORE}/${storeCode}`,
     product: (storeCode, productId, sku) =>
-        `/store/${storeCode}/product/${productId}/model/${sku?.replaceAll('/', '_')}`,
-    cart: storeCode => `/store/${storeCode}/cart`,
-    favorites: storeCode => `/store/${storeCode}/favorites`,
-    info: storeCode => `/store/${storeCode}/info`,
+        `${ROUTES?.STORE}/${storeCode}/product/${productId}/model/${sku?.replaceAll('/', '_')}`,
+    cart: storeCode => `${ROUTES?.STORE}/${storeCode}/cart`,
+    favorites: storeCode => `${ROUTES?.STORE}/${storeCode}/favorites`,
+    profile: storeCode => `${ROUTES?.STORE}/${storeCode}/profile`,
+    orders: storeCode => `${ROUTES?.STORE}/${storeCode}/orders`,
+    contacts: storeCode => `${ROUTES?.STORE}/${storeCode}/contacts`,
+    info: storeCode => `${ROUTES?.STORE}/${storeCode}/info`,
 };
+
+// ERROR PAGES
+
+export const ERROR_PAGE = {
+    page_401: () => `${ROUTES?.PAGE_401}`,
+    page_403: () => `${ROUTES?.PAGE_403}`,
+    page_404: () => `${ROUTES?.PAGE_404}`,
+    page_500: () => `${ROUTES?.PAGE_500}`,
+};
+
+// ADDITIONAL PATHS
 
 export const SHARE_PATH = {
     share_product_sku: (storeCode, productId, sku) =>

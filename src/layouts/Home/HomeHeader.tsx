@@ -10,9 +10,7 @@ import HeaderLogo from 'components/atoms/Logo/HeaderLogo';
 import { Colors } from 'colors';
 import { STORE_CONFIG } from 'store_constants/stores_config';
 import ProfileButton from 'components/molecules/ToolsButtons/ProfileButton';
-import PermIdentityIcon from '@mui/icons-material/PermIdentity';
 import GridViewIcon from '@mui/icons-material/GridView';
-import { DialogWindowType } from 'layouts/hooks/useFormsApp';
 import { HOME_ROUTE, STORE_ROUTE } from 'constants/routes';
 
 interface HeaderInterface {
@@ -104,17 +102,10 @@ const HomeHeader = ({
                             badgeCount={cart?.cartItems?.length}
                         />
                     )}
-                    {!auth && (
-                        <HeaderNavButton
-                            title={string?.login}
-                            icon={() => <PermIdentityIcon />}
-                            isShown={!sx}
-                            action={() => handleOpenDialog(DialogWindowType?.LOGIN)}
-                        />
-                    )}
-                    {!sx && auth && (
+
+                    {!sx && (
                         <ProfileButton
-                            path={HOME_ROUTE?.root(STORE_CODE)}
+                            auth={auth}
                             string={string}
                             headerHeight={headerHeight}
                             user={user}

@@ -14,8 +14,8 @@ import { useFormsApp } from 'layouts/hooks/useFormsApp';
 import DialogApp from 'layouts/DialogApp';
 import { HOME_ROUTE, ROUTES } from 'constants/routes';
 import Loader from 'components/atoms/Loader/Loader';
-import { useAddToCart } from 'layouts/Catalog/hooks/useAddToCart';
-import { useAddToFavorites } from 'layouts/Catalog/hooks/useAddToFavorites';
+import { useAddToCart } from 'layouts/hooks/useAddToCart';
+import { useAddToFavorites } from 'layouts/hooks/useAddToFavorites';
 
 const OutletContainer = ({ context }: { context: HomeContextInterface }) => {
     return <Outlet context={context} />;
@@ -56,7 +56,7 @@ export default function Home({ lang, setLang, auth, setAuth, userData }) {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [storeDataRes]);
 
-    if (!store) return <Loader type="circular" size="large" />;
+    if (!store) return <Loader type="circular" />;
 
     return (
         <Box display="flex" flexDirection="column" justifyContent="space-between">
@@ -78,7 +78,7 @@ export default function Home({ lang, setLang, auth, setAuth, userData }) {
                 favorites={favorites}
             />
 
-            <Box className="HomeBody" mt={`${HEADER_HEIGHT + INSTRUMENTAL_BAR_HEIGHT}px`}>
+            <Box className="HomeBody" mt={`${HEADER_HEIGHT + INSTRUMENTAL_BAR_HEIGHT}px`} sx={{ flexGrow: 1 }}>
                 <OutletContainer
                     context={{
                         //main data

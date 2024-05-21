@@ -1,9 +1,9 @@
 import axios from 'axios';
+import { ERROR_PAGE } from 'constants/routes';
 import { STORE_CONFIG } from 'store_constants/stores_config';
 
 const AuthInterceptor = () => {
     const { ACCESS_TOKEN_KEY, BASE_URL } = STORE_CONFIG;
-    const SERVER_ERROR_ROUTE_PATH = '/'; // eslint-disable-line
 
     axios.defaults.baseURL = BASE_URL;
 
@@ -22,12 +22,14 @@ const AuthInterceptor = () => {
             if (!error || !error.response || !error.response.status || !error.response.request)
                 return Promise.reject(error);
             const isApiUrl = error.response.request.responseURL?.startsWith(process.env.API_URL) ?? false;
-            const isUnauthorized = error.response.status === 401;
 
-            if (isUnauthorized && isApiUrl) {
+            if (error.response.status === 401) window.location.href = ERROR_PAGE?.page_401();
+            if (error.response.status === 401 && isApiUrl) {
                 window.localStorage.removeItem(ACCESS_TOKEN_KEY);
             }
-            // if (error.response.status >= 500) window.location.href = SERVER_ERROR_ROUTE_PATH;
+            if (error.response.status === 404) window.location.href = ERROR_PAGE?.page_403();
+            if (error.response.status === 404) window.location.href = ERROR_PAGE?.page_404();
+            if (error.response.status > 500) window.location.href = ERROR_PAGE?.page_500();
             return Promise.reject(error);
         }
     );

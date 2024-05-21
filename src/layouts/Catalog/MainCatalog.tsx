@@ -7,12 +7,12 @@ import { useGetLanguage } from 'hooks/useGetLanguage';
 import { useDevice } from 'hooks/useDevice';
 import { useEffect, useState } from 'react';
 import { useStoresApi } from 'api/useStoresApi';
-import { useCategory } from './hooks/useCategory';
-import { useProducts } from './hooks/useProducts';
+import { useCategory } from '../hooks/useCategory';
+import { useProducts } from '../hooks/useProducts';
 import { CatalogContextInterface, StoreInterface } from 'types';
 import { STORES_DATA } from 'dataBase/STORES';
-import { useAddToCart } from './hooks/useAddToCart';
-import { useAddToFavorites } from './hooks/useAddToFavorites';
+import { useAddToCart } from '../hooks/useAddToCart';
+import { useAddToFavorites } from '../hooks/useAddToFavorites';
 import { STORE_CONFIG } from 'store_constants/stores_config';
 import { useFormsApp } from 'layouts/hooks/useFormsApp';
 import DialogApp from 'layouts/DialogApp';
@@ -23,7 +23,7 @@ const OutletContainer = ({ context }: { context: CatalogContextInterface }) => {
     return <Outlet context={context} />;
 };
 
-export default function MainCatalog({ lang, setLang, auth, setAuth, userData, viewMode, setViewMode, country, city }) {
+export default function MainCatalog({ lang, setLang, auth, setAuth, userData, viewMode, setViewMode }) {
     const { OPTIONS, STORE_CODE } = STORE_CONFIG;
     const { PLAN_OPTIONS } = OPTIONS;
     const { storeName, storeCode } = useParams();
@@ -94,7 +94,7 @@ export default function MainCatalog({ lang, setLang, auth, setAuth, userData, vi
         setSupportedLanguage(store?.supportedLanguages?.find(el => el.code === lang) ? lang : 'en');
     }, [lang, store?.supportedLanguages]);
 
-    if (!store) return <Loader type="circular" size="large" />;
+    if (!store) return <Loader type="circular" />;
 
     return (
         <Box display="flex" flexDirection="column" justifyContent="space-between">
@@ -116,7 +116,7 @@ export default function MainCatalog({ lang, setLang, auth, setAuth, userData, vi
                 handleOpenDialog={handleOpenDialog}
             />
 
-            <Box className="AppBody" mt={`${HEADER_HEIGHT + INSTRUMENTAL_BAR_HEIGHT}px`}>
+            <Box className="AppBody" mt={`${HEADER_HEIGHT + INSTRUMENTAL_BAR_HEIGHT}px`} sx={{ flexGrow: 1 }}>
                 <OutletContainer
                     context={{
                         //main data | user options

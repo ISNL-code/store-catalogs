@@ -7,14 +7,17 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import PermIdentityIcon from '@mui/icons-material/PermIdentity';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import LogoutIcon from '@mui/icons-material/Logout';
+import LoginIcon from '@mui/icons-material/Logout';
 import { STORE_CONFIG } from 'store_constants/stores_config';
 import { DialogWindowType } from 'layouts/hooks/useFormsApp';
 import InfoIcon from '@mui/icons-material/Info';
 import PhoneCallbackIcon from '@mui/icons-material/PhoneCallback';
+import { STORE_ROUTE } from 'constants/routes';
 
-const ProfileButton = ({ string, headerHeight, menuHeight = '', user, path, childPath, handleOpenDialog }) => {
-    const { OPTIONS } = STORE_CONFIG;
+const ProfileButton = ({ string, headerHeight, menuHeight = '', user, childPath, handleOpenDialog, auth }) => {
+    const { OPTIONS, STORE_CODE } = STORE_CONFIG;
     const { PLAN_OPTIONS, INFORMATION_PAGE_ACTIVE } = OPTIONS;
+
     const location = useLocation();
     const navigate = useNavigate();
     const [state, setState] = useState({
@@ -124,24 +127,26 @@ const ProfileButton = ({ string, headerHeight, menuHeight = '', user, path, chil
                                     </Box>
                                 </ListItemText>
                             </MenuItem>
-                            <MenuItem
-                                sx={{
-                                    cursor: 'pointer',
-                                    minWidth: 200,
-                                }}
-                                onClick={() => {
-                                    navigate(`${path}/profile`);
-                                    setState({ right: false, bottom: false });
-                                }}
-                            >
-                                <ListItemText onClick={toggleDrawer(anchor, false)}>
-                                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                                        <PermIdentityIcon />
-                                        <Typography variant="h4">{string?.profile}</Typography>
-                                    </Box>
-                                </ListItemText>
-                            </MenuItem>
-                            {PLAN_OPTIONS?.cart && (
+                            {auth && (
+                                <MenuItem
+                                    sx={{
+                                        cursor: 'pointer',
+                                        minWidth: 200,
+                                    }}
+                                    onClick={() => {
+                                        navigate(STORE_ROUTE?.profile(STORE_CODE));
+                                        setState({ right: false, bottom: false });
+                                    }}
+                                >
+                                    <ListItemText onClick={toggleDrawer(anchor, false)}>
+                                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                                            <PermIdentityIcon />
+                                            <Typography variant="h4">{string?.profile}</Typography>
+                                        </Box>
+                                    </ListItemText>
+                                </MenuItem>
+                            )}
+                            {PLAN_OPTIONS?.cart && auth && (
                                 <MenuItem
                                     sx={{
                                         cursor: 'pointer',
@@ -149,7 +154,7 @@ const ProfileButton = ({ string, headerHeight, menuHeight = '', user, path, chil
                                     }}
                                     onClick={() => {
                                         setState({ right: false, bottom: false });
-                                        navigate(`${path}/orders`);
+                                        navigate(STORE_ROUTE?.orders(STORE_CODE));
                                     }}
                                 >
                                     <ListItemText onClick={toggleDrawer(anchor, false)}>
@@ -167,7 +172,7 @@ const ProfileButton = ({ string, headerHeight, menuHeight = '', user, path, chil
                                         minWidth: 200,
                                     }}
                                     onClick={() => {
-                                        navigate(`${path}/contacts`);
+                                        navigate(STORE_ROUTE?.contacts(STORE_CODE));
                                         setState({ right: false, bottom: false });
                                     }}
                                 >
@@ -186,7 +191,7 @@ const ProfileButton = ({ string, headerHeight, menuHeight = '', user, path, chil
                                         minWidth: 200,
                                     }}
                                     onClick={() => {
-                                        navigate(`${path}/info`);
+                                        navigate(STORE_ROUTE?.info(STORE_CODE));
                                         setState({ right: false, bottom: false });
                                     }}
                                 >
@@ -198,23 +203,43 @@ const ProfileButton = ({ string, headerHeight, menuHeight = '', user, path, chil
                                     </ListItemText>
                                 </MenuItem>
                             )}
-                            <MenuItem
-                                sx={{
-                                    cursor: 'pointer',
-                                    minWidth: 200,
-                                }}
-                                onClick={() => {
-                                    handleOpenDialog(DialogWindowType?.LOGOUT);
-                                    toggleDrawer(anchor, true);
-                                }}
-                            >
-                                <ListItemText onClick={toggleDrawer(anchor, false)}>
-                                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                                        <LogoutIcon />
-                                        <Typography variant="h4">{string?.logout}</Typography>
-                                    </Box>
-                                </ListItemText>
-                            </MenuItem>
+                            {auth ? (
+                                <MenuItem
+                                    sx={{
+                                        cursor: 'pointer',
+                                        minWidth: 200,
+                                    }}
+                                    onClick={() => {
+                                        handleOpenDialog(DialogWindowType?.LOGOUT);
+                                        toggleDrawer(anchor, true);
+                                    }}
+                                >
+                                    <ListItemText onClick={toggleDrawer(anchor, false)}>
+                                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                                            <LogoutIcon />
+                                            <Typography variant="h4">{string?.logout}</Typography>
+                                        </Box>
+                                    </ListItemText>
+                                </MenuItem>
+                            ) : (
+                                <MenuItem
+                                    sx={{
+                                        cursor: 'pointer',
+                                        minWidth: 200,
+                                    }}
+                                    onClick={() => {
+                                        handleOpenDialog(DialogWindowType?.LOGIN);
+                                        toggleDrawer(anchor, true);
+                                    }}
+                                >
+                                    <ListItemText onClick={toggleDrawer(anchor, false)}>
+                                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                                            <LoginIcon />
+                                            <Typography variant="h4">{string?.login}</Typography>
+                                        </Box>
+                                    </ListItemText>
+                                </MenuItem>
+                            )}
                         </SwipeableDrawer>
                     </Fragment>
                 ))}

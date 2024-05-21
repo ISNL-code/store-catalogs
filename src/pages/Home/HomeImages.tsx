@@ -7,7 +7,7 @@ const HomeImages = () => {
 
     return (
         <Box sx={{ position: 'fixed', top: 0, left: 0, zIndex: 0 }}>
-            <Box style={{ overflow: 'hidden', maxHeight: '100vh', background: '#ccc', maxWidth: '100vw' }}>
+            <Box style={{ overflow: 'hidden', height: '100vh', background: '#ccc', maxWidth: '100vw' }}>
                 <Marquee loop={0} speed={75} gradient gradientColor="#6666664e" gradientWidth={s ? 100 : 300}>
                     <img
                         style={{ maxHeight: '100vh', overflow: 'hidden' }}

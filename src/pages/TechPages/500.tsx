@@ -1,7 +1,7 @@
-import React from 'react';
+import ErrorComponent from './ErrorComponent';
 
-const Page500 = () => {
-    return <div>Page500</div>;
+const PAGE_500 = () => {
+    return <ErrorComponent code="500" title="SERVER ERROR" withLink={false} />;
 };
 
-export default Page500;
+export default PAGE_500;

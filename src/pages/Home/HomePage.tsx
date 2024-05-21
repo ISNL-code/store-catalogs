@@ -8,7 +8,7 @@ import HomeImages from './HomeImages';
 import CallBackButton from 'components/atoms/Buttons/CallBackButton';
 import { HomeContextInterface } from 'types';
 import { DialogWindowType } from 'layouts/hooks/useFormsApp';
-import { HOME_ROUTE } from 'constants/routes';
+import { STORE_ROUTE } from 'constants/routes';
 import { STORE_CONFIG } from 'store_constants/stores_config';
 
 const HomePage = () => {
@@ -31,7 +31,7 @@ const HomePage = () => {
     return (
         <Box p={sx ? 2 : appXPadding} pb={footerMenuHeight}>
             <MessageButton action={() => handleOpenDialog(DialogWindowType?.QUESTION)} />
-            <CallBackButton path={HOME_ROUTE?.contacts(STORE_CODE)} />
+            <CallBackButton path={STORE_ROUTE?.contacts(STORE_CODE)} />
             <HomeImages />
             <Grid item container xs={12} mt={-2} sx={{ mb: sx ? '100vh' : 2 }}>
                 <Typography
