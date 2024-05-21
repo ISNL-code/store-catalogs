@@ -1,5 +1,4 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
-import { STORES_DATA } from 'dataBase/STORES';
 import useApi from './useApi';
 
 export const useStoresApi = () => {
