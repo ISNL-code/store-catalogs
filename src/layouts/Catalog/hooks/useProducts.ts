@@ -1,6 +1,6 @@
 import { useProductsApi } from 'api/useProductsApi';
 import { STORE_CONFIG } from 'store_constants/stores_config';
-import { StoreType, ViewModeType } from 'store_constants/types';
+import { StoreType } from 'store_constants/types';
 import { useIsMount } from 'hooks/useIsMount';
 import { useEffect, useState } from 'react';
 import { LoadedProductListInterface } from 'types';
@@ -17,7 +17,7 @@ export const useProducts = ({ store, lang, queryCategories, setQueryCategories, 
     const { OPTIONS } = STORE_CONFIG;
     const { STORE_TYPE } = OPTIONS;
     const mount = useIsMount();
-    const count = viewMode === ViewModeType?.grid_m ? 28 : 30;
+    const count = 42;
 
     const [currentProductsPage, setCurrentProductsPage] = useState(0);
     const [productsList, setProductsList] = useState<LoadedProductListInterface[] | [] | null>(null);

@@ -22,12 +22,12 @@ export default function ForgotPasswordForm({ isOpen, setIsOpen, string, location
             resetPassword({
                 username: values.email,
                 resetLink: `${window.location.origin}/new-password/${STORE_CODE}`,
+                storeCode: STORE_CODE,
             })
                 .then(() => {
                     setIsOpen(DialogWindowType?.SUCCESS_MAIL_SENT);
                 })
                 .catch(() => setIsError(true));
-            // .finally(setIsOpen(DialogWindowType?.SUCCESS_MAIL_SENT));
         },
     });
 

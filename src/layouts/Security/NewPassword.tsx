@@ -12,6 +12,7 @@ import DialogApp from 'layouts/DialogApp';
 import { ROUTES } from 'constants/routes';
 import { DialogWindowType, useFormsApp } from 'layouts/hooks/useFormsApp';
 import { useNavigate, useParams } from 'react-router-dom';
+import Loader from 'components/atoms/Loader/Loader';
 
 export default function NewPassword({ lang, setLang, auth, setAuth }) {
     const navigate = useNavigate();
@@ -45,7 +46,7 @@ export default function NewPassword({ lang, setLang, auth, setAuth }) {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [storeDataRes]);
 
-    if (!store) return <></>;
+    if (!store) return <Loader type="circular" size="large" />;
 
     return (
         <Box>

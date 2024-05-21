@@ -1,7 +1,6 @@
 import { Box } from '@mui/material';
 import MobileNavButton from 'components/atoms/Buttons/MobileNavButton';
 import HomeIcon from '@mui/icons-material/Home';
-import InfoIcon from '@mui/icons-material/Info';
 import ProfileButton from 'components/molecules/ToolsButtons/ProfileButton';
 import GridViewIcon from '@mui/icons-material/GridView';
 import PermIdentityIcon from '@mui/icons-material/PermIdentity';
@@ -10,11 +9,25 @@ import { useEffect, useState } from 'react';
 import { useWindowWidth } from '@react-hook/window-size';
 import { DialogWindowType } from 'layouts/hooks/useFormsApp';
 import { HOME_ROUTE, STORE_ROUTE } from 'constants/routes';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
-const HomeMobileMenu = ({ appXPadding, menuHeight, isShown, string, handleOpenDialog, headerHeight, user, auth }) => {
+const HomeMobileMenu = ({
+    appXPadding,
+    menuHeight,
+    isShown,
+    string,
+    handleOpenDialog,
+    headerHeight,
+    user,
+    auth,
+    withFavorites,
+    withCart,
+    cart,
+    favorites,
+}) => {
     const WINDOW_WIDTH = useWindowWidth();
-    const { OPTIONS, STORE_CODE } = STORE_CONFIG;
-    const { INFORMATION_PAGE_ACTIVE } = OPTIONS;
+    const { STORE_CODE } = STORE_CONFIG;
 
     const [position, setPosition] = useState(0);
 
@@ -54,17 +67,23 @@ const HomeMobileMenu = ({ appXPadding, menuHeight, isShown, string, handleOpenDi
 
                     <MobileNavButton
                         path={STORE_ROUTE?.root(STORE_CODE)}
-                        childPath={['/details', '/contacts', 'model']}
                         title={string?.catalog}
                         icon={p => <GridViewIcon {...p} />}
                     />
-
-                    {INFORMATION_PAGE_ACTIVE && (
+                    {withFavorites && (
                         <MobileNavButton
-                            path={HOME_ROUTE?.info(STORE_CODE)}
-                            title={string?.info}
-                            icon={p => <InfoIcon {...p} />}
-                            action={() => {}}
+                            path={STORE_ROUTE?.favorites(STORE_CODE)}
+                            title={string?.favorites}
+                            icon={p => <FavoriteIcon {...p} />}
+                            badgeCount={favorites?.favoriteItems?.length}
+                        />
+                    )}
+                    {withCart && (
+                        <MobileNavButton
+                            path={STORE_ROUTE?.cart(STORE_CODE)}
+                            title={string?.cart}
+                            icon={p => <ShoppingCartIcon {...p} />}
+                            badgeCount={cart?.cartItems?.length}
                         />
                     )}
                     {!auth && (
@@ -83,7 +102,7 @@ const HomeMobileMenu = ({ appXPadding, menuHeight, isShown, string, handleOpenDi
                             menuHeight={menuHeight}
                             user={user}
                             handleOpenDialog={handleOpenDialog}
-                            childPath={['orders', 'profile']}
+                            childPath={['orders', 'profile', 'info', 'contacts']}
                         />
                     )}
                 </Box>

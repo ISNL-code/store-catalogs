@@ -71,15 +71,17 @@ export const useUserApi = () => {
         });
 
     const useResetCustomerPassword = () =>
-        useMutation(({ username, resetLink }: { username: string; resetLink: string }) => {
-            return post({
-                url: `v1/customer/password/reset/request/`,
-                body: {
-                    returnUrl: resetLink,
-                    username: username,
-                },
-            });
-        });
+        useMutation(
+            ({ username, resetLink, storeCode }: { username: string; resetLink: string; storeCode: string }) => {
+                return post({
+                    url: `v1/customer/password/reset/request`,
+                    body: {
+                        returnUrl: resetLink,
+                        username: username,
+                    },
+                });
+            }
+        );
 
     const useUpdateCustomerPassword = () =>
         useMutation(

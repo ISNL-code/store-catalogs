@@ -1,37 +1,41 @@
 import InfoDialog from 'components/organisms/Modals/InfoDialog';
-import { LOGIN_ROUTE } from 'constants/routes';
+import { HOME_ROUTE, LOGIN_ROUTE, STORE_ROUTE } from 'constants/routes';
 import { useNavigate } from 'react-router-dom';
 import { STORE_CONFIG } from 'store_constants/stores_config';
 
-const SomethingWentWrong = ({ isOpen, setIsOpen, string }) => {
-    const { STORE_CODE, REQUIRED_REGISTRATION } = STORE_CONFIG;
+const SuccessPasswordChange = ({ isOpen, string }) => {
     const navigate = useNavigate();
+    const { REQUIRED_REGISTRATION, OPTIONS, STORE_CODE } = STORE_CONFIG;
     if (!isOpen) return null;
 
     return (
         <>
             <InfoDialog
-                variant="error"
+                variant="success"
                 link={null}
                 string={string}
                 onClose={() => {
                     if (REQUIRED_REGISTRATION) {
                         navigate(LOGIN_ROUTE?.root(STORE_CODE, 'login'));
-                    } else setIsOpen(null);
+                    } else if (OPTIONS?.HOME_PAGE_ACTIVE) {
+                        navigate(HOME_ROUTE?.root(STORE_CODE));
+                    } else navigate(STORE_ROUTE?.root(STORE_CODE));
                 }}
                 title={null}
                 fullWidth
                 onSubmit={() => {
                     if (REQUIRED_REGISTRATION) {
                         navigate(LOGIN_ROUTE?.root(STORE_CODE, 'login'));
-                    } else setIsOpen(null);
+                    } else if (OPTIONS?.HOME_PAGE_ACTIVE) {
+                        navigate(HOME_ROUTE?.root(STORE_CODE));
+                    } else navigate(STORE_ROUTE?.root(STORE_CODE));
                 }}
-                description={string?.something_went_wrong}
+                description={string?.password_changed}
                 closeAvailable
-                component="bad request"
+                component="success request"
             />
         </>
     );
 };
 
-export default SomethingWentWrong;
+export default SuccessPasswordChange;

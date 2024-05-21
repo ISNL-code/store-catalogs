@@ -82,6 +82,7 @@ const ConfirmDialog = ({
                     component: 'form',
                     onSubmit: (event: React.FormEvent<HTMLFormElement>) => {
                         event.preventDefault();
+
                         onSubmit();
                     },
                     sx: {

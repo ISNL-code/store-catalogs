@@ -9,10 +9,12 @@ import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { STORE_CONFIG } from 'store_constants/stores_config';
 import { DialogWindowType } from 'layouts/hooks/useFormsApp';
+import InfoIcon from '@mui/icons-material/Info';
+import PhoneCallbackIcon from '@mui/icons-material/PhoneCallback';
 
 const ProfileButton = ({ string, headerHeight, menuHeight = '', user, path, childPath, handleOpenDialog }) => {
     const { OPTIONS } = STORE_CONFIG;
-    const { PLAN_OPTIONS } = OPTIONS;
+    const { PLAN_OPTIONS, INFORMATION_PAGE_ACTIVE } = OPTIONS;
     const location = useLocation();
     const navigate = useNavigate();
     const [state, setState] = useState({
@@ -154,6 +156,44 @@ const ProfileButton = ({ string, headerHeight, menuHeight = '', user, path, chil
                                         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                                             <AttachMoneyIcon />
                                             <Typography variant="h4">{string?.orders}</Typography>
+                                        </Box>
+                                    </ListItemText>
+                                </MenuItem>
+                            )}
+                            {PLAN_OPTIONS?.contacts && (
+                                <MenuItem
+                                    sx={{
+                                        cursor: 'pointer',
+                                        minWidth: 200,
+                                    }}
+                                    onClick={() => {
+                                        navigate(`${path}/contacts`);
+                                        setState({ right: false, bottom: false });
+                                    }}
+                                >
+                                    <ListItemText onClick={toggleDrawer(anchor, false)}>
+                                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                                            <PhoneCallbackIcon />
+                                            <Typography variant="h4">{string?.contacts}</Typography>
+                                        </Box>
+                                    </ListItemText>
+                                </MenuItem>
+                            )}
+                            {INFORMATION_PAGE_ACTIVE && (
+                                <MenuItem
+                                    sx={{
+                                        cursor: 'pointer',
+                                        minWidth: 200,
+                                    }}
+                                    onClick={() => {
+                                        navigate(`${path}/info`);
+                                        setState({ right: false, bottom: false });
+                                    }}
+                                >
+                                    <ListItemText onClick={toggleDrawer(anchor, false)}>
+                                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                                            <InfoIcon />
+                                            <Typography variant="h4">{string?.info}</Typography>
                                         </Box>
                                     </ListItemText>
                                 </MenuItem>

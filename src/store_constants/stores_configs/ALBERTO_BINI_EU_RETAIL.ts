@@ -18,7 +18,7 @@ export const ALBERTO_BINI_EU_RETAIL = {
     lang_key: `${prefix}-lang`,
     app_lang: 'en',
     supported_countries: null,
-    links: [{ name: 'Wholesales', href: 'https://albertobini-brandeurope.com', description: 'WEB' }],
+    links: [{ name: 'Wholesales', href: 'https://albertobini-brandeurope.com', description: 'Wholesale', type: 'WEB' }],
     options: {
         product_image_options: { width: 6, height: 9 },
         main_price_multiplication: 1,

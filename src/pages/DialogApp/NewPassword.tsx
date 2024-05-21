@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import newPasswordFormValidation from 'Validation/newPasswordFormValidation';
 
-const NewPassword = ({ isOpen, setIsOpen, string, location }) => {
+const NewPassword = ({ isOpen, setIsOpen, string }) => {
     const { storeCode, tokenId } = useParams();
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
@@ -25,10 +25,10 @@ const NewPassword = ({ isOpen, setIsOpen, string, location }) => {
                 repeatPassword: values.confirmPassword,
             })
                 .then(_res => {
-                    setIsOpen(DialogWindowType?.LOGIN);
+                    setIsOpen(DialogWindowType?.SUCCESS_PASSWORD_CHANGE);
                 })
                 .catch(_err => {
-                    // setIsOpen(DialogWindowType?.WENT_WRONG);
+                    setIsOpen(DialogWindowType?.WENT_WRONG);
                 });
         },
     });

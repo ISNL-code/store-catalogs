@@ -13,13 +13,17 @@ import { STORE_CONFIG } from 'store_constants/stores_config';
 import { useFormsApp } from 'layouts/hooks/useFormsApp';
 import DialogApp from 'layouts/DialogApp';
 import { HOME_ROUTE, ROUTES } from 'constants/routes';
+import Loader from 'components/atoms/Loader/Loader';
+import { useAddToCart } from 'layouts/Catalog/hooks/useAddToCart';
+import { useAddToFavorites } from 'layouts/Catalog/hooks/useAddToFavorites';
 
 const OutletContainer = ({ context }: { context: HomeContextInterface }) => {
     return <Outlet context={context} />;
 };
 
 export default function Home({ lang, setLang, auth, setAuth, userData }) {
-    const { STORE_CODE, STORE_NAME } = STORE_CONFIG;
+    const { STORE_CODE, STORE_NAME, OPTIONS } = STORE_CONFIG;
+    const { PLAN_OPTIONS } = OPTIONS;
     const { storeCode } = useParams();
     const navigate = useNavigate();
     const { sx } = useDevice();
@@ -37,11 +41,12 @@ export default function Home({ lang, setLang, auth, setAuth, userData }) {
         code: STORE_CODE,
     });
 
+    const cart = useAddToCart({ auth, loadingUser: userData?.isFetching, storeName: STORE_NAME });
+    const favorites = useAddToFavorites({ loadingUser: userData?.isFetching, storeName: STORE_NAME });
+
     useEffect(() => {
-        if (storeCode) {
-            if (STORE_CODE !== storeCode) {
-                navigate(HOME_ROUTE?.root(STORE_CODE));
-            }
+        if (STORE_CODE !== storeCode) {
+            navigate(HOME_ROUTE?.root(STORE_CODE));
         }
     }, [storeCode, STORE_CODE, store]); // eslint-disable-line
 
@@ -51,10 +56,10 @@ export default function Home({ lang, setLang, auth, setAuth, userData }) {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [storeDataRes]);
 
-    if (!store) return <></>;
+    if (!store) return <Loader type="circular" size="large" />;
 
     return (
-        <Box>
+        <Box display="flex" flexDirection="column" justifyContent="space-between">
             <CssBaseline />
 
             <HomeHeader
@@ -69,9 +74,11 @@ export default function Home({ lang, setLang, auth, setAuth, userData }) {
                 auth={auth}
                 user={userData}
                 handleOpenDialog={handleOpenDialog}
+                cart={cart}
+                favorites={favorites}
             />
 
-            <Box className="HomeBody" mt={`${HEADER_HEIGHT + INSTRUMENTAL_BAR_HEIGHT}px`} flexGrow={1}>
+            <Box className="HomeBody" mt={`${HEADER_HEIGHT + INSTRUMENTAL_BAR_HEIGHT}px`}>
                 <OutletContainer
                     context={{
                         //main data
@@ -104,6 +111,10 @@ export default function Home({ lang, setLang, auth, setAuth, userData }) {
                 headerHeight={HEADER_HEIGHT}
                 user={userData}
                 handleOpenDialog={handleOpenDialog}
+                withCart={PLAN_OPTIONS?.cart}
+                withFavorites={PLAN_OPTIONS?.favorites}
+                cart={cart}
+                favorites={favorites}
             />
             <DialogApp
                 location={ROUTES?.HOME}

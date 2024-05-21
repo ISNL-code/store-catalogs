@@ -20,8 +20,6 @@ export const useAddToCart = ({
 
     useEffect(() => {
         if (loadingUser) return;
-
-        if (!auth) return setCartItems([]);
         setCartItems(JSON.parse(localStorage.getItem(CART_KEY) as string) || []); // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [auth, storeName]);
 
@@ -31,11 +29,10 @@ export const useAddToCart = ({
         if (mount) return;
         if (cartItems.length) {
             localStorage.setItem(CART_KEY, JSON.stringify(cartItems));
-        } else if (auth) localStorage.removeItem(CART_KEY); // eslint-disable-next-line react-hooks/exhaustive-deps
+        } else localStorage.removeItem(CART_KEY); // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [cartItems]);
 
     const handleSetCartItems = data => {
-        if (!auth) return;
         if (cartItems?.find(item => item?.sku === data?.sku)) {
             setCartItems(prev => prev.filter(item => item.sku !== data?.sku));
         } else {
@@ -44,13 +41,10 @@ export const useAddToCart = ({
     };
 
     const handleClearCartItems = skuArray => {
-        if (!auth) return;
-
         setCartItems(cartItems.filter(el => !skuArray?.includes(el?.sku)));
     };
 
     const handleClearCart = () => {
-        if (!auth) return;
         setCartItems([]);
     };
 

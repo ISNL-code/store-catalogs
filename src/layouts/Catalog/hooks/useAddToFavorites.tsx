@@ -18,7 +18,6 @@ export const useAddToFavorites = ({
 
     useEffect(() => {
         if (loadingUser) return;
-
         setFavoriteItems(JSON.parse(localStorage.getItem(FAVORITE_KEY) as string) || []); // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [storeName]);
 

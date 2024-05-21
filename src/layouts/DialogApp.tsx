@@ -9,6 +9,10 @@ import SuccessMailSent from 'pages/DialogApp/SuccessMailSent';
 import SuccessOrdering from 'pages/DialogApp/SuccessOrdering';
 import NewPassword from 'pages/DialogApp/NewPassword';
 import SomethingWentWrong from 'pages/DialogApp/SomethingWentWrong';
+import SuccessPasswordChange from 'pages/DialogApp/SuccessPasswordChange';
+import ClearCartConfirm from 'pages/DialogApp/ClearCartConfirm';
+import ClearFavoritesConfirm from 'pages/DialogApp/ClearFavoritesConfirm';
+import WarningOrderLimit from 'pages/DialogApp/WarningOrderLimit';
 
 interface Props {
     location;
@@ -16,9 +20,11 @@ interface Props {
     activeDialogWindow;
     handleOpenDialog;
     setAuth;
+    favorites?;
+    cart?;
 }
 
-const DialogApp = ({ location, string, activeDialogWindow, handleOpenDialog, setAuth }: Props) => {
+const DialogApp = ({ location, string, activeDialogWindow, handleOpenDialog, setAuth, favorites, cart }: Props) => {
     if (!activeDialogWindow) return null;
 
     return (
@@ -46,13 +52,11 @@ const DialogApp = ({ location, string, activeDialogWindow, handleOpenDialog, set
                 setAuth={setAuth}
             />
             <QuestionForm
-                location={location}
                 isOpen={activeDialogWindow === DialogWindowType?.QUESTION}
                 setIsOpen={handleOpenDialog}
                 string={string}
             />
             <NewPassword
-                location={location}
                 isOpen={activeDialogWindow === DialogWindowType?.NEW_PASSWORD}
                 setIsOpen={handleOpenDialog}
                 string={string}
@@ -67,31 +71,49 @@ const DialogApp = ({ location, string, activeDialogWindow, handleOpenDialog, set
                 string={string}
                 setAuth={setAuth}
             />
+            <ClearCartConfirm
+                isOpen={activeDialogWindow === DialogWindowType?.CLEAR_CART}
+                setIsOpen={handleOpenDialog}
+                string={string}
+                cart={cart}
+            />
+            <ClearFavoritesConfirm
+                isOpen={activeDialogWindow === DialogWindowType?.CLEAR_FAVORITES}
+                setIsOpen={handleOpenDialog}
+                string={string}
+                favorites={favorites}
+            />
+
+            <WarningOrderLimit
+                isOpen={activeDialogWindow === DialogWindowType?.WARNING_ORDERING_LIMIT}
+                setIsOpen={handleOpenDialog}
+                string={string}
+            />
 
             {/* <> * info modals * </> */}
 
             <SuccessRequest
-                location={location}
                 isOpen={activeDialogWindow === DialogWindowType?.SUCCESS_REQUEST}
                 setIsOpen={handleOpenDialog}
                 string={string}
             />
 
             <SuccessMailSent
-                location={location}
                 isOpen={activeDialogWindow === DialogWindowType?.SUCCESS_MAIL_SENT}
                 setIsOpen={handleOpenDialog}
                 string={string}
             />
+            <SuccessPasswordChange
+                isOpen={activeDialogWindow === DialogWindowType?.SUCCESS_PASSWORD_CHANGE}
+                string={string}
+            />
 
             <SuccessOrdering
-                location={location}
                 isOpen={activeDialogWindow === DialogWindowType?.SUCCESS_ORDERING}
                 setIsOpen={handleOpenDialog}
                 string={string}
             />
             <SomethingWentWrong
-                location={location}
                 isOpen={activeDialogWindow === DialogWindowType?.WENT_WRONG}
                 setIsOpen={handleOpenDialog}
                 string={string}

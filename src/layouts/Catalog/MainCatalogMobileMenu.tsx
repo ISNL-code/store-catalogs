@@ -1,7 +1,6 @@
 import { Box } from '@mui/material';
 import MobileNavButton from 'components/atoms/Buttons/MobileNavButton';
 import PermIdentityIcon from '@mui/icons-material/PermIdentity';
-import { useNavigate, useParams } from 'react-router-dom';
 import GridViewIcon from '@mui/icons-material/GridView';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
@@ -30,8 +29,6 @@ const MobileMenu = ({
     const { OPTIONS, STORE_CODE } = STORE_CONFIG;
     const { HOME_PAGE_ACTIVE } = OPTIONS;
     const WINDOW_WIDTH = useWindowWidth();
-    const navigate = useNavigate();
-    const { storeCode, storeName } = useParams();
     const [position, setPosition] = useState(0);
 
     useEffect(() => {
@@ -71,7 +68,6 @@ const MobileMenu = ({
                     )}
                     <MobileNavButton
                         path={STORE_ROUTE?.root(STORE_CODE)}
-                        childPath={['/details', '/contacts', 'model']}
                         title={string?.catalog}
                         icon={p => <GridViewIcon {...p} />}
                     />
@@ -81,12 +77,6 @@ const MobileMenu = ({
                             title={string?.favorites}
                             icon={p => <FavoriteIcon {...p} />}
                             badgeCount={favorites?.favoriteItems?.length}
-                            action={() => {
-                                navigate(
-                                    `/catalog/${storeCode}/${storeName?.replaceAll(' ', '-').toLowerCase()}/favorites`
-                                );
-                            }}
-                            protectedPath={!auth}
                         />
                     )}
                     {withCart && (
@@ -95,12 +85,6 @@ const MobileMenu = ({
                             title={string?.cart}
                             icon={p => <ShoppingCartIcon {...p} />}
                             badgeCount={cart?.cartItems?.length}
-                            action={() => {
-                                if (auth) {
-                                    navigate(STORE_ROUTE?.cart(STORE_CODE));
-                                } else handleOpenDialog(DialogWindowType?.AUTH_WARN);
-                            }}
-                            protectedPath={!auth}
                         />
                     )}
                     {!auth && (
@@ -120,7 +104,7 @@ const MobileMenu = ({
                             menuHeight={menuHeight}
                             user={user}
                             handleOpenDialog={handleOpenDialog}
-                            childPath={['orders', 'profile']}
+                            childPath={['orders', 'profile', 'info', 'contacts']}
                         />
                     )}
                 </Box>

@@ -4,7 +4,8 @@ import LanguageButton from 'components/molecules/ToolsButtons/LanguageButton';
 import { useDevice } from 'hooks/useDevice';
 import { useLocation } from 'react-router-dom';
 import HomeIcon from '@mui/icons-material/Home';
-import InfoIcon from '@mui/icons-material/Info';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import HeaderLogo from 'components/atoms/Logo/HeaderLogo';
 import { Colors } from 'colors';
 import { STORE_CONFIG } from 'store_constants/stores_config';
@@ -26,6 +27,8 @@ interface HeaderInterface {
     store;
     auth;
     user;
+    cart;
+    favorites;
 }
 
 const HomeHeader = ({
@@ -40,9 +43,11 @@ const HomeHeader = ({
     store,
     auth,
     user,
+    cart,
+    favorites,
 }: HeaderInterface) => {
     const { OPTIONS, STORE_CODE } = STORE_CONFIG;
-    const { CUSTOM_LOGO, INFORMATION_PAGE_ACTIVE } = OPTIONS;
+    const { CUSTOM_LOGO, PLAN_OPTIONS } = OPTIONS;
     const location = useLocation();
     const { sx } = useDevice();
 
@@ -81,14 +86,22 @@ const HomeHeader = ({
                         isShown={!sx}
                         isActive={location.pathname.includes('details')}
                     />
-
-                    {INFORMATION_PAGE_ACTIVE && (
+                    {PLAN_OPTIONS?.favorites && (
                         <HeaderNavButton
-                            title={string?.info}
-                            path={HOME_ROUTE?.info(STORE_CODE)}
-                            icon={() => <InfoIcon />}
+                            path={STORE_ROUTE?.favorites(STORE_CODE)}
+                            title={string?.favorites}
+                            icon={() => <FavoriteIcon />}
                             isShown={!sx}
-                            action={() => {}}
+                            badgeCount={favorites?.favoriteItems?.length}
+                        />
+                    )}
+                    {PLAN_OPTIONS?.cart && (
+                        <HeaderNavButton
+                            path={STORE_ROUTE?.cart(STORE_CODE)}
+                            title={string?.cart}
+                            icon={() => <ShoppingCartIcon />}
+                            isShown={!sx}
+                            badgeCount={cart?.cartItems?.length}
                         />
                     )}
                     {!auth && (
@@ -106,7 +119,7 @@ const HomeHeader = ({
                             headerHeight={headerHeight}
                             user={user}
                             handleOpenDialog={handleOpenDialog}
-                            childPath={['orders', 'profile']}
+                            childPath={['orders', 'profile', 'info', 'contacts']}
                         />
                     )}
                     <LanguageButton

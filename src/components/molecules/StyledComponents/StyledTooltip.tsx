@@ -59,7 +59,7 @@ const StyledTooltip = ({
                 },
             }}
         >
-            {children}
+            <span>{children}</span>
         </Tooltip>
     );
 };

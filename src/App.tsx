@@ -245,7 +245,7 @@ const App = () => {
                                         />
                                     }
                                 >
-                                    <Route index path={`${ROUTES?.STORE}/:storeCode/`} element={<CatalogPage />} />
+                                    <Route index path={`${ROUTES?.STORE}/:storeCode`} element={<CatalogPage />} />
                                     <Route
                                         path={`${ROUTES?.STORE}/:storeCode/contacts`}
                                         element={<ContactsManagePage />}
@@ -261,6 +261,7 @@ const App = () => {
                                     <Route path={`${ROUTES?.STORE}/:storeCode/profile`} element={<UserProfile />} />
 
                                     <Route path={`${ROUTES?.STORE}/:storeCode/orders`} element={<UserOrders />} />
+                                    <Route path={`${ROUTES?.STORE}/:storeCode/info`} element={<InformationPage />} />
                                     <Route path="*" element={<Navigate to={ROUTES?.STORE} replace />} />
                                 </Route>
                             )}

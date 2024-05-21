@@ -1,6 +1,6 @@
 import InfoDialog from 'components/organisms/Modals/InfoDialog';
 
-const SuccessRequest = ({ isOpen, setIsOpen, string, location }) => {
+const SuccessRequest = ({ isOpen, setIsOpen, string }) => {
     if (!isOpen) return null;
 
     return (
@@ -14,7 +14,9 @@ const SuccessRequest = ({ isOpen, setIsOpen, string, location }) => {
                 }}
                 title={null}
                 fullWidth
-                onSubmit={() => {}}
+                onSubmit={() => {
+                    setIsOpen(null);
+                }}
                 description={string?.request_sended_successfully}
                 closeAvailable
                 component="success request"

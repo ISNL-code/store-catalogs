@@ -4,7 +4,7 @@ import HeaderLogo from 'components/atoms/Logo/HeaderLogo';
 import LanguageButton from 'components/molecules/ToolsButtons/LanguageButton';
 import PermIdentityIcon from '@mui/icons-material/PermIdentity';
 import { useDevice } from 'hooks/useDevice';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import GridViewIcon from '@mui/icons-material/GridView';
@@ -49,7 +49,6 @@ const Header = ({
 }: HeaderInterface) => {
     const { OPTIONS, STORE_CODE } = STORE_CONFIG;
     const { CUSTOM_LOGO, PLAN_OPTIONS, HOME_PAGE_ACTIVE } = OPTIONS;
-    const navigate = useNavigate();
     const location = useLocation();
     const { sx } = useDevice();
 
@@ -97,7 +96,6 @@ const Header = ({
                             icon={() => <FavoriteIcon />}
                             isShown={!sx}
                             badgeCount={favorites?.favoriteItems?.length}
-                            protectedPath={!auth}
                         />
                     )}
                     {PLAN_OPTIONS?.cart && (
@@ -107,12 +105,6 @@ const Header = ({
                             icon={() => <ShoppingCartIcon />}
                             isShown={!sx}
                             badgeCount={cart?.cartItems?.length}
-                            action={() => {
-                                if (auth) {
-                                    navigate(STORE_ROUTE?.cart(STORE_CODE));
-                                } else handleOpenDialog(DialogWindowType?.AUTH_WARN);
-                            }}
-                            protectedPath={!auth}
                         />
                     )}
 
@@ -131,7 +123,7 @@ const Header = ({
                             headerHeight={headerHeight}
                             user={user}
                             handleOpenDialog={handleOpenDialog}
-                            childPath={['orders', 'profile']}
+                            childPath={['orders', 'profile', 'info', 'contacts']}
                         />
                     )}
                     <LanguageButton

@@ -35,7 +35,7 @@ const ContactsManagePage = () => {
             {store?.managers.map((manager, idx) => {
                 return (
                     <Grid key={idx} container xs={12} my={2}>
-                        <CardItem withHover={false}>
+                        <CardItem>
                             <Grid
                                 xs={12}
                                 p={1}

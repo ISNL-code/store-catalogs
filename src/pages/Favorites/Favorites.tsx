@@ -13,7 +13,6 @@ import Grid from '@mui/material/Unstable_Grid2';
 import CallBackButton from 'components/atoms/Buttons/CallBackButton';
 import { useIsMount } from 'hooks/useIsMount';
 import { useProductsApi } from 'api/useProductsApi';
-import DeleteModal from 'components/organisms/Modals/DeleteModal';
 import { STORE_CONFIG } from 'store_constants/stores_config';
 import ViewModeButton from 'components/molecules/ToolsButtons/ViewModeButton';
 import CatalogListCard from 'components/organisms/Cards/CatalogListCard';
@@ -21,13 +20,14 @@ import ClearListButton from 'components/molecules/ToolsButtons/ClearListButton';
 import { StoreType, ViewModeType } from 'store_constants/types';
 import { useDevice } from 'hooks/useDevice';
 import { STORE_ROUTE } from 'constants/routes';
+import { DialogWindowType } from 'layouts/hooks/useFormsApp';
 
 interface InstrumentalBarProps {
-    setIsOpenModal;
+    favoriteLength: boolean;
 }
 
-const InstrumentalSubHeaderMemo = memo<InstrumentalBarProps>(({ setIsOpenModal }) => {
-    const { string }: CatalogContextInterface = useOutletContext();
+const InstrumentalSubHeaderMemo = memo<InstrumentalBarProps>(({ favoriteLength }) => {
+    const { string, handleOpenDialog }: CatalogContextInterface = useOutletContext();
     return (
         <InstrumentalSubHeader
             StartSlot={() => <BackButton nav={-1} action={() => {}} />}
@@ -36,10 +36,11 @@ const InstrumentalSubHeaderMemo = memo<InstrumentalBarProps>(({ setIsOpenModal }
                     <ViewModeButton />
                     <ClearListButton
                         action={() => {
-                            setIsOpenModal(true);
+                            handleOpenDialog(DialogWindowType?.CLEAR_FAVORITES);
                         }}
                         isShown
                         title={string?.clear_favorites}
+                        disabled={!favoriteLength}
                     />
                 </Box>
             )}
@@ -55,7 +56,6 @@ const Favorites = () => {
         store,
         favorites,
         supportedLanguage,
-        string,
         footerMenuHeight,
         viewMode,
         scrollPosition,
@@ -68,8 +68,6 @@ const Favorites = () => {
     const [loading, setLoading] = useState(true);
     const [productIds, setProductIds] = useState<string[] | any[]>([]);
     const [favoriteProducts, setFavoriteProducts] = useState<ProductVariantInterface[] | any[]>([]);
-
-    const [isOpenModal, setIsOpenModal] = useState(false);
 
     const { isFetching: loadProducts, refetch: updateFavoriteProductsRes } = useProductsApi().useGetProductByIDForCart({
         id: productIds,
@@ -116,7 +114,7 @@ const Favorites = () => {
             const products = res.data?.data.products;
 
             //clear invalid items or deleted by seller
-            favorites?.favoriteItems?.forEach(({ sku, storeCode, userId, productId }) => {
+            favorites?.favoriteItems?.forEach(({ sku }) => {
                 if (!products.find(el => el.variants.map(({ sku }) => sku).includes(sku))) {
                     favorites?.handleSetFavoriteItems({
                         sku,
@@ -197,26 +195,15 @@ const Favorites = () => {
             pt={getGridSpacing()?.padding}
             pb={footerMenuHeight}
             px={getGridSpacing()?.padding}
-            sx={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}
+            sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}
         >
             {showTopBtn && <ScrollButton />}
-            {isOpenModal && (
-                <DeleteModal
-                    string={string}
-                    title={string?.clear_favorites}
-                    close={() => setIsOpenModal(false)}
-                    text={string?.approve_favorites_clear}
-                    action={() => {
-                        favorites?.handleClearFavorites();
-                    }}
-                />
-            )}
             {loading && <Loader />}
             {PLAN_OPTIONS?.contacts && <CallBackButton path={STORE_ROUTE?.contacts(STORE_CODE)} />}
-            <InstrumentalSubHeaderMemo setIsOpenModal={setIsOpenModal} />
+            <InstrumentalSubHeaderMemo favoriteLength={Boolean(favoriteProducts?.length)} />
 
             {favoriteProducts?.length ? (
-                <Box sx={{ minHeight: loading ? '100vh' : 'auto' }}>
+                <Box pb={2} sx={{ minHeight: loading ? '100vh' : 'auto' }}>
                     <TransitionBox dependency={loading} time={250}>
                         <Grid className="CatalogList" container spacing={getGridSpacing()?.spacing}>
                             {favoriteProducts?.map(product => {

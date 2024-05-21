@@ -12,6 +12,10 @@ export enum DialogWindowType {
     QUESTION = 'question',
     AUTH_WARN = 'auth_warn',
     WENT_WRONG = 'went_wong',
+    SUCCESS_PASSWORD_CHANGE = 'success_password_change',
+    CLEAR_CART = 'clear_cart',
+    CLEAR_FAVORITES = 'clear_favorites',
+    WARNING_ORDERING_LIMIT = 'warning_order_limit',
 }
 
 interface Res {

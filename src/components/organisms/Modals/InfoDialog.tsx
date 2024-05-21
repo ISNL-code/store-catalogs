@@ -8,21 +8,30 @@ import {
     Box,
     IconButton,
     ClickAwayListener,
+    Divider,
 } from '@mui/material';
 import { Colors } from 'colors';
 import CloseIcon from '@mui/icons-material/Close';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import WarningAmberIcon from '@mui/icons-material/WarningAmber';
+import RemoveShoppingCartIcon from '@mui/icons-material/RemoveShoppingCart';
+import LinkIcon from '@mui/icons-material/Link';
 
 const SuccessComponent = () => (
-    <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+    <Box sx={{ display: 'flex', justifyContent: 'center', my: 1 }}>
         <CheckCircleOutlineIcon sx={{ fontSize: 100 }} color="success" />
     </Box>
 );
 
 const ErrorComponent = () => (
-    <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+    <Box sx={{ display: 'flex', justifyContent: 'center', my: 1 }}>
         <WarningAmberIcon sx={{ fontSize: 100 }} color="error" />
+    </Box>
+);
+
+const WarnComponent = () => (
+    <Box sx={{ display: 'flex', justifyContent: 'center', my: 1 }}>
+        <RemoveShoppingCartIcon sx={{ fontSize: 100 }} color="error" />
     </Box>
 );
 
@@ -51,7 +60,7 @@ interface Props {
     fullWidth: boolean;
     closeAvailable: boolean;
     onSubmit: () => void;
-    component: 'success request' | 'bad request';
+    component: 'success request' | 'bad request' | 'warning ordering';
 }
 
 const InfoDialog = ({
@@ -64,6 +73,7 @@ const InfoDialog = ({
     closeAvailable,
     onSubmit,
     component,
+    link,
 }: Props) => {
     const [open, setOpen] = useState<boolean>(false);
 
@@ -135,6 +145,7 @@ const InfoDialog = ({
                 {title && <DialogTitle sx={{ fontSize: 20, color: 'gray', py: 0, my: 0 }}>{title} </DialogTitle>}
                 {component === 'success request' && <SuccessComponent />}
                 {component === 'bad request' && <ErrorComponent />}
+                {component === 'warning ordering' && <WarnComponent />}
                 {description && (
                     <DialogContentText sx={{ py: 0, my: 0, px: 3, textAlign: 'center' }}>
                         {description}
@@ -142,12 +153,26 @@ const InfoDialog = ({
                 )}
 
                 <DialogActions sx={{ py: 2, my: 0, px: 3, flexWrap: 'wrap' }}>
-                    <Box sx={{ display: 'flex', gap: 1, ml: 'auto' }}>
-                        <Button variant="contained" onClick={handleClose}>
-                            {string?.ok}
-                        </Button>
-                    </Box>
+                    <Button variant="contained" type="submit">
+                        {string?.ok}
+                    </Button>
                 </DialogActions>
+                {link && (
+                    <>
+                        <Divider />
+                        <DialogActions sx={{ px: 3, py: 0.5, width: '100%', justifyContent: 'center' }}>
+                            <Button
+                                onClick={() => {
+                                    link.action();
+                                }}
+                                startIcon={<LinkIcon />}
+                                sx={{ textTransform: 'uppercase' }}
+                            >
+                                {link?.name}
+                            </Button>
+                        </DialogActions>
+                    </>
+                )}
             </Dialog>
         </ClickAwayListener>
     );

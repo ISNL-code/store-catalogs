@@ -18,7 +18,14 @@ export const KREMEN_BELTS_MAIN = {
     lang_key: `${prefix}-lang`,
     app_lang: 'ua',
     supported_countries: [{ code: 'UA', country: 'ukraine' }],
-    links: [{ name: 'Kremen Belts Sales', href: 'https://kremen-belts-sales.netlify.app', description: 'WEB' }],
+    links: [
+        {
+            name: 'Kremen Belts Sales',
+            href: 'https://kremen-belts-sales.netlify.app',
+            description: 'Sales',
+            type: 'WEB',
+        },
+    ],
     options: {
         product_image_options: { width: 4, height: 3 },
         main_price_multiplication: 1,

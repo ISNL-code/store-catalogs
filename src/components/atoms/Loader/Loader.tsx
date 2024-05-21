@@ -5,7 +5,7 @@ interface LoaderInterface {
     height?: string;
     zIndex?: number;
     title?: string;
-    size?: string;
+    size?: 'small' | 'medium' | 'large';
     defaultHeight?: string;
     position?: string;
     type?: 'both' | 'circular' | 'linear';
@@ -18,6 +18,7 @@ const Loader = ({
     defaultHeight,
     position = 'absolute',
     type = 'both',
+    size,
 }: LoaderInterface) => {
     return (
         <Box
@@ -74,13 +75,17 @@ const Loader = ({
                         position: 'relative',
                     }}
                 >
-                    <CircularProgress size={75} thickness={2} sx={{ color: Colors?.LIGHT_BLUE }} />
+                    <CircularProgress
+                        size={size === 'large' ? 115 : 75}
+                        thickness={2}
+                        sx={{ color: Colors?.LIGHT_BLUE }}
+                    />
                     <Box
                         sx={{
                             position: 'absolute',
                             overflow: 'hidden',
-                            height: 65,
-                            width: 65,
+                            height: size === 'large' ? 100 : 65,
+                            width: size === 'large' ? 100 : 65,
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'center',
@@ -88,7 +93,11 @@ const Loader = ({
                             opacity: 0.6,
                         }}
                     >
-                        <img src={require('assets/img/logo.png')} style={{ height: '67px' }} alt="img" />
+                        <img
+                            src={require('assets/img/logo.png')}
+                            style={{ height: size === 'large' ? '102px' : '67px' }}
+                            alt="img"
+                        />
                     </Box>
                 </Box>
             )}

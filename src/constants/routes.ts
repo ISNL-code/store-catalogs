@@ -40,6 +40,7 @@ export const STORE_ROUTE = {
         `/store/${storeCode}/product/${productId}/model/${sku?.replaceAll('/', '_')}`,
     cart: storeCode => `/store/${storeCode}/cart`,
     favorites: storeCode => `/store/${storeCode}/favorites`,
+    info: storeCode => `/store/${storeCode}/info`,
 };
 
 export const SHARE_PATH = {

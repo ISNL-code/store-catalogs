@@ -18,7 +18,7 @@ export const ALBERTO_BINI_KZ_RETAIL = {
     lang_key: `${prefix}-lang`,
     app_lang: 'kz',
     supported_countries: null,
-    links: [{ name: 'Wholesales', href: 'https://albertobini-kz.com', description: 'WEB' }],
+    links: [{ name: 'Wholesales', href: 'https://albertobini-kz.com', description: 'Wholesale', type: 'WEB' }],
     options: {
         product_image_options: { width: 6, height: 9 },
         main_price_multiplication: 1,

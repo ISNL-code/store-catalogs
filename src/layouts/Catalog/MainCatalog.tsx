@@ -17,6 +17,7 @@ import { STORE_CONFIG } from 'store_constants/stores_config';
 import { useFormsApp } from 'layouts/hooks/useFormsApp';
 import DialogApp from 'layouts/DialogApp';
 import { ROUTES, STORE_ROUTE } from 'constants/routes';
+import Loader from 'components/atoms/Loader/Loader';
 
 const OutletContainer = ({ context }: { context: CatalogContextInterface }) => {
     return <Outlet context={context} />;
@@ -78,10 +79,8 @@ export default function MainCatalog({ lang, setLang, auth, setAuth, userData, vi
     const favorites = useAddToFavorites({ loadingUser: userData?.isFetching, storeName });
 
     useEffect(() => {
-        if (storeCode) {
-            if (STORE_CODE !== storeCode) {
-                navigate(STORE_ROUTE?.root(STORE_CODE));
-            }
+        if (STORE_CODE !== storeCode) {
+            navigate(STORE_ROUTE?.root(STORE_CODE));
         }
     }, [storeCode, STORE_CODE, store]); // eslint-disable-line
 
@@ -95,7 +94,7 @@ export default function MainCatalog({ lang, setLang, auth, setAuth, userData, vi
         setSupportedLanguage(store?.supportedLanguages?.find(el => el.code === lang) ? lang : 'en');
     }, [lang, store?.supportedLanguages]);
 
-    if (!store) return <></>;
+    if (!store) return <Loader type="circular" size="large" />;
 
     return (
         <Box display="flex" flexDirection="column" justifyContent="space-between">
@@ -117,7 +116,7 @@ export default function MainCatalog({ lang, setLang, auth, setAuth, userData, vi
                 handleOpenDialog={handleOpenDialog}
             />
 
-            <Box className="AppBody" mt={`${HEADER_HEIGHT + INSTRUMENTAL_BAR_HEIGHT}px`} sx={{ minHeight: '100vh' }}>
+            <Box className="AppBody" mt={`${HEADER_HEIGHT + INSTRUMENTAL_BAR_HEIGHT}px`}>
                 <OutletContainer
                     context={{
                         //main data | user options
@@ -192,6 +191,8 @@ export default function MainCatalog({ lang, setLang, auth, setAuth, userData, vi
                 activeDialogWindow={activeDialogWindow}
                 handleOpenDialog={handleOpenDialog}
                 setAuth={setAuth}
+                cart={cart}
+                favorites={favorites}
             />
         </Box>
     );

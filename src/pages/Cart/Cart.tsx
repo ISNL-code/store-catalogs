@@ -4,7 +4,7 @@ import EmptyPage from 'components/atoms/EmptyPage/EmptyPage';
 import InstrumentalSubHeader from 'components/organisms/InstrumentalSubHeader/InstrumentalSubHeader';
 import { useIsMount } from 'hooks/useIsMount';
 import { useEffect, useRef, useState } from 'react';
-import { useNavigate, useOutletContext, useParams } from 'react-router-dom';
+import { useOutletContext, useParams } from 'react-router-dom';
 import { CatalogContextInterface, ProductVariantInterface } from 'types';
 import Loader from 'components/atoms/Loader/Loader';
 import Grid from '@mui/material/Unstable_Grid2';
@@ -13,7 +13,6 @@ import { useDevice } from 'hooks/useDevice';
 import { Box } from '@mui/material';
 import AddSizesButtons from './components/AddSizesButtons';
 import AddButtons from './components/AddButtons';
-import DeleteModal from 'components/organisms/Modals/DeleteModal';
 import ConfirmCoupon from './components/ConfirmCoupon';
 import ProductDetails from './components/ProductDetails';
 import { useCartApi } from 'api/useCartApi';
@@ -21,6 +20,7 @@ import SuccessOrderingPage from 'components/atoms/SuccessOrdering/SuccessOrderin
 import ClearListButton from 'components/molecules/ToolsButtons/ClearListButton';
 import { Colors } from 'colors';
 import { STORE_CONFIG } from 'store_constants/stores_config';
+import { DialogWindowType } from 'layouts/hooks/useFormsApp';
 
 interface ProductListInterface {
     sizeId: number | null;
@@ -51,11 +51,10 @@ const Cart = () => {
     const { PLAN_OPTIONS } = OPTIONS;
     const sliderRef = useRef<HTMLImageElement>(null);
     const { sx, xs } = useDevice();
-    const { storeCode, storeName } = useParams();
+    const { storeCode } = useParams();
     const mount = useIsMount();
-    const navigate = useNavigate();
+
     const {
-        auth,
         cart,
         supportedLanguage,
         string,
@@ -63,10 +62,10 @@ const Cart = () => {
         appXPadding,
         headerHeight,
         instrumentalBarHeight,
+        handleOpenDialog,
     }: CatalogContextInterface = useOutletContext();
     const [productIds, setProductIds] = useState<string[] | any[]>([]);
     const [cartProducts, setCartProducts] = useState<ProductVariantInterface[] | any[]>([]);
-    const [isOpenModal, setIsOpenModal] = useState(false);
     const [finalPrice, setFinalPrice] = useState(0);
     const [successOrdering, setSuccessOrdering] = useState(false);
     const [orderData, setOrderData] = useState<OrderDataInterface>({
@@ -145,11 +144,6 @@ const Cart = () => {
     }, [productIds, supportedLanguage]);
 
     useEffect(() => {
-        if (mount) return;
-        if (!auth) navigate(`/catalog/${storeCode}/${storeName}`); // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [auth]);
-
-    useEffect(() => {
         if (!orderData.productsList.length) return setFinalPrice(0);
 
         setFinalPrice(
@@ -170,12 +164,6 @@ const Cart = () => {
         }, 200);
     }, [loadProducts, loading]);
 
-    useEffect(() => {
-        if (mount) return;
-        if (!auth) navigate(`/catalog/${storeCode}/${storeName}`);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [auth, mount]);
-
     if (successOrdering)
         return (
             <>
@@ -187,26 +175,17 @@ const Cart = () => {
     return (
         <Box className="CartPageContainer" p={sx ? 2 : appXPadding} sx={{ pb: `calc(${footerMenuHeight} + 16px)` }}>
             {(loadCreateOrder || loading || loadProducts) && <Loader position="fixed" />}
-            {isOpenModal && (
-                <DeleteModal
-                    string={string}
-                    title={string?.clear_cart}
-                    close={() => setIsOpenModal(false)}
-                    text={string?.approve_clear_cart}
-                    action={() => {
-                        cart?.handleClearCart();
-                    }}
-                />
-            )}
+
             <InstrumentalSubHeader
                 StartSlot={() => <BackButton nav={-1} action={() => {}} />}
                 EndSlot={() => (
                     <ClearListButton
                         action={() => {
-                            setIsOpenModal(true);
+                            handleOpenDialog(DialogWindowType?.CLEAR_CART);
                         }}
                         isShown
                         title={string?.clear_cart}
+                        disabled={!cartProducts?.length}
                     />
                 )}
             />

@@ -6,7 +6,7 @@ import FormDialog from 'components/organisms/Modals/FormDialog';
 import { Fragment, useEffect, useState } from 'react';
 import { DialogWindowType } from 'layouts/hooks/useFormsApp';
 
-export default function QuestionForm({ isOpen, setIsOpen, string, location }) {
+export default function QuestionForm({ isOpen, setIsOpen, string }) {
     const { STORE_NAME } = STORE_CONFIG;
     const [formValues, setFormValues] = useState<any>({
         subject: '',

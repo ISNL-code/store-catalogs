@@ -18,7 +18,7 @@ export const ALBERTO_BINI_KZ_WS = {
     lang_key: `${prefix}-lang`,
     app_lang: 'kz',
     supported_countries: null,
-    links: [{ name: 'Retail', href: 'https://albertobini-kz-retail.netlify.app', description: 'WEB' }],
+    links: [{ name: 'Retail', href: 'https://albertobini-kz-retail.netlify.app', description: 'Retail', type: 'WEB' }],
     options: {
         product_image_options: { width: 6, height: 9 },
         main_price_multiplication: 1,

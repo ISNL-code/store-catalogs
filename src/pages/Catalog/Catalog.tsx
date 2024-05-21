@@ -129,7 +129,7 @@ const Catalog = () => {
             pt={getGridSpacing()?.padding}
             pb={footerMenuHeight}
             px={getGridSpacing()?.padding}
-            sx={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}
+            sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}
         >
             {showTopBtn && <ScrollButton />}
             {showMobileStoresButton && (

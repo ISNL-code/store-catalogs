@@ -7,9 +7,10 @@ interface FilterButtonInterface {
     isShown: boolean;
     action?: (event: any) => void;
     title: string;
+    disabled?: boolean;
 }
 
-const ClearListButton = ({ isShown, action = () => {}, title }: FilterButtonInterface) => {
+const ClearListButton = ({ isShown, action = () => {}, title, disabled = false }: FilterButtonInterface) => {
     if (isShown)
         return (
             <StyledTooltip title={title}>
@@ -20,11 +21,12 @@ const ClearListButton = ({ isShown, action = () => {}, title }: FilterButtonInte
                         backgroundColor: Colors?.WHITE,
                         mr: '2px',
                         border: '1px solid',
-                        borderColor: Colors?.RED,
+                        borderColor: disabled ? Colors?.GRAY_500 : Colors?.RED,
                     }}
                     onClick={action}
+                    disabled={disabled}
                 >
-                    <DeleteForeverIcon fontSize="small" sx={{ color: Colors?.RED }} />
+                    <DeleteForeverIcon fontSize="small" sx={{ color: disabled ? Colors?.GRAY_500 : Colors?.RED }} />
                 </IconButton>
             </StyledTooltip>
         );
