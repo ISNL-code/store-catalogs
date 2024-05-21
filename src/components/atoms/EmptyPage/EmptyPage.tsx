@@ -40,7 +40,8 @@ const EmptyPage = ({ isShown = true }) => {
                     flexDirection: 'column',
                     overflow: 'hidden',
                     gap: 1,
-                    transform: 'translateY(-20%)',
+                    top: 0,
+                    left: 0,
                 }}
             >
                 <SearchIcon sx={{ fontSize: 100, color: Colors?.TEXT_GRAY }} />
