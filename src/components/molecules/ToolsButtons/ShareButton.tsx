@@ -21,17 +21,9 @@ const ShareButton = ({ path, isShown, direction }: ShareButtonInterface) => {
     const [open, setOpen] = useState(false);
 
     const actions = [
-        {
-            icon: <TelegramIcon size={35} round url={path} />,
-            name: 'Telegram',
-            component: TelegramShareButton,
-        },
-        {
-            icon: <WhatsappIcon size={35} round url={path} />,
-            name: 'WhatsApp',
-            component: WhatsappShareButton,
-        },
-        { icon: <EmailIcon size={35} round url={path} />, name: 'Email', component: EmailShareButton },
+        { icon: <TelegramIcon size={35} round />, name: 'Telegram', component: TelegramShareButton },
+        { icon: <WhatsappIcon size={35} round />, name: 'WhatsApp', component: WhatsappShareButton },
+        { icon: <EmailIcon size={35} round />, name: 'Email', component: EmailShareButton },
     ];
 
     if (!isShown) return null;
