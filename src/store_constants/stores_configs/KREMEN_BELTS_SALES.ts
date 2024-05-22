@@ -1,8 +1,7 @@
 import { StoreType, ViewModeType } from 'store_constants/types';
 
-const prefix = 'kbs';
-
 export const KREMEN_BELTS_SALES = {
+    storage_key: 'kb_ua-wss',
     active: true,
     required_registration: false,
     URL: ['https://kremen-belts-sales.netlify.app'],
@@ -11,11 +10,7 @@ export const KREMEN_BELTS_SALES = {
     web_lang: 'uk', // html lang
     store_name: 'Kremen Belts Sales',
     store_code: 'kremen_belts_sales',
-    token_key: `${prefix}-tkn`,
-    cart_key: `${prefix}-cart`,
-    favorite_url: `${prefix}-favorites`,
     base_url: 'https://kremen-belts.com/api',
-    lang_key: `${prefix}-lang`,
     app_lang: 'ua',
     supported_countries: [{ code: 'UA', country: 'ukraine' }],
     links: [{ name: 'Kremen Belts', href: 'https://kremen-belts.netlify.app', description: 'Wholesales', type: 'WEB' }],

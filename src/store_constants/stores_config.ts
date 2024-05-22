@@ -28,6 +28,7 @@ const storeConfig = (): STORE_CONFIG_Interface => {
     const matchingDomain = stores.find(domain => domain.URL.some(url => currentUrl.includes(url)));
 
     return {
+        STORAGE_KEY: matchingDomain?.storage_key || 'sn_def',
         APP_STORE_URL: matchingDomain?.appStoreUrl || null,
         PLAY_MARKET_URL: matchingDomain?.playMarketUrl || null,
         ACTIVE: matchingDomain?.active || true,
@@ -35,14 +36,9 @@ const storeConfig = (): STORE_CONFIG_Interface => {
         STORE_NAME: matchingDomain?.store_name || '',
         STORE_CODE: matchingDomain?.store_code || '',
         BASE_URL: matchingDomain?.base_url || '',
-        ACCESS_TOKEN_KEY: matchingDomain?.token_key || 'sales_nest_token',
-        CART_KEY: matchingDomain?.cart_key || 'sales_nest_cart',
-        FAVORITE_KEY: matchingDomain?.favorite_url || 'sales_nest_favorite',
-        LANGUAGE_KEY: matchingDomain?.lang_key || 'sales_nest_lang',
         APP_LANGUAGE: matchingDomain?.app_lang || 'en',
         HTML_LANG: matchingDomain?.web_lang || 'en',
         SUPPORTED_COUNTRIES: matchingDomain?.supported_countries || null,
-        VIEW_MODE_KEY: 'sales_nest_view_mode',
         SIDE_LINKS: matchingDomain?.links || [],
         OPTIONS: {
             PRODUCT_IMAGE_OPTIONS: matchingDomain?.options?.product_image_options || { width: 1, height: 1 },

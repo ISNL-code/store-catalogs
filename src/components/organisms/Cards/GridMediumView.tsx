@@ -20,19 +20,27 @@ const GridMediumView = ({ SliderComponent, CardDetails, CardDecoration, opacity,
     };
 
     return (
-        <Grid container xs={getGridValue()} sx={{ opacity: opacity ? 1 : 0 }} {...rest}>
+        <Grid
+            // container
+            xs={getGridValue()}
+            sx={{
+                opacity: opacity ? 1 : 0,
+            }}
+            {...rest}
+        >
             <Box
                 ref={cardRef}
                 sx={{
                     position: 'sticky',
-                    backgroundColor: Colors?.GRAY_100,
-                    border: '0.25px solid',
-                    borderColor: Colors?.GRAY_500,
                     width: '100%',
-                    overflow: 'hidden',
                     display: 'flex',
                     flexDirection: 'column',
                     justifyContent: 'space-between',
+                    backgroundColor: Colors?.GRAY_300,
+                    border: '1px solid',
+                    borderColor: Colors?.GRAY_300,
+                    borderRadius: 4,
+                    overflow: 'hidden',
                 }}
                 onClick={() => {
                     setScrollPosition(cardRef?.current?.offsetTop);

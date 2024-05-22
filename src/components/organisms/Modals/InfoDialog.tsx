@@ -166,7 +166,7 @@ const InfoDialog = ({
                                     link.action();
                                 }}
                                 startIcon={<LinkIcon />}
-                                sx={{ textTransform: 'uppercase' }}
+                                sx={{ textTransform: 'uppercase', lineHeight: 1 }}
                             >
                                 {link?.name}
                             </Button>

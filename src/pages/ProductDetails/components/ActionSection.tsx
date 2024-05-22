@@ -25,8 +25,13 @@ const ActionSection = ({ isShown, selectedVariant }) => {
                             cursor: 'pointer',
                             borderRadius: 2,
                             width: '100%',
+                            whiteSpace: 'nowrap',
+                            overflow: 'hidden',
+                            textOverflow: 'ellipsis',
+                            textTransform: 'uppercase',
+                            fontSize: 11,
                         }}
-                        variant={selectedToCart ? 'contained' : 'outlined'}
+                        variant={'contained'}
                         onClick={() => {
                             // if (!auth) return setOpenModalType('register-warning');
                             cart?.handleSetCartItems({
@@ -45,7 +50,7 @@ const ActionSection = ({ isShown, selectedVariant }) => {
                             )
                         }
                     >
-                        {selectedToCart ? string?.added : string?.add_to}
+                        {selectedToCart ? string?.in_cart : string?.add_to_cart}
                     </Button>
                 )}
                 {PLAN_OPTIONS?.favorites && (
@@ -54,6 +59,11 @@ const ActionSection = ({ isShown, selectedVariant }) => {
                             cursor: 'pointer',
                             borderRadius: 2,
                             width: '100%',
+                            whiteSpace: 'nowrap',
+                            overflow: 'hidden',
+                            textOverflow: 'ellipsis',
+                            textTransform: 'uppercase',
+                            fontSize: 11,
                         }}
                         variant={selectedToFavorite ? 'contained' : 'outlined'}
                         onClick={() => {

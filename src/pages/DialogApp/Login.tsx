@@ -7,9 +7,10 @@ import { STORE_CONFIG } from 'store_constants/stores_config';
 import { DialogWindowType } from 'layouts/hooks/useFormsApp';
 import FormDialog from 'components/organisms/Modals/FormDialog';
 import { ROUTES } from 'constants/routes';
+import { STORAGE_KEYS } from 'constants/local_storage_keys';
 
 export default function Login({ isOpen, setIsOpen, string, location, setAuth }) {
-    const { ACCESS_TOKEN_KEY, STORE_NAME, STORE_CODE } = STORE_CONFIG;
+    const { STORE_CODE, STORE_NAME } = STORE_CONFIG;
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -24,7 +25,7 @@ export default function Login({ isOpen, setIsOpen, string, location, setAuth }) 
             loginCustomer({ ...values, storeCode: STORE_CODE })
                 .then(res => {
                     if (res.data.token) {
-                        localStorage.setItem(ACCESS_TOKEN_KEY, JSON.stringify(res.data.token));
+                        localStorage.setItem(STORAGE_KEYS?.ACCESS_TOKEN_KEY, JSON.stringify(res.data.token));
                         setAuth(true);
                         setIsOpen(null);
                     }

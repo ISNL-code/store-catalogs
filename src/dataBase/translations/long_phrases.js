@@ -1,5 +1,3 @@
-import { STORE_CONFIG } from 'store_constants/stores_config';
-
 export const LONG_PHRASES = {
     en: {
         something_went_wrong: 'Something went wrong, please try again',
@@ -10,7 +8,7 @@ export const LONG_PHRASES = {
         call_back_messageB: 'You can contact us in any messenger available or by phone.',
         call_back_messageC: 'Thank you for your interest in our online catalogue!',
         wholesales_ordering_limitation_message:
-            'Welcome to our wholesale catalog, where each order starts with 10 units. For those interested in retail purchases, please visit our retail catalog.',
+            'Please note that a minimum purchase of 10 units is required for each order from our wholesale catalog. Orders for fewer than 10 units cannot be processed through this catalog. For smaller quantities, please refer to our retail catalog.',
         user_with_this_email_not_found: 'User with this email not found',
         manger_will_contact_message:
             'Our manager will be in touch with you shortly to provide detailed information regarding your purchase.',
@@ -19,7 +17,6 @@ export const LONG_PHRASES = {
             'Please enter your email address. You will receive a link to create a new password via email.',
         an_email_with_a_link_has_been_sent_to_your_email: 'An email with a link has been sent to your email',
         min_purchase: 'Minimum Purchase Requirement',
-        min_purchase_text: `Welcome to the Wholesale ${STORE_CONFIG?.STORE_NAME} Catalog. Please note that a minimum order of 10 items is required. For purchases of fewer than 10 items, kindly visit our Retail Catalog. Thank you for choosing ${STORE_CONFIG?.STORE_NAME}!`,
     },
     fr: {
         something_went_wrong: 'Un problème est survenu, veuillez réessayer plus tard !',
@@ -30,13 +27,11 @@ export const LONG_PHRASES = {
         call_back_messageB: 'Vous pouvez nous contacter dans n`importe quel messager disponible ou par téléphone.',
         call_back_messageC: 'Merci de l`intérêt que vous portez à notre catalogue en ligne!',
         min_purchase: 'Achat Minimum Requis',
-        min_purchase_text: `Bienvenue sur le Catalogue ${STORE_CONFIG?.STORE_NAME} de Gros. Veuillez noter qu'une commande minimum de 10 articles est requise. Pour des achats de moins de 10 articles, veuillez visiter notre Catalogue de Détail. Merci d'avoir choisi ${STORE_CONFIG?.STORE_NAME} !`,
         please_enter_your_email_address_you_will_receive_a_link_to_create_a_new_password_via_email:
             'Veuillez entrer votre adresse e-mail. Vous recevrez un lien pour créer un nouveau mot de passe par e-mail.',
         user_with_this_email_not_found: 'Utilisateur avec cet email introuvable',
         an_email_with_a_link_has_been_sent_to_your_email: 'Un email avec un lien a été envoyé à votre email',
-        wholesales_ordering_limitation_message:
-            'Bienvenue dans notre catalogue de gros, où chaque commande commence par 10 unités. Pour ceux intéressés par des achats au détail, veuillez visiter notre catalogue de détail.',
+        wholesales_ordering_limitation_message: `Veuillez noter qu'un achat minimum de 10 unités est requis pour chaque commande dans notre catalogue de gros. Les commandes de moins de 10 unités ne peuvent pas être traitées via ce catalogue. Pour des quantités plus petites, veuillez consulter notre catalogue de détail.`,
         manger_will_contact_message:
             'Notre gestionnaire vous contactera sous peu pour vous fournir des informations détaillées concernant votre achat.',
     },
@@ -49,14 +44,13 @@ export const LONG_PHRASES = {
         call_back_messageB: 'Puedes contactarnos en cualquier messenger disponible o por teléfono.',
         call_back_messageC: 'Gracias por su interés en nuestro catálogo en línea!',
         min_purchase: 'Compra Mínima Requerida',
-        min_purchase_text: `Bienvenido al Catálogo ${STORE_CONFIG?.STORE_NAME} al por Mayor. Tenga en cuenta que se requiere un pedido mínimo de 10 artículos. Para compras de menos de 10 artículos, visite nuestro Catálogo Minorista. ¡Gracias por elegir ${STORE_CONFIG?.STORE_NAME}!`,
         please_enter_your_email_address_you_will_receive_a_link_to_create_a_new_password_via_email:
             'Por favor, introduzca su dirección de correo electrónico. Recibirás un enlace para crear una nueva contraseña por correo electrónico.',
         user_with_this_email_not_found: 'Usuario con este correo electrónico no encontrado',
         an_email_with_a_link_has_been_sent_to_your_email:
             'Se ha enviado un correo electrónico con un enlace a su correo electrónico',
         wholesales_ordering_limitation_message:
-            'Bienvenido a nuestro catálogo mayorista, donde cada pedido comienza con 10 unidades. Para aquellos interesados en compras al por menor, por favor visite nuestro catálogo minorista.',
+            'Tenga en cuenta que se requiere una compra mínima de 10 unidades por cada pedido en nuestro catálogo mayorista. No se pueden procesar pedidos de menos de 10 unidades a través de este catálogo. Para cantidades menores, por favor consulte nuestro catálogo minorista.',
         manger_will_contact_message:
             'Nuestro gerente se pondrá en contacto con usted en breve para proporcionarle información detallada sobre su compra.',
     },
@@ -69,13 +63,12 @@ export const LONG_PHRASES = {
         call_back_messageB: 'Ви можете зв’язатися з нами в будь-якому доступному месенджері або по телефону.',
         call_back_messageC: 'Дякуємо за інтерес до нашого онлайн-каталогу!',
         min_purchase: 'Мінімальна Вимога до Закупівлі',
-        min_purchase_text: `Ласкаво просимо до Оптового каталогу ${STORE_CONFIG?.STORE_NAME}. Зверніть увагу, що для замовлення потрібна мінімальна кількість 10 товарів. Для покупок менше 10 товарів, будь ласка, відвідайте наш Роздрібний каталог. Дякуємо, що вибрали ${STORE_CONFIG?.STORE_NAME}!`,
         please_enter_your_email_address_you_will_receive_a_link_to_create_a_new_password_via_email:
             'Будь ласка, введіть адресу електронної пошти. Ви отримаєте електронною поштою посилання для створення нового пароля.',
         an_email_with_a_link_has_been_sent_to_your_email: 'На Вашу електронну пошту надіслано листа з посиланням',
         user_with_this_email_not_found: 'Користувача з такою електронною поштою не знайдено',
         wholesales_ordering_limitation_message:
-            'Ласкаво просимо до нашого оптового каталогу, де кожне замовлення починається з 10 одиниць. Для тих, хто зацікавлений у роздрібних покупках, будь ласка, відвідайте наш роздрібний каталог.',
+            'Зверніть увагу, що мінімальний обсяг замовлення у нашому оптовому каталозі становить 10 одиниць. Замовлення на меншу кількість одиниць не можуть бути оброблені через цей каталог. Для придбання меншої кількості, будь ласка, зверніться до нашого роздрібного каталогу.',
         manger_will_contact_message: `Наш менеджер зв'яжеться з вами найближчим часом, щоб надати детальну інформацію щодо вашої покупки.`,
     },
     pl: {
@@ -87,13 +80,12 @@ export const LONG_PHRASES = {
         call_back_messageB: 'Można się z nami skontaktować w dowolnym komunikatorze dostępnym lub telefonicznie.',
         call_back_messageC: 'Dziękujemy za zainteresowanie naszym katalogiem online!',
         min_purchase: 'Minimalna Wymagana Kwota Zakupu',
-        min_purchase_text: `Witaj w Hurtowym Katalogu ${STORE_CONFIG?.STORE_NAME}. Należy pamiętać, że minimalne zamówienie wynosi 10 sztuk. Aby dokonać zakupu mniejszej ilości niż 10 sztuk, prosimy odwiedzić nasz Katalog Detaliczny. Dziękujemy za wybór ${STORE_CONFIG?.STORE_NAME}!`,
         please_enter_your_email_address_you_will_receive_a_link_to_create_a_new_password_via_email:
             'Podaj swój adres e-mail. Otrzymasz wiadomość e-mail z linkiem do utworzenia nowego hasła.',
         user_with_this_email_not_found: 'Nie znaleziono użytkownika z tym adresem e-mail',
         an_email_with_a_link_has_been_sent_to_your_email: 'E-mail z linkiem został wysłany na Twój adres e-mail',
         wholesales_ordering_limitation_message:
-            'Witamy w naszym katalogu hurtowym, gdzie każde zamówienie zaczyna się od 10 jednostek. Osoby zainteresowane zakupami detalicznymi prosimy o odwiedzenie naszego katalogu detalicznego.',
+            'Prosimy zwrócić uwagę, że minimalne zamówienie w naszym katalogu hurtowym wynosi 10 sztuk. Zamówienia na mniejszą liczbę sztuk nie mogą być realizowane przez ten katalog. Dla mniejszych ilości prosimy odwiedzić nasz katalog detaliczny.',
         manger_will_contact_message:
             'Nasz menedżer skontaktuje się z Państwem wkrótce, aby udzielić szczegółowych informacji dotyczących Państwa zakupu.',
     },
@@ -106,13 +98,12 @@ export const LONG_PHRASES = {
         call_back_messageB: 'Můžete nás kontaktovat v jakémkoli uvedeném messengeru nebo telefonicky.',
         call_back_messageC: 'Děkujeme za váš zájem o náš internetový katalog!',
         min_purchase: 'Minimální Požadovaná Výše Nákupu',
-        min_purchase_text: `Vítejte ve Velkoobchodním Katalogu ${STORE_CONFIG?.STORE_NAME}. Upozorňujeme, že minimální objednávka je 10 položek. Pro nákupy menší než 10 položek navštivte prosím náš Maloobchodní Katalog. Děkujeme, že jste si vybrali ${STORE_CONFIG?.STORE_NAME}!`,
         please_enter_your_email_address_you_will_receive_a_link_to_create_a_new_password_via_email:
             'Prosím zadejte svou e-mailovou adresu. E-mailem obdržíte odkaz pro vytvoření nového hesla.',
         user_with_this_email_not_found: 'Uživatel s tímto e-mailem nebyl nalezen',
         an_email_with_a_link_has_been_sent_to_your_email: 'Na váš e-mail byl odeslán e-mail s odkazem',
         wholesales_ordering_limitation_message:
-            'Vítejte v našem velkoobchodním katalogu, kde každá objednávka začíná 10 kusy. Pro ty, kteří mají zájem o maloobchodní nákupy, navštivte prosím náš maloobchodní katalog.',
+            'Upozorňujeme, že minimální objednávka v našem velkoobchodním katalogu je 10 kusů. Objednávky na menší počet kusů nemohou být zpracovány prostřednictvím tohoto katalogu. Pro menší množství navštivte prosím náš maloobchodní katalog.',
         manger_will_contact_message:
             'Náš manažer se s vámi brzy spojí, aby vám poskytl podrobné informace o vašem nákupu.',
     },
@@ -126,12 +117,11 @@ export const LONG_PHRASES = {
         call_back_messageC: 'Спасибо за ваш интерес к нашему интернет-каталогу!',
 
         min_purchase: 'Минимальное Требование к Покупке',
-        min_purchase_text: `Добро пожаловать в Оптовый каталог ${STORE_CONFIG?.STORE_NAME}. Обратите внимание, что для заказа требуется минимальное количество 10 товаров. Для покупок менее 10 товаров, пожалуйста, посетите наш Розничный каталог. Спасибо, что выбрали ${STORE_CONFIG?.STORE_NAME}!`,
         please_enter_your_email_address_you_will_receive_a_link_to_create_a_new_password_via_email:
             'Пожалуйста, введите Ваш адрес электронной почты. Вы получите ссылку для создания нового пароля по электронной почте.',
         user_with_this_email_not_found: 'Пользователь с этим адресом электронной почты не найден',
         wholesales_ordering_limitation_message:
-            'Добро пожаловать в наш оптовый каталог, где каждый заказ начинается с 10 единиц. Для тех, кто заинтересован в розничной покупке, посетите наш розничный каталог.',
+            'Обратите внимание, что минимальный объем заказа в нашем оптовом каталоге составляет 10 единиц. Заказы на меньшее количество единиц не могут быть обработаны через этот каталог. Для покупки меньшего количества, пожалуйста, обратитесь к нашему розничному каталогу.',
         manger_will_contact_message:
             'Наш менеджер свяжется с вами в ближайшее время, чтобы предоставить подробную информацию о вашей покупке.',
         an_email_with_a_link_has_been_sent_to_your_email: 'На ваш адрес электронной почты отправлено письмо со ссылкой',
@@ -145,13 +135,12 @@ export const LONG_PHRASES = {
         call_back_messageB: 'Сіз бізбен қол жетімді кез келген мессенджер арқылы немесе телефонмен хабарласа аласыз.',
         call_back_messageC: 'Біздің онлайн каталогымызға қызығушылық танытқаныңыз үшін рахмет!',
         min_purchase: 'Ең аз сатып алу талабы',
-        min_purchase_text: `Wholesale ${STORE_CONFIG?.STORE_NAME} каталогына қош келдіңіз. Кемінде 10 бөлшек тапсырыс қажет. 10 бөлшектен аз сатып алу үшін біздің Retail каталогымызды қараңыз. ${STORE_CONFIG?.STORE_NAME} таңдағаныңыз үшін рахмет!`,
         please_enter_your_email_address_you_will_receive_a_link_to_create_a_new_password_via_email:
             'Электрондық пошта мекенжайыңызды енгізіңіз. Жаңа құпия сөз жасау үшін сізге сілтеме жіберіледі.',
         user_with_this_email_not_found: 'Бұл электрондық поштамен пайдаланушы табылған жоқ',
         an_email_with_a_link_has_been_sent_to_your_email: 'Сіздің электрондық поштаңызға сілтеме бар хат жіберілді',
         wholesales_ordering_limitation_message:
-            'Біздің көтерме сауда каталогымызға қош келдіңіздер, мұнда әрбір тапсырыс кемінде 10 бірліктен басталады. Көтерме сатып алуға қызығушылық танытқандар үшін, өтінеміз, біздің көтерме сауда каталогымызды қараңыздар.',
+            'Назар аударыңыз, біздің бөлшек сауда каталогымыздан тапсырыс беру үшін ең аз дегенде 10 бірлік сатып алу қажет. 10 бірліктен аз тапсырыстар осы каталог арқылы өңделмейді. Аз мөлшерде сатып алу үшін біздің көтерме сауда каталогымызға өтіңіз.',
         manger_will_contact_message:
             'Біздің менеджер жақын арада сізбен байланыса алады, сатып алуға қатысты толық ақпаратты ұсыну үшін.',
     },

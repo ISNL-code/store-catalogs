@@ -1,15 +1,16 @@
 import axios from 'axios';
+import { STORAGE_KEYS } from 'constants/local_storage_keys';
 import { ERROR_PAGE } from 'constants/routes';
 import { STORE_CONFIG } from 'store_constants/stores_config';
 
 const AuthInterceptor = () => {
-    const { ACCESS_TOKEN_KEY, BASE_URL } = STORE_CONFIG;
+    const { BASE_URL } = STORE_CONFIG;
 
     axios.defaults.baseURL = BASE_URL;
 
     axios.interceptors.request.use(
         async request => {
-            const token = await localStorage.getItem(ACCESS_TOKEN_KEY);
+            const token = await localStorage.getItem(STORAGE_KEYS?.ACCESS_TOKEN_KEY);
             if (token) request.headers.Authorization = `Bearer ${JSON.parse(token)}`;
             return request;
         },
@@ -25,7 +26,7 @@ const AuthInterceptor = () => {
 
             if (error.response.status === 401) window.location.href = ERROR_PAGE?.page_401();
             if (error.response.status === 401 && isApiUrl) {
-                window.localStorage.removeItem(ACCESS_TOKEN_KEY);
+                window.localStorage.removeItem(STORAGE_KEYS?.ACCESS_TOKEN_KEY);
             }
             if (error.response.status === 404) window.location.href = ERROR_PAGE?.page_403();
             if (error.response.status === 404) window.location.href = ERROR_PAGE?.page_404();

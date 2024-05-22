@@ -107,7 +107,7 @@ const CatalogListCard = memo<CatalogCardProps>(
                     <Grid
                         xs={12}
                         sx={{
-                            backgroundColor: Colors?.WHITE,
+                            backgroundColor: Colors?.GRAY_100,
                             height: sliderHeight || 1,
                         }}
                     >
@@ -233,16 +233,7 @@ const CatalogListCard = memo<CatalogCardProps>(
                                 backgroundColor: Colors?.GRAY_100,
                             }}
                         >
-                            <CardDescriptionComponent title={name} />
-
-                            <Box
-                                sx={{
-                                    flexGrow: 1,
-                                    display: 'flex',
-                                    justifyContent: 'space-between',
-                                    alignItems: 'center',
-                                }}
-                            >
+                            <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                                 {PLAN_OPTIONS?.prices && (
                                     <CardPrice
                                         currency={currency}
@@ -250,21 +241,23 @@ const CatalogListCard = memo<CatalogCardProps>(
                                         discountPrice={Number(shownModel?.price)}
                                     />
                                 )}
-
-                                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                                    <Box
-                                        sx={{
-                                            maxWidth: 85,
-                                        }}
-                                    >
-                                        <CardSkuLabel sku={shownModel?.sku as string} />
-                                    </Box>
-                                    <ShareButton
-                                        isShown
-                                        path={SHARE_PATH?.share_product_sku(STORE_CODE, productId, shownModel?.sku)}
-                                        text=""
-                                    />
-                                </Box>
+                                <ShareButton
+                                    isShown
+                                    path={SHARE_PATH?.share_product_sku(STORE_CODE, productId, shownModel?.sku)}
+                                    text=""
+                                />
+                            </Box>
+                            <Box
+                                sx={{
+                                    display: 'flex',
+                                    justifyContent: 'space-between',
+                                    alignItems: 'center',
+                                    width: '100%',
+                                    gap: 0.5,
+                                }}
+                            >
+                                <CardDescriptionComponent title={name} />
+                                <CardSkuLabel sku={shownModel?.sku as string} />
                             </Box>
 
                             <CartButton

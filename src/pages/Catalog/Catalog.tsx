@@ -70,12 +70,14 @@ const Catalog = () => {
         footerMenuHeight,
         string,
         viewMode,
+        infoAlert,
+        setInfoAlert,
     }: CatalogContextInterface = useOutletContext();
     const [showTopBtn, setShowTopBtn] = useState(false);
     const [showMobileStoresButton, setShowMobileStoresButton] = useState(true);
 
     const [loading, setLoading] = useState(true);
-    const [open, setOpen] = useState(true);
+    const [open, setOpen] = useState(infoAlert?.ws_info);
 
     const getGridSpacing = () => {
         let spacing;
@@ -84,12 +86,12 @@ const Catalog = () => {
         switch (viewMode) {
             case ViewModeType.card:
                 padding = sx ? 2 : 4;
-                spacing = 2;
+                spacing = 1;
                 break;
 
             case ViewModeType.grid_m:
-                padding = sx ? 0 : 4;
-                spacing = 0;
+                padding = sx ? 1 : 4;
+                spacing = 0.5;
                 break;
         }
 
@@ -159,6 +161,7 @@ const Catalog = () => {
                                                 color="inherit"
                                                 size="small"
                                                 onClick={() => {
+                                                    setInfoAlert({ ...infoAlert, ws_info: false });
                                                     setOpen(false);
                                                 }}
                                             >

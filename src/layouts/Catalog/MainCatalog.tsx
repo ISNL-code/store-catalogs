@@ -23,7 +23,17 @@ const OutletContainer = ({ context }: { context: CatalogContextInterface }) => {
     return <Outlet context={context} />;
 };
 
-export default function MainCatalog({ lang, setLang, auth, setAuth, userData, viewMode, setViewMode }) {
+export default function MainCatalog({
+    lang,
+    setLang,
+    auth,
+    setAuth,
+    userData,
+    viewMode,
+    setViewMode,
+    infoAlert,
+    setInfoAlert,
+}) {
     const { OPTIONS, STORE_CODE } = STORE_CONFIG;
     const { PLAN_OPTIONS } = OPTIONS;
     const { storeName, storeCode } = useParams();
@@ -130,7 +140,9 @@ export default function MainCatalog({ lang, setLang, auth, setAuth, userData, vi
                         handleOpenDialog,
 
                         //store data
+                        infoAlert,
                         store,
+                        setInfoAlert,
 
                         //user data
                         auth: auth,

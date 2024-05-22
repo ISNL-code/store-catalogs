@@ -71,9 +71,10 @@ const Loader = ({
                         alignItems: 'center',
                         justifyContent: 'center',
                         position: 'relative',
+                        filter: 'grayscale(100%)',
                     }}
                 >
-                    <CircularProgress size={100} thickness={2} sx={{ color: Colors?.LIGHT_BLUE }} />
+                    <CircularProgress size={95} thickness={2} sx={{ color: Colors?.GRAY_500 }} />
                     <Box
                         sx={{
                             position: 'absolute',
@@ -84,7 +85,7 @@ const Loader = ({
                             alignItems: 'center',
                             justifyContent: 'center',
                             borderRadius: '50%',
-                            opacity: 0.6,
+                            opacity: 0.3,
                         }}
                     >
                         <img src={require('assets/img/logo.png')} style={{ height: 80 }} alt="img" />

@@ -9,21 +9,17 @@ export enum ViewModeType {
     card = 'card',
 }
 export interface STORE_CONFIG_Interface {
+    STORAGE_KEY: string; // local storage key
     ACTIVE: boolean; // Show is web active or stopped
     APP_STORE_URL: string | null;
     PLAY_MARKET_URL: string | null;
     REQUIRED_REGISTRATION: boolean; // use for stores with required registration
     STORE_NAME: string; // Real store name
     STORE_CODE: string; // use for get current store data
-    ACCESS_TOKEN_KEY: string; // use for local storage key
     BASE_URL: string; // use for auth interceptor
-    CART_KEY: string; // use for local storage key
-    FAVORITE_KEY: string; // use for local storage key
-    LANGUAGE_KEY: string; // use for local storage key
     APP_LANGUAGE: string; // init app language
     SUPPORTED_COUNTRIES: { code: string; country: string }[] | null; // use for limitation of supported countries
     HTML_LANG: string; // web html lang
-    VIEW_MODE_KEY: string; // use for local storage key
     SIDE_LINKS: { name: string; href: string; description: string }[] | [];
     OPTIONS: {
         PRODUCT_IMAGE_OPTIONS: { width: number; height: number }; // use for identification of product image size

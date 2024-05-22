@@ -37,6 +37,8 @@ export interface CatalogContextInterface {
 
     //store data
     store: StoreInterface;
+    infoAlert: { ws_info: boolean };
+    setInfoAlert;
 
     // user data
     auth: boolean;

@@ -18,16 +18,19 @@ const CardSkuLabel = ({ sku }: Props) => {
                 backgroundColor: '#fff',
                 borderRadius: '16px',
                 justifyContent: 'center',
+                flexGrow: 1,
+                flexShrink: 0,
+                maxWidth: 80,
             }}
         >
-            <StyledTooltip title={`${string?.vendor_code}: ${sku}`} position="top">
+            <StyledTooltip title={`${string?.vendor_code}: ${sku}`} position="left">
                 <Typography
                     sx={{
                         color: 'gray',
                         whiteSpace: 'nowrap',
                         overflow: 'hidden',
                         textOverflow: 'ellipsis',
-                        fontSize: 12,
+                        fontSize: 11,
                         cursor: 'default',
                     }}
                 >

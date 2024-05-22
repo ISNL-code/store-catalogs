@@ -23,7 +23,6 @@ const CardView = ({ SliderComponent, CardDetails, CardDecoration, opacity, ...re
             <Box
                 ref={cardRef}
                 sx={{
-                    boxShadow: Colors?.SHADOW,
                     borderRadius: 4,
                     width: '100%',
                     overflow: 'hidden',
@@ -31,6 +30,9 @@ const CardView = ({ SliderComponent, CardDetails, CardDecoration, opacity, ...re
                     flexDirection: 'column',
                     justifyContent: 'space-between',
                     position: 'relative',
+                    backgroundColor: Colors?.GRAY_300,
+                    border: '1px solid',
+                    borderColor: Colors?.GRAY_300,
                 }}
                 onClick={() => {
                     setScrollPosition(cardRef?.current?.offsetTop);

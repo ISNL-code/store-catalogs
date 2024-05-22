@@ -18,15 +18,25 @@ const CartButton = ({ isShown, action, selected }: CartButtonInterface) => {
                 onClick={() => {
                     action();
                 }}
-                size="small"
-                sx={{ width: '100%', borderRadius: 2 }}
+                size="medium"
+                sx={{
+                    width: '100%',
+                    borderRadius: 3,
+                    whiteSpace: 'nowrap',
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                    textTransform: 'uppercase',
+                    fontSize: 11,
+                    lineHeight: 1,
+                    alignItems: 'center',
+                }}
                 color={selected ? 'success' : 'primary'}
                 variant="contained"
-                startIcon={
+                endIcon={
                     selected ? <ShoppingCartCheckoutIcon fontSize="small" /> : <AddShoppingCartIcon fontSize="small" />
                 }
             >
-                {selected ? string?.added : string?.add_to}
+                {selected ? string?.in_cart : string?.add_to_cart}
             </Button>
         );
     return null;

@@ -1,8 +1,7 @@
 import { StoreType, ViewModeType } from 'store_constants/types';
 
-const prefix = 'abm';
-
 export const ALBERTO_BINI_MAIN = {
+    storage_key: 'ab_ua-ws',
     active: true, // Поле которое запускает магазин true - работает false - остановлен / по тех. причина
     required_registration: false,
     URL: ['https://alberto-bini.netlify.app'],
@@ -11,11 +10,7 @@ export const ALBERTO_BINI_MAIN = {
     web_lang: 'uk', // html lang
     store_name: 'Alberto Bini',
     store_code: 'ALBERTO_BINI',
-    token_key: `${prefix}-tkn`,
-    cart_key: `${prefix}-cart`,
-    favorite_url: `${prefix}-favorites`,
     base_url: 'https://kremen-belts.com/api',
-    lang_key: `${prefix}-lang`,
     app_lang: 'ua',
     supported_countries: [{ code: 'UA', country: 'ukraine' }],
     links: [],

@@ -1,9 +1,8 @@
 import { useNavigate } from 'react-router-dom';
-import { STORE_CONFIG } from 'store_constants/stores_config';
 import ConfirmDialog from 'components/organisms/Modals/ConfirmDialog';
+import { STORAGE_KEYS } from 'constants/local_storage_keys';
 
 export default function Logout({ isOpen, setIsOpen, string, location, setAuth }) {
-    const { ACCESS_TOKEN_KEY } = STORE_CONFIG;
     const navigate = useNavigate();
 
     if (!isOpen) return null;
@@ -28,7 +27,7 @@ export default function Logout({ isOpen, setIsOpen, string, location, setAuth })
                     { type: 'submit' },
                 ]}
                 onSubmit={() => {
-                    localStorage.removeItem(ACCESS_TOKEN_KEY);
+                    localStorage.removeItem(STORAGE_KEYS?.ACCESS_TOKEN_KEY);
                     navigate(location);
                     setAuth(false);
                     setIsOpen(null);

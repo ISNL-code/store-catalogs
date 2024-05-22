@@ -9,6 +9,7 @@ import { TRANSLATED_COUNTRIES } from 'dataBase/COUNTRY_LIST';
 import FormDialog from 'components/organisms/Modals/FormDialog';
 import { DialogWindowType } from 'layouts/hooks/useFormsApp';
 import { ROUTES } from 'constants/routes';
+import { STORAGE_KEYS } from 'constants/local_storage_keys';
 
 const INITIAL_VALUES = {
     password: '',
@@ -21,7 +22,7 @@ const INITIAL_VALUES = {
 };
 
 export default function Register({ isOpen, setIsOpen, string, location, setAuth }) {
-    const { ACCESS_TOKEN_KEY, STORE_CODE, STORE_NAME, LANGUAGE_KEY, SUPPORTED_COUNTRIES } = STORE_CONFIG;
+    const { STORE_CODE, STORE_NAME, SUPPORTED_COUNTRIES } = STORE_CONFIG;
 
     const [email, setEmail] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
@@ -46,11 +47,11 @@ export default function Register({ isOpen, setIsOpen, string, location, setAuth 
                 username: values.email,
                 country: values.country,
                 phone: values.phoneNumber,
-                lang: JSON.parse(localStorage.getItem(LANGUAGE_KEY) || 'en'),
+                lang: JSON.parse(localStorage.getItem(STORAGE_KEYS?.LANGUAGE_KEY) || 'en'),
                 storeCode: STORE_CODE,
             })
                 .then(res => {
-                    localStorage.setItem(ACCESS_TOKEN_KEY, JSON.stringify(res.data.token));
+                    localStorage.setItem(STORAGE_KEYS?.ACCESS_TOKEN_KEY, JSON.stringify(res.data.token));
                     setAuth(true);
                     setIsOpen(null);
                 })

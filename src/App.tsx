@@ -27,14 +27,12 @@ import PAGE_401 from 'pages/TechPages/401';
 import PAGE_403 from 'pages/TechPages/403';
 import PAGE_404 from 'pages/TechPages/404';
 import PAGE_500 from 'pages/TechPages/500';
+import { STORAGE_KEYS } from 'constants/local_storage_keys';
 
 const App = () => {
     const {
-        ACCESS_TOKEN_KEY,
         STORE_CODE,
-        LANGUAGE_KEY,
         APP_LANGUAGE,
-        VIEW_MODE_KEY,
         USER_OPTIONS,
         OPTIONS,
         REQUIRED_REGISTRATION,
@@ -43,7 +41,7 @@ const App = () => {
 
     const { HOME_PAGE_ACTIVE } = OPTIONS;
     const { VIEW_MODE } = USER_OPTIONS;
-    const token = localStorage.getItem(ACCESS_TOKEN_KEY);
+    const token = localStorage.getItem(STORAGE_KEYS?.ACCESS_TOKEN_KEY);
     const mount = useIsMount();
     const [lang, setLang] = useState<string>(APP_LANGUAGE);
     const [viewMode, setViewMode] = useState<ViewModeType | null>(null);
@@ -52,6 +50,7 @@ const App = () => {
         storeCode: STORE_CODE,
     });
     const [currentUserData, setCurrentUserData] = useState<UserDataInterface | any>(null);
+    const [infoAlert, setInfoAlert] = useState<{ ws_info: boolean } | null>(null);
     const [country, setCountry] = useState<any>(null); // eslint-disable-line
     const [city, setCity] = useState<any>(null); // eslint-disable-line
 
@@ -86,7 +85,7 @@ const App = () => {
             updateUserData().then(res => {
                 if (res.status === 'error') {
                     setAuth(false);
-                    localStorage.removeItem(ACCESS_TOKEN_KEY);
+                    localStorage.removeItem(STORAGE_KEYS?.ACCESS_TOKEN_KEY);
                 } else {
                     setAuth(true);
                     setCurrentUserData(res?.data?.data);
@@ -100,29 +99,37 @@ const App = () => {
 
     useEffect(() => {
         if (mount) return;
-        localStorage.setItem(LANGUAGE_KEY, JSON.stringify(lang));
+        localStorage.setItem(STORAGE_KEYS?.LANGUAGE_KEY, JSON.stringify(lang));
     }, [lang, mount]); // eslint-disable-line
 
     useEffect(() => {
         if (mount) return;
-        localStorage.setItem(VIEW_MODE_KEY, JSON.stringify(viewMode));
+        localStorage.setItem(STORAGE_KEYS?.VIEW_MODE_KEY, JSON.stringify(viewMode));
     }, [viewMode, mount]); // eslint-disable-line
 
     useEffect(() => {
-        const getLang = localStorage.getItem(LANGUAGE_KEY);
-        const getViewMode = localStorage.getItem(VIEW_MODE_KEY);
+        if (mount) return;
+        localStorage.setItem(STORAGE_KEYS?.INFO_ALERT_KEY, JSON.stringify(infoAlert));
+    }, [infoAlert, mount]); // eslint-disable-line
 
-        if (!getViewMode || !Object.values(ViewModeType).includes(getViewMode as ViewModeType)) {
+    useEffect(() => {
+        const getLang = localStorage.getItem(STORAGE_KEYS?.LANGUAGE_KEY);
+        const getViewMode: any = localStorage.getItem(STORAGE_KEYS?.VIEW_MODE_KEY);
+        const infoAlert = { ws_info: true };
+        if (!getViewMode || getViewMode !== 'card' || getViewMode === 'grid_m') {
             setViewMode(VIEW_MODE);
-            localStorage.setItem(VIEW_MODE_KEY, JSON.stringify(VIEW_MODE));
+            localStorage.setItem(STORAGE_KEYS?.VIEW_MODE_KEY, JSON.stringify(VIEW_MODE));
         } else {
             const savedViewMode = JSON.parse(getViewMode);
             setViewMode(savedViewMode);
         }
 
+        setInfoAlert(infoAlert);
+        localStorage.setItem(STORAGE_KEYS?.INFO_ALERT_KEY, JSON.stringify(infoAlert));
+
         if (!getLang) {
             setLang(APP_LANGUAGE);
-            localStorage.setItem(LANGUAGE_KEY, JSON.stringify(APP_LANGUAGE));
+            localStorage.setItem(STORAGE_KEYS?.LANGUAGE_KEY, JSON.stringify(APP_LANGUAGE));
         } else {
             const savedLanguage = JSON.parse(getLang);
             setLang(savedLanguage);
@@ -241,6 +248,8 @@ const App = () => {
                                                 updateUserData,
                                                 setCurrentUserData,
                                             }}
+                                            infoAlert={infoAlert}
+                                            setInfoAlert={setInfoAlert}
                                         />
                                     }
                                 >
