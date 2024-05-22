@@ -1,18 +1,16 @@
 import { useEffect, useState } from 'react';
-import { Button, DialogActions, Dialog, Box, IconButton, ClickAwayListener } from '@mui/material';
-import { Color, Colors } from 'colors';
-import CloseIcon from '@mui/icons-material/Close';
+import { Button, DialogActions, Dialog, ClickAwayListener } from '@mui/material';
+import { Colors } from 'colors';
 import DialogContent from '@mui/material/DialogContent';
 
 interface Props {
     string; // Assuming `string` is used for the close button text
     onClose: () => void;
-    fullWidth: boolean;
     closeAvailable: boolean;
     onSubmit: () => void;
 }
 
-const TableSizeDialog = ({ string, onClose, fullWidth, closeAvailable, onSubmit }: Props) => {
+const TableSizeDialog = ({ string, onClose, closeAvailable, onSubmit }: Props) => {
     const [open, setOpen] = useState<boolean>(false);
 
     const handleClose = () => {

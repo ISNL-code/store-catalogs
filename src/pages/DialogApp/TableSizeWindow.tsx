@@ -10,7 +10,6 @@ const TableSizeWindow = ({ isOpen, setIsOpen, string }) => {
                 onClose={() => {
                     setIsOpen(null);
                 }}
-                fullWidth
                 onSubmit={() => {
                     setIsOpen(null);
                 }}
