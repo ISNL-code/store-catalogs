@@ -5,20 +5,16 @@ import { STORAGE_KEYS } from 'constants/local_storage_keys';
 
 interface useAddToFavoritesParamsInterface {
     loadingUser: boolean;
-    storeName?: string;
 }
 
-export const useAddToFavorites = ({
-    loadingUser,
-    storeName,
-}: useAddToFavoritesParamsInterface): useAddToFavoriteDataInterface => {
+export const useAddToFavorites = ({ loadingUser }: useAddToFavoritesParamsInterface): useAddToFavoriteDataInterface => {
     const mount = useIsMount();
     const [favoriteItems, setFavoriteItems] = useState<any[]>([]);
 
     useEffect(() => {
         if (loadingUser) return;
         setFavoriteItems(JSON.parse(localStorage.getItem(STORAGE_KEYS?.FAVORITE_KEY) as string) || []); // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [storeName]);
+    }, []);
 
     useEffect(() => {
         if (loadingUser) return;

@@ -24,7 +24,7 @@ const ConfirmCoupon = ({ createOrder, orderData, finalPrice, setSuccessOrdering,
     const { STORE_NAME, OPTIONS } = STORE_CONFIG;
     const { MIN_ITEMS_TO_BUY } = OPTIONS;
     const { storeCode } = useParams();
-    const { string, store, supportedLanguage, currentUserData, cart, auth, handleOpenDialog }: CatalogContextInterface =
+    const { string, store, lang, currentUserData, cart, auth, handleOpenDialog }: CatalogContextInterface =
         useOutletContext();
     const [firstName, setFirstName] = useState(
         currentUserData?.delivery?.firstName || currentUserData?.billing?.firstName
@@ -45,7 +45,7 @@ const ConfirmCoupon = ({ createOrder, orderData, finalPrice, setSuccessOrdering,
             return;
         } else
             return createOrder({
-                lang: supportedLanguage,
+                lang: lang,
                 storeCode,
                 data: {
                     shoppingCartItems: orderData.productsList.map(item => {

@@ -7,11 +7,12 @@ import { useDevice } from 'hooks/useDevice';
 import { CatalogContextInterface } from 'types';
 import { STORE_CONFIG } from 'store_constants/stores_config';
 import { Color } from 'colors';
+import { DialogWindowType } from 'layouts/hooks/useFormsApp';
 
 const SizesDetails = ({ productDetails, isShown }) => {
     const { OPTIONS } = STORE_CONFIG;
     const { PLAN_OPTIONS } = OPTIONS;
-    const { string }: CatalogContextInterface = useOutletContext();
+    const { string, handleOpenDialog }: CatalogContextInterface = useOutletContext();
     const { sm } = useDevice();
 
     if (isShown)
@@ -56,7 +57,9 @@ const SizesDetails = ({ productDetails, isShown }) => {
                                     }}
                                 >
                                     <IconButton
-                                        onClick={() => {}}
+                                        onClick={() => {
+                                            handleOpenDialog(DialogWindowType?.TABLE_SIZE);
+                                        }}
                                         size="small"
                                         sx={{
                                             border: `1px solid ${Color?.PRIMARY}`,

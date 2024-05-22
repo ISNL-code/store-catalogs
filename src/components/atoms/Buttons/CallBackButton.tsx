@@ -47,7 +47,7 @@ const CallBackButton = ({ animated = false, path }) => {
                     backgroundColor: Colors?.WHITE,
                     animation: animated ? `fadeIn 4s infinite ease` : '',
                     border: '1px solid #ccc',
-                    boxShadow: `0 0 5px 2px ${Color.PRIMARY}`,
+                    boxShadow: `0 0 5px 2px ${Color.SUCCESS}`,
                     '@keyframes fadeIn': {
                         '0%': { transform: 'translate(2px,2px)' },
                         '1%': { transform: 'translate(-2px,2px)' },

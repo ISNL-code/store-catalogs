@@ -8,10 +8,10 @@ import { Colors } from 'colors';
 const CardView = ({ SliderComponent, CardDetails, CardDecoration, opacity, ...rest }) => {
     const cardRef = useRef<HTMLElement>(null);
     const { setScrollPosition }: any = useOutletContext();
-    const { s, sx, mx, l } = useDevice();
+    const { sm, sx, mx, l } = useDevice();
 
     const getGridValue = () => {
-        if (s) return 12;
+        if (sm) return 12;
         if (sx) return 6;
         if (mx) return 4;
         if (l) return 3;
@@ -38,8 +38,10 @@ const CardView = ({ SliderComponent, CardDetails, CardDecoration, opacity, ...re
                     setScrollPosition(cardRef?.current?.offsetTop);
                 }}
             >
-                {CardDecoration()}
-                {SliderComponent()}
+                <Box sx={{ position: 'relative' }}>
+                    {CardDecoration()}
+                    {SliderComponent()}
+                </Box>
                 {CardDetails()}
             </Box>
         </Grid>

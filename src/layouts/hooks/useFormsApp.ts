@@ -16,6 +16,7 @@ export enum DialogWindowType {
     CLEAR_CART = 'clear_cart',
     CLEAR_FAVORITES = 'clear_favorites',
     WARNING_ORDERING_LIMIT = 'warning_order_limit',
+    TABLE_SIZE = 'table size',
 }
 
 interface Res {

@@ -76,7 +76,7 @@ const ProfileButton = ({ string, headerHeight, menuHeight = '', user, childPath,
                             </IconButton>
                             {sx && (
                                 <Typography sx={{ fontSize: 8, color: active ? Color?.PRIMARY : 'white' }}>
-                                    {string?.my_profile.toUpperCase()}
+                                    {string?.my_profile?.toUpperCase()}
                                 </Typography>
                             )}
                         </Box>

@@ -4,44 +4,69 @@ import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import { CatalogContextInterface } from 'types';
 import { STORE_CONFIG } from 'store_constants/stores_config';
 import { STORE_ROUTE } from 'constants/routes';
+import { useDevice } from 'hooks/useDevice';
+import { Colors } from 'colors';
 
 const SuccessOrderingPage = ({ isShown = true, setSuccessOrdering }) => {
+    const { sx } = useDevice();
     const { STORE_CODE } = STORE_CONFIG;
     const navigate = useNavigate();
-    const { instrumentalBarHeight, headerHeight, footerMenuHeight, string, cart }: CatalogContextInterface =
-        useOutletContext();
-
+    const { headerHeight, footerMenuHeight, string, cart }: CatalogContextInterface = useOutletContext();
+    console.log(headerHeight);
     if (isShown)
         return (
             <Box
-                p={2}
                 sx={{
-                    width: '100%',
+                    height: `calc(100vh - ${footerMenuHeight} - ${headerHeight}px)`,
+                    width: '100vw',
                     display: 'flex',
-                    height: `calc(100vh - ${headerHeight}px - ${instrumentalBarHeight}px - ${footerMenuHeight}px - 200px)`,
                     alignItems: 'center',
                     justifyContent: 'center',
-                    flexDirection: 'column',
-                    overflow: 'hidden',
-                    gap: 1,
+                    backgroundImage: sx
+                        ? `url(${require('assets/img/success_order_mob.webp')})`
+                        : `url(${require('assets/img/success_order.webp')})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    left: 0,
+                    top: 0,
                 }}
             >
-                <CheckCircleOutlineIcon sx={{ fontSize: 100 }} color="success" />
-                <Typography variant="h3">{string?.order_sent_successfully}</Typography>
-                <Typography variant="h4" sx={{ textAlign: 'center' }}>
-                    {string?.manger_will_contact_message}
-                </Typography>
-                <Button
-                    onClick={() => {
-                        if (cart?.cartItems?.length) {
-                            setSuccessOrdering(false);
-                        } else {
-                            navigate(STORE_ROUTE?.root(STORE_CODE));
-                        }
+                <Box
+                    p={2}
+                    sx={{
+                        position: 'relative',
+                        width: 400,
+                        maxWidth: '80%',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        flexDirection: 'column',
+                        backgroundColor: Colors?.WHITE,
+                        borderRadius: 4,
+                        boxShadow: Colors?.SHADOW,
+                        opacity: 0.97,
                     }}
                 >
-                    {string?.back_to_shopping}
-                </Button>
+                    <CheckCircleOutlineIcon sx={{ fontSize: 100 }} color="success" />
+                    <Typography variant="h3" sx={{ mt: 1 }}>
+                        {string?.order_sent_successfully}
+                    </Typography>
+                    <Typography variant="h4" sx={{ textAlign: 'center', mt: 1 }}>
+                        {string?.manger_will_contact_message}
+                    </Typography>
+                    <Button
+                        sx={{ mt: 2 }}
+                        onClick={() => {
+                            if (cart?.cartItems?.length) {
+                                setSuccessOrdering(false);
+                            } else {
+                                navigate(STORE_ROUTE?.root(STORE_CODE));
+                            }
+                        }}
+                    >
+                        {string?.back_to_shopping}
+                    </Button>
+                </Box>
             </Box>
         );
     return null;

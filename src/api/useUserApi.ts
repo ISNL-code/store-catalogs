@@ -55,7 +55,7 @@ export const useUserApi = () => {
                 get({
                     url: `v1/auth/customer/profile?store=${storeCode}`,
                 }),
-            { enabled: false }
+            { enabled: false, retry: false }
         );
     };
 
@@ -123,7 +123,8 @@ export const useUserApi = () => {
             () =>
                 get({
                     url: `v1/auth/orders?store=${storeCode}&count=1000`,
-                })
+                }),
+            { retry: false }
         );
     };
 

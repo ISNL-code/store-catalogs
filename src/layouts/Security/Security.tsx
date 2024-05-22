@@ -2,11 +2,8 @@ import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 import { useGetLanguage } from 'hooks/useGetLanguage';
 import { useDevice } from 'hooks/useDevice';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import HomeHeader from './SecurityHeader';
-import { StoreInterface } from 'types';
-import { useStoresApi } from 'api/useStoresApi';
-import { STORES_DATA } from 'dataBase/STORES';
 import { STORE_CONFIG } from 'store_constants/stores_config';
 import DialogApp from 'layouts/DialogApp';
 import { LOGIN_ROUTE, ROUTES } from 'constants/routes';
@@ -14,7 +11,7 @@ import { DialogWindowType, useFormsApp } from 'layouts/hooks/useFormsApp';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import Loader from 'components/atoms/Loader/Loader';
 
-export default function SecurityLayout({ lang, setLang, auth, setAuth }) {
+export default function SecurityLayout({ lang, setLang, store, setAuth }) {
     const location = useLocation();
     const navigate = useNavigate();
     const { formType, storeCode } = useParams();
@@ -23,10 +20,7 @@ export default function SecurityLayout({ lang, setLang, auth, setAuth }) {
     const HEADER_HEIGHT = 50;
     const HEADER_PADDINGS = sx ? 2 : 4;
     const { currentLanguage } = useGetLanguage({ lang, storeName: STORE_NAME });
-    const [store, setStore] = useState<StoreInterface | null>(null);
-    const { data: storeDataRes, isFetching: loadStore } = useStoresApi().useGetStoreByCode({
-        code: STORE_CODE,
-    });
+
     const { activeDialogWindow, handleOpenDialog } = useFormsApp();
 
     useEffect(() => {
@@ -62,12 +56,6 @@ export default function SecurityLayout({ lang, setLang, auth, setAuth }) {
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [formType]);
-
-    useEffect(() => {
-        if (!storeDataRes || loadStore) return;
-        setStore({ ...STORES_DATA.find(el => el.code === STORE_CODE), ...storeDataRes.data });
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [storeDataRes]);
 
     if (!store) return <Loader type="circular" />;
 

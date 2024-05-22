@@ -244,7 +244,7 @@ const CatalogListCard = memo<CatalogCardProps>(
                                 <ShareButton
                                     isShown
                                     path={SHARE_PATH?.share_product_sku(STORE_CODE, productId, shownModel?.sku)}
-                                    text=""
+                                    direction="up"
                                 />
                             </Box>
                             <Box
@@ -300,13 +300,23 @@ const CatalogListCard = memo<CatalogCardProps>(
                                         key={el.id}
                                         value={el.name || el.code}
                                         code={el.code}
-                                        size={20}
-                                        selected={true}
                                         disabled={true}
+                                        adaptive
                                     />
                                 ))}
                             </Box>
                         )}
+                    </Box>
+                    <Box
+                        sx={{
+                            position: 'absolute',
+                            bottom: 8,
+                            left: 8,
+                            zIndex: 1,
+                            display: 'flex',
+                            gap: 0.5,
+                        }}
+                    >
                         <Box>
                             {STORE_TYPE === StoreType.sales && (
                                 <SaleTag

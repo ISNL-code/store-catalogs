@@ -15,6 +15,7 @@ export interface HomeContextInterface {
     loadingUserData: boolean;
     updateUserData: any;
     setCurrentUserData: any;
+    userDataError: { response: { status } };
 
     //css data
     instrumentalBarHeight: number;
@@ -27,7 +28,6 @@ export interface HomeContextInterface {
 export interface CatalogContextInterface {
     //main data | user options
     lang: string;
-    supportedLanguage: string | null;
     string: Record<string, any>;
     scrollPosition: number;
     setScrollPosition;
@@ -46,6 +46,7 @@ export interface CatalogContextInterface {
     loadingUserData: boolean;
     updateUserData: any;
     setCurrentUserData: any;
+    userDataError: { response: { status } };
 
     //products data
     productsList: LoadedProductListInterface[] | null | [];

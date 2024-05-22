@@ -13,6 +13,7 @@ import SuccessPasswordChange from 'pages/DialogApp/SuccessPasswordChange';
 import ClearCartConfirm from 'pages/DialogApp/ClearCartConfirm';
 import ClearFavoritesConfirm from 'pages/DialogApp/ClearFavoritesConfirm';
 import WarningOrderLimit from 'pages/DialogApp/WarningOrderLimit';
+import TableSizeWindow from 'pages/DialogApp/TableSizeWindow';
 
 interface Props {
     location;
@@ -115,6 +116,14 @@ const DialogApp = ({ location, string, activeDialogWindow, handleOpenDialog, set
             />
             <SomethingWentWrong
                 isOpen={activeDialogWindow === DialogWindowType?.WENT_WRONG}
+                setIsOpen={handleOpenDialog}
+                string={string}
+            />
+
+            {/* <> * content modals * </> */}
+
+            <TableSizeWindow
+                isOpen={activeDialogWindow === DialogWindowType?.TABLE_SIZE}
                 setIsOpen={handleOpenDialog}
                 string={string}
             />

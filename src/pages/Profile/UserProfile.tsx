@@ -8,6 +8,7 @@ import { CatalogContextInterface } from 'types';
 import { useUserApi } from 'api/useUserApi';
 import Loader from 'components/atoms/Loader/Loader';
 import { useEffect, useState } from 'react';
+import useHandleError from 'hooks/useHandleError';
 
 const UserProfile = () => {
     const { sx } = useDevice();
@@ -18,8 +19,10 @@ const UserProfile = () => {
         setCurrentUserData,
         appXPadding,
         footerMenuHeight,
+        userDataError,
     }: CatalogContextInterface = useOutletContext();
     const { storeCode } = useParams();
+    const handleError = useHandleError();
     const { mutateAsync: updateProfile, isLoading } = useUserApi().useCustomerProfileUpdate({ storeCode });
     const [firstName, setFirstName] = useState(currentUserData?.delivery?.firstName);
     const [lastName, setLastName] = useState(currentUserData?.delivery?.lastName);
@@ -35,13 +38,19 @@ const UserProfile = () => {
     }, []);
 
     useEffect(() => {
-        if (!currentUserData) return;
+        if (!currentUserData) {
+            if (userDataError) {
+                return handleError(userDataError);
+            } else {
+                updateUserData();
+            }
+        }
         setFirstName(currentUserData?.delivery?.firstName);
         setLastName(currentUserData?.delivery?.lastName);
         setPhone(currentUserData?.delivery?.phone);
         setCity(currentUserData?.delivery?.city);
         setAddress(currentUserData?.delivery?.address);
-    }, [currentUserData]);
+    }, [currentUserData, userDataError]); // eslint-disable-line
 
     return (
         <Box p={sx ? 2 : appXPadding} pb={footerMenuHeight}>

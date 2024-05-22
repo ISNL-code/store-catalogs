@@ -1,104 +1,96 @@
+import { cloneElement, useState } from 'react';
+import { Box, SpeedDial, SpeedDialIcon, SpeedDialAction } from '@mui/material';
 import IosShareIcon from '@mui/icons-material/IosShare';
 import {
     TelegramShareButton,
-    ViberShareButton,
+    TelegramIcon,
     WhatsappShareButton,
-    FacebookShareButton,
+    WhatsappIcon,
+    EmailShareButton,
     EmailIcon,
 } from 'react-share';
-import { TelegramIcon, ViberIcon, WhatsappIcon, FacebookIcon, EmailShareButton } from 'react-share';
-import { Box, IconButton } from '@mui/material';
-import { useState } from 'react';
+import { Colors } from 'colors';
 
 interface ShareButtonInterface {
-    orientation?: 'up' | 'down';
     path: string;
-    text: string;
-    size?;
-    color?;
     isShown: boolean;
+    direction: 'up' | 'down' | 'left' | 'right';
 }
 
-const ShareButton = ({ orientation = 'up', path, text, size, color, isShown }: ShareButtonInterface) => {
+const ShareButton = ({ path, isShown, direction }: ShareButtonInterface) => {
     const [open, setOpen] = useState(false);
 
-    const handleClose = () => setOpen(false);
-    if (isShown)
-        return (
-            <Box>
-                <Box
+    const actions = [
+        { icon: <TelegramIcon size={35} round />, name: 'Telegram', component: TelegramShareButton },
+        { icon: <WhatsappIcon size={35} round />, name: 'WhatsApp', component: WhatsappShareButton },
+        { icon: <EmailIcon size={35} round />, name: 'Email', component: EmailShareButton },
+    ];
+
+    if (!isShown) return null;
+
+    return (
+        <Box>
+            <Box
+                sx={{
+                    position: 'relative',
+                    width: 30,
+                    height: 30,
+                }}
+            >
+                <SpeedDial
+                    direction={direction}
+                    ariaLabel="Share options"
+                    icon={
+                        <SpeedDialIcon
+                            icon={<IosShareIcon sx={{ color: Colors?.WHITE, fontSize: 16, mt: 0.25 }} />}
+                            openIcon={
+                                <IosShareIcon
+                                    sx={{ transform: 'scaleY(-1)', color: Colors?.WHITE, fontSize: 16, mt: 0.25 }}
+                                />
+                            }
+                        />
+                    }
+                    onClose={() => setOpen(false)}
+                    onOpen={() => setOpen(true)}
+                    open={open}
+                    FabProps={{
+                        color: 'secondary',
+                        sx: {
+                            width: 30,
+                            height: 30,
+                            minWidth: 30,
+                            minHeight: 30,
+                            boxShadow: 'none',
+                        },
+                    }}
                     sx={{
-                        display: 'flex',
-                        flexDirection: orientation === 'down' ? 'column' : 'column-reverse',
-                        position: 'relative',
+                        ...(direction === 'up' ? { bottom: 0 } : { top: 0 }),
+                        left: '-50%',
+                        position: 'absolute',
+                        zIndex: 100,
                     }}
-                    onMouseLeave={() => {
-                        handleClose();
-                    }}
-                    onClick={() => setOpen(!open)}
                 >
-                    <Box>
-                        <IconButton
-                            size="small"
+                    {actions.map((action, index) => (
+                        <SpeedDialAction
+                            key={action.name}
+                            icon={cloneElement(action.icon, { size: 38 })} // Reduce icon size
+                            tooltipTitle={action.name}
+                            onClick={() =>
+                                window.open(`https://api.whatsapp.com/send? ${window.location.href}${path}`, '_blank')
+                            }
                             sx={{
-                                border: color ? '1px solid rgba(0, 0, 0, 0.120)' : '1px solid #00000054',
-                                backgroundColor: '#fff',
-                                width: size || '28px',
-                                height: size || '28px',
+                                padding: 0, // Adjust padding for spacing
+                                fontSize: '12px', // Adjust font size for text
+                                mb: -0.5,
+                                width: 42,
+                                height: 42, // Set custom height to 25px
                             }}
-                        >
-                            <IosShareIcon sx={{ color: '#rgba(0, 0, 0, 0.54)', fontSize: 18 }} />
-                        </IconButton>
-                    </Box>
-
-                    <Box
-                        onMouseLeave={() => {
-                            handleClose();
-                        }}
-                        pt={1}
-                        sx={{
-                            display: 'flex',
-                            flexDirection: 'column',
-                            gap: 0.3,
-                            height: open ? 260 : 0,
-                            width: open ? 60 : 0,
-                            transition: 'height 250ms cubic-bezier(0.4, 0, 0.2, 1)',
-                            overflow: 'hidden',
-                            position: 'absolute',
-                            top: orientation === 'down' ? 30 : -225,
-                            left: -17,
-                            zIndex: 1000,
-                            cursor: 'default',
-                        }}
-                    >
-                        {open && (
-                            <>
-                                <TelegramShareButton url={path} title={text}>
-                                    <TelegramIcon size={36} round={true} />
-                                </TelegramShareButton>
-
-                                <ViberShareButton url={path} title={text}>
-                                    <ViberIcon size={36} round={true} />
-                                </ViberShareButton>
-
-                                <WhatsappShareButton url={path} title={text}>
-                                    <WhatsappIcon size={36} round={true} />
-                                </WhatsappShareButton>
-
-                                <FacebookShareButton url={path} title={text}>
-                                    <FacebookIcon size={36} round={true} />
-                                </FacebookShareButton>
-
-                                <EmailShareButton url={path} title={text}>
-                                    <EmailIcon size={36} round={true} />
-                                </EmailShareButton>
-                            </>
-                        )}
-                    </Box>
-                </Box>
+                        />
+                    ))}
+                </SpeedDial>
             </Box>
-        );
-    return null;
+        </Box>
+    );
 };
 
 export default ShareButton;

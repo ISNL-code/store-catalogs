@@ -56,7 +56,7 @@ const Cart = () => {
 
     const {
         cart,
-        supportedLanguage,
+        lang,
         string,
         footerMenuHeight,
         appXPadding,
@@ -85,7 +85,7 @@ const Cart = () => {
 
     const { isFetching: loadProducts, refetch: updateCartProductsRes } = useProductsApi().useGetProductByIDForCart({
         id: productIds,
-        lang: supportedLanguage,
+        lang: lang,
         storeCode,
     });
 
@@ -141,7 +141,7 @@ const Cart = () => {
             });
             setCartProducts(data);
         }); // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [productIds, supportedLanguage]);
+    }, [productIds, lang]);
 
     useEffect(() => {
         if (!orderData.productsList.length) return setFinalPrice(0);

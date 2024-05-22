@@ -24,14 +24,7 @@ const TitleDetails = ({ productDetails, selectedVariant }) => {
 
                 <Box sx={{ display: 'flex', gap: 0.5 }}>
                     {productDetails?.promo.map(el => (
-                        <PromoTags
-                            key={el.id}
-                            value={el.name}
-                            size={15}
-                            selected={true}
-                            disabled={true}
-                            code={el?.code}
-                        />
+                        <PromoTags key={el.id} value={el.name} disabled={true} code={el?.code} />
                     ))}
                     <Box>
                         {STORE_TYPE === StoreType.sales && (

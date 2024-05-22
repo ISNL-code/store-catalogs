@@ -39,13 +39,8 @@ const ProductDetails = () => {
     const { OPTIONS, STORE_CODE } = STORE_CONFIG;
     const { PLAN_OPTIONS } = OPTIONS;
     const mount = useIsMount();
-    const {
-        headerHeight,
-        instrumentalBarHeight,
-        footerMenuHeight,
-        supportedLanguage,
-        appXPadding,
-    }: CatalogContextInterface = useOutletContext();
+    const { headerHeight, instrumentalBarHeight, footerMenuHeight, lang, appXPadding }: CatalogContextInterface =
+        useOutletContext();
     const { modelSku, storeCode, productId } = useParams();
     const [productDetails, setProductDetails] = useState<LoadedProductInterface | null>(null);
     const [selectedVariant, setSelectedVariant] = useState<SelectedVarianInterface | undefined | null>(null);
@@ -62,7 +57,7 @@ const ProductDetails = () => {
         data: productRes,
         isFetching: loadProduct,
         refetch: updateModel,
-    } = useProductsApi().useGetProductByID({ id: productId, lang: supportedLanguage, storeCode });
+    } = useProductsApi().useGetProductByID({ id: productId, lang: lang, storeCode });
 
     useEffect(() => {
         if (!productRes || loadProduct) return;
@@ -99,7 +94,7 @@ const ProductDetails = () => {
         if (mount) return;
         updateModel();
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [supportedLanguage, productId]);
+    }, [lang, productId]);
 
     useEffect(() => {
         if (loadProduct) return;
@@ -137,14 +132,7 @@ const ProductDetails = () => {
                 EndSlot={() => (
                     <Box sx={{ display: 'flex', gap: 0.75 }}>
                         <SkuSearch />
-                        <ShareButton
-                            path={window.location.href}
-                            text=""
-                            color="#ccc"
-                            size={30}
-                            orientation="down"
-                            isShown={PLAN_OPTIONS.productShare}
-                        />
+                        <ShareButton path={window.location.href} isShown={PLAN_OPTIONS.productShare} direction="down" />
                     </Box>
                 )}
             />

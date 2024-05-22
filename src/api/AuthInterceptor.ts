@@ -24,10 +24,11 @@ const AuthInterceptor = () => {
                 return Promise.reject(error);
             const isApiUrl = error.response.request.responseURL?.startsWith(process.env.API_URL) ?? false;
 
-            if (error.response.status === 401) window.location.href = ERROR_PAGE?.page_401();
             if (error.response.status === 401 && isApiUrl) {
                 window.localStorage.removeItem(STORAGE_KEYS?.ACCESS_TOKEN_KEY);
             }
+
+            // if (error.response.status === 401) window.location.href = ERROR_PAGE?.page_401();
             if (error.response.status === 404) window.location.href = ERROR_PAGE?.page_403();
             if (error.response.status === 404) window.location.href = ERROR_PAGE?.page_404();
             if (error.response.status > 500) window.location.href = ERROR_PAGE?.page_500();

@@ -10,7 +10,7 @@ export enum Colors {
     GRAY_900 = '#505050',
     RED_300 = '#f88d8d',
     WHITE = '#fff',
-    WHITE_100 = '#fff50',
+    WHITE_10 = '#ffffff21',
     BLACK = '#000',
     ORANGE = '#f38620',
 
@@ -23,6 +23,7 @@ export enum Colors {
 
 interface ColorInterface {
     PRIMARY: string;
+    SECONDARY: string;
     SUCCESS: string;
     ERROR: string;
 }
@@ -31,4 +32,5 @@ export const Color: ColorInterface = {
     PRIMARY: mainTheme?.palette?.primary?.main,
     SUCCESS: mainTheme?.palette?.success?.main,
     ERROR: mainTheme?.palette?.error?.main,
+    SECONDARY: mainTheme?.palette?.secondary?.main,
 };

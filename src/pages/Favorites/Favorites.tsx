@@ -55,7 +55,7 @@ const Favorites = () => {
     const {
         store,
         favorites,
-        supportedLanguage,
+        lang,
         footerMenuHeight,
         viewMode,
         scrollPosition,
@@ -71,7 +71,7 @@ const Favorites = () => {
 
     const { isFetching: loadProducts, refetch: updateFavoriteProductsRes } = useProductsApi().useGetProductByIDForCart({
         id: productIds,
-        lang: supportedLanguage,
+        lang: lang,
         storeCode: STORE_CODE,
     });
 
@@ -170,7 +170,7 @@ const Favorites = () => {
             });
             setFavoriteProducts(data);
         }); // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [productIds, supportedLanguage]);
+    }, [productIds, lang]);
 
     useEffect(() => {
         window.addEventListener('scroll', () => {

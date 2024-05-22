@@ -28,7 +28,7 @@ const PaginationButton = ({ setCurrentPage, totalCount, loading, productsList, p
                 <Button
                     sx={{
                         width: 200,
-                        color: loading ? '#ccc' : '',
+                        color: loading ? '#ccc' : Colors?.WHITE,
                         borderColor: loading ? '#ccc' : '',
                         cursor: loading ? 'default' : 'pointer',
                         '&:hover': {
@@ -40,7 +40,7 @@ const PaginationButton = ({ setCurrentPage, totalCount, loading, productsList, p
                     }}
                     variant="contained"
                     onClick={() => setCurrentPage(page + 1)}
-                    color="primary"
+                    color="secondary"
                     disabled={!productsList?.length || totalPages === page + 1}
                 >
                     {loading ? string?.loading + '...' : string?.load_more}

@@ -3,25 +3,21 @@ import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 import { useGetLanguage } from 'hooks/useGetLanguage';
 import { useDevice } from 'hooks/useDevice';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import HomeHeader from './HomeHeader';
 import HomeMobileMenu from './HomeMobileMenu';
-import { HomeContextInterface, StoreInterface } from 'types';
-import { useStoresApi } from 'api/useStoresApi';
-import { STORES_DATA } from 'dataBase/STORES';
+import { HomeContextInterface } from 'types';
 import { STORE_CONFIG } from 'store_constants/stores_config';
 import { useFormsApp } from 'layouts/hooks/useFormsApp';
 import DialogApp from 'layouts/DialogApp';
 import { HOME_ROUTE, ROUTES } from 'constants/routes';
 import Loader from 'components/atoms/Loader/Loader';
-import { useAddToCart } from 'layouts/hooks/useAddToCart';
-import { useAddToFavorites } from 'layouts/hooks/useAddToFavorites';
 
 const OutletContainer = ({ context }: { context: HomeContextInterface }) => {
     return <Outlet context={context} />;
 };
 
-export default function Home({ lang, setLang, auth, setAuth, userData }) {
+export default function Home({ lang, setLang, auth, setAuth, userData, store, favorites, cart }) {
     const { STORE_CODE, STORE_NAME, OPTIONS } = STORE_CONFIG;
     const { PLAN_OPTIONS } = OPTIONS;
     const { storeCode } = useParams();
@@ -36,25 +32,12 @@ export default function Home({ lang, setLang, auth, setAuth, userData }) {
     const FOOTER_PADDINGS = sx ? 2 : 4;
     const { currentLanguage } = useGetLanguage({ lang, storeName: STORE_NAME });
     const { activeDialogWindow, handleOpenDialog } = useFormsApp();
-    const [store, setStore] = useState<StoreInterface | null>(null);
-    const { data: storeDataRes, isFetching: loadStore } = useStoresApi().useGetStoreByCode({
-        code: STORE_CODE,
-    });
-
-    const cart = useAddToCart({ auth, loadingUser: userData?.isFetching, storeName: STORE_NAME });
-    const favorites = useAddToFavorites({ loadingUser: userData?.isFetching, storeName: STORE_NAME });
 
     useEffect(() => {
         if (STORE_CODE !== storeCode) {
             navigate(HOME_ROUTE?.root(STORE_CODE));
         }
     }, [storeCode, STORE_CODE, store]); // eslint-disable-line
-
-    useEffect(() => {
-        if (!storeDataRes || loadStore) return;
-        setStore({ ...STORES_DATA.find(el => el.code === STORE_CODE), ...storeDataRes.data });
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [storeDataRes]);
 
     if (!store) return <Loader type="circular" />;
 
@@ -88,9 +71,11 @@ export default function Home({ lang, setLang, auth, setAuth, userData }) {
                         //user data
                         auth: auth,
                         currentUserData: userData.currentUserData,
-                        loadingUserData: userData.isFetching,
+                        loadingUserData: userData.isFetchingUser,
                         updateUserData: userData.updateUserData,
                         setCurrentUserData: userData.setCurrentUserData,
+                        userDataError: userData.userError,
+
                         //css data
                         instrumentalBarHeight: INSTRUMENTAL_BAR_HEIGHT,
                         instrumentalBarPadding: INSTRUMENTAL_BAR_PADDINGS,

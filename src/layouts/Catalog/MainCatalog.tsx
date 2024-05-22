@@ -6,13 +6,9 @@ import MobileMenu from './MainCatalogMobileMenu';
 import { useGetLanguage } from 'hooks/useGetLanguage';
 import { useDevice } from 'hooks/useDevice';
 import { useEffect, useState } from 'react';
-import { useStoresApi } from 'api/useStoresApi';
 import { useCategory } from '../hooks/useCategory';
 import { useProducts } from '../hooks/useProducts';
-import { CatalogContextInterface, StoreInterface } from 'types';
-import { STORES_DATA } from 'dataBase/STORES';
-import { useAddToCart } from '../hooks/useAddToCart';
-import { useAddToFavorites } from '../hooks/useAddToFavorites';
+import { CatalogContextInterface } from 'types';
 import { STORE_CONFIG } from 'store_constants/stores_config';
 import { useFormsApp } from 'layouts/hooks/useFormsApp';
 import DialogApp from 'layouts/DialogApp';
@@ -33,6 +29,9 @@ export default function MainCatalog({
     setViewMode,
     infoAlert,
     setInfoAlert,
+    store,
+    favorites,
+    cart,
 }) {
     const { OPTIONS, STORE_CODE } = STORE_CONFIG;
     const { PLAN_OPTIONS } = OPTIONS;
@@ -49,13 +48,7 @@ export default function MainCatalog({
     const { currentLanguage } = useGetLanguage({ lang, storeName: storeName });
     const [scrollPosition, setScrollPosition] = useState(0);
     const [queryCategories, setQueryCategories] = useState<string[] | []>([]);
-    const [store, setStore] = useState<StoreInterface | null>(null);
-    const [supportedLanguage, setSupportedLanguage] = useState<string | null>(null);
     const { activeDialogWindow, handleOpenDialog } = useFormsApp();
-
-    const { data: storeDataRes, isFetching: loadStore } = useStoresApi().useGetStoreByCode({
-        code: STORE_CODE,
-    });
 
     const {
         loadProducts,
@@ -69,7 +62,7 @@ export default function MainCatalog({
         totalProductsPages,
         setProductsList,
     } = useProducts({
-        lang: supportedLanguage,
+        lang,
         store: STORE_CODE,
         queryCategories,
         setQueryCategories,
@@ -77,7 +70,7 @@ export default function MainCatalog({
     });
 
     const { categoriesList, handleCategoriesQuery } = useCategory({
-        lang: supportedLanguage,
+        lang,
         store: STORE_CODE,
         currentProductsPage,
         handleSetProductsPage,
@@ -85,24 +78,11 @@ export default function MainCatalog({
         queryCategories,
     });
 
-    const cart = useAddToCart({ auth, loadingUser: userData?.isFetching, storeName });
-    const favorites = useAddToFavorites({ loadingUser: userData?.isFetching, storeName });
-
     useEffect(() => {
         if (STORE_CODE !== storeCode) {
             navigate(STORE_ROUTE?.root(STORE_CODE));
         }
     }, [storeCode, STORE_CODE, store]); // eslint-disable-line
-
-    useEffect(() => {
-        if (!storeDataRes || loadStore) return;
-        setStore({ ...STORES_DATA.find(el => el.code === STORE_CODE), ...storeDataRes.data }); // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [storeDataRes]);
-
-    useEffect(() => {
-        if (!store?.supportedLanguages) return;
-        setSupportedLanguage(store?.supportedLanguages?.find(el => el.code === lang) ? lang : 'en');
-    }, [lang, store?.supportedLanguages]);
 
     if (!store) return <Loader type="circular" />;
 
@@ -114,7 +94,7 @@ export default function MainCatalog({
                 headerHeight={HEADER_HEIGHT}
                 appXPadding={HEADER_PADDINGS}
                 string={currentLanguage?.string}
-                lang={supportedLanguage}
+                lang={lang}
                 setLang={setLang}
                 logo={store?.logo?.path}
                 storeHeaderName={store?.name}
@@ -131,7 +111,6 @@ export default function MainCatalog({
                     context={{
                         //main data | user options
                         lang,
-                        supportedLanguage,
                         string: currentLanguage?.string,
                         scrollPosition,
                         setScrollPosition,
@@ -147,9 +126,10 @@ export default function MainCatalog({
                         //user data
                         auth: auth,
                         currentUserData: userData.currentUserData,
-                        loadingUserData: userData.isFetching,
+                        loadingUserData: userData.isFetchingUser,
                         updateUserData: userData.updateUserData,
                         setCurrentUserData: userData.setCurrentUserData,
+                        userDataError: userData.userError,
 
                         //products data
                         productsList,

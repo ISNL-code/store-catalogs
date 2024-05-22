@@ -12,14 +12,20 @@ import { useEffect, useState } from 'react';
 import { useGetStatusParams } from 'hooks/useGetStatusParams';
 import Loader from 'components/atoms/Loader/Loader';
 import OrderPrice from 'components/molecules/PricesComponents/OrderPrice';
+import useHandleError from 'hooks/useHandleError';
 
 const UserOrders = () => {
+    const handleError = useHandleError();
     const { handleGetStatusParams } = useGetStatusParams();
     const { s } = useDevice();
     const { storeCode } = useParams();
     const { string, footerMenuHeight, appXPadding }: CatalogContextInterface = useOutletContext();
     const [orderData, setOrderData] = useState<OrderInterFace | any>(null);
-    const { data: customerOrdersRes, isFetching: loadingOrders } = useUserApi().useGetCustomersOrders({
+    const {
+        data: customerOrdersRes,
+        isFetching: loadingOrders,
+        error,
+    } = useUserApi().useGetCustomersOrders({
         storeCode,
     });
     const [isOpenDetails, setIsOpenDetails] = useState({ open: false, id: null });
@@ -33,8 +39,8 @@ const UserOrders = () => {
     }, []);
 
     useEffect(() => {
-        if (!customerOrdersRes || loadingOrders) return;
-
+        if (loadingOrders) return;
+        if (!customerOrdersRes) return handleError(error);
         const order = customerOrdersRes.data.orders;
         setOrderData(
             order?.map(el => {
@@ -48,7 +54,7 @@ const UserOrders = () => {
                 };
             })
         );
-    }, [customerOrdersRes, loadingOrders]);
+    }, [customerOrdersRes, loadingOrders]); // eslint-disable-line
 
     return (
         <Box p={sx ? 2 : appXPadding} pb={footerMenuHeight}>
