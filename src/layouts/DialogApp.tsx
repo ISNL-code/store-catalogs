@@ -6,7 +6,6 @@ import Register from 'pages/DialogApp/Register';
 import { DialogWindowType } from './hooks/useFormsApp';
 import SuccessRequest from 'pages/DialogApp/SuccessRequest';
 import SuccessMailSent from 'pages/DialogApp/SuccessMailSent';
-import SuccessOrdering from 'pages/DialogApp/SuccessOrdering';
 import NewPassword from 'pages/DialogApp/NewPassword';
 import SomethingWentWrong from 'pages/DialogApp/SomethingWentWrong';
 import SuccessPasswordChange from 'pages/DialogApp/SuccessPasswordChange';
@@ -109,11 +108,6 @@ const DialogApp = ({ location, string, activeDialogWindow, handleOpenDialog, set
                 string={string}
             />
 
-            <SuccessOrdering
-                isOpen={activeDialogWindow === DialogWindowType?.SUCCESS_ORDERING}
-                setIsOpen={handleOpenDialog}
-                string={string}
-            />
             <SomethingWentWrong
                 isOpen={activeDialogWindow === DialogWindowType?.WENT_WRONG}
                 setIsOpen={handleOpenDialog}

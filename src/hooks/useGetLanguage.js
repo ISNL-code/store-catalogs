@@ -179,6 +179,7 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 password_changed: 'Password changed',
                 add_to_cart: 'Add to cart',
                 in_cart: 'In cart',
+                menu: 'Menu',
             },
         },
         {
@@ -349,6 +350,7 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 password_changed: 'Mot de passe modifié',
                 add_to_cart: 'Ajouter au panier',
                 in_cart: 'Dans le panier',
+                menu: 'Menu',
             },
         },
         {
@@ -520,6 +522,7 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 password_changed: 'Contraseña cambiada',
                 add_to_cart: 'Añadir al carrito',
                 in_cart: 'En el carrito',
+                menu: 'Menú',
             },
         },
         {
@@ -690,6 +693,7 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 password_changed: 'Пароль змінено',
                 add_to_cart: 'Додати в кошик',
                 in_cart: 'У кошику',
+                menu: 'Меню',
             },
         },
         {
@@ -860,6 +864,7 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 password_changed: 'Hasło zostało zmienione',
                 add_to_cart: 'Dodaj do koszyka',
                 in_cart: 'W koszyku',
+                menu: 'Menu',
             },
         },
         {
@@ -1030,6 +1035,7 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 password_changed: 'Heslo bylo změněno',
                 add_to_cart: 'Přidat do košíku',
                 in_cart: 'V košíku',
+                menu: 'Menu',
             },
         },
         {
@@ -1200,6 +1206,7 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 password_changed: 'Пароль изменен',
                 add_to_cart: 'добавить в корзину',
                 in_cart: 'В корзине',
+                menu: 'Меню',
             },
         },
         {
@@ -1372,6 +1379,7 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 password_changed: 'Құпия сөз өзгертілді',
                 add_to_cart: 'Себетке қосу',
                 in_cart: 'Себетте',
+                menu: 'Мәзірі',
             },
         },
     ];

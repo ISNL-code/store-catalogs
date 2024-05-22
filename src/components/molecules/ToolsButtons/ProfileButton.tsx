@@ -1,122 +1,193 @@
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import { Backdrop, Box, IconButton, ListItemText, MenuItem, SwipeableDrawer, Typography } from '@mui/material';
+import React, { useState } from 'react';
+import {
+    AccountCircle as AccountCircleIcon,
+    PermIdentity as PermIdentityIcon,
+    AttachMoney as AttachMoneyIcon,
+    Logout as LogoutIcon,
+    Login as LoginIcon,
+    PhoneCallback as PhoneCallbackIcon,
+} from '@mui/icons-material';
+import PrivacyTipIcon from '@mui/icons-material/PrivacyTip';
+import MenuIcon from '@mui/icons-material/Menu';
+import { Box, IconButton, SwipeableDrawer, Typography, MenuItem, ListItemText, SxProps, Theme } from '@mui/material';
 import SwiperButton from 'components/atoms/Elements/SwiperButton';
 import { useDevice } from 'hooks/useDevice';
-import { Fragment, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import PermIdentityIcon from '@mui/icons-material/PermIdentity';
-import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
-import LogoutIcon from '@mui/icons-material/Logout';
-import LoginIcon from '@mui/icons-material/Logout';
 import { STORE_CONFIG } from 'store_constants/stores_config';
 import { DialogWindowType } from 'layouts/hooks/useFormsApp';
-import InfoIcon from '@mui/icons-material/Info';
-import PhoneCallbackIcon from '@mui/icons-material/PhoneCallback';
 import { STORE_ROUTE } from 'constants/routes';
 import { Color } from 'colors';
 
-const ProfileButton = ({ string, headerHeight, menuHeight = '', user, childPath, handleOpenDialog, auth }) => {
+interface ProfileButtonProps {
+    string: any;
+    headerHeight: string;
+    menuHeight?: string;
+    user: any;
+    childPath?: string[];
+    handleOpenDialog: (type: DialogWindowType) => void;
+    auth: boolean;
+}
+
+const ProfileButton: React.FC<ProfileButtonProps> = ({
+    string,
+    headerHeight,
+    menuHeight = '',
+    user,
+    childPath,
+    handleOpenDialog,
+    auth,
+}) => {
     const { OPTIONS, STORE_CODE } = STORE_CONFIG;
     const { PLAN_OPTIONS, INFORMATION_PAGE_ACTIVE } = OPTIONS;
-
     const location = useLocation();
     const navigate = useNavigate();
-    const [state, setState] = useState({
-        right: false,
-        bottom: false,
-    });
-    const active = state.bottom || state.right || childPath?.some(el => location?.pathname?.includes(el));
+    const [state, setState] = useState<{ right: boolean; bottom: boolean }>({ right: false, bottom: false });
+    const active = state.bottom || state.right || childPath?.some(el => location.pathname.includes(el));
     const { sx } = useDevice();
 
-    const toggleDrawer = (anchor, open) => event => {
-        if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
-            return;
-        }
+    const toggleDrawer =
+        (anchor: 'right' | 'bottom', open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
+            if (
+                (event.type === 'keydown' && (event as React.KeyboardEvent).key === 'Tab') ||
+                (event as React.KeyboardEvent).key === 'Shift'
+            ) {
+                return;
+            }
 
-        setState({ ...state, [anchor]: open });
-    };
+            setState({ ...state, [anchor]: open });
+        };
+
+    const MenuComponents = [
+        {
+            onClick: () => navigate(STORE_ROUTE.profile(STORE_CODE)),
+            icon: <PermIdentityIcon />,
+            name: string.profile,
+            visible: auth,
+        },
+        {
+            onClick: () => navigate(STORE_ROUTE.profile(STORE_CODE)),
+            icon: <AttachMoneyIcon />,
+            name: string.orders,
+            visible: auth && PLAN_OPTIONS?.cart,
+        },
+        {
+            onClick: () => navigate(STORE_ROUTE.contacts(STORE_CODE)),
+            icon: <PhoneCallbackIcon />,
+            name: string.contacts,
+            visible: PLAN_OPTIONS.contacts,
+        },
+        {
+            onClick: () => navigate(STORE_ROUTE.info(STORE_CODE)),
+            icon: <PrivacyTipIcon />,
+            name: string.info,
+            visible: INFORMATION_PAGE_ACTIVE,
+        },
+        {
+            onClick: () => handleOpenDialog(DialogWindowType.LOGOUT),
+            icon: <LogoutIcon />,
+            name: string.logout,
+            visible: auth,
+        },
+        {
+            onClick: () => handleOpenDialog(DialogWindowType.LOGIN),
+            icon: <LoginIcon />,
+            name: string.login,
+            visible: !auth,
+        },
+    ];
+
+    const Item = ({ name, icon, onClick, anchor, visible }) => (
+        <MenuItem
+            onClick={() => {
+                onClick();
+                toggleDrawer(anchor, false);
+            }}
+            sx={{ height: 50, gap: 2, display: visible ? 'flex' : 'none' }}
+        >
+            <IconButton size="small" sx={{ border: `1px solid #ccc` }}>
+                {icon}
+            </IconButton>
+            <Typography variant="h3" color="gray">
+                {name}
+            </Typography>
+        </MenuItem>
+    );
 
     return (
-        <>
-            <Box>
-                {[sx ? 'bottom' : 'right'].map(anchor => (
-                    <Fragment key={anchor}>
-                        <Box
-                            sx={sx ? { display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 0.4 } : {}}
-                        >
-                            <IconButton
-                                sx={
-                                    sx
-                                        ? {
-                                              border: '2px solid',
-                                              borderColor: active ? Color?.PRIMARY : '#fff',
-                                              width: 33,
-                                              height: 33,
-                                              borderRadius: '12px',
-                                              p: 0.5,
-                                          }
-                                        : {
-                                              display: 'flex',
-                                              flexDirection: 'column',
-                                              alignItems: 'center',
-                                              '&:hover': { backgroundColor: '#fff' },
-                                          }
-                                }
-                                color={active ? `primary` : 'default'}
-                                onClick={toggleDrawer(anchor, !state[anchor])}
-                            >
-                                <AccountCircleIcon sx={{ color: sx ? (active ? Color?.PRIMARY : '#fff') : '' }} />
-                                {!sx && (
-                                    <Typography
-                                        sx={{ fontSize: 10, color: active ? Color?.PRIMARY : 'rgba(0, 0, 0, 0.54)' }}
-                                    >
-                                        {string?.my_profile}
-                                    </Typography>
-                                )}
-                            </IconButton>
-                            {sx && (
-                                <Typography sx={{ fontSize: 8, color: active ? Color?.PRIMARY : 'white' }}>
-                                    {string?.my_profile?.toUpperCase()}
-                                </Typography>
-                            )}
-                        </Box>
-
-                        <SwipeableDrawer
-                            anchor={anchor as any}
-                            open={state[anchor]}
-                            onClose={toggleDrawer(anchor, false)}
-                            onOpen={toggleDrawer(anchor, true)}
-                            slots={{ backdrop: Backdrop }}
-                            slotProps={{
-                                backdrop: {
-                                    sx: {
-                                        backgroundColor: 'rgba(255, 255, 255, 0)',
-                                    },
-                                },
-                            }}
+        <Box>
+            {[(sx ? 'bottom' : 'right') as 'right' | 'bottom'].map(anchor => (
+                <React.Fragment key={anchor}>
+                    <Box sx={sx ? { display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 0.4 } : {}}>
+                        <IconButton
                             sx={
                                 sx
                                     ? {
-                                          '.MuiPaper-root': {
-                                              mb: menuHeight,
-                                              borderTopLeftRadius: 20,
-                                              borderTopRightRadius: 20,
-                                          },
-                                          zIndex: 2000,
+                                          border: '2px solid',
+                                          borderColor: active ? Color?.PRIMARY : '#fff',
+                                          width: 33,
+                                          height: 33,
+                                          borderRadius: '12px',
+                                          p: 0.5,
                                       }
                                     : {
-                                          '.MuiPaper-root': {
-                                              mt: `${headerHeight}px`,
-                                          },
-                                          zIndex: 2000,
+                                          display: 'flex',
+                                          flexDirection: 'column',
+                                          alignItems: 'center',
+                                          '&:hover': { backgroundColor: '#fff' },
                                       }
                             }
+                            color={active ? `primary` : 'default'}
+                            onClick={toggleDrawer(anchor, !state[anchor])}
                         >
-                            {sx && <SwiperButton />}
-                            <MenuItem
+                            <MenuIcon sx={{ color: sx ? (active ? Color?.PRIMARY : '#fff') : '' }} />
+                            {!sx && (
+                                <Typography
+                                    sx={{ fontSize: 10, color: active ? Color?.PRIMARY : 'rgba(0, 0, 0, 0.54)' }}
+                                >
+                                    {string?.menu}
+                                </Typography>
+                            )}
+                        </IconButton>
+                        {sx && (
+                            <Typography sx={{ fontSize: 8, color: active ? Color?.PRIMARY : 'white' }}>
+                                {string?.menu?.toUpperCase()}
+                            </Typography>
+                        )}
+                    </Box>
+
+                    <SwipeableDrawer
+                        anchor={anchor}
+                        open={state[anchor]}
+                        onClose={toggleDrawer(anchor, false)}
+                        onOpen={toggleDrawer(anchor, true)}
+                        sx={{
+                            ...{
+                                zIndex: 2000,
+                                '.MuiDrawer-paper': {
+                                    minWidth: '240px',
+                                },
+                            },
+                            ...(sx
+                                ? {
+                                      '.MuiPaper-root': {
+                                          marginBottom: menuHeight,
+                                          borderTopLeftRadius: 20,
+                                          borderTopRightRadius: 20,
+                                      },
+                                  }
+                                : {
+                                      '.MuiPaper-root': {
+                                          marginTop: `${headerHeight}px`,
+                                      },
+                                  }),
+                        }}
+                    >
+                        {sx && <SwiperButton />}
+                        {user?.currentUserData?.emailAddress && auth && (
+                            <Box
+                                px={2}
                                 sx={{
                                     cursor: 'pointer',
-                                    minWidth: 200,
                                     borderBottom: '1px solid #ccc',
                                 }}
                             >
@@ -127,125 +198,22 @@ const ProfileButton = ({ string, headerHeight, menuHeight = '', user, childPath,
                                         </Typography>
                                     </Box>
                                 </ListItemText>
-                            </MenuItem>
-                            {auth && (
-                                <MenuItem
-                                    sx={{
-                                        cursor: 'pointer',
-                                        minWidth: 200,
-                                    }}
-                                    onClick={() => {
-                                        navigate(STORE_ROUTE?.profile(STORE_CODE));
-                                        setState({ right: false, bottom: false });
-                                    }}
-                                >
-                                    <ListItemText onClick={toggleDrawer(anchor, false)}>
-                                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                                            <PermIdentityIcon />
-                                            <Typography variant="h4">{string?.profile}</Typography>
-                                        </Box>
-                                    </ListItemText>
-                                </MenuItem>
-                            )}
-                            {PLAN_OPTIONS?.cart && auth && (
-                                <MenuItem
-                                    sx={{
-                                        cursor: 'pointer',
-                                        minWidth: 200,
-                                    }}
-                                    onClick={() => {
-                                        setState({ right: false, bottom: false });
-                                        navigate(STORE_ROUTE?.orders(STORE_CODE));
-                                    }}
-                                >
-                                    <ListItemText onClick={toggleDrawer(anchor, false)}>
-                                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                                            <AttachMoneyIcon />
-                                            <Typography variant="h4">{string?.orders}</Typography>
-                                        </Box>
-                                    </ListItemText>
-                                </MenuItem>
-                            )}
-                            {PLAN_OPTIONS?.contacts && (
-                                <MenuItem
-                                    sx={{
-                                        cursor: 'pointer',
-                                        minWidth: 200,
-                                    }}
-                                    onClick={() => {
-                                        navigate(STORE_ROUTE?.contacts(STORE_CODE));
-                                        setState({ right: false, bottom: false });
-                                    }}
-                                >
-                                    <ListItemText onClick={toggleDrawer(anchor, false)}>
-                                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                                            <PhoneCallbackIcon />
-                                            <Typography variant="h4">{string?.contacts}</Typography>
-                                        </Box>
-                                    </ListItemText>
-                                </MenuItem>
-                            )}
-                            {INFORMATION_PAGE_ACTIVE && (
-                                <MenuItem
-                                    sx={{
-                                        cursor: 'pointer',
-                                        minWidth: 200,
-                                    }}
-                                    onClick={() => {
-                                        navigate(STORE_ROUTE?.info(STORE_CODE));
-                                        setState({ right: false, bottom: false });
-                                    }}
-                                >
-                                    <ListItemText onClick={toggleDrawer(anchor, false)}>
-                                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                                            <InfoIcon />
-                                            <Typography variant="h4">{string?.info}</Typography>
-                                        </Box>
-                                    </ListItemText>
-                                </MenuItem>
-                            )}
-                            {auth ? (
-                                <MenuItem
-                                    sx={{
-                                        cursor: 'pointer',
-                                        minWidth: 200,
-                                    }}
-                                    onClick={() => {
-                                        handleOpenDialog(DialogWindowType?.LOGOUT);
-                                        toggleDrawer(anchor, true);
-                                    }}
-                                >
-                                    <ListItemText onClick={toggleDrawer(anchor, false)}>
-                                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                                            <LogoutIcon />
-                                            <Typography variant="h4">{string?.logout}</Typography>
-                                        </Box>
-                                    </ListItemText>
-                                </MenuItem>
-                            ) : (
-                                <MenuItem
-                                    sx={{
-                                        cursor: 'pointer',
-                                        minWidth: 200,
-                                    }}
-                                    onClick={() => {
-                                        handleOpenDialog(DialogWindowType?.LOGIN);
-                                        toggleDrawer(anchor, true);
-                                    }}
-                                >
-                                    <ListItemText onClick={toggleDrawer(anchor, false)}>
-                                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                                            <LoginIcon />
-                                            <Typography variant="h4">{string?.login}</Typography>
-                                        </Box>
-                                    </ListItemText>
-                                </MenuItem>
-                            )}
-                        </SwipeableDrawer>
-                    </Fragment>
-                ))}
-            </Box>
-        </>
+                            </Box>
+                        )}
+                        {MenuComponents?.map(({ onClick, name, icon, visible }, idx) => (
+                            <Item
+                                key={idx}
+                                name={name}
+                                onClick={onClick}
+                                icon={icon}
+                                anchor={anchor}
+                                visible={visible}
+                            />
+                        ))}
+                    </SwipeableDrawer>
+                </React.Fragment>
+            ))}
+        </Box>
     );
 };
 
