@@ -9,6 +9,7 @@ import { useUserApi } from 'api/useUserApi';
 import Loader from 'components/atoms/Loader/Loader';
 import { useEffect, useState } from 'react';
 import useHandleError from 'hooks/useHandleError';
+import { STORE_ROUTE } from 'constants/routes';
 
 const UserProfile = () => {
     const { sx } = useDevice();
@@ -57,7 +58,7 @@ const UserProfile = () => {
         <Box p={sx ? 2 : appXPadding} pb={footerMenuHeight}>
             {isLoading && <Loader />}
             <InstrumentalSubHeader
-                StartSlot={() => <BackButton nav={-1} action={() => {}} />}
+                StartSlot={() => <BackButton nav={STORE_ROUTE?.root(storeCode)} action={() => {}} />}
                 EndSlot={() => (
                     <Button
                         variant="outlined"
@@ -82,7 +83,7 @@ const UserProfile = () => {
                     </Button>
                 )}
             />
-            <Grid xs={12} container>
+            <Grid xs={12} container alignItems={'flex-start'}>
                 <Grid p={1} xs={sx ? 12 : 6} container spacing={1.5}>
                     <Grid mb={2} xs={12}>
                         <Typography variant="h3">{string?.personal_data}</Typography>
@@ -129,18 +130,6 @@ const UserProfile = () => {
                             label={string?.email}
                             fullWidth
                             disabled
-                        />
-                    </Grid>
-                    <Grid xs={12}>
-                        <TextField
-                            InputLabelProps={{ shrink: true }}
-                            value={company || ''}
-                            onChange={e => {
-                                setCompany(e?.target?.value);
-                            }}
-                            size="small"
-                            label={string?.company_name}
-                            fullWidth
                         />
                     </Grid>
                 </Grid>
@@ -205,6 +194,18 @@ const UserProfile = () => {
                             }}
                             size="small"
                             label={string?.delivery_address}
+                            fullWidth
+                        />
+                    </Grid>
+                    <Grid xs={12}>
+                        <TextField
+                            InputLabelProps={{ shrink: true }}
+                            value={company || ''}
+                            onChange={e => {
+                                setCompany(e?.target?.value);
+                            }}
+                            size="small"
+                            label={string?.company_name}
                             fullWidth
                         />
                     </Grid>

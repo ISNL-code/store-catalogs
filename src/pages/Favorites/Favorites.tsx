@@ -6,7 +6,6 @@ import { getCurrencySymbol } from 'helpers/getCurrencySymbol';
 import ScrollButton from 'components/atoms/Buttons/ScrollButton';
 import InstrumentalSubHeader from 'components/organisms/InstrumentalSubHeader/InstrumentalSubHeader';
 import EmptyPage from 'components/atoms/EmptyPage/EmptyPage';
-import BackButton from 'components/atoms/Buttons/BackButton';
 import { CatalogContextInterface, ProductVariantInterface } from 'types';
 import TransitionBox from 'components/atoms/Transitions/TransitionBox';
 import Grid from '@mui/material/Unstable_Grid2';
@@ -30,7 +29,7 @@ const InstrumentalSubHeaderMemo = memo<InstrumentalBarProps>(({ favoriteLength }
     const { string, handleOpenDialog }: CatalogContextInterface = useOutletContext();
     return (
         <InstrumentalSubHeader
-            StartSlot={() => <BackButton nav={-1} action={() => {}} />}
+            StartSlot={() => <></>}
             EndSlot={() => (
                 <Box sx={{ display: 'flex', gap: 0.75 }}>
                     <ViewModeButton />
@@ -96,11 +95,8 @@ const Favorites = () => {
 
     useEffect(() => {
         if (loadProducts) return;
-
-        setTimeout(() => {
-            setLoading(false);
-        }, 100);
-    }, [loadProducts, loading]);
+        setLoading(false);
+    }, [loadProducts, loading]); // eslint-disable-line
 
     useEffect(() => {
         if (!favorites?.favoriteItems?.length) return setFavoriteProducts([]);
@@ -204,7 +200,7 @@ const Favorites = () => {
 
             {favoriteProducts?.length ? (
                 <Box pb={2} sx={{ minHeight: '100%' }}>
-                    <TransitionBox dependency={loading} time={250}>
+                    <TransitionBox dependency={loading} time={100}>
                         <Grid className="CatalogList" container spacing={getGridSpacing()?.spacing}>
                             {favoriteProducts?.map(product => {
                                 return (

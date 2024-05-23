@@ -1,14 +1,13 @@
 import { Badge, IconButton, Typography } from '@mui/material';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { ReactNode } from 'react';
-import { Color } from 'colors';
+import { Color, Colors } from 'colors';
 
 interface HeaderNavButtonInterface {
     icon: () => ReactNode;
     path?: string;
     childPath?: string[];
     isShown?: boolean;
-    clearSort?;
     isActive?;
     action?;
     title?;
@@ -20,16 +19,16 @@ const HeaderNavButton = ({
     icon,
     path,
     isShown = true,
-    clearSort = () => {},
     isActive,
     action,
     title = '',
     badgeCount = 0,
     protectedPath = false,
+    childPath,
 }: HeaderNavButtonInterface) => {
     const navigate = useNavigate();
     const location = useLocation();
-    const active = location.pathname === path;
+    const active = location.pathname === path || childPath?.some(el => location.pathname.includes(el));
 
     if (isShown)
         return (
@@ -38,12 +37,14 @@ const HeaderNavButton = ({
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
-                    '&:hover': { backgroundColor: '#fff' },
+                    width: 55,
+                    height: 50,
+                    borderRadius: 4,
+                    '&:hover': { backgroundColor: Colors?.WHITE },
                 }}
                 color={active || isActive ? `primary` : 'default'}
-                onClick={() => {
-                    if (action) action();
-                    clearSort();
+                onClick={e => {
+                    if (action) action(e);
                     if (!protectedPath && path) navigate(path);
                 }}
             >

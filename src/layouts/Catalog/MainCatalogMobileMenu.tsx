@@ -3,7 +3,7 @@ import MobileNavButton from 'components/atoms/Buttons/MobileNavButton';
 import GridViewIcon from '@mui/icons-material/GridView';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import ProfileButton from 'components/molecules/ToolsButtons/ProfileButton';
+import ProfileMenu from 'components/molecules/ToolsButtons/ProfileMenu';
 import { useEffect, useState } from 'react';
 import { useWindowWidth } from '@react-hook/window-size';
 import HomeIcon from '@mui/icons-material/Home';
@@ -68,6 +68,7 @@ const MobileMenu = ({
                         path={STORE_ROUTE?.root(STORE_CODE)}
                         title={string?.catalog}
                         icon={p => <GridViewIcon {...p} />}
+                        childPath={['product']}
                     />
                     {withFavorites && (
                         <MobileNavButton
@@ -86,11 +87,11 @@ const MobileMenu = ({
                         />
                     )}
 
-                    <ProfileButton
+                    <ProfileMenu
                         auth={auth}
                         string={string}
                         headerHeight={headerHeight}
-                        menuHeight={menuHeight}
+                        footerMenuHeight={menuHeight}
                         user={user}
                         handleOpenDialog={handleOpenDialog}
                         childPath={['orders', 'profile', 'info', 'contacts']}

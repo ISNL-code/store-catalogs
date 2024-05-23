@@ -34,10 +34,10 @@ const MobileNavButton = ({
     return (
         <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 0.4 }}>
             <IconButton
-                onClick={() => {
+                onClick={e => {
                     if (active) return;
                     if (action) {
-                        action();
+                        action(e);
                     }
                     if (!path) return;
                     if (!protectedPath) navigate(path);

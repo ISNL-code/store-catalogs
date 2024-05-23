@@ -57,10 +57,6 @@ interface CatalogCardProps {
     viewMode;
 }
 
-export const MemoizedColorIndicatorButton = memo(ColorIndicatorButton, (prevProps, nextProps) => {
-    return prevProps.selected === nextProps.selected && prevProps.color === nextProps.color;
-});
-
 const CatalogListCard = memo<CatalogCardProps>(
     ({ modelsVariants, name, productId, currency, setProductsList, promoTags, viewMode }) => {
         const WINDOW_WIDTH = useWindowWidth();
@@ -191,7 +187,7 @@ const CatalogListCard = memo<CatalogCardProps>(
                                     if (!setProductsList && !selected) return null; //used for favorites list
 
                                     return (
-                                        <MemoizedColorIndicatorButton
+                                        <ColorIndicatorButton
                                             key={idx}
                                             action={e => {
                                                 e.stopPropagation();
@@ -245,6 +241,7 @@ const CatalogListCard = memo<CatalogCardProps>(
                                     isShown
                                     path={SHARE_PATH?.share_product_sku(STORE_CODE, productId, shownModel?.sku)}
                                     direction="up"
+                                    size={viewMode === ViewModeType?.card ? 'large' : 'small'}
                                 />
                             </Box>
                             <Box

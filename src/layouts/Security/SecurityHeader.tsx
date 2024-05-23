@@ -1,7 +1,7 @@
 import { Box } from '@mui/material';
 import LanguageButton from 'components/molecules/ToolsButtons/LanguageButton';
 import HeaderLogo from 'components/atoms/Logo/HeaderLogo';
-import { Colors } from 'colors';
+import { Color, Colors } from 'colors';
 import { STORE_CONFIG } from 'store_constants/stores_config';
 
 interface HeaderInterface {
@@ -30,7 +30,7 @@ const HomeHeader = ({ headerHeight, appXPadding, string, lang, setLang, logo, st
                 left: 0,
                 top: 0,
                 zIndex: 4000,
-                backgroundColor: Colors?.WHITE,
+                backgroundColor: Color?.PRIMARY_LIGHT,
                 overflow: 'hidden',
             }}
         >

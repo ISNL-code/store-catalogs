@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
     PermIdentity as PermIdentityIcon,
     AttachMoney as AttachMoneyIcon,
@@ -8,33 +8,34 @@ import {
 } from '@mui/icons-material';
 import PrivacyTipIcon from '@mui/icons-material/PrivacyTip';
 import MenuIcon from '@mui/icons-material/Menu';
-import { Box, IconButton, SwipeableDrawer, Typography, MenuItem, ListItemText } from '@mui/material';
+import { Box, IconButton, SwipeableDrawer, Typography, MenuItem } from '@mui/material';
 import SwiperButton from 'components/atoms/Elements/SwiperButton';
 import { useDevice } from 'hooks/useDevice';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { STORE_CONFIG } from 'store_constants/stores_config';
 import { DialogWindowType } from 'layouts/hooks/useFormsApp';
 import { STORE_ROUTE } from 'constants/routes';
-import { Color } from 'colors';
+import HeaderNavButton from 'components/atoms/Buttons/HeaderNavButton';
+import MobileNavButton from 'components/atoms/Buttons/MobileNavButton';
 
-interface ProfileButtonProps {
+interface ProfileMenuProps {
     string: any;
     headerHeight: string;
-    menuHeight?: string;
+    footerMenuHeight?: string;
     user: any;
     childPath?: string[];
     handleOpenDialog: (type: DialogWindowType) => void;
     auth: boolean;
 }
 
-const ProfileButton: React.FC<ProfileButtonProps> = ({
+const ProfileMenu: React.FC<ProfileMenuProps> = ({
     string,
     headerHeight,
-    menuHeight = '',
     user,
     childPath,
     handleOpenDialog,
     auth,
+    footerMenuHeight,
 }) => {
     const { OPTIONS, STORE_CODE } = STORE_CONFIG;
     const { PLAN_OPTIONS, INFORMATION_PAGE_ACTIVE } = OPTIONS;
@@ -44,16 +45,35 @@ const ProfileButton: React.FC<ProfileButtonProps> = ({
     const active = state.bottom || state.right || childPath?.some(el => location.pathname.includes(el));
     const { sx } = useDevice();
 
+    useEffect(() => {
+        const handleOutsideClick = event => {
+            // Refining the selector to exclude clicks on the menu button or its children
+            const menuButton = document.querySelector('.OpenMenuButton');
+            if (menuButton && !menuButton.contains(event.target)) {
+                setState(prev => ({ ...prev, right: false, bottom: false }));
+            }
+        };
+
+        // Add listener if any drawer is open
+        if (state.right || state.bottom) {
+            document.addEventListener('click', handleOutsideClick);
+        }
+
+        // Cleanup listener
+        return () => {
+            document.removeEventListener('click', handleOutsideClick);
+        };
+    }, [state.right, state.bottom]); // Only re-run the effect if the drawer's state changes
+
     const toggleDrawer =
         (anchor: 'right' | 'bottom', open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
             if (
-                (event.type === 'keydown' && (event as React.KeyboardEvent).key === 'Tab') ||
-                (event as React.KeyboardEvent).key === 'Shift'
+                event.type === 'keydown' &&
+                ((event as React.KeyboardEvent).key === 'Tab' || (event as React.KeyboardEvent).key === 'Shift')
             ) {
                 return;
             }
-
-            setState({ ...state, [anchor]: open });
+            setState(prev => ({ ...prev, [anchor]: open }));
         };
 
     const MenuComponents = [
@@ -64,7 +84,7 @@ const ProfileButton: React.FC<ProfileButtonProps> = ({
             visible: auth,
         },
         {
-            onClick: () => navigate(STORE_ROUTE.profile(STORE_CODE)),
+            onClick: () => navigate(STORE_ROUTE.orders(STORE_CODE)),
             icon: <AttachMoneyIcon />,
             name: string.orders,
             visible: auth && PLAN_OPTIONS?.cart,
@@ -97,9 +117,9 @@ const ProfileButton: React.FC<ProfileButtonProps> = ({
 
     const Item = ({ name, icon, onClick, anchor, visible }) => (
         <MenuItem
-            onClick={() => {
+            onClick={e => {
+                toggleDrawer(anchor, false)(e);
                 onClick();
-                toggleDrawer(anchor, false);
             }}
             sx={{ height: 50, gap: 2, display: visible ? 'flex' : 'none' }}
         >
@@ -116,87 +136,63 @@ const ProfileButton: React.FC<ProfileButtonProps> = ({
         <Box>
             {[(sx ? 'bottom' : 'right') as 'right' | 'bottom'].map(anchor => (
                 <React.Fragment key={anchor}>
-                    <Box sx={sx ? { display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 0.4 } : {}}>
-                        <IconButton
-                            sx={
-                                sx
-                                    ? {
-                                          border: '2px solid',
-                                          borderColor: active ? Color?.PRIMARY : '#fff',
-                                          width: 33,
-                                          height: 33,
-                                          borderRadius: '12px',
-                                          p: 0.5,
-                                      }
-                                    : {
-                                          display: 'flex',
-                                          flexDirection: 'column',
-                                          alignItems: 'center',
-                                          '&:hover': { backgroundColor: '#fff' },
-                                      }
-                            }
-                            color={active ? `primary` : 'default'}
-                            onClick={toggleDrawer(anchor, !state[anchor])}
-                        >
-                            <MenuIcon sx={{ color: sx ? (active ? Color?.PRIMARY : '#fff') : '' }} />
-                            {!sx && (
-                                <Typography
-                                    sx={{ fontSize: 10, color: active ? Color?.PRIMARY : 'rgba(0, 0, 0, 0.54)' }}
-                                >
-                                    {string?.menu}
-                                </Typography>
-                            )}
-                        </IconButton>
-                        {sx && (
-                            <Typography sx={{ fontSize: 8, color: active ? Color?.PRIMARY : 'white' }}>
-                                {string?.menu?.toUpperCase()}
-                            </Typography>
+                    <Box
+                        className="OpenMenuButton"
+                        sx={sx ? { display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 0.4 } : {}}
+                    >
+                        {sx ? (
+                            <MobileNavButton
+                                title={string?.menu}
+                                icon={p => <MenuIcon {...p} />}
+                                action={toggleDrawer(anchor, !state[anchor])}
+                                isActive={active}
+                            />
+                        ) : (
+                            <HeaderNavButton
+                                title={string?.menu}
+                                icon={() => <MenuIcon />}
+                                action={toggleDrawer(anchor, !state[anchor])}
+                                isActive={active}
+                            />
                         )}
                     </Box>
 
                     <SwipeableDrawer
                         anchor={anchor}
                         open={state[anchor]}
-                        onClose={toggleDrawer(anchor, false)}
-                        onOpen={toggleDrawer(anchor, true)}
-                        sx={{
-                            ...{
-                                zIndex: 2000,
-                                '.MuiDrawer-paper': {
-                                    minWidth: '240px',
+                        onClose={toggleDrawer(anchor, false) as any}
+                        onOpen={toggleDrawer(anchor, true) as any}
+                        slotProps={{
+                            backdrop: {
+                                onClick: event => {
+                                    event.preventDefault();
+                                    toggleDrawer(anchor, false)(event as any);
                                 },
                             },
-                            ...(sx
-                                ? {
-                                      '.MuiPaper-root': {
-                                          marginBottom: menuHeight,
-                                          borderTopLeftRadius: 20,
-                                          borderTopRightRadius: 20,
-                                      },
-                                  }
-                                : {
-                                      '.MuiPaper-root': {
-                                          marginTop: `${headerHeight}px`,
-                                      },
-                                  }),
+                        }}
+                        PaperProps={{
+                            onClick: (event: React.FormEvent<HTMLFormElement>) => {
+                                event.preventDefault();
+                                toggleDrawer(anchor, false)(event as any);
+                            },
+                            sx: {
+                                pt: sx ? 0 : `${headerHeight}px`,
+                                pb: sx ? footerMenuHeight : 0,
+                                borderRadius: sx ? 4 : 0,
+                            },
                         }}
                     >
                         {sx && <SwiperButton />}
                         {user?.currentUserData?.emailAddress && auth && (
                             <Box
-                                px={2}
+                                p={2}
                                 sx={{
-                                    cursor: 'pointer',
                                     borderBottom: '1px solid #ccc',
                                 }}
                             >
-                                <ListItemText onClick={toggleDrawer(anchor, false)}>
-                                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, py: 1 }}>
-                                        <Typography color="gray" variant="h4">
-                                            {user?.currentUserData?.emailAddress}
-                                        </Typography>
-                                    </Box>
-                                </ListItemText>
+                                <Typography color="gray" variant="h4">
+                                    {user?.currentUserData?.emailAddress}
+                                </Typography>
                             </Box>
                         )}
                         {MenuComponents?.map(({ onClick, name, icon, visible }, idx) => (
@@ -216,4 +212,4 @@ const ProfileButton: React.FC<ProfileButtonProps> = ({
     );
 };
 
-export default ProfileButton;
+export default ProfileMenu;

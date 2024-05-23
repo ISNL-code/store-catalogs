@@ -23,6 +23,7 @@ export enum Colors {
 
 interface ColorInterface {
     PRIMARY: string;
+    PRIMARY_LIGHT: string;
     SECONDARY: string;
     SUCCESS: string;
     ERROR: string;
@@ -30,6 +31,7 @@ interface ColorInterface {
 
 export const Color: ColorInterface = {
     PRIMARY: mainTheme?.palette?.primary?.main,
+    PRIMARY_LIGHT: mainTheme?.palette?.primary?.light,
     SUCCESS: mainTheme?.palette?.success?.main,
     ERROR: mainTheme?.palette?.error?.main,
     SECONDARY: mainTheme?.palette?.secondary?.main,

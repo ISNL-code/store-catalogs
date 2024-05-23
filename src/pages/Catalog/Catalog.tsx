@@ -101,9 +101,8 @@ const Catalog = () => {
     useEffect(() => {
         if (loadProducts || !productsList) return;
 
-        setTimeout(() => {
-            setLoading(false);
-        }, 300); // eslint-disable-next-line react-hooks/exhaustive-deps
+        setLoading(false);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [loading, productsList]);
 
     useEffect(() => {
@@ -146,7 +145,7 @@ const Catalog = () => {
 
             {productsList?.length ? (
                 <Box sx={{ minHeight: '100%' }}>
-                    <TransitionBox dependency={loading} time={250}>
+                    <TransitionBox dependency={loading} time={100}>
                         {MIN_ITEMS_TO_BUY > 1 && (
                             <Collapse in={open}>
                                 <Box mb={2}>

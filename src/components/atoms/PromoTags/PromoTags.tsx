@@ -44,6 +44,7 @@ const PromoTags = ({ value, action = () => {}, disabled = false, code, adaptive 
             sx={{
                 height: viewMode === ViewModeType?.grid_m && adaptive ? 18 : 25,
                 maxWidth: viewMode === ViewModeType?.grid_m && adaptive ? 55 : 75,
+                minWidth: viewMode === ViewModeType?.grid_m && adaptive ? 50 : 70,
                 borderRadius: 4,
                 display: 'flex',
                 alignItems: 'center',

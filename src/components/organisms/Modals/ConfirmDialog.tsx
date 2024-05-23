@@ -72,12 +72,12 @@ const ConfirmDialog = ({
             <Dialog
                 sx={{ zIndex: 4500 }}
                 BackdropProps={{ style: { zIndex: 5000 } }}
+                hideBackdrop
                 open={open}
                 fullWidth={fullWidth}
                 onClose={() => {
                     if (closeAvailable) handleClose();
                 }}
-                hideBackdrop
                 PaperProps={{
                     component: 'form',
                     onSubmit: (event: React.FormEvent<HTMLFormElement>) => {

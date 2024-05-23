@@ -1,7 +1,7 @@
 import { Box } from '@mui/material';
 import MobileNavButton from 'components/atoms/Buttons/MobileNavButton';
 import HomeIcon from '@mui/icons-material/Home';
-import ProfileButton from 'components/molecules/ToolsButtons/ProfileButton';
+import ProfileMenu from 'components/molecules/ToolsButtons/ProfileMenu';
 import GridViewIcon from '@mui/icons-material/GridView';
 import { STORE_CONFIG } from 'store_constants/stores_config';
 import { useEffect, useState } from 'react';
@@ -67,6 +67,7 @@ const HomeMobileMenu = ({
                         path={STORE_ROUTE?.root(STORE_CODE)}
                         title={string?.catalog}
                         icon={p => <GridViewIcon {...p} />}
+                        childPath={['product']}
                     />
                     {withFavorites && (
                         <MobileNavButton
@@ -85,11 +86,11 @@ const HomeMobileMenu = ({
                         />
                     )}
 
-                    <ProfileButton
+                    <ProfileMenu
                         auth={auth}
                         string={string}
                         headerHeight={headerHeight}
-                        menuHeight={menuHeight}
+                        footerMenuHeight={menuHeight}
                         user={user}
                         handleOpenDialog={handleOpenDialog}
                         childPath={['orders', 'profile', 'info', 'contacts']}

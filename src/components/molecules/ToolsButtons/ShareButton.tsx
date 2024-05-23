@@ -9,29 +9,30 @@ interface ShareButtonInterface {
     path: string;
     isShown: boolean;
     direction: 'up' | 'down' | 'left' | 'right';
+    size: 'small' | 'large';
 }
 
-const ShareButton = ({ path, isShown, direction }: ShareButtonInterface) => {
+const ShareButton = ({ path, isShown, direction, size }: ShareButtonInterface) => {
     const [open, setOpen] = useState(false);
 
     const actions = [
         {
-            icon: <TelegramIcon size={36} round />,
+            icon: <TelegramIcon size={size === 'small' ? 32 : 45} round />,
             name: 'Telegram',
             onClick: () => shareOnTelegram(path),
         },
         {
-            icon: <WhatsappIcon size={36} round />,
+            icon: <WhatsappIcon size={size === 'small' ? 32 : 45} round />,
             name: 'WhatsApp',
             onClick: () => shareOnWhatsApp(path),
         },
         {
-            icon: <ViberIcon size={36} round />,
+            icon: <ViberIcon size={size === 'small' ? 32 : 45} round />,
             name: 'Viber',
             onClick: () => shareOnViber(path),
         },
         {
-            icon: <EmailIcon size={36} round />,
+            icon: <EmailIcon size={size === 'small' ? 32 : 45} round />,
             name: 'Email',
             onClick: () => shareOnEmail(path),
         },
@@ -66,12 +67,12 @@ const ShareButton = ({ path, isShown, direction }: ShareButtonInterface) => {
                             minWidth: 30,
                             minHeight: 30,
                             boxShadow: 'none',
-                            mt: direction === 'up' ? -1.5 : 0,
+                            mt: direction === 'up' ? -0.5 : 0,
                         },
                     }}
                     sx={{
                         ...(direction === 'up' ? { bottom: 0 } : { top: 0 }),
-                        left: '-45%',
+                        left: size === 'small' ? '-55%' : '-75%',
                         position: 'absolute',
                         zIndex: 100,
                     }}
@@ -88,12 +89,12 @@ const ShareButton = ({ path, isShown, direction }: ShareButtonInterface) => {
                             FabProps={{
                                 color: 'secondary',
                                 sx: {
-                                    width: 36,
-                                    height: 36,
-                                    minWidth: 36,
-                                    minHeight: 36,
+                                    width: size === 'small' ? 32 : 45,
+                                    height: size === 'small' ? 32 : 45,
+                                    minWidth: size === 'small' ? 32 : 45,
+                                    minHeight: size === 'small' ? 32 : 45,
                                     boxShadow: 'none',
-                                    mb: direction === 'up' ? 0.25 : 0,
+                                    mb: direction === 'up' ? 0 : 0,
                                 },
                             }}
                         />

@@ -1,20 +1,28 @@
 import { createTheme } from '@mui/material';
-import { indigo, grey, lightGreen, red } from '@mui/material/colors';
+import { indigo, grey, lightGreen, red, green } from '@mui/material/colors';
 
 const mainTheme = createTheme({
-    customPalette: {},
-
     palette: {
         primary: {
             main: indigo[500],
+            light: indigo[50],
+            dark: indigo[800],
         },
         success: {
             main: lightGreen[800],
+            light: green[100],
+            dark: green[800],
         },
         secondary: {
             main: grey[500],
+            light: grey[100],
+            dark: grey[800],
         },
-        error: { main: red[400] },
+        error: {
+            main: red[400],
+            light: red[100],
+            dark: red[800],
+        },
     },
 
     typography: {

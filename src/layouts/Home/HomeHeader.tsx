@@ -7,9 +7,9 @@ import HomeIcon from '@mui/icons-material/Home';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import HeaderLogo from 'components/atoms/Logo/HeaderLogo';
-import { Colors } from 'colors';
+import { Color, Colors } from 'colors';
 import { STORE_CONFIG } from 'store_constants/stores_config';
-import ProfileButton from 'components/molecules/ToolsButtons/ProfileButton';
+import ProfileMenu from 'components/molecules/ToolsButtons/ProfileMenu';
 import GridViewIcon from '@mui/icons-material/GridView';
 import { HOME_ROUTE, STORE_ROUTE } from 'constants/routes';
 
@@ -61,7 +61,7 @@ const HomeHeader = ({
                 left: 0,
                 top: 0,
                 zIndex: 4000,
-                backgroundColor: Colors?.WHITE,
+                backgroundColor: Color?.PRIMARY_LIGHT,
                 overflow: 'hidden',
             }}
         >
@@ -83,6 +83,7 @@ const HomeHeader = ({
                         icon={() => <GridViewIcon />}
                         isShown={!sx}
                         isActive={location.pathname.includes('details')}
+                        childPath={['product']}
                     />
                     {PLAN_OPTIONS?.favorites && (
                         <HeaderNavButton
@@ -104,7 +105,7 @@ const HomeHeader = ({
                     )}
 
                     {!sx && (
-                        <ProfileButton
+                        <ProfileMenu
                             auth={auth}
                             string={string}
                             headerHeight={headerHeight}

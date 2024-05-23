@@ -3,13 +3,12 @@ import HeaderNavButton from 'components/atoms/Buttons/HeaderNavButton';
 import HeaderLogo from 'components/atoms/Logo/HeaderLogo';
 import LanguageButton from 'components/molecules/ToolsButtons/LanguageButton';
 import { useDevice } from 'hooks/useDevice';
-import { useLocation } from 'react-router-dom';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import GridViewIcon from '@mui/icons-material/GridView';
-import ProfileButton from 'components/molecules/ToolsButtons/ProfileButton';
+import ProfileMenu from 'components/molecules/ToolsButtons/ProfileMenu';
 import { StoreInterface, useAddToCartDataInterface, useAddToFavoriteDataInterface } from 'types';
-import { Colors } from 'colors';
+import { Color, Colors } from 'colors';
 import { STORE_CONFIG } from 'store_constants/stores_config';
 import HomeIcon from '@mui/icons-material/Home';
 import { HOME_ROUTE, STORE_ROUTE } from 'constants/routes';
@@ -47,7 +46,6 @@ const Header = ({
 }: HeaderInterface) => {
     const { OPTIONS, STORE_CODE } = STORE_CONFIG;
     const { CUSTOM_LOGO, PLAN_OPTIONS, HOME_PAGE_ACTIVE } = OPTIONS;
-    const location = useLocation();
     const { sx } = useDevice();
 
     return (
@@ -61,8 +59,8 @@ const Header = ({
                 width: '100%',
                 left: 0,
                 top: 0,
-                zIndex: 4000,
-                backgroundColor: Colors?.WHITE,
+                zIndex: 3000,
+                backgroundColor: Color?.PRIMARY_LIGHT,
                 overflow: 'hidden',
             }}
         >
@@ -84,7 +82,7 @@ const Header = ({
                         path={STORE_ROUTE?.root(STORE_CODE)}
                         icon={() => <GridViewIcon />}
                         isShown={!sx}
-                        isActive={location.pathname.includes('details')}
+                        childPath={['product']}
                     />
 
                     {PLAN_OPTIONS?.favorites && (
@@ -107,7 +105,7 @@ const Header = ({
                     )}
 
                     {!sx && (
-                        <ProfileButton
+                        <ProfileMenu
                             auth={auth}
                             string={string}
                             headerHeight={headerHeight}

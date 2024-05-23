@@ -1,5 +1,4 @@
 import { useProductsApi } from 'api/useProductsApi';
-import BackButton from 'components/atoms/Buttons/BackButton';
 import EmptyPage from 'components/atoms/EmptyPage/EmptyPage';
 import InstrumentalSubHeader from 'components/organisms/InstrumentalSubHeader/InstrumentalSubHeader';
 import { useIsMount } from 'hooks/useIsMount';
@@ -169,7 +168,7 @@ const Cart = () => {
     if (successOrdering)
         return (
             <>
-                <InstrumentalSubHeader StartSlot={() => <BackButton nav={-1} action={() => {}} />} />
+                <InstrumentalSubHeader StartSlot={() => <></>} />
                 <SuccessOrderingPage setSuccessOrdering={setSuccessOrdering} />
             </>
         );
@@ -179,7 +178,7 @@ const Cart = () => {
             {(loadCreateOrder || loading || loadProducts) && <Loader position="fixed" />}
 
             <InstrumentalSubHeader
-                StartSlot={() => <BackButton nav={-1} action={() => {}} />}
+                StartSlot={() => <></>}
                 EndSlot={() => (
                     <ClearListButton
                         action={() => {

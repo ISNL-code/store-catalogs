@@ -33,9 +33,9 @@ export default function MainCatalog({
     favorites,
     cart,
 }) {
-    const { OPTIONS, STORE_CODE } = STORE_CONFIG;
+    const { OPTIONS, STORE_CODE, STORE_NAME } = STORE_CONFIG;
     const { PLAN_OPTIONS } = OPTIONS;
-    const { storeName, storeCode } = useParams();
+    const { storeCode } = useParams();
     const navigate = useNavigate();
     const { sx } = useDevice();
     const HEADER_HEIGHT = 50;
@@ -45,7 +45,7 @@ export default function MainCatalog({
     const HEADER_PADDINGS = sx ? 2 : 4;
     const BODY_PADDINGS = sx ? 0 : 4;
     const FOOTER_PADDINGS = sx ? 2 : 4;
-    const { currentLanguage } = useGetLanguage({ lang, storeName: storeName });
+    const { currentLanguage } = useGetLanguage({ lang, storeName: STORE_NAME });
     const [scrollPosition, setScrollPosition] = useState(0);
     const [queryCategories, setQueryCategories] = useState<string[] | []>([]);
     const { activeDialogWindow, handleOpenDialog } = useFormsApp();
