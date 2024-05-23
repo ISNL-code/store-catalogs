@@ -11,6 +11,7 @@ import AppLogic from 'AppLogic';
 import { useStoresApi } from 'api/useStoresApi';
 import { useAddToCart } from 'layouts/hooks/useAddToCart';
 import { useAddToFavorites } from 'layouts/hooks/useAddToFavorites';
+import { Toaster } from 'react-hot-toast';
 
 const App = () => {
     const { STORE_CODE, APP_LANGUAGE } = STORE_CONFIG;
@@ -58,6 +59,13 @@ const App = () => {
 
     return (
         <>
+            <Toaster
+                toastOptions={{
+                    style: { width: '100vw' },
+                    duration: 5000,
+                }}
+                position="top-right"
+            />
             <Head />
             <ThemeProvider theme={mainTheme}>
                 <AppRouting

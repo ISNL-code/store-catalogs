@@ -1,9 +1,14 @@
 import { Box, TextField } from '@mui/material';
 import DetailsSection from 'components/atoms/Sections/DetailsSection';
+import toast from 'react-hot-toast';
 import { useOutletContext } from 'react-router-dom';
 
 const DescriptionDetails = ({ productDetails }) => {
     const { string }: any = useOutletContext();
+
+    const handleCopyToClipboard = () => {
+        navigator.clipboard.writeText(productDetails?.details as string).then(() => toast('Copied to clipboard!'));
+    };
 
     return (
         <DetailsSection label={string?.description}>
@@ -15,6 +20,10 @@ const DescriptionDetails = ({ productDetails }) => {
                     flexWrap: 'wrap',
                 }}
             >
+                <Box
+                    onClick={handleCopyToClipboard}
+                    sx={{ position: 'absolute', width: '100%', height: '100%', cursor: 'copy', zIndex: 1 }}
+                ></Box>
                 <TextField
                     value={productDetails?.details}
                     disabled
@@ -38,7 +47,6 @@ const DescriptionDetails = ({ productDetails }) => {
                         '.MuiInputBase-root': { p: 0 },
                     }}
                     multiline
-                    minRows={2}
                 />
             </Box>
         </DetailsSection>

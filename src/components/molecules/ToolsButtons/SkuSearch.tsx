@@ -133,7 +133,11 @@ const SkuSearch = () => {
                                             setMatchedSku([]);
 
                                             return navigate(
-                                                STORE_ROUTE?.product(STORE_CODE, current?.productId, current.sku)
+                                                STORE_ROUTE?.product(
+                                                    STORE_CODE,
+                                                    current?.productId,
+                                                    current.sku.replaceAll('/', '_')
+                                                )
                                             );
                                         }
                                     }}

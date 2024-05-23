@@ -1,6 +1,6 @@
 import { Box } from '@mui/material';
 import { Fragment, useEffect, useMemo, useRef, useState } from 'react';
-import { useOutletContext } from 'react-router-dom';
+import { useOutletContext, useParams } from 'react-router-dom';
 import { useDevice } from 'hooks/useDevice';
 import { CatalogContextInterface } from 'types';
 import FullScreenSwiper from './FullScreenSwiper';
@@ -11,6 +11,7 @@ import { Colors } from 'colors';
 import { STORE_CONFIG } from 'store_constants/stores_config';
 
 const ModelSwiper = ({ images }) => {
+    const { modelSku } = useParams();
     const { OPTIONS } = STORE_CONFIG;
     const { PRODUCT_IMAGE_OPTIONS } = OPTIONS;
     const WINDOW_WIDTH = useWindowWidth();
@@ -26,7 +27,7 @@ const ModelSwiper = ({ images }) => {
         const sliderRef = useRef<HTMLImageElement>(null);
         const imageRef = useRef<HTMLImageElement>(null);
         const [sliderHeight, setSliderHeight] = useState<number | null>(memoHeight);
-        const [maxHeight, setMaxHeight] = useState<number | null>(null);
+        const [maxHeight, setMaxHeight] = useState<number | null>(memoHeight);
         const [isLoading, setIsLoading] = useState(false);
 
         useEffect(() => {
@@ -43,7 +44,7 @@ const ModelSwiper = ({ images }) => {
             if (imageRef?.current?.clientHeight || !isLoading)
                 setTimeout(() => {
                     setMaxHeight(imageRef?.current?.clientHeight as number);
-                    setMemoHeight(imageRef?.current?.clientHeight as number);
+                    imageRef?.current?.clientHeight && setMemoHeight(imageRef?.current?.clientHeight as number);
                 }, 200);
         }, [isLoading, imageRef?.current?.clientHeight]); // eslint-disable-line
 
@@ -86,8 +87,8 @@ const ModelSwiper = ({ images }) => {
     const SlideVertical = ({ imageUrl, idx }) => {
         const sliderRef = useRef<HTMLImageElement>(null);
         const imageRef = useRef<HTMLImageElement>(null);
-        const [sliderHeight, setSliderHeight] = useState<number | string>(0);
-        const [maxHeight, setMaxHeight] = useState<number | null>(null);
+        const [sliderHeight, setSliderHeight] = useState<number | null>(memoHeight);
+        const [maxHeight, setMaxHeight] = useState<number | null>(memoHeight);
         const [isLoading, setIsLoading] = useState(false);
 
         useEffect(() => {
@@ -104,6 +105,7 @@ const ModelSwiper = ({ images }) => {
             if (imageRef?.current?.clientHeight || !isLoading)
                 setTimeout(() => {
                     setMaxHeight(imageRef?.current?.clientHeight as number);
+                    imageRef?.current?.clientHeight && setMemoHeight(imageRef?.current?.clientHeight as number);
                 }, 250);
         }, [isLoading, imageRef?.current?.clientHeight]); // eslint-disable-line
 
@@ -154,7 +156,7 @@ const ModelSwiper = ({ images }) => {
                 })}
             </Box>
         );
-    }, [images?.length, headerHeight, instrumentalBarHeight, footerMenuHeight]); // eslint-disable-line
+    }, [images?.length, headerHeight, instrumentalBarHeight, footerMenuHeight, modelSku]); // eslint-disable-line
 
     const horizontalSwiper = useMemo(() => {
         return (
@@ -174,7 +176,7 @@ const ModelSwiper = ({ images }) => {
                 })}
             </Box>
         );
-    }, [images, headerHeight, instrumentalBarHeight, footerMenuHeight, WINDOW_WIDTH]); // eslint-disable-line
+    }, [images, headerHeight, instrumentalBarHeight, footerMenuHeight, WINDOW_WIDTH, modelSku]); // eslint-disable-line
 
     return (
         <>
