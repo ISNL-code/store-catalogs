@@ -1,4 +1,4 @@
-import { cloneElement, useState } from 'react';
+import React, { useState } from 'react';
 import { Box, SpeedDial, SpeedDialIcon, SpeedDialAction } from '@mui/material';
 import IosShareIcon from '@mui/icons-material/IosShare';
 import {
@@ -21,31 +21,54 @@ const ShareButton = ({ path, isShown, direction }: ShareButtonInterface) => {
     const [open, setOpen] = useState(false);
 
     const actions = [
-        { icon: <TelegramIcon size={35} round />, name: 'Telegram', component: TelegramShareButton },
-        { icon: <WhatsappIcon size={35} round />, name: 'WhatsApp', component: WhatsappShareButton },
-        { icon: <EmailIcon size={35} round />, name: 'Email', component: EmailShareButton },
+        {
+            icon: (
+                <TelegramShareButton url={path}>
+                    <TelegramIcon size={40} round />
+                </TelegramShareButton>
+            ),
+            name: 'Telegram',
+        },
+        {
+            icon: (
+                <WhatsappShareButton url={path}>
+                    <WhatsappIcon size={40} round />
+                </WhatsappShareButton>
+            ),
+            name: 'WhatsApp',
+        },
+        {
+            icon: (
+                <EmailShareButton url={path}>
+                    <EmailIcon size={40} round />
+                </EmailShareButton>
+            ),
+            name: 'Email',
+        },
+        {
+            icon: (
+                <EmailShareButton url={path}>
+                    <EmailIcon size={40} round />
+                </EmailShareButton>
+            ),
+            name: 'Email',
+        },
     ];
 
     if (!isShown) return null;
 
     return (
         <Box>
-            <Box
-                sx={{
-                    position: 'relative',
-                    width: 30,
-                    height: 30,
-                }}
-            >
+            <Box sx={{ position: 'relative', width: 30, height: 30 }}>
                 <SpeedDial
                     direction={direction}
                     ariaLabel="Share options"
                     icon={
                         <SpeedDialIcon
-                            icon={<IosShareIcon sx={{ color: Colors?.WHITE, fontSize: 16, mt: 0.25 }} />}
+                            icon={<IosShareIcon sx={{ color: Colors?.WHITE, fontSize: 18, mt: 0.25 }} />}
                             openIcon={
                                 <IosShareIcon
-                                    sx={{ transform: 'scaleY(-1)', color: Colors?.WHITE, fontSize: 16, mt: 0.25 }}
+                                    sx={{ transform: 'scaleY(-1)', color: Colors?.WHITE, fontSize: 18, mt: 0.25 }}
                                 />
                             }
                         />
@@ -70,17 +93,21 @@ const ShareButton = ({ path, isShown, direction }: ShareButtonInterface) => {
                         zIndex: 100,
                     }}
                 >
-                    {actions.map((action, index) => (
+                    {actions.map(action => (
                         <SpeedDialAction
                             key={action.name}
-                            icon={cloneElement(action.icon, { size: 38 })} // Reduce icon size
+                            icon={action.icon}
                             tooltipTitle={action.name}
-                            sx={{
-                                padding: 0, // Adjust padding for spacing
-                                fontSize: '12px', // Adjust font size for text
-                                mb: -0.5,
-                                width: 42,
-                                height: 42, // Set custom height to 25px
+                            onClick={() => setOpen(false)}
+                            FabProps={{
+                                color: 'secondary',
+                                sx: {
+                                    width: 30,
+                                    height: 30,
+                                    minWidth: 30,
+                                    minHeight: 30,
+                                    boxShadow: 'none',
+                                },
                             }}
                         />
                     ))}
