@@ -33,7 +33,7 @@ const TableSizeDialog = ({ string, onClose, closeAvailable, onSubmit }: Props) =
             touchEvent={false}
         >
             <Dialog
-                sx={{ zIndex: 4500 }}
+                sx={{ zIndex: 4500, width: '100vw' }}
                 BackdropProps={{ style: { zIndex: 5000 } }}
                 open={open}
                 onClose={() => {
@@ -51,13 +51,14 @@ const TableSizeDialog = ({ string, onClose, closeAvailable, onSubmit }: Props) =
                         overflow: 'hidden',
                         border: `0.5px solid ${Colors?.GRAY_300}`,
                         width: 'fit-content',
-                        maxWidth: '100vh',
+                        maxWidth: '90vw',
+                        m: 0,
                     },
                 }}
             >
                 <DialogContent sx={{ p: 0 }}>
                     <img
-                        style={{ width: 'auto', maxHeight: sx ? '50vh' : '75vh' }} // Set image width to 100% of content area
+                        style={{ width: 'auto', maxHeight: sx ? '55vh' : '75vh' }} // Set image width to 100% of content area
                         src={require(`assets/img/table_sizes_eg.png`)}
                         alt="Broken Img"
                     />
