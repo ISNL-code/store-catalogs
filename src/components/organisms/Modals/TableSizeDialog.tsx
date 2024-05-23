@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Button, DialogActions, Dialog, ClickAwayListener } from '@mui/material';
 import { Colors } from 'colors';
 import DialogContent from '@mui/material/DialogContent';
+import { useDevice } from 'hooks/useDevice';
 
 interface Props {
     string; // Assuming `string` is used for the close button text
@@ -11,6 +12,7 @@ interface Props {
 }
 
 const TableSizeDialog = ({ string, onClose, closeAvailable, onSubmit }: Props) => {
+    const { sx } = useDevice();
     const [open, setOpen] = useState<boolean>(false);
 
     const handleClose = () => {
@@ -55,7 +57,7 @@ const TableSizeDialog = ({ string, onClose, closeAvailable, onSubmit }: Props) =
             >
                 <DialogContent sx={{ p: 0 }}>
                     <img
-                        style={{ width: 'auto', maxHeight: '80vh' }} // Set image width to 100% of content area
+                        style={{ width: 'auto', maxHeight: sx ? '50vh' : '75vh' }} // Set image width to 100% of content area
                         src={require(`assets/img/table_sizes_eg.png`)}
                         alt="Broken Img"
                     />
