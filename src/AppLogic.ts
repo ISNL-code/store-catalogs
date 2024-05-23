@@ -18,6 +18,7 @@ interface Props {
     storeDataRes;
     setStore;
     loadStore;
+    userData;
 }
 
 const AppLogic = ({
@@ -33,6 +34,7 @@ const AppLogic = ({
     storeDataRes,
     setStore,
     loadStore,
+    userData,
 }: Props) => {
     const mount = useIsMount();
     const { APP_LANGUAGE, USER_OPTIONS, STORE_NAME, STORE_CODE } = STORE_CONFIG;
@@ -84,6 +86,11 @@ const AppLogic = ({
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [token]);
+
+    useEffect(() => {
+        if (!userData) return;
+        setCurrentUserData(userData?.data);
+    }, [userData]); // eslint-disable-line
 
     // set app user lang
     useEffect(() => {

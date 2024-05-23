@@ -1,7 +1,7 @@
 import { Box } from '@mui/system';
 import CardItem from 'components/atoms/Sections/CardItem';
 import Grid from '@mui/material/Unstable_Grid2';
-import { Button, TextField, Typography } from '@mui/material';
+import { Button, TextField, Typography, Checkbox, FormControlLabel } from '@mui/material';
 import { useOutletContext, useParams } from 'react-router-dom';
 import { CatalogContextInterface } from 'types';
 import { OrderDataInterface } from '../Cart';
@@ -24,16 +24,26 @@ const ConfirmCoupon = ({ createOrder, orderData, finalPrice, setSuccessOrdering,
     const { STORE_NAME, OPTIONS } = STORE_CONFIG;
     const { MIN_ITEMS_TO_BUY } = OPTIONS;
     const { storeCode } = useParams();
-    const { string, store, lang, currentUserData, cart, auth, handleOpenDialog }: CatalogContextInterface =
-        useOutletContext();
+    const {
+        string,
+        store,
+        lang,
+        currentUserData,
+        cart,
+        auth,
+        handleOpenDialog,
+        updateUserData,
+    }: CatalogContextInterface = useOutletContext();
     const [firstName, setFirstName] = useState(
         currentUserData?.delivery?.firstName || currentUserData?.billing?.firstName
     );
+    const [saveDetails, setSaveDetails] = useState(false);
     const { mutateAsync: updateProfile } = useUserApi().useCustomerProfileUpdate({ storeCode });
     const [lastName, setLastName] = useState(currentUserData?.delivery?.lastName || currentUserData?.billing?.lastName);
     const [phone, setPhone] = useState(currentUserData?.delivery?.phone || currentUserData?.billing?.phone);
     const [city, setCity] = useState(currentUserData?.delivery?.city || currentUserData?.billing?.city);
     const [address, setAddress] = useState(currentUserData?.delivery?.address || currentUserData?.billing?.address);
+    const [company, setCompany] = useState(currentUserData?.delivery?.company || currentUserData?.billing?.company);
 
     const handleConfirmOrder = () => {
         if (!auth) {
@@ -86,6 +96,7 @@ const ConfirmCoupon = ({ createOrder, orderData, finalPrice, setSuccessOrdering,
                             firstName: orderData.delivery.firstName,
                             lastName: orderData.delivery.lastName,
                             phone: orderData.delivery.phone,
+                            company: orderData.delivery.company,
                         },
                     },
                 },
@@ -111,17 +122,21 @@ const ConfirmCoupon = ({ createOrder, orderData, finalPrice, setSuccessOrdering,
                         };
                     });
                     setSuccessOrdering(true);
-                    updateProfile({
-                        data: {
-                            delivery: {
-                                firstName,
-                                lastName,
-                                city,
-                                phone,
-                                address,
+                    if (saveDetails)
+                        updateProfile({
+                            data: {
+                                delivery: {
+                                    firstName,
+                                    lastName,
+                                    city,
+                                    phone,
+                                    address,
+                                    company,
+                                },
                             },
-                        },
-                    });
+                        }).then(_ => {
+                            updateUserData();
+                        });
                 })
                 .catch(err => console.log(err));
     };
@@ -129,12 +144,13 @@ const ConfirmCoupon = ({ createOrder, orderData, finalPrice, setSuccessOrdering,
     return (
         <CardItem>
             <Box p={2} sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
-                <Grid mb={1} xs={12} sx={{ display: 'flex', alignItems: 'center', gap: 0.25 }}>
+                <Grid xs={12} sx={{ display: 'flex', alignItems: 'center', gap: 0.25, mb: 2 }}>
                     <Typography variant="h3">{string?.delivery_information}</Typography>
                     <Typography variant="h6" sx={{ color: 'red', textTransform: 'lowercase' }}>
                         ({string?.not_required})
                     </Typography>
                 </Grid>
+
                 <Grid xs={12}>
                     <TextField
                         value={firstName || ''}
@@ -218,6 +234,36 @@ const ConfirmCoupon = ({ createOrder, orderData, finalPrice, setSuccessOrdering,
                                 color: '#898B9B',
                             },
                         }}
+                    />
+                </Grid>
+                <Grid xs={12}>
+                    <TextField
+                        value={company || ''}
+                        onChange={e => {
+                            setCompany(e?.target?.value);
+                        }}
+                        InputLabelProps={{ shrink: true }}
+                        fullWidth
+                        size="small"
+                        label={string?.company}
+                        sx={{
+                            '& label': {
+                                color: '#898B9B',
+                            },
+                        }}
+                    />
+                </Grid>
+                <Grid xs={12} sx={{ display: 'flex', alignItems: 'center', gap: 0.25 }}>
+                    <FormControlLabel
+                        control={
+                            <Checkbox
+                                checked={saveDetails}
+                                onChange={event => setSaveDetails(event.target.checked)}
+                                name="saveDetails"
+                                color="primary"
+                            />
+                        }
+                        label={string?.save_delivery_info}
                     />
                 </Grid>
                 <Grid

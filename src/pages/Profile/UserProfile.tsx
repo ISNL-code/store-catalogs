@@ -29,6 +29,7 @@ const UserProfile = () => {
     const [phone, setPhone] = useState(currentUserData?.delivery?.phone);
     const [city, setCity] = useState(currentUserData?.delivery?.city);
     const [address, setAddress] = useState(currentUserData?.delivery?.address);
+    const [company, setCompany] = useState(currentUserData?.delivery?.company);
 
     useEffect(() => {
         window.scrollTo({
@@ -71,6 +72,7 @@ const UserProfile = () => {
                                         city,
                                         phone,
                                         address,
+                                        company,
                                     },
                                 },
                             }).then(_ => updateUserData().then(res => setCurrentUserData(res?.data?.data)));
@@ -132,8 +134,10 @@ const UserProfile = () => {
                     <Grid xs={12}>
                         <TextField
                             InputLabelProps={{ shrink: true }}
-                            value={currentUserData?.billing?.company || ''}
-                            onChange={e => {}}
+                            value={company || ''}
+                            onChange={e => {
+                                setCompany(e?.target?.value);
+                            }}
                             size="small"
                             label={string?.company_name}
                             fullWidth

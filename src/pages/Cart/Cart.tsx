@@ -43,6 +43,7 @@ export interface OrderDataInterface {
         firstName: string;
         lastName: string;
         phone: string;
+        company: string;
     };
 }
 
@@ -80,6 +81,7 @@ const Cart = () => {
             firstName: '',
             lastName: '',
             phone: '',
+            company: '',
         },
     });
 

@@ -1,14 +1,8 @@
 import React, { useState } from 'react';
 import { Box, SpeedDial, SpeedDialIcon, SpeedDialAction } from '@mui/material';
 import IosShareIcon from '@mui/icons-material/IosShare';
-import {
-    TelegramShareButton,
-    TelegramIcon,
-    WhatsappShareButton,
-    WhatsappIcon,
-    EmailShareButton,
-    EmailIcon,
-} from 'react-share';
+import { TelegramIcon, WhatsappIcon, ViberIcon, EmailIcon } from 'react-share';
+import { shareOnTelegram, shareOnWhatsApp, shareOnViber, shareOnEmail } from 'utils/shareFunctions'; // You need to implement these
 import { Colors } from 'colors';
 
 interface ShareButtonInterface {
@@ -22,36 +16,24 @@ const ShareButton = ({ path, isShown, direction }: ShareButtonInterface) => {
 
     const actions = [
         {
-            icon: (
-                <TelegramShareButton url={path}>
-                    <TelegramIcon size={40} round />
-                </TelegramShareButton>
-            ),
+            icon: <TelegramIcon size={36} round />,
             name: 'Telegram',
+            onClick: () => shareOnTelegram(path),
         },
         {
-            icon: (
-                <WhatsappShareButton url={path}>
-                    <WhatsappIcon size={40} round />
-                </WhatsappShareButton>
-            ),
+            icon: <WhatsappIcon size={36} round />,
             name: 'WhatsApp',
+            onClick: () => shareOnWhatsApp(path),
         },
         {
-            icon: (
-                <EmailShareButton url={path}>
-                    <EmailIcon size={40} round />
-                </EmailShareButton>
-            ),
-            name: 'Email',
+            icon: <ViberIcon size={36} round />,
+            name: 'Viber',
+            onClick: () => shareOnViber(path),
         },
         {
-            icon: (
-                <EmailShareButton url={path}>
-                    <EmailIcon size={40} round />
-                </EmailShareButton>
-            ),
+            icon: <EmailIcon size={36} round />,
             name: 'Email',
+            onClick: () => shareOnEmail(path),
         },
     ];
 
@@ -59,7 +41,7 @@ const ShareButton = ({ path, isShown, direction }: ShareButtonInterface) => {
 
     return (
         <Box>
-            <Box sx={{ position: 'relative', width: 30, height: 30 }}>
+            <Box sx={{ position: 'relative', width: 28, height: 28 }}>
                 <SpeedDial
                     direction={direction}
                     ariaLabel="Share options"
@@ -84,29 +66,34 @@ const ShareButton = ({ path, isShown, direction }: ShareButtonInterface) => {
                             minWidth: 30,
                             minHeight: 30,
                             boxShadow: 'none',
+                            mt: direction === 'up' ? -1.5 : 0,
                         },
                     }}
                     sx={{
                         ...(direction === 'up' ? { bottom: 0 } : { top: 0 }),
-                        left: '-50%',
+                        left: '-45%',
                         position: 'absolute',
                         zIndex: 100,
                     }}
                 >
-                    {actions.map(action => (
+                    {actions.map((action, idx) => (
                         <SpeedDialAction
-                            key={action.name}
+                            key={idx}
                             icon={action.icon}
                             tooltipTitle={action.name}
-                            onClick={() => setOpen(false)}
+                            onClick={() => {
+                                setOpen(false);
+                                action.onClick();
+                            }}
                             FabProps={{
                                 color: 'secondary',
                                 sx: {
-                                    width: 30,
-                                    height: 30,
-                                    minWidth: 30,
-                                    minHeight: 30,
+                                    width: 36,
+                                    height: 36,
+                                    minWidth: 36,
+                                    minHeight: 36,
                                     boxShadow: 'none',
+                                    mb: direction === 'up' ? 0.25 : 0,
                                 },
                             }}
                         />

@@ -23,6 +23,7 @@ const App = () => {
     const [store, setStore] = useState<StoreInterface | null>(null);
 
     const {
+        data: userData,
         refetch: updateUserData,
         isFetching: isFetchingUser,
         error: userError,
@@ -50,6 +51,7 @@ const App = () => {
         storeDataRes,
         setStore,
         loadStore,
+        userData,
     });
 
     if (auth === null || !STORE_CODE) return <></>;

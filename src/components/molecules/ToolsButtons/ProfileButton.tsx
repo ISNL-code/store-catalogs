@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import {
-    AccountCircle as AccountCircleIcon,
     PermIdentity as PermIdentityIcon,
     AttachMoney as AttachMoneyIcon,
     Logout as LogoutIcon,
@@ -9,7 +8,7 @@ import {
 } from '@mui/icons-material';
 import PrivacyTipIcon from '@mui/icons-material/PrivacyTip';
 import MenuIcon from '@mui/icons-material/Menu';
-import { Box, IconButton, SwipeableDrawer, Typography, MenuItem, ListItemText, SxProps, Theme } from '@mui/material';
+import { Box, IconButton, SwipeableDrawer, Typography, MenuItem, ListItemText } from '@mui/material';
 import SwiperButton from 'components/atoms/Elements/SwiperButton';
 import { useDevice } from 'hooks/useDevice';
 import { useLocation, useNavigate } from 'react-router-dom';

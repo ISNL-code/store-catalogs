@@ -180,6 +180,7 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 add_to_cart: 'Add to cart',
                 in_cart: 'In cart',
                 menu: 'Menu',
+                save_delivery_info: 'Save delivery info',
             },
         },
         {
@@ -351,6 +352,7 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 add_to_cart: 'Ajouter au panier',
                 in_cart: 'Dans le panier',
                 menu: 'Menu',
+                save_delivery_info: 'Enregistrer les informations de livraison',
             },
         },
         {
@@ -523,6 +525,7 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 add_to_cart: 'Añadir al carrito',
                 in_cart: 'En el carrito',
                 menu: 'Menú',
+                save_delivery_info: 'Guardar información de entrega',
             },
         },
         {
@@ -694,6 +697,7 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 add_to_cart: 'Додати в кошик',
                 in_cart: 'У кошику',
                 menu: 'Меню',
+                save_delivery_info: 'Зберегти інформацію про доставку',
             },
         },
         {
@@ -865,6 +869,7 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 add_to_cart: 'Dodaj do koszyka',
                 in_cart: 'W koszyku',
                 menu: 'Menu',
+                save_delivery_info: 'Zapisz informacje o dostawie',
             },
         },
         {
@@ -1036,6 +1041,7 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 add_to_cart: 'Přidat do košíku',
                 in_cart: 'V košíku',
                 menu: 'Menu',
+                save_delivery_info: 'Uložit informace o doručení',
             },
         },
         {
@@ -1207,6 +1213,7 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 add_to_cart: 'добавить в корзину',
                 in_cart: 'В корзине',
                 menu: 'Меню',
+                save_delivery_info: 'Сохранить информацию о доставке',
             },
         },
         {
@@ -1380,6 +1387,7 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 add_to_cart: 'Себетке қосу',
                 in_cart: 'Себетте',
                 menu: 'Мәзірі',
+                save_delivery_info: 'Жеткізу туралы ақпаратты сақтау',
             },
         },
     ];
