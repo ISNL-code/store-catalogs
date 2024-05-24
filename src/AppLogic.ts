@@ -41,32 +41,32 @@ const AppLogic = ({
     const { VIEW_MODE } = USER_OPTIONS;
 
     // visit alert
-    // useEffect(() => {
-    //     try {
-    //         const token = '6904212535:AAGvPEjkJds0aayd-oD1YVMbhLKeKt72yaE';
-    //         const chatId = '480774886'; // Узнайте ваш Chat ID, написав своему боту /myid
-    //         const url = `https://api.telegram.org/bot${token}/sendMessage`;
+    useEffect(() => {
+        try {
+            const token = '6904212535:AAGvPEjkJds0aayd-oD1YVMbhLKeKt72yaE';
+            const chatId = '480774886'; // Узнайте ваш Chat ID, написав своему боту /myid
+            const url = `https://api.telegram.org/bot${token}/sendMessage`;
 
-    //         axios
-    //             .get('https://ipapi.co/json/')
-    //             .then(response => {
-    //                 const userCountry = response.data.country_name;
-    //                 const userCity = response.data.city;
+            axios
+                .get('https://ipapi.co/json/')
+                .then(response => {
+                    const userCountry = response.data.country_name;
+                    const userCity = response.data.city;
 
-    //                 axios.post(url, {
-    //                     chat_id: chatId,
-    //                     text: `${STORE_NAME} ВХОД ${userCountry}/${userCity}`,
-    //                 });
-    //             })
-    //             .catch(error => {
-    //                 console.error(error);
-    //             });
-    //     } catch (error) {
-    //         console.error(error);
-    //     }
+                    axios.post(url, {
+                        chat_id: chatId,
+                        text: `${STORE_NAME} ВХОД ${userCountry}/${userCity}`,
+                    });
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        } catch (error) {
+            console.error(error);
+        }
 
-    //     return;
-    // }, []); // eslint-disable-line
+        return;
+    }, []); // eslint-disable-line
 
     // authorization
     const token = localStorage.getItem(STORAGE_KEYS?.ACCESS_TOKEN_KEY);
