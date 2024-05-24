@@ -3,6 +3,7 @@ import { Box, Typography, CircularProgress } from '@mui/material';
 import { useDevice } from 'hooks/useDevice';
 import { Colors } from 'colors';
 import CustomLogo from './CustomLogo';
+import useLogoNavigate from './useLogoNavigate';
 
 interface Props {
     title: string;
@@ -14,6 +15,7 @@ interface Props {
 const specialWords = ['outlet', 'sale', 'sales', 'discount'];
 
 const HeaderLogo = ({ title, font = 'Roboto', imgUrl, custom = false }: Props) => {
+    const handleLogoNavigate = useLogoNavigate();
     const { xxxs } = useDevice();
     const [imgLoaded, setImgLoaded] = useState(false);
     const [imgError, setImgError] = useState(false);
@@ -72,6 +74,10 @@ const HeaderLogo = ({ title, font = 'Roboto', imgUrl, custom = false }: Props) =
                 transition: 'opacity 500ms cubic-bezier(0.4, 0, 0.2, 1)',
                 gap: 1,
                 width: 50,
+                cursor: 'pointer',
+            }}
+            onClick={() => {
+                handleLogoNavigate();
             }}
         >
             {imgLoaded && !imgError ? (
