@@ -1,7 +1,7 @@
-import React from 'react';
+import ErrorComponent from './ErrorComponent';
 
-const Page404 = () => {
-    return <div>Page404</div>;
+const PAGE_404 = () => {
+    return <ErrorComponent code="404" title="Page Not Found" withLink />;
 };
 
-export default Page404;
+export default PAGE_404;

@@ -1,5 +1,5 @@
-import { STORE_CONFIG } from 'constants/stores_config';
-import { StoreType } from 'constants/types';
+import { STORE_CONFIG } from 'store_constants/stores_config';
+import { StoreType } from 'store_constants/types';
 import DetailsPriceDefault from './DetailsPriceDefault';
 import DetailsPriceSales from './DetailsPriceSales';
 
@@ -17,6 +17,7 @@ const DetailsPrice = ({ currency, price, discountPrice = null }: Props) => {
         SALE_PRICE_MULTIPLICATION,
         STORE_TYPE,
         MAIN_PRICE_MULTIPLICATION,
+        RETAIL_PRICE_MULTIPLICATION,
     } = OPTIONS;
     return (
         <>
@@ -24,14 +25,29 @@ const DetailsPrice = ({ currency, price, discountPrice = null }: Props) => {
                 {Boolean(STORE_TYPE !== StoreType.sales) && (
                     <DetailsPriceDefault
                         currency={CUSTOM_CURRENCY || currency}
-                        price={Number(price) * MAIN_PRICE_MULTIPLICATION * CURRENCY_MULTIPLICATION}
+                        price={(
+                            Number(price) *
+                            MAIN_PRICE_MULTIPLICATION *
+                            CURRENCY_MULTIPLICATION *
+                            RETAIL_PRICE_MULTIPLICATION
+                        ).toFixed(2)}
                     />
                 )}
                 {Boolean(STORE_TYPE === StoreType.sales) && (
                     <DetailsPriceSales
                         currency={CUSTOM_CURRENCY || currency}
-                        price={Number(price) * MAIN_PRICE_MULTIPLICATION * CURRENCY_MULTIPLICATION}
-                        discountPrice={Number(discountPrice) * SALE_PRICE_MULTIPLICATION * CURRENCY_MULTIPLICATION}
+                        price={(
+                            Number(price) *
+                            MAIN_PRICE_MULTIPLICATION *
+                            CURRENCY_MULTIPLICATION *
+                            RETAIL_PRICE_MULTIPLICATION
+                        ).toFixed(2)}
+                        discountPrice={(
+                            Number(discountPrice) *
+                            SALE_PRICE_MULTIPLICATION *
+                            CURRENCY_MULTIPLICATION *
+                            RETAIL_PRICE_MULTIPLICATION
+                        ).toFixed(2)}
                     />
                 )}
             </>

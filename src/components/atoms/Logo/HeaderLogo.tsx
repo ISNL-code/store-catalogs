@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { Box, Typography, CircularProgress } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
 import { useDevice } from 'hooks/useDevice';
 import { Colors } from 'colors';
 import CustomLogo from './CustomLogo';
+import useLogoNavigate from './useLogoNavigate';
 
 interface Props {
     title: string;
@@ -15,7 +15,7 @@ interface Props {
 const specialWords = ['outlet', 'sale', 'sales', 'discount'];
 
 const HeaderLogo = ({ title, font = 'Roboto', imgUrl, custom = false }: Props) => {
-    const navigate = useNavigate();
+    const handleLogoNavigate = useLogoNavigate();
     const { xxxs } = useDevice();
     const [imgLoaded, setImgLoaded] = useState(false);
     const [imgError, setImgError] = useState(false);
@@ -68,16 +68,16 @@ const HeaderLogo = ({ title, font = 'Roboto', imgUrl, custom = false }: Props) =
     return (
         <Box
             sx={{
-                cursor: 'pointer',
                 display: 'flex',
                 alignItems: 'center',
                 position: 'relative',
                 transition: 'opacity 500ms cubic-bezier(0.4, 0, 0.2, 1)',
                 gap: 1,
                 width: 50,
+                cursor: 'pointer',
             }}
             onClick={() => {
-                navigate(`/`);
+                handleLogoNavigate();
             }}
         >
             {imgLoaded && !imgError ? (

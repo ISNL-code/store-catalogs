@@ -1,8 +1,8 @@
 import { Box, Divider, Typography } from '@mui/material';
 import PromoTags from 'components/atoms/PromoTags/PromoTags';
 import SaleTag from 'components/atoms/PromoTags/SaleTag';
-import { STORE_CONFIG } from 'constants/stores_config';
-import { StoreType } from 'constants/types';
+import { STORE_CONFIG } from 'store_constants/stores_config';
+import { StoreType } from 'store_constants/types';
 
 const TitleDetails = ({ productDetails, selectedVariant }) => {
     const { OPTIONS } = STORE_CONFIG;
@@ -24,14 +24,7 @@ const TitleDetails = ({ productDetails, selectedVariant }) => {
 
                 <Box sx={{ display: 'flex', gap: 0.5 }}>
                     {productDetails?.promo.map(el => (
-                        <PromoTags
-                            key={el.id}
-                            value={el.name}
-                            size={15}
-                            selected={true}
-                            disabled={true}
-                            code={el?.code}
-                        />
+                        <PromoTags key={el.id} value={el.name} disabled={true} code={el?.code} />
                     ))}
                     <Box>
                         {STORE_TYPE === StoreType.sales && (

@@ -39,13 +39,13 @@ export const useProductsApi = () => {
         );
     };
 
-    const useGetProductBySku = ({ sku, storeCode }) => {
+    const useGetProductBySku = ({ sku, storeCode, lang }) => {
         return useQuery(
             ['get-product-by-sku'],
 
             () =>
                 get({
-                    url: `v2/products?variantSku=${sku}&count=20&store=${storeCode}`,
+                    url: `v2/products?variantSku=${sku}&count=20&store=${storeCode}&lang=${lang}&available=true&page=0`,
                 }),
             { enabled: !!sku }
         );

@@ -1,5 +1,5 @@
 import { Box } from '@mui/material';
-import { STORE_CONFIG } from 'constants/stores_config';
+import { STORE_CONFIG } from 'store_constants/stores_config';
 import { useDevice } from 'hooks/useDevice';
 import ActionSection from './components/ActionSection';
 import ArticleDetails from './components/ArticleDetails';
@@ -19,11 +19,13 @@ const ModelDetails = ({ productDetails, selectedVariant, setSelectedVariant }) =
                 <TitleDetails productDetails={productDetails} selectedVariant={selectedVariant} />
             </Box>
             <Box>
-                <ActionSection
+                <ColorsDetails
+                    productDetails={productDetails}
                     selectedVariant={selectedVariant}
-                    isShown={PLAN_OPTIONS?.cart || PLAN_OPTIONS?.favorites}
+                    setSelectedVariant={setSelectedVariant}
                 />
             </Box>
+
             {PLAN_OPTIONS?.prices && (
                 <Box sx={{ display: 'flex', gap: 1 }}>
                     <Box sx={{ width: '100%' }}>
@@ -39,10 +41,9 @@ const ModelDetails = ({ productDetails, selectedVariant, setSelectedVariant }) =
                 </Box>
             )}
             <Box>
-                <ColorsDetails
-                    productDetails={productDetails}
+                <ActionSection
                     selectedVariant={selectedVariant}
-                    setSelectedVariant={setSelectedVariant}
+                    isShown={PLAN_OPTIONS?.cart || PLAN_OPTIONS?.favorites}
                 />
             </Box>
             {PLAN_OPTIONS.sizes && (
@@ -50,6 +51,7 @@ const ModelDetails = ({ productDetails, selectedVariant, setSelectedVariant }) =
                     <SizesDetails productDetails={productDetails} isShown={PLAN_OPTIONS?.sizes} />
                 </Box>
             )}
+
             <Box mb={1}>
                 <DescriptionDetails productDetails={productDetails} />
             </Box>

@@ -1,15 +1,16 @@
 import { Box } from '@mui/system';
 import CardItem from 'components/atoms/Sections/CardItem';
 import Grid from '@mui/material/Unstable_Grid2';
-import { Button, TextField, Typography } from '@mui/material';
+import { Button, TextField, Typography, Checkbox, FormControlLabel } from '@mui/material';
 import { useOutletContext, useParams } from 'react-router-dom';
 import { CatalogContextInterface } from 'types';
 import { OrderDataInterface } from '../Cart';
 import { useState } from 'react';
 import axios from 'axios';
 import CouponPrice from 'components/molecules/PricesComponents/CouponPrice';
-import { STORE_CONFIG } from 'constants/stores_config';
-import ConfirmOrderModal from 'components/organisms/Modals/ConfirmOrderModal';
+import { STORE_CONFIG } from 'store_constants/stores_config';
+import { useUserApi } from 'api/useUserApi';
+import { DialogWindowType } from 'layouts/hooks/useFormsApp';
 
 interface Props {
     createOrder;
@@ -20,23 +21,41 @@ interface Props {
 }
 
 const ConfirmCoupon = ({ createOrder, orderData, finalPrice, setSuccessOrdering, setOrderData }: Props) => {
-    const { STORE_NAME, OPTIONS, SIDE_LINKS } = STORE_CONFIG;
+    const { STORE_NAME, OPTIONS } = STORE_CONFIG;
     const { MIN_ITEMS_TO_BUY } = OPTIONS;
     const { storeCode } = useParams();
-    const { string, store, supportedLanguage, currentUserData, cart }: CatalogContextInterface = useOutletContext();
-    const [firstName, setFirstName] = useState(currentUserData?.delivery?.firstName || '');
-    const [lastName, setLastName] = useState(currentUserData?.delivery?.lastName || '');
-    const [phone, setPhone] = useState(currentUserData?.delivery?.phone || '');
-    const [city, setCity] = useState(currentUserData?.delivery?.city || '');
-    const [address, setAddress] = useState(currentUserData?.delivery?.address || '');
-    const [openModal, setOpenModal] = useState(false);
+    const {
+        string,
+        store,
+        lang,
+        currentUserData,
+        cart,
+        auth,
+        handleOpenDialog,
+        updateUserData,
+    }: CatalogContextInterface = useOutletContext();
+    const [firstName, setFirstName] = useState(
+        currentUserData?.delivery?.firstName || currentUserData?.billing?.firstName
+    );
+    const [saveDetails, setSaveDetails] = useState(false);
+    const { mutateAsync: updateProfile } = useUserApi().useCustomerProfileUpdate({ storeCode });
+    const [lastName, setLastName] = useState(currentUserData?.delivery?.lastName || currentUserData?.billing?.lastName);
+    const [phone, setPhone] = useState(currentUserData?.delivery?.phone || currentUserData?.billing?.phone);
+    const [city, setCity] = useState(currentUserData?.delivery?.city || currentUserData?.billing?.city);
+    const [address, setAddress] = useState(currentUserData?.delivery?.address || currentUserData?.billing?.address);
+    const [company, setCompany] = useState(currentUserData?.delivery?.company || currentUserData?.billing?.company);
 
     const handleConfirmOrder = () => {
+        if (!auth) {
+            handleOpenDialog(DialogWindowType?.LOGIN);
+            return;
+        }
         if (orderData?.productsList?.reduce((acc, el) => acc + 1 * Number(el?.quantity), 0) < MIN_ITEMS_TO_BUY) {
-            setOpenModal(true);
+            handleOpenDialog(DialogWindowType?.WARNING_ORDERING_LIMIT);
+            return;
         } else
             return createOrder({
-                lang: supportedLanguage,
+                lang: lang,
                 storeCode,
                 data: {
                     shoppingCartItems: orderData.productsList.map(item => {
@@ -77,6 +96,7 @@ const ConfirmCoupon = ({ createOrder, orderData, finalPrice, setSuccessOrdering,
                             firstName: orderData.delivery.firstName,
                             lastName: orderData.delivery.lastName,
                             phone: orderData.delivery.phone,
+                            company: orderData.delivery.company,
                         },
                     },
                 },
@@ -102,30 +122,35 @@ const ConfirmCoupon = ({ createOrder, orderData, finalPrice, setSuccessOrdering,
                         };
                     });
                     setSuccessOrdering(true);
+                    if (saveDetails)
+                        updateProfile({
+                            data: {
+                                delivery: {
+                                    firstName,
+                                    lastName,
+                                    city,
+                                    phone,
+                                    address,
+                                    company,
+                                },
+                            },
+                        }).then(_ => {
+                            updateUserData();
+                        });
                 })
                 .catch(err => console.log(err));
     };
 
     return (
-        <CardItem withHover={false}>
-            {openModal && (
-                <ConfirmOrderModal
-                    action={() => {
-                        const href = SIDE_LINKS?.find(el => el?.description === 'WEB')?.href as string;
-                        window.open(href, '_blank');
-                    }}
-                    close={() => setOpenModal(false)}
-                    title={string?.min_purchase}
-                    text={string?.wholesales_ordering_limitation_message}
-                />
-            )}
+        <CardItem>
             <Box p={2} sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
-                <Grid mb={1} xs={12} sx={{ display: 'flex', alignItems: 'center', gap: 0.25 }}>
+                <Grid xs={12} sx={{ display: 'flex', alignItems: 'center', gap: 0.25, mb: 2 }}>
                     <Typography variant="h3">{string?.delivery_information}</Typography>
                     <Typography variant="h6" sx={{ color: 'red', textTransform: 'lowercase' }}>
                         ({string?.not_required})
                     </Typography>
                 </Grid>
+
                 <Grid xs={12}>
                     <TextField
                         value={firstName || ''}
@@ -209,6 +234,36 @@ const ConfirmCoupon = ({ createOrder, orderData, finalPrice, setSuccessOrdering,
                                 color: '#898B9B',
                             },
                         }}
+                    />
+                </Grid>
+                <Grid xs={12}>
+                    <TextField
+                        value={company || ''}
+                        onChange={e => {
+                            setCompany(e?.target?.value);
+                        }}
+                        InputLabelProps={{ shrink: true }}
+                        fullWidth
+                        size="small"
+                        label={string?.company}
+                        sx={{
+                            '& label': {
+                                color: '#898B9B',
+                            },
+                        }}
+                    />
+                </Grid>
+                <Grid xs={12} sx={{ display: 'flex', alignItems: 'center', gap: 0.25 }}>
+                    <FormControlLabel
+                        control={
+                            <Checkbox
+                                checked={saveDetails}
+                                onChange={event => setSaveDetails(event.target.checked)}
+                                name="saveDetails"
+                                color="primary"
+                            />
+                        }
+                        label={string?.save_delivery_info}
                     />
                 </Grid>
                 <Grid

@@ -1,11 +1,9 @@
 import { Box } from '@mui/material';
 import { Colors } from 'colors';
 import { useRef } from 'react';
-import { useOutletContext } from 'react-router-dom';
 
-const CardItem = ({ children, withHover = true }) => {
+const CardItem = ({ children }) => {
     const cardRef = useRef<HTMLElement>(null);
-    const { setScrollPosition }: any = useOutletContext();
 
     return (
         <Box
@@ -21,9 +19,6 @@ const CardItem = ({ children, withHover = true }) => {
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'space-between',
-            }}
-            onClick={() => {
-                setScrollPosition(cardRef?.current?.offsetTop);
             }}
         >
             {children}

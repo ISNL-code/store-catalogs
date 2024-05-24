@@ -55,47 +55,49 @@ export const useUserApi = () => {
                 get({
                     url: `v1/auth/customer/profile?store=${storeCode}`,
                 }),
-            { enabled: false }
+            { enabled: false, retry: false }
         );
     };
 
     const useCustomerLogin = () =>
-        useMutation(({ password, username, storeCode }: { password: string; username: string; storeCode: any }) => {
+        useMutation(({ password, email, storeCode }: { password: string; email: string; storeCode: any }) => {
             return post({
                 url: `v1/customer/login?store=${storeCode}`,
                 body: {
                     password: password,
-                    username: username,
+                    username: email,
                 },
             });
         });
 
     const useResetCustomerPassword = () =>
-        useMutation(({ username, storeCode }: { username: string; storeCode: any }) => {
-            return post({
-                url: `v1/customer/password/reset/request?store=${storeCode}`,
-                body: {
-                    returnUrl: '',
-                    username: username,
-                },
-            });
-        });
+        useMutation(
+            ({ username, resetLink, storeCode }: { username: string; resetLink: string; storeCode: string }) => {
+                return post({
+                    url: `v1/customer/password/reset/request`,
+                    body: {
+                        returnUrl: resetLink,
+                        username: username,
+                    },
+                });
+            }
+        );
 
     const useUpdateCustomerPassword = () =>
         useMutation(
             ({
-                store,
-                code,
+                storeCode,
+                resetToken,
                 password,
                 repeatPassword,
             }: {
-                store: string;
-                code: string;
+                storeCode: string;
+                resetToken: string;
                 password: string;
                 repeatPassword: string;
             }) => {
                 return post({
-                    url: `v1/customer/${store}/password/${code}`,
+                    url: `v1/customer/${storeCode}/password/${resetToken}`,
                     body: {
                         password: password,
                         repeatPassword: repeatPassword,
@@ -104,10 +106,10 @@ export const useUserApi = () => {
             }
         );
 
-    const useCustomerProfileUpdate = () =>
+    const useCustomerProfileUpdate = ({ storeCode }) =>
         useMutation(({ data }: any) => {
             return patch({
-                url: `v1/auth/customer/`,
+                url: `v1/auth/customer?store=${storeCode}`,
                 body: {
                     ...data,
                 },
@@ -121,7 +123,8 @@ export const useUserApi = () => {
             () =>
                 get({
                     url: `v1/auth/orders?store=${storeCode}&count=1000`,
-                })
+                }),
+            { retry: false }
         );
     };
 

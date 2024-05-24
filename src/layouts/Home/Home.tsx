@@ -1,19 +1,27 @@
-import { Outlet } from 'react-router-dom';
+import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 import { useGetLanguage } from 'hooks/useGetLanguage';
 import { useDevice } from 'hooks/useDevice';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import HomeHeader from './HomeHeader';
 import HomeMobileMenu from './HomeMobileMenu';
-import { HomeContextInterface, StoreInterface } from 'types';
-import { useStoresApi } from 'api/useStoresApi';
-import { STORES_DATA } from 'dataBase/STORES';
-import { STORE_CONFIG } from 'constants/stores_config';
-import Modals from 'layouts/Modals';
+import { HomeContextInterface } from 'types';
+import { STORE_CONFIG } from 'store_constants/stores_config';
+import { useFormsApp } from 'layouts/hooks/useFormsApp';
+import DialogApp from 'layouts/DialogApp';
+import { HOME_ROUTE, ROUTES } from 'constants/routes';
+import Loader from 'components/atoms/Loader/Loader';
 
-export default function Home({ lang, setLang, auth, setAuth, userData }) {
-    const { STORE_CODE, STORE_NAME } = STORE_CONFIG;
+const OutletContainer = ({ context }: { context: HomeContextInterface }) => {
+    return <Outlet context={context} />;
+};
+
+export default function Home({ lang, setLang, auth, setAuth, userData, store, favorites, cart }) {
+    const { STORE_CODE, STORE_NAME, OPTIONS } = STORE_CONFIG;
+    const { PLAN_OPTIONS } = OPTIONS;
+    const { storeCode } = useParams();
+    const navigate = useNavigate();
     const { sx } = useDevice();
     const INSTRUMENTAL_BAR_HEIGHT = 36;
     const INSTRUMENTAL_BAR_PADDINGS = sx ? 2 : 4;
@@ -22,25 +30,19 @@ export default function Home({ lang, setLang, auth, setAuth, userData }) {
     const HEADER_PADDINGS = sx ? 2 : 4;
     const BODY_PADDINGS = sx ? 0 : 4;
     const FOOTER_PADDINGS = sx ? 2 : 4;
-    const [openModalType, setOpenModalType] = useState<string | null>(null);
     const { currentLanguage } = useGetLanguage({ lang, storeName: STORE_NAME });
-
-    const [store, setStore] = useState<StoreInterface | null>(null);
-
-    const { data: storeDataRes, isFetching: loadStore } = useStoresApi().useGetStoreByCode({
-        code: STORE_CODE,
-    });
+    const { activeDialogWindow, handleOpenDialog } = useFormsApp();
 
     useEffect(() => {
-        if (!storeDataRes || loadStore) return;
-        setStore({ ...STORES_DATA.find(el => el.code === STORE_CODE), ...storeDataRes.data });
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [storeDataRes]);
+        if (STORE_CODE !== storeCode) {
+            navigate(HOME_ROUTE?.root(STORE_CODE));
+        }
+    }, [storeCode, STORE_CODE, store]); // eslint-disable-line
 
-    if (!store) return <></>;
+    if (!store) return <Loader type="circular" />;
 
     return (
-        <Box>
+        <Box display="flex" flexDirection="column" justifyContent="space-between">
             <CssBaseline />
 
             <HomeHeader
@@ -49,44 +51,40 @@ export default function Home({ lang, setLang, auth, setAuth, userData }) {
                 string={currentLanguage?.string}
                 lang={lang}
                 setLang={setLang}
-                setOpenModalType={setOpenModalType}
                 logo={store?.logo?.path}
                 storeHeaderName={store?.name}
-                storeCode={store?.code}
                 store={store}
-                openModalType={openModalType}
                 auth={auth}
                 user={userData}
+                handleOpenDialog={handleOpenDialog}
+                cart={cart}
+                favorites={favorites}
             />
 
-            <Box className="HomeBody" mt={`${HEADER_HEIGHT + INSTRUMENTAL_BAR_HEIGHT}px`} flexGrow={1}>
-                <Outlet
-                    context={
-                        {
-                            //main data
-                            lang: lang?.code,
-                            string: currentLanguage?.string,
-                            openModalType: openModalType,
-                            setOpenModalType: setOpenModalType,
+            <Box className="HomeBody" mt={`${HEADER_HEIGHT + INSTRUMENTAL_BAR_HEIGHT}px`} sx={{ flexGrow: 1 }}>
+                <OutletContainer
+                    context={{
+                        //main data
+                        lang: lang?.code,
+                        string: currentLanguage?.string,
+                        handleOpenDialog,
+                        //user data
+                        auth: auth,
+                        currentUserData: userData.currentUserData,
+                        loadingUserData: userData.isFetchingUser,
+                        updateUserData: userData.updateUserData,
+                        setCurrentUserData: userData.setCurrentUserData,
+                        userDataError: userData.userError,
 
-                            //user data
-                            auth: auth,
-                            currentUserData: userData.currentUserData,
-                            loadingUserData: userData.isFetching,
-                            updateUserData: userData.updateUserData,
-                            setCurrentUserData: userData.setCurrentUserData,
-
-                            //css data
-                            instrumentalBarHeight: INSTRUMENTAL_BAR_HEIGHT,
-                            instrumentalBarPadding: INSTRUMENTAL_BAR_PADDINGS,
-                            headerHeight: HEADER_HEIGHT,
-                            footerMenuHeight: FOOTER_MENU_HEIGHT,
-                            appXPadding: BODY_PADDINGS,
-
-                            //store data
-                            store,
-                        } as HomeContextInterface
-                    }
+                        //css data
+                        instrumentalBarHeight: INSTRUMENTAL_BAR_HEIGHT,
+                        instrumentalBarPadding: INSTRUMENTAL_BAR_PADDINGS,
+                        headerHeight: HEADER_HEIGHT,
+                        footerMenuHeight: FOOTER_MENU_HEIGHT,
+                        appXPadding: BODY_PADDINGS,
+                        //store data
+                        store,
+                    }}
                 />
             </Box>
             <HomeMobileMenu
@@ -94,20 +92,21 @@ export default function Home({ lang, setLang, auth, setAuth, userData }) {
                 appXPadding={FOOTER_PADDINGS}
                 isShown={!!sx}
                 string={currentLanguage?.string}
-                storeHeaderName={store?.name}
-                storeCode={store?.code}
                 auth={auth}
                 headerHeight={HEADER_HEIGHT}
-                setOpenModalType={setOpenModalType}
-                openModalType={openModalType}
                 user={userData}
+                handleOpenDialog={handleOpenDialog}
+                withCart={PLAN_OPTIONS?.cart}
+                withFavorites={PLAN_OPTIONS?.favorites}
+                cart={cart}
+                favorites={favorites}
             />
-            <Modals
-                string={currentLanguage?.string as string}
+            <DialogApp
+                location={ROUTES?.HOME}
+                string={currentLanguage?.string}
+                activeDialogWindow={activeDialogWindow}
+                handleOpenDialog={handleOpenDialog}
                 setAuth={setAuth}
-                lang={lang}
-                openModalType={openModalType}
-                setOpenModalType={setOpenModalType}
             />
         </Box>
     );

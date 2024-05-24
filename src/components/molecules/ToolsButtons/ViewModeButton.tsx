@@ -1,11 +1,10 @@
 import { Box, IconButton } from '@mui/material';
 import { useOutletContext } from 'react-router-dom';
 import { CatalogContextInterface } from 'types';
-import { ViewModeType } from 'constants/types';
-import { Colors } from 'colors';
+import { ViewModeType } from 'store_constants/types';
+import { Color, Colors } from 'colors';
 import { BsGrid } from 'react-icons/bs';
 import { IoMdGrid } from 'react-icons/io';
-import { RxGrid } from 'react-icons/rx';
 import { useEffect, useState } from 'react';
 
 const ViewModeButton = () => {
@@ -36,7 +35,7 @@ const ViewModeButton = () => {
                         border: '1px solid rgba(0, 0, 0, 0.120)',
                         borderRadius: 0,
                         height: 30,
-                        color: mode === ViewModeType?.card ? Colors?.BLUE : '',
+                        color: mode === ViewModeType?.card ? Color.PRIMARY : '',
                         backgroundColor: mode === ViewModeType?.card ? Colors.GRAY_100 : '',
                         boxShadow: mode === ViewModeType?.card ? 'inset 0 0 4px 0.25px #9b9b9b96' : '',
                     }}
@@ -46,27 +45,13 @@ const ViewModeButton = () => {
                 >
                     <BsGrid fontSize={18} />
                 </IconButton>
+
                 <IconButton
                     sx={{
                         border: '1px solid rgba(0, 0, 0, 0.120)',
                         borderRadius: 0,
                         height: 30,
-                        color: mode === ViewModeType?.grid_l ? Colors?.BLUE : '',
-                        backgroundColor: mode === ViewModeType?.grid_l ? Colors.GRAY_100 : '',
-                        boxShadow: mode === ViewModeType?.grid_l ? 'inset 0 0 4px 0.25px #9b9b9b96' : '',
-                    }}
-                    onClick={() => {
-                        setMode(ViewModeType?.grid_l);
-                    }}
-                >
-                    <RxGrid fontSize={18} />
-                </IconButton>
-                <IconButton
-                    sx={{
-                        border: '1px solid rgba(0, 0, 0, 0.120)',
-                        borderRadius: 0,
-                        height: 30,
-                        color: mode === ViewModeType?.grid_m ? Colors?.BLUE : '',
+                        color: mode === ViewModeType?.grid_m ? Color.PRIMARY : '',
                         backgroundColor: mode === ViewModeType?.grid_m ? Colors.GRAY_100 : '',
                         boxShadow: mode === ViewModeType?.grid_m ? 'inset 0 0 4px 0.25px #9b9b9b96' : '',
                     }}

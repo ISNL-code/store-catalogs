@@ -4,13 +4,14 @@ import LanguageButton from 'components/molecules/ToolsButtons/LanguageButton';
 import { useDevice } from 'hooks/useDevice';
 import { useLocation } from 'react-router-dom';
 import HomeIcon from '@mui/icons-material/Home';
-import InfoIcon from '@mui/icons-material/Info';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import HeaderLogo from 'components/atoms/Logo/HeaderLogo';
-import { Colors } from 'colors';
-import { STORE_CONFIG } from 'constants/stores_config';
-import ProfileButton from 'components/molecules/ToolsButtons/ProfileButton';
-import PermIdentityIcon from '@mui/icons-material/PermIdentity';
+import { Color, Colors } from 'colors';
+import { STORE_CONFIG } from 'store_constants/stores_config';
+import ProfileMenu from 'components/molecules/ToolsButtons/ProfileMenu';
 import GridViewIcon from '@mui/icons-material/GridView';
+import { HOME_ROUTE, STORE_ROUTE } from 'constants/routes';
 
 interface HeaderInterface {
     headerHeight;
@@ -18,14 +19,14 @@ interface HeaderInterface {
     string;
     lang;
     setLang;
-    setOpenModalType;
+    handleOpenDialog;
     logo;
     storeHeaderName;
-    storeCode;
     store;
     auth;
     user;
-    openModalType;
+    cart;
+    favorites;
 }
 
 const HomeHeader = ({
@@ -34,17 +35,17 @@ const HomeHeader = ({
     string,
     lang,
     setLang,
-    setOpenModalType,
     logo,
     storeHeaderName,
-    storeCode,
+    handleOpenDialog,
     store,
     auth,
     user,
-    openModalType,
+    cart,
+    favorites,
 }: HeaderInterface) => {
-    const { OPTIONS } = STORE_CONFIG;
-    const { CUSTOM_LOGO, INFORMATION_PAGE_ACTIVE } = OPTIONS;
+    const { OPTIONS, STORE_CODE } = STORE_CONFIG;
+    const { CUSTOM_LOGO, PLAN_OPTIONS } = OPTIONS;
     const location = useLocation();
     const { sx } = useDevice();
 
@@ -60,7 +61,7 @@ const HomeHeader = ({
                 left: 0,
                 top: 0,
                 zIndex: 4000,
-                backgroundColor: Colors?.WHITE,
+                backgroundColor: Color?.PRIMARY_LIGHT,
                 overflow: 'hidden',
             }}
         >
@@ -69,42 +70,48 @@ const HomeHeader = ({
                     <HeaderLogo title={storeHeaderName} imgUrl={logo} custom={CUSTOM_LOGO} />
                 </Box>
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                    <HeaderNavButton title={string?.home} path={`/`} icon={() => <HomeIcon />} isShown={!sx} />
+                    <HeaderNavButton
+                        title={string?.home}
+                        path={HOME_ROUTE?.root(STORE_CODE)}
+                        icon={() => <HomeIcon />}
+                        isShown={!sx}
+                    />
 
                     <HeaderNavButton
                         title={string?.catalog}
-                        path={`/catalog/${storeCode}/${storeHeaderName?.replaceAll(' ', '-').toLowerCase()}`}
+                        path={STORE_ROUTE?.root(STORE_CODE)}
                         icon={() => <GridViewIcon />}
                         isShown={!sx}
                         isActive={location.pathname.includes('details')}
+                        childPath={['product']}
                     />
+                    {PLAN_OPTIONS?.favorites && (
+                        <HeaderNavButton
+                            path={STORE_ROUTE?.favorites(STORE_CODE)}
+                            title={string?.favorites}
+                            icon={() => <FavoriteIcon />}
+                            isShown={!sx}
+                            badgeCount={favorites?.favoriteItems?.length}
+                        />
+                    )}
+                    {PLAN_OPTIONS?.cart && (
+                        <HeaderNavButton
+                            path={STORE_ROUTE?.cart(STORE_CODE)}
+                            title={string?.cart}
+                            icon={() => <ShoppingCartIcon />}
+                            isShown={!sx}
+                            badgeCount={cart?.cartItems?.length}
+                        />
+                    )}
 
-                    {INFORMATION_PAGE_ACTIVE && (
-                        <HeaderNavButton
-                            title={string?.info}
-                            path={`/info`}
-                            icon={() => <InfoIcon />}
-                            isShown={!sx}
-                            action={() => {}}
-                        />
-                    )}
-                    {!auth && (
-                        <HeaderNavButton
-                            title={string?.login}
-                            icon={() => <PermIdentityIcon />}
-                            isShown={!sx}
-                            action={() => setOpenModalType('login')}
-                            isActive={['login', 'register', 'forgot-password'].includes(openModalType)}
-                        />
-                    )}
-                    {!sx && auth && (
-                        <ProfileButton
-                            path={`/`}
+                    {!sx && (
+                        <ProfileMenu
+                            auth={auth}
                             string={string}
                             headerHeight={headerHeight}
                             user={user}
-                            setOpenModalType={setOpenModalType}
-                            childPath={['orders', 'profile']}
+                            handleOpenDialog={handleOpenDialog}
+                            childPath={['orders', 'profile', 'info', 'contacts']}
                         />
                     )}
                     <LanguageButton

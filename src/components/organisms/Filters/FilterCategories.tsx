@@ -5,6 +5,7 @@ import CheckIcon from '@mui/icons-material/Check';
 import { Backdrop, Box, List, ListItemText, MenuItem, SwipeableDrawer, Typography } from '@mui/material';
 import { useDevice } from 'hooks/useDevice';
 import FilterButton from 'components/molecules/ToolsButtons/FilterButton';
+import { Color } from 'colors';
 
 const FilterCategories = ({ isShown }) => {
     const { string, categoriesList, queryCategories, setQueryCategories, handleCategoriesQuery }: any =
@@ -122,7 +123,7 @@ const FilterCategories = ({ isShown }) => {
                                 borderRadius: '50%',
                                 cursor: 'pointer',
                                 background: checkedAll
-                                    ? `linear-gradient(135deg, #1976d2 50%, #ffffff) padding-box, linear-gradient(90deg, #a3a3a3, #b8b8b8) border-box`
+                                    ? `linear-gradient(135deg, ${Color?.PRIMARY} 50%, #ffffff) padding-box, linear-gradient(90deg, #a3a3a3, #b8b8b8) border-box`
                                     : `linear-gradient(135deg, white 50%, #ffffff) padding-box, linear-gradient(90deg, #a3a3a3, #b8b8b8) border-box`,
                             }}
                         >

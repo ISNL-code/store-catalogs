@@ -7,7 +7,7 @@ interface Props {
     children: JSX.Element;
     maxWidth?: number;
     hidden?: boolean;
-    position?: 'bottom-end' | 'top' | 'top-start';
+    position?: 'bottom-end' | 'top' | 'top-start' | 'left';
 }
 
 const StyledTooltip = ({
@@ -59,7 +59,7 @@ const StyledTooltip = ({
                 },
             }}
         >
-            {children}
+            <span>{children}</span>
         </Tooltip>
     );
 };

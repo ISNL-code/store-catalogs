@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import InstrumentalSubHeader from 'components/organisms/InstrumentalSubHeader/InstrumentalSubHeader';
 import Grid from '@mui/material/Unstable_Grid2';
 import { Box, Button, Typography } from '@mui/material';
@@ -6,14 +6,26 @@ import { useOutletContext } from 'react-router-dom';
 import { HomeContextInterface } from 'types';
 import { useDevice } from 'hooks/useDevice';
 import { Colors } from 'colors';
+import BackButton from 'components/atoms/Buttons/BackButton';
+import { STORE_ROUTE } from 'constants/routes';
+import { STORE_CONFIG } from 'store_constants/stores_config';
 
 const InformationPage = () => {
+    const { STORE_CODE } = STORE_CONFIG;
     const { sx } = useDevice();
-    const { appXPadding, footerMenuHeight, string }: HomeContextInterface = useOutletContext();
+    const { appXPadding, footerMenuHeight, string, headerHeight, instrumentalBarHeight }: HomeContextInterface =
+        useOutletContext();
     const aboutStoreRef = useRef(null);
     const paymentsDeliveryRef = useRef(null);
     const returnExchangeRef = useRef(null);
     const privacyPolicyRef = useRef(null);
+
+    useEffect(() => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'auto',
+        });
+    }, []);
 
     const scrollToRef = (ref: React.RefObject<HTMLDivElement>) => {
         if (ref.current) {
@@ -29,54 +41,63 @@ const InformationPage = () => {
     ];
 
     return (
-        <Box p={sx ? 2 : appXPadding} pb={footerMenuHeight}>
+        <Box p={sx ? 2 : appXPadding} pb={footerMenuHeight} pt={4}>
             <InstrumentalSubHeader
-                scroll
                 opacity={1}
-                StartSlot={() => (
-                    <Grid container xs={12}>
-                        <Grid
-                            sx={{
-                                minWidth: 'fit-content',
-                                display: 'flex',
-                                gap: 1,
-                                flexWrap: 'nowrap',
-                                whiteSpace: 'nowrap',
-                            }}
-                        >
-                            {[
-                                { name: string?.about_store, id: aboutStoreRef },
-                                { name: string?.payments_delivery, id: paymentsDeliveryRef },
-                                { name: string?.return_exchange, id: returnExchangeRef },
-                                { name: string?.privacy_policy, id: privacyPolicyRef },
-                            ].map(({ name, id }) => (
-                                <Grid>
-                                    <Button
-                                        sx={{
-                                            width: 'fit-content',
-                                            px: 0.8,
-                                            fontSize: 12,
-                                            backgroundColor: Colors?.WHITE,
-                                            '&:hover': { backgroundColor: Colors?.WHITE },
-                                        }}
-                                        variant="outlined"
-                                        onClick={() => scrollToRef(id)}
-                                    >
-                                        {name}
-                                    </Button>
-                                </Grid>
-                            ))}
-                        </Grid>
-                    </Grid>
-                )}
+                StartSlot={() => <BackButton nav={STORE_ROUTE?.root(STORE_CODE)} action={() => {}} />}
             />
             <Grid
                 xs={12}
                 container
                 sx={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', alignItems: 'center' }}
             >
+                <Grid
+                    className="HiddenScroll"
+                    container
+                    xs={12}
+                    px={sx ? 2 : appXPadding}
+                    sx={{
+                        overflowY: 'auto',
+                        position: 'fixed',
+                        top: `calc(${headerHeight}px + ${instrumentalBarHeight}px) `,
+                    }}
+                >
+                    <Grid
+                        sx={{
+                            minWidth: 'fit-content',
+                            display: 'flex',
+                            gap: 1,
+                            flexWrap: 'nowrap',
+                            whiteSpace: 'nowrap',
+                            mt: 0.5,
+                        }}
+                    >
+                        {[
+                            { name: string?.about_store, id: aboutStoreRef },
+                            { name: string?.payments_delivery, id: paymentsDeliveryRef },
+                            { name: string?.return_exchange, id: returnExchangeRef },
+                            { name: string?.privacy_policy, id: privacyPolicyRef },
+                        ].map(({ name, id }) => (
+                            <Grid>
+                                <Button
+                                    sx={{
+                                        width: 'fit-content',
+                                        px: 0.8,
+                                        fontSize: 12,
+                                        backgroundColor: Colors?.WHITE,
+                                        '&:hover': { backgroundColor: Colors?.WHITE },
+                                    }}
+                                    variant="outlined"
+                                    onClick={() => scrollToRef(id)}
+                                >
+                                    {name}
+                                </Button>
+                            </Grid>
+                        ))}
+                    </Grid>
+                </Grid>
                 {data?.map(({ title, text, ref }, idx) => (
-                    <Grid key={idx} xs={12} container mb={3} sx={{ maxWidth: 1200 }} ref={ref}>
+                    <Grid key={idx} xs={12} container mb={3} ref={ref}>
                         <Grid xs={12} sx={{ background: '#ececec7c', py: 0.75, mb: 1, textAlign: 'center' }}>
                             <Typography variant="h2" sx={{ lineHeight: 1 }}>
                                 {title}

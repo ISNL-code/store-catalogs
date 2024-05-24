@@ -20,8 +20,9 @@ import ViewModeButton from 'components/molecules/ToolsButtons/ViewModeButton';
 import CatalogListCard from 'components/organisms/Cards/CatalogListCard';
 import CloseIcon from '@mui/icons-material/Close';
 import { useDevice } from 'hooks/useDevice';
-import { STORE_CONFIG } from 'constants/stores_config';
-import { ViewModeType } from 'constants/types';
+import { STORE_CONFIG } from 'store_constants/stores_config';
+import { ViewModeType } from 'store_constants/types';
+import { STORE_ROUTE } from 'constants/routes';
 
 const InstrumentalSubHeaderMemo = memo(() => {
     const { OPTIONS, SIDE_LINKS } = STORE_CONFIG;
@@ -50,7 +51,7 @@ const InstrumentalSubHeaderMemo = memo(() => {
 });
 
 const Catalog = () => {
-    const { OPTIONS, STORE_CODE, STORE_NAME } = STORE_CONFIG;
+    const { OPTIONS, STORE_CODE } = STORE_CONFIG;
     const { PLAN_OPTIONS, MIN_ITEMS_TO_BUY } = OPTIONS;
     const { sx } = useDevice();
     const {
@@ -69,12 +70,14 @@ const Catalog = () => {
         footerMenuHeight,
         string,
         viewMode,
+        infoAlert,
+        setInfoAlert,
     }: CatalogContextInterface = useOutletContext();
     const [showTopBtn, setShowTopBtn] = useState(false);
     const [showMobileStoresButton, setShowMobileStoresButton] = useState(true);
 
     const [loading, setLoading] = useState(true);
-    const [open, setOpen] = useState(true);
+    const [open, setOpen] = useState(infoAlert?.ws_info);
 
     const getGridSpacing = () => {
         let spacing;
@@ -83,12 +86,12 @@ const Catalog = () => {
         switch (viewMode) {
             case ViewModeType.card:
                 padding = sx ? 2 : 4;
-                spacing = 2;
+                spacing = 1;
                 break;
-            case ViewModeType.grid_l:
+
             case ViewModeType.grid_m:
-                padding = sx ? 0 : 4;
-                spacing = 0;
+                padding = sx ? 1 : 4;
+                spacing = 0.5;
                 break;
         }
 
@@ -98,10 +101,9 @@ const Catalog = () => {
     useEffect(() => {
         if (loadProducts || !productsList) return;
 
-        setTimeout(() => {
-            setLoading(false);
-        }, 300); // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [loading]);
+        setLoading(false);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [loading, productsList]);
 
     useEffect(() => {
         window.addEventListener('scroll', () => {
@@ -128,7 +130,7 @@ const Catalog = () => {
             pt={getGridSpacing()?.padding}
             pb={footerMenuHeight}
             px={getGridSpacing()?.padding}
-            sx={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}
+            sx={{ minHeight: '100%' }}
         >
             {showTopBtn && <ScrollButton />}
             {showMobileStoresButton && (
@@ -138,14 +140,12 @@ const Catalog = () => {
                 </>
             )}
             {((loadProducts && !productsList?.length) || loading) && <Loader position="fixed" />}
-            {PLAN_OPTIONS?.contacts && (
-                <CallBackButton path={`/catalog/${STORE_CODE}/${STORE_NAME?.replaceAll(' ', '-').toLowerCase()}/`} />
-            )}
+            {PLAN_OPTIONS?.contacts && <CallBackButton path={STORE_ROUTE?.contacts(STORE_CODE)} />}
             <InstrumentalSubHeaderMemo />
 
             {productsList?.length ? (
-                <Box sx={{ flexGrow: 1 }}>
-                    <TransitionBox dependency={loading} time={250}>
+                <Box sx={{ minHeight: '100%' }}>
+                    <TransitionBox dependency={loading} time={100}>
                         {MIN_ITEMS_TO_BUY > 1 && (
                             <Collapse in={open}>
                                 <Box mb={2}>
@@ -160,6 +160,7 @@ const Catalog = () => {
                                                 color="inherit"
                                                 size="small"
                                                 onClick={() => {
+                                                    setInfoAlert({ ...infoAlert, ws_info: false });
                                                     setOpen(false);
                                                 }}
                                             >

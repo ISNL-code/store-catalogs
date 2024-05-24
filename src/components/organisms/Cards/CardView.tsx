@@ -8,10 +8,10 @@ import { Colors } from 'colors';
 const CardView = ({ SliderComponent, CardDetails, CardDecoration, opacity, ...rest }) => {
     const cardRef = useRef<HTMLElement>(null);
     const { setScrollPosition }: any = useOutletContext();
-    const { s, sx, mx, l } = useDevice();
+    const { sm, sx, mx, l } = useDevice();
 
     const getGridValue = () => {
-        if (s) return 12;
+        if (sm) return 12;
         if (sx) return 6;
         if (mx) return 4;
         if (l) return 3;
@@ -23,7 +23,6 @@ const CardView = ({ SliderComponent, CardDetails, CardDecoration, opacity, ...re
             <Box
                 ref={cardRef}
                 sx={{
-                    boxShadow: Colors?.SHADOW,
                     borderRadius: 4,
                     width: '100%',
                     overflow: 'hidden',
@@ -31,13 +30,18 @@ const CardView = ({ SliderComponent, CardDetails, CardDecoration, opacity, ...re
                     flexDirection: 'column',
                     justifyContent: 'space-between',
                     position: 'relative',
+                    backgroundColor: Colors?.GRAY_300,
+                    border: '1px solid',
+                    borderColor: Colors?.GRAY_300,
                 }}
                 onClick={() => {
                     setScrollPosition(cardRef?.current?.offsetTop);
                 }}
             >
-                {CardDecoration()}
-                {SliderComponent()}
+                <Box sx={{ position: 'relative' }}>
+                    {CardDecoration()}
+                    {SliderComponent()}
+                </Box>
                 {CardDetails()}
             </Box>
         </Grid>

@@ -15,7 +15,8 @@ import { CatalogContextInterface, ProductVariantInterface } from 'types';
 import ModelDetails from './ModelDetails';
 import ModelSwiper from './ModelSwiper';
 import { scrollToTopNewPage } from 'helpers/scroll';
-import { STORE_CONFIG } from 'constants/stores_config';
+import { STORE_CONFIG } from 'store_constants/stores_config';
+import { STORE_ROUTE } from 'constants/routes';
 
 interface LoadedProductInterface {
     id?: number;
@@ -35,26 +36,28 @@ interface SelectedVarianInterface {
 }
 
 const ProductDetails = () => {
-    const { OPTIONS } = STORE_CONFIG;
+    const { OPTIONS, STORE_CODE } = STORE_CONFIG;
     const { PLAN_OPTIONS } = OPTIONS;
     const mount = useIsMount();
-    const {
-        headerHeight,
-        instrumentalBarHeight,
-        footerMenuHeight,
-        supportedLanguage,
-        appXPadding,
-    }: CatalogContextInterface = useOutletContext();
-    const { modelSku, storeCode, storeName, productId } = useParams();
+    const { headerHeight, instrumentalBarHeight, footerMenuHeight, lang, appXPadding }: CatalogContextInterface =
+        useOutletContext();
+    const { modelSku, storeCode, productId } = useParams();
     const [productDetails, setProductDetails] = useState<LoadedProductInterface | null>(null);
     const [selectedVariant, setSelectedVariant] = useState<SelectedVarianInterface | undefined | null>(null);
     const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'auto',
+        });
+    }, []);
 
     const {
         data: productRes,
         isFetching: loadProduct,
         refetch: updateModel,
-    } = useProductsApi().useGetProductByID({ id: productId, lang: supportedLanguage, storeCode });
+    } = useProductsApi().useGetProductByID({ id: productId, lang: lang, storeCode });
 
     useEffect(() => {
         if (!productRes || loadProduct) return;
@@ -91,7 +94,7 @@ const ProductDetails = () => {
         if (mount) return;
         updateModel();
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [supportedLanguage, productId]);
+    }, [lang, productId]);
 
     useEffect(() => {
         if (loadProduct) return;
@@ -125,17 +128,15 @@ const ProductDetails = () => {
     return (
         <Box px={appXPadding} pb={footerMenuHeight}>
             <InstrumentalSubHeader
-                StartSlot={() => <BackButton nav={`/catalog/${storeCode}/${storeName}`} action={() => {}} />}
+                StartSlot={() => <BackButton nav={STORE_ROUTE?.root(STORE_CODE)} action={() => {}} />}
                 EndSlot={() => (
                     <Box sx={{ display: 'flex', gap: 0.75 }}>
                         <SkuSearch />
                         <ShareButton
                             path={window.location.href}
-                            text=""
-                            color="#ccc"
-                            size={30}
-                            orientation="down"
                             isShown={PLAN_OPTIONS.productShare}
+                            direction="down"
+                            size="large"
                         />
                     </Box>
                 )}

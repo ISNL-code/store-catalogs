@@ -6,21 +6,25 @@ import { useProductsApi } from 'api/useProductsApi';
 import debounce from 'lodash.debounce';
 import SearchIcon from '@mui/icons-material/Search';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import { STORE_ROUTE } from 'constants/routes';
+import { STORE_CONFIG } from 'store_constants/stores_config';
+import { CatalogContextInterface } from 'types';
 
 const SkuSearch = () => {
+    const { STORE_CODE } = STORE_CONFIG;
     const navigate = useNavigate();
-    const { storeCode, storeName } = useParams();
+    const { storeCode } = useParams();
     const [value, setValue] = useState('');
     const [query, setQuery] = useState(null);
     const [matchedSku, setMatchedSku] = useState<any>([]);
     const [showSearch, setShowSearch] = useState(false);
+    const { appXPadding, string, headerHeight, lang }: CatalogContextInterface = useOutletContext();
     const {
         data: productSkuRes,
         refetch: findSku,
         isFetching: loadMatched,
-    } = useProductsApi().useGetProductBySku({ sku: query, storeCode });
+    } = useProductsApi().useGetProductBySku({ sku: query, storeCode, lang });
     const inputRef = useRef<HTMLInputElement>(null);
-    const { appXPadding, string, headerHeight }: any = useOutletContext();
 
     useEffect(() => {
         if (!productSkuRes) return;
@@ -127,7 +131,14 @@ const SkuSearch = () => {
                                             setValue('');
                                             setQuery(null);
                                             setMatchedSku([]);
-                                            return navigate(`/gallery/${current.productId}/details/${current.sku}`);
+
+                                            return navigate(
+                                                STORE_ROUTE?.product(
+                                                    STORE_CODE,
+                                                    current?.productId,
+                                                    current.sku.replaceAll('/', '_')
+                                                )
+                                            );
                                         }
                                     }}
                                     sx={{
@@ -251,9 +262,11 @@ const SkuSearch = () => {
                                             }}
                                             onClick={() => {
                                                 navigate(
-                                                    `/catalog/${storeCode}/${storeName}/details/${
-                                                        item.productId
-                                                    }/model/${item?.sku?.replaceAll('/', '_')}`
+                                                    STORE_ROUTE?.product(
+                                                        STORE_CODE,
+                                                        item.productId,
+                                                        item?.sku?.replaceAll('/', '_')
+                                                    )
                                                 );
 
                                                 setShowSearch(false);

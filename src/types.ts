@@ -1,11 +1,10 @@
-import { ViewModeType } from 'constants/types';
+import { ViewModeType } from 'store_constants/types';
 
 export interface HomeContextInterface {
     //main data | user options
     lang: string;
     string: Record<string, any>;
-    setOpenModalType;
-    openModalType: string | null;
+    handleOpenDialog;
 
     //store data
     store: StoreInterface;
@@ -16,6 +15,7 @@ export interface HomeContextInterface {
     loadingUserData: boolean;
     updateUserData: any;
     setCurrentUserData: any;
+    userDataError: { response: { status } };
 
     //css data
     instrumentalBarHeight: number;
@@ -28,17 +28,17 @@ export interface HomeContextInterface {
 export interface CatalogContextInterface {
     //main data | user options
     lang: string;
-    supportedLanguage: string;
     string: Record<string, any>;
     scrollPosition: number;
     setScrollPosition;
-    setOpenModalType;
-    openModalType: string | null;
     viewMode: ViewModeType;
     setViewMode;
+    handleOpenDialog;
 
     //store data
     store: StoreInterface;
+    infoAlert: { ws_info: boolean };
+    setInfoAlert;
 
     // user data
     auth: boolean;
@@ -46,9 +46,10 @@ export interface CatalogContextInterface {
     loadingUserData: boolean;
     updateUserData: any;
     setCurrentUserData: any;
+    userDataError: { response: { status } };
 
     //products data
-    productsList: LoadedProductListInterface[];
+    productsList: LoadedProductListInterface[] | null | [];
     setProductsList;
     loadProducts: boolean;
     loadMoreProducts: boolean;

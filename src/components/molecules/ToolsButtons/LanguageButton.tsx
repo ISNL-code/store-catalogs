@@ -2,6 +2,7 @@ import IconButton from '@mui/material/IconButton';
 import { Box, ListItemText, Menu, MenuItem, Typography } from '@mui/material';
 import { Fragment, useState } from 'react';
 import LanguageIcon from '@mui/icons-material/Language';
+import { Colors } from 'colors';
 
 interface Props {
     setLang;
@@ -26,13 +27,22 @@ const LanguageButton = ({
     const handleClose = () => {
         setAnchorElLang(null);
     };
+
+    const getFlagSrc = code => {
+        try {
+            return require(`assets/img/flags/${code.toLowerCase()}.png`);
+        } catch (error) {
+            return require('assets/img/flags/en.png');
+        }
+    };
+
     const selectLangFlag = () => {
         return (
             <Box
                 sx={{
                     position: 'absolute',
-                    top: -4,
-                    right: 0,
+                    top: 2,
+                    right: 6,
                     borderRadius: '50%',
                     overflow: 'hidden',
                     height: 20,
@@ -83,16 +93,18 @@ const LanguageButton = ({
                 aria-expanded={open ? 'true' : undefined}
                 sx={{
                     position: 'relative',
-                    width: '40px',
                     display: 'flex',
                     flexDirection: 'column',
-                    '&:hover': { backgroundColor: '#ffffff0' },
-                    p: 0,
-                    mb: -0.25,
+                    width: 55,
+                    height: 50,
+                    borderRadius: 4,
+                    '&:hover': { backgroundColor: Colors?.WHITE },
                 }}
             >
-                <LanguageIcon />
-                <Typography sx={{ fontSize: 10, color: 'rgba(0, 0, 0, 0.54)' }}>{string?.language}</Typography>
+                <LanguageIcon sx={{ fontSize: 24 }} />
+                <Typography color="gray" sx={{ fontSize: 10 }}>
+                    {string?.language}
+                </Typography>
                 {selectLangFlag()}
             </IconButton>
             <Menu
@@ -103,7 +115,7 @@ const LanguageButton = ({
                 MenuListProps={{
                     'aria-labelledby': 'lang-menu',
                 }}
-                sx={{ zIndex: 5000, position: 'fixed', top: 0, right: 0 }}
+                sx={{ zIndex: 5000 }}
             >
                 <Box sx={{ width: 200 }}>
                     <Box>
@@ -135,10 +147,22 @@ const LanguageButton = ({
                                 case 'fr':
                                     currentLabel = string?.french;
                                     break;
+                                case 'it':
+                                    currentLabel = string?.italian;
+                                    break;
+                                case 'tk':
+                                    currentLabel = string?.turkish;
+                                    break;
+                                case 'de':
+                                    currentLabel = string?.german;
+                                    break;
 
                                 default:
-                                    currentLabel = string?.ukrainian;
+                                    currentLabel = string?.lang_unknown;
                             }
+
+                            const flagSrc = getFlagSrc(code);
+
                             return (
                                 <Fragment key={code}>
                                     <MenuItem
@@ -160,11 +184,7 @@ const LanguageButton = ({
                                                 justifyContent: 'center',
                                             }}
                                         >
-                                            <img
-                                                style={{ height: 30 }}
-                                                src={require(`assets/img/flags/${code.toLowerCase()}.png`)}
-                                                alt="Broken Img"
-                                            />
+                                            <img style={{ height: 30 }} src={flagSrc} alt="Flag" />
                                         </Box>
                                         <ListItemText>{currentLabel}</ListItemText>
                                     </MenuItem>

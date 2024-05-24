@@ -1,7 +1,5 @@
 import axios from 'axios';
 
-// axios.defaults.baseURL = 'https://alberto-bini.com/api';
-
 const useApi = () => {
     const get = async ({ url }) => {
         const response = await axios.get(url);

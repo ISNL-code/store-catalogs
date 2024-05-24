@@ -1,6 +1,6 @@
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
-import { Box, IconButton } from '@mui/material';
+import { Button } from '@mui/material';
 import { useOutletContext } from 'react-router-dom';
 import { CatalogContextInterface } from 'types';
 
@@ -11,33 +11,33 @@ interface CartButtonInterface {
 }
 
 const CartButton = ({ isShown, action, selected }: CartButtonInterface) => {
-    const { setOpenModalType, auth }: CatalogContextInterface = useOutletContext();
+    const { string }: CatalogContextInterface = useOutletContext();
     if (isShown)
         return (
-            <Box>
-                <Box>
-                    <IconButton
-                        size="small"
-                        sx={{
-                            border: selected ? '1px solid green' : '1px solid #1976d2',
-                            backgroundColor: selected ? 'green' : '#fff',
-                            width: '30px',
-                            height: '30px',
-                            '&:hover': { backgroundColor: selected ? 'green' : '#fff' },
-                        }}
-                        onClick={() => {
-                            if (!auth) return setOpenModalType('register-warning');
-                            action();
-                        }}
-                    >
-                        {selected ? (
-                            <ShoppingCartCheckoutIcon sx={{ color: 'white' }} fontSize="small" />
-                        ) : (
-                            <AddShoppingCartIcon sx={{ color: '#1976d2' }} fontSize="small" />
-                        )}
-                    </IconButton>
-                </Box>
-            </Box>
+            <Button
+                onClick={() => {
+                    action();
+                }}
+                size="medium"
+                sx={{
+                    width: '100%',
+                    borderRadius: 3,
+                    whiteSpace: 'nowrap',
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                    textTransform: 'uppercase',
+                    fontSize: 11,
+                    lineHeight: 1,
+                    alignItems: 'center',
+                }}
+                color={selected ? 'success' : 'primary'}
+                variant="contained"
+                endIcon={
+                    selected ? <ShoppingCartCheckoutIcon fontSize="small" /> : <AddShoppingCartIcon fontSize="small" />
+                }
+            >
+                {selected ? string?.in_cart : string?.add_to_cart}
+            </Button>
         );
     return null;
 };

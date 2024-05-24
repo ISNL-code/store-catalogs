@@ -1,30 +1,31 @@
 import { Box } from '@mui/material';
 import MobileNavButton from 'components/atoms/Buttons/MobileNavButton';
 import HomeIcon from '@mui/icons-material/Home';
-import InfoIcon from '@mui/icons-material/Info';
-import ProfileButton from 'components/molecules/ToolsButtons/ProfileButton';
+import ProfileMenu from 'components/molecules/ToolsButtons/ProfileMenu';
 import GridViewIcon from '@mui/icons-material/GridView';
-import PermIdentityIcon from '@mui/icons-material/PermIdentity';
-import { STORE_CONFIG } from 'constants/stores_config';
+import { STORE_CONFIG } from 'store_constants/stores_config';
 import { useEffect, useState } from 'react';
 import { useWindowWidth } from '@react-hook/window-size';
+import { HOME_ROUTE, STORE_ROUTE } from 'constants/routes';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 const HomeMobileMenu = ({
     appXPadding,
     menuHeight,
     isShown,
     string,
-    storeHeaderName,
-    storeCode,
+    handleOpenDialog,
     headerHeight,
     user,
     auth,
-    setOpenModalType,
-    openModalType,
+    withFavorites,
+    withCart,
+    cart,
+    favorites,
 }) => {
     const WINDOW_WIDTH = useWindowWidth();
-    const { OPTIONS } = STORE_CONFIG;
-    const { INFORMATION_PAGE_ACTIVE } = OPTIONS;
+    const { STORE_CODE } = STORE_CONFIG;
 
     const [position, setPosition] = useState(0);
 
@@ -56,43 +57,44 @@ const HomeMobileMenu = ({
                         gap: 2,
                     }}
                 >
-                    <MobileNavButton path={`/`} title={string?.home} icon={p => <HomeIcon {...p} />} />
-
                     <MobileNavButton
-                        path={`/catalog/${storeCode}/${storeHeaderName.replaceAll(' ', '-').toLowerCase()}`}
-                        childPath={['/details', '/contacts', 'model']}
-                        title={string?.catalog}
-                        icon={p => <GridViewIcon {...p} />}
+                        path={HOME_ROUTE?.root(STORE_CODE)}
+                        title={string?.home}
+                        icon={p => <HomeIcon {...p} />}
                     />
 
-                    {INFORMATION_PAGE_ACTIVE && (
+                    <MobileNavButton
+                        path={STORE_ROUTE?.root(STORE_CODE)}
+                        title={string?.catalog}
+                        icon={p => <GridViewIcon {...p} />}
+                        childPath={['product']}
+                    />
+                    {withFavorites && (
                         <MobileNavButton
-                            path={`/info`}
-                            title={string?.info}
-                            icon={p => <InfoIcon {...p} />}
-                            action={() => {}}
+                            path={STORE_ROUTE?.favorites(STORE_CODE)}
+                            title={string?.favorites}
+                            icon={p => <FavoriteIcon {...p} />}
+                            badgeCount={favorites?.favoriteItems?.length}
                         />
                     )}
-                    {!auth && (
+                    {withCart && (
                         <MobileNavButton
-                            title={string?.login}
-                            icon={p => <PermIdentityIcon {...p} />}
-                            clearSort={() => {}}
-                            action={() => setOpenModalType('login')}
-                            isActive={['login', 'register', 'forgot-password'].includes(openModalType)}
+                            path={STORE_ROUTE?.cart(STORE_CODE)}
+                            title={string?.cart}
+                            icon={p => <ShoppingCartIcon {...p} />}
+                            badgeCount={cart?.cartItems?.length}
                         />
                     )}
-                    {auth && (
-                        <ProfileButton
-                            path={`/`}
-                            string={string}
-                            headerHeight={headerHeight}
-                            menuHeight={menuHeight}
-                            user={user}
-                            setOpenModalType={setOpenModalType}
-                            childPath={['orders', 'profile']}
-                        />
-                    )}
+
+                    <ProfileMenu
+                        auth={auth}
+                        string={string}
+                        headerHeight={headerHeight}
+                        footerMenuHeight={menuHeight}
+                        user={user}
+                        handleOpenDialog={handleOpenDialog}
+                        childPath={['orders', 'profile', 'info', 'contacts']}
+                    />
                 </Box>
             </Box>
         );

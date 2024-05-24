@@ -1,12 +1,15 @@
 import { Box, Button, Typography } from '@mui/material';
 import Grid from '@mui/material/Unstable_Grid2';
+import { Color } from 'colors';
 import CartModelPrice from 'components/molecules/PricesComponents/CartModelPrice';
-import { useNavigate, useOutletContext, useParams } from 'react-router-dom';
+import { STORE_ROUTE } from 'constants/routes';
+import { useNavigate, useOutletContext } from 'react-router-dom';
+import { STORE_CONFIG } from 'store_constants/stores_config';
 import { CatalogContextInterface } from 'types';
 
 const ProductDetails = ({ data, setOrderData }) => {
+    const { STORE_CODE } = STORE_CONFIG;
     const navigate = useNavigate();
-    const { storeCode, storeName } = useParams();
     const { string, cart, store }: CatalogContextInterface = useOutletContext();
 
     return (
@@ -27,14 +30,10 @@ const ProductDetails = ({ data, setOrderData }) => {
                     <Typography>{string?.vendor_code}:</Typography>
                     <Typography
                         onClick={() => {
-                            navigate(
-                                `/catalog/${storeCode}/${storeName}/details/${
-                                    data?.productId
-                                }/model/${data?.sku?.replaceAll('/', '_')}`
-                            );
+                            navigate(STORE_ROUTE?.product(STORE_CODE, data?.productId, data?.sku));
                         }}
                         variant="h3"
-                        sx={{ color: '#1976d2', fontWeight: 700, cursor: 'pointer' }}
+                        sx={{ color: Color?.PRIMARY, fontWeight: 700, cursor: 'pointer' }}
                     >
                         {data?.sku}
                     </Typography>

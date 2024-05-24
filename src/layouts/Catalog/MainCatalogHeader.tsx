@@ -2,17 +2,16 @@ import { Box } from '@mui/material';
 import HeaderNavButton from 'components/atoms/Buttons/HeaderNavButton';
 import HeaderLogo from 'components/atoms/Logo/HeaderLogo';
 import LanguageButton from 'components/molecules/ToolsButtons/LanguageButton';
-import PermIdentityIcon from '@mui/icons-material/PermIdentity';
 import { useDevice } from 'hooks/useDevice';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import GridViewIcon from '@mui/icons-material/GridView';
-import ProfileButton from 'components/molecules/ToolsButtons/ProfileButton';
+import ProfileMenu from 'components/molecules/ToolsButtons/ProfileMenu';
 import { StoreInterface, useAddToCartDataInterface, useAddToFavoriteDataInterface } from 'types';
-import { Colors } from 'colors';
-import { STORE_CONFIG } from 'constants/stores_config';
+import { Color, Colors } from 'colors';
+import { STORE_CONFIG } from 'store_constants/stores_config';
 import HomeIcon from '@mui/icons-material/Home';
+import { HOME_ROUTE, STORE_ROUTE } from 'constants/routes';
 
 interface HeaderInterface {
     headerHeight;
@@ -23,12 +22,11 @@ interface HeaderInterface {
     auth;
     logo;
     storeHeaderName;
-    setOpenModalType;
-    openModalType;
     store: StoreInterface | null;
     cart: useAddToCartDataInterface;
     favorites: useAddToFavoriteDataInterface;
     user;
+    handleOpenDialog: (val) => void;
 }
 
 const Header = ({
@@ -39,20 +37,16 @@ const Header = ({
     setLang,
     auth,
     user,
-    openModalType,
+    handleOpenDialog,
     logo,
     storeHeaderName,
-    setOpenModalType,
     store,
     cart,
     favorites,
 }: HeaderInterface) => {
-    const { OPTIONS } = STORE_CONFIG;
+    const { OPTIONS, STORE_CODE } = STORE_CONFIG;
     const { CUSTOM_LOGO, PLAN_OPTIONS, HOME_PAGE_ACTIVE } = OPTIONS;
-    const navigate = useNavigate();
-    const location = useLocation();
     const { sx } = useDevice();
-    const { storeCode, storeName } = useParams();
 
     return (
         <Box
@@ -65,8 +59,8 @@ const Header = ({
                 width: '100%',
                 left: 0,
                 top: 0,
-                zIndex: 4000,
-                backgroundColor: Colors?.WHITE,
+                zIndex: 3000,
+                backgroundColor: Color?.PRIMARY_LIGHT,
                 overflow: 'hidden',
             }}
         >
@@ -76,62 +70,48 @@ const Header = ({
                 </Box>
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
                     {HOME_PAGE_ACTIVE && (
-                        <HeaderNavButton title={string?.home} path={`/`} icon={() => <HomeIcon />} isShown={!sx} />
+                        <HeaderNavButton
+                            title={string?.home}
+                            path={HOME_ROUTE?.root(STORE_CODE)}
+                            icon={() => <HomeIcon />}
+                            isShown={!sx}
+                        />
                     )}
                     <HeaderNavButton
                         title={string?.catalog}
-                        path={`/catalog/${storeCode}/${storeName}`}
+                        path={STORE_ROUTE?.root(STORE_CODE)}
                         icon={() => <GridViewIcon />}
                         isShown={!sx}
-                        isActive={location.pathname.includes('details')}
+                        childPath={['product']}
                     />
 
                     {PLAN_OPTIONS?.favorites && (
                         <HeaderNavButton
-                            path={`/catalog/${storeCode}/${storeName}/favorites`}
+                            path={STORE_ROUTE?.favorites(STORE_CODE)}
                             title={string?.favorites}
                             icon={() => <FavoriteIcon />}
                             isShown={!sx}
-                            action={() => {
-                                navigate(`/catalog/${storeCode}/${storeName}/favorites`);
-                            }}
                             badgeCount={favorites?.favoriteItems?.length}
-                            protectedPath={!auth}
                         />
                     )}
                     {PLAN_OPTIONS?.cart && (
                         <HeaderNavButton
-                            path={`/catalog/${storeCode}/${storeName}/cart`}
+                            path={STORE_ROUTE?.cart(STORE_CODE)}
                             title={string?.cart}
                             icon={() => <ShoppingCartIcon />}
                             isShown={!sx}
                             badgeCount={cart?.cartItems?.length}
-                            action={() => {
-                                if (auth) {
-                                    navigate(`/catalog/${storeCode}/${storeName}/cart`);
-                                } else setOpenModalType('login');
-                            }}
-                            protectedPath={!auth}
                         />
                     )}
 
-                    {!auth && (
-                        <HeaderNavButton
-                            title={string?.login}
-                            icon={() => <PermIdentityIcon />}
-                            isShown={!sx}
-                            action={() => setOpenModalType('login')}
-                            isActive={['login', 'register', 'forgot-password'].includes(openModalType)}
-                        />
-                    )}
-                    {!sx && auth && (
-                        <ProfileButton
-                            path={`/catalog/${storeCode}/${storeName}/`}
+                    {!sx && (
+                        <ProfileMenu
+                            auth={auth}
                             string={string}
                             headerHeight={headerHeight}
                             user={user}
-                            setOpenModalType={setOpenModalType}
-                            childPath={['orders', 'profile']}
+                            handleOpenDialog={handleOpenDialog}
+                            childPath={['orders', 'profile', 'info', 'contacts']}
                         />
                     )}
                     <LanguageButton

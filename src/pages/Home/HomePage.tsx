@@ -1,20 +1,28 @@
-import { useState } from 'react';
+import { useEffect } from 'react';
 import { Box, Typography, Grid } from '@mui/material';
 import { useDevice } from 'hooks/useDevice';
 import { useOutletContext } from 'react-router-dom';
 import MessageButton from 'components/atoms/Buttons/MessageButton';
 import { motion } from 'framer-motion';
-import QuestionForm from './QuestionForm';
-import SuccessModel from './SuccessModel';
 import HomeImages from './HomeImages';
 import CallBackButton from 'components/atoms/Buttons/CallBackButton';
 import { HomeContextInterface } from 'types';
+import { DialogWindowType } from 'layouts/hooks/useFormsApp';
+import { STORE_ROUTE } from 'constants/routes';
+import { STORE_CONFIG } from 'store_constants/stores_config';
 
 const HomePage = () => {
-    const { appXPadding, footerMenuHeight, string, headerHeight }: HomeContextInterface = useOutletContext();
-    const [openQuestionForm, setOpenQuestionForm] = useState(false);
-    const [openSuccessModal, setOpenSuccessModal] = useState(false);
+    const { STORE_CODE } = STORE_CONFIG;
+    const { appXPadding, footerMenuHeight, string, headerHeight, handleOpenDialog }: HomeContextInterface =
+        useOutletContext();
     const { sx } = useDevice();
+
+    useEffect(() => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'auto',
+        });
+    }, []);
 
     const variants = num => {
         return { hidden: { opacity: sx ? 0 : 1, y: sx ? 100 * num : 0 }, visible: { opacity: 1, y: 0 } };
@@ -22,14 +30,8 @@ const HomePage = () => {
 
     return (
         <Box p={sx ? 2 : appXPadding} pb={footerMenuHeight}>
-            <QuestionForm
-                isOpen={openQuestionForm}
-                setIsOpen={setOpenQuestionForm}
-                setOpenSuccessModal={setOpenSuccessModal}
-            />
-            <MessageButton action={() => setOpenQuestionForm(true)} />
-            {openSuccessModal && <SuccessModel setOpenModal={setOpenSuccessModal} />}
-            <CallBackButton path="/" />
+            <MessageButton action={() => handleOpenDialog(DialogWindowType?.QUESTION)} />
+            <CallBackButton path={STORE_ROUTE?.contacts(STORE_CODE)} />
             <HomeImages />
             <Grid item container xs={12} mt={-2} sx={{ mb: sx ? '100vh' : 2 }}>
                 <Typography

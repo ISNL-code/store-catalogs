@@ -1,5 +1,4 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
-import { STORES_DATA } from 'dataBase/STORES';
 import useApi from './useApi';
 
 export const useStoresApi = () => {
@@ -53,14 +52,7 @@ export const useStoresApi = () => {
         );
     };
 
-    const useEnterStoreKey = ({ storeKey, storeCode }) => {
-        const checkedStore =
-            STORES_DATA.find(el => el.code === storeCode)?.securityStoreSettings?.securityKey === storeKey;
-        return checkedStore;
-    };
-
     return {
-        useEnterStoreKey,
         useGetAllStores,
         useAddStoreToFavorite,
         useGetAllFavoritesStores,

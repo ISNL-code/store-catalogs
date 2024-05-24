@@ -6,39 +6,40 @@ import { getCurrencySymbol } from 'helpers/getCurrencySymbol';
 import ScrollButton from 'components/atoms/Buttons/ScrollButton';
 import InstrumentalSubHeader from 'components/organisms/InstrumentalSubHeader/InstrumentalSubHeader';
 import EmptyPage from 'components/atoms/EmptyPage/EmptyPage';
-import BackButton from 'components/atoms/Buttons/BackButton';
 import { CatalogContextInterface, ProductVariantInterface } from 'types';
 import TransitionBox from 'components/atoms/Transitions/TransitionBox';
 import Grid from '@mui/material/Unstable_Grid2';
 import CallBackButton from 'components/atoms/Buttons/CallBackButton';
 import { useIsMount } from 'hooks/useIsMount';
 import { useProductsApi } from 'api/useProductsApi';
-import DeleteModal from 'components/organisms/Modals/DeleteModal';
-import { STORE_CONFIG } from 'constants/stores_config';
+import { STORE_CONFIG } from 'store_constants/stores_config';
 import ViewModeButton from 'components/molecules/ToolsButtons/ViewModeButton';
 import CatalogListCard from 'components/organisms/Cards/CatalogListCard';
 import ClearListButton from 'components/molecules/ToolsButtons/ClearListButton';
-import { StoreType, ViewModeType } from 'constants/types';
+import { StoreType, ViewModeType } from 'store_constants/types';
 import { useDevice } from 'hooks/useDevice';
+import { STORE_ROUTE } from 'constants/routes';
+import { DialogWindowType } from 'layouts/hooks/useFormsApp';
 
 interface InstrumentalBarProps {
-    setIsOpenModal;
+    favoriteLength: boolean;
 }
 
-const InstrumentalSubHeaderMemo = memo<InstrumentalBarProps>(({ setIsOpenModal }) => {
-    const { string }: CatalogContextInterface = useOutletContext();
+const InstrumentalSubHeaderMemo = memo<InstrumentalBarProps>(({ favoriteLength }) => {
+    const { string, handleOpenDialog }: CatalogContextInterface = useOutletContext();
     return (
         <InstrumentalSubHeader
-            StartSlot={() => <BackButton nav={-1} action={() => {}} />}
+            StartSlot={() => <></>}
             EndSlot={() => (
                 <Box sx={{ display: 'flex', gap: 0.75 }}>
                     <ViewModeButton />
                     <ClearListButton
                         action={() => {
-                            setIsOpenModal(true);
+                            handleOpenDialog(DialogWindowType?.CLEAR_FAVORITES);
                         }}
                         isShown
                         title={string?.clear_favorites}
+                        disabled={!favoriteLength}
                     />
                 </Box>
             )}
@@ -48,13 +49,12 @@ const InstrumentalSubHeaderMemo = memo<InstrumentalBarProps>(({ setIsOpenModal }
 
 const Favorites = () => {
     const { sx } = useDevice();
-    const { OPTIONS, STORE_CODE, STORE_NAME } = STORE_CONFIG;
+    const { OPTIONS, STORE_CODE } = STORE_CONFIG;
     const { STORE_TYPE, PLAN_OPTIONS } = OPTIONS;
     const {
         store,
         favorites,
-        supportedLanguage,
-        string,
+        lang,
         footerMenuHeight,
         viewMode,
         scrollPosition,
@@ -68,11 +68,9 @@ const Favorites = () => {
     const [productIds, setProductIds] = useState<string[] | any[]>([]);
     const [favoriteProducts, setFavoriteProducts] = useState<ProductVariantInterface[] | any[]>([]);
 
-    const [isOpenModal, setIsOpenModal] = useState(false);
-
     const { isFetching: loadProducts, refetch: updateFavoriteProductsRes } = useProductsApi().useGetProductByIDForCart({
         id: productIds,
-        lang: supportedLanguage,
+        lang: lang,
         storeCode: STORE_CODE,
     });
 
@@ -82,13 +80,13 @@ const Favorites = () => {
 
         switch (viewMode) {
             case ViewModeType.card:
-                padding = 2;
-                spacing = 2;
+                padding = sx ? 2 : 4;
+                spacing = 1;
                 break;
-            case ViewModeType.grid_l:
+
             case ViewModeType.grid_m:
-                padding = sx ? 0 : 4;
-                spacing = 0;
+                padding = sx ? 1 : 4;
+                spacing = 0.5;
                 break;
         }
 
@@ -97,11 +95,8 @@ const Favorites = () => {
 
     useEffect(() => {
         if (loadProducts) return;
-
-        setTimeout(() => {
-            setLoading(false);
-        }, 100);
-    }, [loadProducts, loading]);
+        setLoading(false);
+    }, [loadProducts, loading]); // eslint-disable-line
 
     useEffect(() => {
         if (!favorites?.favoriteItems?.length) return setFavoriteProducts([]);
@@ -115,7 +110,7 @@ const Favorites = () => {
             const products = res.data?.data.products;
 
             //clear invalid items or deleted by seller
-            favorites?.favoriteItems?.forEach(({ sku, storeCode, userId, productId }) => {
+            favorites?.favoriteItems?.forEach(({ sku }) => {
                 if (!products.find(el => el.variants.map(({ sku }) => sku).includes(sku))) {
                     favorites?.handleSetFavoriteItems({
                         sku,
@@ -171,7 +166,7 @@ const Favorites = () => {
             });
             setFavoriteProducts(data);
         }); // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [productIds, supportedLanguage]);
+    }, [productIds, lang]);
 
     useEffect(() => {
         window.addEventListener('scroll', () => {
@@ -196,29 +191,16 @@ const Favorites = () => {
             pt={getGridSpacing()?.padding}
             pb={footerMenuHeight}
             px={getGridSpacing()?.padding}
-            sx={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}
+            sx={{ minHeight: '100%' }}
         >
             {showTopBtn && <ScrollButton />}
-            {isOpenModal && (
-                <DeleteModal
-                    string={string}
-                    title={string?.clear_favorites}
-                    close={() => setIsOpenModal(false)}
-                    text={string?.approve_favorites_clear}
-                    action={() => {
-                        favorites?.handleClearFavorites();
-                    }}
-                />
-            )}
             {loading && <Loader />}
-            {PLAN_OPTIONS?.contacts && (
-                <CallBackButton path={`/catalog/${STORE_CODE}/${STORE_NAME?.replaceAll(' ', '-').toLowerCase()}/`} />
-            )}
-            <InstrumentalSubHeaderMemo setIsOpenModal={setIsOpenModal} />
+            {PLAN_OPTIONS?.contacts && <CallBackButton path={STORE_ROUTE?.contacts(STORE_CODE)} />}
+            <InstrumentalSubHeaderMemo favoriteLength={Boolean(favoriteProducts?.length)} />
 
             {favoriteProducts?.length ? (
-                <Box sx={{ minHeight: loading ? '100vh' : 'auto' }}>
-                    <TransitionBox dependency={loading} time={250}>
+                <Box pb={2} sx={{ minHeight: '100%' }}>
+                    <TransitionBox dependency={loading} time={100}>
                         <Grid className="CatalogList" container spacing={getGridSpacing()?.spacing}>
                             {favoriteProducts?.map(product => {
                                 return (

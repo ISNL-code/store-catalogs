@@ -8,10 +8,10 @@ import { Colors } from 'colors';
 const GridMediumView = ({ SliderComponent, CardDetails, CardDecoration, opacity, ...rest }) => {
     const cardRef = useRef<HTMLElement>(null);
     const { setScrollPosition }: any = useOutletContext();
-    const { s, sx, mx, m, ls } = useDevice();
+    const { sm, sx, mx, m, ls } = useDevice();
 
     const getGridValue = () => {
-        if (s) return 6;
+        if (sm) return 6;
         if (sx) return 4;
         if (m) return 3;
         if (mx) return 2.4;
@@ -20,26 +20,36 @@ const GridMediumView = ({ SliderComponent, CardDetails, CardDecoration, opacity,
     };
 
     return (
-        <Grid container xs={getGridValue()} sx={{ opacity: opacity ? 1 : 0 }} {...rest}>
+        <Grid
+            // container
+            xs={getGridValue()}
+            sx={{
+                opacity: opacity ? 1 : 0,
+            }}
+            {...rest}
+        >
             <Box
                 ref={cardRef}
                 sx={{
                     position: 'sticky',
-                    backgroundColor: Colors?.GRAY_100,
-                    border: '0.25px solid',
-                    borderColor: Colors?.GRAY_500,
                     width: '100%',
-                    overflow: 'hidden',
                     display: 'flex',
                     flexDirection: 'column',
                     justifyContent: 'space-between',
+                    backgroundColor: Colors?.GRAY_300,
+                    border: '1px solid',
+                    borderColor: Colors?.GRAY_300,
+                    borderRadius: 4,
+                    overflow: 'hidden',
                 }}
                 onClick={() => {
                     setScrollPosition(cardRef?.current?.offsetTop);
                 }}
             >
-                {CardDecoration()}
-                {SliderComponent()}
+                <Box sx={{ position: 'relative' }}>
+                    {CardDecoration()}
+                    {SliderComponent()}
+                </Box>
                 {CardDetails()}
             </Box>
         </Grid>

@@ -32,14 +32,16 @@ const EmptyPage = ({ isShown = true }) => {
             <Box
                 sx={{
                     width: '100%',
+                    height: '100vh',
+                    position: 'fixed',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
                     flexDirection: 'column',
                     overflow: 'hidden',
                     gap: 1,
-                    flexGrow: 1,
-                    height: 'calc(100vh  - 250px)',
+                    top: 0,
+                    left: 0,
                 }}
             >
                 <SearchIcon sx={{ fontSize: 100, color: Colors?.TEXT_GRAY }} />

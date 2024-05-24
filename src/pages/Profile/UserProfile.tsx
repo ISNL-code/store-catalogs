@@ -8,6 +8,8 @@ import { CatalogContextInterface } from 'types';
 import { useUserApi } from 'api/useUserApi';
 import Loader from 'components/atoms/Loader/Loader';
 import { useEffect, useState } from 'react';
+import useHandleError from 'hooks/useHandleError';
+import { STORE_ROUTE } from 'constants/routes';
 
 const UserProfile = () => {
     const { sx } = useDevice();
@@ -18,29 +20,45 @@ const UserProfile = () => {
         setCurrentUserData,
         appXPadding,
         footerMenuHeight,
+        userDataError,
     }: CatalogContextInterface = useOutletContext();
-    const { storeCode, storeName } = useParams();
-    const { mutateAsync: updateProfile, isLoading } = useUserApi().useCustomerProfileUpdate();
+    const { storeCode } = useParams();
+    const handleError = useHandleError();
+    const { mutateAsync: updateProfile, isLoading } = useUserApi().useCustomerProfileUpdate({ storeCode });
     const [firstName, setFirstName] = useState(currentUserData?.delivery?.firstName);
     const [lastName, setLastName] = useState(currentUserData?.delivery?.lastName);
     const [phone, setPhone] = useState(currentUserData?.delivery?.phone);
     const [city, setCity] = useState(currentUserData?.delivery?.city);
     const [address, setAddress] = useState(currentUserData?.delivery?.address);
+    const [company, setCompany] = useState(currentUserData?.delivery?.company);
 
     useEffect(() => {
-        if (!currentUserData) return;
+        window.scrollTo({
+            top: 0,
+            behavior: 'auto',
+        });
+    }, []);
+
+    useEffect(() => {
+        if (!currentUserData) {
+            if (userDataError) {
+                return handleError(userDataError);
+            } else {
+                updateUserData();
+            }
+        }
         setFirstName(currentUserData?.delivery?.firstName);
         setLastName(currentUserData?.delivery?.lastName);
         setPhone(currentUserData?.delivery?.phone);
         setCity(currentUserData?.delivery?.city);
         setAddress(currentUserData?.delivery?.address);
-    }, [currentUserData]);
+    }, [currentUserData, userDataError]); // eslint-disable-line
 
     return (
         <Box p={sx ? 2 : appXPadding} pb={footerMenuHeight}>
             {isLoading && <Loader />}
             <InstrumentalSubHeader
-                StartSlot={() => <BackButton nav={`/catalog/${storeCode}/${storeName}`} action={() => {}} />}
+                StartSlot={() => <BackButton nav={STORE_ROUTE?.root(storeCode)} action={() => {}} />}
                 EndSlot={() => (
                     <Button
                         variant="outlined"
@@ -55,6 +73,7 @@ const UserProfile = () => {
                                         city,
                                         phone,
                                         address,
+                                        company,
                                     },
                                 },
                             }).then(_ => updateUserData().then(res => setCurrentUserData(res?.data?.data)));
@@ -64,7 +83,7 @@ const UserProfile = () => {
                     </Button>
                 )}
             />
-            <Grid xs={12} container>
+            <Grid xs={12} container alignItems={'flex-start'}>
                 <Grid p={1} xs={sx ? 12 : 6} container spacing={1.5}>
                     <Grid mb={2} xs={12}>
                         <Typography variant="h3">{string?.personal_data}</Typography>
@@ -111,16 +130,6 @@ const UserProfile = () => {
                             label={string?.email}
                             fullWidth
                             disabled
-                        />
-                    </Grid>
-                    <Grid xs={12}>
-                        <TextField
-                            InputLabelProps={{ shrink: true }}
-                            value={currentUserData?.billing?.company || ''}
-                            onChange={e => {}}
-                            size="small"
-                            label={string?.company_name}
-                            fullWidth
                         />
                     </Grid>
                 </Grid>
@@ -185,6 +194,18 @@ const UserProfile = () => {
                             }}
                             size="small"
                             label={string?.delivery_address}
+                            fullWidth
+                        />
+                    </Grid>
+                    <Grid xs={12}>
+                        <TextField
+                            InputLabelProps={{ shrink: true }}
+                            value={company || ''}
+                            onChange={e => {
+                                setCompany(e?.target?.value);
+                            }}
+                            size="small"
+                            label={string?.company_name}
                             fullWidth
                         />
                     </Grid>

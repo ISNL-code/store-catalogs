@@ -1,4 +1,4 @@
-import { STORE_CONFIG } from 'constants/stores_config';
+import { STORE_CONFIG } from 'store_constants/stores_config';
 import { useEffect, useState } from 'react';
 import { HelmetProvider, Helmet } from 'react-helmet-async';
 

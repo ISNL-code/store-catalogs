@@ -1,36 +1,32 @@
 import { Box } from '@mui/material';
 import MobileNavButton from 'components/atoms/Buttons/MobileNavButton';
-import PermIdentityIcon from '@mui/icons-material/PermIdentity';
-import { useNavigate, useParams } from 'react-router-dom';
 import GridViewIcon from '@mui/icons-material/GridView';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import ProfileButton from 'components/molecules/ToolsButtons/ProfileButton';
+import ProfileMenu from 'components/molecules/ToolsButtons/ProfileMenu';
 import { useEffect, useState } from 'react';
 import { useWindowWidth } from '@react-hook/window-size';
 import HomeIcon from '@mui/icons-material/Home';
-import { STORE_CONFIG } from 'constants/stores_config';
+import { STORE_CONFIG } from 'store_constants/stores_config';
+import { HOME_ROUTE, STORE_ROUTE } from 'constants/routes';
 
 const MobileMenu = ({
     appXPadding,
     string,
     auth,
-    setOpenModalType,
     isShown,
     withFavorites,
     withCart,
-    openModalType,
     cart,
     favorites,
     headerHeight,
     user,
     menuHeight,
+    handleOpenDialog,
 }) => {
-    const { OPTIONS } = STORE_CONFIG;
+    const { OPTIONS, STORE_CODE } = STORE_CONFIG;
     const { HOME_PAGE_ACTIVE } = OPTIONS;
     const WINDOW_WIDTH = useWindowWidth();
-    const navigate = useNavigate();
-    const { storeCode, storeName } = useParams();
     const [position, setPosition] = useState(0);
 
     useEffect(() => {
@@ -62,61 +58,44 @@ const MobileMenu = ({
                     }}
                 >
                     {HOME_PAGE_ACTIVE && (
-                        <MobileNavButton path={`/`} title={string?.home} icon={p => <HomeIcon {...p} />} />
+                        <MobileNavButton
+                            path={HOME_ROUTE?.root(STORE_CODE)}
+                            title={string?.home}
+                            icon={p => <HomeIcon {...p} />}
+                        />
                     )}
                     <MobileNavButton
-                        path={`/catalog/${storeCode}/${storeName}`}
-                        childPath={['/details', '/contacts', 'model']}
+                        path={STORE_ROUTE?.root(STORE_CODE)}
                         title={string?.catalog}
                         icon={p => <GridViewIcon {...p} />}
+                        childPath={['product']}
                     />
                     {withFavorites && (
                         <MobileNavButton
-                            path={`/catalog/${storeCode}/${storeName}/favorites`}
+                            path={STORE_ROUTE?.favorites(STORE_CODE)}
                             title={string?.favorites}
                             icon={p => <FavoriteIcon {...p} />}
                             badgeCount={favorites?.favoriteItems?.length}
-                            action={() => {
-                                navigate(`/catalog/${storeCode}/${storeName}/favorites`);
-                            }}
-                            protectedPath={!auth}
                         />
                     )}
                     {withCart && (
                         <MobileNavButton
-                            path={`/catalog/${storeCode}/${storeName}/cart`}
+                            path={STORE_ROUTE?.cart(STORE_CODE)}
                             title={string?.cart}
                             icon={p => <ShoppingCartIcon {...p} />}
                             badgeCount={cart?.cartItems?.length}
-                            action={() => {
-                                if (auth) {
-                                    navigate(`/catalog/${storeCode}/${storeName}/cart`);
-                                } else setOpenModalType('login');
-                            }}
-                            protectedPath={!auth}
-                        />
-                    )}
-                    {!auth && (
-                        <MobileNavButton
-                            title={string?.login}
-                            icon={p => <PermIdentityIcon {...p} />}
-                            clearSort={() => {}}
-                            action={() => setOpenModalType('login')}
-                            isActive={['login', 'register', 'forgot-password'].includes(openModalType)}
                         />
                     )}
 
-                    {auth && (
-                        <ProfileButton
-                            path={`/catalog/${storeCode}/${storeName}/`}
-                            string={string}
-                            headerHeight={headerHeight}
-                            menuHeight={menuHeight}
-                            user={user}
-                            setOpenModalType={setOpenModalType}
-                            childPath={['orders', 'profile']}
-                        />
-                    )}
+                    <ProfileMenu
+                        auth={auth}
+                        string={string}
+                        headerHeight={headerHeight}
+                        footerMenuHeight={menuHeight}
+                        user={user}
+                        handleOpenDialog={handleOpenDialog}
+                        childPath={['orders', 'profile', 'info', 'contacts']}
+                    />
                 </Box>
             </Box>
         );
