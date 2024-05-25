@@ -179,9 +179,37 @@ const CatalogListCard = memo<CatalogCardProps>(
         const CardDetails = () => {
             return (
                 <>
+                    <Box onClick={e => e.stopPropagation()}>
+                        <Box
+                            p={1}
+                            pb={0}
+                            sx={{
+                                display: 'flex',
+                                flexDirection: 'column',
+                                gap: 1,
+                                backgroundColor: Colors?.GRAY_100,
+                            }}
+                        >
+                            <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                                {PLAN_OPTIONS?.prices && (
+                                    <CardPrice
+                                        currency={currency}
+                                        price={Number(shownModel?.originalPrice)}
+                                        discountPrice={Number(shownModel?.price)}
+                                    />
+                                )}
+                                <ShareButton
+                                    isShown
+                                    path={SHARE_PATH?.share_product_sku(STORE_CODE, productId, shownModel?.sku)}
+                                    direction="up"
+                                    size={viewMode === ViewModeType?.card ? 'large' : 'small'}
+                                />
+                            </Box>
+                        </Box>
+                    </Box>
                     <Box
                         sx={{
-                            height: 45,
+                            height: 30,
                             zIndex: 1,
                         }}
                     >
@@ -192,8 +220,7 @@ const CatalogListCard = memo<CatalogCardProps>(
                                 justifyContent: 'center',
                                 flexWrap: 'nowrap',
                                 backgroundColor: Colors?.GRAY_100,
-                                height: '45px',
-                                pt: 1,
+                                height: '30px',
                                 px: 0.2,
                                 transition: 'height 250ms cubic-bezier(0, 0.4, 0.2, 1)',
                             }}
@@ -257,21 +284,6 @@ const CatalogListCard = memo<CatalogCardProps>(
                                 backgroundColor: Colors?.GRAY_100,
                             }}
                         >
-                            <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                                {PLAN_OPTIONS?.prices && (
-                                    <CardPrice
-                                        currency={currency}
-                                        price={Number(shownModel?.originalPrice)}
-                                        discountPrice={Number(shownModel?.price)}
-                                    />
-                                )}
-                                <ShareButton
-                                    isShown
-                                    path={SHARE_PATH?.share_product_sku(STORE_CODE, productId, shownModel?.sku)}
-                                    direction="up"
-                                    size={viewMode === ViewModeType?.card ? 'large' : 'small'}
-                                />
-                            </Box>
                             <Box
                                 sx={{
                                     display: 'flex',
