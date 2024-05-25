@@ -34,7 +34,7 @@ const PaginationButton = ({
                         }
                     },
                     {
-                        rootMargin: '500px',
+                        rootMargin: '1000px',
                         threshold: 1,
                     }
                 );
@@ -44,7 +44,7 @@ const PaginationButton = ({
                     observer.unobserve(ref?.current as any);
                 };
             }
-        }, 1000);
+        }, 250);
 
         return () => clearTimeout(timer);
     }, [activateAutomatically, loading, productsList, page, totalPages, sx]); // eslint-disable-line
