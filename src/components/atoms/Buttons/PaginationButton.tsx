@@ -17,37 +17,37 @@ const PaginationButton = ({
     const ref = useRef(null);
 
     useEffect(() => {
-        const observer = new IntersectionObserver(
-            entries => {
-                const [entry] = entries;
-
-                if (
-                    entry.isIntersecting &&
-                    activateAutomatically &&
-                    sx &&
-                    !loading &&
-                    productsList?.length &&
-                    page < totalPages
-                ) {
-                    setCurrentPage(page + 1);
-                }
-            },
-            {
-                rootMargin: '1000px 0px 0px',
-                threshold: 0,
-            }
-        );
-
-        if (ref.current) {
-            observer.observe(ref.current);
-        }
-
-        return () => {
+        if (!sx) return;
+        const timer = setTimeout(() => {
             if (ref.current) {
-                observer.unobserve(ref.current); // eslint-disable-line
+                const observer = new IntersectionObserver(
+                    entries => {
+                        const [entry] = entries;
+                        if (
+                            entry.isIntersecting &&
+                            activateAutomatically &&
+                            !loading &&
+                            productsList?.length &&
+                            page < totalPages
+                        ) {
+                            setCurrentPage(page + 1);
+                        }
+                    },
+                    {
+                        rootMargin: '500px',
+                        threshold: 1,
+                    }
+                );
+                observer.observe(ref.current);
+
+                return () => {
+                    observer.unobserve(ref?.current as any);
+                };
             }
-        };
-    }, [activateAutomatically]); // eslint-disable-line
+        }, 1000);
+
+        return () => clearTimeout(timer);
+    }, [activateAutomatically, loading, productsList, page, totalPages, sx]); // eslint-disable-line
 
     if (productsList?.length < 12) return null;
 

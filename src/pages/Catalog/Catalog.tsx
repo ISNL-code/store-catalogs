@@ -184,17 +184,15 @@ const Catalog = () => {
                 <>{!loadProducts && <EmptyPage isShown />}</>
             )}
             <Grid my={2} xs={12} container>
-                {Boolean(productsList?.length) && (
-                    <PaginationButton
-                        setCurrentPage={handleSetProductsPage}
-                        totalCount={totalProductsCount}
-                        loading={loading || loadProducts}
-                        productsList={productsList}
-                        page={currentProductsPage}
-                        totalPages={totalProductsPages}
-                        activateAutomatically
-                    />
-                )}
+                <PaginationButton
+                    setCurrentPage={handleSetProductsPage}
+                    totalCount={totalProductsCount}
+                    loading={loading || loadProducts}
+                    productsList={productsList}
+                    page={currentProductsPage}
+                    totalPages={totalProductsPages}
+                    activateAutomatically
+                />
             </Grid>
         </Box>
     );
