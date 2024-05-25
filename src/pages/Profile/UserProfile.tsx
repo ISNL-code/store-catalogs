@@ -9,7 +9,6 @@ import { useUserApi } from 'api/useUserApi';
 import Loader from 'components/atoms/Loader/Loader';
 import { useEffect, useState } from 'react';
 import useHandleError from 'hooks/useHandleError';
-import { STORE_ROUTE } from 'constants/routes';
 
 const UserProfile = () => {
     const { sx } = useDevice();
@@ -58,7 +57,7 @@ const UserProfile = () => {
         <Box p={sx ? 2 : appXPadding} pb={footerMenuHeight}>
             {isLoading && <Loader />}
             <InstrumentalSubHeader
-                StartSlot={() => <BackButton nav={STORE_ROUTE?.root(storeCode)} action={() => {}} />}
+                StartSlot={() => <BackButton />}
                 EndSlot={() => (
                     <Button
                         variant="outlined"

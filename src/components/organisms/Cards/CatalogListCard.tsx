@@ -107,41 +107,69 @@ const CatalogListCard = memo<CatalogCardProps>(
                             height: sliderHeight || 1,
                         }}
                     >
-                        {shownModel?.images?.length ? (
+                        {Boolean(viewMode === ViewModeType?.card) ? (
                             <>
-                                {Boolean(sliderHeight) && (
-                                    <Slider
-                                        dots={true}
-                                        nextArrow={<SampleNextArrow />}
-                                        prevArrow={<SamplePrevArrow />}
-                                        lazyLoad={true}
-                                        style={{
-                                            height: sliderHeight || 1,
-                                        }}
-                                    >
-                                        {shownModel?.images?.map(({ imageUrl }, idx) => {
-                                            return (
-                                                <Grid
-                                                    key={idx}
-                                                    xs={12}
-                                                    sx={{
-                                                        opacity: absentProduct ? 0.5 : 1,
-                                                        flexGrow: 1,
-                                                    }}
-                                                >
-                                                    <ImageComponent
-                                                        imgUrl={imageUrl}
-                                                        ref={null}
-                                                        height={sliderHeight}
-                                                    />
-                                                </Grid>
-                                            );
-                                        })}
-                                    </Slider>
+                                {shownModel?.images?.length ? (
+                                    <>
+                                        {Boolean(sliderHeight) && (
+                                            <Slider
+                                                dots={true}
+                                                nextArrow={<SampleNextArrow />}
+                                                prevArrow={<SamplePrevArrow />}
+                                                lazyLoad={true}
+                                                style={{
+                                                    height: sliderHeight || 1,
+                                                }}
+                                            >
+                                                {shownModel?.images?.map(({ imageUrl }, idx) => {
+                                                    return (
+                                                        <Grid
+                                                            key={idx}
+                                                            xs={12}
+                                                            sx={{
+                                                                opacity: absentProduct ? 0.5 : 1,
+                                                                flexGrow: 1,
+                                                            }}
+                                                        >
+                                                            <ImageComponent
+                                                                imgUrl={imageUrl}
+                                                                ref={null}
+                                                                height={sliderHeight}
+                                                            />
+                                                        </Grid>
+                                                    );
+                                                })}
+                                            </Slider>
+                                        )}
+                                    </>
+                                ) : (
+                                    <>{Boolean(shownModel?.images) && <EmptyImage height={sliderHeight} />}</>
                                 )}
                             </>
                         ) : (
-                            <>{Boolean(shownModel?.images) && <EmptyImage height={sliderHeight} />}</>
+                            <>
+                                {shownModel?.images?.length ? (
+                                    <>
+                                        {Boolean(sliderHeight) && (
+                                            <Grid
+                                                xs={12}
+                                                sx={{
+                                                    opacity: absentProduct ? 0.5 : 1,
+                                                    flexGrow: 1,
+                                                }}
+                                            >
+                                                <ImageComponent
+                                                    imgUrl={shownModel?.images[0]?.imageUrl}
+                                                    ref={null}
+                                                    height={sliderHeight}
+                                                />
+                                            </Grid>
+                                        )}
+                                    </>
+                                ) : (
+                                    <>{Boolean(shownModel?.images) && <EmptyImage height={sliderHeight} />}</>
+                                )}
+                            </>
                         )}
                     </Grid>
                 </Grid>

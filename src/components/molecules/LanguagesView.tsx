@@ -28,10 +28,24 @@ const LanguagesView = ({ supportedLanguages }) => {
                                 }}
                             >
                                 <>
+                                    {el === 'en' && (
+                                        <img
+                                            style={{ height: 24 }}
+                                            src={require(`assets/img/flags/en.png`)}
+                                            alt="Broken Img"
+                                        />
+                                    )}
                                     {el === 'ua' && (
                                         <img
                                             style={{ height: 24 }}
                                             src={require(`assets/img/flags/ua.png`)}
+                                            alt="Broken Img"
+                                        />
+                                    )}
+                                    {el === 'kz' && (
+                                        <img
+                                            style={{ height: 24 }}
+                                            src={require(`assets/img/flags/kz.png`)}
                                             alt="Broken Img"
                                         />
                                     )}
@@ -49,13 +63,7 @@ const LanguagesView = ({ supportedLanguages }) => {
                                             alt="Broken Img"
                                         />
                                     )}
-                                    {el === 'en' && (
-                                        <img
-                                            style={{ height: 24 }}
-                                            src={require(`assets/img/flags/en.png`)}
-                                            alt="Broken Img"
-                                        />
-                                    )}
+
                                     {el === 'ru' && (
                                         <img
                                             style={{ height: 24 }}
@@ -74,13 +82,6 @@ const LanguagesView = ({ supportedLanguages }) => {
                                         <img
                                             style={{ height: 24 }}
                                             src={require(`assets/img/flags/es.png`)}
-                                            alt="Broken Img"
-                                        />
-                                    )}
-                                    {el === 'kz' && (
-                                        <img
-                                            style={{ height: 24 }}
-                                            src={require(`assets/img/flags/kz.png`)}
                                             alt="Broken Img"
                                         />
                                     )}

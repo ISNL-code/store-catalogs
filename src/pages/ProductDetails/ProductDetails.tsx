@@ -112,7 +112,7 @@ const ProductDetails = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [productDetails]);
 
-    const { sx, m, ls } = useDevice();
+    const { sx, ls } = useDevice();
 
     const swiperGrid = () => {
         if (sx) return 12;
@@ -128,7 +128,7 @@ const ProductDetails = () => {
     return (
         <Box px={appXPadding} pb={footerMenuHeight}>
             <InstrumentalSubHeader
-                StartSlot={() => <BackButton nav={STORE_ROUTE?.root(STORE_CODE)} action={() => {}} />}
+                StartSlot={() => <BackButton nav={STORE_ROUTE?.root(STORE_CODE)} />}
                 EndSlot={() => (
                     <Box sx={{ display: 'flex', gap: 0.75 }}>
                         <SkuSearch />
@@ -148,7 +148,7 @@ const ProductDetails = () => {
                         pt={10}
                         xs={swiperGrid()}
                         sx={{
-                            overflow: 'scroll',
+                            overflow: 'auto',
                             '&::-webkit-scrollbar': {
                                 display: 'none',
                             },
@@ -162,12 +162,12 @@ const ProductDetails = () => {
                         xs={detailsGrid()}
                         sx={{
                             height: '100%',
-                            overflow: 'scroll',
+                            overflow: 'auto',
                             maxHeight: sx
                                 ? ''
                                 : `calc(100vh - ${headerHeight}px - ${instrumentalBarHeight}px - ${footerMenuHeight}px - 16px)`,
                             '&::-webkit-scrollbar': {
-                                display: m ? 'none' : '',
+                                display: 'none',
                             },
                         }}
                     >

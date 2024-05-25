@@ -114,7 +114,7 @@ const AppLogic = ({
     useEffect(() => {
         const getViewMode: any = localStorage.getItem(STORAGE_KEYS?.VIEW_MODE_KEY);
 
-        if (!getViewMode || getViewMode !== 'card' || getViewMode === 'grid_m') {
+        if (!getViewMode || (JSON.parse(getViewMode) !== 'card' && JSON.parse(getViewMode) !== 'grid_m')) {
             setViewMode(VIEW_MODE);
             localStorage.setItem(STORAGE_KEYS?.VIEW_MODE_KEY, JSON.stringify(VIEW_MODE));
         } else {

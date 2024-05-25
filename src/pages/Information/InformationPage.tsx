@@ -7,11 +7,8 @@ import { HomeContextInterface } from 'types';
 import { useDevice } from 'hooks/useDevice';
 import { Colors } from 'colors';
 import BackButton from 'components/atoms/Buttons/BackButton';
-import { STORE_ROUTE } from 'constants/routes';
-import { STORE_CONFIG } from 'store_constants/stores_config';
 
 const InformationPage = () => {
-    const { STORE_CODE } = STORE_CONFIG;
     const { sx } = useDevice();
     const { appXPadding, footerMenuHeight, string, headerHeight, instrumentalBarHeight }: HomeContextInterface =
         useOutletContext();
@@ -42,10 +39,7 @@ const InformationPage = () => {
 
     return (
         <Box p={sx ? 2 : appXPadding} pb={footerMenuHeight} pt={4}>
-            <InstrumentalSubHeader
-                opacity={1}
-                StartSlot={() => <BackButton nav={STORE_ROUTE?.root(STORE_CODE)} action={() => {}} />}
-            />
+            <InstrumentalSubHeader opacity={1} StartSlot={() => <BackButton />} />
             <Grid
                 xs={12}
                 container

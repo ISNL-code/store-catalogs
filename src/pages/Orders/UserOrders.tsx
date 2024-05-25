@@ -13,11 +13,8 @@ import { useGetStatusParams } from 'hooks/useGetStatusParams';
 import Loader from 'components/atoms/Loader/Loader';
 import OrderPrice from 'components/molecules/PricesComponents/OrderPrice';
 import useHandleError from 'hooks/useHandleError';
-import { STORE_ROUTE } from 'constants/routes';
-import { STORE_CONFIG } from 'store_constants/stores_config';
 
 const UserOrders = () => {
-    const { STORE_CODE } = STORE_CONFIG;
     const handleError = useHandleError();
     const { handleGetStatusParams } = useGetStatusParams();
     const { s } = useDevice();
@@ -62,9 +59,7 @@ const UserOrders = () => {
     return (
         <Box p={sx ? 2 : appXPadding} pb={footerMenuHeight}>
             {loadingOrders && <Loader />}
-            <InstrumentalSubHeader
-                StartSlot={() => <BackButton nav={STORE_ROUTE?.root(STORE_CODE)} action={() => {}} />}
-            />
+            <InstrumentalSubHeader StartSlot={() => <BackButton />} />
             {orderData?.map(order => {
                 const status = handleGetStatusParams(order?.orderStatus, string);
                 return (

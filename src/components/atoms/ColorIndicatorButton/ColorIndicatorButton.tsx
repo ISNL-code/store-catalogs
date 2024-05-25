@@ -33,7 +33,7 @@ const ColorIndicatorButton = ({
                           border: selected ? '1px solid #ccc' : '0 solid #ccc',
                           borderRadius: size / 2,
                           borderLeft: 'none',
-                          width: selected ? label.length * 6 + 70 : size,
+                          width: selected ? label?.length * 6 + 70 : size,
                           transition: 'width 250ms cubic-bezier(1, 0.7, 0.2, 1), border 150ms ease-out',
                           overflow: 'hidden',
                           background:

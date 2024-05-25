@@ -19,7 +19,7 @@ export const useProducts = ({ store, lang, queryCategories, setQueryCategories, 
     const { OPTIONS } = STORE_CONFIG;
     const { STORE_TYPE } = OPTIONS;
     const mount = useIsMount();
-    const count = sx ? 30 : 35;
+    const count = sx ? 20 : 35;
 
     const [currentProductsPage, setCurrentProductsPage] = useState(0);
     const [productsList, setProductsList] = useState<LoadedProductListInterface[] | [] | null>(null);

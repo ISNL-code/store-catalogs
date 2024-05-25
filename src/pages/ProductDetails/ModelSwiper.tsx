@@ -7,7 +7,6 @@ import FullScreenSwiper from './FullScreenSwiper';
 import ImageComponent from 'components/atoms/Media/Image';
 import { useWindowWidth } from '@react-hook/window-size';
 import { useIsMount } from 'hooks/useIsMount';
-import { Colors } from 'colors';
 import { STORE_CONFIG } from 'store_constants/stores_config';
 
 const ModelSwiper = ({ images }) => {
@@ -59,8 +58,7 @@ const ModelSwiper = ({ images }) => {
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        border: '1px solid',
-                        borderColor: Colors?.GRAY_300,
+                        borderRadius: 4,
                     }}
                     onClick={() => {
                         setFullScreenMode(true);
@@ -119,8 +117,8 @@ const ModelSwiper = ({ images }) => {
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        border: '1px solid',
-                        borderColor: Colors?.GRAY_300,
+                        borderRadius: 4,
+                        mb: 1,
                     }}
                     onClick={() => {
                         setFullScreenMode(true);
@@ -156,15 +154,16 @@ const ModelSwiper = ({ images }) => {
                 })}
             </Box>
         );
-    }, [images?.length, headerHeight, instrumentalBarHeight, footerMenuHeight, modelSku]); // eslint-disable-line
+    }, [images?.length, headerHeight, instrumentalBarHeight, footerMenuHeight, modelSku, WINDOW_WIDTH]); // eslint-disable-line
 
     const horizontalSwiper = useMemo(() => {
         return (
             <Box
-                p={images?.length <= 1 ? 2 : 0}
+                p={images?.length <= 1 ? 2 : 1}
                 sx={{
                     display: 'flex',
                     flexDirection: 'row',
+                    gap: 1,
                 }}
             >
                 {images?.map(({ imageUrl }, idx) => {

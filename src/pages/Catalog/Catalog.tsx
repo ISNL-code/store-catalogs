@@ -1,6 +1,6 @@
 import { Alert, Box, Collapse, IconButton } from '@mui/material';
 import Loader from 'components/atoms/Loader/Loader';
-import { memo, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useOutletContext } from 'react-router-dom';
 import { getCurrencySymbol } from 'helpers/getCurrencySymbol';
 import ScrollButton from 'components/atoms/Buttons/ScrollButton';
@@ -24,34 +24,8 @@ import { STORE_CONFIG } from 'store_constants/stores_config';
 import { ViewModeType } from 'store_constants/types';
 import { STORE_ROUTE } from 'constants/routes';
 
-const InstrumentalSubHeaderMemo = memo(() => {
-    const { OPTIONS, SIDE_LINKS } = STORE_CONFIG;
-    const { PLAN_OPTIONS } = OPTIONS;
-
-    return (
-        <InstrumentalSubHeader
-            StartSlot={() => (
-                <>
-                    {SIDE_LINKS?.map(({ name, href }) => (
-                        <Box sx={{ display: 'flex' }} key={href}>
-                            <SideLink name={name} href={href} />
-                        </Box>
-                    ))}
-                </>
-            )}
-            EndSlot={() => (
-                <Box sx={{ display: 'flex', gap: 0.75 }}>
-                    <ViewModeButton />
-                    <SkuSearch />
-                    <FilterCategories isShown={PLAN_OPTIONS?.categories} />
-                </Box>
-            )}
-        />
-    );
-});
-
 const Catalog = () => {
-    const { OPTIONS, STORE_CODE } = STORE_CONFIG;
+    const { OPTIONS, STORE_CODE, SIDE_LINKS } = STORE_CONFIG;
     const { PLAN_OPTIONS, MIN_ITEMS_TO_BUY } = OPTIONS;
     const { sx } = useDevice();
     const {
@@ -100,10 +74,8 @@ const Catalog = () => {
 
     useEffect(() => {
         if (loadProducts || !productsList) return;
-
         setLoading(false);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [loading, productsList]);
+    }, [loading, productsList]); // eslint-disable-line
 
     useEffect(() => {
         window.addEventListener('scroll', () => {
@@ -139,13 +111,30 @@ const Catalog = () => {
                     {PLAN_OPTIONS?.playMarket && <PlayMarketButton />}
                 </>
             )}
-            {((loadProducts && !productsList?.length) || loading) && <Loader position="fixed" />}
+            {loadProducts && !productsList?.length && <Loader position="fixed" />}
             {PLAN_OPTIONS?.contacts && <CallBackButton path={STORE_ROUTE?.contacts(STORE_CODE)} />}
-            <InstrumentalSubHeaderMemo />
+            <InstrumentalSubHeader
+                StartSlot={() => (
+                    <>
+                        {SIDE_LINKS?.map(({ name, href }) => (
+                            <Box sx={{ display: 'flex' }} key={href}>
+                                <SideLink name={name} href={href} />
+                            </Box>
+                        ))}
+                    </>
+                )}
+                EndSlot={() => (
+                    <Box sx={{ display: 'flex', gap: 0.75 }}>
+                        <ViewModeButton />
+                        <SkuSearch />
+                        <FilterCategories isShown={PLAN_OPTIONS?.categories} />
+                    </Box>
+                )}
+            />
 
             {productsList?.length ? (
                 <Box sx={{ minHeight: '100%' }}>
-                    <TransitionBox dependency={loading} time={100}>
+                    <TransitionBox dependency={loading} time={0}>
                         {MIN_ITEMS_TO_BUY > 1 && (
                             <Collapse in={open}>
                                 <Box mb={2}>
@@ -192,7 +181,7 @@ const Catalog = () => {
                     </TransitionBox>
                 </Box>
             ) : (
-                <>{!loadProducts && !loading && <EmptyPage isShown />}</>
+                <>{!loadProducts && <EmptyPage isShown />}</>
             )}
             <Grid my={2} xs={12} container>
                 {Boolean(productsList?.length) && (
@@ -203,6 +192,7 @@ const Catalog = () => {
                         productsList={productsList}
                         page={currentProductsPage}
                         totalPages={totalProductsPages}
+                        activateAutomatically
                     />
                 )}
             </Grid>

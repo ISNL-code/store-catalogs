@@ -15,7 +15,6 @@ import { Toaster } from 'react-hot-toast';
 
 const App = () => {
     const { STORE_CODE, APP_LANGUAGE } = STORE_CONFIG;
-
     const [lang, setLang] = useState<string>(APP_LANGUAGE);
     const [viewMode, setViewMode] = useState<ViewModeType | null>(null);
     const [auth, setAuth] = useState<boolean | null>(null);

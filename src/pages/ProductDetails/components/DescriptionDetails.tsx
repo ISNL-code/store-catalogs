@@ -18,6 +18,7 @@ const DescriptionDetails = ({ productDetails }) => {
                     display: 'flex',
                     gap: 0.75,
                     flexWrap: 'wrap',
+                    overflow: 'hidden',
                 }}
             >
                 <Box

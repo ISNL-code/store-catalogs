@@ -1,6 +1,6 @@
 import { Box } from '@mui/material';
 import Loader from 'components/atoms/Loader/Loader';
-import { memo, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useOutletContext } from 'react-router-dom';
 import { getCurrencySymbol } from 'helpers/getCurrencySymbol';
 import ScrollButton from 'components/atoms/Buttons/ScrollButton';
@@ -21,32 +21,6 @@ import { useDevice } from 'hooks/useDevice';
 import { STORE_ROUTE } from 'constants/routes';
 import { DialogWindowType } from 'layouts/hooks/useFormsApp';
 
-interface InstrumentalBarProps {
-    favoriteLength: boolean;
-}
-
-const InstrumentalSubHeaderMemo = memo<InstrumentalBarProps>(({ favoriteLength }) => {
-    const { string, handleOpenDialog }: CatalogContextInterface = useOutletContext();
-    return (
-        <InstrumentalSubHeader
-            StartSlot={() => <></>}
-            EndSlot={() => (
-                <Box sx={{ display: 'flex', gap: 0.75 }}>
-                    <ViewModeButton />
-                    <ClearListButton
-                        action={() => {
-                            handleOpenDialog(DialogWindowType?.CLEAR_FAVORITES);
-                        }}
-                        isShown
-                        title={string?.clear_favorites}
-                        disabled={!favoriteLength}
-                    />
-                </Box>
-            )}
-        />
-    );
-});
-
 const Favorites = () => {
     const { sx } = useDevice();
     const { OPTIONS, STORE_CODE } = STORE_CONFIG;
@@ -61,6 +35,8 @@ const Favorites = () => {
         instrumentalBarHeight,
         headerHeight,
         setScrollPosition,
+        handleOpenDialog,
+        string,
     }: CatalogContextInterface = useOutletContext();
     const mount = useIsMount();
     const [showTopBtn, setShowTopBtn] = useState(false);
@@ -196,7 +172,22 @@ const Favorites = () => {
             {showTopBtn && <ScrollButton />}
             {loading && <Loader />}
             {PLAN_OPTIONS?.contacts && <CallBackButton path={STORE_ROUTE?.contacts(STORE_CODE)} />}
-            <InstrumentalSubHeaderMemo favoriteLength={Boolean(favoriteProducts?.length)} />
+            <InstrumentalSubHeader
+                StartSlot={() => <></>}
+                EndSlot={() => (
+                    <Box sx={{ display: 'flex', gap: 0.75 }}>
+                        <ViewModeButton />
+                        <ClearListButton
+                            action={() => {
+                                handleOpenDialog(DialogWindowType?.CLEAR_FAVORITES);
+                            }}
+                            isShown
+                            title={string?.clear_favorites}
+                            disabled={!favoriteProducts?.length}
+                        />
+                    </Box>
+                )}
+            />
 
             {favoriteProducts?.length ? (
                 <Box pb={2} sx={{ minHeight: '100%' }}>

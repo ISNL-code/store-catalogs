@@ -14,11 +14,8 @@ import { CatalogContextInterface } from 'types';
 import EmptyPage from 'components/atoms/EmptyPage/EmptyPage';
 import Grid from '@mui/material/Unstable_Grid2';
 import CardItem from 'components/atoms/Sections/CardItem';
-import { STORE_ROUTE } from 'constants/routes';
-import { STORE_CONFIG } from 'store_constants/stores_config';
 
 const ContactsManagePage = () => {
-    const { STORE_CODE } = STORE_CONFIG;
     const { store, string, footerMenuHeight, appXPadding }: CatalogContextInterface = useOutletContext();
     const { sm, sx } = useDevice();
 
@@ -33,9 +30,7 @@ const ContactsManagePage = () => {
 
     return (
         <Box p={sx ? 2 : appXPadding} pb={footerMenuHeight}>
-            <InstrumentalSubHeader
-                StartSlot={() => <BackButton nav={STORE_ROUTE?.root(STORE_CODE)} action={() => {}} />}
-            />
+            <InstrumentalSubHeader StartSlot={() => <BackButton />} />
 
             {store?.managers.map((manager, idx) => {
                 return (
