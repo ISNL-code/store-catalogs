@@ -69,7 +69,7 @@ export const SUPPORTED_APP_LANG = {
         german: 'Niemiecki',
         lang_unknown: '...',
     },
-    cs: {
+    cz: {
         polish: 'Polština',
         czech: 'Čeština',
         russian: 'Ruština',

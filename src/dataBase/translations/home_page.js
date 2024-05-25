@@ -49,7 +49,7 @@ export const HOME_PAGE = {
         customer_description_3: `Oferujemy elastyczne warunki zarówno dla kupujących hurtowych, jak i detalicznych, zapewniając szeroki dostęp do naszych produktów zarówno dla dużych sieci detalicznych, jak i indywidualnych klientów.`,
         customer_description_4: `Nasze operacje są zoptymalizowane pod kątem reaktywności i efektywności, zapewniając szybką przetwarzanie zamówień i doskonałą obsługę klienta o każdej porze.`,
     },
-    cs: {
+    cz: {
         customer_title_1: `Rozsáhlá Kolekce`,
         customer_title_2: `Záruka Kvality`,
         customer_title_3: `Velkoobchod a Maloobchod`,

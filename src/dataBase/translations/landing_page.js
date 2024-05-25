@@ -4,7 +4,7 @@ export const LANDING_PAGE = {
     es: {},
     ua: {},
     pl: {},
-    cs: {},
+    cz: {},
     ru: {},
     kz: {},
 };

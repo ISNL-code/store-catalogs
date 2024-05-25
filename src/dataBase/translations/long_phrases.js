@@ -89,7 +89,7 @@ export const LONG_PHRASES = {
         manger_will_contact_message:
             'Nasz menedżer skontaktuje się z Państwem wkrótce, aby udzielić szczegółowych informacji dotyczących Państwa zakupu.',
     },
-    cs: {
+    cz: {
         something_went_wrong: 'Něco se pokazilo, zkuste to prosím později!',
         question_form_message:
             'Pokud máte jakékoli dotazy nebo potíže, neváhejte nás kontaktovat. Uděláme vše pro to, abychom vám odpověděli co nejdříve.',
