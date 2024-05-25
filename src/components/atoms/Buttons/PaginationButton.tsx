@@ -34,7 +34,7 @@ const PaginationButton = ({
                         }
                     },
                     {
-                        rootMargin: '1000px',
+                        rootMargin: '1500px',
                         threshold: 1,
                     }
                 );
