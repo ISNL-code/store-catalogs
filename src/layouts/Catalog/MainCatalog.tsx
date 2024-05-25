@@ -48,7 +48,7 @@ export default function MainCatalog({
     const { currentLanguage } = useGetLanguage({ lang, storeName: STORE_NAME });
     const [scrollPosition, setScrollPosition] = useState(0);
     const [queryCategories, setQueryCategories] = useState<string[] | []>([]);
-    const { activeDialogWindow, handleOpenDialog } = useFormsApp();
+    const { activeDialogWindow, handleOpenDialog, handleSetDialogState, dialogState } = useFormsApp();
 
     const {
         loadProducts,
@@ -117,6 +117,8 @@ export default function MainCatalog({
                         viewMode,
                         setViewMode,
                         handleOpenDialog,
+                        handleSetDialogState,
+                        dialogState,
 
                         //store data
                         infoAlert,
@@ -185,6 +187,7 @@ export default function MainCatalog({
                 setAuth={setAuth}
                 cart={cart}
                 favorites={favorites}
+                dialogState={dialogState}
             />
         </Box>
     );

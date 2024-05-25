@@ -18,7 +18,7 @@ import { scrollToTopNewPage } from 'helpers/scroll';
 import { STORE_CONFIG } from 'store_constants/stores_config';
 import { STORE_ROUTE } from 'constants/routes';
 
-interface LoadedProductInterface {
+export interface LoadedProductInterface {
     id?: number;
     variants?: ProductVariantInterface[];
     promoTags?: any[];
@@ -29,6 +29,11 @@ interface LoadedProductInterface {
     promo: any[];
     details: string;
     originalPrice: number;
+    table_size_img: {
+        id: 1;
+        imageSizeTable: boolean;
+        imageUrl: string;
+    };
 }
 
 interface SelectedVarianInterface {
@@ -70,6 +75,7 @@ const ProductDetails = () => {
             originalPrice: Math.max(...prices),
             price: product?.finalPrice,
             id: product?.id,
+            table_size_img: product?.image,
             variants: product?.variants.sort((a, b) => a.sortOrder - b.sortOrder).filter(el => el.images.length),
             promo:
                 product?.options
@@ -86,7 +92,7 @@ const ProductDetails = () => {
                     })
                     .sort((a, b) => a.code - b.code) || [],
         });
-        scrollToTopNewPage();
+
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [productRes, modelSku]);
 

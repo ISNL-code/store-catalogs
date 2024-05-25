@@ -9,9 +9,10 @@ interface Props {
     onClose: () => void;
     closeAvailable: boolean;
     onSubmit: () => void;
+    dialogState;
 }
 
-const TableSizeDialog = ({ string, onClose, closeAvailable, onSubmit }: Props) => {
+const TableSizeDialog = ({ string, onClose, closeAvailable, onSubmit, dialogState }: Props) => {
     const { sx } = useDevice();
     const [open, setOpen] = useState<boolean>(false);
 
@@ -59,7 +60,7 @@ const TableSizeDialog = ({ string, onClose, closeAvailable, onSubmit }: Props) =
                 <DialogContent sx={{ p: 0 }}>
                     <img
                         style={{ width: 'auto', maxHeight: sx ? '55vh' : '75vh' }} // Set image width to 100% of content area
-                        src={require(`assets/img/table_sizes_eg.png`)}
+                        src={dialogState?.imageUrl}
                         alt="Broken Img"
                     />
                 </DialogContent>

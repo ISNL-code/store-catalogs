@@ -31,7 +31,7 @@ export default function Home({ lang, setLang, auth, setAuth, userData, store, fa
     const BODY_PADDINGS = sx ? 0 : 4;
     const FOOTER_PADDINGS = sx ? 2 : 4;
     const { currentLanguage } = useGetLanguage({ lang, storeName: STORE_NAME });
-    const { activeDialogWindow, handleOpenDialog } = useFormsApp();
+    const { activeDialogWindow, handleOpenDialog, handleSetDialogState, dialogState } = useFormsApp();
 
     useEffect(() => {
         if (STORE_CODE !== storeCode) {
@@ -75,6 +75,8 @@ export default function Home({ lang, setLang, auth, setAuth, userData, store, fa
                         updateUserData: userData.updateUserData,
                         setCurrentUserData: userData.setCurrentUserData,
                         userDataError: userData.userError,
+                        handleSetDialogState,
+                        dialogState,
 
                         //css data
                         instrumentalBarHeight: INSTRUMENTAL_BAR_HEIGHT,
@@ -107,6 +109,7 @@ export default function Home({ lang, setLang, auth, setAuth, userData, store, fa
                 activeDialogWindow={activeDialogWindow}
                 handleOpenDialog={handleOpenDialog}
                 setAuth={setAuth}
+                dialogState={dialogState}
             />
         </Box>
     );

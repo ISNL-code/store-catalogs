@@ -22,9 +22,19 @@ interface Props {
     setAuth;
     favorites?;
     cart?;
+    dialogState?;
 }
 
-const DialogApp = ({ location, string, activeDialogWindow, handleOpenDialog, setAuth, favorites, cart }: Props) => {
+const DialogApp = ({
+    location,
+    string,
+    activeDialogWindow,
+    handleOpenDialog,
+    setAuth,
+    favorites,
+    cart,
+    dialogState,
+}: Props) => {
     if (!activeDialogWindow) return null;
 
     return (
@@ -120,6 +130,7 @@ const DialogApp = ({ location, string, activeDialogWindow, handleOpenDialog, set
                 isOpen={activeDialogWindow === DialogWindowType?.TABLE_SIZE}
                 setIsOpen={handleOpenDialog}
                 string={string}
+                dialogState={dialogState}
             />
         </>
     );

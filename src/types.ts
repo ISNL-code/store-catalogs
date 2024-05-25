@@ -5,6 +5,8 @@ export interface HomeContextInterface {
     lang: string;
     string: Record<string, any>;
     handleOpenDialog;
+    handleSetDialogState;
+    dialogState;
 
     //store data
     store: StoreInterface;
@@ -34,6 +36,8 @@ export interface CatalogContextInterface {
     viewMode: ViewModeType;
     setViewMode;
     handleOpenDialog;
+    handleSetDialogState;
+    dialogState;
 
     //store data
     store: StoreInterface;

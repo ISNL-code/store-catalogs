@@ -1,6 +1,6 @@
 import TableSizeDialog from 'components/organisms/Modals/TableSizeDialog';
 
-const TableSizeWindow = ({ isOpen, setIsOpen, string }) => {
+const TableSizeWindow = ({ isOpen, setIsOpen, string, dialogState }) => {
     if (!isOpen) return null;
 
     return (
@@ -14,6 +14,7 @@ const TableSizeWindow = ({ isOpen, setIsOpen, string }) => {
                     setIsOpen(null);
                 }}
                 closeAvailable
+                dialogState={dialogState}
             />
         </>
     );

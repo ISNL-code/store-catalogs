@@ -289,6 +289,7 @@ const Cart = () => {
                                 finalPrice={finalPrice}
                                 setSuccessOrdering={setSuccessOrdering}
                                 setOrderData={setOrderData}
+                                loadCreateOrder={loadCreateOrder}
                             />
                         </Box>
                     </Grid>

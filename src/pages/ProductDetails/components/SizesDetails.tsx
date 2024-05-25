@@ -1,4 +1,4 @@
-import { Box, IconButton, Typography } from '@mui/material';
+import { Box, Button, Typography } from '@mui/material';
 import DetailsSection from 'components/atoms/Sections/DetailsSection';
 import SizesIndicatorButton from 'components/atoms/SizesIndicatorButton/SizesIndicatorButton';
 import { useOutletContext } from 'react-router-dom';
@@ -8,76 +8,100 @@ import { CatalogContextInterface } from 'types';
 import { STORE_CONFIG } from 'store_constants/stores_config';
 import { Color } from 'colors';
 import { DialogWindowType } from 'layouts/hooks/useFormsApp';
+import { LoadedProductInterface } from '../ProductDetails';
 
-const SizesDetails = ({ productDetails, isShown }) => {
+interface Props {
+    productDetails: LoadedProductInterface;
+    isShown: boolean;
+}
+
+const SizesDetails = ({ productDetails, isShown }: Props) => {
     const { OPTIONS } = STORE_CONFIG;
     const { PLAN_OPTIONS } = OPTIONS;
-    const { string, handleOpenDialog }: CatalogContextInterface = useOutletContext();
+    const { string, handleOpenDialog, handleSetDialogState }: CatalogContextInterface = useOutletContext();
     const { sm } = useDevice();
 
     if (isShown)
         return (
             <>
                 <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-                    <DetailsSection label={string?.sizes}>
-                        <Box sx={{ display: 'flex', justifyContent: 'space-between', gap: 0.5 }}>
+                    <DetailsSection label={string?.available_sizes}>
+                        <Box sx={{ display: 'flex', justifyContent: 'space-between', gap: 0.5, alignItems: 'center' }}>
                             <Box
                                 sx={{
                                     width: '100%',
                                     display: 'flex',
-                                    gap: sm ? 0.5 : 0.75,
-                                    flexWrap: 'wrap',
-                                    alignItems: 'center',
+                                    flexDirection: 'column',
                                 }}
                             >
                                 {productDetails?.sizes?.length ? (
-                                    productDetails?.sizes?.map(({ code, id, name }) => (
-                                        <SizesIndicatorButton
-                                            key={id}
-                                            size={sm ? 34 : 38}
-                                            selected={false}
-                                            disabled={true}
-                                            label={name || code}
-                                        />
-                                    ))
+                                    <Box
+                                        sx={{
+                                            width: 'fit-content',
+                                            borderRadius: 2,
+                                            overflow: 'hidden',
+                                            display: 'flex',
+                                            flexWrap: 'wrap',
+                                            border: '1px solid #ccc',
+                                        }}
+                                    >
+                                        {productDetails?.sizes?.map(({ code, id, name }) => (
+                                            <SizesIndicatorButton
+                                                key={id}
+                                                size={sm ? 34 : 38}
+                                                selected={false}
+                                                disabled={true}
+                                                label={name || code}
+                                                table
+                                            />
+                                        ))}
+                                    </Box>
                                 ) : (
                                     <Typography variant="h4" sx={{ color: 'red' }}>
                                         {string?.no_available_sizes}
                                     </Typography>
                                 )}
                             </Box>
-                            {PLAN_OPTIONS?.tableSizes && (
-                                <Box
-                                    sx={{
-                                        display: 'flex',
-                                        flexDirection: 'column',
-                                        alignItems: 'center',
-                                        gap: 0.25,
-                                        mt: 0.5,
+                            {PLAN_OPTIONS?.tableSizes && productDetails?.table_size_img && (
+                                <Button
+                                    onClick={() => {
+                                        handleOpenDialog(DialogWindowType?.TABLE_SIZE);
+                                        handleSetDialogState({ imageUrl: productDetails?.table_size_img?.imageUrl });
                                     }}
+                                    size="small"
+                                    sx={{
+                                        border: `2px solid ${Color?.PRIMARY}`,
+                                        borderRadius: '8px',
+                                        px: 3,
+                                        height: 'fit-content',
+                                    }}
+                                    startIcon={
+                                        <StraightenIcon color="primary" fontSize="small" sx={{ fontSize: 18 }} />
+                                    }
                                 >
-                                    <IconButton
-                                        onClick={() => {
-                                            handleOpenDialog(DialogWindowType?.TABLE_SIZE);
-                                        }}
-                                        size="small"
+                                    <Typography
+                                        variant="subtitle1"
                                         sx={{
-                                            border: `1px solid ${Color?.PRIMARY}`,
-                                            borderRadius: '8px',
+                                            color: Color?.PRIMARY,
+                                            textTransform: 'uppercase',
+                                            fontSize: 12,
+                                            whiteSpace: 'nowrap',
                                         }}
                                     >
-                                        <Typography
-                                            variant="subtitle1"
-                                            sx={{ color: Color?.PRIMARY, textTransform: 'uppercase' }}
-                                        >
-                                            {string?.sizes_table}
-                                        </Typography>
-                                        <StraightenIcon color="primary" fontSize="small" />
-                                    </IconButton>
-                                </Box>
+                                        {string?.sizes_table}
+                                    </Typography>
+                                </Button>
                             )}
                         </Box>
                     </DetailsSection>
+                    <Box my={0.5} ml={1} sx={{ display: 'flex', gap: 0.25 }}>
+                        <Typography sx={{ color: Color?.ERROR, fontSize: 14, fontWeight: 700 }}>
+                            {string?.important}:
+                        </Typography>
+                        <Typography sx={{ fontSize: 14 }}>
+                            {string?.size_selection_is_only_available_during_checkout}
+                        </Typography>
+                    </Box>
                 </Box>
             </>
         );

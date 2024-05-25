@@ -181,6 +181,9 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 in_cart: 'In cart',
                 menu: 'Menu',
                 save_delivery_info: 'Save delivery info',
+                available_sizes: 'Available sizes',
+                important: 'Important',
+                size_selection_is_only_available_during_checkout: 'Size selection is only available during checkout.',
             },
         },
         {
@@ -353,6 +356,10 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 in_cart: 'Dans le panier',
                 menu: 'Menu',
                 save_delivery_info: 'Enregistrer les informations de livraison',
+                available_sizes: 'Tailles disponibles',
+                important: 'Important',
+                size_selection_is_only_available_during_checkout:
+                    'La sélection des tailles est disponible uniquement lors du paiement.',
             },
         },
         {
@@ -526,6 +533,10 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 in_cart: 'En el carrito',
                 menu: 'Menú',
                 save_delivery_info: 'Guardar información de entrega',
+                available_sizes: 'Tamaños disponibles',
+                important: 'Importante',
+                size_selection_is_only_available_during_checkout:
+                    'La selección de tamaños solo está disponible durante el pago.',
             },
         },
         {
@@ -698,6 +709,10 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 in_cart: 'У кошику',
                 menu: 'Меню',
                 save_delivery_info: 'Зберегти інформацію про доставку',
+                available_sizes: 'Доступні розміри',
+                important: 'Важливо',
+                size_selection_is_only_available_during_checkout:
+                    'Вибір розміру доступний лише під час оформлення замовлення.',
             },
         },
         {
@@ -870,6 +885,10 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 in_cart: 'W koszyku',
                 menu: 'Menu',
                 save_delivery_info: 'Zapisz informacje o dostawie',
+                available_sizes: 'Dostępne rozmiary',
+                important: 'Ważne',
+                size_selection_is_only_available_during_checkout:
+                    'Wybór rozmiaru jest możliwy tylko podczas finalizacji zamówienia.',
             },
         },
         {
@@ -1042,6 +1061,9 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 in_cart: 'V košíku',
                 menu: 'Menu',
                 save_delivery_info: 'Uložit informace o doručení',
+                available_sizes: 'Dostupné velikosti',
+                important: 'Důležité',
+                size_selection_is_only_available_during_checkout: 'Výběr velikosti je možný pouze při placení.',
             },
         },
         {
@@ -1214,6 +1236,10 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 in_cart: 'В корзине',
                 menu: 'Меню',
                 save_delivery_info: 'Сохранить информацию о доставке',
+                available_sizes: 'Доступные размеры',
+                important: 'Важно',
+                size_selection_is_only_available_during_checkout:
+                    'Выбор размера доступен только при оформлении заказа.',
             },
         },
         {
@@ -1388,6 +1414,9 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 in_cart: 'Себетте',
                 menu: 'Мәзірі',
                 save_delivery_info: 'Жеткізу туралы ақпаратты сақтау',
+                available_sizes: 'Қолжетімді өлшемдер',
+                important: 'Маңызды',
+                size_selection_is_only_available_during_checkout: 'Өлшемді тек тапсырыс беру кезінде таңдауға болады.',
             },
         },
     ];

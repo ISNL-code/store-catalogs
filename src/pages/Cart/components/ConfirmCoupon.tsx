@@ -18,9 +18,17 @@ interface Props {
     finalPrice;
     setSuccessOrdering;
     setOrderData;
+    loadCreateOrder;
 }
 
-const ConfirmCoupon = ({ createOrder, orderData, finalPrice, setSuccessOrdering, setOrderData }: Props) => {
+const ConfirmCoupon = ({
+    createOrder,
+    orderData,
+    finalPrice,
+    setSuccessOrdering,
+    setOrderData,
+    loadCreateOrder,
+}: Props) => {
     const { STORE_NAME, OPTIONS } = STORE_CONFIG;
     const { MIN_ITEMS_TO_BUY } = OPTIONS;
     const { storeCode } = useParams();
@@ -284,7 +292,7 @@ const ConfirmCoupon = ({ createOrder, orderData, finalPrice, setSuccessOrdering,
                 </Grid>
                 <Grid xs={12}>
                     <Button
-                        disabled={!orderData?.productsList?.length}
+                        disabled={!orderData?.productsList?.length || loadCreateOrder}
                         variant="contained"
                         sx={{ width: '100%' }}
                         onClick={() => {

@@ -21,10 +21,13 @@ export enum DialogWindowType {
 interface Res {
     handleOpenDialog: (modalType) => void;
     activeDialogWindow: DialogWindowType | null;
+    handleSetDialogState: (data) => void;
+    dialogState: { imageUrl: string } | null;
 }
 
 export const useFormsApp = (): Res => {
     const [activeDialogWindow, seActiveDialogWindow] = useState<DialogWindowType | null>(null);
+    const [dialogState, setDialogState] = useState<{ imageUrl: string } | null>(null);
 
     const handleOpenDialog = modalType => {
         if (modalType === null) {
@@ -36,5 +39,9 @@ export const useFormsApp = (): Res => {
         }
     };
 
-    return { handleOpenDialog, activeDialogWindow };
+    const handleSetDialogState = state => {
+        setDialogState(state);
+    };
+
+    return { handleOpenDialog, activeDialogWindow, handleSetDialogState, dialogState };
 };
