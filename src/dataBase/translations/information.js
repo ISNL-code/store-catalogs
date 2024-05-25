@@ -147,10 +147,298 @@ export const INFORMATION = {
              - 7.1. Адміністрація сайту має право вносити зміни до цієї Політики конфіденційності без згоди користувача.\n
              - 7.2. Нова Політика конфіденційності набуває чинності з моменту її розміщення на сайті електронної комерції, якщо інше не передбачено новою редакцією Політики.`,
     },
-    fr: {},
-    es: {},
-    pl: {},
-    cz: {},
+    fr: {
+        info_text_1:
+            'Alberto Bini est une marque de vêtements ukrainienne qui fabrique des vêtements féminins de haute qualité depuis plus de 10 ans. La production utilise les matériaux et les technologies les plus récents, permettant de créer des vêtements modernes, de qualité et pratiques, appréciés et demandés dans le monde entier.',
+        info_text_2: `1. PAIEMENT :\n
+          Après avoir passé une commande, le paiement est effectué par virement sur le compte bancaire spécifié.
+          Les paiements sont acceptés sur le compte bancaire de la société "Alberto Bini".\n\n 
+          2. LIVRAISON :\n
+          - POUR LES COMMANDES AU DÉTAIL :\n
+          La livraison est effectuée sous 2 à 15 jours ouvrables.\n
+          - POUR LES COMMANDES EN GROS :\n
+          Le délai de livraison dépend du volume de la commande, généralement dans un délai d'un mois.\n\n
+          Après la passation de la commande, un responsable vous contactera pour fournir des informations plus détaillées sur les méthodes de paiement, les détails du compte bancaire et les conditions de livraison.`,
+        info_text_3: `RETOURS :\n
+          - Nous acceptons les retours dans les 30 jours suivant la date d'achat.
+          - Les articles doivent être inutilisés, dans leur emballage d'origine et accompagnés d'une preuve d'achat.
+          - Les frais de retour sont à la charge du client, sauf si le retour est dû à un défaut du produit ou à une erreur de notre part.\n
+          ÉCHANGES :\n
+          - Les échanges sont autorisés dans les 30 jours suivant la date d'achat.
+          - Les articles éligibles à l'échange doivent être inutilisés et dans leur emballage d'origine.
+          - Les frais d'expédition des échanges sont à la charge du client, sauf en cas de défaut du produit ou d'erreur de notre part.\n
+          REMBOURSEMENTS :\n
+          - Les remboursements seront effectués sur la forme originale de paiement dans les 7 à 10 jours ouvrables après la réception et l'inspection de l'article retourné.
+          - Les frais d'expédition ne sont pas remboursables, sauf si le retour est dû à un défaut du produit ou à une erreur de notre part.
+          - Veuillez noter que certains articles peuvent être soumis à des restrictions de retour supplémentaires. Pour plus d'assistance ou pour initier un retour ou un échange, veuillez contacter notre service clientèle.`,
+        info_text_4: `1. DISPOSITIONS GÉNÉRALES\n
+               - 1.1. L'utilisation du site par l'utilisateur constitue un accord avec cette Politique de Confidentialité et les termes du traitement des données personnelles de l'utilisateur.\n
+               - 1.2. En cas de désaccord avec les termes de la Politique de Confidentialité, l'utilisateur doit cesser d'utiliser le site.\n
+               - 1.3. Cette Politique de Confidentialité s'applique uniquement à ce site. L'administration du site ne contrôle pas et n'est pas responsable des sites tiers auxquels l'utilisateur peut accéder via des liens disponibles sur le site.\n
+               - 1.4. L'administration du site ne vérifie pas l'exactitude des données personnelles fournies par l'utilisateur.\n
+               \n
+               2. OBJET DE LA POLITIQUE DE CONFIDENTIALITÉ\n
+               - 2.1. Cette Politique de Confidentialité établit les obligations de l'administration du site de ne pas divulguer et de protéger la confidentialité des données personnelles que l'utilisateur fournit à la demande de l'administration du site.\n
+               - 2.2. Les données personnelles autorisées pour le traitement sous cette Politique de Confidentialité sont fournies par l'utilisateur en remplissant le formulaire d'inscription sur le site.\n
+               \n
+               3. OBJECTIFS DE LA COLLECTE DES INFORMATIONS PERSONNELLES DE L'UTILISATEUR\n
+               - 3.1. L'administration du site peut utiliser les données personnelles de l'utilisateur à des fins de :\n
+               - 3.1.1. Identifier l'utilisateur pour traiter une commande.\n
+               - 3.1.2. Fournir à l'utilisateur un accès aux ressources personnalisées du site.\n
+               - 3.1.3. Établir un contact avec l'utilisateur, y compris l'envoi de notifications, des demandes concernant l'utilisation du site, la fourniture de services, et le traitement des demandes et des applications de l'utilisateur.\n
+               - 3.1.4. Déterminer la localisation de l'utilisateur pour assurer la sécurité et prévenir la fraude.\n
+               - 3.1.5. Confirmer l'exactitude et la complétude des données personnelles fournies par l'utilisateur.\n
+               - 3.1.6. Informer l'utilisateur du site sur l'état de la commande.\n
+               - 3.1.7. Fournir un soutien efficace au client et un support technique en cas de problèmes liés à l'utilisation du site.\n
+               - 3.1.8. Fournir à l'utilisateur, avec son consentement, des mises à jour sur les produits, des offres spéciales, des informations sur les prix, des bulletins d'information et d'autres informations au nom du site ou de ses partenaires.\n
+               - 3.1.9. Mener des activités publicitaires avec le consentement de l'utilisateur.\n
+               - 3.1.10. Fournir à l'utilisateur un accès aux sites ou services des partenaires pour obtenir des produits, des mises à jour et des services.\n
+               \n
+               4. OBLIGATIONS DES PARTIES\n
+               - 4.1. L'utilisateur est tenu de :\n
+               - 4.1.1. Fournir les données personnelles nécessaires pour utiliser le site.\n
+               - 4.1.2. Mettre à jour et compléter les informations de données personnelles fournies en cas de changements.\n
+               - 4.2. L'administration du site est tenue de :\n
+               - 4.2.1. Utiliser les informations obtenues exclusivement pour les fins spécifiées au point 3 de cette Politique de Confidentialité.\n
+               - 4.2.2. Garder les informations confidentielles secrètes, ne pas les divulguer sans le consentement préalable écrit de l'utilisateur, et ne pas vendre, échanger, publier, ou divulguer les données personnelles de l'utilisateur de toute autre manière.\n
+               - 4.2.3. Prendre des précautions pour protéger la confidentialité des données personnelles de l'utilisateur selon la procédure normalement utilisée pour protéger de telles informations dans les transactions commerciales existantes.\n
+               - 4.2.4. Bloquer les données personnelles relatives à l'utilisateur respectif dès le moment où l'utilisateur ou son représentant légal ou un organe autorisé pour la protection des sujets de données personnelles fait une demande ou une enquête, pendant la période de vérification, en cas de données personnelles inexactes ou d'actions illégales.\n
+               \n
+               5. RESPONSABILITÉ DES PARTIES\n
+               - 5.1. L'administration du site, en ne remplissant pas ses obligations, est responsable des pertes subies par l'utilisateur en raison de l'utilisation illégale des données personnelles, conformément aux lois de l'Ukraine.\n
+               - 5.2. En cas de perte ou de divulgation d'Informations Confidentielles, l'administration du site n'est pas responsable si ces informations confidentielles :\n
+               - 5.2.1. Étaient devenues publiques avant leur perte ou leur divulgation.\n
+               - 5.2.2. Ont été reçues d'un tiers avant leur acquisition par l'administration du site.\n
+               - 5.2.3. Ont été divulguées avec le consentement de l'utilisateur.\n
+               \n
+               6. RÉSOLUTION DES DIFFÉRENDS\n
+               - 6.1. Avant de déposer une plainte concernant des différends découlant des relations entre l'utilisateur du site et l'administration du site, il est obligatoire de soumettre une réclamation (une proposition écrite pour une résolution volontaire du différend).\n
+               - 6.2. Le destinataire de la réclamation doit notifier par écrit au plaignant les résultats de l'examen de la réclamation dans les 30 jours calendaires à compter du jour de la réception de la réclamation.\n
+               - 6.3. Si aucun accord n'est atteint, le différend sera renvoyé à un organe judiciaire conformément à la législation en vigueur en Ukraine.\n
+               \n
+               7. TERMES ADDITIONNELS\n
+               - 7.1. L'administration du site a le droit de faire des modifications à cette Politique de Confidentialité sans le consentement de l'utilisateur.\n
+               - 7.2. La nouvelle Politique de Confidentialité prend effet dès sa publication sur le site de commerce électronique, sauf disposition contraire de la nouvelle édition de la Politique.`,
+    },
+    es: {
+        info_text_1:
+            'Alberto Bini es un fabricante de ropa de marca ucraniana que ha estado creando prendas de vestir femeninas de alta calidad durante más de 10 años. La producción utiliza los materiales y tecnologías más recientes, permitiendo la creación de ropa moderna, de alta calidad y práctica que es valorada y demandada en todo el mundo.',
+        info_text_2: `1. PAGO:\n
+          Tras realizar un pedido, el pago se efectúa mediante transferencia de fondos a la cuenta bancaria especificada.
+          Se aceptan pagos en la cuenta bancaria de la empresa "Alberto Bini".\n\n 
+          2. ENTREGA:\n
+          - PARA PEDIDOS AL POR MENOR:\n
+          La entrega se realiza dentro de los 2 a 15 días hábiles.\n
+          - PARA PEDIDOS AL POR MAYOR:\n
+          El tiempo de entrega depende del volumen del pedido, generalmente dentro de 1 mes.\n\n
+          Después de realizar el pedido, un gerente se pondrá en contacto contigo para proporcionar información más detallada sobre métodos de pago, detalles de la cuenta bancaria y términos de entrega.`,
+        info_text_3: `DEVOLUCIONES:\n
+          - Aceptamos devoluciones dentro de los 30 días posteriores a la fecha de compra.
+          - Los artículos deben estar sin usar, en su embalaje original y acompañados de un comprobante de compra.
+          - Los costos de envío de la devolución corren por cuenta del cliente, a menos que la devolución sea debido a un defecto del producto o un error de nuestra parte.\n
+          CAMBIOS:\n
+          - Los cambios están permitidos dentro de los 30 días posteriores a la fecha de compra.
+          - Los artículos elegibles para cambio deben estar sin usar y en su embalaje original.
+          - Los costos de envío del cambio corren por cuenta del cliente, a menos que el cambio se deba a un defecto del producto o un error nuestro.\n
+          REEMBOLSOS:\n
+          - Los reembolsos se realizarán al método de pago original dentro de los 7-10 días hábiles después de que el artículo devuelto sea recibido e inspeccionado.
+          - Los gastos de envío no son reembolsables, a menos que la devolución se deba a un defecto del producto o un error nuestro.
+          - Tenga en cuenta que algunos artículos pueden estar sujetos a restricciones adicionales de devolución. Para más asistencia o para iniciar una devolución o cambio, por favor contacte a nuestro equipo de servicio al cliente.`,
+        info_text_4: `1. DISPOSICIONES GENERALES\n
+               - 1.1. El uso del sitio por parte del usuario constituye un acuerdo con esta Política de Privacidad y los términos del procesamiento de datos personales del usuario.\n
+               - 1.2. En caso de desacuerdo con los términos de la Política de Privacidad, el usuario debe dejar de usar el sitio.\n
+               - 1.3. Esta Política de Privacidad se aplica solo a este sitio. La administración del sitio no controla y no es responsable de los sitios web de terceros a los que el usuario puede acceder a través de enlaces disponibles en el sitio.\n
+               - 1.4. La administración del sitio no verifica la precisión de los datos personales proporcionados por el usuario.\n
+               \n
+               2. OBJETO DE LA POLÍTICA DE PRIVACIDAD\n
+               - 2.1. Esta Política de Privacidad establece las obligaciones de la administración del sitio de no divulgar y proteger la privacidad de los datos personales que el usuario proporciona a petición de la administración del sitio.\n
+               - 2.2. Los datos personales permitidos para el procesamiento bajo esta Política de Privacidad son proporcionados por el usuario al completar el formulario de registro en el sitio.\n
+               \n
+               3. PROPÓSITOS DE LA RECOLECCIÓN DE INFORMACIÓN PERSONAL DEL USUARIO\n
+               - 3.1. La administración del sitio puede usar los datos personales del usuario con los fines de:\n
+               - 3.1.1. Identificar al usuario para procesar un pedido.\n
+               - 3.1.2. Proporcionar al usuario acceso a recursos personalizados del sitio.\n
+               - 3.1.3. Establecer contacto con el usuario, incluyendo el envío de notificaciones, consultas sobre el uso del sitio, provisión de servicios, y procesamiento de solicitudes y aplicaciones del usuario.\n
+               - 3.1.4. Determinar la ubicación del usuario para asegurar la seguridad y prevenir el fraude.\n
+               - 3.1.5. Confirmar la precisión y la integridad de los datos personales proporcionados por el usuario.\n
+               - 3.1.6. Informar al usuario del sitio sobre el estado del pedido.\n
+               - 3.1.7. Proporcionar apoyo al cliente y soporte técnico efectivos en caso de problemas relacionados con el uso del sitio.\n
+               - 3.1.8. Proporcionar al usuario, con su consentimiento, actualizaciones sobre productos, ofertas especiales, información de precios, boletines informativos y otra información en nombre del sitio o de sus socios.\n
+               - 3.1.9. Realizar actividades publicitarias con el consentimiento del usuario.\n
+               - 3.1.10. Proporcionar al usuario acceso a sitios o servicios de socios para obtener productos, actualizaciones y servicios.\n
+               \n
+               4. OBLIGACIONES DE LAS PARTES\n
+               - 4.1. El usuario está obligado a:\n
+               - 4.1.1. Proporcionar los datos personales necesarios para usar el sitio.\n
+               - 4.1.2. Actualizar y complementar la información de datos personales proporcionada en caso de cambios.\n
+               - 4.2. La administración del sitio está obligada a:\n
+               - 4.2.1. Usar la información obtenida exclusivamente para los fines especificados en el punto 3 de esta Política de Privacidad.\n
+               - 4.2.2. Mantener la información confidencial en secreto, no divulgarla sin el consentimiento previo por escrito del usuario y no vender, intercambiar, publicar, o divulgar los datos personales del usuario de ninguna otra manera.\n
+               - 4.2.3. Tomar precauciones para proteger la confidencialidad de los datos personales del usuario de acuerdo con el procedimiento normalmente utilizado para proteger dicha información en transacciones comerciales existentes.\n
+               - 4.2.4. Bloquear los datos personales relativos al usuario respectivo desde el momento en que el usuario o su representante legal o un órgano autorizado para la protección de los sujetos de datos personales realice una solicitud o consulta, durante el período de verificación, en caso de datos personales inexactos o acciones ilegales.\n
+               \n
+               5. RESPONSABILIDAD DE LAS PARTES\n
+               - 5.1. La administración del sitio, al no cumplir con sus obligaciones, es responsable de las pérdidas incurridas por el usuario debido al uso ilegal de datos personales, de acuerdo con las leyes de Ucrania.\n
+               - 5.2. En caso de pérdida o divulgación de Información Confidencial, la administración del sitio no es responsable si dicha información confidencial:\n
+               - 5.2.1. Se hizo de dominio público antes de su pérdida o divulgación.\n
+               - 5.2.2. Fue recibida de un tercero antes de que fuera obtenida por la administración del sitio.\n
+               - 5.2.3. Fue divulgada con el consentimiento del usuario.\n
+               \n
+               6. RESOLUCIÓN DE DISPUTAS\n
+               - 6.1. Antes de presentar una demanda con disputas que surjan de las relaciones entre el usuario del sitio y la administración del sitio, es obligatorio presentar un reclamo (una propuesta escrita para la resolución voluntaria de la disputa).\n
+               - 6.2. El receptor del reclamo debe notificar al reclamante por escrito los resultados de la consideración del reclamo dentro de los 30 días calendario desde el día de recepción del reclamo.\n
+               - 6.3. Si no se alcanza un acuerdo, la disputa será referida a un órgano judicial de acuerdo con la legislación vigente de Ucrania.\n
+               \n
+               7. TÉRMINOS ADICIONALES\n
+               - 7.1. La administración del sitio tiene derecho a realizar cambios en esta Política de Privacidad sin el consentimiento del usuario.\n
+               - 7.2. La nueva Política de Privacidad entra en vigor en el momento de su publicación en el sitio de comercio electrónico, a menos que la nueva edición de la Política disponga lo contrario.`,
+    },
+    pl: {
+        info_text_1:
+            'Alberto Bini to ukraiński producent odzieży, który od ponad 10 lat tworzy wysokiej jakości odzież damską. Produkcja wykorzystuje najnowsze materiały i technologie, co pozwala na tworzenie nowoczesnych, wysokiej jakości i praktycznych ubrań, które są cenione i poszukiwane na całym świecie.',
+        info_text_2: `1. PŁATNOŚĆ:\n
+          Po złożeniu zamówienia płatność realizowana jest przez przelew na wskazane konto bankowe.
+          Płatności przyjmowane są na konto bankowe firmy "Alberto Bini".\n\n 
+          2. DOSTAWA:\n
+          - DLA ZAMÓWIEŃ DETALICZNYCH:\n
+          Dostawa realizowana jest w ciągu 2 do 15 dni roboczych.\n
+          - DLA ZAMÓWIEŃ HURTOWYCH:\n
+          Czas dostawy zależy od wielkości zamówienia, zwykle w ciągu 1 miesiąca.\n\n
+          Po złożeniu zamówienia menedżer skontaktuje się z Tobą, aby udzielić bardziej szczegółowych informacji na temat metod płatności, danych konta bankowego i warunków dostawy.`,
+        info_text_3: `ZWROTY:\n
+          - Przyjmujemy zwroty w ciągu 30 dni od daty zakupu.
+          - Przedmioty muszą być nieużywane, w oryginalnym opakowaniu i z dowodem zakupu.
+          - Koszty przesyłki zwrotnej pokrywa klient, chyba że zwrot jest wynikiem wady produktu lub błędu z naszej strony.\n
+          WYMIANA:\n
+          - Wymiany są dozwolone w ciągu 30 dni od daty zakupu.
+          - Przedmioty kwalifikujące się do wymiany muszą być nieużywane i w oryginalnym opakowaniu.
+          - Koszty wysyłki towaru wymienionego ponosi klient, chyba że wymiana jest wynikiem wady produktu lub naszego błędu.\n
+          ZWROTY PIENIĘDZY:\n
+          - Zwroty pieniędzy zostaną przekazane na pierwotną formę płatności w ciągu 7-10 dni roboczych po otrzymaniu i sprawdzeniu zwróconego towaru.
+          - Opłaty za wysyłkę nie podlegają zwrotowi, chyba że zwrot jest wynikiem wady produktu lub naszego błędu.
+          - Należy zauważyć, że niektóre przedmioty mogą podlegać dodatkowym ograniczeniom zwrotów. W celu uzyskania dalszej pomocy lub rozpoczęcia procesu zwrotu lub wymiany, skontaktuj się z naszym zespołem obsługi klienta.`,
+        info_text_4: `1. POSTANOWIENIA OGÓLNE\n
+               - 1.1. Korzystanie z witryny przez użytkownika oznacza zgody na tę Politykę Prywatności oraz warunki przetwarzania danych osobowych użytkownika.\n
+               - 1.2. W przypadku niezgody na warunki Polityki Prywatności, użytkownik powinien zaprzestać korzystania z witryny.\n
+               - 1.3. Niniejsza Polityka Prywatności dotyczy tylko tej witryny. Administracja witryny nie kontroluje i nie odpowiada za strony internetowe osób trzecich, do których użytkownik może uzyskać dostęp za pośrednictwem dostępnych linków na witrynie.\n
+               - 1.4. Administracja witryny nie weryfikuje prawdziwości danych osobowych podanych przez użytkownika.\n
+               \n
+               2. PRZEDMIOT POLITYKI PRYWATNOŚCI\n
+               - 2.1. Polityka Prywatności określa zobowiązania administracji witryny do nieujawniania i ochrony prywatności danych osobowych, które użytkownik podaje na żądanie administracji witryny.\n
+               - 2.2. Dane osobowe dopuszczone do przetwarzania w ramach niniejszej Polityki Prywatności są dostarczane przez użytkownika poprzez wypełnienie formularza rejestracyjnego na witrynie.\n
+               \n
+               3. CELE ZBIERANIA DANYCH OSOBOWYCH UŻYTKOWNIKA\n
+               - 3.1. Administracja witryny może używać danych osobowych użytkownika w celu:\n
+               - 3.1.1. Identyfikacji użytkownika w celu przetworzenia zamówienia.\n
+               - 3.1.2. Zapewnienia użytkownikowi dostępu do spersonalizowanych zasobów witryny.\n
+               - 3.1.3. Nawiązywania kontaktu z użytkownikiem, w tym wysyłania powiadomień, zapytań dotyczących korzystania z witryny, świadczenia usług, oraz przetwarzania żądań i aplikacji użytkownika.\n
+               - 3.1.4. Określenia lokalizacji użytkownika w celu zapewnienia bezpieczeństwa i zapobiegania oszustwom.\n
+               - 3.1.5. Potwierdzenia dokładności i kompletności danych osobowych podanych przez użytkownika.\n
+               - 3.1.6. Informowania użytkownika witryny o stanie zamówienia.\n
+               - 3.1.7. Zapewnienia skutecznej obsługi klienta i wsparcia technicznego w przypadku problemów związanych z używaniem witryny.\n
+               - 3.1.8. Dostarczania użytkownikowi, za jego zgodą, aktualizacji o produktach, specjalnych ofertach, informacji o cenach, newsletterach i innych informacjach w imieniu witryny lub jej partnerów.\n
+               - 3.1.9. Prowadzenia działań reklamowych za zgodą użytkownika.\n
+               - 3.1.10. Zapewnienia użytkownikowi dostępu do witryn lub usług partnerów w celu uzyskania produktów, aktualizacji i usług.\n
+               \n
+               4. ZOBOWIĄZANIA STRON\n
+               - 4.1. Użytkownik jest zobowiązany:\n
+               - 4.1.1. Dostarczyć dane osobowe niezbędne do użytkowania witryny.\n
+               - 4.1.2. Aktualizować i uzupełniać dostarczone informacje o danych osobowych w przypadku jakichkolwiek zmian.\n
+               - 4.2. Administracja witryny jest zobowiązana:\n
+               - 4.2.1. Używać informacji uzyskanych wyłącznie w celach określonych w punkcie 3 niniejszej Polityki Prywatności.\n
+               - 4.2.2. Zachować w tajemnicy poufne informacje, nie ujawniać ich bez uprzedniej pisemnej zgody użytkownika, ani nie sprzedawać, wymieniać, publikować ani w żaden inny sposób ujawniać danych osobowych użytkownika.\n
+               - 4.2.3. Podejmować środki ostrożności w celu ochrony poufności danych osobowych użytkownika zgodnie z procedurami zwykle stosowanymi do ochrony takich informacji w istniejących transakcjach biznesowych.\n
+               - 4.2.4. Blokować dane osobowe dotyczące odpowiedniego użytkownika od momentu, gdy użytkownik lub jego prawny przedstawiciel lub uprawniony organ ochrony danych osobowych zgłosi żądanie lub zapytanie, w okresie weryfikacji, w przypadku nieprawidłowych danych osobowych lub działania bezprawne.\n
+               \n
+               5. ODPOWIEDZIALNOŚĆ STRON\n
+               - 5.1. Administracja witryny, nie wypełniając swoich zobowiązań, odpowiada za straty poniesione przez użytkownika w wyniku bezprawnego wykorzystania danych osobowych, zgodnie z przepisami prawa Ukrainy.\n
+               - 5.2. W przypadku utraty lub ujawnienia Poufnych Informacji, administracja witryny nie ponosi odpowiedzialności, jeśli takie poufne informacje:\n
+               - 5.2.1. Stały się ogólnodostępne przed ich utratą lub ujawnieniem.\n
+               - 5.2.2. Zostały otrzymane od strony trzeciej przed ich uzyskaniem przez administrację witryny.\n
+               - 5.2.3. Zostały ujawnione za zgodą użytkownika.\n
+               \n
+               6. ROZSTRZYGANIE SPORÓW\n
+               - 6.1. Przed wniesieniem pozwu w sporach wynikających z relacji między użytkownikiem witryny a administracją witryny, należy złożyć roszczenie (pisemną propozycję dobrowolnego rozstrzygnięcia sporu).\n
+               - 6.2. Odbiorca roszczenia powinien powiadomić skarżącego na piśmie o wynikach rozpatrzenia roszczenia w ciągu 30 dni kalendarzowych od dnia otrzymania roszczenia.\n
+               - 6.3. Jeżeli nie osiągnięto porozumienia, spór zostanie skierowany do organu sądowego zgodnie z obowiązującym prawem Ukrainy.\n
+               \n
+               7. DODATKOWE WARUNKI\n
+               - 7.1. Administracja witryny ma prawo wprowadzać zmiany do tej Polityki Prywatności bez zgody użytkownika.\n
+               - 7.2. Nowa Polityka Prywatności wchodzi w życie z chwilą jej opublikowania na stronie e-commerce, chyba że nowa edycja Polityki stanowi inaczej.`,
+    },
+    cz: {
+        info_text_1:
+            'Alberto Bini je ukrajinský výrobce oděvů, který již více než 10 let vyrábí vysoce kvalitní dámské oblečení. Výroba využívá nejnovější materiály a technologie, což umožňuje vytváření moderního, kvalitního a praktického oblečení, které je ceněné a žádané po celém světě.',
+        info_text_2: `1. PLATBA:\n
+          Po zadání objednávky se platba provádí převodem na uvedený bankovní účet.
+          Platby jsou přijímány na bankovní účet společnosti "Alberto Bini".\n\n 
+          2. DODÁNÍ:\n
+          - PRO MALOOBCHODNÍ OBJEDNÁVKY:\n
+          Dodání probíhá do 2 až 15 pracovních dnů.\n
+          - PRO VELKOOBCHODNÍ OBJEDNÁVKY:\n
+          Doba dodání závisí na objemu objednávky, obvykle do 1 měsíce.\n\n
+          Po zadání objednávky vás kontaktuje manažer, který poskytne podrobnější informace o způsobech platby, údajích o bankovním účtu a podmínkách dodání.`,
+        info_text_3: `VRÁCENÍ:\n
+          - Vrácení zboží přijímáme do 30 dnů od data nákupu.
+          - Zboží musí být nepoužité, v původním balení a doprovázené dokladem o nákupu.
+          - Náklady na vrácení zboží hradí zákazník, pokud není vrácení způsobeno vadou produktu nebo chybou na naší straně.\n
+          VÝMĚNA:\n
+          - Výměny jsou povoleny do 30 dnů od data nákupu.
+          - Zboží způsobilé pro výměnu musí být nepoužité a v původním balení.
+          - Náklady na zaslání zboží pro výměnu hradí zákazník, pokud výměna není způsobena vadou produktu nebo naší chybou.\n
+          VRAŤENÍ PENĚZ:\n
+          - Vrácení peněz proběhne na původní způsob platby do 7-10 pracovních dnů po přijetí a kontrole vráceného zboží.
+          - Poplatky za dopravu nejsou vratné, pokud vrácení není způsobeno vadou produktu nebo naší chybou.
+          - Upozorňujeme, že některé položky mohou být předmětem dalších omezení vrácení. Pro další pomoc nebo zahájení vrácení nebo výměny kontaktujte náš zákaznický servis.`,
+        info_text_4: `1. OBECNÁ USTANOVENÍ\n
+               - 1.1. Používání webu uživatelem znamená souhlas s touto Zásadou ochrany osobních údajů a podmínkami zpracování osobních údajů uživatele.\n
+               - 1.2. V případě nesouhlasu s podmínkami Zásad ochrany osobních údajů musí uživatel přestat web používat.\n
+               - 1.3. Tato Zásada ochrany osobních údajů se vztahuje pouze na tento web. Správa webu nekontroluje a nenese odpovědnost za webové stránky třetích stran, na které může uživatel přistupovat prostřednictvím odkazů dostupných na webu.\n
+               - 1.4. Správa webu neověřuje přesnost osobních údajů poskytnutých uživatelem.\n
+               \n
+               2. PŘEDMĚT ZÁSAD OCHRANY OSOBNÍCH ÚDAJŮ\n
+               - 2.1. Tyto Zásady ochrany osobních údajů stanovují závazky správy webu nezveřejňovat a chránit soukromí osobních údajů, které uživatel poskytuje na žádost správy webu.\n
+               - 2.2. Osobní údaje povolené pro zpracování podle těchto Zásad ochrany osobních údajů jsou poskytovány uživatelem vyplněním registračního formuláře na webu.\n
+               \n
+               3. ÚČELY SBÍRÁNÍ OSOBNÍCH ÚDAJŮ UŽIVATELE\n
+               - 3.1. Správa webu může použít osobní údaje uživatele za účelem:\n
+               - 3.1.1. Identifikace uživatele při zpracování objednávky.\n
+               - 3.1.2. Poskytnutí uživateli přístupu k personalizovaným zdrojům webu.\n
+               - 3.1.3. Navázání kontaktu s uživatelem, včetně zasílání oznámení, dotazů týkajících se používání webu, poskytování služeb a zpracování žádostí a aplikací uživatele.\n
+               - 3.1.4. Určení polohy uživatele za účelem zajištění bezpečnosti a prevence podvodů.\n
+               - 3.1.5. Potvrzení přesnosti a úplnosti osobních údajů poskytnutých uživatelem.\n
+               - 3.1.6. Informování uživatele webu o stavu objednávky.\n
+               - 3.1.7. Poskytování účinné zákaznické a technické podpory v případě problémů souvisejících s používáním webu.\n
+               - 3.1.8. Poskytování uživateli, se souhlasem, aktualizací o produktech, speciálních nabídkách, informacích o cenách, novinkách a dalších informacích jménem webu nebo jeho partnerů.\n
+               - 3.1.9. Provádění reklamních aktivit se souhlasem uživatele.\n
+               - 3.1.10. Poskytování uživateli přístupu k partnerským webům nebo službám za účelem získání produktů, aktualizací a služeb.\n
+               \n
+               4. ZÁVAZKY STRAN\n
+               - 4.1. Uživatel je povinen:\n
+               - 4.1.1. Poskytnout osobní údaje potřebné pro používání webu.\n
+               - 4.1.2. Aktualizovat a doplňovat poskytnuté osobní údajové informace v případě jakýchkoli změn.\n
+               - 4.2. Správa webu je povinna:\n
+               - 4.2.1. Používat získané informace výhradně pro účely uvedené v bodu 3 těchto Zásad ochrany osobních údajů.\n
+               - 4.2.2. Uchovávat důvěrné informace v tajnosti, nezveřejňovat je bez předchozího písemného souhlasu uživatele a neprodávat, nevyměňovat, nepublikovat ani jinak zveřejňovat osobní údaje uživatele.\n
+               - 4.2.3. Přijímat opatření k ochraně důvěrnosti osobních údajů uživatele podle postupů běžně používaných při ochraně takových informací v běžných obchodních transakcích.\n
+               - 4.2.4. Blokovat osobní údaje týkající se příslušného uživatele od okamžiku, kdy uživatel nebo jeho zákonný zástupce nebo oprávněný orgán pro ochranu subjektů osobních údajů podá žádost nebo dotaz, během období ověřování, v případě nepřesných osobních údajů nebo protiprávních činností.\n
+               \n
+               5. ZODPOVĚDNOST STRAN\n
+               - 5.1. Správa webu, která nesplnila své závazky, je zodpovědná za ztráty utrpěné uživatelem v důsledku nezákonného použití osobních údajů, v souladu s právními předpisy Ukrajiny.\n
+               - 5.2. V případě ztráty nebo zveřejnění důvěrných informací není správa webu zodpovědná, pokud takové důvěrné informace:\n
+               - 5.2.1. Staly se veřejně dostupnými před jejich ztrátou nebo zveřejněním.\n
+               - 5.2.2. Byly přijaty od třetí strany předtím, než je získala správa webu.\n
+               - 5.2.3. Byly zveřejněny se souhlasem uživatele.\n
+               \n
+               6. ŘEŠENÍ SPORŮ\n
+               - 6.1. Před podáním žaloby s spory vyplývajícími z vztahů mezi uživatelem webu a správou webu je povinné podat reklamaci (písemný návrh na dobrovolné řešení sporu).\n
+               - 6.2. Příjemce reklamace musí nahlásit stěžovateli písemně výsledky zvážení reklamace do 30 kalendářních dnů od dne přijetí reklamace.\n
+               - 6.3. Pokud nedojde k dohodě, spor bude předán soudnímu orgánu v souladu s platnou legislativou Ukrajiny.\n
+               \n
+               7. DODATEČNÉ PODMÍNKY\n
+               - 7.1. Správa webu má právo provést změny v těchto Zásadách ochrany osobních údajů bez souhlasu uživatele.\n
+               - 7.2. Nové Zásady ochrany osobních údajů nabývají účinnosti okamžikem jejich zveřejnění na e-commerce webu, pokud není v nové verzi Politiky stanoveno jinak.`,
+    },
     ru: {
         info_text_1:
             'Alberto Bini - это украинский бренд-производитель женской одежды, который уже более 10 лет создает качественную женскую одежду. Производство использует последние материалы и технологии, что позволяет создавать современную, качественную и практичную одежду, которая ценится и востребована по всему миру.',
