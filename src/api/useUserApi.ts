@@ -1,6 +1,5 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
 import useApi from './useApi';
-import { boolean } from 'yup';
 
 export const useUserApi = () => {
     const { post, get, patch } = useApi();
@@ -75,7 +74,7 @@ export const useUserApi = () => {
         useMutation(
             ({ username, resetLink, storeCode }: { username: string; resetLink: string; storeCode: string }) => {
                 return post({
-                    url: `v1/customer/password/reset/request`,
+                    url: `v1/customer/password/reset/request?store=${storeCode}`,
                     body: {
                         returnUrl: resetLink,
                         username: username,
