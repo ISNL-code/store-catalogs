@@ -28,7 +28,6 @@ export default function NewPassword({ lang, setLang, auth, setAuth }) {
         code: STORE_CODE,
     });
     const { activeDialogWindow, handleOpenDialog } = useFormsApp();
-    const [isVerified, setIsVerified] = useState<boolean | null>(null);
     const {
         data: verifyTokenResult,
         isFetching,

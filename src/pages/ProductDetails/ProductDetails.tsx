@@ -14,7 +14,6 @@ import { useOutletContext, useParams } from 'react-router-dom';
 import { CatalogContextInterface, ProductVariantInterface } from 'types';
 import ModelDetails from './ModelDetails';
 import ModelSwiper from './ModelSwiper';
-import { scrollToTopNewPage } from 'helpers/scroll';
 import { STORE_CONFIG } from 'store_constants/stores_config';
 import { STORE_ROUTE } from 'constants/routes';
 
