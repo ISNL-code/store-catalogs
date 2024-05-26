@@ -1,5 +1,6 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
 import useApi from './useApi';
+import { boolean } from 'yup';
 
 export const useUserApi = () => {
     const { post, get, patch } = useApi();
@@ -83,6 +84,18 @@ export const useUserApi = () => {
             }
         );
 
+    const useVerifyResetPasswordToken = ({ storeCode, resetToken }) => {
+        return useQuery(
+            ['get-verify-reset-password-token'],
+
+            () =>
+                get({
+                    url: `v1/customer/${storeCode}/reset/${resetToken}`,
+                }),
+            { enabled: !!resetToken, retry: false }
+        );
+    };
+
     const useUpdateCustomerPassword = () =>
         useMutation(
             ({
@@ -136,5 +149,6 @@ export const useUserApi = () => {
         useUpdateCustomerPassword,
         useCustomerProfileUpdate,
         useGetCustomersOrders,
+        useVerifyResetPasswordToken,
     };
 };

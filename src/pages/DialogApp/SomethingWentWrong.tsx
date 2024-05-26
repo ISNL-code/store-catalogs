@@ -17,14 +17,20 @@ const SomethingWentWrong = ({ isOpen, setIsOpen, string }) => {
                 onClose={() => {
                     if (REQUIRED_REGISTRATION) {
                         navigate(LOGIN_ROUTE?.root(STORE_CODE, 'login'));
-                    } else setIsOpen(null);
+                    } else {
+                        setIsOpen(null);
+                        navigate('/');
+                    }
                 }}
                 title={null}
                 fullWidth
                 onSubmit={() => {
                     if (REQUIRED_REGISTRATION) {
                         navigate(LOGIN_ROUTE?.root(STORE_CODE, 'login'));
-                    } else setIsOpen(null);
+                    } else {
+                        setIsOpen(null);
+                        navigate('/');
+                    }
                 }}
                 description={string?.something_went_wrong}
                 closeAvailable

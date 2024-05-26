@@ -88,7 +88,7 @@ const SizesDetails = ({ productDetails, isShown }: Props) => {
                                             whiteSpace: 'nowrap',
                                         }}
                                     >
-                                        {string?.sizes_table}
+                                        {string?.size_chart}
                                     </Typography>
                                 </Button>
                             )}

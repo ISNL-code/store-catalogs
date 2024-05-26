@@ -44,7 +44,7 @@ const getBackgroundColor = variant => {
         case 'error':
             return Color?.ERROR;
         case 'success':
-            return Color.PRIMARY;
+            return Color?.SUCCESS;
         default:
             return Colors.GRAY;
     }

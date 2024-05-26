@@ -13,10 +13,11 @@ import { ROUTES } from 'constants/routes';
 import { DialogWindowType, useFormsApp } from 'layouts/hooks/useFormsApp';
 import { useNavigate, useParams } from 'react-router-dom';
 import Loader from 'components/atoms/Loader/Loader';
+import { useUserApi } from 'api/useUserApi';
 
 export default function NewPassword({ lang, setLang, auth, setAuth }) {
     const navigate = useNavigate();
-    const { storeCode, resetToken } = useParams();
+    const { storeCode, tokenId } = useParams();
     const { STORE_CODE, STORE_NAME } = STORE_CONFIG;
     const { sx } = useDevice();
     const HEADER_HEIGHT = 50;
@@ -27,18 +28,31 @@ export default function NewPassword({ lang, setLang, auth, setAuth }) {
         code: STORE_CODE,
     });
     const { activeDialogWindow, handleOpenDialog } = useFormsApp();
+    const [isVerified, setIsVerified] = useState<boolean | null>(null);
+    const {
+        data: verifyTokenResult,
+        isFetching,
+        status,
+    } = useUserApi().useVerifyResetPasswordToken({
+        storeCode,
+        resetToken: tokenId,
+    });
 
     useEffect(() => {
-        if (storeCode || !resetToken) {
+        if (storeCode || !tokenId) {
             if (STORE_CODE !== storeCode) {
                 navigate('/');
             }
         }
-    }, [storeCode, STORE_CODE, store, resetToken]); // eslint-disable-line
+    }, [storeCode, STORE_CODE, store, tokenId]); // eslint-disable-line
 
     useEffect(() => {
-        handleOpenDialog(DialogWindowType?.NEW_PASSWORD);
-    }, []); // eslint-disable-line
+        if (!verifyTokenResult) return handleOpenDialog(DialogWindowType?.WENT_WRONG);
+
+        if (status === 'success') {
+            return handleOpenDialog(DialogWindowType?.NEW_PASSWORD);
+        }
+    }, [verifyTokenResult]); // eslint-disable-line
 
     useEffect(() => {
         if (!storeDataRes || loadStore) return;
@@ -46,7 +60,7 @@ export default function NewPassword({ lang, setLang, auth, setAuth }) {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [storeDataRes]);
 
-    if (!store) return <Loader type="circular" />;
+    if (!store || isFetching) return <Loader type="circular" title="Please wait, checking your link..." />;
 
     return (
         <Box>

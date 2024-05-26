@@ -60,7 +60,10 @@ const Loader = ({
                 </Stack>
             )}
             {title && (
-                <Typography sx={{ textAlign: 'center', mb: 1, maxWidth: 350, backgroundColor: 'white' }}>
+                <Typography
+                    color="secondary"
+                    sx={{ textAlign: 'center', mb: 1, maxWidth: 350, backgroundColor: 'white' }}
+                >
                     {title}
                 </Typography>
             )}
