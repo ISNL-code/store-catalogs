@@ -38,9 +38,9 @@ export default function MainCatalog({
     const { storeCode } = useParams();
     const navigate = useNavigate();
     const { sx } = useDevice();
-    const HEADER_HEIGHT = 50;
+    const HEADER_HEIGHT = '50px';
     const FOOTER_MENU_HEIGHT = sx ? '65px' : '0';
-    const INSTRUMENTAL_BAR_HEIGHT = 36;
+    const INSTRUMENTAL_BAR_HEIGHT = '36px';
     const INSTRUMENTAL_BAR_PADDINGS = sx ? 2 : 4;
     const HEADER_PADDINGS = sx ? 2 : 4;
     const BODY_PADDINGS = sx ? 0 : 4;

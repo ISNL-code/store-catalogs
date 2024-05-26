@@ -73,16 +73,16 @@ const HomePage = () => {
                         <Grid
                             item
                             px={sx ? 2 : 4}
-                            py={sx ? 1 : 2}
+                            py={sx ? 1 : 1.75}
                             container
                             xs={12}
                             mt={1.2}
                             sx={{ backgroundColor: '#ffffff78', zIndex: 2, borderRadius: 1, position: 'relative' }}
                         >
-                            <Typography sx={{ color: '#000', zIndex: 1, fontSize: sx ? 23 : 36 }}>
+                            <Typography sx={{ color: '#000', zIndex: 1, fontSize: sx ? 23 : 32 }}>
                                 {string?.[`customer_title_${idx + 1}`]}
                             </Typography>
-                            <Typography sx={{ color: '#2c2c2c', zIndex: 1, fontWeight: 500, fontSize: sx ? 15 : 24 }}>
+                            <Typography sx={{ color: '#2c2c2c', zIndex: 1, fontWeight: 500, fontSize: sx ? 15 : 22 }}>
                                 {string?.[`customer_description_${idx + 1}`]}
                             </Typography>
                         </Grid>

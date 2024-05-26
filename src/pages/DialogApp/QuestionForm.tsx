@@ -139,7 +139,7 @@ export default function QuestionForm({ isOpen, setIsOpen, string }) {
                             }),
                         error: formik.errors.question && formik.touched.question,
                         helperText: string?.[formik.errors.question || ''],
-                        trim: true,
+                        trim: false,
                     },
                 ]}
             />
