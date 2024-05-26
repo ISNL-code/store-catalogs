@@ -21,7 +21,6 @@ interface HeaderInterface {
     setLang;
     auth;
     logo;
-    storeHeaderName;
     store: StoreInterface | null;
     cart: useAddToCartDataInterface;
     favorites: useAddToFavoriteDataInterface;
@@ -39,12 +38,11 @@ const Header = ({
     user,
     handleOpenDialog,
     logo,
-    storeHeaderName,
     store,
     cart,
     favorites,
 }: HeaderInterface) => {
-    const { OPTIONS, STORE_CODE } = STORE_CONFIG;
+    const { OPTIONS, STORE_CODE, STORE_NAME } = STORE_CONFIG;
     const { CUSTOM_LOGO, PLAN_OPTIONS, HOME_PAGE_ACTIVE } = OPTIONS;
     const { sx } = useDevice();
 
@@ -52,7 +50,7 @@ const Header = ({
         <Box
             px={appXPadding}
             sx={{
-                height: headerHeight,
+                height: `${headerHeight}px`,
                 borderBottom: '1px solid',
                 borderColor: Colors?.GRAY_300,
                 position: 'fixed',
@@ -64,9 +62,16 @@ const Header = ({
                 overflow: 'hidden',
             }}
         >
-            <Box sx={{ height: headerHeight, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+            <Box
+                sx={{
+                    height: `${headerHeight}px`,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                }}
+            >
                 <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <HeaderLogo title={storeHeaderName} imgUrl={logo} custom={CUSTOM_LOGO} />
+                    <HeaderLogo title={STORE_NAME} imgUrl={logo} custom={CUSTOM_LOGO} />
                 </Box>
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
                     {HOME_PAGE_ACTIVE && (

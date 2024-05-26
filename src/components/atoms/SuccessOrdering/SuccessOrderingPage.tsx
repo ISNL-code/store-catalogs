@@ -13,14 +13,14 @@ const SuccessOrderingPage = ({ isShown = true, setSuccessOrdering }) => {
     const navigate = useNavigate();
     const { headerHeight, footerMenuHeight, string, cart, instrumentalBarHeight }: CatalogContextInterface =
         useOutletContext();
-    // console.log(headerHeight, footerMenuHeight);
+
     if (isShown)
         return (
             <Box
                 sx={{
                     height: sx
-                        ? `calc(100vh - ${footerMenuHeight} - ${headerHeight}px)`
-                        : `calc(100vh  - ${headerHeight}px - ${instrumentalBarHeight}px)`,
+                        ? `calc(100vh - ${footerMenuHeight + headerHeight}px)`
+                        : `calc(100vh  - ${headerHeight + instrumentalBarHeight}px)`,
                     width: '100vw',
                     display: 'flex',
                     alignItems: 'center',

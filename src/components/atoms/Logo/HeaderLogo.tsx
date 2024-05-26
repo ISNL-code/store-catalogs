@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Box, Typography, CircularProgress } from '@mui/material';
 import { useDevice } from 'hooks/useDevice';
-import { Colors } from 'colors';
+import { Color } from 'colors';
 import CustomLogo from './CustomLogo';
 import useLogoNavigate from './useLogoNavigate';
 
@@ -70,10 +70,7 @@ const HeaderLogo = ({ title, font = 'Roboto', imgUrl, custom = false }: Props) =
             sx={{
                 display: 'flex',
                 alignItems: 'center',
-                position: 'relative',
-                transition: 'opacity 500ms cubic-bezier(0.4, 0, 0.2, 1)',
-                gap: 1,
-                width: 50,
+                width: 48,
                 cursor: 'pointer',
             }}
             onClick={() => {
@@ -88,15 +85,20 @@ const HeaderLogo = ({ title, font = 'Roboto', imgUrl, custom = false }: Props) =
                         height: 'auto',
                         border: '1px solid #ccc',
                         borderRadius: 8,
-                        padding: '0 2px',
                     }}
                     alt="img"
                 />
             ) : (
-                <CircularProgress sx={{ color: Colors?.GRAY }} thickness={1} />
+                <Box>
+                    <CircularProgress sx={{ color: Color?.SECONDARY }} thickness={1} />
+                </Box>
             )}
-
-            {titleComponents}
+            <Box
+                ml={1}
+                sx={{ width: 'fit-content', display: 'flex', alignItems: 'center', flexWrap: 'nowrap', gap: 1 }}
+            >
+                {titleComponents}
+            </Box>
         </Box>
     );
 };

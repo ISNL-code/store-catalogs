@@ -8,7 +8,7 @@ export const ALBERTO_BINI_SALES = {
     appStoreUrl: null,
     playMarketUrl: null,
     web_lang: 'uk', // html lang
-    store_name: 'Alberto Bini Sales',
+    store_name: 'Alberto Bini SALES',
     store_code: 'ALBERTO_BINI_SALES',
     base_url: 'https://kremen-belts.com/api',
     app_lang: 'ua',

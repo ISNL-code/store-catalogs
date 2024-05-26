@@ -1,5 +1,5 @@
 import { Box, CircularProgress, LinearProgress, Stack, Typography } from '@mui/material';
-import { Colors } from 'colors';
+import { Color, Colors } from 'colors';
 
 interface LoaderInterface {
     height?: string;
@@ -77,7 +77,7 @@ const Loader = ({
                         filter: 'grayscale(100%)',
                     }}
                 >
-                    <CircularProgress size={95} thickness={2} sx={{ color: Colors?.GRAY_500 }} />
+                    <CircularProgress size={95} thickness={2} sx={{ color: Color?.SECONDARY }} />
                     <Box
                         sx={{
                             position: 'absolute',

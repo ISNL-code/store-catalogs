@@ -29,7 +29,7 @@ const HomePage = () => {
     };
 
     return (
-        <Box p={sx ? 2 : appXPadding} pb={footerMenuHeight}>
+        <Box p={sx ? 2 : appXPadding} sx={{ pb: `${footerMenuHeight}px` }}>
             <MessageButton action={() => handleOpenDialog(DialogWindowType?.QUESTION)} />
             <CallBackButton path={STORE_ROUTE?.contacts(STORE_CODE)} />
             <HomeImages />
@@ -57,7 +57,7 @@ const HomePage = () => {
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'flex-start',
-                    minHeight: `calc(100vh - ${headerHeight}px - ${footerMenuHeight} - 16px)`,
+                    minHeight: sx ? `calc(100vh - ${headerHeight + footerMenuHeight + 16}px )` : 'auto',
                 }}
             >
                 {[1, 2, 2, 2].map((el, idx) => (

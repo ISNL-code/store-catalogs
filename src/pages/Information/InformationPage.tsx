@@ -38,7 +38,7 @@ const InformationPage = () => {
     ];
 
     return (
-        <Box p={sx ? 2 : appXPadding} pb={footerMenuHeight} pt={4}>
+        <Box p={sx ? 2 : appXPadding} sx={{ pb: `${footerMenuHeight}px` }} pt={4}>
             <InstrumentalSubHeader opacity={1} StartSlot={() => <BackButton />} />
             <Grid
                 xs={12}
@@ -53,7 +53,7 @@ const InformationPage = () => {
                     sx={{
                         overflowY: 'auto',
                         position: 'fixed',
-                        top: `calc(${headerHeight}px + ${instrumentalBarHeight}px) `,
+                        top: `calc(${headerHeight + instrumentalBarHeight}px) `,
                     }}
                 >
                     <Grid

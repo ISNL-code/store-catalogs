@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Typography, CircularProgress, Box } from '@mui/material';
 import PhotoCameraIcon from '@mui/icons-material/PhotoCamera';
 import { useOutletContext } from 'react-router-dom';
-import { Colors } from 'colors';
+import { Color } from 'colors';
 
 interface ImageProps {
     imgUrl: string;
@@ -62,7 +62,7 @@ const ImageComponent = React.forwardRef<HTMLImageElement, ImageProps>(
                         ref={ref}
                     />
                 ) : (
-                    <CircularProgress sx={{ color: Colors?.GRAY }} thickness={2} />
+                    <CircularProgress sx={{ color: Color?.PRIMARY }} thickness={2} />
                 )}
             </Box>
         );

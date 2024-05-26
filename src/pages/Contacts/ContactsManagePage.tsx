@@ -29,7 +29,7 @@ const ContactsManagePage = () => {
     if (!store?.managers.length) return <EmptyPage />;
 
     return (
-        <Box p={sx ? 2 : appXPadding} pb={footerMenuHeight}>
+        <Box p={sx ? 2 : appXPadding} sx={{ pb: `${footerMenuHeight}px` }}>
             <InstrumentalSubHeader StartSlot={() => <BackButton />} />
 
             {store?.managers.map((manager, idx) => {

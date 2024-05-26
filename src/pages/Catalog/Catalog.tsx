@@ -90,7 +90,7 @@ const Catalog = () => {
 
         setTimeout(() => {
             window.scrollTo({
-                top: scrollPosition - (instrumentalBarHeight + headerHeight),
+                top: scrollPosition - (instrumentalBarHeight + headerHeight + getGridSpacing()?.padding * 8),
                 behavior: 'auto',
             });
             setScrollPosition(0);
@@ -100,9 +100,8 @@ const Catalog = () => {
     return (
         <Box
             pt={getGridSpacing()?.padding}
-            pb={footerMenuHeight}
             px={getGridSpacing()?.padding}
-            sx={{ minHeight: '100%' }}
+            sx={{ minHeight: '100%', pb: `${footerMenuHeight}px` }}
         >
             {showTopBtn && <ScrollButton />}
             {showMobileStoresButton && (
@@ -111,7 +110,7 @@ const Catalog = () => {
                     {PLAN_OPTIONS?.playMarket && <PlayMarketButton />}
                 </>
             )}
-            {loadProducts && !productsList?.length && <Loader position="fixed" />}
+            {loadProducts && <Loader position="fixed" type="circular" />}
             {PLAN_OPTIONS?.contacts && <CallBackButton path={STORE_ROUTE?.contacts(STORE_CODE)} />}
             <InstrumentalSubHeader
                 StartSlot={() => (

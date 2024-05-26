@@ -184,6 +184,8 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 available_sizes: 'Available sizes',
                 important: 'Important',
                 size_selection_is_only_available_during_checkout: 'Size selection is only available during checkout.',
+                copied_to_clipboard: 'Copied to clipboard',
+                security_check: 'Security check',
             },
         },
         {
@@ -360,6 +362,8 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 important: 'Important',
                 size_selection_is_only_available_during_checkout:
                     'La sélection des tailles est disponible uniquement lors du paiement.',
+                copied_to_clipboard: 'Copié dans le presse-papiers',
+                security_check: 'Vérification de sécurité',
             },
         },
         {
@@ -537,6 +541,8 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 important: 'Importante',
                 size_selection_is_only_available_during_checkout:
                     'La selección de tamaños solo está disponible durante el pago.',
+                copied_to_clipboard: 'Copiado al portapapeles',
+                security_check: 'Verificación de seguridad',
             },
         },
         {
@@ -713,6 +719,8 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 important: 'Важливо',
                 size_selection_is_only_available_during_checkout:
                     'Вибір розміру доступний лише під час оформлення замовлення.',
+                copied_to_clipboard: 'Скопійовано до буферу обміну',
+                security_check: 'Перевірка безпеки',
             },
         },
         {
@@ -889,6 +897,8 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 important: 'Ważne',
                 size_selection_is_only_available_during_checkout:
                     'Wybór rozmiaru jest możliwy tylko podczas finalizacji zamówienia.',
+                copied_to_clipboard: 'Skopiowane do schowka',
+                security_check: 'Kontrola bezpieczeństwa',
             },
         },
         {
@@ -1064,6 +1074,8 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 available_sizes: 'Dostupné velikosti',
                 important: 'Důležité',
                 size_selection_is_only_available_during_checkout: 'Výběr velikosti je možný pouze při placení.',
+                copied_to_clipboard: 'Zkopírováno do schránky',
+                security_check: 'Bezpečnostní kontrola',
             },
         },
         {
@@ -1240,6 +1252,8 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 important: 'Важно',
                 size_selection_is_only_available_during_checkout:
                     'Выбор размера доступен только при оформлении заказа.',
+                copied_to_clipboard: 'Скопировано в буфер обмена',
+                security_check: 'Проверка безопасности',
             },
         },
         {
@@ -1417,6 +1431,8 @@ export const useGetLanguage = ({ lang, storeName }) => {
                 available_sizes: 'Қолжетімді өлшемдер',
                 important: 'Маңызды',
                 size_selection_is_only_available_during_checkout: 'Өлшемді тек тапсырыс беру кезінде таңдауға болады.',
+                copied_to_clipboard: 'Буферге көшірілді',
+                security_check: 'Қауіпсіздік тексеру',
             },
         },
     ];

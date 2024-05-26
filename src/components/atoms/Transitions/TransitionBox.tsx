@@ -1,16 +1,14 @@
 import { Box } from '@mui/material';
 import { useEffect, useState } from 'react';
 
-const TransitionBox = ({ children, dependency, time = 250 }) => {
+const TransitionBox = ({ children, dependency, time = 0 }) => {
     const [opacity, setOpacity] = useState(0);
 
     useEffect(() => {
         if (dependency) {
             setOpacity(0);
         } else {
-            setTimeout(() => {
-                setOpacity(1);
-            }, time);
+            setOpacity(1);
         }
     }, [dependency]); // eslint-disable-line
 
@@ -18,7 +16,7 @@ const TransitionBox = ({ children, dependency, time = 250 }) => {
         <Box
             sx={{
                 opacity: opacity,
-                transition: `opacity 250ms linear`,
+                transition: `opacity 200ms linear`,
             }}
         >
             {children}

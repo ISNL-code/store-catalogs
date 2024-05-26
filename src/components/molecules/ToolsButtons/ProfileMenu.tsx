@@ -20,7 +20,7 @@ import MobileNavButton from 'components/atoms/Buttons/MobileNavButton';
 
 interface ProfileMenuProps {
     string: any;
-    headerHeight: string;
+    headerHeight: number;
     footerMenuHeight?: string;
     user: any;
     childPath?: string[];
@@ -177,7 +177,7 @@ const ProfileMenu: React.FC<ProfileMenuProps> = ({
                             },
                             sx: {
                                 pt: sx ? 0 : `${headerHeight}px`,
-                                pb: sx ? footerMenuHeight : 0,
+                                pb: sx ? `${footerMenuHeight}px` : 0,
                                 borderRadius: sx ? 4 : 0,
                             },
                         }}

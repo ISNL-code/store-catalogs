@@ -26,6 +26,7 @@ export const useProducts = ({ store, lang, queryCategories, setQueryCategories, 
     const [totalCount, setTotalCount] = useState(0);
     const [currentCount, setCurrentCount] = useState(0);
     const [totalPages, setTotalPages] = useState(0);
+    const [applyFilters, setApplyFilters] = useState(false);
 
     const {
         data: productsRes,
@@ -42,8 +43,9 @@ export const useProducts = ({ store, lang, queryCategories, setQueryCategories, 
 
     useEffect(() => {
         if (mount) return;
-        updateProducts(); // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [queryCategories]);
+        if (applyFilters) updateProducts();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [applyFilters]);
 
     useEffect(() => {
         if (!productsRes || loadProducts) return setProductsList([]);
@@ -89,7 +91,9 @@ export const useProducts = ({ store, lang, queryCategories, setQueryCategories, 
         );
         setTotalCount(productsRes.data.recordsTotal);
         setCurrentCount(productsRes.data.number * (currentProductsPage + 1));
-        setTotalPages(productsRes.data?.totalPages); // eslint-disable-next-line react-hooks/exhaustive-deps
+        setTotalPages(productsRes.data?.totalPages);
+        setApplyFilters(false);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [productsRes]);
 
     useEffect(() => {
@@ -142,6 +146,7 @@ export const useProducts = ({ store, lang, queryCategories, setQueryCategories, 
             setTotalCount(res?.data?.data?.recordsTotal);
             setCurrentCount(res?.data?.data?.number * (currentProductsPage + 1));
             setTotalPages(res?.data?.data?.totalPages);
+            setApplyFilters(false);
         }); // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [currentProductsPage]);
 
@@ -170,5 +175,6 @@ export const useProducts = ({ store, lang, queryCategories, setQueryCategories, 
         productCountPerPage: currentCount,
         totalProductsPages: totalPages,
         setProductsList,
+        setApplyFilters,
     };
 };

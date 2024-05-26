@@ -8,7 +8,7 @@ import FilterButton from 'components/molecules/ToolsButtons/FilterButton';
 import { Color } from 'colors';
 
 const FilterCategories = ({ isShown }) => {
-    const { string, categoriesList, queryCategories, setQueryCategories, handleCategoriesQuery }: any =
+    const { string, categoriesList, queryCategories, setQueryCategories, handleCategoriesQuery, setApplyFilters }: any =
         useOutletContext();
     const { s } = useDevice();
     const [state, setState] = useState({
@@ -181,13 +181,6 @@ const FilterCategories = ({ isShown }) => {
                         onClose={toggleDrawer(anchor, false)}
                         onOpen={toggleDrawer(anchor, true)}
                         slots={{ backdrop: Backdrop }}
-                        slotProps={{
-                            backdrop: {
-                                sx: {
-                                    backgroundColor: 'rgba(131, 131, 131, 0.863)',
-                                },
-                            },
-                        }}
                         sx={{
                             '.MuiList-root': {
                                 p: 0,
@@ -208,9 +201,10 @@ const FilterCategories = ({ isShown }) => {
                                 sx={{ borderRadius: '16px' }}
                                 onClick={() => {
                                     setState({ top: false, right: false });
+                                    setApplyFilters(true);
                                 }}
                             >
-                                {string?.ready}
+                                {string?.submit}
                             </Button>
                             <Button
                                 disabled={!queryCategories?.length}
@@ -222,13 +216,15 @@ const FilterCategories = ({ isShown }) => {
                                     setQueryCategories(_ => {
                                         return [];
                                     });
+                                    setState({ top: false, right: false });
+                                    setApplyFilters(true);
                                 }}
                             >
                                 {string?.clear}
                             </Button>
                         </Box>
 
-                        <Box sx={{ width: anchor === 'top' ? '100vw' : '400px' }} role="presentation">
+                        <Box sx={{ minWidth: anchor === 'top' ? '100vw' : '300px' }} role="presentation">
                             {categoriesList?.length ? (
                                 showFilters && <List>{getCategories(categoriesList)}</List>
                             ) : (

@@ -174,7 +174,7 @@ const Cart = () => {
         );
 
     return (
-        <Box className="CartPageContainer" p={sx ? 2 : appXPadding} sx={{ pb: `calc(${footerMenuHeight} + 16px)` }}>
+        <Box className="CartPageContainer" p={sx ? 2 : appXPadding} sx={{ pb: `calc(${footerMenuHeight}px + 16px)` }}>
             {(loadCreateOrder || loading || loadProducts) && <Loader position="fixed" />}
 
             <InstrumentalSubHeader
@@ -277,7 +277,7 @@ const Cart = () => {
                         my={sx ? 2 : 0}
                         sx={{
                             position: sx ? 'static' : 'sticky',
-                            top: headerHeight + instrumentalBarHeight + 24,
+                            top: `${headerHeight + instrumentalBarHeight + 24}px`,
                             zIndex: 100,
                             height: 'fit-content',
                         }}

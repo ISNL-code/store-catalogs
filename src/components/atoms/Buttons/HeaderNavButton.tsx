@@ -37,7 +37,7 @@ const HeaderNavButton = ({
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
-                    width: 55,
+                    width: 70,
                     height: 50,
                     borderRadius: 4,
                     '&:hover': { backgroundColor: Colors?.WHITE },
@@ -63,7 +63,15 @@ const HeaderNavButton = ({
                 >
                     {icon()}
                 </Badge>
-                <Typography sx={{ fontSize: 10, color: active || isActive ? Color?.PRIMARY : 'rgba(0, 0, 0, 0.54)' }}>
+                <Typography
+                    sx={{
+                        fontSize: 10,
+                        color: active || isActive ? Color?.PRIMARY : 'rgba(0, 0, 0, 0.54)',
+                        whiteSpace: 'nowrap',
+                        overflow: 'hidden',
+                        textOverflow: 'ellipsis',
+                    }}
+                >
                     {title}
                 </Typography>
             </IconButton>

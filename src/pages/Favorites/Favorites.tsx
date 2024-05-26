@@ -155,7 +155,7 @@ const Favorites = () => {
 
         setTimeout(() => {
             window.scrollTo({
-                top: scrollPosition - (instrumentalBarHeight + headerHeight),
+                top: scrollPosition - (instrumentalBarHeight + headerHeight + getGridSpacing()?.padding * 8),
                 behavior: 'auto',
             });
             setScrollPosition(0);
@@ -165,9 +165,8 @@ const Favorites = () => {
     return (
         <Box
             pt={getGridSpacing()?.padding}
-            pb={footerMenuHeight}
             px={getGridSpacing()?.padding}
-            sx={{ minHeight: '100%' }}
+            sx={{ minHeight: '100%', pb: footerMenuHeight }}
         >
             {showTopBtn && <ScrollButton />}
             {loading && <Loader />}

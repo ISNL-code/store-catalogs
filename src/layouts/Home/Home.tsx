@@ -26,12 +26,12 @@ export default function Home({ lang, setLang, auth, setAuth, userData, store, fa
     const INSTRUMENTAL_BAR_HEIGHT = 36;
     const INSTRUMENTAL_BAR_PADDINGS = sx ? 2 : 4;
     const HEADER_HEIGHT = 50;
-    const FOOTER_MENU_HEIGHT = sx ? '65px' : '0';
+    const FOOTER_MENU_HEIGHT = sx ? 65 : 0;
     const HEADER_PADDINGS = sx ? 2 : 4;
     const BODY_PADDINGS = sx ? 0 : 4;
     const FOOTER_PADDINGS = sx ? 2 : 4;
     const { currentLanguage } = useGetLanguage({ lang, storeName: STORE_NAME });
-    const { activeDialogWindow, handleOpenDialog, handleSetDialogState, dialogState } = useFormsApp();
+    const { activeDialogWindow, handleOpenDialog, dialogState, handleSetDialogState } = useFormsApp();
 
     useEffect(() => {
         if (STORE_CODE !== storeCode) {
@@ -52,7 +52,6 @@ export default function Home({ lang, setLang, auth, setAuth, userData, store, fa
                 lang={lang}
                 setLang={setLang}
                 logo={store?.logo?.path}
-                storeHeaderName={store?.name}
                 store={store}
                 auth={auth}
                 user={userData}
@@ -68,6 +67,9 @@ export default function Home({ lang, setLang, auth, setAuth, userData, store, fa
                         lang: lang?.code,
                         string: currentLanguage?.string,
                         handleOpenDialog,
+                        dialogState,
+                        handleSetDialogState,
+
                         //user data
                         auth: auth,
                         currentUserData: userData.currentUserData,
@@ -75,8 +77,6 @@ export default function Home({ lang, setLang, auth, setAuth, userData, store, fa
                         updateUserData: userData.updateUserData,
                         setCurrentUserData: userData.setCurrentUserData,
                         userDataError: userData.userError,
-                        handleSetDialogState,
-                        dialogState,
 
                         //css data
                         instrumentalBarHeight: INSTRUMENTAL_BAR_HEIGHT,
@@ -109,7 +109,6 @@ export default function Home({ lang, setLang, auth, setAuth, userData, store, fa
                 activeDialogWindow={activeDialogWindow}
                 handleOpenDialog={handleOpenDialog}
                 setAuth={setAuth}
-                dialogState={dialogState}
             />
         </Box>
     );

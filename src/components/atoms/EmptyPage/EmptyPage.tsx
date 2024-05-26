@@ -5,18 +5,7 @@ import { useEffect, useState } from 'react';
 import { Colors } from 'colors';
 
 const EmptyPage = ({ isShown = true }) => {
-    const {
-        string,
-    }: {
-        sortedStores: string;
-        string: any;
-        setScrollPosition;
-        scrollPosition: number;
-        instrumentalBarHeight: number;
-        headerHeight: number;
-        footerHeight: number;
-        loadProducts;
-    } = useOutletContext();
+    const { string }: any = useOutletContext();
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {

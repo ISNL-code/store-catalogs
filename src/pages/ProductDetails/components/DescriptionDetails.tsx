@@ -7,7 +7,9 @@ const DescriptionDetails = ({ productDetails }) => {
     const { string }: any = useOutletContext();
 
     const handleCopyToClipboard = () => {
-        navigator.clipboard.writeText(productDetails?.details as string).then(() => toast('Copied to clipboard!'));
+        navigator.clipboard
+            .writeText(productDetails?.details as string)
+            .then(() => toast.success(string?.copied_to_clipboard));
     };
 
     return (

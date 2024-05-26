@@ -5,8 +5,8 @@ import { Color, Colors } from 'colors';
 import { STORE_CONFIG } from 'store_constants/stores_config';
 
 interface HeaderInterface {
-    headerHeight;
-    appXPadding;
+    headerHeight: number;
+    appXPadding: number;
     string;
     lang;
     setLang;
@@ -22,7 +22,7 @@ const HomeHeader = ({ headerHeight, appXPadding, string, lang, setLang, logo, st
         <Box
             px={appXPadding}
             sx={{
-                height: headerHeight,
+                height: `${headerHeight}px`,
                 borderBottom: '1px solid',
                 borderColor: Colors?.GRAY_300,
                 position: 'fixed',
@@ -34,7 +34,14 @@ const HomeHeader = ({ headerHeight, appXPadding, string, lang, setLang, logo, st
                 overflow: 'hidden',
             }}
         >
-            <Box sx={{ height: headerHeight, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+            <Box
+                sx={{
+                    height: `${headerHeight}px`,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                }}
+            >
                 <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                     <HeaderLogo title={STORE_NAME} imgUrl={logo} custom={CUSTOM_LOGO} />
                 </Box>

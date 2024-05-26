@@ -70,7 +70,7 @@ const HeaderSearchButton = () => {
                     height: showSearch ? '100vh' : 0,
                     position: 'fixed',
                     width: '100vw',
-                    top: headerHeight,
+                    top: `${headerHeight}px`,
                     left: 0,
                     zIndex: 5000,
                 }}

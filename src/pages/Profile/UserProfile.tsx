@@ -54,7 +54,7 @@ const UserProfile = () => {
     }, [currentUserData, userDataError]); // eslint-disable-line
 
     return (
-        <Box p={sx ? 2 : appXPadding} pb={footerMenuHeight}>
+        <Box p={sx ? 2 : appXPadding} sx={{ pb: footerMenuHeight }}>
             {isLoading && <Loader />}
             <InstrumentalSubHeader
                 StartSlot={() => <BackButton />}

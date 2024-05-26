@@ -96,7 +96,7 @@ const SkuSearch = () => {
                         e.stopPropagation();
                     }}
                     sx={{
-                        height: showSearch ? headerHeight : 0,
+                        height: showSearch ? `${headerHeight}px` : 0,
                         overflow: 'hidden',
                         transition: 'height 250ms cubic-bezier(0.4, 0, 0.2, 1)',
                         marginLeft: 'auto',

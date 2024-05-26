@@ -187,7 +187,7 @@ const ModelSwiper = ({ images }) => {
             />
             <Box
                 sx={{
-                    maxHeight: `calc(100vh - ${headerHeight}px - ${instrumentalBarHeight}px - ${footerMenuHeight}px - 8px)`,
+                    maxHeight: `calc(100vh - ${headerHeight + instrumentalBarHeight + footerMenuHeight}px - 8px)`,
                 }}
             >
                 {sx ? horizontalSwiper : verticalSwiper}

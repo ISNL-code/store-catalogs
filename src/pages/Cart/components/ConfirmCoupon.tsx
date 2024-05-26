@@ -45,7 +45,7 @@ const ConfirmCoupon = ({
     const [firstName, setFirstName] = useState(
         currentUserData?.delivery?.firstName || currentUserData?.billing?.firstName
     );
-    const [saveDetails, setSaveDetails] = useState(false);
+    const [saveDetails, setSaveDetails] = useState(true);
     const { mutateAsync: updateProfile } = useUserApi().useCustomerProfileUpdate({ storeCode });
     const [lastName, setLastName] = useState(currentUserData?.delivery?.lastName || currentUserData?.billing?.lastName);
     const [phone, setPhone] = useState(currentUserData?.delivery?.phone || currentUserData?.billing?.phone);
@@ -253,7 +253,7 @@ const ConfirmCoupon = ({
                         InputLabelProps={{ shrink: true }}
                         fullWidth
                         size="small"
-                        label={string?.company}
+                        label={string?.company_name}
                         sx={{
                             '& label': {
                                 color: '#898B9B',

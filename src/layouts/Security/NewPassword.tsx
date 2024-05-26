@@ -59,7 +59,7 @@ export default function NewPassword({ lang, setLang, auth, setAuth }) {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [storeDataRes]);
 
-    if (!store || isFetching) return <Loader type="circular" title="Please wait, checking your link..." />;
+    if (!store || isFetching) return <Loader type="circular" title={currentLanguage?.string?.security_check} />;
 
     return (
         <Box>

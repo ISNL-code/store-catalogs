@@ -10,7 +10,7 @@ const ArticleDetails = ({ isShown }) => {
     const handleCopyToClipboard = () => {
         navigator.clipboard
             .writeText(modelSku?.replaceAll('_', '/') as string)
-            .then(() => toast('Copied to clipboard!'));
+            .then(() => toast.success(string?.copied_to_clipboard));
     };
 
     if (isShown)

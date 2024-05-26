@@ -10,7 +10,7 @@ const CardSkuLabel = ({ sku }: Props) => {
     const { string }: any = useOutletContext();
 
     const handleCopyToClipboard = () => {
-        navigator.clipboard.writeText(sku).then(() => toast('Copied to clipboard!'));
+        navigator.clipboard.writeText(sku).then(() => toast.success(string?.copied_to_clipboard));
     };
 
     return (

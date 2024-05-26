@@ -57,7 +57,7 @@ const UserOrders = () => {
     }, [customerOrdersRes, loadingOrders]); // eslint-disable-line
 
     return (
-        <Box p={sx ? 2 : appXPadding} pb={footerMenuHeight}>
+        <Box p={sx ? 2 : appXPadding} sx={{ pb: `${footerMenuHeight}px` }}>
             {loadingOrders && <Loader />}
             <InstrumentalSubHeader StartSlot={() => <BackButton />} />
             {orderData?.map(order => {
@@ -65,12 +65,12 @@ const UserOrders = () => {
                 return (
                     <Grid
                         key={order?.id}
-                        p={1}
+                        pt={1}
                         container
                         xs={12}
                         sx={{
                             border: '1px solid #ccc',
-                            borderRadius: 4,
+                            borderRadius: 1,
                             alignItems: 'center',
                         }}
                         mb={2}
@@ -85,7 +85,13 @@ const UserOrders = () => {
                                 borderRadius: 4,
                             }}
                         >
-                            <Grid p={1} pr={0.25} xs={'auto'} sx={{ display: 'flex', gap: 0.5, alignItems: 'center' }}>
+                            <Grid
+                                py={1}
+                                px={sx ? 2 : 3}
+                                pr={0.25}
+                                xs={'auto'}
+                                sx={{ display: 'flex', gap: 0.5, alignItems: 'center' }}
+                            >
                                 <Typography variant="h4" sx={{ fontWeight: 700 }}>
                                     {string?.order} #{order?.id}1
                                 </Typography>
@@ -102,7 +108,7 @@ const UserOrders = () => {
                                     {string?.details}
                                 </Button>
                             </Grid>
-                            <Grid p={1} pl={0.25} xs={'auto'}>
+                            <Grid py={1} px={sx ? 2 : 3} pl={0.25} xs={'auto'}>
                                 <Box sx={{ position: 'relative' }}>
                                     <Button
                                         variant="contained"
@@ -128,7 +134,12 @@ const UserOrders = () => {
                             </Grid>
                         </Grid>
                         <Grid xs={12} container>
-                            <Grid p={1} xs={'auto'} sx={{ display: 'flex', alignItems: 'center', gap: 0.75 }}>
+                            <Grid
+                                py={1}
+                                px={sx ? 2 : 3}
+                                xs={'auto'}
+                                sx={{ display: 'flex', alignItems: 'center', gap: 0.75 }}
+                            >
                                 <Typography sx={{ fontSize: 16 }}>{string?.ordered_date}: </Typography>
                                 <Typography color="initial" sx={{ fontWeight: 'bold', fontSize: 16 }}>
                                     {new Date(order?.datePurchased).toLocaleDateString('en-GB')}
@@ -137,15 +148,16 @@ const UserOrders = () => {
                         </Grid>
                         {
                             <Grid
-                                px={1}
+                                mt={1}
                                 xs={12}
                                 container
                                 sx={{
-                                    height:
+                                    maxHeight:
                                         isOpenDetails.open && String(isOpenDetails?.id) === String(order?.id)
-                                            ? 'auto'
-                                            : 0,
+                                            ? '1000px'
+                                            : '0px',
                                     overflow: 'hidden',
+                                    transition: 'all 1000ms cubic-bezier(1, 0.7, 0.2, 1), border 150ms ease-out',
                                 }}
                             >
                                 <>
@@ -154,8 +166,6 @@ const UserOrders = () => {
                                             container
                                             xs={12}
                                             sx={{
-                                                border: '1px solid #ccc',
-                                                borderBottom: 'none',
                                                 borderRadius: s ? 2 : 0,
                                                 backgroundColor: '#f3f3f378',
                                                 alignItems: 'center',
@@ -200,8 +210,8 @@ const UserOrders = () => {
                                                     container
                                                     xs={12}
                                                     sx={{
-                                                        border: '1px solid #ccc',
-                                                        borderBottom: 'none',
+                                                        borderTop: '1px solid #ccc',
+
                                                         alignItems: 'center',
                                                         px: s ? 1 : 2,
                                                     }}
@@ -282,13 +292,16 @@ const UserOrders = () => {
                                             container
                                             xs={12}
                                             sx={{
-                                                border: '1px solid #ccc',
+                                                borderTop: '1px solid #ccc',
                                                 backgroundColor: '#f3f3f378',
                                                 alignItems: 'center',
                                                 px: s ? 0 : 2,
                                             }}
                                         >
-                                            <Grid xs={12} sx={{ p: 1, display: 'flex', flexWrap: 'wrap', gap: 1 }}>
+                                            <Grid
+                                                xs={12}
+                                                sx={{ p: 1, px: sx ? 2 : 1, display: 'flex', flexWrap: 'wrap', gap: 1 }}
+                                            >
                                                 <Typography variant="h5" sx={{ color: '#7c7c7c' }}>
                                                     {string?.final_price}
                                                 </Typography>

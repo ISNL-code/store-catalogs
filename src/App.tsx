@@ -12,6 +12,7 @@ import { useStoresApi } from 'api/useStoresApi';
 import { useAddToCart } from 'layouts/hooks/useAddToCart';
 import { useAddToFavorites } from 'layouts/hooks/useAddToFavorites';
 import { Toaster } from 'react-hot-toast';
+import { useDevice } from 'hooks/useDevice';
 
 const App = () => {
     const { STORE_CODE, APP_LANGUAGE } = STORE_CONFIG;
@@ -21,6 +22,7 @@ const App = () => {
     const [currentUserData, setCurrentUserData] = useState<UserDataInterface | any>(null);
     const [infoAlert, setInfoAlert] = useState<{ ws_info: boolean } | null>(null);
     const [store, setStore] = useState<StoreInterface | null>(null);
+    const { sx } = useDevice();
 
     const {
         data: userData,
@@ -59,11 +61,8 @@ const App = () => {
     return (
         <>
             <Toaster
-                toastOptions={{
-                    style: { width: '100vw' },
-                    duration: 5000,
-                }}
                 position="top-right"
+                toastOptions={{ style: { width: '100vw', maxWidth: sx ? '100vw' : '' }, duration: 3000 }}
             />
             <Head />
             <ThemeProvider theme={mainTheme}>

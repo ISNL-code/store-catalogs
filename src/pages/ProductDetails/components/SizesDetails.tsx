@@ -38,7 +38,7 @@ const SizesDetails = ({ productDetails, isShown }: Props) => {
                                     <Box
                                         sx={{
                                             width: 'fit-content',
-                                            borderRadius: 2,
+                                            borderRadius: 1,
                                             overflow: 'hidden',
                                             display: 'flex',
                                             flexWrap: 'wrap',

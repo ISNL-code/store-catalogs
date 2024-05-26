@@ -20,10 +20,10 @@ export interface HomeContextInterface {
     userDataError: { response: { status } };
 
     //css data
-    instrumentalBarHeight: string;
+    instrumentalBarHeight: number;
     instrumentalBarPadding: number;
-    headerHeight: string;
-    footerMenuHeight: string;
+    headerHeight: number;
+    footerMenuHeight: number;
     appXPadding: number;
 }
 
@@ -69,12 +69,13 @@ export interface CatalogContextInterface {
     queryCategories: string[];
     setQueryCategories;
     handleCategoriesQuery;
+    setApplyFilters;
 
     //css data
-    instrumentalBarHeight: string;
+    instrumentalBarHeight: number;
     instrumentalBarPadding: number;
-    headerHeight: string;
-    footerMenuHeight: string;
+    headerHeight: number;
+    footerMenuHeight: number;
     appXPadding: number;
 
     //cart & favorites

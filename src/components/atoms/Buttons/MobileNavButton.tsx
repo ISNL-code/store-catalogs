@@ -70,7 +70,14 @@ const MobileNavButton = ({
             </IconButton>
             <Typography
                 variant="subtitle1"
-                sx={{ color: active || isActive ? Color?.PRIMARY : '#fff', textTransform: 'uppercase', fontSize: 8 }}
+                sx={{
+                    color: active || isActive ? Color?.PRIMARY : '#fff',
+                    textTransform: 'uppercase',
+                    fontSize: 8,
+                    whiteSpace: 'nowrap',
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                }}
             >
                 {title}
             </Typography>

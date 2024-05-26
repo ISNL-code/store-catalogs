@@ -128,8 +128,6 @@ const ProductDetails = () => {
         return 8;
     };
 
-    if (!productDetails) return <Loader />;
-
     return (
         <Box px={appXPadding} pb={footerMenuHeight}>
             <InstrumentalSubHeader
@@ -146,6 +144,7 @@ const ProductDetails = () => {
                     </Box>
                 )}
             />
+            {!productDetails && <Loader />}
             <TransitionBox dependency={loading}>
                 <Grid container xs={12} px={ls ? 0 : 30}>
                     <Grid
@@ -170,7 +169,7 @@ const ProductDetails = () => {
                             overflow: 'auto',
                             maxHeight: sx
                                 ? ''
-                                : `calc(100vh - ${headerHeight}px - ${instrumentalBarHeight}px - ${footerMenuHeight}px - 16px)`,
+                                : `calc(100vh - ${headerHeight + instrumentalBarHeight + footerMenuHeight}px - 16px)`,
                             '&::-webkit-scrollbar': {
                                 display: 'none',
                             },
