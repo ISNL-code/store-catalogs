@@ -78,27 +78,23 @@ const Head_Landing_HTML: React.FC = () => {
                 />
                 <link rel="canonical" href="https://salesnestonlinecatalog.com" />
 
-                {/* <!-- Google analytics TAG --> */}
+                {/* Google analytics TAG */}
                 <script async src={`https://www.googletagmanager.com/gtag/js?id=G-5EKVQYRR8P`}></script>
                 <script>
                     {`function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","G-5EKVQYRR8P")`}
                 </script>
 
-                {/* <!-- Event snippet for Покупка conversion page --> */}
+                {/* Event snippet for Покупка conversion page */}
                 <script>
-                    <script>
-                        {`gtag('event', 'conversion', {
+                    {`gtag('event', 'conversion', {
                         send_to: 'AW-16532045891/BjdfCLir_qYZEMOAjMs9',
                         value: 1.0,
                         currency: 'UAH',
                         transaction_id: '',
                     });`}
-                    </script>
                 </script>
 
-                {/*    <!-- Event snippet for Покупка conversion page
-        In your html page, add the snippet and call gtag_report_conversion when someone clicks on the chosen link or button. --> */}
-
+                {/* Function to report conversions */}
                 <script>
                     {`function gtag_report_conversion(url) {
                         var callback = function () {
