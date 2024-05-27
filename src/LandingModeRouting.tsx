@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Navigate, Route, Routes } from 'react-router-dom';
-import { LANDING_ROUTE, ROUTES } from 'constants/routes';
+import { ROUTES } from 'constants/routes';
 
 import PAGE_401 from 'pages/TechPages/401';
 import PAGE_403 from 'pages/TechPages/403';
@@ -25,12 +25,12 @@ const LandingModeRouting = ({ lang, setLang }: Props) => {
                         <Route path={`${ROUTES?.PAGE_500}`} element={<PAGE_500 />} />
                     </Route>
 
-                    <Route path={'/'} element={<LandingLayout lang={lang} setLang={setLang} />}>
+                    <Route path={ROUTES?.LANDING} element={<LandingLayout lang={lang} setLang={setLang} />}>
                         <Route index path={`${ROUTES?.LANDING}/welcome`} element={<LandingHomePage />} />
-                        <Route path="*" element={<Navigate to={LANDING_ROUTE?.root()} replace />} />
+                        <Route path="*" element={<Navigate to={ROUTES?.LANDING} replace />} />
                     </Route>
                 </>
-                <Route path="*" element={<Navigate to={LANDING_ROUTE?.root()} replace />} />
+                <Route path="*" element={<Navigate to={ROUTES?.LANDING} replace />} />
             </Routes>
         </Router>
     );
