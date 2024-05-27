@@ -5,7 +5,7 @@ import { useDevice } from 'hooks/useDevice';
 import DialogApp from 'layouts/DialogApp';
 import { ROUTES } from 'constants/routes';
 import { useFormsApp } from 'layouts/hooks/useFormsApp';
-import { Outlet, useNavigate } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import LandingHeader from './LandingHeader';
 import { LandingContextInterface } from 'types';
 
@@ -14,7 +14,6 @@ const OutletContainer = ({ context }: { context: LandingContextInterface }) => {
 };
 
 export default function LandingLayout({ lang, setLang }) {
-    const navigate = useNavigate();
     const { sx } = useDevice();
     const HEADER_HEIGHT = 50;
     const HEADER_PADDINGS = sx ? 2 : 4;
