@@ -17,14 +17,14 @@ const Hero = () => {
                 sx={{ height: '100%' }}
             >
                 <Typography sx={{ fontSize: sx ? 36 : 42, fontWeight: 700, lineHeight: 1 }} color={Colors?.WHITE}>
-                    Создание и продвижение интернет магазинов и каталогов.
+                    Создание и продвижение интернет каталогов.
                 </Typography>
                 <Typography
                     color={Colors?.WHITE}
                     sx={{ mt: 2, fontSize: sx ? 20 : 24, fontWeight: sx ? 40 : 500, lineHeight: 1.1 }}
                 >
-                    Sales Nest предлагает полный спектр услуг по созданию и продвижению интернет-каталогов, чтобы помочь
-                    вам привлекать больше клиентов и увеличивать продажи.
+                    <b>Sales Nest</b> предлагает полный спектр услуг по созданию и продвижению интернет-каталогов, чтобы
+                    помочь вам привлекать больше клиентов и увеличивать продажи.
                 </Typography>
                 <Box sx={{ width: '100%', display: 'flex' }}>
                     <Box mt={5} display="flex" sx={{ alignItems: 'center', width: sx ? '100%' : '95%' }}>
