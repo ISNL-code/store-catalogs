@@ -1,7 +1,7 @@
 // ROOT
 
 export const ROUTES = {
-    LANDING: 'landing',
+    LANDING: '/landing',
     SECURITY: '/security',
     HOME: '/home',
     STORE: '/store',
