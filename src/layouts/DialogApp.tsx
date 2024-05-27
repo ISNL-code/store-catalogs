@@ -35,6 +35,8 @@ const DialogApp = ({
     cart,
     dialogState,
 }: Props) => {
+    console.log(activeDialogWindow);
+
     if (!activeDialogWindow) return null;
 
     return (
