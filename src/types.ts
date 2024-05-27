@@ -23,11 +23,14 @@ export interface HomeContextInterface {
     instrumentalBarHeight: number;
     instrumentalBarPadding: number;
     headerHeight: number;
-    footerMenuHeight: number;
     appXPadding: number;
+    footerMenuHeight: number;
 }
 
-export interface LandingContextInterface {}
+export interface LandingContextInterface {
+    headerHeight: number;
+    appXPadding: number;
+}
 
 export interface CatalogContextInterface {
     //main data | user options

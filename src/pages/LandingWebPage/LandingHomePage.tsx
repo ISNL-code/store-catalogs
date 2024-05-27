@@ -1,45 +1,20 @@
-import { Box } from '@mui/material';
-import { useState } from 'react';
-// import CallBackButton from 'components/atoms/Buttons/CallBackButton';
-import MessageButton from 'components/atoms/Buttons/MessageButton';
+import Grid from '@mui/material/Unstable_Grid2';
+import Hero from './Hero';
+import { useOutletContext } from 'react-router-dom';
+import { LandingContextInterface } from 'types';
+import { useDevice } from 'hooks/useDevice';
+import { Color } from 'colors';
 
 const LandingHomePage = () => {
-    // const [isOpen, setIsOpen] = useState(false);
-    const [openQuestionForm, setOpenQuestionForm] = useState(false);
-    // const [plan, setPlan] = useState({ plan: '', subject: '' });
-    // const [openSuccessModal, setOpenSuccessModal] = useState(false);
+    const { appXPadding }: LandingContextInterface = useOutletContext();
+    const { sx } = useDevice();
 
     return (
-        <>
-            <Box>
-                {/* <Form
-                    values={{ ...plan }}
-                    isOpen={isOpen}
-                    setIsOpen={setIsOpen}
-                    setOpenSuccessModal={setOpenSuccessModal}
-                    setPlan={setPlan}
-                /> */}
-                {/* <QuestionForm
-                    values={{ ...plan }}
-                    isOpen={openQuestionForm}
-                    setIsOpen={setOpenQuestionForm}
-                    setOpenSuccessModal={setOpenSuccessModal}
-                /> */}
-                {/* {openSuccessModal && <SuccessModel setOpenModal={setOpenSuccessModal} />} */}
-                {/* {<CallBackButton />} */}
-                {<MessageButton action={() => setOpenQuestionForm(!openQuestionForm)} />}
-                {/* <Hero
-                    setIsOpen={setIsOpen}
-                    isOpen={isOpen}
-                    setOpenQuestionForm={setOpenQuestionForm}
-                    openQuestionForm={openQuestionForm}
-                /> */}
-                {/* <Slides /> */}
-                {/* <Advantages /> */}
-                {/* <Examples /> */}
-                {/* <Pricing setPlan={setPlan} isOpen={isOpen} setIsOpen={setIsOpen} /> */}
-            </Box>
-        </>
+        <Grid xs={12} container>
+            <Grid xs={12} py={4} px={sx ? 2 : 40} sx={{ background: Color?.PRIMARY }}>
+                <Hero />
+            </Grid>
+        </Grid>
     );
 };
 

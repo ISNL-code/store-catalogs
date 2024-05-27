@@ -41,7 +41,7 @@ const HeadLandingHTML: React.FC = () => {
             start_url: '.',
             display: 'standalone',
             theme_color: '#000000',
-            background_color: '#ffffff',
+            background_color: '#0b475f',
         };
 
         const manifestJSON = JSON.stringify(manifest);

@@ -33,7 +33,7 @@ const mainTheme = createTheme({
             textTransform: 'capitalize',
         },
 
-        h1: { fontSize: '72px', lineHeight: 1.1, fontWeight: 700, fontFamily: 'Roboto' },
+        h1: { fontSize: '72px', lineHeight: 1, fontWeight: 700, fontFamily: 'Roboto' },
         h2: { fontSize: '24px', lineHeight: 1.1, fontWeight: 500, color: '#000' },
         h3: { fontSize: '18px', lineHeight: 1.1, fontWeight: 500, color: '#000' }, //
         h4: { fontSize: '16px', lineHeight: 1.1, fontWeight: 400, color: '#1D1D1D' }, //

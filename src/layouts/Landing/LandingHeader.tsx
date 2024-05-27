@@ -17,8 +17,6 @@ const LandingHeader = ({ headerHeight, appXPadding, string, lang, setLang }: Hea
             px={appXPadding}
             sx={{
                 height: `${headerHeight}px`,
-                borderBottom: '1px solid',
-                borderColor: Colors?.GRAY_300,
                 position: 'fixed',
                 width: '100%',
                 left: 0,
