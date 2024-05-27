@@ -1,6 +1,7 @@
 // ROOT
 
 export const ROUTES = {
+    LANDING: 'landing',
     SECURITY: '/security',
     HOME: '/home',
     STORE: '/store',
@@ -10,6 +11,12 @@ export const ROUTES = {
     PAGE_403: '/bad-request',
     PAGE_404: '/page-not-found',
     PAGE_500: '/server-error',
+};
+
+// Landing Page
+
+export const LANDING_ROUTE = {
+    root: () => `${ROUTES?.LANDING}/welcome`,
 };
 
 // New Password

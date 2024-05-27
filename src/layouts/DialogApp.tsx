@@ -19,7 +19,7 @@ interface Props {
     string;
     activeDialogWindow;
     handleOpenDialog;
-    setAuth;
+    setAuth?;
     favorites?;
     cart?;
     dialogState?;

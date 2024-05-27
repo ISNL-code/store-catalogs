@@ -27,6 +27,8 @@ export interface HomeContextInterface {
     appXPadding: number;
 }
 
+export interface LandingContextInterface {}
+
 export interface CatalogContextInterface {
     //main data | user options
     lang: string;
