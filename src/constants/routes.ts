@@ -17,6 +17,7 @@ export const ROUTES = {
 
 export const LANDING_ROUTE = {
     root: () => `${ROUTES?.LANDING}/welcome`,
+    contacts: () => `${ROUTES?.LANDING}/contacts`,
 };
 
 // New Password

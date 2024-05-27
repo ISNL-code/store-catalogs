@@ -7,6 +7,7 @@ import PAGE_404 from 'pages/TechPages/404';
 import PAGE_500 from 'pages/TechPages/500';
 import LandingLayout from 'layouts/Landing/LandingLayout';
 import LandingHomePage from 'pages/LandingWebPage/LandingHomePage';
+import ContactsManagePage from 'pages/Contacts/ContactsManagePage';
 
 interface Props {
     lang: string;
@@ -25,6 +26,7 @@ const LandingModeRouting = ({ lang, setLang }: Props) => {
 
                     <Route path={`${ROUTES?.LANDING}`} element={<LandingLayout lang={lang} setLang={setLang} />}>
                         <Route path={`${ROUTES?.LANDING}/welcome`} element={<LandingHomePage />} />
+                        <Route path={`${ROUTES?.LANDING}/contacts`} element={<ContactsManagePage />} />
                         <Route path="*" element={<Navigate to={LANDING_ROUTE?.root()} replace />} />
                     </Route>
                 </Route>

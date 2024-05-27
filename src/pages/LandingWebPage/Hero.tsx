@@ -24,7 +24,7 @@ const Hero = () => {
                     sx={{ mt: 2, fontSize: sx ? 20 : 24, fontWeight: sx ? 40 : 500, lineHeight: 1.1 }}
                 >
                     <b>Sales Nest</b> предлагает полный спектр услуг по созданию и продвижению интернет-каталогов, чтобы
-                    помочь вам привлекать больше клиентов и увеличивать продажи.
+                    помочь вам привлекать больше клиентов и увеличивать продажи
                 </Typography>
                 <Box sx={{ width: '100%', display: 'flex' }}>
                     <Box mt={5} display="flex" sx={{ alignItems: 'center', width: sx ? '100%' : '95%' }}>

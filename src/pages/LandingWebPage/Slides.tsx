@@ -10,13 +10,14 @@ const Slides = () => {
     const { sm, sx } = useDevice();
 
     const SLIDES = [
-        { desc: '1', mob: '11', description: string?.view_descr_1 },
-        { desc: '2', mob: '22', description: string?.view_descr_2 },
-        { desc: '3', mob: '33', description: string?.view_descr_3 },
-        { desc: '6', mob: '66', description: string?.view_descr_6 },
-        { desc: '7', mob: '77', description: string?.view_descr_7 },
-        { desc: '8', mob: '88', description: string?.view_descr_8 },
-        { desc: '9', mob: '99', description: string?.view_descr_9 },
+        { desc: '01', mob: '001' },
+        { desc: '1', mob: '11' },
+        { desc: '2', mob: '22' },
+        { desc: '3', mob: '33' },
+        { desc: '6', mob: '66' },
+        { desc: '7', mob: '77' },
+        { desc: '8', mob: '88' },
+        { desc: '9', mob: '99' },
     ];
 
     const settings = {
