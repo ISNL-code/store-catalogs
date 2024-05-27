@@ -2,6 +2,7 @@ import { Box, Typography, TextField, Button } from '@mui/material';
 import Grid from '@mui/material/Unstable_Grid2/Grid2';
 import { Colors } from 'colors';
 import { useDevice } from 'hooks/useDevice';
+import Slides from './Slides';
 
 const Hero = () => {
     const { sx } = useDevice();
@@ -50,7 +51,9 @@ const Hero = () => {
                     </Button>
                 </Box>
             </Grid>
-            <Grid xs={6}></Grid>
+            <Grid xs={6}>
+                <Slides />
+            </Grid>
         </>
     );
 };
