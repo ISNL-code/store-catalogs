@@ -22,7 +22,7 @@ const Slides = () => {
     const settings = {
         fade: sx ? false : true,
         autoplay: true,
-        autoplaySpeed: sx ? 2500 : 3000,
+        autoplaySpeed: sx ? 3500 : 3000,
         arrows: false,
     };
 
@@ -53,7 +53,7 @@ const Slides = () => {
                             xs={sx ? 12 : 2}
                             sx={{
                                 boxShadow: '0 0 5px 2px #d3d3d3',
-                                border: '0.5vw solid #000',
+                                border: sx ? '10px solid #000' : '0.5vw solid #000',
                                 borderRadius: sm ? '32px' : '16px',
                                 background: `#000`,
                                 overflow: 'hidden',
@@ -65,21 +65,23 @@ const Slides = () => {
                         >
                             <img style={{ width: '100%' }} src={require(`./img/${el.mob}.png`)} alt="" />
                         </Grid>
-                        <Grid
-                            xs={sx ? 0 : 10}
-                            sx={{
-                                border: '1vw solid #000',
-                                borderRadius: sm ? '12px' : '24px',
-                                background: `#fff`,
-                                overflow: 'hidden',
-                                height: 'fit-content',
-                                boxShadow: '0 0 5px 2px #d3d3d3',
-                            }}
-                        >
-                            <Box sx={{ width: '100%' }}>
-                                <img style={{ width: '100%' }} src={require(`./img/${el.desc}.png`)} alt="" />
-                            </Box>
-                        </Grid>
+                        {!sx && (
+                            <Grid
+                                xs={sx ? 0 : 10}
+                                sx={{
+                                    border: '1vw solid #000',
+                                    borderRadius: sm ? '12px' : '24px',
+                                    background: `#fff`,
+                                    overflow: 'hidden',
+                                    height: 'fit-content',
+                                    boxShadow: '0 0 5px 2px #d3d3d3',
+                                }}
+                            >
+                                <Box sx={{ width: '100%' }}>
+                                    <img style={{ width: '100%' }} src={require(`./img/${el.desc}.png`)} alt="" />
+                                </Box>
+                            </Grid>
+                        )}
                     </Grid>
                 </Box>
             ))}
