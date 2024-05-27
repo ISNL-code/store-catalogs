@@ -9,10 +9,11 @@ interface ImageProps {
     height?;
     imgHeight?;
     loadControl?;
+    lazy?: boolean;
 }
 
 const ImageComponent = React.forwardRef<HTMLImageElement, ImageProps>(
-    ({ imgUrl, height = '100%', imgHeight = 'auto', loadControl = () => {} }, ref) => {
+    ({ imgUrl, height = '100%', imgHeight = 'auto', loadControl = () => {}, lazy = true }, ref) => {
         const [imgLoaded, setImgLoaded] = useState(false);
         const [imgError, setImgError] = useState(false);
 
@@ -52,7 +53,7 @@ const ImageComponent = React.forwardRef<HTMLImageElement, ImageProps>(
             >
                 {imgLoaded && !imgError ? (
                     <img
-                        loading="lazy"
+                        loading={lazy ? 'lazy' : 'eager'}
                         src={imgUrl}
                         style={{
                             width: '100%',

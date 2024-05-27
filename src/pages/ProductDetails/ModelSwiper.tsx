@@ -72,7 +72,12 @@ const ModelSwiper = ({ images }) => {
                             transition: 'all 150ms linear',
                         }}
                     >
-                        <ImageComponent ref={imageRef} imgUrl={imageUrl} loadControl={bool => setIsLoading(bool)} />
+                        <ImageComponent
+                            ref={imageRef}
+                            imgUrl={imageUrl}
+                            loadControl={bool => setIsLoading(bool)}
+                            lazy={false}
+                        />
                     </Box>
                 </Box>
             ),
