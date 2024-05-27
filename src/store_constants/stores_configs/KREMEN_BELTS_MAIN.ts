@@ -16,7 +16,7 @@ export const KREMEN_BELTS_MAIN = {
     links: [
         {
             name: 'Kremen Belts Sales',
-            href: 'https://kremen-belts-sales.netlify.app',
+            href: 'https://kremen-belts-sales.netlify.app/store',
             description: 'Sales',
             type: 'WEB',
         },

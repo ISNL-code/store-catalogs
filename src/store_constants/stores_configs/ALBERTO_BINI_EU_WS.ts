@@ -16,7 +16,7 @@ export const ALBERTO_BINI_EU_WS = {
     links: [
         {
             name: 'Retail',
-            href: 'https://albertobini-brandeurope-retail.netlify.app',
+            href: 'https://albertobini-brandeurope-retail.netlify.app/store',
             description: 'Retail',
             type: 'WEB',
         },
