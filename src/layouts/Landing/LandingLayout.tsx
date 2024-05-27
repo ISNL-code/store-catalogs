@@ -18,6 +18,8 @@ export default function LandingLayout({ lang, setLang }) {
     const HEADER_HEIGHT = 50;
     const HEADER_PADDINGS = sx ? 2 : 4;
     const BODY_PADDINGS = sx ? 0 : 4;
+    const INSTRUMENTAL_BAR_HEIGHT = 36;
+    const INSTRUMENTAL_BAR_PADDINGS = sx ? 2 : 4;
     const { currentLanguage } = useGetLanguage({ lang, storeName: 'Sales Nest Catalogs' });
 
     const { activeDialogWindow, handleOpenDialog } = useFormsApp();
@@ -35,9 +37,15 @@ export default function LandingLayout({ lang, setLang }) {
             <Box className="HomeBody" mt={`${HEADER_HEIGHT}px`} sx={{ flexGrow: 1 }}>
                 <OutletContainer
                     context={{
+                        //main
+                        handleOpenDialog,
+
                         // css
                         headerHeight: HEADER_HEIGHT,
                         appXPadding: BODY_PADDINGS,
+                        string: currentLanguage?.string,
+                        instrumentalBarHeight: INSTRUMENTAL_BAR_HEIGHT,
+                        instrumentalBarPadding: INSTRUMENTAL_BAR_PADDINGS,
                     }}
                 />
             </Box>

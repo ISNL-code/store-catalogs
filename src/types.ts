@@ -28,8 +28,15 @@ export interface HomeContextInterface {
 }
 
 export interface LandingContextInterface {
+    //main
+    string: Record<string, any>;
+    handleOpenDialog;
+
+    //css
     headerHeight: number;
     appXPadding: number;
+    instrumentalBarHeight: number;
+    instrumentalBarPadding: number;
 }
 
 export interface CatalogContextInterface {
