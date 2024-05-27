@@ -7,7 +7,7 @@ declare global {
     }
 }
 
-const Head_Landing_HTML: React.FC = () => {
+const HeadLandingHTML: React.FC = () => {
     const [manifestUrl, setManifestUrl] = useState('');
 
     const createManifest = () => {
@@ -117,4 +117,4 @@ const Head_Landing_HTML: React.FC = () => {
     );
 };
 
-export default Head_Landing_HTML;
+export default HeadLandingHTML;

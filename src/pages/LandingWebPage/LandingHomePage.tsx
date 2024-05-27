@@ -1,13 +1,13 @@
 import { Box } from '@mui/material';
 import { useState } from 'react';
-import CallBackButton from 'components/atoms/Buttons/CallBackButton';
+// import CallBackButton from 'components/atoms/Buttons/CallBackButton';
 import MessageButton from 'components/atoms/Buttons/MessageButton';
 
 const LandingHomePage = () => {
-    const [isOpen, setIsOpen] = useState(false);
+    // const [isOpen, setIsOpen] = useState(false);
     const [openQuestionForm, setOpenQuestionForm] = useState(false);
-    const [plan, setPlan] = useState({ plan: '', subject: '' });
-    const [openSuccessModal, setOpenSuccessModal] = useState(false);
+    // const [plan, setPlan] = useState({ plan: '', subject: '' });
+    // const [openSuccessModal, setOpenSuccessModal] = useState(false);
 
     return (
         <>

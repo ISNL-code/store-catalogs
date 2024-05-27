@@ -4,7 +4,6 @@ import mainTheme from 'theme/mainTheme';
 import { useUserApi } from 'api/useUserApi';
 import { StoreInterface, UserDataInterface } from 'types';
 import { STORE_CONFIG } from 'store_constants/stores_config';
-import Head_Stores_HTML from 'layouts/Head_Stores_HTML';
 import { ViewModeType } from 'store_constants/types';
 import AppRouting from 'AppRouting';
 import AppLogic from 'AppLogic';
@@ -16,7 +15,8 @@ import { useDevice } from 'hooks/useDevice';
 import LandingModeRouting from 'LandingModeRouting';
 import LandingLogic from 'LandingLogic';
 import { APP_CONFIG, WEB_MODE_ENUMS } from 'APP_CONFIG';
-import Head_Landing_HTML from 'layouts/Head_Landing_HTML';
+import HeadLandingHTML from 'layouts/Head-Landing-HTML';
+import HeadStoresHTML from 'layouts/Head-Stores-HTML';
 
 const App = () => {
     const { WEB_MODE } = APP_CONFIG;
@@ -79,13 +79,13 @@ const App = () => {
             <ThemeProvider theme={mainTheme}>
                 {WEB_MODE === WEB_MODE_ENUMS?.LANDING_MODE && (
                     <>
-                        <Head_Landing_HTML />
+                        <HeadLandingHTML />
                         <LandingModeRouting lang={lang} setLang={setLang} />
                     </>
                 )}
                 {WEB_MODE === WEB_MODE_ENUMS?.STORE_MODE && (
                     <>
-                        <Head_Stores_HTML />
+                        <HeadStoresHTML />
                         <AppRouting
                             auth={auth}
                             setAuth={setAuth}
