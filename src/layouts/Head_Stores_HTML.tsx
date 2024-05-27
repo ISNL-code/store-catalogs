@@ -8,7 +8,7 @@ declare global {
     }
 }
 
-const Head: React.FC = () => {
+const Head_Stores_HTML: React.FC = () => {
     const { WEB_HEAD_DATA, STORE_NAME, HTML_LANG } = STORE_CONFIG;
     const { STORE_TITLE, STORE_DESCRIPTION, GOOGLE_ANALYTICS_ID, STORE_LOGO } = WEB_HEAD_DATA;
 
@@ -79,4 +79,4 @@ const Head: React.FC = () => {
     );
 };
 
-export default Head;
+export default Head_Stores_HTML;

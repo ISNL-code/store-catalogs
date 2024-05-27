@@ -4,7 +4,7 @@ import mainTheme from 'theme/mainTheme';
 import { useUserApi } from 'api/useUserApi';
 import { StoreInterface, UserDataInterface } from 'types';
 import { STORE_CONFIG } from 'store_constants/stores_config';
-import Head from 'layouts/Head';
+import Head_Stores_HTML from 'layouts/Head_Stores_HTML';
 import { ViewModeType } from 'store_constants/types';
 import AppRouting from 'AppRouting';
 import AppLogic from 'AppLogic';
@@ -16,6 +16,7 @@ import { useDevice } from 'hooks/useDevice';
 import LandingModeRouting from 'LandingModeRouting';
 import LandingLogic from 'LandingLogic';
 import { APP_CONFIG, WEB_MODE_ENUMS } from 'APP_CONFIG';
+import Head_Landing_HTML from 'layouts/Head_Landing_HTML';
 
 const App = () => {
     const { WEB_MODE } = APP_CONFIG;
@@ -74,28 +75,36 @@ const App = () => {
                 position="top-right"
                 toastOptions={{ style: { width: '100vw', maxWidth: sx ? '100vw' : '' }, duration: 3000 }}
             />
-            <Head />
+
             <ThemeProvider theme={mainTheme}>
-                {WEB_MODE === WEB_MODE_ENUMS?.LANDING_MODE && <LandingModeRouting lang={lang} setLang={setLang} />}
+                {WEB_MODE === WEB_MODE_ENUMS?.LANDING_MODE && (
+                    <>
+                        <Head_Landing_HTML />
+                        <LandingModeRouting lang={lang} setLang={setLang} />
+                    </>
+                )}
                 {WEB_MODE === WEB_MODE_ENUMS?.STORE_MODE && (
-                    <AppRouting
-                        auth={auth}
-                        setAuth={setAuth}
-                        lang={lang}
-                        setLang={setLang}
-                        currentUserData={currentUserData}
-                        isFetchingUser={isFetchingUser}
-                        updateUserData={updateUserData}
-                        setCurrentUserData={setCurrentUserData}
-                        userError={userError}
-                        viewMode={viewMode}
-                        setViewMode={setViewMode}
-                        infoAlert={infoAlert}
-                        setInfoAlert={setInfoAlert}
-                        store={store}
-                        favorites={favorites}
-                        cart={cart}
-                    />
+                    <>
+                        <Head_Stores_HTML />
+                        <AppRouting
+                            auth={auth}
+                            setAuth={setAuth}
+                            lang={lang}
+                            setLang={setLang}
+                            currentUserData={currentUserData}
+                            isFetchingUser={isFetchingUser}
+                            updateUserData={updateUserData}
+                            setCurrentUserData={setCurrentUserData}
+                            userError={userError}
+                            viewMode={viewMode}
+                            setViewMode={setViewMode}
+                            infoAlert={infoAlert}
+                            setInfoAlert={setInfoAlert}
+                            store={store}
+                            favorites={favorites}
+                            cart={cart}
+                        />
+                    </>
                 )}
             </ThemeProvider>
         </>
