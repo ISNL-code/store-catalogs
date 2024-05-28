@@ -67,8 +67,8 @@ const HeadStoresHTML: React.FC = () => {
                 <meta name="theme-color" content="#ffffff" />
                 <title>{STORE_TITLE}</title>
                 <meta name="description" content={STORE_DESCRIPTION} />
-                <link rel="icon" href={`/dataBase/images/logos/${STORE_LOGO}`} />
-                <link rel="apple-touch-icon" href={`/dataBase/images/logos/${STORE_LOGO}`} />
+                <link rel="icon" href={require(`dataBase/images/logos/${STORE_LOGO}`)} />
+                <link rel="apple-touch-icon" href={require(`dataBase/images/logos/${STORE_LOGO}`)} />
                 <link rel="manifest" href={manifestUrl} />
                 <script async src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ANALYTICS_ID}`}></script>
                 <script>
