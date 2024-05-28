@@ -22,24 +22,24 @@ const HeadStoresHTML: React.FC = () => {
             name: `Create ${STORE_NAME} sample`,
             icons: [
                 {
-                    src: `/dataBase/images/logos/${STORE_LOGO}`,
+                    src: require(`/dataBase/images/logos/${STORE_LOGO}`),
                     sizes: '64x64 32x32 24x24 16x16',
                     type: 'image/x-icon',
                 },
                 {
-                    src: `/dataBase/images/logos/${STORE_LOGO}`,
+                    src: require(`/dataBase/images/logos/${STORE_LOGO}`),
                     type: 'image/png',
                     sizes: '192x192',
                     purpose: 'maskable',
                 },
                 {
-                    src: `/dataBase/images/logos/${STORE_LOGO}`,
+                    src: require(`/dataBase/images/logos/${STORE_LOGO}`),
                     type: 'image/png',
                     sizes: '192x192',
                     purpose: 'any',
                 },
                 {
-                    src: `/dataBase/images/logos/${STORE_LOGO}`,
+                    src: require(`/dataBase/images/logos/${STORE_LOGO}`),
                     type: 'image/png',
                     sizes: '512x512',
                 },
