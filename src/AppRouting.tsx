@@ -142,6 +142,7 @@ const AppRouting = ({
                                 />
                             }
                         >
+                            <Route index element={<Navigate to={HOME_ROUTE?.root(STORE_CODE)} replace />} />
                             <Route index path={`${ROUTES?.HOME}/:storeCode`} element={<HomePage />} />
                             <Route path="*" element={<Navigate to={HOME_ROUTE?.root(STORE_CODE)} replace />} />
                         </Route>
@@ -173,6 +174,7 @@ const AppRouting = ({
                                 />
                             }
                         >
+                            <Route index element={<Navigate to={STORE_ROUTE?.root(STORE_CODE)} replace />} />
                             <Route index path={`${ROUTES?.STORE}/:storeCode`} element={<CatalogPage />} />
                             <Route
                                 path={`${ROUTES?.STORE}/:storeCode/product/:productId/model/:modelSku`}
