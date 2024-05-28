@@ -84,8 +84,8 @@ const AppRouting = ({
     return (
         <Router>
             <Routes>
-                <>
-                    <Route>
+                <Route path="/">
+                    <Route path="/">
                         <Route
                             path={`${ROUTES?.NEW_PASSWORD}/:storeCode/:tokenId`}
                             element={<NewPassword lang={lang} setLang={setLang} auth={auth} setAuth={setAuth} />}
@@ -187,7 +187,7 @@ const AppRouting = ({
                             <Route path="*" element={<Navigate to={STORE_ROUTE?.root(STORE_CODE)} replace />} />
                         </Route>
                     )}
-                </>
+                </Route>
                 <Route path="*" element={<Navigate to={handleRedirect()} replace />} />
             </Routes>
         </Router>
