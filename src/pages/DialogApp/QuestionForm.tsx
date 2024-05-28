@@ -5,8 +5,16 @@ import { STORE_CONFIG } from 'store_constants/stores_config';
 import FormDialog from 'components/organisms/Modals/FormDialog';
 import { Fragment, useEffect, useState } from 'react';
 import { DialogWindowType } from 'layouts/hooks/useFormsApp';
+import { DialogStateInterface } from 'types';
 
-export default function QuestionForm({ isOpen, setIsOpen, string }) {
+interface Props {
+    isOpen: boolean;
+    setIsOpen;
+    string;
+    dialogState?: DialogStateInterface | null;
+}
+
+export default function QuestionForm({ isOpen, setIsOpen, string, dialogState }: Props) {
     const { STORE_NAME } = STORE_CONFIG;
     const [formValues, setFormValues] = useState<any>({
         subject: '',
@@ -38,7 +46,7 @@ export default function QuestionForm({ isOpen, setIsOpen, string }) {
 
                 axios.post(url, {
                     chat_id: chatId,
-                    text: `${STORE_NAME}|Вопрос, Привет, меня зовут ${
+                    text: `${dialogState?.note || STORE_NAME}|Вопрос, Привет, меня зовут ${
                         values.name || '<Заказчик>'
                     }, мои контакты: email: ${values.email}, тел: ${values.phone}, 
                      вопрос: ${values.question}`,

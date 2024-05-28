@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { DialogStateInterface } from 'types';
 
 export enum DialogWindowType {
     RESET_PASSWORD = 'reset_password',
@@ -22,12 +23,12 @@ interface Res {
     handleOpenDialog: (modalType) => void;
     activeDialogWindow: DialogWindowType | null;
     handleSetDialogState: (data) => void;
-    dialogState: { imageUrl: string } | null;
+    dialogState: DialogStateInterface | null;
 }
 
 export const useFormsApp = (): Res => {
     const [activeDialogWindow, seActiveDialogWindow] = useState<DialogWindowType | null>(null);
-    const [dialogState, setDialogState] = useState<{ imageUrl: string } | null>(null);
+    const [dialogState, setDialogState] = useState<DialogStateInterface | null>(null);
 
     const handleOpenDialog = modalType => {
         if (modalType === null) {
@@ -40,6 +41,7 @@ export const useFormsApp = (): Res => {
     };
 
     const handleSetDialogState = state => {
+        console.log(state);
         setDialogState(state);
     };
 

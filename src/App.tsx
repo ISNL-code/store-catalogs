@@ -4,7 +4,6 @@ import mainTheme from 'theme/mainTheme';
 import { useUserApi } from 'api/useUserApi';
 import { StoreInterface, UserDataInterface } from 'types';
 import { STORE_CONFIG } from 'store_constants/stores_config';
-import Head from 'layouts/Head';
 import { ViewModeType } from 'store_constants/types';
 import AppRouting from 'AppRouting';
 import AppLogic from 'AppLogic';
@@ -13,8 +12,14 @@ import { useAddToCart } from 'layouts/hooks/useAddToCart';
 import { useAddToFavorites } from 'layouts/hooks/useAddToFavorites';
 import { Toaster } from 'react-hot-toast';
 import { useDevice } from 'hooks/useDevice';
+import LandingModeRouting from 'LandingModeRouting';
+import LandingLogic from 'LandingLogic';
+import { APP_CONFIG, WEB_MODE_ENUMS } from 'APP_CONFIG';
+import HeadLandingHTML from 'layouts/Head-Landing-HTML';
+import HeadStoresHTML from 'layouts/Head-Stores-HTML';
 
 const App = () => {
+    const { WEB_MODE } = APP_CONFIG;
     const { STORE_CODE, APP_LANGUAGE } = STORE_CONFIG;
     const [lang, setLang] = useState<string>(APP_LANGUAGE);
     const [viewMode, setViewMode] = useState<ViewModeType | null>(null);
@@ -40,23 +45,29 @@ const App = () => {
     const cart = useAddToCart({ loadingUser: isFetchingUser });
     const favorites = useAddToFavorites({ loadingUser: isFetchingUser });
 
-    AppLogic({
-        setAuth,
-        updateUserData,
-        setCurrentUserData,
-        lang,
-        setLang,
-        infoAlert,
-        setInfoAlert,
-        viewMode,
-        setViewMode,
-        storeDataRes,
-        setStore,
-        loadStore,
-        userData,
-    });
+    if (WEB_MODE === WEB_MODE_ENUMS?.STORE_MODE) {
+        AppLogic({
+            setAuth,
+            updateUserData,
+            setCurrentUserData,
+            lang,
+            setLang,
+            infoAlert,
+            setInfoAlert,
+            viewMode,
+            setViewMode,
+            storeDataRes,
+            setStore,
+            loadStore,
+            userData,
+        });
 
-    if (auth === null || !STORE_CODE) return <></>;
+        if (auth === null || !STORE_CODE) return <></>;
+    }
+
+    if (WEB_MODE === WEB_MODE_ENUMS?.LANDING_MODE) {
+        LandingLogic();
+    }
 
     return (
         <>
@@ -64,26 +75,37 @@ const App = () => {
                 position="top-right"
                 toastOptions={{ style: { width: '100vw', maxWidth: sx ? '100vw' : '' }, duration: 3000 }}
             />
-            <Head />
+
             <ThemeProvider theme={mainTheme}>
-                <AppRouting
-                    auth={auth}
-                    setAuth={setAuth}
-                    lang={lang}
-                    setLang={setLang}
-                    currentUserData={currentUserData}
-                    isFetchingUser={isFetchingUser}
-                    updateUserData={updateUserData}
-                    setCurrentUserData={setCurrentUserData}
-                    userError={userError}
-                    viewMode={viewMode}
-                    setViewMode={setViewMode}
-                    infoAlert={infoAlert}
-                    setInfoAlert={setInfoAlert}
-                    store={store}
-                    favorites={favorites}
-                    cart={cart}
-                />
+                {WEB_MODE === WEB_MODE_ENUMS?.LANDING_MODE && (
+                    <>
+                        <HeadLandingHTML />
+                        <LandingModeRouting lang={lang} setLang={setLang} />
+                    </>
+                )}
+                {WEB_MODE === WEB_MODE_ENUMS?.STORE_MODE && (
+                    <>
+                        <HeadStoresHTML />
+                        <AppRouting
+                            auth={auth}
+                            setAuth={setAuth}
+                            lang={lang}
+                            setLang={setLang}
+                            currentUserData={currentUserData}
+                            isFetchingUser={isFetchingUser}
+                            updateUserData={updateUserData}
+                            setCurrentUserData={setCurrentUserData}
+                            userError={userError}
+                            viewMode={viewMode}
+                            setViewMode={setViewMode}
+                            infoAlert={infoAlert}
+                            setInfoAlert={setInfoAlert}
+                            store={store}
+                            favorites={favorites}
+                            cart={cart}
+                        />
+                    </>
+                )}
             </ThemeProvider>
         </>
     );

@@ -1,6 +1,14 @@
 import TableSizeDialog from 'components/organisms/Modals/TableSizeDialog';
+import { DialogStateInterface } from 'types';
 
-const TableSizeWindow = ({ isOpen, setIsOpen, string, dialogState }) => {
+interface Props {
+    isOpen: boolean;
+    setIsOpen;
+    string;
+    dialogState?: DialogStateInterface | null;
+}
+
+const TableSizeWindow = ({ isOpen, setIsOpen, string, dialogState }: Props) => {
     if (!isOpen) return null;
 
     return (

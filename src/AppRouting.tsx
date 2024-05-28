@@ -20,7 +20,7 @@ import PAGE_404 from 'pages/TechPages/404';
 import PAGE_500 from 'pages/TechPages/500';
 
 interface Props {
-    auth: boolean;
+    auth: boolean | null;
     setAuth;
     lang: string;
     setLang;

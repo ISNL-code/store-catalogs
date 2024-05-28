@@ -1,3 +1,4 @@
+import { Dispatch, SetStateAction } from 'react';
 import { ViewModeType } from 'store_constants/types';
 
 export interface HomeContextInterface {
@@ -5,7 +6,7 @@ export interface HomeContextInterface {
     lang: string;
     string: Record<string, any>;
     handleOpenDialog;
-    handleSetDialogState;
+    handleSetDialogState: Dispatch<SetStateAction<DialogStateInterface>>;
     dialogState;
 
     //store data
@@ -23,8 +24,21 @@ export interface HomeContextInterface {
     instrumentalBarHeight: number;
     instrumentalBarPadding: number;
     headerHeight: number;
-    footerMenuHeight: number;
     appXPadding: number;
+    footerMenuHeight: number;
+}
+
+export interface LandingContextInterface {
+    //main
+    string: Record<string, any>;
+    handleOpenDialog;
+    handleSetDialogState: Dispatch<SetStateAction<DialogStateInterface>>;
+
+    //css
+    headerHeight: number;
+    appXPadding: number;
+    instrumentalBarHeight: number;
+    instrumentalBarPadding: number;
 }
 
 export interface CatalogContextInterface {
@@ -36,7 +50,7 @@ export interface CatalogContextInterface {
     viewMode: ViewModeType;
     setViewMode;
     handleOpenDialog;
-    handleSetDialogState;
+    handleSetDialogState: Dispatch<SetStateAction<DialogStateInterface>>;
     dialogState;
 
     //store data
@@ -81,6 +95,11 @@ export interface CatalogContextInterface {
     //cart & favorites
     cart: useAddToCartDataInterface;
     favorites: useAddToFavoriteDataInterface;
+}
+
+export interface DialogStateInterface {
+    imageUrl?: string;
+    note?: string;
 }
 
 export interface useAddToCartDataInterface {

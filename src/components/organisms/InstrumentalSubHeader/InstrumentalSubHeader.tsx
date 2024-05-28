@@ -2,7 +2,7 @@ import { Box } from '@mui/material';
 import { Colors } from 'colors';
 import { ReactNode } from 'react';
 import { useOutletContext } from 'react-router-dom';
-import { CatalogContextInterface } from 'types';
+import { CatalogContextInterface, LandingContextInterface } from 'types';
 
 interface InstrumentalBarInterface {
     StartSlot?: () => ReactNode;
@@ -12,7 +12,11 @@ interface InstrumentalBarInterface {
 }
 
 const InstrumentalSubHeader = ({ StartSlot, EndSlot }: InstrumentalBarInterface) => {
-    const { instrumentalBarHeight, headerHeight, instrumentalBarPadding }: CatalogContextInterface = useOutletContext();
+    const {
+        instrumentalBarHeight,
+        instrumentalBarPadding,
+        headerHeight,
+    }: CatalogContextInterface | LandingContextInterface = useOutletContext();
 
     return (
         <Box

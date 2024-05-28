@@ -1,5 +1,5 @@
 import { createTheme } from '@mui/material';
-import { indigo, grey, lightGreen, red, green } from '@mui/material/colors';
+import { indigo, grey, lightGreen, red, green, yellow } from '@mui/material/colors';
 
 const mainTheme = createTheme({
     palette: {
@@ -23,6 +23,11 @@ const mainTheme = createTheme({
             light: red[100],
             dark: red[800],
         },
+        info: {
+            main: yellow[600],
+            light: yellow[100],
+            dark: yellow[900],
+        },
     },
 
     typography: {
@@ -33,7 +38,7 @@ const mainTheme = createTheme({
             textTransform: 'capitalize',
         },
 
-        h1: { fontSize: '72px', lineHeight: 1.1, fontWeight: 700, fontFamily: 'Roboto' },
+        h1: { fontSize: '72px', lineHeight: 1, fontWeight: 700, fontFamily: 'Roboto' },
         h2: { fontSize: '24px', lineHeight: 1.1, fontWeight: 500, color: '#000' },
         h3: { fontSize: '18px', lineHeight: 1.1, fontWeight: 500, color: '#000' }, //
         h4: { fontSize: '16px', lineHeight: 1.1, fontWeight: 400, color: '#1D1D1D' }, //
