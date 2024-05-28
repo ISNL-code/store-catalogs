@@ -72,7 +72,7 @@ export default function QuestionForm({ isOpen, setIsOpen, string }) {
                 variant="info"
                 string={string}
                 title={null}
-                onClose={() => setIsOpen(false)}
+                onClose={() => setIsOpen(null)}
                 onRefresh={() => {
                     formik.resetForm(); // Reset form errors and values
                     setFormValues({
