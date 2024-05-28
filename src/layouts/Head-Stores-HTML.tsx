@@ -1,6 +1,6 @@
-import { STORE_CONFIG } from 'store_constants/stores_config';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { HelmetProvider, Helmet } from 'react-helmet-async';
+import { STORE_CONFIG } from 'store_constants/stores_config';
 
 declare global {
     interface Window {
@@ -12,7 +12,7 @@ const HeadStoresHTML: React.FC = () => {
     const { WEB_HEAD_DATA, STORE_NAME, HTML_LANG } = STORE_CONFIG;
     const { STORE_TITLE, STORE_DESCRIPTION, GOOGLE_ANALYTICS_ID, STORE_LOGO } = WEB_HEAD_DATA;
 
-    // Используем useState для хранения данных манифеста
+    // Используем useState для хранения URL манифеста
     const [manifestUrl, setManifestUrl] = useState('');
 
     // Функция для создания манифеста динамически
@@ -22,24 +22,24 @@ const HeadStoresHTML: React.FC = () => {
             name: `Create ${STORE_NAME} sample`,
             icons: [
                 {
-                    src: `dataBase/images/logos/${STORE_LOGO}`,
+                    src: `/dataBase/images/logos/${STORE_LOGO}`,
                     sizes: '64x64 32x32 24x24 16x16',
                     type: 'image/x-icon',
                 },
                 {
-                    src: `dataBase/images/logos/${STORE_LOGO}`,
+                    src: `/dataBase/images/logos/${STORE_LOGO}`,
                     type: 'image/png',
                     sizes: '192x192',
                     purpose: 'maskable',
                 },
                 {
-                    src: `dataBase/images/logos/${STORE_LOGO}`,
+                    src: `/dataBase/images/logos/${STORE_LOGO}`,
                     type: 'image/png',
                     sizes: '192x192',
                     purpose: 'any',
                 },
                 {
-                    src: `dataBase/images/logos/${STORE_LOGO}`,
+                    src: `/dataBase/images/logos/${STORE_LOGO}`,
                     type: 'image/png',
                     sizes: '512x512',
                 },
@@ -64,29 +64,21 @@ const HeadStoresHTML: React.FC = () => {
         <HelmetProvider>
             <Helmet>
                 <html lang={HTML_LANG} />
-                <meta name="theme-color" content="#ffffff0" />
+                <meta name="theme-color" content="#ffffff" />
                 <title>{STORE_TITLE}</title>
                 <meta name="description" content={STORE_DESCRIPTION} />
-                <link rel="icon" href={require(`dataBase/images/logos/${STORE_LOGO}`)} />
-                <link rel="apple-touch-icon" href={require(`dataBase/images/logos/${STORE_LOGO}`)} />
+                <link rel="icon" href={`/dataBase/images/logos/${STORE_LOGO}`} />
+                <link rel="apple-touch-icon" href={`/dataBase/images/logos/${STORE_LOGO}`} />
                 <link rel="manifest" href={manifestUrl} />
                 <script async src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ANALYTICS_ID}`}></script>
                 <script>
-                    {`function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","${GOOGLE_ANALYTICS_ID}")`}
-                </script>
-                <script>
                     {`
-                    if ('serviceWorker' in navigator) {
-                        window.addEventListener('load', () => {
-                            navigator.serviceWorker.register('./serviceWorker.js')
-                                .then(reg => {
-                                    console.log('Service Worker registered with scope:', reg.scope);
-                                })
-                                .catch(err => {
-                                    console.error('Service Worker registration failed:', err);
-                                });
-                        });
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag() {
+                        dataLayer.push(arguments);
                     }
+                    gtag('js', new Date());
+                    gtag('config', '${GOOGLE_ANALYTICS_ID}');
                     `}
                 </script>
             </Helmet>
