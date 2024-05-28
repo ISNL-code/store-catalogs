@@ -55,5 +55,5 @@ export const ALBERTO_BINI_KZ_WS = {
         google_analytics_id: 'G-NFQK29FTWM',
         store_logo: 'alberto_bini_logo.png',
     },
-    user_options: { view_mode: ViewModeType?.card },
+    user_options: { view_mode: ViewModeType?.grid_m },
 };

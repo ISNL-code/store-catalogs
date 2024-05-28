@@ -59,5 +59,5 @@ export const ALBERTO_BINI_EU_WS = {
         google_analytics_id: 'G-SPMQE8GHGM',
         store_logo: 'alberto_bini_logo.png',
     },
-    user_options: { view_mode: ViewModeType?.card },
+    user_options: { view_mode: ViewModeType?.grid_m },
 };
