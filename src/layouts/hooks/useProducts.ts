@@ -27,7 +27,7 @@ export const useProducts = ({
     const { OPTIONS } = STORE_CONFIG;
     const { STORE_TYPE } = OPTIONS;
     const mount = useIsMount();
-    const count = sx ? 20 : 35;
+    const count = sx ? 28 : 35;
 
     const [currentProductsPage, setCurrentProductsPage] = useState(0);
     const [productsList, setProductsList] = useState<LoadedProductListInterface[] | [] | null>(null);
@@ -105,35 +105,43 @@ export const useProducts = ({
     };
 
     useEffect(() => {
+        console.log('MOUNT');
         handleUpdateProducts('refresh');
     }, []); // eslint-disable-line
 
     useEffect(() => {
+        if (mount) return;
         setCurrentProductsPage(0);
         setTimeout(() => {
+            console.log('APPLY FILTERS');
             handleUpdateProducts('refresh');
         }, 0);
     }, [applyFilters]); // eslint-disable-line
 
     useEffect(() => {
+        if (mount) return;
         setCurrentProductsPage(0);
         setTimeout(() => {
+            console.log('REFRESH FILTERS');
             handleUpdateProducts('refresh');
-        }, 0);
+        }, 100);
     }, [refreshFilters]); // eslint-disable-line
 
     useEffect(() => {
         if (mount) return;
         if (currentProductsPage === 0) return;
+        console.log('ADD PAGE', currentProductsPage);
         handleUpdateProducts('add_page');
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [currentProductsPage]);
 
     useEffect(() => {
+        if (mount) return;
         setCurrentProductsPage(0);
         setTimeout(() => {
+            console.log('CHANGE LANGUAGE');
             handleUpdateProducts('refresh');
-        }, 0);
+        }, 100);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [lang]);
 

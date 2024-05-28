@@ -3,7 +3,17 @@ import { Box, Button, Typography } from '@mui/material';
 import { useOutletContext } from 'react-router-dom';
 import { useDevice } from 'hooks/useDevice';
 
-const PaginationButton = ({
+interface PaginationButtonProps {
+    setCurrentPage: (page: number) => void;
+    totalCount: number;
+    loading: boolean;
+    productsList: any[] | null;
+    page: number;
+    totalPages: number;
+    activateAutomatically: boolean;
+}
+
+const PaginationButton: React.FC<PaginationButtonProps> = ({
     setCurrentPage,
     totalCount,
     loading,
@@ -14,43 +24,46 @@ const PaginationButton = ({
 }) => {
     const { sx } = useDevice();
     const { string }: any = useOutletContext();
-    const ref = useRef(null);
+    const ref = useRef<HTMLDivElement | null>(null);
+    const observerRef = useRef<IntersectionObserver | null>(null);
 
     useEffect(() => {
+        if (!totalPages) return;
         if (!sx) return;
-        if (!productsList?.length || totalPages === page + 1) return;
-        const timer = setTimeout(() => {
-            if (ref.current) {
-                const observer = new IntersectionObserver(
-                    entries => {
-                        const [entry] = entries;
-                        if (
-                            entry.isIntersecting &&
-                            activateAutomatically &&
-                            !loading &&
-                            productsList?.length &&
-                            page < totalPages
-                        ) {
-                            setCurrentPage(page + 1);
-                        }
-                    },
-                    {
-                        rootMargin: '1500px',
-                        threshold: 1,
-                    }
-                );
-                observer.observe(ref.current);
 
-                return () => {
-                    observer.unobserve(ref?.current as any);
-                };
+        const currentRef = ref.current; // Capture the current reference
+
+        const handleIntersection = (entries: IntersectionObserverEntry[]) => {
+            const [entry] = entries;
+            if (
+                entry.isIntersecting &&
+                activateAutomatically &&
+                !loading &&
+                productsList?.length &&
+                page < totalPages
+            ) {
+                setCurrentPage(page + 1);
             }
-        }, 250);
+        };
 
-        return () => clearTimeout(timer);
-    }, [activateAutomatically, loading, productsList, page, totalPages, sx]); // eslint-disable-line
+        if (currentRef) {
+            observerRef.current = new IntersectionObserver(handleIntersection, {
+                rootMargin: '1000px',
+                threshold: 1,
+            });
+            observerRef.current.observe(currentRef);
+        }
 
-    if (productsList?.length < 12 || !totalCount) return null;
+        return () => {
+            if (observerRef.current && currentRef) {
+                observerRef.current.unobserve(currentRef);
+                observerRef.current.disconnect();
+                observerRef.current = null;
+            }
+        };
+    }, [activateAutomatically, loading, productsList, page, totalPages, sx, setCurrentPage]);
+
+    if (!totalCount) return null;
 
     return (
         <Box
