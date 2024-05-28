@@ -18,6 +18,7 @@ const PaginationButton = ({
 
     useEffect(() => {
         if (!sx) return;
+        if (!productsList?.length || totalPages === page + 1) return;
         const timer = setTimeout(() => {
             if (ref.current) {
                 const observer = new IntersectionObserver(
