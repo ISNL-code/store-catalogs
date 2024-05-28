@@ -84,105 +84,110 @@ const AppRouting = ({
     return (
         <Router>
             <Routes>
-                <Route
-                    path={`${ROUTES?.NEW_PASSWORD}/:storeCode/:tokenId`}
-                    element={<NewPassword lang={lang} setLang={setLang} auth={auth} setAuth={setAuth} />}
-                />
-                <Route path={`${ROUTES?.PAGE_401}`} element={<PAGE_401 />} />
-                <Route path={`${ROUTES?.PAGE_403}`} element={<PAGE_403 />} />
-                <Route path={`${ROUTES?.PAGE_404}`} element={<PAGE_404 />} />
-                <Route path={`${ROUTES?.PAGE_500}`} element={<PAGE_500 />} />
+                <Route path="/">
+                    <Route index element={<Navigate to={handleRedirect()} replace />} />
+                    <Route
+                        path={`${ROUTES?.NEW_PASSWORD}/:storeCode/:tokenId`}
+                        element={<NewPassword lang={lang} setLang={setLang} auth={auth} setAuth={setAuth} />}
+                    />
+                    <Route path={`${ROUTES?.PAGE_401}`} element={<PAGE_401 />} />
+                    <Route path={`${ROUTES?.PAGE_403}`} element={<PAGE_403 />} />
+                    <Route path={`${ROUTES?.PAGE_404}`} element={<PAGE_404 />} />
+                    <Route path={`${ROUTES?.PAGE_500}`} element={<PAGE_500 />} />
 
-                {REQUIRED_REGISTRATION && !auth && (
-                    <>
-                        <Route
-                            path={`${ROUTES?.SECURITY}/:storeCode/:formType`}
-                            element={<SecurityLayout lang={lang} setLang={setLang} setAuth={setAuth} store={store} />}
-                        />
+                    {REQUIRED_REGISTRATION && !auth && (
+                        <>
+                            <Route
+                                path={`${ROUTES?.SECURITY}/:storeCode/:formType`}
+                                element={
+                                    <SecurityLayout lang={lang} setLang={setLang} setAuth={setAuth} store={store} />
+                                }
+                            />
 
+                            <Route
+                                path="*"
+                                element={
+                                    <Navigate
+                                        to={
+                                            REQUIRED_REGISTRATION
+                                                ? LOGIN_ROUTE?.root(STORE_CODE, 'login')
+                                                : handleRedirect()
+                                        }
+                                        replace
+                                    />
+                                }
+                            />
+                        </>
+                    )}
+
+                    {handleCheckAccess(ROUTES?.HOME) && (
                         <Route
-                            path="*"
+                            path={ROUTES?.HOME}
                             element={
-                                <Navigate
-                                    to={
-                                        REQUIRED_REGISTRATION
-                                            ? LOGIN_ROUTE?.root(STORE_CODE, 'login')
-                                            : handleRedirect()
-                                    }
-                                    replace
+                                <Home
+                                    store={store}
+                                    lang={lang}
+                                    setLang={setLang}
+                                    auth={auth}
+                                    setAuth={setAuth}
+                                    userData={{
+                                        currentUserData,
+                                        isFetchingUser,
+                                        updateUserData,
+                                        setCurrentUserData,
+                                        userError,
+                                    }}
+                                    cart={cart}
+                                    favorites={favorites}
                                 />
                             }
-                        />
-                    </>
-                )}
+                        >
+                            <Route index path={`${ROUTES?.HOME}/:storeCode`} element={<HomePage />} />
+                            <Route path="*" element={<Navigate to={HOME_ROUTE?.root(STORE_CODE)} replace />} />
+                        </Route>
+                    )}
 
-                {handleCheckAccess(ROUTES?.HOME) && (
-                    <Route
-                        path={ROUTES?.HOME}
-                        element={
-                            <Home
-                                store={store}
-                                lang={lang}
-                                setLang={setLang}
-                                auth={auth}
-                                setAuth={setAuth}
-                                userData={{
-                                    currentUserData,
-                                    isFetchingUser,
-                                    updateUserData,
-                                    setCurrentUserData,
-                                    userError,
-                                }}
-                                cart={cart}
-                                favorites={favorites}
-                            />
-                        }
-                    >
-                        <Route index path={`${ROUTES?.HOME}/:storeCode`} element={<HomePage />} />
-                        <Route path="*" element={<Navigate to={HOME_ROUTE?.root(STORE_CODE)} replace />} />
-                    </Route>
-                )}
-
-                {handleCheckAccess(ROUTES?.STORE) && (
-                    <Route
-                        path={ROUTES?.STORE}
-                        element={
-                            <Catalog
-                                store={store}
-                                lang={lang}
-                                setLang={setLang}
-                                viewMode={viewMode}
-                                setViewMode={setViewMode}
-                                auth={auth}
-                                setAuth={setAuth}
-                                userData={{
-                                    currentUserData,
-                                    isFetchingUser,
-                                    updateUserData,
-                                    setCurrentUserData,
-                                    userError,
-                                }}
-                                infoAlert={infoAlert}
-                                setInfoAlert={setInfoAlert}
-                                cart={cart}
-                                favorites={favorites}
-                            />
-                        }
-                    >
-                        <Route index path={`${ROUTES?.STORE}/:storeCode`} element={<CatalogPage />} />
+                    {handleCheckAccess(ROUTES?.STORE) && (
                         <Route
-                            path={`${ROUTES?.STORE}/:storeCode/product/:productId/model/:modelSku`}
-                            element={<ProductDetailsPage />}
-                        />
-                        <Route path={`${ROUTES?.STORE}/:storeCode/cart`} element={<CartPage />} />
-                        <Route path={`${ROUTES?.STORE}/:storeCode/favorites`} element={<FavoritesPage />} />
-                        <Route path={`${ROUTES?.STORE}/:storeCode/info`} element={<InformationPage />} />
-                        <Route path={`${ROUTES?.STORE}/:storeCode/profile`} element={<UserProfile />} />
-                        <Route path={`${ROUTES?.STORE}/:storeCode/contacts`} element={<ContactsManagePage />} />
-                        <Route path={`${ROUTES?.STORE}/:storeCode/orders`} element={<UserOrders />} />
-                        <Route path="*" element={<Navigate to={STORE_ROUTE?.root(STORE_CODE)} replace />} />
-                    </Route>
-                )}
+                            path={ROUTES?.STORE}
+                            element={
+                                <Catalog
+                                    store={store}
+                                    lang={lang}
+                                    setLang={setLang}
+                                    viewMode={viewMode}
+                                    setViewMode={setViewMode}
+                                    auth={auth}
+                                    setAuth={setAuth}
+                                    userData={{
+                                        currentUserData,
+                                        isFetchingUser,
+                                        updateUserData,
+                                        setCurrentUserData,
+                                        userError,
+                                    }}
+                                    infoAlert={infoAlert}
+                                    setInfoAlert={setInfoAlert}
+                                    cart={cart}
+                                    favorites={favorites}
+                                />
+                            }
+                        >
+                            <Route index path={`${ROUTES?.STORE}/:storeCode`} element={<CatalogPage />} />
+                            <Route
+                                path={`${ROUTES?.STORE}/:storeCode/product/:productId/model/:modelSku`}
+                                element={<ProductDetailsPage />}
+                            />
+                            <Route path={`${ROUTES?.STORE}/:storeCode/cart`} element={<CartPage />} />
+                            <Route path={`${ROUTES?.STORE}/:storeCode/favorites`} element={<FavoritesPage />} />
+                            <Route path={`${ROUTES?.STORE}/:storeCode/info`} element={<InformationPage />} />
+                            <Route path={`${ROUTES?.STORE}/:storeCode/profile`} element={<UserProfile />} />
+                            <Route path={`${ROUTES?.STORE}/:storeCode/contacts`} element={<ContactsManagePage />} />
+                            <Route path={`${ROUTES?.STORE}/:storeCode/orders`} element={<UserOrders />} />
+                            <Route path="*" element={<Navigate to={STORE_ROUTE?.root(STORE_CODE)} replace />} />
+                        </Route>
+                    )}
+                </Route>
 
                 <Route path="*" element={<Navigate to={handleRedirect()} replace />} />
             </Routes>
