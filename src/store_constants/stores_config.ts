@@ -24,7 +24,7 @@ const stores = [
 ];
 
 const storeConfig = (): STORE_CONFIG_Interface => {
-    const currentUrl = window.location.href;
+    const currentUrl = window.location.origin;
     const matchingDomain = stores.find(domain => domain.URL.some(url => currentUrl.includes(url)));
 
     return {
