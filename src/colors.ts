@@ -1,7 +1,6 @@
 import mainTheme from 'theme/mainTheme';
 
 export enum Colors {
-    LIGHT_BLUE = 'rgb(85, 121, 150)',
     GRAY = '#949494',
     GRAY_100 = 'rgb(250, 250, 250)',
     GRAY_300 = 'rgb(240, 240, 240)',
@@ -13,6 +12,7 @@ export enum Colors {
     WHITE_10 = '#ffffff21',
     BLACK = '#000',
     ORANGE = '#f38620',
+    LIGHT_BLUE = '#4990ec',
 
     // shadows
     SHADOW = `0 0 5px 3px #afafaf66`,
@@ -24,7 +24,10 @@ export enum Colors {
 interface ColorInterface {
     PRIMARY: string;
     PRIMARY_LIGHT: string;
+    PRIMARY_DARK: string;
     SECONDARY: string;
+    SECONDARY_LIGHT: string;
+    SECONDARY_DARK: string;
     SUCCESS: string;
     ERROR: string;
 }
@@ -32,7 +35,10 @@ interface ColorInterface {
 export const Color: ColorInterface = {
     PRIMARY: mainTheme?.palette?.primary?.main,
     PRIMARY_LIGHT: mainTheme?.palette?.primary?.light,
+    PRIMARY_DARK: mainTheme?.palette?.primary?.dark,
+    SECONDARY: mainTheme?.palette?.secondary?.main,
+    SECONDARY_DARK: mainTheme?.palette?.secondary?.dark,
+    SECONDARY_LIGHT: mainTheme?.palette?.secondary?.light,
     SUCCESS: mainTheme?.palette?.success?.main,
     ERROR: mainTheme?.palette?.error?.main,
-    SECONDARY: mainTheme?.palette?.secondary?.main,
 };

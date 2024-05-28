@@ -22,7 +22,7 @@ export default function LandingLayout({ lang, setLang }) {
     const INSTRUMENTAL_BAR_PADDINGS = sx ? 2 : 4;
     const { currentLanguage } = useGetLanguage({ lang, storeName: 'Sales Nest Catalogs' });
 
-    const { activeDialogWindow, handleOpenDialog } = useFormsApp();
+    const { activeDialogWindow, handleOpenDialog, handleSetDialogState, dialogState } = useFormsApp();
 
     return (
         <Box>
@@ -39,6 +39,7 @@ export default function LandingLayout({ lang, setLang }) {
                     context={{
                         //main
                         handleOpenDialog,
+                        handleSetDialogState,
 
                         // css
                         headerHeight: HEADER_HEIGHT,
@@ -55,6 +56,7 @@ export default function LandingLayout({ lang, setLang }) {
                 string={currentLanguage?.string}
                 activeDialogWindow={activeDialogWindow}
                 handleOpenDialog={handleOpenDialog}
+                dialogState={dialogState}
             />
         </Box>
     );

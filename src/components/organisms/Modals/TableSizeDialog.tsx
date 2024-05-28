@@ -3,13 +3,14 @@ import { Button, DialogActions, Dialog, ClickAwayListener } from '@mui/material'
 import { Colors } from 'colors';
 import DialogContent from '@mui/material/DialogContent';
 import { useDevice } from 'hooks/useDevice';
+import { DialogStateInterface } from 'types';
 
 interface Props {
     string; // Assuming `string` is used for the close button text
     onClose: () => void;
     closeAvailable: boolean;
     onSubmit: () => void;
-    dialogState;
+    dialogState?: DialogStateInterface | null;
 }
 
 const TableSizeDialog = ({ string, onClose, closeAvailable, onSubmit, dialogState }: Props) => {

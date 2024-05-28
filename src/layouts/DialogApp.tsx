@@ -13,6 +13,7 @@ import ClearCartConfirm from 'pages/DialogApp/ClearCartConfirm';
 import ClearFavoritesConfirm from 'pages/DialogApp/ClearFavoritesConfirm';
 import WarningOrderLimit from 'pages/DialogApp/WarningOrderLimit';
 import TableSizeWindow from 'pages/DialogApp/TableSizeWindow';
+import { DialogStateInterface } from 'types';
 
 interface Props {
     location;
@@ -22,7 +23,7 @@ interface Props {
     setAuth?;
     favorites?;
     cart?;
-    dialogState?;
+    dialogState?: DialogStateInterface | null;
 }
 
 const DialogApp = ({
@@ -65,6 +66,7 @@ const DialogApp = ({
                 isOpen={activeDialogWindow === DialogWindowType?.QUESTION}
                 setIsOpen={handleOpenDialog}
                 string={string}
+                dialogState={dialogState}
             />
             <NewPassword
                 isOpen={activeDialogWindow === DialogWindowType?.NEW_PASSWORD}
