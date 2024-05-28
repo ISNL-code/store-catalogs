@@ -13,7 +13,7 @@ export const useProductsApi = () => {
                         categories.length ? '' : '&origin=customer'
                     }&available=true${categories?.length ? '&categoryIds=' + categories : ''}`,
                 }),
-            { enabled: !!lang }
+            { enabled: false }
         );
     };
 

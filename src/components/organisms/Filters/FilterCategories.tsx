@@ -6,10 +6,19 @@ import { Backdrop, Box, List, ListItemText, MenuItem, SwipeableDrawer, Typograph
 import { useDevice } from 'hooks/useDevice';
 import FilterButton from 'components/molecules/ToolsButtons/FilterButton';
 import { Color } from 'colors';
+import { CatalogContextInterface } from 'types';
 
 const FilterCategories = ({ isShown }) => {
-    const { string, categoriesList, queryCategories, setQueryCategories, handleCategoriesQuery, setApplyFilters }: any =
-        useOutletContext();
+    const {
+        string,
+        categoriesList,
+        queryCategories,
+        setQueryCategories,
+        handleCategoriesQuery,
+        setApplyFilters,
+        applyFilters,
+        setRefreshFilters,
+    }: CatalogContextInterface = useOutletContext();
     const { s } = useDevice();
     const [state, setState] = useState({
         top: false,
@@ -161,7 +170,7 @@ const FilterCategories = ({ isShown }) => {
                 <Fragment key={anchor}>
                     <Box sx={{ position: 'relative' }}>
                         <FilterButton isShown={true} action={toggleDrawer(anchor, true)} />
-                        {queryCategories.length > 0 && (
+                        {applyFilters && (
                             <Box
                                 sx={{
                                     width: 10,
@@ -197,11 +206,13 @@ const FilterCategories = ({ isShown }) => {
                             <Button
                                 variant="outlined"
                                 color="primary"
-                                size="small"
+                                size="large"
                                 sx={{ borderRadius: '16px' }}
                                 onClick={() => {
                                     setState({ top: false, right: false });
-                                    setApplyFilters(true);
+                                    if (applyFilters) {
+                                        setRefreshFilters(true);
+                                    } else setApplyFilters(true);
                                 }}
                             >
                                 {string?.submit}
@@ -210,14 +221,14 @@ const FilterCategories = ({ isShown }) => {
                                 disabled={!queryCategories?.length}
                                 variant="outlined"
                                 color="primary"
-                                size="small"
+                                size="large"
                                 sx={{ borderRadius: '16px' }}
                                 onClick={() => {
                                     setQueryCategories(_ => {
                                         return [];
                                     });
                                     setState({ top: false, right: false });
-                                    setApplyFilters(true);
+                                    setApplyFilters(false);
                                 }}
                             >
                                 {string?.clear}

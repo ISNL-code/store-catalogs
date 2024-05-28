@@ -2,11 +2,8 @@ import { Box } from '@mui/material';
 import Grid from '@mui/material/Unstable_Grid2';
 import { useDevice } from 'hooks/useDevice';
 import Slider from 'react-slick';
-import { StoresContextInterface } from 'types';
-import { useOutletContext } from 'react-router-dom';
 
 const Slides = () => {
-    const { string }: StoresContextInterface = useOutletContext();
     const { sm, sx } = useDevice();
 
     const SLIDES = [

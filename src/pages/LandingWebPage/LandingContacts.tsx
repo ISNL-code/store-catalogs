@@ -15,7 +15,7 @@ import Grid from '@mui/material/Unstable_Grid2';
 import CardItem from 'components/atoms/Sections/CardItem';
 
 const LandingContacts = () => {
-    const { string, appXPadding }: LandingContextInterface = useOutletContext();
+    const { string }: LandingContextInterface = useOutletContext();
     const { sm, sx } = useDevice();
 
     useEffect(() => {

@@ -79,11 +79,13 @@ export interface CatalogContextInterface {
     currentProductsPage: number;
 
     //categories data
-    categoriesList: {};
+    categoriesList: CategoryInterface[] | [];
     queryCategories: string[];
     setQueryCategories;
     handleCategoriesQuery;
     setApplyFilters;
+    applyFilters: boolean;
+    setRefreshFilters: Dispatch<SetStateAction<boolean>>;
 
     //css data
     instrumentalBarHeight: number;

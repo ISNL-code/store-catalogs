@@ -34,13 +34,16 @@ const HeaderNavButton = ({
         return (
             <IconButton
                 sx={{
+                    mx: 0.1,
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
                     width: 70,
-                    height: 50,
-                    borderRadius: 4,
-                    '&:hover': { backgroundColor: Colors?.WHITE },
+                    height: 40,
+                    p: 0,
+                    borderRadius: 2,
+                    backgroundColor: active || isActive ? Colors?.WHITE : '',
+                    '&:hover': { backgroundColor: Colors?.WHITE, opacity: active || isActive ? 1 : 0.75 },
                 }}
                 color={active || isActive ? `primary` : 'default'}
                 onClick={e => {

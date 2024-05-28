@@ -133,7 +133,7 @@ const Catalog = () => {
 
             {productsList?.length ? (
                 <Box sx={{ minHeight: '100%' }}>
-                    <TransitionBox dependency={loading} time={0}>
+                    <TransitionBox dependency={loading} time={100}>
                         {MIN_ITEMS_TO_BUY > 1 && (
                             <Collapse in={open}>
                                 <Box mb={2}>
@@ -162,10 +162,10 @@ const Catalog = () => {
                             </Collapse>
                         )}
                         <Grid className="CatalogList" container spacing={getGridSpacing()?.spacing}>
-                            {productsList?.map(product => {
+                            {productsList?.map((product, idx) => {
                                 return (
                                     <CatalogListCard
-                                        key={product.id}
+                                        key={idx}
                                         modelsVariants={product.variants as any}
                                         name={product.name}
                                         productId={product.id}

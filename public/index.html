@@ -2,7 +2,7 @@
 <html lang="uk">
     <head>
         <meta charset="utf-8" />
-        <meta name="theme-color" content="#000000" />
+        <meta name="theme-color" content="#ffffff" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -32,18 +32,4 @@
         <noscript>You need to enable JavaScript to run this app.</noscript>
         <div id="root"></div>
     </body>
-    <script>
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker
-                    .register('./serviceWorker.js')
-                    .then(reg => {
-                        console.log('Worker Registered');
-                    })
-                    .catch(err => {
-                        console.log('Error in service worker registration.');
-                    });
-            });
-        }
-    </script>
 </html>

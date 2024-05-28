@@ -1,5 +1,5 @@
 import { ThemeProvider } from '@mui/material';
-import { useState } from 'react';
+import { useState, useMemo, useCallback } from 'react';
 import mainTheme from 'theme/mainTheme';
 import { useUserApi } from 'api/useUserApi';
 import { StoreInterface, UserDataInterface } from 'types';
@@ -45,8 +45,14 @@ const App = () => {
     const cart = useAddToCart({ loadingUser: isFetchingUser });
     const favorites = useAddToFavorites({ loadingUser: isFetchingUser });
 
-    if (WEB_MODE === WEB_MODE_ENUMS?.STORE_MODE) {
-        AppLogic({
+    const memoizedSetLang = useCallback(newLang => setLang(newLang), []);
+    const memoizedSetViewMode = useCallback(newViewMode => setViewMode(newViewMode), []);
+    const memoizedSetAuth = useCallback(newAuth => setAuth(newAuth), []);
+    const memoizedSetCurrentUserData = useCallback(newData => setCurrentUserData(newData), []);
+    const memoizedSetInfoAlert = useCallback(newInfo => setInfoAlert(newInfo), []);
+
+    const memoizedAppLogic = useMemo(
+        () => ({
             setAuth,
             updateUserData,
             setCurrentUserData,
@@ -60,12 +66,28 @@ const App = () => {
             setStore,
             loadStore,
             userData,
-        });
+        }),
+        [
+            setAuth,
+            updateUserData,
+            setCurrentUserData,
+            lang,
+            infoAlert,
+            viewMode,
+            storeDataRes,
+            setStore,
+            loadStore,
+            userData,
+        ]
+    );
+
+    if (WEB_MODE === WEB_MODE_ENUMS.STORE_MODE) {
+        AppLogic(memoizedAppLogic);
 
         if (auth === null || !STORE_CODE) return <></>;
     }
 
-    if (WEB_MODE === WEB_MODE_ENUMS?.LANDING_MODE) {
+    if (WEB_MODE === WEB_MODE_ENUMS.LANDING_MODE) {
         LandingLogic();
     }
 
@@ -77,29 +99,29 @@ const App = () => {
             />
 
             <ThemeProvider theme={mainTheme}>
-                {WEB_MODE === WEB_MODE_ENUMS?.LANDING_MODE && (
+                {WEB_MODE === WEB_MODE_ENUMS.LANDING_MODE && (
                     <>
                         <HeadLandingHTML />
-                        <LandingModeRouting lang={lang} setLang={setLang} />
+                        <LandingModeRouting lang={lang} setLang={memoizedSetLang} />
                     </>
                 )}
-                {WEB_MODE === WEB_MODE_ENUMS?.STORE_MODE && (
+                {WEB_MODE === WEB_MODE_ENUMS.STORE_MODE && (
                     <>
                         <HeadStoresHTML />
                         <AppRouting
                             auth={auth}
-                            setAuth={setAuth}
+                            setAuth={memoizedSetAuth}
                             lang={lang}
-                            setLang={setLang}
+                            setLang={memoizedSetLang}
                             currentUserData={currentUserData}
                             isFetchingUser={isFetchingUser}
                             updateUserData={updateUserData}
-                            setCurrentUserData={setCurrentUserData}
+                            setCurrentUserData={memoizedSetCurrentUserData}
                             userError={userError}
                             viewMode={viewMode}
-                            setViewMode={setViewMode}
+                            setViewMode={memoizedSetViewMode}
                             infoAlert={infoAlert}
-                            setInfoAlert={setInfoAlert}
+                            setInfoAlert={memoizedSetInfoAlert}
                             store={store}
                             favorites={favorites}
                             cart={cart}

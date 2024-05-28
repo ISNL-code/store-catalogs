@@ -21,7 +21,7 @@ export const useCategory = ({
     queryCategories,
 }: Props) => {
     const mount = useIsMount();
-    const [categoriesList, setCategoriesList] = useState<CategoryInterface | []>([]);
+    const [categoriesList, setCategoriesList] = useState<CategoryInterface[] | []>([]);
 
     const { data: categoryRes, refetch: updateCategories } = useCategoriesApi().useGetAllCategories({
         store: store,
@@ -49,10 +49,6 @@ export const useCategory = ({
     }, [lang]);
 
     const handleCategoriesQuery = (data, checked, root, rootID) => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'auto',
-        });
         if (root) {
             if (checked) {
                 if (currentProductsPage > 0) {

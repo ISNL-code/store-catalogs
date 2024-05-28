@@ -19,7 +19,7 @@ const HeadStoresHTML: React.FC = () => {
     const createManifest = () => {
         const manifest = {
             short_name: STORE_NAME,
-            name: 'Create Catalog Sample',
+            name: `Create ${STORE_NAME} sample`,
             icons: [
                 {
                     src: `dataBase/images/logos/${STORE_LOGO}`,
@@ -46,7 +46,7 @@ const HeadStoresHTML: React.FC = () => {
             ],
             start_url: '.',
             display: 'standalone',
-            theme_color: '#000000',
+            theme_color: '#ffffff',
             background_color: '#ffffff',
         };
 
@@ -64,16 +64,31 @@ const HeadStoresHTML: React.FC = () => {
         <HelmetProvider>
             <Helmet>
                 <html lang={HTML_LANG} />
-                <meta name="theme-color" content="#000000" />
+                <meta name="theme-color" content="#ffffff0" />
                 <title>{STORE_TITLE}</title>
                 <meta name="description" content={STORE_DESCRIPTION} />
+                <link rel="icon" href={require(`dataBase/images/logos/${STORE_LOGO}`)} />
+                <link rel="apple-touch-icon" href={require(`dataBase/images/logos/${STORE_LOGO}`)} />
+                <link rel="manifest" href={manifestUrl} />
                 <script async src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ANALYTICS_ID}`}></script>
                 <script>
                     {`function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","${GOOGLE_ANALYTICS_ID}")`}
                 </script>
-                <link rel="icon" href={require(`dataBase/images/logos/${STORE_LOGO}`)} />
-                <link rel="apple-touch-icon" href={require(`dataBase/images/logos/${STORE_LOGO}`)} />
-                <link rel="manifest" href={manifestUrl} />
+                <script>
+                    {`
+                    if ('serviceWorker' in navigator) {
+                        window.addEventListener('load', () => {
+                            navigator.serviceWorker.register('./serviceWorker.js')
+                                .then(reg => {
+                                    console.log('Service Worker registered with scope:', reg.scope);
+                                })
+                                .catch(err => {
+                                    console.error('Service Worker registration failed:', err);
+                                });
+                        });
+                    }
+                    `}
+                </script>
             </Helmet>
         </HelmetProvider>
     );

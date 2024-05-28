@@ -49,7 +49,7 @@ const PaginationButton = ({
         return () => clearTimeout(timer);
     }, [activateAutomatically, loading, productsList, page, totalPages, sx]); // eslint-disable-line
 
-    if (productsList?.length < 12) return null;
+    if (productsList?.length < 12 || !totalCount) return null;
 
     return (
         <Box

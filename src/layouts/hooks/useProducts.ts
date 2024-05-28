@@ -9,12 +9,20 @@ import { useDevice } from 'hooks/useDevice';
 interface Props {
     store;
     lang: string | null;
+    applyFilters: boolean;
     queryCategories;
-    setQueryCategories;
-    viewMode;
+    refreshFilters: boolean;
+    setRefreshFilters;
 }
 
-export const useProducts = ({ store, lang, queryCategories, setQueryCategories, viewMode }: Props) => {
+export const useProducts = ({
+    store,
+    lang,
+    applyFilters,
+    queryCategories,
+    refreshFilters,
+    setRefreshFilters,
+}: Props) => {
     const { sx } = useDevice();
     const { OPTIONS } = STORE_CONFIG;
     const { STORE_TYPE } = OPTIONS;
@@ -26,10 +34,8 @@ export const useProducts = ({ store, lang, queryCategories, setQueryCategories, 
     const [totalCount, setTotalCount] = useState(0);
     const [currentCount, setCurrentCount] = useState(0);
     const [totalPages, setTotalPages] = useState(0);
-    const [applyFilters, setApplyFilters] = useState(false);
 
     const {
-        data: productsRes,
         isFetching: loadProducts,
         isLoading: loadMoreProducts,
         refetch: updateProducts,
@@ -41,122 +47,94 @@ export const useProducts = ({ store, lang, queryCategories, setQueryCategories, 
         categories: queryCategories,
     });
 
-    useEffect(() => {
-        if (mount) return;
-        if (applyFilters) updateProducts();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [applyFilters]);
+    const handleUpdateProducts = action => {
+        updateProducts()
+            .then(res => {
+                const prevData = action === 'refresh' ? [] : productsList || [];
+                const newData = res?.data?.data?.products?.map(product => {
+                    const originalPrice =
+                        STORE_TYPE === StoreType.sales
+                            ? Math.max(...product.variants?.map(el => Number(el.inventory[0]?.price)))
+                            : Number(product.price);
 
-    useEffect(() => {
-        if (!productsRes || loadProducts) return setProductsList([]);
-        if (currentProductsPage) return;
-        setProductsList(
-            productsRes.data.products?.map(product => {
-                const originalPrice =
-                    STORE_TYPE === StoreType.sales
-                        ? Math.max(...product.variants?.map(el => Number(el.inventory[0]?.price)))
-                        : Number(product.price);
-
-                return {
-                    id: product.id,
-                    variants: product.variants
-                        .sort((a, b) => a.sortOrder - b.sortOrder)
-                        .filter(el => {
-                            return STORE_TYPE === StoreType.sales ? el.images.length : true;
-                        })
-                        .map((variant, idx) => {
-                            return {
-                                id: variant.id,
-                                productId: variant.productId,
-                                selected: idx === 0,
-                                price: variant.inventory[0]?.price,
-                                images: variant.images,
-                                colorCode: variant.variation.optionValue.code,
-                                sku: variant.sku,
-                                quantity: variant.inventory[0]?.quantity,
-                                originalPrice: originalPrice,
-                            };
-                        }),
-                    name: product.description.name,
-                    price: product.finalPrice,
-                    promoTags:
-                        product.options
-                            .find(({ code }) => code === 'PROMO')
-                            ?.optionValues.map(({ code, id, description }) => {
-                                return { code, id, name: description?.name };
+                    return {
+                        id: product.id,
+                        variants: product.variants
+                            .sort((a, b) => a.sortOrder - b.sortOrder)
+                            .filter(el => {
+                                return STORE_TYPE === StoreType.sales ? el.images.length : true;
                             })
-                            .sort((a, b) => a.code - b.code) || [],
-                };
+                            .map((variant, idx) => {
+                                return {
+                                    id: variant.id,
+                                    productId: variant.productId,
+                                    selected: idx === 0,
+                                    price: variant.inventory[0]?.price,
+                                    images: variant.images,
+                                    colorCode: variant.variation.optionValue.code,
+                                    sku: variant.sku,
+                                    quantity: variant.inventory[0]?.quantity,
+                                    originalPrice: originalPrice,
+                                };
+                            }),
+                        name: product.description.name,
+                        price: Number(product.finalPrice),
+                        promoTags:
+                            product.options
+                                .find(({ code }) => code === 'PROMO')
+                                ?.optionValues.map(({ code, id, description }) => {
+                                    return { code, id, name: description?.name };
+                                })
+                                .sort((a, b) => a.code - b.code) || [],
+                    };
+                });
+
+                setProductsList([...prevData, ...newData]);
+                setTotalCount(res?.data?.data?.recordsTotal);
+                setCurrentCount(res?.data?.data?.number);
+                setTotalPages(res?.data?.data?.totalPages);
             })
-        );
-        setTotalCount(productsRes.data.recordsTotal);
-        setCurrentCount(productsRes.data.number * (currentProductsPage + 1));
-        setTotalPages(productsRes.data?.totalPages);
-        setApplyFilters(false);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [productsRes]);
+            .finally(() => {
+                setRefreshFilters(false);
+                if (action === 'refresh')
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'auto',
+                    });
+            });
+    };
+
+    useEffect(() => {
+        handleUpdateProducts('refresh');
+    }, []); // eslint-disable-line
+
+    useEffect(() => {
+        setCurrentProductsPage(0);
+        setTimeout(() => {
+            handleUpdateProducts('refresh');
+        }, 0);
+    }, [applyFilters]); // eslint-disable-line
+
+    useEffect(() => {
+        setCurrentProductsPage(0);
+        setTimeout(() => {
+            handleUpdateProducts('refresh');
+        }, 0);
+    }, [refreshFilters]); // eslint-disable-line
 
     useEffect(() => {
         if (mount) return;
-        if (!currentProductsPage) return;
-        updateProducts().then(res => {
-            setProductsList(prev => {
-                const prevData = prev ? [...prev] : [];
-                return [
-                    ...prevData,
-                    ...res?.data?.data?.products?.map(product => {
-                        const originalPrice =
-                            STORE_TYPE === StoreType.sales
-                                ? Math.max(...product.variants?.map(el => Number(el.inventory[0]?.price)))
-                                : Number(product.price);
-
-                        return {
-                            id: product.id,
-                            variants: product.variants
-                                .sort((a, b) => a.sortOrder - b.sortOrder)
-                                .filter(el => {
-                                    return STORE_TYPE === StoreType.sales ? el.images.length : true;
-                                })
-                                .map((variant, idx) => {
-                                    return {
-                                        id: variant.id,
-                                        productId: variant.productId,
-                                        selected: idx === 0,
-                                        price: variant.inventory[0]?.price,
-                                        images: variant.images,
-                                        colorCode: variant.variation.optionValue.code,
-                                        sku: variant.sku,
-                                        quantity: variant.inventory[0]?.quantity,
-                                        originalPrice: originalPrice,
-                                    };
-                                }),
-                            name: product.description.name,
-                            price: Number(product.finalPrice),
-                            promoTags:
-                                product.options
-                                    .find(({ code }) => code === 'PROMO')
-                                    ?.optionValues.map(({ code, id, description }) => {
-                                        return { code, id, name: description?.name };
-                                    })
-                                    .sort((a, b) => a.code - b.code) || [],
-                        };
-                    }),
-                ];
-            });
-            setTotalCount(res?.data?.data?.recordsTotal);
-            setCurrentCount(res?.data?.data?.number * (currentProductsPage + 1));
-            setTotalPages(res?.data?.data?.totalPages);
-            setApplyFilters(false);
-        }); // eslint-disable-next-line react-hooks/exhaustive-deps
+        if (currentProductsPage === 0) return;
+        handleUpdateProducts('add_page');
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [currentProductsPage]);
 
     useEffect(() => {
-        if (mount) return;
-        setCurrentProductsPage(_ => 0);
-        setQueryCategories([]);
+        setCurrentProductsPage(0);
         setTimeout(() => {
-            updateProducts();
-        }, 0); // eslint-disable-next-line react-hooks/exhaustive-deps
+            handleUpdateProducts('refresh');
+        }, 0);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [lang]);
 
     const handleSetProductsPage = val => {
@@ -164,7 +142,6 @@ export const useProducts = ({ store, lang, queryCategories, setQueryCategories, 
     };
 
     return {
-        productsRes,
         loadProducts,
         loadMoreProducts,
         updateProducts,
@@ -175,6 +152,5 @@ export const useProducts = ({ store, lang, queryCategories, setQueryCategories, 
         productCountPerPage: currentCount,
         totalProductsPages: totalPages,
         setProductsList,
-        setApplyFilters,
     };
 };
