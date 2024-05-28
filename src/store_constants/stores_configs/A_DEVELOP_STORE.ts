@@ -19,9 +19,10 @@ export const DEVELOP_STORE = {
     // ...KREMEN_BELTS_MAIN,
     // ...KREMEN_BELTS_SALES,
     URL: [
-        'http://localhost:3000',
-        'http://localhost:3001',
-        'https://sales-nest-dev.netlify.app',
-        'https://sales-nest.netlify.app',
+        'http://localhost:3000', // dev link
+        'http://localhost:3001', // dev link
+        'https://sales-nest-dev.netlify.app', // dev host link
+        'https://sales-nest.netlify.app', // dev host link
+        'https://salesnestonlinecatalog.com/', // advertizing landing link
     ],
 };
