@@ -3,7 +3,7 @@ import { StoreType, ViewModeType } from 'store_constants/types';
 export const ALBERTO_BINI_KZ_RETAIL = {
     storage_key: 'ab_kz-rt',
     active: true, // Поле которое запускает магазин true - работает false - остановлен / по тех. причина
-    required_registration: true,
+    required_registration: false,
     URL: ['https://albertobini-kz-retail.netlify.app'],
     appStoreUrl: null,
     playMarketUrl: null,
