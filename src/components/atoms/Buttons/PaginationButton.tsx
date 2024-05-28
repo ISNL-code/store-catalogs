@@ -28,9 +28,10 @@ const PaginationButton: React.FC<PaginationButtonProps> = ({
     const observerRef = useRef<IntersectionObserver | null>(null);
 
     useEffect(() => {
+        if (loading) return;
         if (!totalPages) return;
         if (!sx) return;
-
+        if (totalPages <= page + 1) return;
         const currentRef = ref.current; // Capture the current reference
 
         const handleIntersection = (entries: IntersectionObserverEntry[]) => {
@@ -42,6 +43,7 @@ const PaginationButton: React.FC<PaginationButtonProps> = ({
                 productsList?.length &&
                 page < totalPages
             ) {
+                console.log('PAGINATE');
                 setCurrentPage(page + 1);
             }
         };
@@ -96,7 +98,7 @@ const PaginationButton: React.FC<PaginationButtonProps> = ({
                 variant="contained"
                 onClick={() => setCurrentPage(page + 1)}
                 color="secondary"
-                disabled={!productsList?.length || totalPages === page + 1}
+                disabled={!productsList?.length || totalPages <= page + 1}
             >
                 {loading ? string?.loading + '...' : string?.load_more}
             </Button>

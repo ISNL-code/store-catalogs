@@ -48,8 +48,15 @@ export const useProducts = ({
     });
 
     const handleUpdateProducts = action => {
+        if (action === 'refresh')
+            window.scrollTo({
+                top: 0,
+                behavior: 'auto',
+            });
+
         updateProducts()
             .then(res => {
+                console.log('REFRESH ======>', action === 'refresh');
                 const prevData = action === 'refresh' ? [] : productsList || [];
                 const newData = res?.data?.data?.products?.map(product => {
                     const originalPrice =
@@ -96,59 +103,33 @@ export const useProducts = ({
             })
             .finally(() => {
                 setRefreshFilters(false);
-                if (action === 'refresh')
-                    window.scrollTo({
-                        top: 0,
-                        behavior: 'auto',
-                    });
             });
     };
 
     useEffect(() => {
         console.log('MOUNT');
-        handleUpdateProducts('refresh');
+        handleUpdateProducts(null);
     }, []); // eslint-disable-line
 
     useEffect(() => {
         if (mount) return;
-        setCurrentProductsPage(0);
-        setTimeout(() => {
-            console.log('APPLY FILTERS');
+        if (currentProductsPage === 0) {
+            console.log('FILTERS');
             handleUpdateProducts('refresh');
-        }, 0);
-    }, [applyFilters]); // eslint-disable-line
-
-    useEffect(() => {
-        if (mount) return;
-        setCurrentProductsPage(0);
-        setTimeout(() => {
-            console.log('REFRESH FILTERS');
-            handleUpdateProducts('refresh');
-        }, 100);
-    }, [refreshFilters]); // eslint-disable-line
+        } else setCurrentProductsPage(0);
+    }, [refreshFilters, applyFilters, lang]); // eslint-disable-line
 
     useEffect(() => {
         if (mount) return;
         if (currentProductsPage === 0) return;
-        console.log('ADD PAGE', currentProductsPage);
         handleUpdateProducts('add_page');
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [currentProductsPage]);
-
-    useEffect(() => {
-        if (mount) return;
-        setCurrentProductsPage(0);
-        setTimeout(() => {
-            console.log('CHANGE LANGUAGE');
-            handleUpdateProducts('refresh');
-        }, 100);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [lang]);
+    }, [currentProductsPage]); // eslint-disable-line
 
     const handleSetProductsPage = val => {
         setCurrentProductsPage(_ => val);
     };
 
+    console.log('CURRENT PAGE', currentProductsPage);
     return {
         loadProducts,
         loadMoreProducts,
