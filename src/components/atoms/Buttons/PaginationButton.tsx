@@ -94,6 +94,7 @@ const PaginationButton: React.FC<PaginationButtonProps> = ({
                     },
                     fontSize: '14px',
                     textTransform: 'capitalize',
+                    opacity: page + 1 >= totalPages ? 0.2 : 1,
                 }}
                 variant="contained"
                 onClick={() => setCurrentPage(page + 1)}
