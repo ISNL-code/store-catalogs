@@ -44,13 +44,13 @@ const PaginationButton: React.FC<PaginationButtonProps> = ({
             ) {
                 setTimeout(() => {
                     setCurrentPage(page => page + 1);
-                }, 100);
+                }, 300);
             }
         };
 
         if (currentRef) {
             observerRef.current = new IntersectionObserver(handleIntersection, {
-                rootMargin: '800px',
+                rootMargin: '1200px',
                 threshold: 1,
             });
             observerRef.current.observe(currentRef);
