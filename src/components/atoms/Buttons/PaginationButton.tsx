@@ -48,7 +48,7 @@ const PaginationButton: React.FC<PaginationButtonProps> = ({
 
         if (currentRef) {
             observerRef.current = new IntersectionObserver(handleIntersection, {
-                rootMargin: '500px',
+                rootMargin: '0px',
                 threshold: 1,
             });
             observerRef.current.observe(currentRef);
