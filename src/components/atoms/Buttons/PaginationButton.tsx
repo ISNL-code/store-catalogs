@@ -32,7 +32,7 @@ const PaginationButton: React.FC<PaginationButtonProps> = ({
         if (!totalPages) return;
         if (!sx) return;
         if (totalPages <= page + 1) return;
-        const currentRef = ref.current; // Capture the current reference
+        const currentRef = ref.current;
 
         const handleIntersection = (entries: IntersectionObserverEntry[]) => {
             const [entry] = entries;
@@ -43,14 +43,13 @@ const PaginationButton: React.FC<PaginationButtonProps> = ({
                 productsList?.length &&
                 page < totalPages
             ) {
-                console.log('PAGINATE');
                 setCurrentPage(page + 1);
             }
         };
 
         if (currentRef) {
             observerRef.current = new IntersectionObserver(handleIntersection, {
-                rootMargin: '1000px',
+                rootMargin: '500px',
                 threshold: 1,
             });
             observerRef.current.observe(currentRef);
