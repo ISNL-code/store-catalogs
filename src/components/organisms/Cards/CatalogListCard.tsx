@@ -203,7 +203,6 @@ const CatalogListCard = memo<CatalogCardProps>(
                                     path={SHARE_PATH?.share_product_sku(STORE_CODE, productId, shownModel?.sku)}
                                     direction="up"
                                     size={viewMode === ViewModeType?.card ? 'large' : 'small'}
-                                    imagePath={shownModel?.images[0]?.imageUrl || ''}
                                 />
                             </Box>
                         </Box>

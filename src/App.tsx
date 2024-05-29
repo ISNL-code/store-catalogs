@@ -17,10 +17,11 @@ import LandingLogic from 'LandingLogic';
 import { APP_CONFIG, WEB_MODE_ENUMS } from 'APP_CONFIG';
 import HeadLandingHTML from 'layouts/Head-Landing-HTML';
 import HeadStoresHTML from 'layouts/Head-Stores-HTML';
+import { useGetLanguage } from 'hooks/useGetLanguage';
 
 const App = () => {
     const { WEB_MODE } = APP_CONFIG;
-    const { STORE_CODE, APP_LANGUAGE } = STORE_CONFIG;
+    const { STORE_CODE, APP_LANGUAGE, STORE_NAME } = STORE_CONFIG;
     const [lang, setLang] = useState<string>(APP_LANGUAGE);
     const [viewMode, setViewMode] = useState<ViewModeType | null>(null);
     const [auth, setAuth] = useState<boolean | null>(null);
@@ -42,6 +43,7 @@ const App = () => {
         code: STORE_CODE,
     });
 
+    const { currentLanguage } = useGetLanguage({ lang, storeName: STORE_NAME });
     const cart = useAddToCart({ loadingUser: isFetchingUser });
     const favorites = useAddToFavorites({ loadingUser: isFetchingUser });
 
@@ -102,7 +104,7 @@ const App = () => {
                 {WEB_MODE === WEB_MODE_ENUMS.LANDING_MODE && (
                     <>
                         <HeadLandingHTML />
-                        <LandingModeRouting lang={lang} setLang={memoizedSetLang} />
+                        <LandingModeRouting lang={lang} setLang={memoizedSetLang} currentLanguage={currentLanguage} />
                     </>
                 )}
                 {WEB_MODE === WEB_MODE_ENUMS.STORE_MODE && (
@@ -125,6 +127,7 @@ const App = () => {
                             store={store}
                             favorites={favorites}
                             cart={cart}
+                            currentLanguage={currentLanguage}
                         />
                     </>
                 )}

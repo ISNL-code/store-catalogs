@@ -1,6 +1,5 @@
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
-import { useGetLanguage } from 'hooks/useGetLanguage';
 import { useDevice } from 'hooks/useDevice';
 import DialogApp from 'layouts/DialogApp';
 import { ROUTES } from 'constants/routes';
@@ -13,14 +12,13 @@ const OutletContainer = ({ context }: { context: LandingContextInterface }) => {
     return <Outlet context={context} />;
 };
 
-export default function LandingLayout({ lang, setLang }) {
+export default function LandingLayout({ lang, setLang, currentLanguage }) {
     const { sx } = useDevice();
     const HEADER_HEIGHT = 50;
     const HEADER_PADDINGS = sx ? 2 : 4;
     const BODY_PADDINGS = sx ? 0 : 4;
     const INSTRUMENTAL_BAR_HEIGHT = 36;
     const INSTRUMENTAL_BAR_PADDINGS = sx ? 2 : 4;
-    const { currentLanguage } = useGetLanguage({ lang, storeName: 'Sales Nest Catalogs' });
 
     const { activeDialogWindow, handleOpenDialog, handleSetDialogState, dialogState } = useFormsApp();
 

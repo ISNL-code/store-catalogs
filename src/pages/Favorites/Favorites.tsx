@@ -145,28 +145,37 @@ const Favorites = () => {
     }, [productIds, lang]);
 
     useEffect(() => {
-        window.addEventListener('scroll', () => {
+        const handleScroll = () => {
             if (window.scrollY > 500) {
                 setShowTopBtn(true);
             } else {
                 setShowTopBtn(false);
             }
-        });
+        };
 
-        setTimeout(() => {
-            window.scrollTo({
-                top: scrollPosition - (instrumentalBarHeight + headerHeight + getGridSpacing()?.padding * 8),
-                behavior: 'auto',
-            });
-            setScrollPosition(0);
-        }, 150); // eslint-disable-next-line react-hooks/exhaustive-deps
+        window.addEventListener('scroll', handleScroll);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
     }, []);
+
+    useEffect(() => {
+        if (scrollPosition)
+            setTimeout(() => {
+                window.scrollTo({
+                    top: scrollPosition - (instrumentalBarHeight + headerHeight + getGridSpacing().padding * 8),
+                    behavior: 'auto',
+                });
+                setScrollPosition(0);
+            }, 50);
+    }, [scrollPosition]); // eslint-disable-line
 
     return (
         <Box
             pt={getGridSpacing()?.padding}
             px={getGridSpacing()?.padding}
-            sx={{ minHeight: '100%', pb: footerMenuHeight }}
+            sx={{ minHeight: scrollPosition || '100%', pb: footerMenuHeight }}
         >
             {showTopBtn && <ScrollButton />}
             {loading && <Loader />}
@@ -189,8 +198,8 @@ const Favorites = () => {
             />
 
             {favoriteProducts?.length ? (
-                <Box pb={2} sx={{ minHeight: '100%' }}>
-                    <TransitionBox dependency={loading} time={100}>
+                <Box pb={2} sx={{ minHeight: scrollPosition || '100%' }}>
+                    <TransitionBox dependency={loading} time={200}>
                         <Grid className="CatalogList" container spacing={getGridSpacing()?.spacing}>
                             {favoriteProducts?.map(product => {
                                 return (

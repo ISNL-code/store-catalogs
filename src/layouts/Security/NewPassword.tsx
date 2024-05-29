@@ -1,6 +1,5 @@
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
-import { useGetLanguage } from 'hooks/useGetLanguage';
 import { useDevice } from 'hooks/useDevice';
 import { useEffect, useState } from 'react';
 import HomeHeader from './SecurityHeader';
@@ -15,14 +14,13 @@ import { useNavigate, useParams } from 'react-router-dom';
 import Loader from 'components/atoms/Loader/Loader';
 import { useUserApi } from 'api/useUserApi';
 
-export default function NewPassword({ lang, setLang, auth, setAuth }) {
+export default function NewPassword({ lang, setLang, setAuth, currentLanguage }) {
     const navigate = useNavigate();
     const { storeCode, tokenId } = useParams();
-    const { STORE_CODE, STORE_NAME } = STORE_CONFIG;
+    const { STORE_CODE } = STORE_CONFIG;
     const { sx } = useDevice();
     const HEADER_HEIGHT = 50;
     const HEADER_PADDINGS = sx ? 2 : 4;
-    const { currentLanguage } = useGetLanguage({ lang, storeName: STORE_NAME });
     const [store, setStore] = useState<StoreInterface | null>(null);
     const { data: storeDataRes, isFetching: loadStore } = useStoresApi().useGetStoreByCode({
         code: STORE_CODE,

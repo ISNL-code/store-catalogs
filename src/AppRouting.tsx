@@ -36,6 +36,7 @@ interface Props {
     store;
     favorites;
     cart;
+    currentLanguage;
 }
 
 const AppRouting = ({
@@ -55,6 +56,7 @@ const AppRouting = ({
     store,
     favorites,
     cart,
+    currentLanguage,
 }: Props) => {
     const { STORE_CODE, OPTIONS, REQUIRED_REGISTRATION } = STORE_CONFIG;
     const { HOME_PAGE_ACTIVE } = OPTIONS;
@@ -86,7 +88,14 @@ const AppRouting = ({
             <Routes>
                 <Route
                     path={`${ROUTES?.NEW_PASSWORD}/:storeCode/:tokenId`}
-                    element={<NewPassword lang={lang} setLang={setLang} auth={auth} setAuth={setAuth} />}
+                    element={
+                        <NewPassword
+                            lang={lang}
+                            setLang={setLang}
+                            setAuth={setAuth}
+                            currentLanguage={currentLanguage}
+                        />
+                    }
                 />
                 <Route path={`${ROUTES?.PAGE_401}`} element={<PAGE_401 />} />
                 <Route path={`${ROUTES?.PAGE_403}`} element={<PAGE_403 />} />
@@ -97,7 +106,15 @@ const AppRouting = ({
                     <>
                         <Route
                             path={`${ROUTES?.SECURITY}/:storeCode/:formType`}
-                            element={<SecurityLayout lang={lang} setLang={setLang} setAuth={setAuth} store={store} />}
+                            element={
+                                <SecurityLayout
+                                    lang={lang}
+                                    setLang={setLang}
+                                    setAuth={setAuth}
+                                    store={store}
+                                    currentLanguage={currentLanguage}
+                                />
+                            }
                         />
 
                         <Route
@@ -135,6 +152,7 @@ const AppRouting = ({
                                 }}
                                 cart={cart}
                                 favorites={favorites}
+                                currentLanguage={currentLanguage}
                             />
                         }
                     >
@@ -167,6 +185,7 @@ const AppRouting = ({
                                 setInfoAlert={setInfoAlert}
                                 cart={cart}
                                 favorites={favorites}
+                                currentLanguage={currentLanguage}
                             />
                         }
                     >

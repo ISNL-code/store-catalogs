@@ -3,7 +3,6 @@ import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 import Header from './MainCatalogHeader';
 import MobileMenu from './MainCatalogMobileMenu';
-import { useGetLanguage } from 'hooks/useGetLanguage';
 import { useDevice } from 'hooks/useDevice';
 import { useEffect, useState, useCallback, useMemo } from 'react';
 import { useCategory } from '../hooks/useCategory';
@@ -31,8 +30,9 @@ export default function MainCatalog({
     store,
     favorites,
     cart,
+    currentLanguage,
 }) {
-    const { OPTIONS, STORE_CODE, STORE_NAME } = STORE_CONFIG;
+    const { OPTIONS, STORE_CODE } = STORE_CONFIG;
     const { PLAN_OPTIONS } = OPTIONS;
     const { storeCode } = useParams();
     const navigate = useNavigate();
@@ -44,7 +44,6 @@ export default function MainCatalog({
     const HEADER_PADDINGS = sx ? 2 : 4;
     const BODY_PADDINGS = sx ? 0 : 4;
     const FOOTER_PADDINGS = sx ? 2 : 4;
-    const { currentLanguage } = useGetLanguage({ lang, storeName: STORE_NAME });
     const [scrollPosition, setScrollPosition] = useState(0);
     const { activeDialogWindow, handleOpenDialog, handleSetDialogState, dialogState } = useFormsApp();
 

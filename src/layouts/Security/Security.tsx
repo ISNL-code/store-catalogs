@@ -1,6 +1,5 @@
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
-import { useGetLanguage } from 'hooks/useGetLanguage';
 import { useDevice } from 'hooks/useDevice';
 import { useEffect } from 'react';
 import HomeHeader from './SecurityHeader';
@@ -11,15 +10,14 @@ import { DialogWindowType, useFormsApp } from 'layouts/hooks/useFormsApp';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import Loader from 'components/atoms/Loader/Loader';
 
-export default function SecurityLayout({ lang, setLang, store, setAuth }) {
+export default function SecurityLayout({ lang, setLang, store, setAuth, currentLanguage }) {
     const location = useLocation();
     const navigate = useNavigate();
     const { formType, storeCode } = useParams();
-    const { STORE_CODE, STORE_NAME } = STORE_CONFIG;
+    const { STORE_CODE } = STORE_CONFIG;
     const { sx } = useDevice();
     const HEADER_HEIGHT = 50;
     const HEADER_PADDINGS = sx ? 2 : 4;
-    const { currentLanguage } = useGetLanguage({ lang, storeName: STORE_NAME });
 
     const { activeDialogWindow, handleOpenDialog } = useFormsApp();
 

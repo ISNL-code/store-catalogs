@@ -1,7 +1,6 @@
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
-import { useGetLanguage } from 'hooks/useGetLanguage';
 import { useDevice } from 'hooks/useDevice';
 import { useEffect } from 'react';
 import HomeHeader from './HomeHeader';
@@ -17,8 +16,8 @@ const OutletContainer = ({ context }: { context: HomeContextInterface }) => {
     return <Outlet context={context} />;
 };
 
-export default function Home({ lang, setLang, auth, setAuth, userData, store, favorites, cart }) {
-    const { STORE_CODE, STORE_NAME, OPTIONS } = STORE_CONFIG;
+export default function Home({ lang, setLang, auth, setAuth, userData, store, favorites, cart, currentLanguage }) {
+    const { STORE_CODE, OPTIONS } = STORE_CONFIG;
     const { PLAN_OPTIONS } = OPTIONS;
     const { storeCode } = useParams();
     const navigate = useNavigate();
@@ -30,7 +29,6 @@ export default function Home({ lang, setLang, auth, setAuth, userData, store, fa
     const HEADER_PADDINGS = sx ? 2 : 4;
     const BODY_PADDINGS = sx ? 0 : 4;
     const FOOTER_PADDINGS = sx ? 2 : 4;
-    const { currentLanguage } = useGetLanguage({ lang, storeName: STORE_NAME });
     const { activeDialogWindow, handleOpenDialog, dialogState, handleSetDialogState } = useFormsApp();
 
     useEffect(() => {

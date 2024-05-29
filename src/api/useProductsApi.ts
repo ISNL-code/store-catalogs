@@ -5,12 +5,15 @@ export const useProductsApi = () => {
     const { get } = useApi();
 
     const useGetAllProducts = ({ store, lang, count, categories, page }) => {
-        return useQuery(['get-all-products'], () =>
-            get({
-                url: `/v2/products?store=${store}&lang=${lang}&count=${count}&page=${page}${
-                    categories.length ? '' : '&origin=customer'
-                }&available=true${categories?.length ? '&categoryIds=' + categories : ''}`,
-            })
+        return useQuery(
+            ['get-all-products'],
+            () =>
+                get({
+                    url: `/v2/products?store=${store}&lang=${lang}&count=${count}&page=${page}${
+                        categories.length ? '' : '&origin=customer'
+                    }&available=true${categories?.length ? '&categoryIds=' + categories : ''}`,
+                }),
+            { cacheTime: 1000 * 60 * 5 }
         );
     };
 

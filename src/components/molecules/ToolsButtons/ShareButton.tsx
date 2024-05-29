@@ -10,32 +10,31 @@ interface ShareButtonInterface {
     isShown: boolean;
     direction: 'up' | 'down' | 'left' | 'right';
     size: 'small' | 'large';
-    imagePath: string;
 }
 
-const ShareButton = ({ path, isShown, direction, size, imagePath }: ShareButtonInterface) => {
+const ShareButton = ({ path, isShown, direction, size }: ShareButtonInterface) => {
     const [open, setOpen] = useState(false);
 
     const actions = [
         {
             icon: <TelegramIcon size={size === 'small' ? 32 : 45} round />,
             name: 'Telegram',
-            onClick: () => shareOnTelegram(path, imagePath),
+            onClick: () => shareOnTelegram(path),
         },
         {
             icon: <WhatsappIcon size={size === 'small' ? 32 : 45} round />,
             name: 'WhatsApp',
-            onClick: () => shareOnWhatsApp(path, imagePath),
+            onClick: () => shareOnWhatsApp(path),
         },
         {
             icon: <ViberIcon size={size === 'small' ? 32 : 45} round />,
             name: 'Viber',
-            onClick: () => shareOnViber(path, imagePath),
+            onClick: () => shareOnViber(path),
         },
         {
             icon: <EmailIcon size={size === 'small' ? 32 : 45} round />,
             name: 'Email',
-            onClick: () => shareOnEmail(path, imagePath),
+            onClick: () => shareOnEmail(path),
         },
     ];
 
