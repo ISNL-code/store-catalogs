@@ -4,7 +4,7 @@ import useApi from './useApi';
 export const useProductsApi = () => {
     const { get } = useApi();
 
-    const useGetAllProducts = ({ store, lang, count, page, categories }) => {
+    const useGetAllProducts = ({ store, lang, count, categories, page }) => {
         return useQuery(
             ['get-all-products'],
             () =>
@@ -13,7 +13,7 @@ export const useProductsApi = () => {
                         categories.length ? '' : '&origin=customer'
                     }&available=true${categories?.length ? '&categoryIds=' + categories : ''}`,
                 }),
-            { enabled: !!lang }
+            { cacheTime: 1000 * 60 * 5 }
         );
     };
 

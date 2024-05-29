@@ -5,13 +5,14 @@ import { STORE_CONFIG } from 'store_constants/stores_config';
 
 const AuthInterceptor = () => {
     const { BASE_URL } = STORE_CONFIG;
-
     axios.defaults.baseURL = BASE_URL;
 
     axios.interceptors.request.use(
-        async request => {
-            const token = await localStorage.getItem(STORAGE_KEYS?.ACCESS_TOKEN_KEY);
-            if (token) request.headers.Authorization = `Bearer ${JSON.parse(token)}`;
+        request => {
+            const token = localStorage.getItem(STORAGE_KEYS?.ACCESS_TOKEN_KEY);
+            if (token) {
+                request.headers.Authorization = `Bearer ${JSON.parse(token)}`;
+            }
             return request;
         },
         error => Promise.reject(error)
@@ -20,18 +21,24 @@ const AuthInterceptor = () => {
     axios.interceptors.response.use(
         response => response,
         error => {
-            if (!error || !error.response || !error.response.status || !error.response.request)
-                return Promise.reject(error);
-            const isApiUrl = error.response.request.responseURL?.startsWith(process.env.API_URL) ?? false;
+            if (!error?.response) return Promise.reject(error);
 
-            if (error.response.status === 401 && isApiUrl) {
-                window.localStorage.removeItem(STORAGE_KEYS?.ACCESS_TOKEN_KEY);
+            const {
+                status,
+                request: { responseURL },
+            } = error.response;
+            const isApiUrl = responseURL?.startsWith(process.env.API_URL) ?? false;
+
+            if (status === 401 && isApiUrl) {
+                localStorage.removeItem(STORAGE_KEYS?.ACCESS_TOKEN_KEY);
+                // window.location.href = ERROR_PAGE?.page_401(); // Uncomment if needed
             }
 
-            // if (error.response.status === 401) window.location.href = ERROR_PAGE?.page_401();
-            // if (error.response.status === 404) window.location.href = ERROR_PAGE?.page_403();
-            // if (error.response.status === 404) window.location.href = ERROR_PAGE?.page_404();
-            if (error.response.status > 500) window.location.href = ERROR_PAGE?.page_500();
+            // Handle other error statuses
+            // if (status === 403) window.location.href = ERROR_PAGE?.page_403();
+            // if (status === 404) window.location.href = ERROR_PAGE?.page_404();
+            if (status > 500) window.location.href = ERROR_PAGE?.page_500();
+
             return Promise.reject(error);
         }
     );

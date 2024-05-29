@@ -11,9 +11,10 @@ import LandingContacts from 'pages/LandingWebPage/LandingContacts';
 interface Props {
     lang: string;
     setLang;
+    currentLanguage;
 }
 
-const LandingModeRouting = ({ lang, setLang }: Props) => {
+const LandingModeRouting = ({ lang, setLang, currentLanguage }: Props) => {
     return (
         <Router>
             <Routes>
@@ -23,7 +24,10 @@ const LandingModeRouting = ({ lang, setLang }: Props) => {
                     <Route path={`${ROUTES?.PAGE_404}`} element={<PAGE_404 />} />
                     <Route path={`${ROUTES?.PAGE_500}`} element={<PAGE_500 />} />
 
-                    <Route path={`${ROUTES?.LANDING}`} element={<LandingLayout lang={lang} setLang={setLang} />}>
+                    <Route
+                        path={`${ROUTES?.LANDING}`}
+                        element={<LandingLayout lang={lang} setLang={setLang} currentLanguage={currentLanguage} />}
+                    >
                         <Route path={`${ROUTES?.LANDING}/welcome`} element={<LandingHomePage />} />
                         <Route path={`${ROUTES?.LANDING}/contacts`} element={<LandingContacts />} />
                         <Route path="*" element={<Navigate to={LANDING_ROUTE?.root()} replace />} />

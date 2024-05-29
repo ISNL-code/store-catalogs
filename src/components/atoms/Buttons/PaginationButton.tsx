@@ -3,7 +3,17 @@ import { Box, Button, Typography } from '@mui/material';
 import { useOutletContext } from 'react-router-dom';
 import { useDevice } from 'hooks/useDevice';
 
-const PaginationButton = ({
+interface PaginationButtonProps {
+    setCurrentPage: any;
+    totalCount: number;
+    loading: boolean;
+    productsList: any[] | null;
+    page: number;
+    totalPages: number;
+    activateAutomatically: boolean;
+}
+
+const PaginationButton: React.FC<PaginationButtonProps> = ({
     setCurrentPage,
     totalCount,
     loading,
@@ -14,42 +24,55 @@ const PaginationButton = ({
 }) => {
     const { sx } = useDevice();
     const { string }: any = useOutletContext();
-    const ref = useRef(null);
+    const ref = useRef<HTMLDivElement | null>(null);
+    const observerRef = useRef<IntersectionObserver | null>(null);
+    const timeoutRef = useRef<number | null>(null); // Ref to store the setTimeout id
 
     useEffect(() => {
-        if (!sx) return;
-        const timer = setTimeout(() => {
-            if (ref.current) {
-                const observer = new IntersectionObserver(
-                    entries => {
-                        const [entry] = entries;
-                        if (
-                            entry.isIntersecting &&
-                            activateAutomatically &&
-                            !loading &&
-                            productsList?.length &&
-                            page < totalPages
-                        ) {
-                            setCurrentPage(page + 1);
-                        }
-                    },
-                    {
-                        rootMargin: '1500px',
-                        threshold: 1,
-                    }
-                );
-                observer.observe(ref.current);
+        if (loading || !totalPages || !sx || page + 1 >= totalPages) return;
+        const currentRef = ref.current;
 
-                return () => {
-                    observer.unobserve(ref?.current as any);
-                };
+        const handleIntersection = (entries: IntersectionObserverEntry[]) => {
+            const [entry] = entries;
+            if (
+                entry.isIntersecting &&
+                activateAutomatically &&
+                !loading &&
+                productsList?.length &&
+                page + 1 < totalPages &&
+                totalPages &&
+                totalCount
+            ) {
+                // Store the setTimeout id in the ref
+                timeoutRef.current = window.setTimeout(() => {
+                    setCurrentPage(page => page + 1);
+                }, 300);
             }
-        }, 250);
+        };
 
-        return () => clearTimeout(timer);
-    }, [activateAutomatically, loading, productsList, page, totalPages, sx]); // eslint-disable-line
+        if (currentRef) {
+            observerRef.current = new IntersectionObserver(handleIntersection, {
+                rootMargin: '1200px',
+                threshold: 1,
+            });
+            observerRef.current.observe(currentRef);
+        }
 
-    if (productsList?.length < 12) return null;
+        return () => {
+            if (observerRef.current && currentRef) {
+                observerRef.current.unobserve(currentRef);
+                observerRef.current.disconnect();
+                observerRef.current = null;
+            }
+            // Clear the timeout when component is unmounted
+            if (timeoutRef.current) {
+                clearTimeout(timeoutRef.current);
+                timeoutRef.current = null;
+            }
+        };
+    }, [setCurrentPage, totalCount, loading, productsList, page, totalPages, activateAutomatically]); // eslint-disable-line
+
+    if (!totalCount) return null;
 
     return (
         <Box
@@ -78,11 +101,12 @@ const PaginationButton = ({
                     },
                     fontSize: '14px',
                     textTransform: 'capitalize',
+                    opacity: page + 1 >= totalPages ? 0.2 : 1,
                 }}
                 variant="contained"
                 onClick={() => setCurrentPage(page + 1)}
                 color="secondary"
-                disabled={!productsList?.length || totalPages === page + 1}
+                disabled={!productsList?.length || page + 1 >= totalPages}
             >
                 {loading ? string?.loading + '...' : string?.load_more}
             </Button>

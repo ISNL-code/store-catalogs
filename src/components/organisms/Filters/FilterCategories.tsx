@@ -1,21 +1,58 @@
 import { useOutletContext } from 'react-router-dom';
-import Button from '@mui/material/Button';
-import { Fragment, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import CheckIcon from '@mui/icons-material/Check';
-import { Backdrop, Box, List, ListItemText, MenuItem, SwipeableDrawer, Typography } from '@mui/material';
+import {
+    Backdrop,
+    Box,
+    List,
+    ListItemText,
+    MenuItem,
+    SwipeableDrawer,
+    Typography,
+    IconButton,
+    Button,
+} from '@mui/material';
 import { useDevice } from 'hooks/useDevice';
 import FilterButton from 'components/molecules/ToolsButtons/FilterButton';
-import { Color } from 'colors';
+import { Color, Colors } from 'colors';
+import { CatalogContextInterface } from 'types';
+import isEqual from 'lodash/isEqual';
+import CloseIcon from '@mui/icons-material/Close';
 
 const FilterCategories = ({ isShown }) => {
-    const { string, categoriesList, queryCategories, setQueryCategories, handleCategoriesQuery, setApplyFilters }: any =
-        useOutletContext();
+    const { string, categoriesList, queryCategories, setQueryCategories }: CatalogContextInterface = useOutletContext();
+    const [filters, setFilters] = useState<any>([]);
+    const [showFilters, setShowFilters] = useState(false);
+
+    useEffect(() => {
+        setFilters(queryCategories);
+    }, [showFilters]); // eslint-disable-line
+
+    const handleCategoriesQuery = (data, checked, root, rootID) => {
+        if (root) {
+            if (checked) {
+                return setFilters(filters.filter(el => !data.find(item => el !== item)));
+            }
+            if (!checked) {
+                return setFilters([...filters, ...data]);
+            }
+        }
+        if (!root) {
+            if (checked) {
+                return setFilters(filters.filter(el => el !== data && el !== rootID));
+            }
+            if (!checked) {
+                return setFilters([...filters, data]);
+            }
+            return;
+        }
+    };
+
     const { s } = useDevice();
     const [state, setState] = useState({
         top: false,
         right: false,
     });
-    const [showFilters, setShowFilters] = useState(false);
 
     const toggleDrawer = (anchor, open) => event => {
         if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -26,13 +63,12 @@ const FilterCategories = ({ isShown }) => {
     };
 
     const CategoryItem = ({ title, depth, id, root, children, rootID }) => {
-        const checked = queryCategories?.find(el => el === id);
-        const checkedAll = children.every(({ id }) => queryCategories?.find(el => el === id));
+        const checked = filters?.find(el => el === id);
+        const checkedAll = children.every(({ id }) => filters?.find(el => el === id));
 
         return (
             <Box
-                pl={3}
-                pr={5}
+                px={2}
                 mb={s ? 0 : 1}
                 onClick={() => {
                     if (!root) {
@@ -161,7 +197,7 @@ const FilterCategories = ({ isShown }) => {
                 <Fragment key={anchor}>
                     <Box sx={{ position: 'relative' }}>
                         <FilterButton isShown={true} action={toggleDrawer(anchor, true)} />
-                        {queryCategories.length > 0 && (
+                        {Boolean(queryCategories?.length) && (
                             <Box
                                 sx={{
                                     width: 10,
@@ -193,35 +229,71 @@ const FilterCategories = ({ isShown }) => {
                             zIndex: 4000,
                         }}
                     >
-                        <Box px={3} py={1} sx={{ width: '100%', display: 'flex', gap: 1, justifyContent: 'flex-end' }}>
-                            <Button
-                                variant="outlined"
-                                color="primary"
-                                size="small"
-                                sx={{ borderRadius: '16px' }}
-                                onClick={() => {
-                                    setState({ top: false, right: false });
-                                    setApplyFilters(true);
-                                }}
-                            >
-                                {string?.submit}
-                            </Button>
-                            <Button
-                                disabled={!queryCategories?.length}
-                                variant="outlined"
-                                color="primary"
-                                size="small"
-                                sx={{ borderRadius: '16px' }}
-                                onClick={() => {
-                                    setQueryCategories(_ => {
-                                        return [];
-                                    });
-                                    setState({ top: false, right: false });
-                                    setApplyFilters(true);
-                                }}
-                            >
-                                {string?.clear}
-                            </Button>
+                        <Box
+                            px={2}
+                            py={1}
+                            sx={{
+                                width: '100%',
+                                display: 'flex',
+                                gap: 1,
+                                justifyContent: 'space-between',
+                                alignItems: 'center',
+                            }}
+                        >
+                            <Box sx={{ display: 'flex', gap: 1 }}>
+                                <Button
+                                    variant="outlined"
+                                    color="primary"
+                                    size="medium"
+                                    sx={{ borderRadius: '16px' }}
+                                    onClick={e => {
+                                        e?.stopPropagation();
+                                        setState({ top: false, right: false });
+                                        setShowFilters(false);
+                                        setQueryCategories(filters);
+                                    }}
+                                    disabled={isEqual(filters, queryCategories)}
+                                >
+                                    {string?.submit}
+                                </Button>
+                                <Button
+                                    disabled={!filters?.length}
+                                    variant="outlined"
+                                    color="primary"
+                                    size="medium"
+                                    sx={{ borderRadius: '16px' }}
+                                    onClick={() => {
+                                        setQueryCategories(_ => {
+                                            return [];
+                                        });
+                                        setState({ top: false, right: false });
+                                        setShowFilters(false);
+                                        setQueryCategories([]);
+                                        setFilters([]);
+                                    }}
+                                >
+                                    {string?.clear}
+                                </Button>
+                            </Box>
+                            <Box>
+                                <IconButton
+                                    sx={{
+                                        backgroundColor: Color?.SECONDARY,
+                                        '&:hover': { backgroundColor: Color?.SECONDARY },
+                                        width: 26,
+                                        height: 26,
+                                        display: 'flex',
+                                        justifyContent: 'center',
+                                        border: `1px solid ${Colors?.GRAY}`,
+                                    }}
+                                    onClick={() => {
+                                        setState({ top: false, right: false });
+                                        setShowFilters(false);
+                                    }}
+                                >
+                                    <CloseIcon sx={{ fontSize: 16, color: Colors?.WHITE }} />
+                                </IconButton>
+                            </Box>
                         </Box>
 
                         <Box sx={{ minWidth: anchor === 'top' ? '100vw' : '300px' }} role="presentation">

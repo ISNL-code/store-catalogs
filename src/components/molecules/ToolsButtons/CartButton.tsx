@@ -26,7 +26,7 @@ const CartButton = ({ isShown, action, selected }: CartButtonInterface) => {
                     overflow: 'hidden',
                     textOverflow: 'ellipsis',
                     textTransform: 'uppercase',
-                    fontSize: 11,
+                    fontSize: 10,
                     lineHeight: 1,
                     alignItems: 'center',
                 }}

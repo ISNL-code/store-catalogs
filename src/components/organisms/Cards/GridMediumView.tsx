@@ -8,14 +8,14 @@ import { Colors } from 'colors';
 const GridMediumView = ({ SliderComponent, CardDetails, CardDecoration, opacity, ...rest }) => {
     const cardRef = useRef<HTMLElement>(null);
     const { setScrollPosition }: any = useOutletContext();
-    const { sm, sx, mx, m, ls } = useDevice();
+    const { sm, sx, mx, m, l } = useDevice();
 
     const getGridValue = () => {
         if (sm) return 6;
         if (sx) return 4;
         if (m) return 3;
         if (mx) return 2.4;
-        if (ls) return 2;
+        if (l) return 2;
         return 1.71;
     };
 

@@ -9,6 +9,7 @@ const queryClient = new QueryClient({
     defaultOptions: {
         queries: {
             refetchOnWindowFocus: false,
+            cacheTime: 1000 * 60 * 5,
         },
     },
 });
@@ -16,9 +17,7 @@ const queryClient = new QueryClient({
 AuthInterceptor();
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-    <React.StrictMode>
-        <QueryClientProvider client={queryClient}>
-            <App />
-        </QueryClientProvider>
-    </React.StrictMode>
+    <QueryClientProvider client={queryClient}>
+        <App />
+    </QueryClientProvider>
 );

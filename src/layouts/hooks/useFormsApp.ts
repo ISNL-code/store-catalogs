@@ -41,7 +41,6 @@ export const useFormsApp = (): Res => {
     };
 
     const handleSetDialogState = state => {
-        console.log(state);
         setDialogState(state);
     };
 

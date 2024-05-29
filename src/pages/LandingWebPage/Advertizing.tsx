@@ -3,13 +3,10 @@ import { Box, Typography, TextField, Button, useTheme, useMediaQuery } from '@mu
 import Grid from '@mui/material/Unstable_Grid2/Grid2';
 import { Colors } from 'colors';
 import Slider from 'react-slick';
-import { useDevice } from 'hooks/useDevice';
-import Slides from './Slides';
 
 const Advertizing: React.FC = () => {
     const theme = useTheme();
     const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
-    const { sx } = useDevice();
 
     const SLIDES = [
         { desc: '1', mob: '11', description: 'Описание 1' },

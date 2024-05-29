@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Typography, Grid, Stepper, Step, StepLabel, useMediaQuery, useTheme } from '@mui/material';
+import { Box, Typography, Stepper, Step, StepLabel, useMediaQuery, useTheme } from '@mui/material';
 import { Color, Colors } from 'colors';
 
 const steps = ['Планирование', 'Дизайн и разработка', 'Тестирование', 'Запуск и продвижение', 'Поддержка и обновления'];

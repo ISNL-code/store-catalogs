@@ -1,16 +1,16 @@
 // ROOT
 
 export const ROUTES = {
-    LANDING: '/landing',
-    SECURITY: '/security',
-    HOME: '/home',
-    STORE: '/store',
-    NEW_PASSWORD: '/new-password',
+    LANDING: '/sales-nest/landing',
+    SECURITY: '/sales-nest/security',
+    HOME: '/sales-nest/home',
+    STORE: '/sales-nest/store',
+    NEW_PASSWORD: '/sales-nest/new-password',
 
-    PAGE_401: '/auth-error',
-    PAGE_403: '/bad-request',
-    PAGE_404: '/page-not-found',
-    PAGE_500: '/server-error',
+    PAGE_401: '/sales-nest/auth-error',
+    PAGE_403: '/sales-nest/bad-request',
+    PAGE_404: '/sales-nest/page-not-found',
+    PAGE_500: '/sales-nest/server-error',
 };
 
 // Landing Page
@@ -67,3 +67,5 @@ export const SHARE_PATH = {
     share_product_sku: (storeCode, productId, sku) =>
         `${window.location.origin}${STORE_ROUTE?.product(storeCode, productId, sku)}`,
 };
+
+export const RESET_PASSWORD_PATH = storeCode => `${window.location.origin}${ROUTES?.NEW_PASSWORD}/${storeCode}`;

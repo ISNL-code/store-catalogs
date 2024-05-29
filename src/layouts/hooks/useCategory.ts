@@ -1,29 +1,16 @@
 import { useCategoriesApi } from 'api/useCategoriesApi';
-import { useIsMount } from 'hooks/useIsMount';
 import { useEffect, useState } from 'react';
 import { CategoryInterface } from 'types';
 
 interface Props {
     store;
     lang: string | null;
-    currentProductsPage;
-    handleSetProductsPage;
-    setQueryCategories;
-    queryCategories;
 }
 
-export const useCategory = ({
-    store,
-    lang,
-    currentProductsPage,
-    handleSetProductsPage,
-    setQueryCategories,
-    queryCategories,
-}: Props) => {
-    const mount = useIsMount();
-    const [categoriesList, setCategoriesList] = useState<CategoryInterface | []>([]);
+export const useCategory = ({ store, lang }: Props) => {
+    const [categoriesList, setCategoriesList] = useState<CategoryInterface[] | []>([]);
 
-    const { data: categoryRes, refetch: updateCategories } = useCategoriesApi().useGetAllCategories({
+    const { data: categoryRes } = useCategoriesApi().useGetAllCategories({
         store: store,
         lang: lang,
     });
@@ -43,88 +30,5 @@ export const useCategory = ({
         );
     }, [categoryRes]);
 
-    useEffect(() => {
-        if (mount) return;
-        updateCategories(); // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [lang]);
-
-    const handleCategoriesQuery = (data, checked, root, rootID) => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'auto',
-        });
-        if (root) {
-            if (checked) {
-                if (currentProductsPage > 0) {
-                    handleSetProductsPage(0);
-                    setQueryCategories(queryCategories.filter(el => !data.find(item => el !== item)));
-                    return;
-                }
-                if (currentProductsPage === 0) {
-                    setQueryCategories(queryCategories.filter(el => !data.find(item => el === item)));
-                    return;
-                }
-                return;
-            }
-            if (!checked) {
-                if (!queryCategories.length && currentProductsPage > 0) {
-                    handleSetProductsPage(0);
-                    setQueryCategories(data);
-                    return;
-                }
-                if (!queryCategories.length && currentProductsPage === 0) {
-                    setQueryCategories(data);
-                    return;
-                }
-                if (currentProductsPage > 0) {
-                    handleSetProductsPage(0);
-                    setQueryCategories([...queryCategories, ...data]);
-                    return;
-                }
-                if (currentProductsPage === 0) {
-                    setQueryCategories([...queryCategories, ...data]);
-                    return;
-                }
-                return;
-            }
-        }
-        if (!root) {
-            if (checked) {
-                if (currentProductsPage > 0) {
-                    handleSetProductsPage(0);
-                    setQueryCategories(queryCategories.filter(el => el !== data && el !== rootID));
-                    return;
-                }
-                if (currentProductsPage === 0) {
-                    setQueryCategories(queryCategories.filter(el => el !== data && el !== rootID));
-                    return;
-                }
-                return;
-            }
-            if (!checked) {
-                if (!queryCategories.length && currentProductsPage > 0) {
-                    handleSetProductsPage(0);
-                    setQueryCategories([data]);
-                    return;
-                }
-                if (!queryCategories.length && currentProductsPage === 0) {
-                    setQueryCategories([data]);
-                    return;
-                }
-                if (currentProductsPage > 0) {
-                    handleSetProductsPage(0);
-                    setQueryCategories([...queryCategories, data]);
-                    return;
-                }
-                if (currentProductsPage === 0) {
-                    setQueryCategories([...queryCategories, data]);
-                    return;
-                }
-                return;
-            }
-            return;
-        }
-    };
-
-    return { categoriesList, handleCategoriesQuery };
+    return { categoriesList };
 };

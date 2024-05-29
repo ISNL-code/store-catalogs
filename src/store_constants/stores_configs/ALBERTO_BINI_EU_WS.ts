@@ -58,6 +58,17 @@ export const ALBERTO_BINI_EU_WS = {
         store_description: `Welcome to Alberto Bini — the world of exquisite women's outerwear! Explore our wide selection of high-quality stylish coats, trenches, and jackets. Immerse yourself in unique style and comfort with Alberto Bini!`,
         google_analytics_id: 'G-SPMQE8GHGM',
         store_logo: 'alberto_bini_logo.png',
+        store_poster: 'alb.jpeg',
+        keywords: {
+            en: "women's outerwear, wholesale, retail, great prices, high quality, worldwide shipping",
+            ru: 'женская верхняя одежда, оптом, в розницу, хорошие цены, высочайшее качество, продажа по всему миру',
+            kk: 'әйелдер киімі, көтерме сауда, бөлшек сауда, жақсы бағалар, жоғары сапа, дүние жүзі бойынша жеткізу',
+            uk: 'жіночий верхній одяг, оптом, у роздріб, гарні ціни, висока якість, продаж по всьому світу',
+            pl: 'odzież damska, hurt, detal, dobre ceny, wysoka jakość, sprzedaż na całym świecie',
+            cs: 'dámské svrchní oděvy, velkoobchod, maloobchod, dobré ceny, vysoká kvalita, prodej po celém světě',
+            es: 'ropa exterior para mujeres, al por mayor, al por menor, buenos precios, alta calidad, venta en todo el mundo',
+            fr: "vêtements d'extérieur pour femmes, en gros, au détail, bons prix, haute qualité, vente dans le monde entier",
+        },
     },
     user_options: { view_mode: ViewModeType?.grid_m },
 };

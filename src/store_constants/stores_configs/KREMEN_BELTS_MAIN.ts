@@ -58,6 +58,8 @@ export const KREMEN_BELTS_MAIN = {
         store_description: `Ласкаво просимо до Kremen Belts — вашого найкращого джерела стильних ременів та аксесуарів! | Welcome to Kremen Belts — your ultimate source for stylish belts and accessories!`,
         google_analytics_id: 'G-7G98583PY1',
         store_logo: 'kremen_belts_logo.png',
+        store_poster: 'belts.jpeg',
+        keywords: {},
     },
     user_options: { view_mode: ViewModeType?.grid_m },
 };

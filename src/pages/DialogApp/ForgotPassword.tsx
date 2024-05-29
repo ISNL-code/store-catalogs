@@ -5,7 +5,7 @@ import emailFormValidations from 'Validation/emailFormValidations';
 import { STORE_CONFIG } from 'store_constants/stores_config';
 import FormDialog from 'components/organisms/Modals/FormDialog';
 import { DialogWindowType } from 'layouts/hooks/useFormsApp';
-import { ROUTES } from 'constants/routes';
+import { RESET_PASSWORD_PATH, ROUTES } from 'constants/routes';
 import Loader from 'components/atoms/Loader/Loader';
 
 export default function ForgotPasswordForm({ isOpen, setIsOpen, string, location }) {
@@ -21,7 +21,7 @@ export default function ForgotPasswordForm({ isOpen, setIsOpen, string, location
         onSubmit: values => {
             resetPassword({
                 username: values.email,
-                resetLink: `${window.location.origin}/new-password/${STORE_CODE}`,
+                resetLink: RESET_PASSWORD_PATH(STORE_CODE),
                 storeCode: STORE_CODE,
             })
                 .then(() => {

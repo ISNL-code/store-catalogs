@@ -24,7 +24,7 @@ const stores = [
 ];
 
 const storeConfig = (): STORE_CONFIG_Interface => {
-    const currentUrl = window.location.href;
+    const currentUrl = window.location.origin;
     const matchingDomain = stores.find(domain => domain.URL.some(url => currentUrl.includes(url)));
 
     return {
@@ -77,6 +77,8 @@ const storeConfig = (): STORE_CONFIG_Interface => {
             STORE_DESCRIPTION: matchingDomain?.web_head_data?.store_description || '',
             GOOGLE_ANALYTICS_ID: matchingDomain?.web_head_data?.google_analytics_id || '',
             STORE_LOGO: matchingDomain?.web_head_data?.store_logo || '',
+            STORE_POSTER: matchingDomain?.web_head_data?.store_poster || '',
+            KEYWORDS: matchingDomain?.web_head_data?.keywords || {},
         },
         USER_OPTIONS: { VIEW_MODE: matchingDomain?.user_options?.view_mode || ViewModeType?.card },
     };

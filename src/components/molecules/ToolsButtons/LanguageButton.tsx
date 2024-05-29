@@ -2,7 +2,7 @@ import IconButton from '@mui/material/IconButton';
 import { Box, ListItemText, Menu, MenuItem, Typography } from '@mui/material';
 import { Fragment, useState } from 'react';
 import LanguageIcon from '@mui/icons-material/Language';
-import { Colors } from 'colors';
+import { Color, Colors } from 'colors';
 
 interface Props {
     setLang;
@@ -41,7 +41,7 @@ const LanguageButton = ({
             <Box
                 sx={{
                     position: 'absolute',
-                    top: 2,
+                    top: -2,
                     right: 6,
                     borderRadius: '50%',
                     overflow: 'hidden',
@@ -92,17 +92,18 @@ const LanguageButton = ({
                 aria-haspopup="true"
                 aria-expanded={open ? 'true' : undefined}
                 sx={{
+                    ml: 0.1,
                     position: 'relative',
                     display: 'flex',
                     flexDirection: 'column',
                     width: 55,
-                    height: 50,
-                    borderRadius: 4,
+                    height: 40,
+                    borderRadius: 2,
                     '&:hover': { backgroundColor: Colors?.WHITE },
                 }}
             >
-                <LanguageIcon sx={{ fontSize: 24 }} />
-                <Typography color="gray" sx={{ fontSize: 10 }}>
+                <LanguageIcon sx={{ fontSize: 24, color: open ? Color?.PRIMARY : 'rgba(0, 0, 0, 0.54)' }} />
+                <Typography color="gray" sx={{ fontSize: 10, color: open ? Color?.PRIMARY : 'rgba(0, 0, 0, 0.54)' }}>
                     {string?.language}
                 </Typography>
                 {selectLangFlag()}

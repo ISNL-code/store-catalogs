@@ -10,13 +10,13 @@ const TransitionBox = ({ children, dependency, time = 0 }) => {
         } else {
             setOpacity(1);
         }
-    }, [dependency]); // eslint-disable-line
+    }, [dependency, time]); // eslint-disable-line
 
     return (
         <Box
             sx={{
                 opacity: opacity,
-                transition: `opacity 200ms linear`,
+                transition: `opacity ${time.toString()}ms linear`,
             }}
         >
             {children}

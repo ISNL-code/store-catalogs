@@ -49,7 +49,6 @@ const Catalog = () => {
     }: CatalogContextInterface = useOutletContext();
     const [showTopBtn, setShowTopBtn] = useState(false);
     const [showMobileStoresButton, setShowMobileStoresButton] = useState(true);
-
     const [loading, setLoading] = useState(true);
     const [open, setOpen] = useState(infoAlert?.ws_info);
 
@@ -62,7 +61,6 @@ const Catalog = () => {
                 padding = sx ? 2 : 4;
                 spacing = 1;
                 break;
-
             case ViewModeType.grid_m:
                 padding = sx ? 1 : 4;
                 spacing = 0.5;
@@ -73,12 +71,13 @@ const Catalog = () => {
     };
 
     useEffect(() => {
-        if (loadProducts || !productsList) return;
-        setLoading(false);
-    }, [loading, productsList]); // eslint-disable-line
+        if (!loadProducts && productsList) {
+            setLoading(false);
+        }
+    }, [loadProducts, productsList]);
 
     useEffect(() => {
-        window.addEventListener('scroll', () => {
+        const handleScroll = () => {
             if (window.scrollY > 500) {
                 setShowTopBtn(true);
                 setShowMobileStoresButton(false);
@@ -86,36 +85,45 @@ const Catalog = () => {
                 setShowTopBtn(false);
                 setShowMobileStoresButton(true);
             }
-        });
+        };
 
-        setTimeout(() => {
-            window.scrollTo({
-                top: scrollPosition - (instrumentalBarHeight + headerHeight + getGridSpacing()?.padding * 8),
-                behavior: 'auto',
-            });
-            setScrollPosition(0);
-        }, 300); // eslint-disable-next-line react-hooks/exhaustive-deps
+        window.addEventListener('scroll', handleScroll);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
     }, []);
+
+    useEffect(() => {
+        if (scrollPosition)
+            setTimeout(() => {
+                window.scrollTo({
+                    top: scrollPosition - (instrumentalBarHeight + headerHeight + getGridSpacing().padding * 8),
+                    behavior: 'auto',
+                });
+                setScrollPosition(0);
+            }, 50);
+    }, [scrollPosition]); // eslint-disable-line
 
     return (
         <Box
-            pt={getGridSpacing()?.padding}
-            px={getGridSpacing()?.padding}
-            sx={{ minHeight: '100%', pb: `${footerMenuHeight}px` }}
+            pt={getGridSpacing().padding}
+            px={getGridSpacing().padding}
+            sx={{ minHeight: scrollPosition || '100%', pb: `${footerMenuHeight}px` }}
         >
             {showTopBtn && <ScrollButton />}
             {showMobileStoresButton && (
                 <>
-                    {PLAN_OPTIONS?.appleStore && <AppleStoreButton />}
-                    {PLAN_OPTIONS?.playMarket && <PlayMarketButton />}
+                    {PLAN_OPTIONS.appleStore && <AppleStoreButton />}
+                    {PLAN_OPTIONS.playMarket && <PlayMarketButton />}
                 </>
             )}
             {loadProducts && <Loader position="fixed" type="circular" />}
-            {PLAN_OPTIONS?.contacts && <CallBackButton path={STORE_ROUTE?.contacts(STORE_CODE)} />}
+            {PLAN_OPTIONS.contacts && <CallBackButton path={STORE_ROUTE.contacts(STORE_CODE)} />}
             <InstrumentalSubHeader
                 StartSlot={() => (
                     <>
-                        {SIDE_LINKS?.map(({ name, href }) => (
+                        {SIDE_LINKS.map(({ name, href }) => (
                             <Box sx={{ display: 'flex' }} key={href}>
                                 <SideLink name={name} href={href} />
                             </Box>
@@ -126,14 +134,13 @@ const Catalog = () => {
                     <Box sx={{ display: 'flex', gap: 0.75 }}>
                         <ViewModeButton />
                         <SkuSearch />
-                        <FilterCategories isShown={PLAN_OPTIONS?.categories} />
+                        <FilterCategories isShown={PLAN_OPTIONS.categories} />
                     </Box>
                 )}
             />
-
             {productsList?.length ? (
-                <Box sx={{ minHeight: '100%' }}>
-                    <TransitionBox dependency={loading} time={0}>
+                <Box sx={{ minHeight: scrollPosition || '100%' }}>
+                    <TransitionBox dependency={loading} time={100}>
                         {MIN_ITEMS_TO_BUY > 1 && (
                             <Collapse in={open}>
                                 <Box mb={2}>
@@ -162,25 +169,23 @@ const Catalog = () => {
                             </Collapse>
                         )}
                         <Grid className="CatalogList" container spacing={getGridSpacing()?.spacing}>
-                            {productsList?.map(product => {
-                                return (
-                                    <CatalogListCard
-                                        key={product.id}
-                                        modelsVariants={product.variants as any}
-                                        name={product.name}
-                                        productId={product.id}
-                                        currency={getCurrencySymbol(store?.currency)}
-                                        setProductsList={setProductsList}
-                                        promoTags={product?.promoTags}
-                                        viewMode={viewMode}
-                                    />
-                                );
-                            })}
+                            {productsList.map((product, idx) => (
+                                <CatalogListCard
+                                    key={idx}
+                                    modelsVariants={product?.variants}
+                                    name={product?.name}
+                                    productId={product?.id}
+                                    currency={getCurrencySymbol(store?.currency)}
+                                    setProductsList={setProductsList}
+                                    promoTags={product?.promoTags}
+                                    viewMode={viewMode}
+                                />
+                            ))}
                         </Grid>
                     </TransitionBox>
                 </Box>
             ) : (
-                <>{!loadProducts && <EmptyPage isShown />}</>
+                !loadProducts && <EmptyPage isShown />
             )}
             <Grid my={2} xs={12} container>
                 <PaginationButton
