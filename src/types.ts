@@ -71,7 +71,6 @@ export interface CatalogContextInterface {
     setProductsList;
     loadProducts: boolean;
     loadMoreProducts: boolean;
-    updateProducts;
     productCountPerPage: number;
     totalProductsCount: number;
     totalProductsPages: number;
@@ -82,10 +81,6 @@ export interface CatalogContextInterface {
     categoriesList: CategoryInterface[] | [];
     queryCategories: string[];
     setQueryCategories;
-    handleCategoriesQuery;
-    setApplyFilters;
-    applyFilters: boolean;
-    setRefreshFilters: Dispatch<SetStateAction<boolean>>;
 
     //css data
     instrumentalBarHeight: number;
@@ -115,31 +110,6 @@ export interface useAddToFavoriteDataInterface {
     favoriteItems: any[];
     handleSetFavoriteItems: (data: any) => void;
     handleClearFavorites: () => void;
-}
-
-export interface StoresContextInterface {
-    lang: string;
-    string: any;
-    sortedStores: string;
-    scrollPosition: number;
-    setScrollPosition;
-    instrumentalBarHeight: number;
-    headerHeight: number;
-    footerHeight: number;
-    appXPadding: number;
-    setSortedStores;
-    auth: boolean;
-    setFilteredStores;
-    filteredByTypeStores: {}[];
-    setOpenModalType;
-    openModalType: string | null;
-    setStoreToApprove;
-    favoritesStores: StoreInterface[] | null;
-    setFavoriteStores;
-    storesList: StoreInterface[];
-    updateFavoritesRes;
-    loadStores: boolean;
-    loadFavoritesStores: boolean;
 }
 
 export interface StoreInterface {

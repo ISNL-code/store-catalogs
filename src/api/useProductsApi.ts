@@ -4,16 +4,13 @@ import useApi from './useApi';
 export const useProductsApi = () => {
     const { get } = useApi();
 
-    const useGetAllProducts = ({ store, lang, count, page, categories }) => {
-        return useQuery(
-            ['get-all-products'],
-            () =>
-                get({
-                    url: `/v2/products?store=${store}&lang=${lang}&count=${count}&page=${page}${
-                        categories.length ? '' : '&origin=customer'
-                    }&available=true${categories?.length ? '&categoryIds=' + categories : ''}`,
-                }),
-            { enabled: false }
+    const useGetAllProducts = ({ store, lang, count, categories, page }) => {
+        return useQuery(['get-all-products', page, categories], () =>
+            get({
+                url: `/v2/products?store=${store}&lang=${lang}&count=${count}&page=${page}${
+                    categories.length ? '' : '&origin=customer'
+                }&available=true${categories?.length ? '&categoryIds=' + categories : ''}`,
+            })
         );
     };
 

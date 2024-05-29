@@ -13,7 +13,7 @@ export function SamplePrevArrow(props) {
                 onClick();
             }}
             sx={{
-                zIndex: 1000,
+                zIndex: 1,
                 position: 'absolute',
                 bottom: '50%',
                 transform: 'translateY(50%)',
@@ -38,7 +38,7 @@ export function SampleNextArrow(props) {
                 onClick();
             }}
             sx={{
-                zIndex: 1000,
+                zIndex: 1,
                 position: 'absolute',
                 bottom: '50%',
                 transform: 'translateY(50%)',

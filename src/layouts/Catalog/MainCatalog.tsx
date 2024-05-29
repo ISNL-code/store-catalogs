@@ -46,15 +46,11 @@ export default function MainCatalog({
     const FOOTER_PADDINGS = sx ? 2 : 4;
     const { currentLanguage } = useGetLanguage({ lang, storeName: STORE_NAME });
     const [scrollPosition, setScrollPosition] = useState(0);
-    const [queryCategories, setQueryCategories] = useState<string[] | []>([]);
-    const [applyFilters, setApplyFilters] = useState(false);
-    const [refreshFilters, setRefreshFilters] = useState(false);
     const { activeDialogWindow, handleOpenDialog, handleSetDialogState, dialogState } = useFormsApp();
 
     const {
         loadProducts,
         loadMoreProducts,
-        updateProducts,
         currentProductsPage,
         handleSetProductsPage,
         productsList,
@@ -62,22 +58,16 @@ export default function MainCatalog({
         productCountPerPage,
         totalProductsPages,
         setProductsList,
+        queryCategories,
+        setQueryCategories,
     } = useProducts({
         lang,
         store: STORE_CODE,
-        applyFilters,
-        refreshFilters,
-        queryCategories,
-        setRefreshFilters,
     });
 
-    const { categoriesList, handleCategoriesQuery } = useCategory({
+    const { categoriesList } = useCategory({
         lang,
         store: STORE_CODE,
-        currentProductsPage,
-        handleSetProductsPage,
-        setQueryCategories,
-        queryCategories,
     });
 
     useEffect(() => {
@@ -117,7 +107,6 @@ export default function MainCatalog({
             setProductsList,
             loadProducts,
             loadMoreProducts,
-            updateProducts,
             productCountPerPage,
             totalProductsCount,
             totalProductsPages,
@@ -128,10 +117,6 @@ export default function MainCatalog({
             categoriesList,
             queryCategories,
             setQueryCategories,
-            handleCategoriesQuery,
-            setApplyFilters,
-            applyFilters,
-            setRefreshFilters,
 
             //css data
             instrumentalBarHeight: INSTRUMENTAL_BAR_HEIGHT,
@@ -160,7 +145,6 @@ export default function MainCatalog({
             productsList,
             loadProducts,
             loadMoreProducts,
-            updateProducts,
             productCountPerPage,
             totalProductsCount,
             totalProductsPages,
@@ -168,7 +152,6 @@ export default function MainCatalog({
             currentProductsPage,
             categoriesList,
             queryCategories,
-            applyFilters,
             INSTRUMENTAL_BAR_HEIGHT,
             INSTRUMENTAL_BAR_PADDINGS,
             HEADER_HEIGHT,
