@@ -91,17 +91,40 @@ const HeadStoresHTML: React.FC = () => {
                 <link rel="dns-prefetch" href="//www.googletagmanager.com" />
                 <link rel="dns-prefetch" href="//fonts.googleapis.com" />
                 <link rel="dns-prefetch" href="//fonts.gstatic.com" />
-                <script async src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ANALYTICS_ID}`}></script>
-                <script>
-                    {`
-                    window.dataLayer = window.dataLayer || [];
-                    function gtag() {
-                        dataLayer.push(arguments);
-                    }
-                    gtag('js', new Date());
-                    gtag('config', '${GOOGLE_ANALYTICS_ID}');
-                    `}
-                </script>
+                {Array.isArray(GOOGLE_ANALYTICS_ID) ? (
+                    GOOGLE_ANALYTICS_ID.map((id, index) => (
+                        <React.Fragment key={index}>
+                            <script async src={`https://www.googletagmanager.com/gtag/js?id=${id}`}></script>
+                            <script>
+                                {`
+                                    window.dataLayer = window.dataLayer || [];
+                                    function gtag() {
+                                        dataLayer.push(arguments);
+                                    }
+                                    gtag('js', new Date());
+                                    gtag('config', '${id}');
+                                `}
+                            </script>
+                        </React.Fragment>
+                    ))
+                ) : (
+                    <>
+                        <script
+                            async
+                            src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ANALYTICS_ID}`}
+                        ></script>
+                        <script>
+                            {`
+                                window.dataLayer = window.dataLayer || [];
+                                function gtag() {
+                                    dataLayer.push(arguments);
+                                }
+                                gtag('js', new Date());
+                                gtag('config', '${GOOGLE_ANALYTICS_ID}');
+                            `}
+                        </script>
+                    </>
+                )}
             </Helmet>
         </HelmetProvider>
     );

@@ -49,7 +49,7 @@ export const ALBERTO_BINI_KZ_RETAIL = {
     web_head_data: {
         store_title: 'Alberto Bini розничный каталог',
         store_description: `Добро пожаловать в мир изысканной женской верхней одежды от Alberto Bini! Ознакомьтесь с нашим широким ассортиментом стильных и качественных пальто, тренчей и курток. Погрузитесь в уникальный стиль и комфорт с Alberto Bini! | Қош келдіңіз Alberto Bini - жарлы жігерлі әйелдер үшін қонақтардың еліне! Біздің жанындағы көбінесе мол, артық өлшемдердің қолайлы қызметті көптық кепіл таңбаларын, тренчи, және жакеттерді зерттеңіз. Alberto Bini менің ерекше стильім мен комфорттық көріңіз! | Welcome to Alberto Bini — the world of exquisite women's outerwear! Explore our wide selection of high-quality stylish coats, trenches, and jackets. Immerse yourself in unique style and comfort with Alberto Bini!`,
-        google_analytics_id: 'G-6MGSF1BQDN',
+        google_analytics_id: ['G-6MGSF1BQDN', 'AW-16545719098'],
         store_logo: 'alberto_bini_logo.png',
         store_poster: 'alb.jpeg',
         keywords: {
