@@ -28,7 +28,6 @@ const PaginationButton: React.FC<PaginationButtonProps> = ({
     const observerRef = useRef<IntersectionObserver | null>(null);
 
     useEffect(() => {
-        console.log('PAGINATE');
         if (loading || !totalPages || !sx || page + 1 >= totalPages) return;
         const currentRef = ref.current;
 
@@ -62,7 +61,7 @@ const PaginationButton: React.FC<PaginationButtonProps> = ({
                 observerRef.current = null;
             }
         };
-    }, [activateAutomatically, loading, sx]); // eslint-disable-line
+    }, [activateAutomatically, loading, sx, page]); // eslint-disable-line
 
     if (!totalCount) return null;
 
