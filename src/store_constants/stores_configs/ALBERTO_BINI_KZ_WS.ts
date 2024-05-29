@@ -54,6 +54,7 @@ export const ALBERTO_BINI_KZ_WS = {
         Қош келдіңіз Alberto Bini - жарлы жігерлі әйелдер үшін қонақтардың еліне! Біздің жанындағы көбінесе мол, артық өлшемдердің қолайлы қызметті көптық кепіл таңбаларын, тренчи, және жакеттерді зерттеңіз. Alberto Bini менің ерекше стильім мен комфорттық көріңіз! | Welcome to Alberto Bini — the world of exquisite women's outerwear! Explore our wide selection of high-quality stylish coats, trenches, and jackets. Immerse yourself in unique style and comfort with Alberto Bini!`,
         google_analytics_id: 'G-NFQK29FTWM',
         store_logo: 'alberto_bini_logo.png',
+        store_poster: 'alb.jpeg',
     },
     user_options: { view_mode: ViewModeType?.card },
 };

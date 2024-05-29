@@ -140,6 +140,7 @@ const ProductDetails = () => {
                             isShown={PLAN_OPTIONS.productShare}
                             direction="down"
                             size="large"
+                            imagePath={selectedVariant?.images ? selectedVariant?.images[0] || '' : ''}
                         />
                     </Box>
                 )}

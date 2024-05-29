@@ -10,7 +10,7 @@ declare global {
 
 const HeadStoresHTML: React.FC = () => {
     const { WEB_HEAD_DATA, STORE_NAME, HTML_LANG } = STORE_CONFIG;
-    const { STORE_TITLE, STORE_DESCRIPTION, GOOGLE_ANALYTICS_ID, STORE_LOGO } = WEB_HEAD_DATA;
+    const { STORE_TITLE, STORE_DESCRIPTION, GOOGLE_ANALYTICS_ID, STORE_LOGO, STORE_POSTER } = WEB_HEAD_DATA;
 
     // Используем useState для хранения URL манифеста
     const [manifestUrl, setManifestUrl] = useState('');
@@ -67,6 +67,9 @@ const HeadStoresHTML: React.FC = () => {
                 <meta name="theme-color" content="#ffffff" />
                 <title>{STORE_TITLE}</title>
                 <meta name="description" content={STORE_DESCRIPTION} />
+                <meta property="og:title" content={STORE_TITLE} />
+                <meta property="og:image" content={require(`dataBase/images/posters/${STORE_POSTER}`)} />
+                <meta property="og:description" content={STORE_DESCRIPTION} />
                 <link rel="icon" href={require(`dataBase/images/logos/${STORE_LOGO}`)} />
                 <link rel="apple-touch-icon" href={require(`dataBase/images/logos/${STORE_LOGO}`)} />
                 <link rel="manifest" href={manifestUrl} />
