@@ -5,6 +5,7 @@ import { useIsMount } from 'hooks/useIsMount';
 import { useEffect, useState } from 'react';
 import { LoadedProductListInterface } from 'types';
 import { useDevice } from 'hooks/useDevice';
+import { useQueryClient } from '@tanstack/react-query';
 
 interface Props {
     store: string;
@@ -19,18 +20,18 @@ export const useProducts = ({ store, lang }: Props) => {
     const count = sx ? 28 : 35;
 
     const [queryCategories, setQueryCategories] = useState<string[] | []>([]);
-
     const [currentProductsPage, setCurrentProductsPage] = useState(0);
     const [productsList, setProductsList] = useState<LoadedProductListInterface[] | [] | null>(null);
     const [totalCount, setTotalCount] = useState(0);
     const [currentCount, setCurrentCount] = useState(0);
     const [totalPages, setTotalPages] = useState(0);
 
+    const queryClient = useQueryClient();
+
     const {
         data: productGetData,
         isFetching: loadProducts,
         isLoading: loadMoreProducts,
-        refetch: fetchProducts,
     } = useProductsApi().useGetAllProducts({
         store,
         lang,
@@ -40,7 +41,7 @@ export const useProducts = ({ store, lang }: Props) => {
     });
 
     useEffect(() => {
-        if (!productGetData || loadMoreProducts || loadMoreProducts) return;
+        if (!productGetData || loadMoreProducts) return;
 
         const prevData = currentProductsPage ? productsList || [] : [];
         const newData = productGetData?.data?.products?.map(product => {
@@ -99,8 +100,11 @@ export const useProducts = ({ store, lang }: Props) => {
 
     useEffect(() => {
         if (mount) return;
-        if (!queryCategories.length) return;
+
         handleSkipData();
+        if (currentProductsPage === 0) {
+            queryClient.invalidateQueries(['get-all-products']);
+        }
     }, [lang, queryCategories]); // eslint-disable-line
 
     const handleSetProductsPage = (val: number) => {
@@ -111,7 +115,6 @@ export const useProducts = ({ store, lang }: Props) => {
     return {
         loadProducts,
         loadMoreProducts,
-        updateProducts: fetchProducts,
         currentProductsPage,
         handleSetProductsPage,
         productsList,

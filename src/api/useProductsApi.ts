@@ -5,7 +5,7 @@ export const useProductsApi = () => {
     const { get } = useApi();
 
     const useGetAllProducts = ({ store, lang, count, categories, page }) => {
-        return useQuery(['get-all-products', page, categories], () =>
+        return useQuery(['get-all-products', page, lang, categories], () =>
             get({
                 url: `/v2/products?store=${store}&lang=${lang}&count=${count}&page=${page}${
                     categories.length ? '' : '&origin=customer'

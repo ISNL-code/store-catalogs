@@ -7,7 +7,7 @@ export const useCategoriesApi = () => {
     const useGetAllCategories = ({ store, lang }) => {
         return useQuery(
             //query key
-            ['get-all-product-categories'],
+            ['get-all-product-categories', lang],
             //get function
             () => get({ url: `/v1/category?lang=${lang}&store=${store}&count=1000&page=0` }),
             { enabled: !!store && !!lang }
