@@ -7,7 +7,7 @@ export const ALBERTO_BINI_KZ_RETAIL = {
     URL: ['https://albertobini-kz-retail.netlify.app'],
     appStoreUrl: null,
     playMarketUrl: null,
-    web_lang: 'kk', // html lang
+    web_lang: 'ru', // html lang
     store_name: 'Alberto Bini KZ Retail',
     store_code: 'alberto_bini_europe',
     base_url: 'https://kremen-belts.com/api',
