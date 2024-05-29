@@ -8,7 +8,7 @@ export const TelegramIcon = () => {
                 x="0px"
                 y="0px"
                 viewBox="0 0 512 512"
-                style={{ 'enable-background': 'new 0 0 512 512' }}
+                style={{ enableBackground: 'new 0 0 512 512' }}
             >
                 <circle style={{ fill: '#7AA5DA' }} cx="256" cy="256" r="256" />
                 <path

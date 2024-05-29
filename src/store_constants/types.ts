@@ -59,6 +59,7 @@ export interface STORE_CONFIG_Interface {
         GOOGLE_ANALYTICS_ID: string;
         STORE_LOGO: string;
         STORE_POSTER: string;
+        KEYWORDS: {};
     };
     USER_OPTIONS: { VIEW_MODE: ViewModeType }; // use for product list view}
 }

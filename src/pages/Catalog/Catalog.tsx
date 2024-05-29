@@ -140,7 +140,7 @@ const Catalog = () => {
             />
             {productsList?.length ? (
                 <Box sx={{ minHeight: scrollPosition || '100%' }}>
-                    <TransitionBox dependency={loading} time={200}>
+                    <TransitionBox dependency={loading} time={100}>
                         {MIN_ITEMS_TO_BUY > 1 && (
                             <Collapse in={open}>
                                 <Box mb={2}>
@@ -168,16 +168,16 @@ const Catalog = () => {
                                 </Box>
                             </Collapse>
                         )}
-                        <Grid className="CatalogList" container spacing={getGridSpacing().spacing}>
+                        <Grid className="CatalogList" container spacing={getGridSpacing()?.spacing}>
                             {productsList.map((product, idx) => (
                                 <CatalogListCard
                                     key={idx}
-                                    modelsVariants={product.variants}
-                                    name={product.name}
-                                    productId={product.id}
-                                    currency={getCurrencySymbol(store.currency)}
+                                    modelsVariants={product?.variants}
+                                    name={product?.name}
+                                    productId={product?.id}
+                                    currency={getCurrencySymbol(store?.currency)}
                                     setProductsList={setProductsList}
-                                    promoTags={product.promoTags}
+                                    promoTags={product?.promoTags}
                                     viewMode={viewMode}
                                 />
                             ))}
