@@ -43,7 +43,6 @@ export const useProducts = ({ store, lang }: Props) => {
     useEffect(() => {
         if (!productGetData || loadMoreProducts) return;
 
-        const prevData = currentProductsPage ? productsList || [] : [];
         const newData = productGetData?.data?.products?.map(product => {
             const originalPrice =
                 STORE_TYPE === StoreType.sales
@@ -79,8 +78,15 @@ export const useProducts = ({ store, lang }: Props) => {
                         .sort((a, b) => a.code - b.code) || [],
             };
         });
-
-        setProductsList([...prevData, ...newData]);
+        if (currentProductsPage)
+            setProductsList(prevData => {
+                if (prevData) {
+                    return [...prevData, ...newData];
+                } else return newData;
+            });
+        if (!currentProductsPage) {
+            setProductsList(newData);
+        }
         setTotalCount(productGetData?.data?.recordsTotal);
         setCurrentCount(productGetData?.data?.number);
         setTotalPages(productGetData?.data?.totalPages);

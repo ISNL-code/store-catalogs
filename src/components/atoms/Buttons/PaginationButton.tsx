@@ -4,7 +4,7 @@ import { useOutletContext } from 'react-router-dom';
 import { useDevice } from 'hooks/useDevice';
 
 interface PaginationButtonProps {
-    setCurrentPage: (page: number) => void;
+    setCurrentPage: any;
     totalCount: number;
     loading: boolean;
     productsList: any[] | null;
@@ -28,9 +28,8 @@ const PaginationButton: React.FC<PaginationButtonProps> = ({
     const observerRef = useRef<IntersectionObserver | null>(null);
 
     useEffect(() => {
-        if (loading) return;
-        if (!totalPages) return;
-        if (!sx) return;
+        console.log('PAGINATE');
+        if (loading || !totalPages || !sx || page + 1 >= totalPages) return;
         const currentRef = ref.current;
 
         const handleIntersection = (entries: IntersectionObserverEntry[]) => {
@@ -40,9 +39,11 @@ const PaginationButton: React.FC<PaginationButtonProps> = ({
                 activateAutomatically &&
                 !loading &&
                 productsList?.length &&
-                page < totalPages
+                page + 1 < totalPages &&
+                totalPages &&
+                totalCount
             ) {
-                if (totalPages > 1) setCurrentPage(page + 1);
+                setCurrentPage(page => page + 1);
             }
         };
 
@@ -61,7 +62,7 @@ const PaginationButton: React.FC<PaginationButtonProps> = ({
                 observerRef.current = null;
             }
         };
-    }, [activateAutomatically, loading, productsList, page, totalPages, sx, setCurrentPage]);
+    }, [activateAutomatically, loading, productsList, page, totalPages, sx, setCurrentPage]); // eslint-disable-line
 
     if (!totalCount) return null;
 
@@ -96,7 +97,7 @@ const PaginationButton: React.FC<PaginationButtonProps> = ({
                 variant="contained"
                 onClick={() => setCurrentPage(page + 1)}
                 color="secondary"
-                disabled={!productsList?.length || totalPages <= page + 1}
+                disabled={!productsList?.length || page + 1 >= totalPages}
             >
                 {loading ? string?.loading + '...' : string?.load_more}
             </Button>
