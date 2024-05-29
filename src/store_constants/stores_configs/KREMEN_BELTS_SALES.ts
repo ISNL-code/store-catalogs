@@ -61,5 +61,5 @@ export const KREMEN_BELTS_SALES = {
         store_poster: 'belts.jpeg',
         keywords: {},
     },
-    user_options: { view_mode: ViewModeType?.grid_m },
+    user_options: { view_mode: ViewModeType?.card },
 };

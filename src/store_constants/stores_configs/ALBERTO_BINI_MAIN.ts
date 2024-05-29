@@ -63,5 +63,5 @@ export const ALBERTO_BINI_MAIN = {
             fr: "vêtements d'extérieur pour femmes, en gros, au détail, bons prix, haute qualité, vente dans le monde entier",
         },
     },
-    user_options: { view_mode: ViewModeType?.grid_m },
+    user_options: { view_mode: ViewModeType?.card },
 };
