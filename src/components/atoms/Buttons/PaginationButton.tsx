@@ -26,6 +26,7 @@ const PaginationButton: React.FC<PaginationButtonProps> = ({
     const { string }: any = useOutletContext();
     const ref = useRef<HTMLDivElement | null>(null);
     const observerRef = useRef<IntersectionObserver | null>(null);
+    const timeoutRef = useRef<number | null>(null); // Ref to store the setTimeout id
 
     useEffect(() => {
         if (loading || !totalPages || !sx || page + 1 >= totalPages) return;
@@ -42,7 +43,8 @@ const PaginationButton: React.FC<PaginationButtonProps> = ({
                 totalPages &&
                 totalCount
             ) {
-                setTimeout(() => {
+                // Store the setTimeout id in the ref
+                timeoutRef.current = window.setTimeout(() => {
                     setCurrentPage(page => page + 1);
                 }, 300);
             }
@@ -62,8 +64,13 @@ const PaginationButton: React.FC<PaginationButtonProps> = ({
                 observerRef.current.disconnect();
                 observerRef.current = null;
             }
+            // Clear the timeout when component is unmounted
+            if (timeoutRef.current) {
+                clearTimeout(timeoutRef.current);
+                timeoutRef.current = null;
+            }
         };
-    }, [setCurrentPage, totalCount, loading, productsList, page, totalPages, activateAutomatically]); // eslint-disable-line
+    }, [setCurrentPage, totalCount, loading, productsList, page, totalPages, activateAutomatically]);
 
     if (!totalCount) return null;
 
