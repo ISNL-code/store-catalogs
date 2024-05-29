@@ -11,7 +11,6 @@ export const shareOnTelegram = (url: string) => {
 };
 
 export const shareOnWhatsApp = (url: string) => {
-    const message = `Check this out: ${url}`;
     const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(url)}`;
     openInSameWindow(whatsappUrl);
 };
