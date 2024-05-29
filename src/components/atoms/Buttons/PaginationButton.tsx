@@ -42,16 +42,15 @@ const PaginationButton: React.FC<PaginationButtonProps> = ({
                 totalPages &&
                 totalCount
             ) {
-                setCurrentPage(page => {
-                    if (page === page + 1) return page;
-                    return page + 1;
-                });
+                setTimeout(() => {
+                    setCurrentPage(page => page + 1);
+                }, 100);
             }
         };
 
         if (currentRef) {
             observerRef.current = new IntersectionObserver(handleIntersection, {
-                rootMargin: '0px',
+                rootMargin: '800px',
                 threshold: 1,
             });
             observerRef.current.observe(currentRef);
