@@ -104,7 +104,7 @@ export const useProducts = ({ store, lang }: Props) => {
         removeProductsData();
         setTimeout(() => {
             refetchProducts();
-        }, 0);
+        }, 200);
     };
 
     useEffect(() => {
