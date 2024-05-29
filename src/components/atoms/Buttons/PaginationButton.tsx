@@ -42,7 +42,10 @@ const PaginationButton: React.FC<PaginationButtonProps> = ({
                 totalPages &&
                 totalCount
             ) {
-                setCurrentPage(page => page + 1);
+                setCurrentPage(page => {
+                    if (page === page + 1) return page;
+                    return page + 1;
+                });
             }
         };
 
