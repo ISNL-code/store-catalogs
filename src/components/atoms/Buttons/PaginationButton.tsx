@@ -70,7 +70,7 @@ const PaginationButton: React.FC<PaginationButtonProps> = ({
                 timeoutRef.current = null;
             }
         };
-    }, [setCurrentPage, totalCount, loading, productsList, page, totalPages, activateAutomatically]);
+    }, [setCurrentPage, totalCount, loading, productsList, page, totalPages, activateAutomatically]); // eslint-disable-line
 
     if (!totalCount) return null;
 
