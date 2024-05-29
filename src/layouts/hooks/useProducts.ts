@@ -30,6 +30,7 @@ export const useProducts = ({ store, lang }: Props) => {
         isFetching: loadProducts,
         isLoading: loadMoreProducts,
         refetch: refetchProducts,
+        remove: removeProductsData,
     } = useProductsApi().useGetAllProducts({
         store,
         lang,
@@ -100,6 +101,7 @@ export const useProducts = ({ store, lang }: Props) => {
             top: 0,
             behavior: 'auto',
         });
+        removeProductsData();
         setTimeout(() => {
             refetchProducts();
         }, 0);
