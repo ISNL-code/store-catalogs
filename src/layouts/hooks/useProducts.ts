@@ -5,7 +5,6 @@ import { useIsMount } from 'hooks/useIsMount';
 import { useEffect, useState } from 'react';
 import { LoadedProductListInterface } from 'types';
 import { useDevice } from 'hooks/useDevice';
-import { useQueryClient } from '@tanstack/react-query';
 
 interface Props {
     store: string;
@@ -26,12 +25,11 @@ export const useProducts = ({ store, lang }: Props) => {
     const [currentCount, setCurrentCount] = useState(0);
     const [totalPages, setTotalPages] = useState(0);
 
-    const queryClient = useQueryClient();
-
     const {
         data: productGetData,
         isFetching: loadProducts,
         isLoading: loadMoreProducts,
+        refetch: refetchProducts,
     } = useProductsApi().useGetAllProducts({
         store,
         lang,
@@ -102,16 +100,26 @@ export const useProducts = ({ store, lang }: Props) => {
             top: 0,
             behavior: 'auto',
         });
+        setTimeout(() => {
+            refetchProducts();
+        }, 0);
     };
 
     useEffect(() => {
         if (mount) return;
-
         handleSkipData();
-        if (currentProductsPage === 0) {
-            queryClient.invalidateQueries(['get-all-products']);
-        }
-    }, [lang, queryCategories]); // eslint-disable-line
+    }, [queryCategories]); // eslint-disable-line
+
+    useEffect(() => {
+        if (mount) return;
+        handleSkipData();
+    }, [lang]); // eslint-disable-line
+
+    useEffect(() => {
+        if (mount) return;
+        if (currentProductsPage === 0) return;
+        refetchProducts();
+    }, [currentProductsPage]); // eslint-disable-line
 
     const handleSetProductsPage = (val: number) => {
         if (totalPages <= currentProductsPage) return;

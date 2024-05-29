@@ -62,7 +62,7 @@ const PaginationButton: React.FC<PaginationButtonProps> = ({
                 observerRef.current = null;
             }
         };
-    }, [activateAutomatically, loading, productsList, page, totalPages, sx, setCurrentPage]); // eslint-disable-line
+    }, [activateAutomatically, loading, sx]); // eslint-disable-line
 
     if (!totalCount) return null;
 
