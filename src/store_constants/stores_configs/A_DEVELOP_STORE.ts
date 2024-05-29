@@ -21,7 +21,7 @@ export const DEVELOP_STORE = {
     URL: [
         'http://localhost:3000',
         'http://localhost:3001',
-        'https://sales-nest-dev.netlify.app/',
-        'https://sales-nest.netlify.app/',
+        'https://sales-nest-dev.netlify.app',
+        'https://sales-nest.netlify.app',
     ],
 };
