@@ -7,7 +7,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import GridViewIcon from '@mui/icons-material/GridView';
 import ProfileMenu from 'components/molecules/ToolsButtons/ProfileMenu';
-import { StoreInterface, useAddToCartDataInterface, useAddToFavoriteDataInterface } from 'types';
+import { StoreInterface, useAddToCartDataInterface, useAddToFavoriteDataInterface } from 'types/app_models';
 import { Color, Colors } from 'colors';
 import { STORE_CONFIG } from 'store_constants/stores_config';
 import HomeIcon from '@mui/icons-material/Home';

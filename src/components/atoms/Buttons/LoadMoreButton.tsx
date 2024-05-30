@@ -2,7 +2,7 @@ import { Box, Button, Typography } from '@mui/material';
 import { useDevice } from 'hooks/useDevice';
 import { useRef } from 'react';
 import { useOutletContext } from 'react-router-dom';
-import { ProductCardInterface } from 'types';
+import { LocalStorageProductInterface } from 'types/app_models';
 import Loader from '../Loader/Loader';
 
 const LoadMoreButton = () => {
@@ -21,7 +21,7 @@ const LoadMoreButton = () => {
         loadProducts: boolean;
         totalCount: number;
         currentCount: number;
-        productsList: ProductCardInterface[];
+        productsList: LocalStorageProductInterface[];
         page: number;
         footerHeight: number;
         totalPages: number;

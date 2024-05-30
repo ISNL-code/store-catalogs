@@ -6,7 +6,7 @@ import { getCurrencySymbol } from 'helpers/getCurrencySymbol';
 import ScrollButton from 'components/atoms/Buttons/ScrollButton';
 import InstrumentalSubHeader from 'components/organisms/InstrumentalSubHeader/InstrumentalSubHeader';
 import EmptyPage from 'components/atoms/EmptyPage/EmptyPage';
-import { CatalogContextInterface, ProductVariantInterface } from 'types';
+import { ProductVariantInterface } from 'types/app_models';
 import TransitionBox from 'components/atoms/Transitions/TransitionBox';
 import Grid from '@mui/material/Unstable_Grid2';
 import CallBackButton from 'components/atoms/Buttons/CallBackButton';
@@ -20,6 +20,7 @@ import { StoreType, ViewModeType } from 'store_constants/types';
 import { useDevice } from 'hooks/useDevice';
 import { STORE_ROUTE } from 'constants/routes';
 import { DialogWindowType } from 'layouts/hooks/useFormsApp';
+import { CatalogContextInterface } from 'types/outlet_context_models';
 
 const Favorites = () => {
     const { sx } = useDevice();
@@ -86,32 +87,35 @@ const Favorites = () => {
             const products = res.data?.data.products;
 
             //clear invalid items or deleted by seller
-            favorites?.favoriteItems?.forEach(({ sku }) => {
-                if (!products.find(el => el.variants.map(({ sku }) => sku).includes(sku))) {
+            favorites?.favoriteItems?.forEach(({ variantSku }) => {
+                if (!products.find(el => el.variants.map(({ variantSku }) => variantSku).includes(variantSku))) {
                     favorites?.handleSetFavoriteItems({
-                        sku,
+                        variantSku,
                     });
                 }
             });
 
-            const data = favorites?.favoriteItems?.map(({ sku }) => {
+            const data = favorites?.favoriteItems?.map(({ variantSku }) => {
                 return {
                     ...products
-                        .find(el => el.variants.map(({ sku }) => sku).includes(sku))
-                        ?.variants?.filter(el => el.sku === sku)[0],
+                        .find(el => el.variants.map(({ variantSku }) => variantSku).includes(variantSku))
+                        ?.variants?.filter(el => el.variantSku === variantSku)[0],
                     sizes: products
-                        .find(el => el.variants.map(({ sku }) => sku).includes(sku))
+                        .find(el => el.variants.map(({ variantSku }) => variantSku).includes(variantSku))
                         ?.options?.find(el => el.code === 'SIZE'),
-                    name: products.find(el => el.variants.map(({ sku }) => sku).includes(sku))?.description?.name,
+                    name: products.find(el => el.variants.map(({ variantSku }) => variantSku).includes(variantSku))
+                        ?.description?.name,
                     variants: products
-                        .find(el => el.variants.map(({ sku }) => sku).includes(sku))
+                        .find(el => el.variants.map(({ variantSku }) => variantSku).includes(variantSku))
                         ?.variants.sort((a, b) => a.sortOrder - b.sortOrder)
                         .map(variant => {
                             const originalPrice =
                                 STORE_TYPE === StoreType.sales
                                     ? Math.max(
                                           ...products
-                                              .find(el => el.variants.map(({ sku }) => sku).includes(sku))
+                                              .find(el =>
+                                                  el.variants.map(({ variantSku }) => variantSku).includes(variantSku)
+                                              )
                                               ?.variants.sort((a, b) => a.sortOrder - b.sortOrder)
                                               ?.map(el => Number(el.inventory[0]?.price))
                                       )
@@ -120,19 +124,20 @@ const Favorites = () => {
                             return {
                                 id: variant.id,
                                 productId: variant.productId,
-                                selected: variant.sku === sku,
+                                selected: variant.variantSku === variantSku,
                                 price: variant.inventory[0]?.price,
                                 images: variant.images,
                                 colorCode: variant.variation.optionValue.code,
-                                sku: variant.sku,
+                                variantSku: variant.sku,
                                 quantity: variant.inventory[0]?.quantity,
                                 originalPrice,
                             };
                         }),
-                    price: products.find(el => el.variants.map(({ sku }) => sku).includes(sku))?.finalPrice,
+                    price: products.find(el => el.variants.map(({ variantSku }) => variantSku).includes(variantSku))
+                        ?.finalPrice,
                     promoTags:
                         products
-                            .find(el => el.variants.map(({ sku }) => sku).includes(sku))
+                            .find(el => el.variants.map(({ variantSku }) => variantSku).includes(variantSku))
                             ?.options.find(({ code }) => code === 'PROMO')
                             ?.optionValues.map(({ code, id, description }) => {
                                 return { code, id, name: description?.name };

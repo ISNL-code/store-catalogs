@@ -2,7 +2,7 @@ import { Box } from '@mui/material';
 import { Fragment, useEffect, useMemo, useRef, useState } from 'react';
 import { useOutletContext, useParams } from 'react-router-dom';
 import { useDevice } from 'hooks/useDevice';
-import { CatalogContextInterface } from 'types';
+import { CatalogContextInterface } from 'types/outlet_context_models';
 import FullScreenSwiper from './FullScreenSwiper';
 import ImageComponent from 'components/atoms/Media/Image';
 import { useWindowWidth } from '@react-hook/window-size';

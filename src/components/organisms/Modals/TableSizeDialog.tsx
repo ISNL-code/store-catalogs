@@ -3,7 +3,7 @@ import { Button, DialogActions, Dialog, ClickAwayListener } from '@mui/material'
 import { Colors } from 'colors';
 import DialogContent from '@mui/material/DialogContent';
 import { useDevice } from 'hooks/useDevice';
-import { DialogStateInterface } from 'types';
+import { DialogStateInterface } from 'types/app_models';
 
 interface Props {
     string; // Assuming `string` is used for the close button text

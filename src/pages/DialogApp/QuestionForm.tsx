@@ -5,7 +5,7 @@ import { STORE_CONFIG } from 'store_constants/stores_config';
 import FormDialog from 'components/organisms/Modals/FormDialog';
 import { Fragment, useEffect, useState } from 'react';
 import { DialogWindowType } from 'layouts/hooks/useFormsApp';
-import { DialogStateInterface } from 'types';
+import { DialogStateInterface } from 'types/app_models';
 
 interface Props {
     isOpen: boolean;

@@ -4,7 +4,7 @@ import InstrumentalSubHeader from 'components/organisms/InstrumentalSubHeader/In
 import { useOutletContext, useParams } from 'react-router-dom';
 import Grid from '@mui/material/Unstable_Grid2';
 import { useDevice } from 'hooks/useDevice';
-import { CatalogContextInterface } from 'types';
+import { CatalogContextInterface } from 'types/outlet_context_models';
 import { useUserApi } from 'api/useUserApi';
 import Loader from 'components/atoms/Loader/Loader';
 import { useEffect, useState } from 'react';

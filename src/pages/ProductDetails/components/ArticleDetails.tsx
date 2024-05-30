@@ -3,7 +3,11 @@ import DetailsSection from 'components/atoms/Sections/DetailsSection';
 import toast from 'react-hot-toast';
 import { useOutletContext, useParams } from 'react-router-dom';
 
-const ArticleDetails = ({ isShown }) => {
+interface Props {
+    isShown: boolean;
+}
+
+const ArticleDetails = ({ isShown }: Props) => {
     const { string }: any = useOutletContext();
     const { modelSku } = useParams();
 

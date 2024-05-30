@@ -2,7 +2,7 @@ import { Box } from '@mui/material';
 import { Colors } from 'colors';
 import { ReactNode } from 'react';
 import { useOutletContext } from 'react-router-dom';
-import { CatalogContextInterface, LandingContextInterface } from 'types';
+import { CatalogContextInterface, LandingContextInterface } from 'types/outlet_context_models';
 
 interface InstrumentalBarInterface {
     StartSlot?: () => ReactNode;

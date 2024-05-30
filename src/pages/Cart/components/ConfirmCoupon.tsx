@@ -3,7 +3,7 @@ import CardItem from 'components/atoms/Sections/CardItem';
 import Grid from '@mui/material/Unstable_Grid2';
 import { Button, TextField, Typography, Checkbox, FormControlLabel } from '@mui/material';
 import { useOutletContext, useParams } from 'react-router-dom';
-import { CatalogContextInterface } from 'types';
+import { CatalogContextInterface } from 'types/outlet_context_models';
 import { OrderDataInterface } from '../Cart';
 import { useState } from 'react';
 import axios from 'axios';

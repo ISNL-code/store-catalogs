@@ -1,6 +1,6 @@
 import { useIsMount } from 'hooks/useIsMount';
 import { useEffect, useState } from 'react';
-import { useAddToCartDataInterface } from 'types';
+import { LocalStorageProductInterface, useAddToCartDataInterface } from 'types/app_models';
 import { STORAGE_KEYS } from 'constants/local_storage_keys';
 
 interface useAddToCartParamsInterface {
@@ -9,7 +9,7 @@ interface useAddToCartParamsInterface {
 
 export const useAddToCart = ({ loadingUser }: useAddToCartParamsInterface): useAddToCartDataInterface => {
     const mount = useIsMount();
-    const [cartItems, setCartItems] = useState<any[]>([]);
+    const [cartItems, setCartItems] = useState<LocalStorageProductInterface[]>([]);
 
     useEffect(() => {
         if (loadingUser) return;
@@ -25,16 +25,16 @@ export const useAddToCart = ({ loadingUser }: useAddToCartParamsInterface): useA
         } else localStorage.removeItem(STORAGE_KEYS?.CART_KEY); // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [cartItems]);
 
-    const handleSetCartItems = data => {
-        if (cartItems?.find(item => item?.sku === data?.sku)) {
-            setCartItems(prev => prev.filter(item => item.sku !== data?.sku));
+    const handleSetCartItems = (data: LocalStorageProductInterface) => {
+        if (cartItems?.find(item => item?.variantSku === data?.variantSku)) {
+            setCartItems(prev => prev.filter(item => item.variantSku !== data?.variantSku));
         } else {
             setCartItems(prev => [...prev, data]);
         }
     };
 
     const handleClearCartItems = skuArray => {
-        setCartItems(cartItems.filter(el => !skuArray?.includes(el?.sku)));
+        setCartItems(cartItems.filter(el => !skuArray?.includes(el?.variantSku)));
     };
 
     const handleClearCart = () => {

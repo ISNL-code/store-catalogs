@@ -1,32 +1,30 @@
 import { useCategoriesApi } from 'api/useCategoriesApi';
 import { useEffect, useState } from 'react';
-import { CategoryInterface } from 'types';
+import { CategoryDataInterface } from 'types/app_models';
 
 interface Props {
-    store;
+    store: string;
     lang: string | null;
 }
 
 export const useCategory = ({ store, lang }: Props) => {
-    const [categoriesList, setCategoriesList] = useState<CategoryInterface[] | []>([]);
+    const [categoriesList, setCategoriesList] = useState<CategoryDataInterface[]>([]);
 
     const { data: categoryRes } = useCategoriesApi().useGetAllCategories({
         store: store,
-        lang: lang,
+        lang: lang || 'en',
     });
 
     useEffect(() => {
         if (!categoryRes) return;
         setCategoriesList(
-            categoryRes.data.categories?.map(category => {
-                return {
-                    depth: category.depth,
-                    id: category.id,
-                    parent: category.parent,
-                    children: category.children,
-                    description: category.description,
-                };
-            })
+            categoryRes.data.categories?.map(category => ({
+                depth: category.depth,
+                id: category.id,
+                parent: category.parent,
+                children: category.children,
+                description: category.description,
+            }))
         );
     }, [categoryRes]);
 

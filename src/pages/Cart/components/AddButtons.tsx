@@ -3,7 +3,7 @@ import AddIcon from '@mui/icons-material/Add';
 import { Box, Fab, TextField } from '@mui/material';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { useIsMount } from 'hooks/useIsMount';
-import { ProductVariantInterface } from 'types';
+import { ProductVariantInterface } from 'types/app_models';
 import { OrderDataInterface } from '../Cart';
 
 interface Props {
@@ -25,11 +25,11 @@ const AddButtons = ({ productPrice, setOrderData, productData }: Props) => {
                     ...prev.productsList,
                     {
                         sizeId: null,
-                        colorId: productData?.id,
+                        colorId: productData?.variantId,
                         productSku: productData?.variantSku,
                         quantity: 1,
                         price: productPrice,
-                        sku: productData?.sku,
+                        sku: productData?.productSku,
                     },
                 ],
             };
@@ -78,7 +78,7 @@ const AddButtons = ({ productPrice, setOrderData, productData }: Props) => {
                         return {
                             ...prev,
                             productsList: prev.productsList.map(item => {
-                                if (item?.colorId === productData?.id)
+                                if (item?.colorId === productData?.variantId)
                                     return { ...item, quantity: Number(item.quantity) + 1 };
                                 return item;
                             }),

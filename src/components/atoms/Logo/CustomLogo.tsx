@@ -57,7 +57,6 @@ const CustomLogo = () => {
                         color: '#161616',
                         textShadow: '#0000006a 0 0 2px',
                         mr: 0.1,
-                        mt: 0.1,
                     }}
                 >
                     A
@@ -137,7 +136,6 @@ const CustomLogo = () => {
                         color: '#161616',
                         textShadow: '#0000006a 0 0 2px',
                         mr: 0.1,
-                        mt: 0.1,
                     }}
                 >
                     B

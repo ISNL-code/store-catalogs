@@ -2,13 +2,18 @@ import { Box, TextField } from '@mui/material';
 import DetailsSection from 'components/atoms/Sections/DetailsSection';
 import toast from 'react-hot-toast';
 import { useOutletContext } from 'react-router-dom';
+import { ProductDataInterface } from 'types/app_models';
 
-const DescriptionDetails = ({ productDetails }) => {
+interface Props {
+    productDetails: ProductDataInterface;
+}
+
+const DescriptionDetails = ({ productDetails }: Props) => {
     const { string }: any = useOutletContext();
 
     const handleCopyToClipboard = () => {
         navigator.clipboard
-            .writeText(productDetails?.details as string)
+            .writeText(productDetails?.description as string)
             .then(() => toast.success(string?.copied_to_clipboard));
     };
 
@@ -28,7 +33,7 @@ const DescriptionDetails = ({ productDetails }) => {
                     sx={{ position: 'absolute', width: '100%', height: '100%', cursor: 'copy', zIndex: 1 }}
                 ></Box>
                 <TextField
-                    value={productDetails?.details}
+                    value={productDetails?.description}
                     disabled
                     size="small"
                     fullWidth

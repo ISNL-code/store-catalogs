@@ -4,14 +4,14 @@ import SizesIndicatorButton from 'components/atoms/SizesIndicatorButton/SizesInd
 import { useOutletContext } from 'react-router-dom';
 import StraightenIcon from '@mui/icons-material/Straighten';
 import { useDevice } from 'hooks/useDevice';
-import { CatalogContextInterface } from 'types';
+import { ProductDataInterface } from 'types/app_models';
 import { STORE_CONFIG } from 'store_constants/stores_config';
 import { Color } from 'colors';
 import { DialogWindowType } from 'layouts/hooks/useFormsApp';
-import { LoadedProductInterface } from '../ProductDetails';
+import { CatalogContextInterface } from 'types/outlet_context_models';
 
 interface Props {
-    productDetails: LoadedProductInterface;
+    productDetails: ProductDataInterface;
     isShown: boolean;
 }
 
@@ -34,7 +34,7 @@ const SizesDetails = ({ productDetails, isShown }: Props) => {
                                     flexDirection: 'column',
                                 }}
                             >
-                                {productDetails?.sizes?.length ? (
+                                {productDetails?.productSizes?.length ? (
                                     <Box
                                         sx={{
                                             width: 'fit-content',
@@ -45,7 +45,7 @@ const SizesDetails = ({ productDetails, isShown }: Props) => {
                                             border: '1px solid #ccc',
                                         }}
                                     >
-                                        {productDetails?.sizes?.map(({ code, id, name }) => (
+                                        {productDetails?.productSizes?.map(({ code, id, name }) => (
                                             <SizesIndicatorButton
                                                 key={id}
                                                 size={sm ? 34 : 38}

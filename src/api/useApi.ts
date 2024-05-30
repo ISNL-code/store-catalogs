@@ -1,27 +1,58 @@
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 
-const useApi = () => {
-    const get = async ({ url }) => {
+interface ApiGetParams {
+    url: string;
+}
+
+interface ApiPostParams {
+    url: string;
+    body?: Record<string, any>;
+}
+
+interface ApiPutParams {
+    url: string;
+    body: Record<string, any>;
+}
+
+interface ApiPatchParams {
+    url: string;
+    body: Record<string, any>;
+}
+
+interface ApiDeleteParams {
+    url: string;
+}
+
+interface Api {
+    get: (params: ApiGetParams) => Promise<AxiosResponse<any>>;
+    post: (params: ApiPostParams) => Promise<AxiosResponse<any>>;
+    put: (params: ApiPutParams) => Promise<AxiosResponse<any>>;
+    patch: (params: ApiPatchParams) => Promise<AxiosResponse<any>>;
+    remove: (params: ApiDeleteParams) => Promise<AxiosResponse<any>>;
+}
+
+const useApi = (): Api => {
+    const get = async ({ url }: ApiGetParams): Promise<AxiosResponse<any>> => {
         const response = await axios.get(url);
         return response;
     };
 
-    const post = async ({ url, body = {} }) => {
+    const post = async ({ url, body = {} }: ApiPostParams): Promise<AxiosResponse<any>> => {
         const response = await axios.post(url, body);
         return response;
     };
 
-    const put = async ({ url, body }) => {
+    const put = async ({ url, body }: ApiPutParams): Promise<AxiosResponse<any>> => {
         const response = await axios.put(url, body);
         return response;
     };
 
-    const patch = async ({ url, body }) => {
+    const patch = async ({ url, body }: ApiPatchParams): Promise<AxiosResponse<any>> => {
         const response = await axios.patch(url, body);
         return response;
     };
 
-    const remove = async ({ url }) => {
+    const remove = async ({ url }: ApiDeleteParams): Promise<AxiosResponse<any>> => {
         const response = await axios.delete(url);
         return response;
     };

@@ -3,7 +3,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { useDevice } from 'hooks/useDevice';
 import { useEffect, useState } from 'react';
 import HomeHeader from './SecurityHeader';
-import { StoreInterface } from 'types';
+import { StoreInterface } from 'types/app_models';
 import { useStoresApi } from 'api/useStoresApi';
 import { STORES_DATA } from 'dataBase/STORES';
 import { STORE_CONFIG } from 'store_constants/stores_config';

@@ -11,29 +11,13 @@ import { useDevice } from 'hooks/useDevice';
 import { useIsMount } from 'hooks/useIsMount';
 import { useEffect, useState } from 'react';
 import { useOutletContext, useParams } from 'react-router-dom';
-import { CatalogContextInterface, ProductVariantInterface } from 'types';
+import { ProductDataInterface, ProductVariantInterface } from 'types/app_models';
 import ModelDetails from './ModelDetails';
 import ModelSwiper from './ModelSwiper';
 import { STORE_CONFIG } from 'store_constants/stores_config';
 import { STORE_ROUTE } from 'constants/routes';
-
-export interface LoadedProductInterface {
-    id?: number;
-    variants?: ProductVariantInterface[];
-    promoTags?: any[];
-    name?: string;
-    sizes?: any[];
-    price?: string;
-    title: string;
-    promo: any[];
-    details: string;
-    originalPrice: number;
-    table_size_img: {
-        id: 1;
-        imageSizeTable: boolean;
-        imageUrl: string;
-    };
-}
+import { StoreType } from 'store_constants/types';
+import { CatalogContextInterface } from 'types/outlet_context_models';
 
 interface SelectedVarianInterface {
     images?: any[];
@@ -41,12 +25,12 @@ interface SelectedVarianInterface {
 
 const ProductDetails = () => {
     const { OPTIONS, STORE_CODE } = STORE_CONFIG;
-    const { PLAN_OPTIONS } = OPTIONS;
+    const { PLAN_OPTIONS, STORE_TYPE } = OPTIONS;
     const mount = useIsMount();
     const { headerHeight, instrumentalBarHeight, footerMenuHeight, lang, appXPadding }: CatalogContextInterface =
         useOutletContext();
     const { modelSku, storeCode, productId } = useParams();
-    const [productDetails, setProductDetails] = useState<LoadedProductInterface | null>(null);
+    const [productDetails, setProductDetails] = useState<ProductDataInterface | null>(null);
     const [selectedVariant, setSelectedVariant] = useState<SelectedVarianInterface | undefined | null>(null);
     const [loading, setLoading] = useState(true);
 
@@ -65,31 +49,47 @@ const ProductDetails = () => {
 
     useEffect(() => {
         if (!productRes || loadProduct) return;
-
         const product = productRes?.data?.products[0];
-        const prices = product?.variants?.map(el => Number(el?.inventory[0]?.price)) || [0];
+        const originalPrice =
+            STORE_TYPE === StoreType.sales
+                ? Math.max(...product.variants?.map(el => Number(el.inventory[0]?.price)))
+                : Number(product.price);
+
         setProductDetails({
-            title: product?.description.title,
-            details: product?.description.description,
-            originalPrice: Math.max(...prices),
-            price: product?.finalPrice,
             id: product?.id,
+            name: product?.description.title,
+            description: product?.description.description,
             table_size_img: product?.image,
-            variants: product?.variants.sort((a, b) => a.sortOrder - b.sortOrder).filter(el => el.images.length),
-            promo:
+            variants: product?.variants
+                .sort((a, b) => a.sortOrder - b.sortOrder)
+                .filter(el => el.images.length)
+                .map((variant, idx) => ({
+                    variantId: variant.id,
+                    productId: variant.productId,
+                    productSku: product?.sku,
+                    variantSku: variant.sku,
+                    images: variant.images,
+                    price: variant.inventory[0]?.price,
+                    quantity: variant.inventory[0]?.quantity,
+                    selected: idx === 0,
+                    colorCode: variant.variation.optionValue.code,
+                    colorName: variant.variation.optionValue.name,
+                })),
+            promoTags:
                 product?.options
                     .find(({ code }) => code === 'PROMO')
                     ?.optionValues.map(({ code, id, description }) => {
                         return { code, id, name: description?.name };
                     })
                     .sort((a, b) => a.code - b.code) || [],
-            sizes:
+            productSizes:
                 product?.options
                     .find(({ code }) => code === 'SIZE')
                     ?.optionValues.map(({ code, id, description }) => {
                         return { code, id, name: description?.name };
                     })
                     .sort((a, b) => a.code - b.code) || [],
+            originalPrice,
         });
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -113,7 +113,9 @@ const ProductDetails = () => {
     useEffect(() => {
         if (!productDetails) return;
 
-        setSelectedVariant(productDetails?.variants?.find(product => product.sku === modelSku?.replaceAll('_', '/')));
+        setSelectedVariant(
+            productDetails?.variants?.find(product => product.variantSku === modelSku?.replaceAll('_', '/'))
+        );
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [productDetails]);
 

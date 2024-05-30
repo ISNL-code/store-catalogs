@@ -4,7 +4,7 @@ import InstrumentalSubHeader from 'components/organisms/InstrumentalSubHeader/In
 import { useIsMount } from 'hooks/useIsMount';
 import { useEffect, useRef, useState } from 'react';
 import { useOutletContext, useParams } from 'react-router-dom';
-import { CatalogContextInterface, ProductVariantInterface } from 'types';
+import { ProductVariantInterface } from 'types/app_models';
 import Loader from 'components/atoms/Loader/Loader';
 import Grid from '@mui/material/Unstable_Grid2';
 import ImageComponent, { EmptyImage } from 'components/atoms/Media/Image';
@@ -20,6 +20,7 @@ import ClearListButton from 'components/molecules/ToolsButtons/ClearListButton';
 import { Colors } from 'colors';
 import { STORE_CONFIG } from 'store_constants/stores_config';
 import { DialogWindowType } from 'layouts/hooks/useFormsApp';
+import { CatalogContextInterface } from 'types/outlet_context_models';
 
 interface ProductListInterface {
     sizeId: number | null;
@@ -66,8 +67,8 @@ const Cart = () => {
     }: CatalogContextInterface = useOutletContext();
     const [productIds, setProductIds] = useState<string[] | any[]>([]);
     const [cartProducts, setCartProducts] = useState<ProductVariantInterface[] | any[]>([]);
-    const [finalPrice, setFinalPrice] = useState(0);
-    const [successOrdering, setSuccessOrdering] = useState(false);
+    const [finalPrice, setFinalPrice] = useState<number>(0);
+    const [successOrdering, setSuccessOrdering] = useState<boolean>(false);
     const [orderData, setOrderData] = useState<OrderDataInterface>({
         final_price: 0,
         productsList: [] as ProductListInterface[],
@@ -111,33 +112,36 @@ const Cart = () => {
             const products = res.data?.data.products;
 
             //clear invalid items
-            cart?.cartItems.forEach(({ sku }) => {
-                if (!products.find(el => el.variants.map(({ sku }) => sku).includes(sku))) {
+            cart?.cartItems.forEach(({ variantSku }) => {
+                if (!products.find(el => el.variants.map(({ variantSku }) => variantSku).includes(variantSku))) {
                     cart?.handleSetCartItems({
-                        sku,
+                        variantSku,
                     });
                 }
             });
 
-            const data = cart?.cartItems?.map(({ sku }) => {
+            const data = cart?.cartItems?.map(({ variantSku }) => {
                 return {
                     ...products
-                        .find(el => el.variants.map(({ sku }) => sku).includes(sku))
-                        ?.variants?.filter(el => el.sku === sku)[0],
-                    variantSku: products.find(el => el.variants.map(({ sku }) => sku).includes(sku))?.sku,
+                        .find(el => el.variants.map(({ variantSku }) => variantSku).includes(variantSku))
+                        ?.variants?.filter(el => el.variantSku === variantSku)[0],
+                    variantSku: products.find(el =>
+                        el.variants.map(({ variantSku }) => variantSku).includes(variantSku)
+                    )?.variantSku,
                     sizes: {
                         ...products
-                            .find(el => el.variants.map(({ sku }) => sku).includes(sku))
+                            .find(el => el.variants.map(({ variantSku }) => variantSku).includes(variantSku))
 
                             ?.options?.find(el => el.code === 'SIZE'),
                     },
                     color: {
                         ...products
-                            .find(el => el.variants.map(({ sku }) => sku).includes(sku))
+                            .find(el => el.variants.map(({ variantSku }) => variantSku).includes(variantSku))
 
                             ?.options?.find(el => el.code === 'COLOR'),
                     },
-                    name: products.find(el => el.variants.map(({ sku }) => sku).includes(sku))?.description?.name,
+                    name: products.find(el => el.variants.map(({ variantSku }) => variantSku).includes(variantSku))
+                        ?.description?.name,
                 };
             });
             setCartProducts(data);

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { DialogStateInterface } from 'types';
+import { DialogStateInterface } from 'types/app_models';
 
 export enum DialogWindowType {
     RESET_PASSWORD = 'reset_password',

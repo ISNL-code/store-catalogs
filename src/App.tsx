@@ -1,15 +1,9 @@
+import { useCallback, useMemo, useEffect } from 'react';
 import { ThemeProvider } from '@mui/material';
-import { useState, useMemo, useCallback } from 'react';
 import mainTheme from 'theme/mainTheme';
-import { useUserApi } from 'api/useUserApi';
-import { StoreInterface, UserDataInterface } from 'types';
 import { STORE_CONFIG } from 'store_constants/stores_config';
-import { ViewModeType } from 'store_constants/types';
 import AppRouting from 'AppRouting';
 import AppLogic from 'AppLogic';
-import { useStoresApi } from 'api/useStoresApi';
-import { useAddToCart } from 'layouts/hooks/useAddToCart';
-import { useAddToFavorites } from 'layouts/hooks/useAddToFavorites';
 import { Toaster } from 'react-hot-toast';
 import { useDevice } from 'hooks/useDevice';
 import LandingModeRouting from 'LandingModeRouting';
@@ -17,41 +11,46 @@ import LandingLogic from 'LandingLogic';
 import { APP_CONFIG, WEB_MODE_ENUMS } from 'APP_CONFIG';
 import HeadLandingHTML from 'layouts/Head-Landing-HTML';
 import HeadStoresHTML from 'layouts/Head-Stores-HTML';
-import { useGetLanguage } from 'hooks/useGetLanguage';
+import { AppProvider, useAppContext } from 'APP_ContextProvider';
 
-const App = () => {
+const AppContent = ({ clearCache }) => {
     const { WEB_MODE } = APP_CONFIG;
-    const { STORE_CODE, APP_LANGUAGE, STORE_NAME } = STORE_CONFIG;
-    const [lang, setLang] = useState<string>(APP_LANGUAGE);
-    const [viewMode, setViewMode] = useState<ViewModeType | null>(null);
-    const [auth, setAuth] = useState<boolean | null>(null);
-    const [currentUserData, setCurrentUserData] = useState<UserDataInterface | any>(null);
-    const [infoAlert, setInfoAlert] = useState<{ ws_info: boolean } | null>(null);
-    const [store, setStore] = useState<StoreInterface | null>(null);
+    const { STORE_CODE } = STORE_CONFIG;
+    const {
+        auth,
+        setAuth,
+        lang,
+        setLang,
+        viewMode,
+        setViewMode,
+        infoAlert,
+        setInfoAlert,
+        currentUserData,
+        setCurrentUserData,
+        isFetchingUser,
+        updateUserData,
+        userError,
+        store,
+        setStore,
+        storeDataRes,
+        loadStore,
+        cart,
+        favorites,
+        currentLanguage,
+        userData,
+    } = useAppContext();
+
     const { sx } = useDevice();
 
-    const {
-        data: userData,
-        refetch: updateUserData,
-        isFetching: isFetchingUser,
-        error: userError,
-    } = useUserApi().useGetUserData({
-        storeCode: STORE_CODE,
-    });
+    const memoizedSetLang = useCallback(newLang => setLang(newLang), []); // eslint-disable-line
+    const memoizedSetViewMode = useCallback(newViewMode => setViewMode(newViewMode), []); // eslint-disable-line
+    const memoizedSetAuth = useCallback(newAuth => setAuth(newAuth), []); // eslint-disable-line
+    const memoizedSetCurrentUserData = useCallback(newData => setCurrentUserData(newData), []); // eslint-disable-line
+    const memoizedSetInfoAlert = useCallback(newInfo => setInfoAlert(newInfo), []); // eslint-disable-line
 
-    const { data: storeDataRes, isFetching: loadStore } = useStoresApi().useGetStoreByCode({
-        code: STORE_CODE,
-    });
-
-    const { currentLanguage } = useGetLanguage({ lang, storeName: STORE_NAME });
-    const cart = useAddToCart({ loadingUser: isFetchingUser });
-    const favorites = useAddToFavorites({ loadingUser: isFetchingUser });
-
-    const memoizedSetLang = useCallback(newLang => setLang(newLang), []);
-    const memoizedSetViewMode = useCallback(newViewMode => setViewMode(newViewMode), []);
-    const memoizedSetAuth = useCallback(newAuth => setAuth(newAuth), []);
-    const memoizedSetCurrentUserData = useCallback(newData => setCurrentUserData(newData), []);
-    const memoizedSetInfoAlert = useCallback(newInfo => setInfoAlert(newInfo), []);
+    useEffect(() => {
+        clearCache();
+    }, [clearCache]);
 
     const memoizedAppLogic = useMemo(
         () => ({
@@ -69,6 +68,7 @@ const App = () => {
             loadStore,
             userData,
         }),
+        // eslint-disable-next-line
         [
             setAuth,
             updateUserData,
@@ -133,6 +133,14 @@ const App = () => {
                 )}
             </ThemeProvider>
         </>
+    );
+};
+
+const App = ({ clearCache }) => {
+    return (
+        <AppProvider>
+            <AppContent clearCache={clearCache} />
+        </AppProvider>
     );
 };
 

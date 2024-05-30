@@ -3,7 +3,7 @@ import { STORE_CONFIG } from 'store_constants/stores_config';
 import { StoreType } from 'store_constants/types';
 import { useIsMount } from 'hooks/useIsMount';
 import { useEffect, useState } from 'react';
-import { LoadedProductListInterface } from 'types';
+import { ProductDataInterface, ProductVariantInterface } from 'types/app_models';
 import { useDevice } from 'hooks/useDevice';
 
 interface Props {
@@ -20,27 +20,27 @@ export const useProducts = ({ store, lang }: Props) => {
 
     const [queryCategories, setQueryCategories] = useState<string[] | []>([]);
     const [currentProductsPage, setCurrentProductsPage] = useState(0);
-    const [productsList, setProductsList] = useState<LoadedProductListInterface[] | [] | null>(null);
+    const [productsList, setProductsList] = useState<ProductDataInterface[] | null>(null);
     const [totalCount, setTotalCount] = useState(0);
     const [currentCount, setCurrentCount] = useState(0);
     const [totalPages, setTotalPages] = useState(0);
 
     const {
         data: productGetData,
-        isFetching: loadProducts,
-        isLoading: loadMoreProducts,
+        isFetching: isLoadingProducts,
+        isLoading: isLoadingMoreProducts,
         refetch: refetchProducts,
         remove: removeProductsData,
     } = useProductsApi().useGetAllProducts({
         store,
-        lang,
+        lang: lang || 'en',
         count,
         page: currentProductsPage,
         categories: queryCategories,
     });
 
     useEffect(() => {
-        if (!productGetData || loadMoreProducts) return;
+        if (!productGetData || isLoadingMoreProducts) return;
 
         const newData = productGetData?.data?.products?.map(product => {
             const originalPrice =
@@ -50,22 +50,27 @@ export const useProducts = ({ store, lang }: Props) => {
 
             return {
                 id: product.id,
+                name: product?.description.name,
+                description: product?.description.description,
+                productSku: product?.sku,
+                table_size_img: product?.image,
                 variants: product.variants
                     .sort((a, b) => a.sortOrder - b.sortOrder)
                     .filter(el => (STORE_TYPE === StoreType.sales ? el.images.length : true))
                     .map((variant, idx) => ({
-                        id: variant.id,
+                        variantId: variant.id,
                         productId: variant.productId,
-                        selected: idx === 0,
-                        price: variant.inventory[0]?.price,
+                        productSku: product?.sku,
+                        variantSku: variant.sku,
                         images: variant.images,
-                        colorCode: variant.variation.optionValue.code,
-                        sku: variant.sku,
+                        originalPrice: originalPrice,
+                        price: variant.inventory[0]?.price,
                         quantity: variant.inventory[0]?.quantity,
-                        originalPrice,
+                        selected: idx === 0,
+                        colorCode: variant.variation.optionValue.code,
+                        colorName: variant.variation.optionValue.name,
                     })),
-                name: product.description.name,
-                price: Number(product.finalPrice),
+                originalPrice,
                 promoTags:
                     product.options
                         .find(({ code }) => code === 'PROMO')
@@ -73,8 +78,14 @@ export const useProducts = ({ store, lang }: Props) => {
                             code,
                             id,
                             name: description?.name,
-                        }))
-                        .sort((a, b) => a.code - b.code) || [],
+                        })) || [],
+                productSizes:
+                    product?.options
+                        .find(({ code }) => code === 'SIZE')
+                        ?.optionValues.map(({ code, id, description }) => {
+                            return { code, id, name: description?.name };
+                        })
+                        .sort((a, b) => Number(a.code) - Number(b.code)) || [],
             };
         });
         if (currentProductsPage)
@@ -129,8 +140,8 @@ export const useProducts = ({ store, lang }: Props) => {
     };
 
     return {
-        loadProducts,
-        loadMoreProducts,
+        isLoadingProducts,
+        isLoadingMoreProducts,
         currentProductsPage,
         handleSetProductsPage,
         productsList,

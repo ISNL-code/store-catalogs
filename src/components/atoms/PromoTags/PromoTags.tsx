@@ -2,7 +2,7 @@ import { Box, Typography } from '@mui/material';
 import { Colors } from 'colors';
 import { useOutletContext } from 'react-router-dom';
 import { ViewModeType } from 'store_constants/types';
-import { CatalogContextInterface } from 'types';
+import { CatalogContextInterface } from 'types/outlet_context_models';
 
 const PromoTags = ({ value, action = () => {}, disabled = false, code, adaptive = false }) => {
     const { viewMode }: CatalogContextInterface = useOutletContext();

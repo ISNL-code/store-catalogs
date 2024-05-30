@@ -1,7 +1,7 @@
 import { Box, Button, Typography } from '@mui/material';
 import { useNavigate, useOutletContext } from 'react-router-dom';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
-import { CatalogContextInterface } from 'types';
+import { CatalogContextInterface } from 'types/outlet_context_models';
 import { STORE_CONFIG } from 'store_constants/stores_config';
 import { STORE_ROUTE } from 'constants/routes';
 import { useDevice } from 'hooks/useDevice';

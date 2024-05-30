@@ -1,5 +1,5 @@
 import TableSizeDialog from 'components/organisms/Modals/TableSizeDialog';
-import { DialogStateInterface } from 'types';
+import { DialogStateInterface } from 'types/app_models';
 
 interface Props {
     isOpen: boolean;

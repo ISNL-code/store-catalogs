@@ -3,11 +3,19 @@ import Grid from '@mui/material/Unstable_Grid2';
 import { Color } from 'colors';
 import CartModelPrice from 'components/molecules/PricesComponents/CartModelPrice';
 import { STORE_ROUTE } from 'constants/routes';
+import { Dispatch, SetStateAction } from 'react';
 import { useNavigate, useOutletContext } from 'react-router-dom';
 import { STORE_CONFIG } from 'store_constants/stores_config';
-import { CatalogContextInterface } from 'types';
+import { ProductVariantInterface } from 'types/app_models';
+import { OrderDataInterface } from '../Cart';
+import { CatalogContextInterface } from 'types/outlet_context_models';
 
-const ProductDetails = ({ data, setOrderData }) => {
+interface Props {
+    data: ProductVariantInterface;
+    setOrderData: Dispatch<SetStateAction<OrderDataInterface>>;
+}
+
+const ProductDetails = ({ data, setOrderData }: Props) => {
     const { STORE_CODE } = STORE_CONFIG;
     const navigate = useNavigate();
     const { string, cart, store }: CatalogContextInterface = useOutletContext();
@@ -30,12 +38,12 @@ const ProductDetails = ({ data, setOrderData }) => {
                     <Typography>{string?.vendor_code}:</Typography>
                     <Typography
                         onClick={() => {
-                            navigate(STORE_ROUTE?.product(STORE_CODE, data?.productId, data?.sku));
+                            navigate(STORE_ROUTE?.product(STORE_CODE, data?.productId, data?.variantSku));
                         }}
                         variant="h3"
                         sx={{ color: Color?.PRIMARY, fontWeight: 700, cursor: 'pointer' }}
                     >
-                        {data?.sku}
+                        {data?.variantSku}
                     </Typography>
                 </Box>
                 <Button
@@ -43,13 +51,13 @@ const ProductDetails = ({ data, setOrderData }) => {
                     variant="outlined"
                     onClick={() => {
                         cart?.handleSetCartItems({
-                            sku: data?.sku,
+                            variantSku: data?.productSku,
                         });
                         setOrderData(prev => {
                             return {
                                 ...prev,
                                 productsList: prev?.productsList?.filter(el => {
-                                    return el.colorId !== data.id;
+                                    return el.colorId !== data.variantId;
                                 }),
                             };
                         });
@@ -58,15 +66,15 @@ const ProductDetails = ({ data, setOrderData }) => {
                     {string?.delete}
                 </Button>
             </Grid>
-            <Typography variant="h3">{data?.name}</Typography>
+            {/* <Typography variant="h3">{productName}</Typography> */}
             <Box sx={{ display: 'flex', gap: 1 }}>
                 <Typography>{string?.price}:</Typography>
-                <CartModelPrice price={data?.inventory && data?.inventory[0]?.price} currency={store?.currency} />
+                <CartModelPrice price={data?.price} currency={store?.currency} />
             </Box>
             <Box sx={{ display: 'flex', gap: 1 }}>
                 <Typography>{string?.color}:</Typography>
                 <Typography variant="h3" sx={{ color: 'gray' }}>
-                    {data?.variation?.optionValue?.name}
+                    {data?.colorName}
                 </Typography>
             </Box>
         </>

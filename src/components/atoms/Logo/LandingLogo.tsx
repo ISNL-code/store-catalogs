@@ -54,7 +54,6 @@ const LandingLogo = () => {
                         color: '#161616',
                         textShadow: '#0000006a 0 0 2px',
                         mr: 0.1,
-                        mt: 0.1,
                     }}
                 >
                     S
@@ -113,7 +112,6 @@ const LandingLogo = () => {
                         color: '#161616',
                         textShadow: '#0000006a 0 0 2px',
                         mr: 0.1,
-                        mt: 0.1,
                     }}
                 >
                     N

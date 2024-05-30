@@ -6,7 +6,7 @@ import { ROUTES } from 'constants/routes';
 import { useFormsApp } from 'layouts/hooks/useFormsApp';
 import { Outlet } from 'react-router-dom';
 import LandingHeader from './LandingHeader';
-import { LandingContextInterface } from 'types';
+import { LandingContextInterface } from 'types/outlet_context_models';
 
 const OutletContainer = ({ context }: { context: LandingContextInterface }) => {
     return <Outlet context={context} />;

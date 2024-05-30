@@ -3,7 +3,7 @@ import InstrumentalSubHeader from 'components/organisms/InstrumentalSubHeader/In
 import Grid from '@mui/material/Unstable_Grid2';
 import { Box, Button, Typography } from '@mui/material';
 import { useOutletContext } from 'react-router-dom';
-import { HomeContextInterface } from 'types';
+import { HomeContextInterface } from 'types/outlet_context_models';
 import { useDevice } from 'hooks/useDevice';
 import { Colors } from 'colors';
 import BackButton from 'components/atoms/Buttons/BackButton';

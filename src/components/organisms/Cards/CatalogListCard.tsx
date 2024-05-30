@@ -6,7 +6,7 @@ import ColorIndicatorButton from 'components/atoms/ColorIndicatorButton/ColorInd
 import CartButton from 'components/molecules/ToolsButtons/CartButton';
 import FavoritesButton from 'components/molecules/ToolsButtons/FavoritesButton';
 import Slider from 'react-slick';
-import { CatalogContextInterface } from 'types';
+import { ProductVariantInterface } from 'types/app_models';
 import Grid from '@mui/material/Unstable_Grid2';
 import PromoTags from 'components/atoms/PromoTags/PromoTags';
 import ImageComponent, { EmptyImage } from 'components/atoms/Media/Image';
@@ -22,29 +22,10 @@ import GridMediumView from './GridMediumView';
 import { useWindowWidth } from '@react-hook/window-size';
 import CardDescriptionComponent from 'components/atoms/DescriptionComponents/CardDescriptionComponent';
 import { SHARE_PATH, STORE_ROUTE } from 'constants/routes';
-
-interface ShownModelInterface {
-    price: string;
-    images: { imageUrl: string }[];
-    id: number;
-    sku: string;
-    productId: number;
-    quantity: number;
-    originalPrice: number;
-}
+import { CatalogContextInterface } from 'types/outlet_context_models';
 
 interface CatalogCardProps {
-    modelsVariants: {
-        id: number;
-        selected?: boolean;
-        colorCode?: string;
-        productId: number;
-        price: string;
-        images: any[];
-        sku: string;
-        quantity: number;
-        originalPrice: number;
-    }[];
+    modelsVariants: ProductVariantInterface[];
     name: string;
     productId: number;
     currency: string;
@@ -67,7 +48,7 @@ const CatalogListCard = memo<CatalogCardProps>(
         const { cart, favorites, currentUserData }: CatalogContextInterface = useOutletContext();
         const colorsBoxRef = useRef(null);
         const { storeCode } = useParams();
-        const [shownModel, setShownModel] = useState<ShownModelInterface | null>(null);
+        const [shownModel, setShownModel] = useState<ProductVariantInterface | null>(null);
         const [sliderHeight, setSliderHeight] = useState<number | string>(0);
 
         const absentProduct = Boolean(!shownModel?.quantity);
@@ -97,7 +78,7 @@ const CatalogListCard = memo<CatalogCardProps>(
                         cursor: 'pointer',
                     }}
                     onClick={() => {
-                        navigate(STORE_ROUTE?.product(STORE_CODE, productId, shownModel?.sku));
+                        navigate(STORE_ROUTE?.product(STORE_CODE, productId, shownModel?.variantSku));
                     }}
                 >
                     <Grid
@@ -182,7 +163,7 @@ const CatalogListCard = memo<CatalogCardProps>(
                     <Box onClick={e => e.stopPropagation()}>
                         <Box
                             p={1}
-                            pb={0}
+                            pb={0.5}
                             sx={{
                                 display: 'flex',
                                 flexDirection: 'column',
@@ -200,7 +181,7 @@ const CatalogListCard = memo<CatalogCardProps>(
                                 )}
                                 <ShareButton
                                     isShown
-                                    path={SHARE_PATH?.share_product_sku(STORE_CODE, productId, shownModel?.sku)}
+                                    path={SHARE_PATH?.share_product_sku(STORE_CODE, productId, shownModel?.variantSku)}
                                     direction="up"
                                     size={viewMode === ViewModeType?.card ? 'large' : 'small'}
                                 />
@@ -220,7 +201,7 @@ const CatalogListCard = memo<CatalogCardProps>(
                                 justifyContent: 'center',
                                 flexWrap: 'nowrap',
                                 backgroundColor: Colors?.GRAY_100,
-                                height: '30px',
+
                                 px: 0.2,
                                 transition: 'height 250ms cubic-bezier(0, 0.4, 0.2, 1)',
                             }}
@@ -237,7 +218,7 @@ const CatalogListCard = memo<CatalogCardProps>(
                                 }}
                             >
                                 {modelsVariants?.map((model, idx) => {
-                                    const selected = model?.id === shownModel?.id;
+                                    const selected = model?.variantId === shownModel?.variantId;
 
                                     if (!setProductsList && !selected) return null; //used for favorites list
 
@@ -254,7 +235,7 @@ const CatalogListCard = memo<CatalogCardProps>(
                                                                 return {
                                                                     ...el,
                                                                     variants: el.variants.map(variant => {
-                                                                        if (variant.id === model.id)
+                                                                        if (variant.id === model.variantId)
                                                                             return { ...variant, selected: true };
                                                                         return { ...variant, selected: false };
                                                                     }),
@@ -294,19 +275,20 @@ const CatalogListCard = memo<CatalogCardProps>(
                                 }}
                             >
                                 <CardDescriptionComponent title={name} />
-                                <CardSkuLabel sku={shownModel?.sku as string} />
+                                <CardSkuLabel sku={shownModel?.variantSku as string} />
                             </Box>
 
                             <CartButton
-                                selected={cart?.cartItems?.find(item => item.sku === shownModel?.sku)}
+                                selected={cart?.cartItems?.find(item => item.variantSku === shownModel?.variantSku)}
                                 isShown={PLAN_OPTIONS?.cart}
                                 action={() => {
-                                    cart?.handleSetCartItems({
-                                        sku: shownModel?.sku,
-                                        storeCode,
-                                        userId: currentUserData?.id,
-                                        productId: shownModel?.productId,
-                                    });
+                                    if (shownModel?.variantSku)
+                                        cart?.handleSetCartItems({
+                                            variantSku: shownModel?.variantSku,
+                                            storeCode,
+                                            userId: currentUserData?.id,
+                                            productId: shownModel?.productId,
+                                        });
                                 }}
                             />
                         </Box>
@@ -367,17 +349,20 @@ const CatalogListCard = memo<CatalogCardProps>(
                     <Box
                         sx={{ position: 'absolute', top: 8, right: 8, zIndex: 1, display: 'flex', gap: 0.5 }}
                         onClick={() => {
-                            favorites?.handleSetFavoriteItems({
-                                sku: shownModel?.sku,
-                                storeCode,
-                                userId: currentUserData?.id,
-                                productId: shownModel?.productId,
-                            });
+                            if (shownModel?.variantSku)
+                                favorites?.handleSetFavoriteItems({
+                                    variantSku: shownModel?.variantSku,
+                                    storeCode,
+                                    userId: currentUserData?.id,
+                                    productId: shownModel?.productId,
+                                });
                         }}
                     >
                         <FavoritesButton
                             isShown={PLAN_OPTIONS?.favorites}
-                            selected={favorites?.favoriteItems?.find(item => item.sku === shownModel?.sku)}
+                            selected={Boolean(
+                                favorites?.favoriteItems?.find(item => item.variantSku === shownModel?.variantSku)
+                            )}
                         />
                     </Box>
                 </>

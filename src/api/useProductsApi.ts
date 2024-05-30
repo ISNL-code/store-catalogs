@@ -1,17 +1,33 @@
-import { useQuery } from '@tanstack/react-query';
+import { UseQueryResult, useQuery } from '@tanstack/react-query';
 import useApi from './useApi';
+import { AxiosResponse } from 'axios';
+import { ProductsResponseInterface } from 'types/response_models';
+
+interface GetAllProductsParams {
+    store: string;
+    lang: string;
+    count: number;
+    categories: string[];
+    page: number;
+}
 
 export const useProductsApi = () => {
     const { get } = useApi();
 
-    const useGetAllProducts = ({ store, lang, count, categories, page }) => {
+    const useGetAllProducts = ({
+        store,
+        lang,
+        count,
+        categories,
+        page,
+    }: GetAllProductsParams): UseQueryResult<AxiosResponse<ProductsResponseInterface>, unknown> => {
         return useQuery(
-            ['get-all-products'],
+            ['get-all-products', store, lang, count, categories, page],
             () =>
                 get({
                     url: `/v2/products?store=${store}&lang=${lang}&count=${count}&page=${page}${
                         categories.length ? '' : '&origin=customer'
-                    }&available=true${categories?.length ? '&categoryIds=' + categories : ''}`,
+                    }&available=true${categories.length ? '&categoryIds=' + categories.join(',') : ''}`,
                 }),
             { cacheTime: 1000 * 60 * 5 }
         );

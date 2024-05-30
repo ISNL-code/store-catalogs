@@ -4,17 +4,23 @@ import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
-import { CatalogContextInterface } from 'types';
+import { ProductVariantInterface } from 'types/app_models';
 import { STORE_CONFIG } from 'store_constants/stores_config';
+import { CatalogContextInterface } from 'types/outlet_context_models';
 
-const ActionSection = ({ isShown, selectedVariant }) => {
+interface Props {
+    selectedVariant: ProductVariantInterface;
+    isShown: boolean;
+}
+
+const ActionSection = ({ isShown, selectedVariant }: Props) => {
     const { OPTIONS } = STORE_CONFIG;
     const { PLAN_OPTIONS } = OPTIONS;
     const { storeCode } = useParams();
     const { string, cart, favorites }: CatalogContextInterface = useOutletContext();
 
-    const selectedToCart = cart?.cartItems?.find(item => item.sku === selectedVariant?.sku);
-    const selectedToFavorite = favorites?.favoriteItems?.find(item => item.sku === selectedVariant?.sku);
+    const selectedToCart = cart?.cartItems?.find(item => item.variantSku === selectedVariant?.variantSku);
+    const selectedToFavorite = favorites?.favoriteItems?.find(item => item.variantSku === selectedVariant?.variantSku);
 
     if (isShown)
         return (
@@ -35,9 +41,8 @@ const ActionSection = ({ isShown, selectedVariant }) => {
                         onClick={() => {
                             // if (!auth) return setOpenModalType('register-warning');
                             cart?.handleSetCartItems({
-                                sku: selectedVariant?.sku,
+                                variantSku: selectedVariant?.variantSku,
                                 storeCode,
-                                userId: selectedVariant?.id,
                                 productId: selectedVariant?.productId,
                             });
                         }}
@@ -68,9 +73,8 @@ const ActionSection = ({ isShown, selectedVariant }) => {
                         variant={selectedToFavorite ? 'contained' : 'outlined'}
                         onClick={() => {
                             favorites?.handleSetFavoriteItems({
-                                sku: selectedVariant?.sku,
+                                variantSku: selectedVariant?.variantSku,
                                 storeCode,
-                                userId: selectedVariant?.id,
                                 productId: selectedVariant?.productId,
                             });
                         }}

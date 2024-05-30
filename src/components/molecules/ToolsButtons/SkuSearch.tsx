@@ -8,7 +8,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import { STORE_ROUTE } from 'constants/routes';
 import { STORE_CONFIG } from 'store_constants/stores_config';
-import { CatalogContextInterface } from 'types';
+import { CatalogContextInterface } from 'types/outlet_context_models';
 
 const SkuSearch = () => {
     const { STORE_CODE } = STORE_CONFIG;

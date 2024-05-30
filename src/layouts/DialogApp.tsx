@@ -13,7 +13,7 @@ import ClearCartConfirm from 'pages/DialogApp/ClearCartConfirm';
 import ClearFavoritesConfirm from 'pages/DialogApp/ClearFavoritesConfirm';
 import WarningOrderLimit from 'pages/DialogApp/WarningOrderLimit';
 import TableSizeWindow from 'pages/DialogApp/TableSizeWindow';
-import { DialogStateInterface } from 'types';
+import { DialogStateInterface } from 'types/app_models';
 
 interface Props {
     location;

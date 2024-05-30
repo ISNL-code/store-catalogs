@@ -3,10 +3,18 @@ import ColorIndicatorButton from 'components/atoms/ColorIndicatorButton/ColorInd
 import DetailsSection from 'components/atoms/Sections/DetailsSection';
 import { STORE_ROUTE } from 'constants/routes';
 import { useDevice } from 'hooks/useDevice';
+import { Dispatch, SetStateAction } from 'react';
 import { useNavigate, useOutletContext } from 'react-router-dom';
 import { STORE_CONFIG } from 'store_constants/stores_config';
+import { ProductDataInterface, ProductVariantInterface } from 'types/app_models';
 
-const ColorsDetails = ({ productDetails, selectedVariant, setSelectedVariant }) => {
+interface Props {
+    productDetails: ProductDataInterface;
+    selectedVariant: ProductVariantInterface;
+    setSelectedVariant: Dispatch<SetStateAction<any>>;
+}
+
+const ColorsDetails = ({ productDetails, selectedVariant, setSelectedVariant }: Props) => {
     const { STORE_CODE } = STORE_CONFIG;
     const navigate = useNavigate();
     const { string }: any = useOutletContext();
@@ -22,23 +30,26 @@ const ColorsDetails = ({ productDetails, selectedVariant, setSelectedVariant }) 
                     flexWrap: 'wrap',
                 }}
             >
-                {productDetails?.variants?.map((model, idx) => {
-                    const selected = model?.id === selectedVariant?.id;
+                {productDetails?.variants?.map((variant, idx) => {
+                    console.log(variant);
+                    const selected = variant?.variantId === selectedVariant?.variantId;
                     return (
                         <Box key={idx}>
                             <ColorIndicatorButton
                                 action={e => {
                                     e.stopPropagation();
                                     setSelectedVariant(
-                                        productDetails?.variants?.find(product => product.id === model?.id)
+                                        productDetails?.variants?.find(
+                                            product => product.productId === variant?.productId
+                                        )
                                     );
-                                    navigate(STORE_ROUTE?.product(STORE_CODE, productDetails?.id, model?.sku));
+                                    navigate(STORE_ROUTE?.product(STORE_CODE, productDetails?.id, variant?.variantSku));
                                 }}
                                 selected={selected}
-                                color={model.variation.optionValue.code}
+                                color={variant.colorCode || ''}
                                 size={sm ? 34 : 38}
                                 withLabel
-                                label={model.variation.optionValue.name}
+                                label={variant?.colorName || ''}
                             />
                         </Box>
                     );

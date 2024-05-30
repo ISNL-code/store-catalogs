@@ -5,7 +5,7 @@ import SizesIndicatorButton from 'components/atoms/SizesIndicatorButton/SizesInd
 import { useOutletContext } from 'react-router-dom';
 import { Dispatch, SetStateAction, useState } from 'react';
 import { OrderDataInterface } from '../Cart';
-import { ProductVariantInterface } from 'types';
+import { ProductVariantInterface } from 'types/app_models';
 
 const AddSizesButtons = ({
     sizes,
@@ -55,11 +55,11 @@ const AddSizesButtons = ({
                                                         ...prev.productsList,
                                                         {
                                                             sizeId: el?.id,
-                                                            colorId: productData?.id,
+                                                            colorId: productData?.variantId,
                                                             productSku: productData?.variantSku,
                                                             quantity: 1,
                                                             price: productPrice,
-                                                            sku: productData?.sku,
+                                                            sku: productData?.productSku,
                                                         },
                                                     ],
                                                 };

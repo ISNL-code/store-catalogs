@@ -8,7 +8,7 @@ import InstrumentalSubHeader from 'components/organisms/InstrumentalSubHeader/In
 import EmptyPage from 'components/atoms/EmptyPage/EmptyPage';
 import FilterCategories from 'components/organisms/Filters/FilterCategories';
 import SkuSearch from 'components/molecules/ToolsButtons/SkuSearch';
-import { CatalogContextInterface } from 'types';
+import { CatalogContextInterface } from 'types/outlet_context_models';
 import TransitionBox from 'components/atoms/Transitions/TransitionBox';
 import Grid from '@mui/material/Unstable_Grid2';
 import CallBackButton from 'components/atoms/Buttons/CallBackButton';
@@ -34,7 +34,7 @@ const Catalog = () => {
         scrollPosition,
         instrumentalBarHeight,
         headerHeight,
-        loadProducts,
+        isLoadingProducts,
         setScrollPosition,
         setProductsList,
         handleSetProductsPage,
@@ -49,7 +49,6 @@ const Catalog = () => {
     }: CatalogContextInterface = useOutletContext();
     const [showTopBtn, setShowTopBtn] = useState(false);
     const [showMobileStoresButton, setShowMobileStoresButton] = useState(true);
-    const [loading, setLoading] = useState(true);
     const [open, setOpen] = useState(infoAlert?.ws_info);
 
     const getGridSpacing = () => {
@@ -69,12 +68,6 @@ const Catalog = () => {
 
         return { spacing, padding };
     };
-
-    useEffect(() => {
-        if (!loadProducts && productsList) {
-            setLoading(false);
-        }
-    }, [loadProducts, productsList]);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -118,7 +111,7 @@ const Catalog = () => {
                     {PLAN_OPTIONS.playMarket && <PlayMarketButton />}
                 </>
             )}
-            {loadProducts && <Loader position="fixed" type="circular" />}
+            {isLoadingProducts && <Loader position="fixed" type="circular" />}
             {PLAN_OPTIONS.contacts && <CallBackButton path={STORE_ROUTE.contacts(STORE_CODE)} />}
             <InstrumentalSubHeader
                 StartSlot={() => (
@@ -140,7 +133,7 @@ const Catalog = () => {
             />
             {productsList?.length ? (
                 <Box sx={{ minHeight: scrollPosition || '100%' }}>
-                    <TransitionBox dependency={loading} time={100}>
+                    <TransitionBox dependency={Boolean(isLoadingProducts)} time={250}>
                         {MIN_ITEMS_TO_BUY > 1 && (
                             <Collapse in={open}>
                                 <Box mb={2}>
@@ -185,13 +178,13 @@ const Catalog = () => {
                     </TransitionBox>
                 </Box>
             ) : (
-                !loadProducts && <EmptyPage isShown />
+                !isLoadingProducts && <EmptyPage isShown />
             )}
             <Grid my={2} xs={12} container>
                 <PaginationButton
                     setCurrentPage={handleSetProductsPage}
                     totalCount={totalProductsCount}
-                    loading={loading || loadProducts}
+                    loading={isLoadingProducts}
                     productsList={productsList}
                     page={currentProductsPage}
                     totalPages={totalProductsPages}

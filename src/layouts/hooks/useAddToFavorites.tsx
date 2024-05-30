@@ -1,6 +1,6 @@
 import { useIsMount } from 'hooks/useIsMount';
 import { useEffect, useState } from 'react';
-import { useAddToFavoriteDataInterface } from 'types';
+import { useAddToFavoriteDataInterface } from 'types/app_models';
 import { STORAGE_KEYS } from 'constants/local_storage_keys';
 
 interface useAddToFavoritesParamsInterface {
@@ -18,7 +18,6 @@ export const useAddToFavorites = ({ loadingUser }: useAddToFavoritesParamsInterf
 
     useEffect(() => {
         if (loadingUser) return;
-
         if (mount) return;
         if (favoriteItems.length) {
             localStorage.setItem(STORAGE_KEYS?.FAVORITE_KEY, JSON.stringify(favoriteItems));
@@ -26,6 +25,8 @@ export const useAddToFavorites = ({ loadingUser }: useAddToFavoritesParamsInterf
     }, [favoriteItems]);
 
     const handleSetFavoriteItems = data => {
+        console.log(data);
+        console.log(favoriteItems);
         if (favoriteItems?.find(item => item?.sku === data?.sku)) {
             setFavoriteItems(prev => prev.filter(item => item.sku !== data?.sku));
         } else {

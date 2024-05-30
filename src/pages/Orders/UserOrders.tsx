@@ -7,12 +7,13 @@ import { useDevice } from 'hooks/useDevice';
 import { Button, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import { useUserApi } from 'api/useUserApi';
-import { CatalogContextInterface, OrderInterFace } from 'types';
+import { OrderInterface } from 'types/app_models';
 import { useEffect, useState } from 'react';
 import { useGetStatusParams } from 'hooks/useGetStatusParams';
 import Loader from 'components/atoms/Loader/Loader';
 import OrderPrice from 'components/molecules/PricesComponents/OrderPrice';
 import useHandleError from 'hooks/useHandleError';
+import { CatalogContextInterface } from 'types/outlet_context_models';
 
 const UserOrders = () => {
     const handleError = useHandleError();
@@ -20,7 +21,7 @@ const UserOrders = () => {
     const { s } = useDevice();
     const { storeCode } = useParams();
     const { string, footerMenuHeight, appXPadding }: CatalogContextInterface = useOutletContext();
-    const [orderData, setOrderData] = useState<OrderInterFace | any>(null);
+    const [orderData, setOrderData] = useState<OrderInterface | any>(null);
     const {
         data: customerOrdersRes,
         isFetching: loadingOrders,

@@ -7,7 +7,7 @@ import { useDevice } from 'hooks/useDevice';
 import { useEffect, useState, useCallback, useMemo } from 'react';
 import { useCategory } from '../hooks/useCategory';
 import { useProducts } from '../hooks/useProducts';
-import { CatalogContextInterface } from 'types';
+import { CatalogContextInterface } from 'types/outlet_context_models';
 import { STORE_CONFIG } from 'store_constants/stores_config';
 import { useFormsApp } from 'layouts/hooks/useFormsApp';
 import DialogApp from 'layouts/DialogApp';
@@ -48,8 +48,8 @@ export default function MainCatalog({
     const { activeDialogWindow, handleOpenDialog, handleSetDialogState, dialogState } = useFormsApp();
 
     const {
-        loadProducts,
-        loadMoreProducts,
+        isLoadingProducts,
+        isLoadingMoreProducts,
         currentProductsPage,
         handleSetProductsPage,
         productsList,
@@ -104,8 +104,8 @@ export default function MainCatalog({
             //products data
             productsList,
             setProductsList,
-            loadProducts,
-            loadMoreProducts,
+            isLoadingProducts,
+            isLoadingMoreProducts,
             productCountPerPage,
             totalProductsCount,
             totalProductsPages,
@@ -142,8 +142,8 @@ export default function MainCatalog({
             auth,
             userData,
             productsList,
-            loadProducts,
-            loadMoreProducts,
+            isLoadingProducts,
+            isLoadingMoreProducts,
             productCountPerPage,
             totalProductsCount,
             totalProductsPages,

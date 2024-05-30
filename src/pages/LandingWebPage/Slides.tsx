@@ -7,14 +7,17 @@ const Slides = () => {
     const { sm, sx } = useDevice();
 
     const SLIDES = [
-        { desc: '01', mob: '001' },
-        { desc: '1', mob: '11' },
-        { desc: '2', mob: '22' },
-        { desc: '3', mob: '33' },
-        { desc: '6', mob: '66' },
-        { desc: '7', mob: '77' },
-        { desc: '8', mob: '88' },
-        { desc: '9', mob: '99' },
+        { desc: '002.png', mob: '102.jpg' },
+        { desc: '01.png', mob: '001.png' },
+        { desc: '1.png', mob: '11.png' },
+        { desc: '030.png', mob: '0333.jpg' },
+        { desc: '2.png', mob: '22.png' },
+        { desc: '3.png', mob: '33.png' },
+        { desc: '120.png', mob: '1200.jpg' },
+        { desc: '6.png', mob: '66.png' },
+        { desc: '7.png', mob: '77.png' },
+        { desc: '8.png', mob: '88.png' },
+        { desc: '9.png', mob: '99.png' },
     ];
 
     const settings = {
@@ -61,7 +64,7 @@ const Slides = () => {
                             mr={-2}
                             mb={1}
                         >
-                            <img style={{ width: '100%' }} src={require(`./img/${el.mob}.png`)} alt="" />
+                            <img style={{ width: '100%' }} src={require(`./img/${el.mob}`)} alt="" />
                         </Grid>
                         {!sx && (
                             <Grid
@@ -76,7 +79,7 @@ const Slides = () => {
                                 }}
                             >
                                 <Box sx={{ width: '100%' }}>
-                                    <img style={{ width: '100%' }} src={require(`./img/${el.desc}.png`)} alt="" />
+                                    <img style={{ width: '100%' }} src={require(`./img/${el.desc}`)} alt="" />
                                 </Box>
                             </Grid>
                         )}

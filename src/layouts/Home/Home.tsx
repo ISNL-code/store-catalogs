@@ -5,7 +5,7 @@ import { useDevice } from 'hooks/useDevice';
 import { useEffect } from 'react';
 import HomeHeader from './HomeHeader';
 import HomeMobileMenu from './HomeMobileMenu';
-import { HomeContextInterface } from 'types';
+import { HomeContextInterface } from 'types/outlet_context_models';
 import { STORE_CONFIG } from 'store_constants/stores_config';
 import { useFormsApp } from 'layouts/hooks/useFormsApp';
 import DialogApp from 'layouts/DialogApp';
