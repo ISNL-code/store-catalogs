@@ -9,8 +9,18 @@ import { LOGIN_ROUTE, ROUTES } from 'constants/routes';
 import { DialogWindowType, useFormsApp } from 'layouts/hooks/useFormsApp';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import Loader from 'components/atoms/Loader/Loader';
+import { StoreInterface } from 'types/app_models';
+import { LanguageDataInterface } from 'hooks/useGetLanguage';
 
-export default function SecurityLayout({ lang, setLang, store, setAuth, currentLanguage }) {
+interface Props {
+    lang: string;
+    setAuth: (newAuth: boolean) => void;
+    setLang: (newLang: string) => void;
+    store: StoreInterface | null;
+    currentLanguage: LanguageDataInterface;
+}
+
+export default function SecurityLayout({ lang, setLang, store, setAuth, currentLanguage }: Props) {
     const location = useLocation();
     const navigate = useNavigate();
     const { formType, storeCode } = useParams();
@@ -43,13 +53,13 @@ export default function SecurityLayout({ lang, setLang, store, setAuth, currentL
     }, [activeDialogWindow]);
 
     useEffect(() => {
-        if (formType === 'login' && activeDialogWindow !== DialogWindowType?.LOGIN) {
+        if (formType === DialogWindowType?.LOGIN && activeDialogWindow !== DialogWindowType?.LOGIN) {
             return handleOpenDialog(DialogWindowType?.LOGIN);
         }
-        if (formType === 'register' && activeDialogWindow !== DialogWindowType?.REGISTER) {
+        if (formType === DialogWindowType?.REGISTER && activeDialogWindow !== DialogWindowType?.REGISTER) {
             return handleOpenDialog(DialogWindowType?.REGISTER);
         }
-        if (formType === 'reset-password' && activeDialogWindow !== DialogWindowType?.RESET_PASSWORD) {
+        if (formType === DialogWindowType?.RESET_PASSWORD && activeDialogWindow !== DialogWindowType?.RESET_PASSWORD) {
             return handleOpenDialog(DialogWindowType?.RESET_PASSWORD);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -15,8 +15,6 @@ export const ALBERTO_BINI_MAIN_DB = {
             description: 'Магазин Женской Одежды',
         },
     ],
-
-    securityStoreSettings: { private: false, securityKey: null },
     storeProductTypes: [
         {
             code: 'Outerwear',

@@ -1,6 +1,6 @@
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { IconButton } from '@mui/material';
-import { Color, Colors } from 'colors';
+import { Color, Colors } from 'constants/colors';
 import StyledTooltip from '../StyledComponents/StyledTooltip';
 
 interface FilterButtonInterface {

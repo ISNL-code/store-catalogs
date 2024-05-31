@@ -7,12 +7,19 @@ import { useFormsApp } from 'layouts/hooks/useFormsApp';
 import { Outlet } from 'react-router-dom';
 import LandingHeader from './LandingHeader';
 import { LandingContextInterface } from 'types/outlet_context_models';
+import { LanguageDataInterface } from 'hooks/useGetLanguage';
 
 const OutletContainer = ({ context }: { context: LandingContextInterface }) => {
     return <Outlet context={context} />;
 };
 
-export default function LandingLayout({ lang, setLang, currentLanguage }) {
+interface Props {
+    lang: string;
+    setLang: (newLang: string) => void;
+    currentLanguage: LanguageDataInterface;
+}
+
+export default function LandingLayout({ lang, setLang, currentLanguage }: Props) {
     const { sx } = useDevice();
     const HEADER_HEIGHT = 50;
     const HEADER_PADDINGS = sx ? 2 : 4;

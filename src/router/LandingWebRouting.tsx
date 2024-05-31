@@ -7,14 +7,15 @@ import PAGE_500 from 'pages/TechPages/500';
 import LandingLayout from 'layouts/Landing/LandingLayout';
 import LandingHomePage from 'pages/LandingWebPage/LandingHomePage';
 import LandingContacts from 'pages/LandingWebPage/LandingContacts';
+import { useAppStorage } from 'hooks/useAppStorage';
+import { LangResInterface, useGetLanguage } from 'hooks/useGetLanguage';
+import { STORE_CONFIG } from 'store_constants/stores_config';
 
-interface Props {
-    lang: string;
-    setLang;
-    currentLanguage;
-}
+const LandingWebRouting = () => {
+    const { STORE_NAME } = STORE_CONFIG;
+    const { lang, setLang } = useAppStorage();
+    const { currentLanguage }: LangResInterface = useGetLanguage({ lang, storeName: STORE_NAME });
 
-const LandingModeRouting = ({ lang, setLang, currentLanguage }: Props) => {
     return (
         <Router>
             <Routes>
@@ -39,4 +40,4 @@ const LandingModeRouting = ({ lang, setLang, currentLanguage }: Props) => {
     );
 };
 
-export default LandingModeRouting;
+export default LandingWebRouting;

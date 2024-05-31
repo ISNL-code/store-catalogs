@@ -16,7 +16,6 @@ export const KREMEN_BELTS_MAIN_DB = {
         },
     ],
     storeProductTypes: [{ code: 'Men clothes' }, { code: 'Women clothes' }, { code: 'Belts' }],
-    securityStoreSettings: { private: false, securityKey: null },
     managers: [
         {
             firstName: 'Sergey',

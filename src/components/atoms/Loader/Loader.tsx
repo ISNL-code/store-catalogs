@@ -1,5 +1,5 @@
 import { Box, CircularProgress, LinearProgress, Stack, Typography } from '@mui/material';
-import { Color, Colors } from 'colors';
+import { Color, Colors } from 'constants/colors';
 
 interface LoaderInterface {
     height?: string;

@@ -2,7 +2,7 @@ import { useUserApi } from 'api/useUserApi';
 import { useEffect, useState } from 'react';
 import Loader from 'components/atoms/Loader/Loader';
 import { useFormik } from 'formik';
-import registerFormValidation from 'Validation/registerFormValidation';
+import registerFormValidation from 'utils/validation/registerFormValidation';
 import { STORE_CONFIG } from 'store_constants/stores_config';
 import axios from 'axios';
 import { TRANSLATED_COUNTRIES } from 'dataBase/COUNTRY_LIST';

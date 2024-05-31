@@ -7,7 +7,7 @@ import HomeIcon from '@mui/icons-material/Home';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import HeaderLogo from 'components/atoms/Logo/HeaderLogo';
-import { Color, Colors } from 'colors';
+import { Color, Colors } from 'constants/colors';
 import { STORE_CONFIG } from 'store_constants/stores_config';
 import ProfileMenu from 'components/molecules/ToolsButtons/ProfileMenu';
 import GridViewIcon from '@mui/icons-material/GridView';

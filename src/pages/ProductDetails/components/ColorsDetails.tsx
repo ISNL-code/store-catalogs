@@ -31,7 +31,6 @@ const ColorsDetails = ({ productDetails, selectedVariant, setSelectedVariant }: 
                 }}
             >
                 {productDetails?.variants?.map((variant, idx) => {
-                    console.log(variant);
                     const selected = variant?.variantId === selectedVariant?.variantId;
                     return (
                         <Box key={idx}>

@@ -3,7 +3,7 @@ import { Box, SpeedDial, SpeedDialIcon, SpeedDialAction } from '@mui/material';
 import IosShareIcon from '@mui/icons-material/IosShare';
 import { TelegramIcon, WhatsappIcon, ViberIcon, EmailIcon } from 'react-share';
 import { shareOnTelegram, shareOnWhatsApp, shareOnViber, shareOnEmail } from 'utils/shareFunctions'; // You need to implement these
-import { Colors } from 'colors';
+import { Colors } from 'constants/colors';
 
 interface ShareButtonInterface {
     path: string;

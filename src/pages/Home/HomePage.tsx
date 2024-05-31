@@ -10,6 +10,7 @@ import { HomeContextInterface } from 'types/outlet_context_models';
 import { DialogWindowType } from 'layouts/hooks/useFormsApp';
 import { STORE_ROUTE } from 'constants/routes';
 import { STORE_CONFIG } from 'store_constants/stores_config';
+import { scrollPage } from 'utils/scrollPage';
 
 const HomePage = () => {
     const { STORE_CODE } = STORE_CONFIG;
@@ -18,10 +19,7 @@ const HomePage = () => {
     const { sx } = useDevice();
 
     useEffect(() => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'auto',
-        });
+        scrollPage(0);
     }, []);
 
     const variants = num => {

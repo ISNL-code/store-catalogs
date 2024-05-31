@@ -14,6 +14,7 @@ import Loader from 'components/atoms/Loader/Loader';
 import OrderPrice from 'components/molecules/PricesComponents/OrderPrice';
 import useHandleError from 'hooks/useHandleError';
 import { CatalogContextInterface } from 'types/outlet_context_models';
+import { scrollPage } from 'utils/scrollPage';
 
 const UserOrders = () => {
     const handleError = useHandleError();
@@ -33,10 +34,7 @@ const UserOrders = () => {
     const { sx } = useDevice();
 
     useEffect(() => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'auto',
-        });
+        scrollPage(0);
     }, []);
 
     useEffect(() => {

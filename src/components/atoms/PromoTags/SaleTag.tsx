@@ -1,5 +1,5 @@
 import { Paper, Typography } from '@mui/material';
-import { Color, Colors } from 'colors';
+import { Color, Colors } from 'constants/colors';
 
 const SaleTag = ({ price, discountPrice }) => {
     const discountPercentage = Math.floor(((price - discountPrice) / price) * 100);

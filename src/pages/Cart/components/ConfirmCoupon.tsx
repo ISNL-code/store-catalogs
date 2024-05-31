@@ -120,7 +120,8 @@ const ConfirmCoupon = ({
                             text: `${STORE_NAME} Заказ`,
                         });
                     } catch (error) {}
-                    cart?.handleClearCartItems([...new Set(orderData.productsList.map(item => item?.sku))]);
+
+                    cart?.handleClearCartItems([...new Set(orderData?.productsList.map(item => item?.productSku))]);
                     setOrderData(prev => {
                         return {
                             ...prev,

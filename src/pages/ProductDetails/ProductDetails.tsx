@@ -11,13 +11,14 @@ import { useDevice } from 'hooks/useDevice';
 import { useIsMount } from 'hooks/useIsMount';
 import { useEffect, useState } from 'react';
 import { useOutletContext, useParams } from 'react-router-dom';
-import { ProductDataInterface, ProductVariantInterface } from 'types/app_models';
+import { ProductDataInterface } from 'types/app_models';
 import ModelDetails from './ModelDetails';
 import ModelSwiper from './ModelSwiper';
 import { STORE_CONFIG } from 'store_constants/stores_config';
 import { STORE_ROUTE } from 'constants/routes';
-import { StoreType } from 'store_constants/types';
 import { CatalogContextInterface } from 'types/outlet_context_models';
+import { scrollPage } from 'utils/scrollPage';
+import { map_product_card } from 'utils/mappers/product_data';
 
 interface SelectedVarianInterface {
     images?: any[];
@@ -25,7 +26,7 @@ interface SelectedVarianInterface {
 
 const ProductDetails = () => {
     const { OPTIONS, STORE_CODE } = STORE_CONFIG;
-    const { PLAN_OPTIONS, STORE_TYPE } = OPTIONS;
+    const { PLAN_OPTIONS } = OPTIONS;
     const mount = useIsMount();
     const { headerHeight, instrumentalBarHeight, footerMenuHeight, lang, appXPadding }: CatalogContextInterface =
         useOutletContext();
@@ -35,10 +36,7 @@ const ProductDetails = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'auto',
-        });
+        scrollPage(0);
     }, []);
 
     const {
@@ -49,49 +47,8 @@ const ProductDetails = () => {
 
     useEffect(() => {
         if (!productRes || loadProduct) return;
-        const product = productRes?.data?.products[0];
-        const originalPrice =
-            STORE_TYPE === StoreType.sales
-                ? Math.max(...product.variants?.map(el => Number(el.inventory[0]?.price)))
-                : Number(product.price);
-
-        setProductDetails({
-            id: product?.id,
-            name: product?.description.title,
-            description: product?.description.description,
-            table_size_img: product?.image,
-            variants: product?.variants
-                .sort((a, b) => a.sortOrder - b.sortOrder)
-                .filter(el => el.images.length)
-                .map((variant, idx) => ({
-                    variantId: variant.id,
-                    productId: variant.productId,
-                    productSku: product?.sku,
-                    variantSku: variant.sku,
-                    images: variant.images,
-                    price: variant.inventory[0]?.price,
-                    quantity: variant.inventory[0]?.quantity,
-                    selected: idx === 0,
-                    colorCode: variant.variation.optionValue.code,
-                    colorName: variant.variation.optionValue.name,
-                })),
-            promoTags:
-                product?.options
-                    .find(({ code }) => code === 'PROMO')
-                    ?.optionValues.map(({ code, id, description }) => {
-                        return { code, id, name: description?.name };
-                    })
-                    .sort((a, b) => a.code - b.code) || [],
-            productSizes:
-                product?.options
-                    .find(({ code }) => code === 'SIZE')
-                    ?.optionValues.map(({ code, id, description }) => {
-                        return { code, id, name: description?.name };
-                    })
-                    .sort((a, b) => a.code - b.code) || [],
-            originalPrice,
-        });
-
+        const newData: ProductDataInterface | null = map_product_card?.details_card(productRes?.data?.products);
+        setProductDetails(newData);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [productRes, modelSku]);
 

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Box, Typography, CircularProgress } from '@mui/material';
 import { useDevice } from 'hooks/useDevice';
-import { Color } from 'colors';
+import { Color } from 'constants/colors';
 import CustomLogo from './CustomLogo';
 import useLogoNavigate from './useLogoNavigate';
 

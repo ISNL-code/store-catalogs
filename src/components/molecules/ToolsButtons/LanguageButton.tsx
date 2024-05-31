@@ -2,7 +2,7 @@ import IconButton from '@mui/material/IconButton';
 import { Box, ListItemText, Menu, MenuItem, Typography } from '@mui/material';
 import { Fragment, useState } from 'react';
 import LanguageIcon from '@mui/icons-material/Language';
-import { Color, Colors } from 'colors';
+import { Color, Colors } from 'constants/colors';
 
 interface Props {
     setLang;

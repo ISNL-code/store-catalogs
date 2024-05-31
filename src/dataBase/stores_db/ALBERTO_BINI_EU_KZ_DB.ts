@@ -12,7 +12,6 @@ export const ALBERTO_BINI_EU_KZ_DB = {
         },
     ],
 
-    securityStoreSettings: { private: false, securityKey: null },
     storeProductTypes: [
         {
             code: 'Outerwear',

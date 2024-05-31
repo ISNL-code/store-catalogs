@@ -2,7 +2,6 @@ import { Alert, Box, Collapse, IconButton } from '@mui/material';
 import Loader from 'components/atoms/Loader/Loader';
 import { useEffect, useState } from 'react';
 import { useOutletContext } from 'react-router-dom';
-import { getCurrencySymbol } from 'helpers/getCurrencySymbol';
 import ScrollButton from 'components/atoms/Buttons/ScrollButton';
 import InstrumentalSubHeader from 'components/organisms/InstrumentalSubHeader/InstrumentalSubHeader';
 import EmptyPage from 'components/atoms/EmptyPage/EmptyPage';
@@ -23,13 +22,15 @@ import { useDevice } from 'hooks/useDevice';
 import { STORE_CONFIG } from 'store_constants/stores_config';
 import { ViewModeType } from 'store_constants/types';
 import { STORE_ROUTE } from 'constants/routes';
+import { useIsMount } from 'hooks/useIsMount';
+import { scrollPage } from 'utils/scrollPage';
 
 const Catalog = () => {
     const { OPTIONS, STORE_CODE, SIDE_LINKS } = STORE_CONFIG;
     const { PLAN_OPTIONS, MIN_ITEMS_TO_BUY } = OPTIONS;
     const { sx } = useDevice();
+    const mount = useIsMount();
     const {
-        store,
         productsList,
         scrollPosition,
         instrumentalBarHeight,
@@ -90,10 +91,7 @@ const Catalog = () => {
     useEffect(() => {
         if (scrollPosition)
             setTimeout(() => {
-                window.scrollTo({
-                    top: scrollPosition - (instrumentalBarHeight + headerHeight + getGridSpacing().padding * 8),
-                    behavior: 'auto',
-                });
+                scrollPage(scrollPosition - (instrumentalBarHeight + headerHeight + getGridSpacing().padding * 8));
                 setScrollPosition(0);
             }, 50);
     }, [scrollPosition]); // eslint-disable-line
@@ -133,7 +131,7 @@ const Catalog = () => {
             />
             {productsList?.length ? (
                 <Box sx={{ minHeight: scrollPosition || '100%' }}>
-                    <TransitionBox dependency={Boolean(isLoadingProducts)} time={250}>
+                    <TransitionBox dependency={mount} time={250}>
                         {MIN_ITEMS_TO_BUY > 1 && (
                             <Collapse in={open}>
                                 <Box mb={2}>
@@ -168,7 +166,6 @@ const Catalog = () => {
                                     modelsVariants={product?.variants}
                                     name={product?.name}
                                     productId={product?.id}
-                                    currency={getCurrencySymbol(store?.currency)}
                                     setProductsList={setProductsList}
                                     promoTags={product?.promoTags}
                                     viewMode={viewMode}

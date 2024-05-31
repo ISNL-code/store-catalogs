@@ -14,7 +14,7 @@ import {
 } from '@mui/material';
 import { useDevice } from 'hooks/useDevice';
 import FilterButton from 'components/molecules/ToolsButtons/FilterButton';
-import { Color, Colors } from 'colors';
+import { Color, Colors } from 'constants/colors';
 import { CatalogContextInterface } from 'types/outlet_context_models';
 import isEqual from 'lodash/isEqual';
 import CloseIcon from '@mui/icons-material/Close';

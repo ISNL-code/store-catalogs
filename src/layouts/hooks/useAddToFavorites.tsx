@@ -1,6 +1,6 @@
 import { useIsMount } from 'hooks/useIsMount';
 import { useEffect, useState } from 'react';
-import { useAddToFavoriteDataInterface } from 'types/app_models';
+import { LocalStorageProductInterface, useAddToFavoriteDataInterface } from 'types/app_models';
 import { STORAGE_KEYS } from 'constants/local_storage_keys';
 
 interface useAddToFavoritesParamsInterface {
@@ -9,7 +9,7 @@ interface useAddToFavoritesParamsInterface {
 
 export const useAddToFavorites = ({ loadingUser }: useAddToFavoritesParamsInterface): useAddToFavoriteDataInterface => {
     const mount = useIsMount();
-    const [favoriteItems, setFavoriteItems] = useState<any[]>([]);
+    const [favoriteItems, setFavoriteItems] = useState<LocalStorageProductInterface[]>([]);
 
     useEffect(() => {
         if (loadingUser) return;
@@ -24,11 +24,9 @@ export const useAddToFavorites = ({ loadingUser }: useAddToFavoritesParamsInterf
         } else localStorage.removeItem(STORAGE_KEYS?.FAVORITE_KEY); // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [favoriteItems]);
 
-    const handleSetFavoriteItems = data => {
-        console.log(data);
-        console.log(favoriteItems);
-        if (favoriteItems?.find(item => item?.sku === data?.sku)) {
-            setFavoriteItems(prev => prev.filter(item => item.sku !== data?.sku));
+    const handleSetFavoriteItems = (data: LocalStorageProductInterface) => {
+        if (favoriteItems?.find(item => item?.variantSku === data?.variantSku)) {
+            setFavoriteItems(prev => prev.filter(item => item.variantSku !== data?.variantSku));
         } else {
             setFavoriteItems(prev => [...prev, data]);
         }
@@ -38,5 +36,9 @@ export const useAddToFavorites = ({ loadingUser }: useAddToFavoritesParamsInterf
         setFavoriteItems([]);
     };
 
-    return { favoriteItems, handleSetFavoriteItems, handleClearFavorites };
+    const clearSingleItem = variantSku => {
+        setFavoriteItems(prev => prev.filter(item => item.variantSku !== variantSku));
+    };
+
+    return { favoriteItems, handleSetFavoriteItems, handleClearFavorites, clearSingleItem };
 };

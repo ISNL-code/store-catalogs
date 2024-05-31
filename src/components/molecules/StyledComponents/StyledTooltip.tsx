@@ -1,5 +1,5 @@
 import { Tooltip, Typography } from '@mui/material';
-import { Colors } from 'colors';
+import { Colors } from 'constants/colors';
 
 interface Props {
     data?: any[];

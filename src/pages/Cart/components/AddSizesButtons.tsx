@@ -4,21 +4,14 @@ import { Box, Fab, TextField, Typography } from '@mui/material';
 import SizesIndicatorButton from 'components/atoms/SizesIndicatorButton/SizesIndicatorButton';
 import { useOutletContext } from 'react-router-dom';
 import { Dispatch, SetStateAction, useState } from 'react';
-import { OrderDataInterface } from '../Cart';
-import { ProductVariantInterface } from 'types/app_models';
+import { CartProductInterface, OrderDataInterface } from '../Cart';
 
-const AddSizesButtons = ({
-    sizes,
-    productPrice,
-    setOrderData,
-    productData,
-}: {
-    sizes;
-    productPrice;
-    orderData: OrderDataInterface;
+interface Props {
+    data: CartProductInterface;
     setOrderData: Dispatch<SetStateAction<OrderDataInterface>>;
-    productData: ProductVariantInterface;
-}) => {
+}
+
+const AddSizesButtons = ({ data, setOrderData }: Props) => {
     const { string }: any = useOutletContext();
     const [selectedSize, setSelectedSizes] = useState<any>([]);
 
@@ -29,8 +22,8 @@ const AddSizesButtons = ({
                     {string?.select_sizes}:
                 </Typography>
                 <Box mb={1} sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
-                    {sizes?.optionValues?.length ? (
-                        sizes?.optionValues
+                    {data?.sizes?.optionValues?.length ? (
+                        data?.sizes?.optionValues
                             ?.sort((a, b) => a?.description?.name - b?.description?.name)
                             ?.map(el => (
                                 <Box
@@ -55,11 +48,11 @@ const AddSizesButtons = ({
                                                         ...prev.productsList,
                                                         {
                                                             sizeId: el?.id,
-                                                            colorId: productData?.variantId,
-                                                            productSku: productData?.variantSku,
+                                                            colorId: data?.variant.variantId,
+                                                            productSku: data?.variant?.variantSku,
                                                             quantity: 1,
-                                                            price: productPrice,
-                                                            sku: productData?.productSku,
+                                                            price: data?.variant?.price,
+                                                            sku: data?.variant?.productSku,
                                                         },
                                                     ],
                                                 };

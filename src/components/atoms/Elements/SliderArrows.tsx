@@ -1,7 +1,7 @@
 import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import { IconButton } from '@mui/material';
-import { Colors } from 'colors';
+import { Colors } from 'constants/colors';
 
 export function SamplePrevArrow(props) {
     const { onClick } = props;

@@ -9,7 +9,7 @@ import {
     IconButton,
     ClickAwayListener,
 } from '@mui/material';
-import { Color, Colors } from 'colors';
+import { Color, Colors } from 'constants/colors';
 import CloseIcon from '@mui/icons-material/Close';
 
 const getBackgroundColor = variant => {

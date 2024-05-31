@@ -1,17 +1,16 @@
 import { Box, Button, Typography } from '@mui/material';
 import Grid from '@mui/material/Unstable_Grid2';
-import { Color } from 'colors';
+import { Color } from 'constants/colors';
 import CartModelPrice from 'components/molecules/PricesComponents/CartModelPrice';
 import { STORE_ROUTE } from 'constants/routes';
 import { Dispatch, SetStateAction } from 'react';
 import { useNavigate, useOutletContext } from 'react-router-dom';
 import { STORE_CONFIG } from 'store_constants/stores_config';
-import { ProductVariantInterface } from 'types/app_models';
-import { OrderDataInterface } from '../Cart';
+import { CartProductInterface, OrderDataInterface } from '../Cart';
 import { CatalogContextInterface } from 'types/outlet_context_models';
 
 interface Props {
-    data: ProductVariantInterface;
+    data: CartProductInterface;
     setOrderData: Dispatch<SetStateAction<OrderDataInterface>>;
 }
 
@@ -38,26 +37,26 @@ const ProductDetails = ({ data, setOrderData }: Props) => {
                     <Typography>{string?.vendor_code}:</Typography>
                     <Typography
                         onClick={() => {
-                            navigate(STORE_ROUTE?.product(STORE_CODE, data?.productId, data?.variantSku));
+                            navigate(
+                                STORE_ROUTE?.product(STORE_CODE, data?.variant?.productId, data?.variant?.variantSku)
+                            );
                         }}
                         variant="h3"
                         sx={{ color: Color?.PRIMARY, fontWeight: 700, cursor: 'pointer' }}
                     >
-                        {data?.variantSku}
+                        {data?.variant?.variantSku}
                     </Typography>
                 </Box>
                 <Button
                     color="error"
                     variant="outlined"
                     onClick={() => {
-                        cart?.handleSetCartItems({
-                            variantSku: data?.productSku,
-                        });
+                        cart?.clearSingleItem(data?.variant?.variantSku);
                         setOrderData(prev => {
                             return {
                                 ...prev,
                                 productsList: prev?.productsList?.filter(el => {
-                                    return el.colorId !== data.variantId;
+                                    return el.colorId !== data?.variant?.variantId;
                                 }),
                             };
                         });
@@ -66,15 +65,15 @@ const ProductDetails = ({ data, setOrderData }: Props) => {
                     {string?.delete}
                 </Button>
             </Grid>
-            {/* <Typography variant="h3">{productName}</Typography> */}
+            <Typography variant="h3">{data?.name}</Typography>
             <Box sx={{ display: 'flex', gap: 1 }}>
                 <Typography>{string?.price}:</Typography>
-                <CartModelPrice price={data?.price} currency={store?.currency} />
+                <CartModelPrice price={data?.variant?.price} currency={store?.currency || ''} />
             </Box>
             <Box sx={{ display: 'flex', gap: 1 }}>
                 <Typography>{string?.color}:</Typography>
                 <Typography variant="h3" sx={{ color: 'gray' }}>
-                    {data?.colorName}
+                    {data?.variant?.colorName}
                 </Typography>
             </Box>
         </>

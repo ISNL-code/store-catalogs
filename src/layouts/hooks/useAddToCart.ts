@@ -37,9 +37,13 @@ export const useAddToCart = ({ loadingUser }: useAddToCartParamsInterface): useA
         setCartItems(cartItems.filter(el => !skuArray?.includes(el?.variantSku)));
     };
 
+    const clearSingleItem = variantSku => {
+        setCartItems(prev => prev.filter(item => item.variantSku !== variantSku));
+    };
+
     const handleClearCart = () => {
         setCartItems([]);
     };
 
-    return { cartItems, handleSetCartItems, handleClearCart, handleClearCartItems };
+    return { cartItems, handleSetCartItems, handleClearCart, handleClearCartItems, clearSingleItem };
 };

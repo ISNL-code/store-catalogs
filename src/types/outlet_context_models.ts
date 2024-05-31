@@ -10,6 +10,8 @@ import {
 } from './app_models';
 
 import { ViewModeType } from 'store_constants/types';
+import { QueryObserverResult, RefetchOptions, RefetchQueryFilters } from '@tanstack/react-query';
+import { AxiosResponse } from 'axios';
 
 export interface HomeContextInterface {
     //main data | user options
@@ -20,15 +22,17 @@ export interface HomeContextInterface {
     dialogState;
 
     //store data
-    store: StoreInterface;
+    store: StoreInterface | null;
 
     // user data
-    auth: boolean;
+    auth: boolean | null;
     currentUserData: UserDataInterface | null;
     loadingUserData: boolean;
-    updateUserData: any;
-    setCurrentUserData: any;
-    userDataError: { response: { status } };
+    updateUserData: <TPageData>(
+        options?: (RefetchOptions & RefetchQueryFilters<TPageData>) | undefined
+    ) => Promise<QueryObserverResult<AxiosResponse<any, any>, unknown>>;
+    setCurrentUserData: (newData: UserDataInterface) => void;
+    userDataError: { response: { status: string } };
 
     //css data
     instrumentalBarHeight: number;
@@ -57,35 +61,41 @@ export interface CatalogContextInterface {
     string: Record<string, any>;
     scrollPosition: number;
     setScrollPosition;
-    viewMode: ViewModeType;
-    setViewMode;
+    viewMode: ViewModeType | null;
+    setViewMode: (newViewMode: ViewModeType) => void;
     handleOpenDialog;
     handleSetDialogState: Dispatch<SetStateAction<DialogStateInterface>>;
     dialogState;
 
     //store data
-    store: StoreInterface;
-    infoAlert: { ws_info: boolean };
-    setInfoAlert;
+    infoAlert: { ws_info: boolean } | null;
+    setInfoAlert: (newInfo: { ws_info: boolean }) => void;
+    store: StoreInterface | null;
 
     // user data
-    auth: boolean;
+    auth: boolean | null;
     currentUserData: UserDataInterface | null;
     loadingUserData: boolean;
-    updateUserData: any;
-    setCurrentUserData: any;
+    updateUserData: <TPageData>(
+        options?: (RefetchOptions & RefetchQueryFilters<TPageData>) | undefined
+    ) => Promise<QueryObserverResult<AxiosResponse<any, any>, unknown>>;
+    setCurrentUserData: (newData: UserDataInterface) => void;
     userDataError: { response: { status } };
 
     //products data
     productsList: ProductDataInterface[] | null | [];
-    setProductsList;
+    setProductsList: Dispatch<SetStateAction<ProductDataInterface[] | null>>;
     isLoadingProducts: boolean;
-    isLoadingMoreProducts: boolean;
     productCountPerPage: number;
     totalProductsCount: number;
     totalProductsPages: number;
     handleSetProductsPage: (val) => void;
     currentProductsPage: number;
+
+    //favorites data
+    isLoadingFavorites: boolean;
+    favoritesList: ProductDataInterface[] | null | [];
+    fetchFavoriteProducts;
 
     //categories data
     categoriesList: CategoryDataInterface[] | [];

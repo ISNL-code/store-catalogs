@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Button, DialogActions, Dialog, ClickAwayListener } from '@mui/material';
-import { Colors } from 'colors';
+import { Colors } from 'constants/colors';
 import DialogContent from '@mui/material/DialogContent';
 import { useDevice } from 'hooks/useDevice';
 import { DialogStateInterface } from 'types/app_models';

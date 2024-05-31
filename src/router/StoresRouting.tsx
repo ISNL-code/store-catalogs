@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Navigate, Route, Routes } from 'react-router-dom';
+import { useCallback, useMemo } from 'react';
 import CatalogPage from 'pages/Catalog/Catalog';
 import Catalog from 'layouts/Catalog/MainCatalog';
 import ProductDetailsPage from 'pages/ProductDetails/ProductDetails';
@@ -18,70 +19,95 @@ import PAGE_401 from 'pages/TechPages/401';
 import PAGE_403 from 'pages/TechPages/403';
 import PAGE_404 from 'pages/TechPages/404';
 import PAGE_500 from 'pages/TechPages/500';
+import StoresLogic from 'StoresLogic';
+import { useAppStorage } from 'hooks/useAppStorage';
+import { useUserApi } from 'api/useUserApi';
+import { useStoresApi } from 'api/useStoresApi';
+import { LangResInterface, useGetLanguage } from 'hooks/useGetLanguage';
+import { useAddToCartDataInterface, useAddToFavoriteDataInterface } from 'types/app_models';
+import { useAddToCart } from 'layouts/hooks/useAddToCart';
+import { useAddToFavorites } from 'layouts/hooks/useAddToFavorites';
+import Loader from 'components/atoms/Loader/Loader';
 
-interface Props {
-    auth: boolean | null;
-    setAuth;
-    lang: string;
-    setLang;
-    currentUserData;
-    isFetchingUser: boolean;
-    updateUserData;
-    setCurrentUserData;
-    userError;
-    viewMode;
-    setViewMode;
-    infoAlert;
-    setInfoAlert;
-    store;
-    favorites;
-    cart;
-    currentLanguage;
-}
-
-const AppRouting = ({
-    auth,
-    setAuth,
-    lang,
-    setLang,
-    currentUserData,
-    isFetchingUser,
-    updateUserData,
-    setCurrentUserData,
-    userError,
-    viewMode,
-    setViewMode,
-    infoAlert,
-    setInfoAlert,
-    store,
-    favorites,
-    cart,
-    currentLanguage,
-}: Props) => {
-    const { STORE_CODE, OPTIONS, REQUIRED_REGISTRATION } = STORE_CONFIG;
+const StoresRouting = () => {
+    const { STORE_CODE, OPTIONS, REQUIRED_REGISTRATION, STORE_NAME } = STORE_CONFIG;
     const { HOME_PAGE_ACTIVE } = OPTIONS;
 
-    const handleCheckAccess = (route: string | null) => {
-        switch (route) {
-            case ROUTES.SECURITY:
-                return Boolean(REQUIRED_REGISTRATION && !auth);
+    const {
+        auth,
+        setAuth,
+        lang,
+        setLang,
+        viewMode,
+        setViewMode,
+        infoAlert,
+        setInfoAlert,
+        currentStoreData,
+        setCurrentStoreData,
+        currentUserData,
+        setCurrentUserData,
+    } = useAppStorage();
 
-            case ROUTES.HOME:
-                return Boolean(HOME_PAGE_ACTIVE && (!REQUIRED_REGISTRATION || (REQUIRED_REGISTRATION && auth)));
-            case ROUTES.STORE:
-                return Boolean(!REQUIRED_REGISTRATION || (REQUIRED_REGISTRATION && auth));
-            default:
-                return false;
-        }
-    };
+    const {
+        refetch: fetchUserData,
+        isFetching: isFetchingUser,
+        error: userError,
+    } = useUserApi().useGetUserData({
+        storeCode: STORE_CODE,
+    });
 
-    const handleRedirect = () => {
+    const { data: storeDataRes, isFetching: isStoreLoading } = useStoresApi().useGetStoreByCode({
+        code: STORE_CODE,
+    });
+
+    const { currentLanguage }: LangResInterface = useGetLanguage({ lang, storeName: STORE_NAME });
+    const cart: useAddToCartDataInterface = useAddToCart({ loadingUser: isFetchingUser });
+    const favorites: useAddToFavoriteDataInterface = useAddToFavorites({ loadingUser: isFetchingUser });
+
+    const memoizedAppLogic = useMemo(
+        () => ({
+            setAuth,
+            setLang,
+            setInfoAlert,
+            setViewMode,
+            setCurrentStoreData,
+            userData: { currentUserData, isFetchingUser, setCurrentUserData, fetchUserData, userError },
+            lang,
+            infoAlert,
+            viewMode,
+            storeDataRes,
+            isStoreLoading,
+        }),
+        [lang, auth, infoAlert, storeDataRes, currentUserData] // eslint-disable-line
+    );
+
+    StoresLogic(memoizedAppLogic);
+
+    const handleCheckAccess = useCallback(
+        (route: string | null) => {
+            switch (route) {
+                case ROUTES.SECURITY:
+                    return Boolean(REQUIRED_REGISTRATION && !auth);
+                case ROUTES.HOME:
+                    return Boolean(HOME_PAGE_ACTIVE && (!REQUIRED_REGISTRATION || (REQUIRED_REGISTRATION && auth)));
+                case ROUTES.STORE:
+                    return Boolean(!REQUIRED_REGISTRATION || (REQUIRED_REGISTRATION && auth));
+                default:
+                    return false;
+            }
+        },
+        [REQUIRED_REGISTRATION, HOME_PAGE_ACTIVE, auth]
+    );
+
+    const handleRedirect = useCallback(() => {
         if (!REQUIRED_REGISTRATION || auth) {
             return HOME_PAGE_ACTIVE ? HOME_ROUTE?.root(STORE_CODE) : STORE_ROUTE?.root(STORE_CODE);
         } else {
             return LOGIN_ROUTE?.root(STORE_CODE, 'login');
         }
-    };
+    }, [REQUIRED_REGISTRATION, auth, HOME_PAGE_ACTIVE, STORE_CODE]);
+
+    if (!storeDataRes) return <Loader type="circular" />;
 
     return (
         <Router>
@@ -94,6 +120,7 @@ const AppRouting = ({
                             setLang={setLang}
                             setAuth={setAuth}
                             currentLanguage={currentLanguage}
+                            store={currentStoreData}
                         />
                     }
                 />
@@ -111,12 +138,11 @@ const AppRouting = ({
                                     lang={lang}
                                     setLang={setLang}
                                     setAuth={setAuth}
-                                    store={store}
+                                    store={currentStoreData}
                                     currentLanguage={currentLanguage}
                                 />
                             }
                         />
-
                         <Route
                             path="*"
                             element={
@@ -138,7 +164,7 @@ const AppRouting = ({
                         path={ROUTES?.HOME}
                         element={
                             <Home
-                                store={store}
+                                store={currentStoreData}
                                 lang={lang}
                                 setLang={setLang}
                                 auth={auth}
@@ -146,8 +172,8 @@ const AppRouting = ({
                                 userData={{
                                     currentUserData,
                                     isFetchingUser,
-                                    updateUserData,
                                     setCurrentUserData,
+                                    fetchUserData,
                                     userError,
                                 }}
                                 cart={cart}
@@ -167,7 +193,7 @@ const AppRouting = ({
                         path={ROUTES?.STORE}
                         element={
                             <Catalog
-                                store={store}
+                                store={currentStoreData}
                                 lang={lang}
                                 setLang={setLang}
                                 viewMode={viewMode}
@@ -177,8 +203,8 @@ const AppRouting = ({
                                 userData={{
                                     currentUserData,
                                     isFetchingUser,
-                                    updateUserData,
                                     setCurrentUserData,
+                                    fetchUserData,
                                     userError,
                                 }}
                                 infoAlert={infoAlert}
@@ -211,4 +237,4 @@ const AppRouting = ({
     );
 };
 
-export default AppRouting;
+export default StoresRouting;

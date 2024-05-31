@@ -20,10 +20,10 @@ export const useCategory = ({ store, lang }: Props) => {
         setCategoriesList(
             categoryRes.data.categories?.map(category => ({
                 depth: category.depth,
-                id: category.id,
-                parent: category.parent,
-                children: category.children,
-                description: category.description,
+                id: category.id as any,
+                parent: category.parent as any,
+                children: category.children as any,
+                description: category.description as any,
             }))
         );
     }, [categoryRes]);

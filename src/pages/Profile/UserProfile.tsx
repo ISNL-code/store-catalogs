@@ -9,6 +9,7 @@ import { useUserApi } from 'api/useUserApi';
 import Loader from 'components/atoms/Loader/Loader';
 import { useEffect, useState } from 'react';
 import useHandleError from 'hooks/useHandleError';
+import { scrollPage } from 'utils/scrollPage';
 
 const UserProfile = () => {
     const { sx } = useDevice();
@@ -32,10 +33,7 @@ const UserProfile = () => {
     const [company, setCompany] = useState(currentUserData?.delivery?.company);
 
     useEffect(() => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'auto',
-        });
+        scrollPage(0);
     }, []);
 
     useEffect(() => {

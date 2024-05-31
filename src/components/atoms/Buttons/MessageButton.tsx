@@ -2,7 +2,7 @@ import { Box, Fab, Typography } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
 import { useOutletContext } from 'react-router-dom';
 import { useDevice } from 'hooks/useDevice';
-import { Color } from 'colors';
+import { Color } from 'constants/colors';
 
 const MessageButton = ({ from = 'catalog', action }) => {
     const { string }: any = useOutletContext();

@@ -3,7 +3,7 @@ import { useRef } from 'react';
 import { useOutletContext } from 'react-router-dom';
 import { useDevice } from 'hooks/useDevice';
 import Grid from '@mui/material/Unstable_Grid2';
-import { Colors } from 'colors';
+import { Colors } from 'constants/colors';
 
 const CardView = ({ SliderComponent, CardDetails, CardDecoration, opacity, ...rest }) => {
     const cardRef = useRef<HTMLElement>(null);

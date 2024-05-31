@@ -5,9 +5,10 @@ import { Box, IconButton } from '@mui/material';
 interface FavoriteButtonInterface {
     isShown: boolean;
     selected: boolean;
+    onClick: () => void;
 }
 
-const FavoritesButton = ({ isShown, selected }: FavoriteButtonInterface) => {
+const FavoritesButton = ({ isShown, selected, onClick }: FavoriteButtonInterface) => {
     if (isShown)
         return (
             <Box>
@@ -19,6 +20,10 @@ const FavoritesButton = ({ isShown, selected }: FavoriteButtonInterface) => {
                             backgroundColor: '#fff',
                             width: '33px',
                             height: '33px',
+                        }}
+                        onClick={e => {
+                            e.stopPropagation();
+                            onClick();
                         }}
                     >
                         {selected ? <FavoriteIcon color="warning" /> : <FavoriteBorderIcon color="warning" />}

@@ -2,7 +2,7 @@ import { useUserApi } from 'api/useUserApi';
 import { useEffect, useState } from 'react';
 import Loader from 'components/atoms/Loader/Loader';
 import { useFormik } from 'formik';
-import loginFormValidations from 'Validation/loginFormValidations';
+import loginFormValidations from 'utils/validation/loginFormValidations';
 import { STORE_CONFIG } from 'store_constants/stores_config';
 import { DialogWindowType } from 'layouts/hooks/useFormsApp';
 import FormDialog from 'components/organisms/Modals/FormDialog';

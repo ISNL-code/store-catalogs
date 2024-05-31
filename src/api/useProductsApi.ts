@@ -1,14 +1,16 @@
 import { UseQueryResult, useQuery } from '@tanstack/react-query';
 import useApi from './useApi';
 import { AxiosResponse } from 'axios';
-import { ProductsResponseInterface } from 'types/response_models';
+import { Products_Response_Interface } from 'types/response_models';
 
 interface GetAllProductsParams {
     store: string;
     lang: string;
     count: number;
-    categories: string[];
+    categories?: string[];
     page: number;
+    queryIds?: number[];
+    variantSku?: string[];
 }
 
 export const useProductsApi = () => {
@@ -20,16 +22,34 @@ export const useProductsApi = () => {
         count,
         categories,
         page,
-    }: GetAllProductsParams): UseQueryResult<AxiosResponse<ProductsResponseInterface>, unknown> => {
+    }: GetAllProductsParams): UseQueryResult<AxiosResponse<Products_Response_Interface>, unknown> => {
         return useQuery(
             ['get-all-products', store, lang, count, categories, page],
             () =>
                 get({
                     url: `/v2/products?store=${store}&lang=${lang}&count=${count}&page=${page}${
-                        categories.length ? '' : '&origin=customer'
-                    }&available=true${categories.length ? '&categoryIds=' + categories.join(',') : ''}`,
+                        categories?.length ? '' : '&origin=customer'
+                    }&available=true${categories?.length ? '&categoryIds=' + categories?.join(',') : ''}`,
                 }),
             { cacheTime: 1000 * 60 * 5 }
+        );
+    };
+
+    const useGetFavorites = ({
+        store,
+        lang,
+        count,
+        queryIds,
+        page,
+        variantSku,
+    }: GetAllProductsParams): UseQueryResult<AxiosResponse<Products_Response_Interface>, unknown> => {
+        return useQuery(
+            ['get-favorites-products', variantSku],
+            () =>
+                get({
+                    url: `/v2/products?store=${store}&lang=${lang}&count=${count}&page=${page}&origin=customer&available=true&productIds=${queryIds}`,
+                }),
+            { cacheTime: 1000 * 60 * 5, enabled: false }
         );
     };
 
@@ -72,5 +92,6 @@ export const useProductsApi = () => {
         useGetProductBySku,
         useGetProductByID,
         useGetProductByIDForCart,
+        useGetFavorites,
     };
 };

@@ -5,7 +5,7 @@ import { CatalogContextInterface } from 'types/outlet_context_models';
 import { STORE_CONFIG } from 'store_constants/stores_config';
 import { STORE_ROUTE } from 'constants/routes';
 import { useDevice } from 'hooks/useDevice';
-import { Colors } from 'colors';
+import { Colors } from 'constants/colors';
 
 const SuccessOrderingPage = ({ isShown = true, setSuccessOrdering }) => {
     const { sx } = useDevice();

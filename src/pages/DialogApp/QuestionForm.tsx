@@ -1,5 +1,5 @@
 import { useFormik } from 'formik';
-import requestQuestionValidation from 'Validation/requestQuestionValidation';
+import requestQuestionValidation from 'utils/validation/requestQuestionValidation';
 import axios from 'axios';
 import { STORE_CONFIG } from 'store_constants/stores_config';
 import FormDialog from 'components/organisms/Modals/FormDialog';

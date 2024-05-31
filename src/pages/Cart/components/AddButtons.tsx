@@ -3,16 +3,14 @@ import AddIcon from '@mui/icons-material/Add';
 import { Box, Fab, TextField } from '@mui/material';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { useIsMount } from 'hooks/useIsMount';
-import { ProductVariantInterface } from 'types/app_models';
-import { OrderDataInterface } from '../Cart';
+import { CartProductInterface, OrderDataInterface } from '../Cart';
 
 interface Props {
-    productPrice;
     setOrderData: Dispatch<SetStateAction<OrderDataInterface>>;
-    productData: ProductVariantInterface;
+    data: CartProductInterface;
 }
 
-const AddButtons = ({ productPrice, setOrderData, productData }: Props) => {
+const AddButtons = ({ setOrderData, data }: Props) => {
     const mount = useIsMount();
     const [value, setValue] = useState(1);
 
@@ -25,11 +23,11 @@ const AddButtons = ({ productPrice, setOrderData, productData }: Props) => {
                     ...prev.productsList,
                     {
                         sizeId: null,
-                        colorId: productData?.variantId,
-                        productSku: productData?.variantSku,
+                        colorId: data?.variant.variantId,
+                        productSku: data?.variant.variantSku,
                         quantity: 1,
-                        price: productPrice,
-                        sku: productData?.productSku,
+                        price: data?.variant?.price,
+                        sku: data?.variant.productSku,
                     },
                 ],
             };
@@ -48,7 +46,7 @@ const AddButtons = ({ productPrice, setOrderData, productData }: Props) => {
                         return {
                             ...prev,
                             productsList: prev.productsList.map(item => {
-                                if (item.productSku === productData?.variantSku && Number(item.quantity) > 1)
+                                if (item.productSku === data?.variant?.variantSku && Number(item.quantity) > 1)
                                     return { ...item, quantity: Number(item.quantity) - 1 };
                                 return item;
                             }),
@@ -78,7 +76,7 @@ const AddButtons = ({ productPrice, setOrderData, productData }: Props) => {
                         return {
                             ...prev,
                             productsList: prev.productsList.map(item => {
-                                if (item?.colorId === productData?.variantId)
+                                if (item?.colorId === data?.variant?.variantId)
                                     return { ...item, quantity: Number(item.quantity) + 1 };
                                 return item;
                             }),

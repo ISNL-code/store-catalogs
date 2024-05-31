@@ -5,8 +5,9 @@ import { Box, Button, Typography } from '@mui/material';
 import { useOutletContext } from 'react-router-dom';
 import { HomeContextInterface } from 'types/outlet_context_models';
 import { useDevice } from 'hooks/useDevice';
-import { Colors } from 'colors';
+import { Colors } from 'constants/colors';
 import BackButton from 'components/atoms/Buttons/BackButton';
+import { scrollPage } from 'utils/scrollPage';
 
 const InformationPage = () => {
     const { sx } = useDevice();
@@ -18,15 +19,12 @@ const InformationPage = () => {
     const privacyPolicyRef = useRef(null);
 
     useEffect(() => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'auto',
-        });
+        scrollPage(0);
     }, []);
 
     const scrollToRef = (ref: React.RefObject<HTMLDivElement>) => {
         if (ref.current) {
-            window.scrollTo({ top: ref.current.offsetTop - 120, behavior: 'smooth' });
+            scrollPage(ref.current.offsetTop - 120, 'smooth');
         }
     };
 

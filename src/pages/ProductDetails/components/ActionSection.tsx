@@ -1,5 +1,5 @@
 import { Box, Button } from '@mui/material';
-import { useOutletContext, useParams } from 'react-router-dom';
+import { useOutletContext } from 'react-router-dom';
 import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -14,9 +14,8 @@ interface Props {
 }
 
 const ActionSection = ({ isShown, selectedVariant }: Props) => {
-    const { OPTIONS } = STORE_CONFIG;
+    const { OPTIONS, STORE_CODE } = STORE_CONFIG;
     const { PLAN_OPTIONS } = OPTIONS;
-    const { storeCode } = useParams();
     const { string, cart, favorites }: CatalogContextInterface = useOutletContext();
 
     const selectedToCart = cart?.cartItems?.find(item => item.variantSku === selectedVariant?.variantSku);
@@ -42,7 +41,7 @@ const ActionSection = ({ isShown, selectedVariant }: Props) => {
                             // if (!auth) return setOpenModalType('register-warning');
                             cart?.handleSetCartItems({
                                 variantSku: selectedVariant?.variantSku,
-                                storeCode,
+                                storeCode: STORE_CODE,
                                 productId: selectedVariant?.productId,
                             });
                         }}
@@ -74,7 +73,7 @@ const ActionSection = ({ isShown, selectedVariant }: Props) => {
                         onClick={() => {
                             favorites?.handleSetFavoriteItems({
                                 variantSku: selectedVariant?.variantSku,
-                                storeCode,
+                                storeCode: STORE_CODE,
                                 productId: selectedVariant?.productId,
                             });
                         }}

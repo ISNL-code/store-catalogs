@@ -14,19 +14,17 @@ import { CatalogContextInterface } from 'types/outlet_context_models';
 import EmptyPage from 'components/atoms/EmptyPage/EmptyPage';
 import Grid from '@mui/material/Unstable_Grid2';
 import CardItem from 'components/atoms/Sections/CardItem';
+import { scrollPage } from 'utils/scrollPage';
 
 const ContactsManagePage = () => {
     const { store, string, footerMenuHeight, appXPadding }: CatalogContextInterface = useOutletContext();
     const { sm, sx } = useDevice();
 
     useEffect(() => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'auto',
-        });
+        scrollPage(0);
     }, []);
 
-    if (!store?.managers.length) return <EmptyPage />;
+    if (!store?.managers?.length) return <EmptyPage />;
 
     return (
         <Box p={sx ? 2 : appXPadding} sx={{ pb: `${footerMenuHeight}px` }}>

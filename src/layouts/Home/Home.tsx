@@ -2,7 +2,6 @@ import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 import { useDevice } from 'hooks/useDevice';
-import { useEffect } from 'react';
 import HomeHeader from './HomeHeader';
 import HomeMobileMenu from './HomeMobileMenu';
 import { HomeContextInterface } from 'types/outlet_context_models';
@@ -11,12 +10,52 @@ import { useFormsApp } from 'layouts/hooks/useFormsApp';
 import DialogApp from 'layouts/DialogApp';
 import { HOME_ROUTE, ROUTES } from 'constants/routes';
 import Loader from 'components/atoms/Loader/Loader';
+import {
+    StoreInterface,
+    UserDataInterface,
+    useAddToCartDataInterface,
+    useAddToFavoriteDataInterface,
+} from 'types/app_models';
+import { QueryObserverResult, RefetchOptions, RefetchQueryFilters } from '@tanstack/react-query';
+import { AxiosResponse } from 'axios';
+import { LanguageDataInterface } from 'hooks/useGetLanguage';
+import { useEffect } from 'react';
+
+interface Props {
+    lang: string;
+    setAuth: (newAuth: boolean) => void;
+    setLang: (newLang: string) => void;
+    auth: boolean | null;
+    userData: {
+        currentUserData: UserDataInterface | null;
+        isFetchingUser: boolean;
+        setCurrentUserData: (newData: UserDataInterface) => void;
+        fetchUserData: <TPageData>(
+            options?: (RefetchOptions & RefetchQueryFilters<TPageData>) | undefined
+        ) => Promise<QueryObserverResult<AxiosResponse<any, any>, unknown>>;
+        userError: any;
+    };
+    store: StoreInterface | null;
+    cart: useAddToCartDataInterface;
+    favorites: useAddToFavoriteDataInterface;
+    currentLanguage: LanguageDataInterface;
+}
 
 const OutletContainer = ({ context }: { context: HomeContextInterface }) => {
     return <Outlet context={context} />;
 };
 
-export default function Home({ lang, setLang, auth, setAuth, userData, store, favorites, cart, currentLanguage }) {
+export default function Home({
+    lang,
+    setLang,
+    auth,
+    setAuth,
+    userData,
+    store,
+    favorites,
+    cart,
+    currentLanguage,
+}: Props) {
     const { STORE_CODE, OPTIONS } = STORE_CONFIG;
     const { PLAN_OPTIONS } = OPTIONS;
     const { storeCode } = useParams();
@@ -62,7 +101,7 @@ export default function Home({ lang, setLang, auth, setAuth, userData, store, fa
                 <OutletContainer
                     context={{
                         //main data
-                        lang: lang?.code,
+                        lang: lang,
                         string: currentLanguage?.string,
                         handleOpenDialog,
                         dialogState,
@@ -72,7 +111,7 @@ export default function Home({ lang, setLang, auth, setAuth, userData, store, fa
                         auth: auth,
                         currentUserData: userData.currentUserData,
                         loadingUserData: userData.isFetchingUser,
-                        updateUserData: userData.updateUserData,
+                        updateUserData: userData.fetchUserData,
                         setCurrentUserData: userData.setCurrentUserData,
                         userDataError: userData.userError,
 

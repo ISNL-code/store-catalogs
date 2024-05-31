@@ -5,7 +5,7 @@ import { useFormik } from 'formik';
 import { DialogWindowType } from 'layouts/hooks/useFormsApp';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import newPasswordFormValidation from 'Validation/newPasswordFormValidation';
+import newPasswordFormValidation from 'utils/validation/newPasswordFormValidation';
 
 const NewPassword = ({ isOpen, setIsOpen, string }) => {
     const { storeCode, tokenId } = useParams();

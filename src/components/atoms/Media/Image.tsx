@@ -2,18 +2,17 @@ import React, { useState, useEffect } from 'react';
 import { Typography, CircularProgress, Box } from '@mui/material';
 import PhotoCameraIcon from '@mui/icons-material/PhotoCamera';
 import { useOutletContext } from 'react-router-dom';
-import { Color } from 'colors';
+import { Color } from 'constants/colors';
 
 interface ImageProps {
     imgUrl: string;
     height?;
     imgHeight?;
     loadControl?;
-    lazy?: boolean;
 }
 
 const ImageComponent = React.forwardRef<HTMLImageElement, ImageProps>(
-    ({ imgUrl, height = '100%', imgHeight = 'auto', loadControl = () => {}, lazy = true }, ref) => {
+    ({ imgUrl, height = '100%', imgHeight = 'auto', loadControl = () => {} }, ref) => {
         const [imgLoaded, setImgLoaded] = useState(false);
         const [imgError, setImgError] = useState(false);
 
@@ -53,7 +52,6 @@ const ImageComponent = React.forwardRef<HTMLImageElement, ImageProps>(
             >
                 {imgLoaded && !imgError ? (
                     <img
-                        loading={lazy ? 'lazy' : 'eager'}
                         src={imgUrl}
                         style={{
                             width: '100%',

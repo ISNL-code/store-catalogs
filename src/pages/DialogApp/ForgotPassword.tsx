@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useUserApi } from 'api/useUserApi';
 import { useFormik } from 'formik';
-import emailFormValidations from 'Validation/emailFormValidations';
+import emailFormValidations from 'utils/validation/emailFormValidations';
 import { STORE_CONFIG } from 'store_constants/stores_config';
 import FormDialog from 'components/organisms/Modals/FormDialog';
 import { DialogWindowType } from 'layouts/hooks/useFormsApp';

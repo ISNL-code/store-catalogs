@@ -4,22 +4,23 @@ export interface DialogStateInterface {
 }
 
 export interface LocalStorageProductInterface {
-    productId?: number;
+    productId: number;
     variantSku: string;
-    storeCode?: string;
-    userId?: number;
+    storeCode: string;
 }
 export interface useAddToCartDataInterface {
     cartItems: LocalStorageProductInterface[];
     handleSetCartItems: (data: LocalStorageProductInterface) => void;
     handleClearCartItems: (array: string[]) => void;
     handleClearCart: () => void;
+    clearSingleItem: (val) => void;
 }
 
 export interface useAddToFavoriteDataInterface {
     favoriteItems: LocalStorageProductInterface[];
     handleSetFavoriteItems: (data: LocalStorageProductInterface) => void;
     handleClearFavorites: () => void;
+    clearSingleItem: (val) => void;
 }
 
 export interface OrderInterface {
@@ -32,57 +33,28 @@ export interface OrderInterface {
 }
 
 export interface StoreInterface {
-    id: number;
+    currency: string | null;
+    logo: { path: string };
+    supportedLanguages: {
+        code: string;
+        id: number;
+    }[];
     code: string;
     name: string;
-    defaultLanguage: string;
-    currency: string;
-    inBusinessSince: string;
-    email: string;
-    phone: string;
-    template: string | number | null;
-    useCache: boolean;
-    currencyFormatNational: boolean;
-    retailer: boolean;
-    dimension: string;
-    weight: string;
-    currentUserLanguage: string | number | null;
-    address: {
-        stateProvince: string;
-        country: string;
-        address: string;
-        postalCode: string;
-        city: string;
-        active: boolean;
-    };
-    logo: { name: string; path: string } | null;
-    parent: string | number | null;
-    supportedLanguages: any[];
-    readableAudit: {
-        created: string | number | null;
-        modified: string;
-        user: string;
-    };
-    //add
-    mainImage: string;
-    descriptions: any;
-    securityStoreSettings: any;
-    storeProductTypes: any;
-    description: any;
-    managers: [
-        {
-            firstName: string;
-            lastName: string;
+    // need to add backend now from hard code
+    managers: {
+        firstName: string;
+        lastName: string;
+        emailAddress: string;
+        options: { manager: boolean };
+        contacts: {
             emailAddress: string;
-            contacts: {
-                phone: string;
-                viber: string;
-                whatsapp: string;
-                telegram: string;
-                emailAddress: string;
-            };
-        }
-    ];
+            phone: string;
+            viber: string;
+            whatsapp: string;
+            telegram: string;
+        };
+    }[];
 }
 
 export interface UserDataInterface {
@@ -122,27 +94,14 @@ export interface UserDataInterface {
         zone: null | string;
         country: null | string;
     };
-    gender: string;
     language: string;
     firstName: string;
     lastName: string;
-    provider: null;
     storeCode: null;
     userName: string;
-    rating: number;
-    ratingCount: number;
-    attributes: [];
-    groups: [
-        {
-            name: 'CUSTOMER';
-            type: 'CUSTOMER';
-            id: number;
-        }
-    ];
-    favoriteStores: [];
 }
 
-interface ImageInterface {
+export interface ImageInterface {
     id: number;
     imageUrl: string;
     order: number;
@@ -177,71 +136,25 @@ export interface ProductDataInterface {
     originalPrice: string | number;
     promoTags: any[];
     productSizes: any[];
-}
-
-export interface FavoritesProductsInterface {
-    attributes: any[];
-    favoriteProductId: number;
-    variantId: number;
-    product: ProductDataInterface;
+    options: {
+        id: number;
+        code: string | 'SIZE' | 'COLOR' | 'PROMO';
+        type: string;
+        name: string | 'SIZE' | 'COLOR' | 'PROMO';
+        variant: boolean;
+        optionValues: {
+            id: number;
+            code: string;
+        }[];
+    }[];
 }
 
 export interface CategoryDataInterface {
+    id: number;
     depth: number;
-    id: number;
-    parent: any;
-    children: any[];
-    description: any;
-}
-
-export interface ProductOptionsInterface {
-    id: number;
-    code: string;
-    type: string;
-    readOnly: boolean;
-    name: string;
-    lang: string;
-    variant: boolean;
-    option;
-    Values: OptionValueInterface[];
-}
-
-export interface AddressInterface {
-    stateProvince: string;
-    country: string;
-    address: string;
-    postalCode: string;
-    city: string;
-    active: boolean;
-}
-
-export interface InventoryInterface {
-    id: number;
-    quantity: number;
-    region: string;
-    regionVariant: string | number | null;
-    owner: string | number | null;
-    dateAvailable: string | number | null;
-    available: boolean;
-    productQuantityOrderMin: number;
-    productQuantityOrderMax: number;
-    creationDate: string | number | null;
-    store: StoreInterface;
-    sku: string;
-    prices: PriceDescriptionInterface[];
-    price: string;
-}
-
-export interface OptionValueInterface {
-    id: number;
-    code: string;
-    name: string;
-    defaultValue: boolean;
-    sortOrder: number;
-    image: string | number | null;
-    order: number;
-    price: string | number | null;
+    parent: CategoryDataInterface | null;
     description: DescriptionInterface;
+    children: CategoryDataInterface[];
 }
 
 export interface DescriptionInterface {
@@ -254,93 +167,4 @@ export interface DescriptionInterface {
     highlights: string;
     metaDescription: string;
     title: string;
-}
-
-export interface PriceDescriptionInterface {
-    id: number;
-    originalPrice: string;
-    finalPrice: string;
-    defaultPrice: boolean;
-    discounted: boolean;
-    description: {
-        id: number;
-        language: string;
-        name: string | number | null;
-        description: string | number | null;
-        friendlyUrl: string | number | null;
-        keyWords: string | number | null;
-        highlights: string | number | null;
-        metaDescription: string | number | null;
-        title: string | number | null;
-        priceAppender: string | number | null;
-    };
-}
-
-export interface ProductImageInterface {
-    id: number;
-    imageName: string;
-    imageUrl: string;
-    externalUrl: string | number | null;
-    videoUrl: string | number | null;
-    imageType: number;
-    order: number;
-    defaultImage: boolean;
-}
-
-export interface ChildCategoryInterface {
-    id: number;
-    code: string;
-    description: DescriptionInterface;
-    sortOrder: number;
-    visible: boolean;
-    featured: boolean;
-    lineage: string;
-    depth: number;
-    parent: ParentCategoryInterface;
-    productCount: number;
-    store: string;
-    children: ChildCategoryInterface[];
-}
-
-export interface ParentCategoryInterface {
-    id: number;
-    code: string;
-    description: DescriptionInterface;
-    sortOrder: number;
-    visible: boolean;
-    featured: boolean;
-    lineage: string;
-    depth: number;
-    parent: string | number | null;
-    productCount: 0;
-    store: string;
-    children: ChildCategoryInterface[];
-}
-
-export interface CategoryInterface {
-    id: number;
-    code: string;
-    description: DescriptionInterface;
-    sortOrder: number;
-    visible: boolean;
-    featured: boolean;
-    lineage: string;
-    depth: number;
-    parent: {
-        id: number;
-        code: string;
-        description: DescriptionInterface;
-        sortOrder: number;
-        visible: boolean;
-        featured: boolean;
-        lineage: string;
-        depth: number;
-        parent: ParentCategoryInterface;
-        productCount: number;
-        store: string;
-        children: ChildCategoryInterface[];
-    };
-    productCount: number;
-    store: string;
-    children: ChildCategoryInterface[];
 }

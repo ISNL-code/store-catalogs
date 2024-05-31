@@ -2,14 +2,15 @@ import { Box, IconButton } from '@mui/material';
 import { useOutletContext } from 'react-router-dom';
 import { CatalogContextInterface } from 'types/outlet_context_models';
 import { ViewModeType } from 'store_constants/types';
-import { Color, Colors } from 'colors';
+import { Color, Colors } from 'constants/colors';
 import { BsGrid } from 'react-icons/bs';
 import { IoMdGrid } from 'react-icons/io';
 import { useEffect, useState } from 'react';
+import { DEFAULT_VALUES } from 'defaultData/default';
 
 const ViewModeButton = () => {
     const { setViewMode, viewMode }: CatalogContextInterface = useOutletContext();
-    const [mode, setMode] = useState<ViewModeType>(viewMode);
+    const [mode, setMode] = useState<ViewModeType>(viewMode || DEFAULT_VALUES?.view_mode);
 
     useEffect(() => {
         setViewMode(mode);

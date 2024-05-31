@@ -1,5 +1,7 @@
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { UseQueryResult, useMutation, useQuery } from '@tanstack/react-query';
 import useApi from './useApi';
+import { User_Data_Response_Interface } from 'types/response_models';
+import { AxiosResponse } from 'axios';
 
 export const useUserApi = () => {
     const { post, get, patch } = useApi();
@@ -47,7 +49,9 @@ export const useUserApi = () => {
             }
         );
 
-    const useGetUserData = ({ storeCode }) => {
+    const useGetUserData = ({
+        storeCode,
+    }): UseQueryResult<AxiosResponse<User_Data_Response_Interface, any>, unknown> => {
         return useQuery(
             ['get-user-profile'],
 

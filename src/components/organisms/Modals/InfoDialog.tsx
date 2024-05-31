@@ -10,7 +10,7 @@ import {
     ClickAwayListener,
     Divider,
 } from '@mui/material';
-import { Color, Colors } from 'colors';
+import { Color, Colors } from 'constants/colors';
 import CloseIcon from '@mui/icons-material/Close';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import WarningAmberIcon from '@mui/icons-material/WarningAmber';

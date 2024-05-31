@@ -4,7 +4,7 @@ import InstrumentalSubHeader from 'components/organisms/InstrumentalSubHeader/In
 import { useIsMount } from 'hooks/useIsMount';
 import { useEffect, useRef, useState } from 'react';
 import { useOutletContext, useParams } from 'react-router-dom';
-import { ProductVariantInterface } from 'types/app_models';
+import { ProductDataInterface, ProductVariantInterface } from 'types/app_models';
 import Loader from 'components/atoms/Loader/Loader';
 import Grid from '@mui/material/Unstable_Grid2';
 import ImageComponent, { EmptyImage } from 'components/atoms/Media/Image';
@@ -17,10 +17,12 @@ import ProductDetails from './components/ProductDetails';
 import { useCartApi } from 'api/useCartApi';
 import SuccessOrderingPage from 'components/atoms/SuccessOrdering/SuccessOrderingPage';
 import ClearListButton from 'components/molecules/ToolsButtons/ClearListButton';
-import { Colors } from 'colors';
+import { Colors } from 'constants/colors';
 import { STORE_CONFIG } from 'store_constants/stores_config';
 import { DialogWindowType } from 'layouts/hooks/useFormsApp';
 import { CatalogContextInterface } from 'types/outlet_context_models';
+import { scrollPage } from 'utils/scrollPage';
+import { map_product_card } from 'utils/mappers/product_data';
 
 interface ProductListInterface {
     sizeId: number | null;
@@ -47,6 +49,15 @@ export interface OrderDataInterface {
     };
 }
 
+export interface CartProductInterface {
+    image: string;
+    id: number;
+    variant: ProductVariantInterface;
+    name: string;
+    sizes;
+    colors;
+}
+
 const Cart = () => {
     const { OPTIONS } = STORE_CONFIG;
     const { PLAN_OPTIONS } = OPTIONS;
@@ -66,7 +77,7 @@ const Cart = () => {
         handleOpenDialog,
     }: CatalogContextInterface = useOutletContext();
     const [productIds, setProductIds] = useState<string[] | any[]>([]);
-    const [cartProducts, setCartProducts] = useState<ProductVariantInterface[] | any[]>([]);
+    const [cartProducts, setCartProducts] = useState<CartProductInterface[] | []>([]);
     const [finalPrice, setFinalPrice] = useState<number>(0);
     const [successOrdering, setSuccessOrdering] = useState<boolean>(false);
     const [orderData, setOrderData] = useState<OrderDataInterface>({
@@ -94,10 +105,7 @@ const Cart = () => {
     const { mutateAsync: createOrder, isLoading: loadCreateOrder } = useCartApi().useCreateOrder();
 
     useEffect(() => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'auto',
-        });
+        scrollPage(0);
     }, []);
 
     useEffect(() => {
@@ -111,40 +119,22 @@ const Cart = () => {
         updateCartProductsRes().then(res => {
             const products = res.data?.data.products;
 
-            //clear invalid items
-            cart?.cartItems.forEach(({ variantSku }) => {
-                if (!products.find(el => el.variants.map(({ variantSku }) => variantSku).includes(variantSku))) {
-                    cart?.handleSetCartItems({
-                        variantSku,
-                    });
-                }
-            });
+            const newData: ProductDataInterface[] = map_product_card.cart_card(products, cart?.cartItems, val =>
+                cart?.clearSingleItem(val)
+            );
 
-            const data = cart?.cartItems?.map(({ variantSku }) => {
+            const cartItemsData: CartProductInterface[] = newData?.map(el => {
                 return {
-                    ...products
-                        .find(el => el.variants.map(({ variantSku }) => variantSku).includes(variantSku))
-                        ?.variants?.filter(el => el.variantSku === variantSku)[0],
-                    variantSku: products.find(el =>
-                        el.variants.map(({ variantSku }) => variantSku).includes(variantSku)
-                    )?.variantSku,
-                    sizes: {
-                        ...products
-                            .find(el => el.variants.map(({ variantSku }) => variantSku).includes(variantSku))
-
-                            ?.options?.find(el => el.code === 'SIZE'),
-                    },
-                    color: {
-                        ...products
-                            .find(el => el.variants.map(({ variantSku }) => variantSku).includes(variantSku))
-
-                            ?.options?.find(el => el.code === 'COLOR'),
-                    },
-                    name: products.find(el => el.variants.map(({ variantSku }) => variantSku).includes(variantSku))
-                        ?.description?.name,
+                    name: el?.name,
+                    image: el?.variants[0]?.images[0]?.imageUrl,
+                    id: el.id,
+                    variant: el?.variants[0],
+                    sizes: el?.options?.find(el => el.code === 'SIZE'),
+                    colors: el?.options?.find(el => el.code === 'COLOR'),
                 };
             });
-            setCartProducts(data);
+
+            setCartProducts(cartItemsData);
         }); // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [productIds, lang]);
 
@@ -159,16 +149,6 @@ const Cart = () => {
         );
     }, [orderData.productsList, cartProducts?.length]);
 
-    const [loading, setLoading] = useState(true);
-
-    useEffect(() => {
-        if (loadProducts) return;
-
-        setTimeout(() => {
-            setLoading(false);
-        }, 200);
-    }, [loadProducts, loading]);
-
     if (successOrdering)
         return (
             <>
@@ -179,7 +159,7 @@ const Cart = () => {
 
     return (
         <Box className="CartPageContainer" p={sx ? 2 : appXPadding} sx={{ pb: `calc(${footerMenuHeight}px + 16px)` }}>
-            {(loadCreateOrder || loading || loadProducts) && <Loader position="fixed" />}
+            {(loadCreateOrder || loadProducts) && <Loader position="fixed" />}
 
             <InstrumentalSubHeader
                 StartSlot={() => <></>}
@@ -232,14 +212,7 @@ const Cart = () => {
                                         }}
                                         p={2}
                                     >
-                                        {el?.images?.length ? (
-                                            <ImageComponent
-                                                imgUrl={el?.images ? el?.images[0]?.imageUrl : ''}
-                                                ref={null}
-                                            />
-                                        ) : (
-                                            <EmptyImage />
-                                        )}
+                                        {el?.image ? <ImageComponent imgUrl={el?.image} ref={null} /> : <EmptyImage />}
                                     </Grid>
                                     <Grid
                                         p={2}
@@ -256,19 +229,9 @@ const Cart = () => {
                                     >
                                         <ProductDetails data={el} setOrderData={setOrderData} />
                                         {PLAN_OPTIONS?.sizes ? (
-                                            <AddSizesButtons
-                                                sizes={el?.sizes}
-                                                orderData={orderData}
-                                                setOrderData={setOrderData}
-                                                productPrice={el?.inventory ? el?.inventory[0]?.price : '0'}
-                                                productData={el}
-                                            />
+                                            <AddSizesButtons data={el} setOrderData={setOrderData} />
                                         ) : (
-                                            <AddButtons
-                                                setOrderData={setOrderData}
-                                                productPrice={el?.inventory ? el?.inventory[0]?.price : '0'}
-                                                productData={el}
-                                            />
+                                            <AddButtons setOrderData={setOrderData} data={el} />
                                         )}
                                     </Grid>
                                 </Grid>
@@ -299,7 +262,7 @@ const Cart = () => {
                     </Grid>
                 </Grid>
             ) : (
-                <>{!(loading || loadProducts) && <EmptyPage />}</>
+                <>{!loadProducts && <EmptyPage />}</>
             )}
         </Box>
     );

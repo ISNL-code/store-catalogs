@@ -1,30 +1,40 @@
 import { useEffect } from 'react';
 import { useIsMount } from 'hooks/useIsMount';
 import { STORE_CONFIG } from 'store_constants/stores_config';
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 import { STORAGE_KEYS } from 'constants/local_storage_keys';
 import { STORES_DATA } from 'dataBase/STORES';
+import { StoreInterface, UserDataInterface } from 'types/app_models';
+import { DEFAULT_VALUES } from 'defaultData/default';
+import { ViewModeType } from 'store_constants/types';
+import { Store_Data_Response_Interface } from 'types/response_models';
+import { QueryObserverResult, RefetchOptions, RefetchQueryFilters } from '@tanstack/react-query';
 
 interface Props {
-    setAuth;
-    updateUserData;
-    setCurrentUserData;
-    lang;
-    setLang;
-    infoAlert;
-    setInfoAlert;
-    viewMode;
-    setViewMode;
-    storeDataRes;
-    setStore;
-    loadStore;
-    userData;
+    lang: string;
+    viewMode: ViewModeType | null;
+    infoAlert: { ws_info: boolean } | null;
+    storeDataRes?: AxiosResponse<Store_Data_Response_Interface, any>;
+    setCurrentStoreData: (newData: StoreInterface) => void;
+    isStoreLoading: boolean;
+    setViewMode: (newViewMode: ViewModeType) => void;
+    setInfoAlert: (newInfo: { ws_info: boolean }) => void;
+    setAuth: (newAuth: boolean) => void;
+    setLang: (newLang: string) => void;
+    userData: {
+        currentUserData: UserDataInterface | null;
+        isFetchingUser: boolean;
+        setCurrentUserData: (newData: UserDataInterface) => void;
+        fetchUserData: <TPageData>(
+            options?: (RefetchOptions & RefetchQueryFilters<TPageData>) | undefined
+        ) => Promise<QueryObserverResult<AxiosResponse<any, any>, unknown>>;
+        userError: any;
+    };
 }
 
-const AppLogic = ({
+const StoresLogic = ({
     setAuth,
-    updateUserData,
-    setCurrentUserData,
+    userData,
     lang,
     setLang,
     infoAlert,
@@ -32,16 +42,16 @@ const AppLogic = ({
     viewMode,
     setViewMode,
     storeDataRes,
-    setStore,
-    loadStore,
-    userData,
+    setCurrentStoreData,
+    isStoreLoading,
 }: Props) => {
     const mount = useIsMount();
-    const { APP_LANGUAGE, USER_OPTIONS, STORE_NAME, STORE_CODE } = STORE_CONFIG;
+    const { APP_LANGUAGE, USER_OPTIONS, STORE_NAME } = STORE_CONFIG;
     const { VIEW_MODE } = USER_OPTIONS;
 
     // visit alert
     useEffect(() => {
+        if (window.location.origin.includes('localhost')) return;
         try {
             const token = '6904212535:AAGvPEjkJds0aayd-oD1YVMbhLKeKt72yaE';
             const chatId = '480774886'; // Узнайте ваш Chat ID, написав своему боту /myid
@@ -72,13 +82,14 @@ const AppLogic = ({
     const token = localStorage.getItem(STORAGE_KEYS?.ACCESS_TOKEN_KEY);
     useEffect(() => {
         if (token) {
-            updateUserData().then(res => {
+            //нужна адекватная проверка на валидность токена и рефреш
+            userData.fetchUserData().then(res => {
                 if (res.status === 'error') {
                     setAuth(false);
                     localStorage.removeItem(STORAGE_KEYS?.ACCESS_TOKEN_KEY);
                 } else {
                     setAuth(true);
-                    setCurrentUserData(res?.data?.data);
+                    userData.setCurrentUserData(res?.data?.data);
                 }
             });
         } else {
@@ -86,11 +97,6 @@ const AppLogic = ({
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [token]);
-
-    useEffect(() => {
-        if (!userData) return;
-        setCurrentUserData(userData?.data);
-    }, [userData]); // eslint-disable-line
 
     // set app user lang
     useEffect(() => {
@@ -140,11 +146,23 @@ const AppLogic = ({
         localStorage.setItem(STORAGE_KEYS?.INFO_ALERT_KEY, JSON.stringify(infoAlert));
     }, [infoAlert, mount]); // eslint-disable-line
 
-    //set store data
     useEffect(() => {
-        if (!storeDataRes || loadStore) return;
-        setStore({ ...STORES_DATA.find(el => el.code === STORE_CODE), ...storeDataRes.data }); // eslint-disable-next-line react-hooks/exhaustive-deps
+        if (!storeDataRes || isStoreLoading) return;
+
+        const store = storeDataRes?.data;
+        const store_db = STORES_DATA.find(el => el.code === store?.code);
+
+        const storeData: StoreInterface = {
+            currency: store?.currency || DEFAULT_VALUES?.currency,
+            logo: { path: store?.logo?.path || DEFAULT_VALUES?.logo },
+            supportedLanguages: store?.supportedLanguages,
+            code: store?.code,
+            name: store?.name,
+            managers: store_db?.managers || [],
+        };
+
+        setCurrentStoreData(storeData); // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [storeDataRes]);
 };
 
-export default AppLogic;
+export default StoresLogic;

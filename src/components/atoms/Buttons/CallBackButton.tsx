@@ -2,7 +2,7 @@ import { Box, Fab, Typography } from '@mui/material';
 import PhoneCallbackIcon from '@mui/icons-material/PhoneCallback';
 import { useNavigate, useOutletContext } from 'react-router-dom';
 import { useDevice } from 'hooks/useDevice';
-import { Color, Colors } from 'colors';
+import { Color, Colors } from 'constants/colors';
 
 const CallBackButton = ({ animated = false, path }) => {
     const { string }: any = useOutletContext();

@@ -15,7 +15,7 @@ import {
     Divider,
     Typography,
 } from '@mui/material';
-import { Color, Colors } from 'colors';
+import { Color, Colors } from 'constants/colors';
 import CloseIcon from '@mui/icons-material/Close';
 import { StyledTextField } from 'components/molecules/StyledComponents/StyledTextField';
 import VisibilityIcon from '@mui/icons-material/Visibility';

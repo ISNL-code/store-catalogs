@@ -1,5 +1,5 @@
 import { Box, Typography } from '@mui/material';
-import { Color, Colors } from 'colors';
+import { Color, Colors } from 'constants/colors';
 
 interface Props {
     currency;

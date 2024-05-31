@@ -1,5 +1,5 @@
 import { Box } from '@mui/material';
-import { Colors } from 'colors';
+import { Colors } from 'constants/colors';
 import { useRef } from 'react';
 
 const CardItem = ({ children }) => {

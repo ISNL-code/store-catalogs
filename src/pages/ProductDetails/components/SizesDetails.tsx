@@ -6,7 +6,7 @@ import StraightenIcon from '@mui/icons-material/Straighten';
 import { useDevice } from 'hooks/useDevice';
 import { ProductDataInterface } from 'types/app_models';
 import { STORE_CONFIG } from 'store_constants/stores_config';
-import { Color } from 'colors';
+import { Color } from 'constants/colors';
 import { DialogWindowType } from 'layouts/hooks/useFormsApp';
 import { CatalogContextInterface } from 'types/outlet_context_models';
 

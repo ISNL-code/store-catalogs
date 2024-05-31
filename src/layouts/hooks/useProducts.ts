@@ -1,10 +1,10 @@
 import { useProductsApi } from 'api/useProductsApi';
-import { STORE_CONFIG } from 'store_constants/stores_config';
-import { StoreType } from 'store_constants/types';
 import { useIsMount } from 'hooks/useIsMount';
 import { useEffect, useState } from 'react';
-import { ProductDataInterface, ProductVariantInterface } from 'types/app_models';
+import { ProductDataInterface } from 'types/app_models';
 import { useDevice } from 'hooks/useDevice';
+import { map_product_card } from 'utils/mappers/product_data';
+import { scrollPage } from 'utils/scrollPage';
 
 interface Props {
     store: string;
@@ -13,8 +13,6 @@ interface Props {
 
 export const useProducts = ({ store, lang }: Props) => {
     const { sx } = useDevice();
-    const { OPTIONS } = STORE_CONFIG;
-    const { STORE_TYPE } = OPTIONS;
     const mount = useIsMount();
     const count = sx ? 28 : 35;
 
@@ -28,7 +26,6 @@ export const useProducts = ({ store, lang }: Props) => {
     const {
         data: productGetData,
         isFetching: isLoadingProducts,
-        isLoading: isLoadingMoreProducts,
         refetch: refetchProducts,
         remove: removeProductsData,
     } = useProductsApi().useGetAllProducts({
@@ -40,54 +37,10 @@ export const useProducts = ({ store, lang }: Props) => {
     });
 
     useEffect(() => {
-        if (!productGetData || isLoadingMoreProducts) return;
+        if (!productGetData) return;
 
-        const newData = productGetData?.data?.products?.map(product => {
-            const originalPrice =
-                STORE_TYPE === StoreType.sales
-                    ? Math.max(...product.variants?.map(el => Number(el.inventory[0]?.price)))
-                    : Number(product.price);
+        const newData = map_product_card?.catalog_card(productGetData?.data?.products);
 
-            return {
-                id: product.id,
-                name: product?.description.name,
-                description: product?.description.description,
-                productSku: product?.sku,
-                table_size_img: product?.image,
-                variants: product.variants
-                    .sort((a, b) => a.sortOrder - b.sortOrder)
-                    .filter(el => (STORE_TYPE === StoreType.sales ? el.images.length : true))
-                    .map((variant, idx) => ({
-                        variantId: variant.id,
-                        productId: variant.productId,
-                        productSku: product?.sku,
-                        variantSku: variant.sku,
-                        images: variant.images,
-                        originalPrice: originalPrice,
-                        price: variant.inventory[0]?.price,
-                        quantity: variant.inventory[0]?.quantity,
-                        selected: idx === 0,
-                        colorCode: variant.variation.optionValue.code,
-                        colorName: variant.variation.optionValue.name,
-                    })),
-                originalPrice,
-                promoTags:
-                    product.options
-                        .find(({ code }) => code === 'PROMO')
-                        ?.optionValues.map(({ code, id, description }) => ({
-                            code,
-                            id,
-                            name: description?.name,
-                        })) || [],
-                productSizes:
-                    product?.options
-                        .find(({ code }) => code === 'SIZE')
-                        ?.optionValues.map(({ code, id, description }) => {
-                            return { code, id, name: description?.name };
-                        })
-                        .sort((a, b) => Number(a.code) - Number(b.code)) || [],
-            };
-        });
         if (currentProductsPage)
             setProductsList(prevData => {
                 if (prevData) {
@@ -108,10 +61,7 @@ export const useProducts = ({ store, lang }: Props) => {
         setTotalCount(0);
         setCurrentCount(0);
         setTotalPages(0);
-        window.scrollTo({
-            top: 0,
-            behavior: 'auto',
-        });
+        scrollPage(0);
         removeProductsData();
         setTimeout(() => {
             refetchProducts();
@@ -141,7 +91,6 @@ export const useProducts = ({ store, lang }: Props) => {
 
     return {
         isLoadingProducts,
-        isLoadingMoreProducts,
         currentProductsPage,
         handleSetProductsPage,
         productsList,

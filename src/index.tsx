@@ -1,4 +1,3 @@
-import * as React from 'react';
 import * as ReactDOM from 'react-dom/client';
 import App from 'App';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -19,9 +18,10 @@ const clearCache = () => {
 };
 
 AuthInterceptor();
+clearCache();
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     <QueryClientProvider client={queryClient}>
-        <App clearCache={clearCache} />
+        <App />
     </QueryClientProvider>
 );

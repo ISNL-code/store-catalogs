@@ -1,7 +1,7 @@
 import { Box } from '@mui/material';
 import LanguageButton from 'components/molecules/ToolsButtons/LanguageButton';
 import HeaderLogo from 'components/atoms/Logo/HeaderLogo';
-import { Color, Colors } from 'colors';
+import { Color, Colors } from 'constants/colors';
 import { STORE_CONFIG } from 'store_constants/stores_config';
 
 interface HeaderInterface {

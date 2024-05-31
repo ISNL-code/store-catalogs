@@ -5,7 +5,20 @@ import { COUNTRIES } from 'dataBase/translations/countries';
 import { LONG_PHRASES } from 'dataBase/translations/long_phrases';
 import { SUPPORTED_APP_LANG } from 'dataBase/translations/supported_app_lang';
 
-export const useGetLanguage = ({ lang, storeName }) => {
+interface Props {
+    lang: string;
+    storeName: string;
+}
+export interface LanguageDataInterface {
+    code: string;
+    string: Record<string, any>;
+}
+
+export interface LangResInterface {
+    currentLanguage: LanguageDataInterface;
+}
+
+export const useGetLanguage = ({ lang, storeName }: Props): LangResInterface => {
     const [currentLanguage, setCurrentLanguage] = useState({ code: '', string: {} });
 
     const langList = [

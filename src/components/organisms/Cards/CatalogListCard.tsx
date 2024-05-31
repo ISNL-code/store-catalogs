@@ -1,12 +1,12 @@
 import { Box } from '@mui/material';
 import ShareButton from 'components/molecules/ToolsButtons/ShareButton';
-import { memo, useEffect, useRef, useState } from 'react';
-import { useNavigate, useOutletContext, useParams } from 'react-router-dom';
+import { Dispatch, SetStateAction, memo, useEffect, useRef, useState } from 'react';
+import { useNavigate, useOutletContext } from 'react-router-dom';
 import ColorIndicatorButton from 'components/atoms/ColorIndicatorButton/ColorIndicatorButton';
 import CartButton from 'components/molecules/ToolsButtons/CartButton';
 import FavoritesButton from 'components/molecules/ToolsButtons/FavoritesButton';
 import Slider from 'react-slick';
-import { ProductVariantInterface } from 'types/app_models';
+import { ProductDataInterface, ProductVariantInterface } from 'types/app_models';
 import Grid from '@mui/material/Unstable_Grid2';
 import PromoTags from 'components/atoms/PromoTags/PromoTags';
 import ImageComponent, { EmptyImage } from 'components/atoms/Media/Image';
@@ -14,7 +14,7 @@ import CardPrice from 'components/molecules/PricesComponents/CardPrice';
 import CardSkuLabel from 'components/atoms/Labels/CardSkuLabel';
 import SaleTag from 'components/atoms/PromoTags/SaleTag';
 import { STORE_CONFIG } from 'store_constants/stores_config';
-import { Colors } from 'colors';
+import { Colors } from 'constants/colors';
 import { SampleNextArrow, SamplePrevArrow } from '../../atoms/Elements/SliderArrows';
 import { StoreType, ViewModeType } from 'store_constants/types';
 import CardView from './CardView';
@@ -23,13 +23,13 @@ import { useWindowWidth } from '@react-hook/window-size';
 import CardDescriptionComponent from 'components/atoms/DescriptionComponents/CardDescriptionComponent';
 import { SHARE_PATH, STORE_ROUTE } from 'constants/routes';
 import { CatalogContextInterface } from 'types/outlet_context_models';
+import { map_currency_symbol } from 'utils/mappers/currency_symbol';
 
 interface CatalogCardProps {
     modelsVariants: ProductVariantInterface[];
     name: string;
     productId: number;
-    currency: string;
-    setProductsList?: (value: any) => void;
+    setProductsList?: Dispatch<SetStateAction<ProductDataInterface[] | null>>;
     promoTags: {
         id: number;
         name?: string;
@@ -39,15 +39,14 @@ interface CatalogCardProps {
 }
 
 const CatalogListCard = memo<CatalogCardProps>(
-    ({ modelsVariants, name, productId, currency, setProductsList, promoTags, viewMode }) => {
+    ({ modelsVariants, name, productId, setProductsList, promoTags, viewMode }) => {
         const WINDOW_WIDTH = useWindowWidth();
         const { OPTIONS, STORE_CODE } = STORE_CONFIG;
         const { STORE_TYPE, PLAN_OPTIONS, PRODUCT_IMAGE_OPTIONS } = OPTIONS;
         const sliderRef = useRef<HTMLImageElement>(null);
         const navigate = useNavigate();
-        const { cart, favorites, currentUserData }: CatalogContextInterface = useOutletContext();
+        const { cart, favorites, store }: CatalogContextInterface = useOutletContext();
         const colorsBoxRef = useRef(null);
-        const { storeCode } = useParams();
         const [shownModel, setShownModel] = useState<ProductVariantInterface | null>(null);
         const [sliderHeight, setSliderHeight] = useState<number | string>(0);
 
@@ -174,7 +173,7 @@ const CatalogListCard = memo<CatalogCardProps>(
                             <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                                 {PLAN_OPTIONS?.prices && (
                                     <CardPrice
-                                        currency={currency}
+                                        currency={map_currency_symbol(store?.currency)}
                                         price={Number(shownModel?.originalPrice)}
                                         discountPrice={Number(shownModel?.price)}
                                     />
@@ -230,19 +229,21 @@ const CatalogListCard = memo<CatalogCardProps>(
                                                 if (selected) return;
                                                 if (setProductsList)
                                                     setProductsList(prev =>
-                                                        prev.map(el => {
-                                                            if (el.id === productId) {
-                                                                return {
-                                                                    ...el,
-                                                                    variants: el.variants.map(variant => {
-                                                                        if (variant.id === model.variantId)
-                                                                            return { ...variant, selected: true };
-                                                                        return { ...variant, selected: false };
-                                                                    }),
-                                                                };
-                                                            }
-                                                            return el;
-                                                        })
+                                                        prev
+                                                            ? prev?.map(el => {
+                                                                  if (el.id === productId) {
+                                                                      return {
+                                                                          ...el,
+                                                                          variants: el.variants.map(variant => {
+                                                                              if (variant.variantId === model.variantId)
+                                                                                  return { ...variant, selected: true };
+                                                                              return { ...variant, selected: false };
+                                                                          }),
+                                                                      };
+                                                                  }
+                                                                  return el;
+                                                              })
+                                                            : null
                                                     );
                                             }}
                                             selected={selected}
@@ -285,8 +286,7 @@ const CatalogListCard = memo<CatalogCardProps>(
                                     if (shownModel?.variantSku)
                                         cart?.handleSetCartItems({
                                             variantSku: shownModel?.variantSku,
-                                            storeCode,
-                                            userId: currentUserData?.id,
+                                            storeCode: STORE_CODE,
                                             productId: shownModel?.productId,
                                         });
                                 }}
@@ -346,23 +346,20 @@ const CatalogListCard = memo<CatalogCardProps>(
                         </Box>
                     </Box>
 
-                    <Box
-                        sx={{ position: 'absolute', top: 8, right: 8, zIndex: 1, display: 'flex', gap: 0.5 }}
-                        onClick={() => {
-                            if (shownModel?.variantSku)
-                                favorites?.handleSetFavoriteItems({
-                                    variantSku: shownModel?.variantSku,
-                                    storeCode,
-                                    userId: currentUserData?.id,
-                                    productId: shownModel?.productId,
-                                });
-                        }}
-                    >
+                    <Box sx={{ position: 'absolute', top: 8, right: 8, zIndex: 1, display: 'flex', gap: 0.5 }}>
                         <FavoritesButton
                             isShown={PLAN_OPTIONS?.favorites}
                             selected={Boolean(
                                 favorites?.favoriteItems?.find(item => item.variantSku === shownModel?.variantSku)
                             )}
+                            onClick={() => {
+                                if (shownModel?.variantSku)
+                                    favorites?.handleSetFavoriteItems({
+                                        variantSku: shownModel?.variantSku,
+                                        storeCode: STORE_CODE,
+                                        productId: shownModel?.productId,
+                                    });
+                            }}
                         />
                     </Box>
                 </>

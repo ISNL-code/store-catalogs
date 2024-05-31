@@ -1,7 +1,7 @@
 import { UseQueryResult, useQuery } from '@tanstack/react-query';
 import useApi from './useApi';
 import { AxiosResponse } from 'axios';
-import { CategoriesResponseInterface } from 'types/response_models';
+import { Categories_Response_Interface } from 'types/response_models';
 
 interface GetAllCategoriesParams {
     store: string;
@@ -14,7 +14,7 @@ export const useCategoriesApi = () => {
     const useGetAllCategories = ({
         store,
         lang,
-    }: GetAllCategoriesParams): UseQueryResult<AxiosResponse<CategoriesResponseInterface>, unknown> => {
+    }: GetAllCategoriesParams): UseQueryResult<AxiosResponse<Categories_Response_Interface>, unknown> => {
         return useQuery(
             // query key
             ['get-all-product-categories', lang],

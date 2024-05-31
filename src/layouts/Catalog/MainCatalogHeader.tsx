@@ -8,7 +8,7 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import GridViewIcon from '@mui/icons-material/GridView';
 import ProfileMenu from 'components/molecules/ToolsButtons/ProfileMenu';
 import { StoreInterface, useAddToCartDataInterface, useAddToFavoriteDataInterface } from 'types/app_models';
-import { Color, Colors } from 'colors';
+import { Color, Colors } from 'constants/colors';
 import { STORE_CONFIG } from 'store_constants/stores_config';
 import HomeIcon from '@mui/icons-material/Home';
 import { HOME_ROUTE, STORE_ROUTE } from 'constants/routes';

@@ -2,54 +2,49 @@ import { Box } from '@mui/material';
 import Loader from 'components/atoms/Loader/Loader';
 import { useEffect, useState } from 'react';
 import { useOutletContext } from 'react-router-dom';
-import { getCurrencySymbol } from 'helpers/getCurrencySymbol';
 import ScrollButton from 'components/atoms/Buttons/ScrollButton';
 import InstrumentalSubHeader from 'components/organisms/InstrumentalSubHeader/InstrumentalSubHeader';
 import EmptyPage from 'components/atoms/EmptyPage/EmptyPage';
-import { ProductVariantInterface } from 'types/app_models';
+import SkuSearch from 'components/molecules/ToolsButtons/SkuSearch';
+import { CatalogContextInterface } from 'types/outlet_context_models';
 import TransitionBox from 'components/atoms/Transitions/TransitionBox';
 import Grid from '@mui/material/Unstable_Grid2';
 import CallBackButton from 'components/atoms/Buttons/CallBackButton';
-import { useIsMount } from 'hooks/useIsMount';
-import { useProductsApi } from 'api/useProductsApi';
-import { STORE_CONFIG } from 'store_constants/stores_config';
+import AppleStoreButton from 'components/atoms/Buttons/AppleStoreButton';
+import PlayMarketButton from 'components/atoms/Buttons/PlayMarketButton';
+import SideLink from 'components/atoms/Buttons/SideLink';
 import ViewModeButton from 'components/molecules/ToolsButtons/ViewModeButton';
 import CatalogListCard from 'components/organisms/Cards/CatalogListCard';
-import ClearListButton from 'components/molecules/ToolsButtons/ClearListButton';
-import { StoreType, ViewModeType } from 'store_constants/types';
 import { useDevice } from 'hooks/useDevice';
+import { STORE_CONFIG } from 'store_constants/stores_config';
+import { ViewModeType } from 'store_constants/types';
 import { STORE_ROUTE } from 'constants/routes';
+import { useIsMount } from 'hooks/useIsMount';
+import ClearListButton from 'components/molecules/ToolsButtons/ClearListButton';
 import { DialogWindowType } from 'layouts/hooks/useFormsApp';
-import { CatalogContextInterface } from 'types/outlet_context_models';
+import { scrollPage } from 'utils/scrollPage';
 
 const Favorites = () => {
+    const { OPTIONS, STORE_CODE, SIDE_LINKS } = STORE_CONFIG;
+    const { PLAN_OPTIONS } = OPTIONS;
     const { sx } = useDevice();
-    const { OPTIONS, STORE_CODE } = STORE_CONFIG;
-    const { STORE_TYPE, PLAN_OPTIONS } = OPTIONS;
+    const mount = useIsMount();
     const {
-        store,
-        favorites,
-        lang,
-        footerMenuHeight,
-        viewMode,
+        favoritesList,
         scrollPosition,
         instrumentalBarHeight,
         headerHeight,
+        isLoadingFavorites,
         setScrollPosition,
-        handleOpenDialog,
+        footerMenuHeight,
         string,
+        viewMode,
+        handleOpenDialog,
+        fetchFavoriteProducts,
+        favorites,
     }: CatalogContextInterface = useOutletContext();
-    const mount = useIsMount();
     const [showTopBtn, setShowTopBtn] = useState(false);
-    const [loading, setLoading] = useState(true);
-    const [productIds, setProductIds] = useState<string[] | any[]>([]);
-    const [favoriteProducts, setFavoriteProducts] = useState<ProductVariantInterface[] | any[]>([]);
-
-    const { isFetching: loadProducts, refetch: updateFavoriteProductsRes } = useProductsApi().useGetProductByIDForCart({
-        id: productIds,
-        lang: lang,
-        storeCode: STORE_CODE,
-    });
+    const [showMobileStoresButton, setShowMobileStoresButton] = useState(true);
 
     const getGridSpacing = () => {
         let spacing;
@@ -60,7 +55,6 @@ const Favorites = () => {
                 padding = sx ? 2 : 4;
                 spacing = 1;
                 break;
-
             case ViewModeType.grid_m:
                 padding = sx ? 1 : 4;
                 spacing = 0.5;
@@ -71,90 +65,14 @@ const Favorites = () => {
     };
 
     useEffect(() => {
-        if (loadProducts) return;
-        setLoading(false);
-    }, [loadProducts, loading]); // eslint-disable-line
-
-    useEffect(() => {
-        if (!favorites?.favoriteItems?.length) return setFavoriteProducts([]);
-        setProductIds(favorites?.favoriteItems?.map(el => el.productId));
-    }, [favorites?.favoriteItems]);
-
-    useEffect(() => {
-        if (mount) return;
-        if (!productIds.length) return;
-        updateFavoriteProductsRes().then(res => {
-            const products = res.data?.data.products;
-
-            //clear invalid items or deleted by seller
-            favorites?.favoriteItems?.forEach(({ variantSku }) => {
-                if (!products.find(el => el.variants.map(({ variantSku }) => variantSku).includes(variantSku))) {
-                    favorites?.handleSetFavoriteItems({
-                        variantSku,
-                    });
-                }
-            });
-
-            const data = favorites?.favoriteItems?.map(({ variantSku }) => {
-                return {
-                    ...products
-                        .find(el => el.variants.map(({ variantSku }) => variantSku).includes(variantSku))
-                        ?.variants?.filter(el => el.variantSku === variantSku)[0],
-                    sizes: products
-                        .find(el => el.variants.map(({ variantSku }) => variantSku).includes(variantSku))
-                        ?.options?.find(el => el.code === 'SIZE'),
-                    name: products.find(el => el.variants.map(({ variantSku }) => variantSku).includes(variantSku))
-                        ?.description?.name,
-                    variants: products
-                        .find(el => el.variants.map(({ variantSku }) => variantSku).includes(variantSku))
-                        ?.variants.sort((a, b) => a.sortOrder - b.sortOrder)
-                        .map(variant => {
-                            const originalPrice =
-                                STORE_TYPE === StoreType.sales
-                                    ? Math.max(
-                                          ...products
-                                              .find(el =>
-                                                  el.variants.map(({ variantSku }) => variantSku).includes(variantSku)
-                                              )
-                                              ?.variants.sort((a, b) => a.sortOrder - b.sortOrder)
-                                              ?.map(el => Number(el.inventory[0]?.price))
-                                      )
-                                    : Number(variant.inventory[0]?.price);
-
-                            return {
-                                id: variant.id,
-                                productId: variant.productId,
-                                selected: variant.variantSku === variantSku,
-                                price: variant.inventory[0]?.price,
-                                images: variant.images,
-                                colorCode: variant.variation.optionValue.code,
-                                variantSku: variant.sku,
-                                quantity: variant.inventory[0]?.quantity,
-                                originalPrice,
-                            };
-                        }),
-                    price: products.find(el => el.variants.map(({ variantSku }) => variantSku).includes(variantSku))
-                        ?.finalPrice,
-                    promoTags:
-                        products
-                            .find(el => el.variants.map(({ variantSku }) => variantSku).includes(variantSku))
-                            ?.options.find(({ code }) => code === 'PROMO')
-                            ?.optionValues.map(({ code, id, description }) => {
-                                return { code, id, name: description?.name };
-                            })
-                            .sort((a, b) => a.code - b.code) || [],
-                };
-            });
-            setFavoriteProducts(data);
-        }); // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [productIds, lang]);
-
-    useEffect(() => {
+        if (favorites?.favoriteItems?.length) fetchFavoriteProducts();
         const handleScroll = () => {
             if (window.scrollY > 500) {
                 setShowTopBtn(true);
+                setShowMobileStoresButton(false);
             } else {
                 setShowTopBtn(false);
+                setShowMobileStoresButton(true);
             }
         };
 
@@ -163,67 +81,75 @@ const Favorites = () => {
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };
-    }, []);
+    }, []); // eslint-disable-line
 
     useEffect(() => {
         if (scrollPosition)
             setTimeout(() => {
-                window.scrollTo({
-                    top: scrollPosition - (instrumentalBarHeight + headerHeight + getGridSpacing().padding * 8),
-                    behavior: 'auto',
-                });
+                scrollPage(scrollPosition - (instrumentalBarHeight + headerHeight + getGridSpacing().padding * 8));
                 setScrollPosition(0);
             }, 50);
     }, [scrollPosition]); // eslint-disable-line
 
     return (
         <Box
-            pt={getGridSpacing()?.padding}
-            px={getGridSpacing()?.padding}
-            sx={{ minHeight: scrollPosition || '100%', pb: footerMenuHeight }}
+            pt={getGridSpacing().padding}
+            px={getGridSpacing().padding}
+            sx={{ minHeight: scrollPosition || '100%', pb: `${footerMenuHeight}px` }}
         >
             {showTopBtn && <ScrollButton />}
-            {loading && <Loader />}
-            {PLAN_OPTIONS?.contacts && <CallBackButton path={STORE_ROUTE?.contacts(STORE_CODE)} />}
+            {showMobileStoresButton && (
+                <>
+                    {PLAN_OPTIONS.appleStore && <AppleStoreButton />}
+                    {PLAN_OPTIONS.playMarket && <PlayMarketButton />}
+                </>
+            )}
+            {isLoadingFavorites && <Loader position="fixed" type="circular" />}
+            {PLAN_OPTIONS.contacts && <CallBackButton path={STORE_ROUTE.contacts(STORE_CODE)} />}
             <InstrumentalSubHeader
-                StartSlot={() => <></>}
+                StartSlot={() => (
+                    <>
+                        {SIDE_LINKS.map(({ name, href }) => (
+                            <Box sx={{ display: 'flex' }} key={href}>
+                                <SideLink name={name} href={href} />
+                            </Box>
+                        ))}
+                    </>
+                )}
                 EndSlot={() => (
                     <Box sx={{ display: 'flex', gap: 0.75 }}>
                         <ViewModeButton />
+                        <SkuSearch />
                         <ClearListButton
                             action={() => {
                                 handleOpenDialog(DialogWindowType?.CLEAR_FAVORITES);
                             }}
                             isShown
                             title={string?.clear_favorites}
-                            disabled={!favoriteProducts?.length}
+                            disabled={!favoritesList?.length}
                         />
                     </Box>
                 )}
             />
-
-            {favoriteProducts?.length ? (
-                <Box pb={2} sx={{ minHeight: scrollPosition || '100%' }}>
-                    <TransitionBox dependency={loading} time={200}>
+            {favoritesList?.length ? (
+                <Box sx={{ minHeight: scrollPosition || '100%' }}>
+                    <TransitionBox dependency={mount} time={250}>
                         <Grid className="CatalogList" container spacing={getGridSpacing()?.spacing}>
-                            {favoriteProducts?.map(product => {
-                                return (
-                                    <CatalogListCard
-                                        key={product?.id}
-                                        modelsVariants={product?.variants}
-                                        name={product?.name}
-                                        productId={product?.productId}
-                                        currency={getCurrencySymbol(store?.currency)}
-                                        promoTags={product?.promoTags}
-                                        viewMode={viewMode}
-                                    />
-                                );
-                            })}
+                            {favoritesList.map((product, idx) => (
+                                <CatalogListCard
+                                    key={idx}
+                                    modelsVariants={product?.variants}
+                                    name={product?.name}
+                                    productId={product?.id}
+                                    promoTags={product?.promoTags}
+                                    viewMode={viewMode}
+                                />
+                            ))}
                         </Grid>
                     </TransitionBox>
                 </Box>
             ) : (
-                <>{!loadProducts && !loading && <EmptyPage isShown />}</>
+                !isLoadingFavorites && <EmptyPage isShown />
             )}
         </Box>
     );

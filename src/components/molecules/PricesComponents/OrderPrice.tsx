@@ -1,6 +1,6 @@
 import { Typography } from '@mui/material';
 import { STORE_CONFIG } from 'store_constants/stores_config';
-import { getCurrencySymbol } from 'helpers/getCurrencySymbol';
+import { map_currency_symbol } from 'utils/mappers/currency_symbol';
 
 interface Props {
     currency: string;
@@ -13,7 +13,7 @@ const OrderPrice = ({ currency, price }: Props) => {
         OPTIONS;
     return (
         <Typography variant="h5">
-            {CUSTOM_CURRENCY || getCurrencySymbol(currency)}
+            {CUSTOM_CURRENCY || map_currency_symbol(currency)}
             {(
                 Number(price?.toString().replace(/[^0-9.]/g, '')) *
                 SALE_PRICE_MULTIPLICATION *

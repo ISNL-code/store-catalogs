@@ -1,7 +1,7 @@
 import { Badge, Box, IconButton, Typography } from '@mui/material';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { ReactNode } from 'react';
-import { Color } from 'colors';
+import { Color } from 'constants/colors';
 
 interface MobileNavButtonInterface {
     icon: (props) => ReactNode;

@@ -1,6 +1,7 @@
 import { Fab } from '@mui/material';
 import NorthIcon from '@mui/icons-material/North';
 import { useDevice } from 'hooks/useDevice';
+import { scrollPage } from 'utils/scrollPage';
 
 const ScrollButton = () => {
     const { sx } = useDevice();
@@ -15,12 +16,7 @@ const ScrollButton = () => {
                 bottom: sx ? 80 : 16,
                 backgroundColor: '#ffffffbe',
             }}
-            onClick={() => {
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth',
-                });
-            }}
+            onClick={() => scrollPage(0, 'smooth')}
         >
             <NorthIcon />
         </Fab>

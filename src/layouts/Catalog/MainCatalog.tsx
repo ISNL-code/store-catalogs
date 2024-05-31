@@ -4,7 +4,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Header from './MainCatalogHeader';
 import MobileMenu from './MainCatalogMobileMenu';
 import { useDevice } from 'hooks/useDevice';
-import { useEffect, useState, useCallback, useMemo } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { useCategory } from '../hooks/useCategory';
 import { useProducts } from '../hooks/useProducts';
 import { CatalogContextInterface } from 'types/outlet_context_models';
@@ -12,26 +12,61 @@ import { STORE_CONFIG } from 'store_constants/stores_config';
 import { useFormsApp } from 'layouts/hooks/useFormsApp';
 import DialogApp from 'layouts/DialogApp';
 import { ROUTES, STORE_ROUTE } from 'constants/routes';
+import { ViewModeType } from 'store_constants/types';
+import {
+    StoreInterface,
+    UserDataInterface,
+    useAddToCartDataInterface,
+    useAddToFavoriteDataInterface,
+} from 'types/app_models';
+import { QueryObserverResult, RefetchOptions, RefetchQueryFilters } from '@tanstack/react-query';
+import { AxiosResponse } from 'axios';
+import { LanguageDataInterface } from 'hooks/useGetLanguage';
+import { useFavorites } from 'layouts/hooks/useFavorites';
+
+interface Props {
+    lang: string;
+    setViewMode: (newViewMode: ViewModeType) => void;
+    setInfoAlert: (newInfo: { ws_info: boolean }) => void;
+    setAuth: (newAuth: boolean) => void;
+    setLang: (newLang: string) => void;
+    auth: boolean | null;
+    userData: {
+        currentUserData: UserDataInterface | null;
+        isFetchingUser: boolean;
+        setCurrentUserData: (newData: UserDataInterface) => void;
+        fetchUserData: <TPageData>(
+            options?: (RefetchOptions & RefetchQueryFilters<TPageData>) | undefined
+        ) => Promise<QueryObserverResult<AxiosResponse<any, any>, unknown>>;
+        userError: any;
+    };
+    viewMode: ViewModeType | null;
+    infoAlert: { ws_info: boolean } | null;
+    store: StoreInterface | null;
+    favorites: useAddToFavoriteDataInterface;
+    cart: useAddToCartDataInterface;
+    currentLanguage: LanguageDataInterface;
+}
 
 const OutletContainer = ({ context }: { context: CatalogContextInterface }) => {
     return <Outlet context={context} />;
 };
 
 export default function MainCatalog({
-    lang,
     setLang,
-    auth,
     setAuth,
+    setViewMode,
+    setInfoAlert,
+    lang,
+    auth,
     userData,
     viewMode,
-    setViewMode,
     infoAlert,
-    setInfoAlert,
     store,
     favorites,
     cart,
     currentLanguage,
-}) {
+}: Props) {
     const { OPTIONS, STORE_CODE } = STORE_CONFIG;
     const { PLAN_OPTIONS } = OPTIONS;
     const { storeCode } = useParams();
@@ -49,7 +84,6 @@ export default function MainCatalog({
 
     const {
         isLoadingProducts,
-        isLoadingMoreProducts,
         currentProductsPage,
         handleSetProductsPage,
         productsList,
@@ -64,6 +98,12 @@ export default function MainCatalog({
         store: STORE_CODE,
     });
 
+    const { isLoadingFavorites, favoritesList, fetchFavoriteProducts } = useFavorites({
+        lang,
+        store: STORE_CODE,
+        favorites,
+    });
+
     const { categoriesList } = useCategory({
         lang,
         store: STORE_CODE,
@@ -74,92 +114,6 @@ export default function MainCatalog({
             navigate(STORE_ROUTE?.root(STORE_CODE));
         }
     }, [storeCode, STORE_CODE, navigate]);
-
-    const memoizedContext = useMemo(
-        () => ({
-            //main data | user options
-            lang,
-            string: currentLanguage?.string,
-            scrollPosition,
-            setScrollPosition,
-            viewMode,
-            setViewMode,
-            handleOpenDialog,
-            handleSetDialogState,
-            dialogState,
-
-            //store data
-            infoAlert,
-            store,
-            setInfoAlert,
-
-            //user data
-            auth,
-            currentUserData: userData.currentUserData,
-            loadingUserData: userData.isFetchingUser,
-            updateUserData: userData.updateUserData,
-            setCurrentUserData: userData.setCurrentUserData,
-            userDataError: userData.userError,
-
-            //products data
-            productsList,
-            setProductsList,
-            isLoadingProducts,
-            isLoadingMoreProducts,
-            productCountPerPage,
-            totalProductsCount,
-            totalProductsPages,
-            handleSetProductsPage,
-            currentProductsPage,
-
-            //categories data
-            categoriesList,
-            queryCategories,
-            setQueryCategories,
-
-            //css data
-            instrumentalBarHeight: INSTRUMENTAL_BAR_HEIGHT,
-            instrumentalBarPadding: INSTRUMENTAL_BAR_PADDINGS,
-            headerHeight: HEADER_HEIGHT,
-            footerMenuHeight: FOOTER_MENU_HEIGHT,
-            appXPadding: BODY_PADDINGS,
-
-            //cart & favorites
-            cart,
-            favorites,
-        }),
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-        [
-            lang,
-            currentLanguage,
-            scrollPosition,
-            viewMode,
-            handleOpenDialog,
-            handleSetDialogState,
-            dialogState,
-            infoAlert,
-            store,
-            auth,
-            userData,
-            productsList,
-            isLoadingProducts,
-            isLoadingMoreProducts,
-            productCountPerPage,
-            totalProductsCount,
-            totalProductsPages,
-            handleSetProductsPage,
-            currentProductsPage,
-            categoriesList,
-            queryCategories,
-            INSTRUMENTAL_BAR_HEIGHT,
-            INSTRUMENTAL_BAR_PADDINGS,
-            HEADER_HEIGHT,
-            FOOTER_MENU_HEIGHT,
-            BODY_PADDINGS,
-            cart,
-            favorites,
-        ]
-    );
 
     const memoizedHandleOpenDialog = useCallback(handleOpenDialog, []); // eslint-disable-line
     const memoizedSetLang = useCallback(setLang, []); // eslint-disable-line
@@ -185,7 +139,64 @@ export default function MainCatalog({
             />
 
             <Box className="AppBody" mt={`${HEADER_HEIGHT + INSTRUMENTAL_BAR_HEIGHT}px`} sx={{ flexGrow: 1 }}>
-                <OutletContainer context={memoizedContext} />
+                <OutletContainer
+                    context={{
+                        //main data | user options
+                        lang,
+                        string: currentLanguage?.string,
+                        scrollPosition,
+                        setScrollPosition,
+                        viewMode,
+                        setViewMode,
+                        handleOpenDialog,
+                        handleSetDialogState,
+                        dialogState,
+
+                        //store data
+                        infoAlert,
+                        store,
+                        setInfoAlert,
+
+                        //user data
+                        auth,
+                        currentUserData: userData.currentUserData,
+                        loadingUserData: userData.isFetchingUser,
+                        updateUserData: userData.fetchUserData,
+                        setCurrentUserData: userData.setCurrentUserData,
+                        userDataError: userData.userError,
+
+                        //products data
+                        productsList,
+                        setProductsList,
+                        isLoadingProducts,
+                        productCountPerPage,
+                        totalProductsCount,
+                        totalProductsPages,
+                        handleSetProductsPage,
+                        currentProductsPage,
+
+                        //favorites data
+                        isLoadingFavorites,
+                        favoritesList,
+                        fetchFavoriteProducts,
+
+                        //categories data
+                        categoriesList,
+                        queryCategories,
+                        setQueryCategories,
+
+                        //css data
+                        instrumentalBarHeight: INSTRUMENTAL_BAR_HEIGHT,
+                        instrumentalBarPadding: INSTRUMENTAL_BAR_PADDINGS,
+                        headerHeight: HEADER_HEIGHT,
+                        footerMenuHeight: FOOTER_MENU_HEIGHT,
+                        appXPadding: BODY_PADDINGS,
+
+                        //cart & favorites
+                        cart,
+                        favorites,
+                    }}
+                />
             </Box>
 
             <MobileMenu

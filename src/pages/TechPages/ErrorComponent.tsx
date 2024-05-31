@@ -3,7 +3,7 @@ import { Box } from '@mui/system';
 import { STORE_CONFIG } from 'store_constants/stores_config';
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 import ForwardIcon from '@mui/icons-material/Forward';
-import { Color, Colors } from 'colors';
+import { Color, Colors } from 'constants/colors';
 import { useDevice } from 'hooks/useDevice';
 import { useNavigate } from 'react-router-dom';
 

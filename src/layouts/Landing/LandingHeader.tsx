@@ -1,6 +1,6 @@
 import { Box } from '@mui/material';
 import LanguageButton from 'components/molecules/ToolsButtons/LanguageButton';
-import { Colors } from 'colors';
+import { Colors } from 'constants/colors';
 import LandingLogo from 'components/atoms/Logo/LandingLogo';
 
 interface HeaderInterface {

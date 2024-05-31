@@ -1,5 +1,7 @@
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { UseQueryResult, useMutation, useQuery } from '@tanstack/react-query';
 import useApi from './useApi';
+import { AxiosResponse } from 'axios';
+import { Store_Data_Response_Interface } from 'types/response_models';
 
 export const useStoresApi = () => {
     const { get, post, remove } = useApi();
@@ -41,7 +43,7 @@ export const useStoresApi = () => {
             });
         });
 
-    const useGetStoreByCode = ({ code }) => {
+    const useGetStoreByCode = ({ code }): UseQueryResult<AxiosResponse<Store_Data_Response_Interface>, unknown> => {
         return useQuery(
             ['get-store-by-code'],
 

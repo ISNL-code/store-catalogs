@@ -43,7 +43,7 @@
         "src/api/useProductCategoriesApi.js",
         "src/components/GalleryFilterBox/Search.js",
         "src/layouts/Main.js",
-        "src/hooks/useGetLanguage.js",
+        "src/hooks/useGetLanguage.ts",
         "src/constants/constants.js",
         "src/pages/Admin/product_options/CategoriesOptions.jsx",
         "src/context/useFavoriteContext.js",

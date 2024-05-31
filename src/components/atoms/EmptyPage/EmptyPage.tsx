@@ -2,7 +2,7 @@ import { Box, Typography } from '@mui/material';
 import { useOutletContext } from 'react-router-dom';
 import SearchIcon from '@mui/icons-material/Search';
 import { useEffect, useState } from 'react';
-import { Colors } from 'colors';
+import { Colors } from 'constants/colors';
 
 const EmptyPage = ({ isShown = true }) => {
     const { string }: any = useOutletContext();

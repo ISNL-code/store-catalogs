@@ -1,11 +1,8 @@
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 import { useDevice } from 'hooks/useDevice';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import HomeHeader from './SecurityHeader';
-import { StoreInterface } from 'types/app_models';
-import { useStoresApi } from 'api/useStoresApi';
-import { STORES_DATA } from 'dataBase/STORES';
 import { STORE_CONFIG } from 'store_constants/stores_config';
 import DialogApp from 'layouts/DialogApp';
 import { ROUTES } from 'constants/routes';
@@ -13,18 +10,25 @@ import { DialogWindowType, useFormsApp } from 'layouts/hooks/useFormsApp';
 import { useNavigate, useParams } from 'react-router-dom';
 import Loader from 'components/atoms/Loader/Loader';
 import { useUserApi } from 'api/useUserApi';
+import { StoreInterface } from 'types/app_models';
+import { LanguageDataInterface } from 'hooks/useGetLanguage';
 
-export default function NewPassword({ lang, setLang, setAuth, currentLanguage }) {
+interface Props {
+    lang: string;
+    setLang: (newLang: string) => void;
+    setAuth: (newAuth: boolean) => void;
+    store: StoreInterface | null;
+    currentLanguage: LanguageDataInterface;
+}
+
+export default function NewPassword({ lang, setLang, setAuth, currentLanguage, store }: Props) {
     const navigate = useNavigate();
     const { storeCode, tokenId } = useParams();
     const { STORE_CODE } = STORE_CONFIG;
     const { sx } = useDevice();
     const HEADER_HEIGHT = 50;
     const HEADER_PADDINGS = sx ? 2 : 4;
-    const [store, setStore] = useState<StoreInterface | null>(null);
-    const { data: storeDataRes, isFetching: loadStore } = useStoresApi().useGetStoreByCode({
-        code: STORE_CODE,
-    });
+
     const { activeDialogWindow, handleOpenDialog } = useFormsApp();
     const {
         data: verifyTokenResult,
@@ -50,12 +54,6 @@ export default function NewPassword({ lang, setLang, setAuth, currentLanguage })
             return handleOpenDialog(DialogWindowType?.NEW_PASSWORD);
         }
     }, [verifyTokenResult]); // eslint-disable-line
-
-    useEffect(() => {
-        if (!storeDataRes || loadStore) return;
-        setStore({ ...STORES_DATA.find(el => el.code === STORE_CODE), ...storeDataRes.data });
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [storeDataRes]);
 
     if (!store || isFetching) return <Loader type="circular" title={currentLanguage?.string?.security_check} />;
 

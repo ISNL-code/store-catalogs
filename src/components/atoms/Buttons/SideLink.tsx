@@ -1,6 +1,6 @@
 import { Box, IconButton } from '@mui/material';
 import LinkIcon from '@mui/icons-material/Link';
-import { Color, Colors } from 'colors';
+import { Color, Colors } from 'constants/colors';
 import { useDevice } from 'hooks/useDevice';
 
 interface Props {

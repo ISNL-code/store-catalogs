@@ -13,16 +13,14 @@ import { useDevice } from 'hooks/useDevice';
 import { LandingContextInterface } from 'types/outlet_context_models';
 import Grid from '@mui/material/Unstable_Grid2';
 import CardItem from 'components/atoms/Sections/CardItem';
+import { scrollPage } from 'utils/scrollPage';
 
 const LandingContacts = () => {
     const { string }: LandingContextInterface = useOutletContext();
     const { sm, sx } = useDevice();
 
     useEffect(() => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'auto',
-        });
+        scrollPage(0);
     }, []);
 
     return (
