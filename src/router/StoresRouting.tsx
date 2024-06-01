@@ -115,7 +115,7 @@ const StoresRouting = () => {
         <Router basename={'/'}>
             <Routes>
                 <Route path={`/`} element={<div>App</div>} />
-                {REQUIRED_REGISTRATION && !auth && (
+                {/* {REQUIRED_REGISTRATION && !auth && (
                     <>
                         <Route
                             path={`${ROUTES?.SECURITY}/:storeCode/:formType`}
@@ -232,7 +232,7 @@ const StoresRouting = () => {
                 <Route path={`${ROUTES?.PAGE_403}`} element={<PAGE_403 />} />
                 <Route path={`${ROUTES?.PAGE_404}`} element={<PAGE_404 />} />
                 <Route path={`${ROUTES?.PAGE_500}`} element={<PAGE_500 />} />
-                <Route path="*" element={<Navigate to={handleRedirect()} replace />} />
+                <Route path="*" element={<Navigate to={handleRedirect()} replace />} /> */}
             </Routes>
         </Router>
     );
