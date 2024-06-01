@@ -1,17 +1,15 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import WelcomePage from 'layouts/WelcomeLayout/Welcome';
-import { Suspense, useMemo } from 'react';
+import { Suspense } from 'react';
 import { ROUTES } from './routes';
 import Home from 'layouts/Home/Home';
 import { useAppStorage } from 'hooks/useAppStorage';
 import { useUserApi } from 'api/useUserApi';
-import { useStoresApi } from 'api/useStoresApi';
 import { LangResInterface, useGetLanguage } from 'hooks/useGetLanguage';
 import { useAddToCart } from 'layouts/hooks/useAddToCart';
 import { useAddToFavorites } from 'layouts/hooks/useAddToFavorites';
 import useImageStorage from 'layouts/hooks/useImageStorage';
 import { useAddToCartDataInterface, useAddToFavoriteDataInterface } from 'types/app_models';
-import StoresLogic from 'StoresLogic';
 import { STORE_CONFIG } from 'store_constants/stores_config';
 import HomePage from 'pages/Home/HomePage';
 
@@ -29,12 +27,12 @@ const StoresRouting = () => {
         setAuth,
         lang,
         setLang,
-        viewMode,
-        setViewMode,
-        infoAlert,
-        setInfoAlert,
+        // viewMode,
+        // setViewMode,
+        // infoAlert,
+        // setInfoAlert,
         currentStoreData,
-        setCurrentStoreData,
+        // setCurrentStoreData,
         currentUserData,
         setCurrentUserData,
     } = useAppStorage();
@@ -47,33 +45,33 @@ const StoresRouting = () => {
         storeCode: STORE_CODE,
     });
 
-    const { data: storeDataRes, isFetching: isStoreLoading } = useStoresApi().useGetStoreByCode({
-        code: STORE_CODE,
-    });
+    // const { data: storeDataRes, isFetching: isStoreLoading } = useStoresApi().useGetStoreByCode({
+    //     code: STORE_CODE,
+    // });
 
     const { currentLanguage }: LangResInterface = useGetLanguage({ lang, storeName: STORE_NAME });
     const cart: useAddToCartDataInterface = useAddToCart({ loadingUser: isFetchingUser });
     const favorites: useAddToFavoriteDataInterface = useAddToFavorites({ loadingUser: isFetchingUser });
     const { handleSaveImage, savedImages } = useImageStorage();
 
-    const memoizedAppLogic = useMemo(
-        () => ({
-            setAuth,
-            setLang,
-            setInfoAlert,
-            setViewMode,
-            setCurrentStoreData,
-            userData: { currentUserData, isFetchingUser, setCurrentUserData, fetchUserData, userError },
-            lang,
-            infoAlert,
-            viewMode,
-            storeDataRes,
-            isStoreLoading,
-        }),
-        [lang, auth, infoAlert, storeDataRes, currentUserData] // eslint-disable-line
-    );
+    // const memoizedAppLogic = useMemo(
+    //     () => ({
+    //         setAuth,
+    //         setLang,
+    //         setInfoAlert,
+    //         setViewMode,
+    //         setCurrentStoreData,
+    //         userData: { currentUserData, isFetchingUser, setCurrentUserData, fetchUserData, userError },
+    //         lang,
+    //         infoAlert,
+    //         viewMode,
+    //         storeDataRes,
+    //         isStoreLoading,
+    //     }),
+    //     [lang, auth, infoAlert, storeDataRes, currentUserData] // eslint-disable-line
+    // );
 
-    StoresLogic(memoizedAppLogic);
+    // StoresLogic(memoizedAppLogic);
 
     // const handleCheckAccess = useCallback(
     //     (route: string | null) => {
