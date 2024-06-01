@@ -1,7 +1,7 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import WelcomePage from 'layouts/WelcomeLayout/Welcome';
-import { Suspense, useCallback, useMemo } from 'react';
-import { HOME_ROUTE, LOGIN_ROUTE, ROUTES, STORE_ROUTE } from './routes';
+import { Suspense, useMemo } from 'react';
+import { ROUTES } from './routes';
 import Home from 'layouts/Home/Home';
 import { useAppStorage } from 'hooks/useAppStorage';
 import { useUserApi } from 'api/useUserApi';
@@ -16,8 +16,8 @@ import StoresLogic from 'StoresLogic';
 import { useStoresApi } from 'api/useStoresApi';
 
 const StoresRouting = () => {
-    const { STORE_CODE, OPTIONS, REQUIRED_REGISTRATION, STORE_NAME } = STORE_CONFIG;
-    const { HOME_PAGE_ACTIVE } = OPTIONS;
+    const { STORE_CODE, OPTIONS, REQUIRED_REGISTRATION, STORE_NAME } = STORE_CONFIG; // eslint-disable-line
+    const { HOME_PAGE_ACTIVE } = OPTIONS; // eslint-disable-line
 
     const {
         auth,
@@ -70,29 +70,29 @@ const StoresRouting = () => {
 
     StoresLogic(memoizedAppLogic);
 
-    const handleCheckAccess = useCallback(
-        (route: string | null) => {
-            switch (route) {
-                case ROUTES.SECURITY:
-                    return Boolean(REQUIRED_REGISTRATION && !auth);
-                case ROUTES.HOME:
-                    return Boolean(HOME_PAGE_ACTIVE && (!REQUIRED_REGISTRATION || (REQUIRED_REGISTRATION && auth)));
-                case ROUTES.STORE:
-                    return Boolean(!REQUIRED_REGISTRATION || (REQUIRED_REGISTRATION && auth));
-                default:
-                    return false;
-            }
-        },
-        [REQUIRED_REGISTRATION, HOME_PAGE_ACTIVE, auth]
-    );
+    // const handleCheckAccess = useCallback(
+    //     (route: string | null) => {
+    //         switch (route) {
+    //             case ROUTES.SECURITY:
+    //                 return Boolean(REQUIRED_REGISTRATION && !auth);
+    //             case ROUTES.HOME:
+    //                 return Boolean(HOME_PAGE_ACTIVE && (!REQUIRED_REGISTRATION || (REQUIRED_REGISTRATION && auth)));
+    //             case ROUTES.STORE:
+    //                 return Boolean(!REQUIRED_REGISTRATION || (REQUIRED_REGISTRATION && auth));
+    //             default:
+    //                 return false;
+    //         }
+    //     },
+    //     [REQUIRED_REGISTRATION, HOME_PAGE_ACTIVE, auth]
+    // );
 
-    const handleRedirect = useCallback(() => {
-        if (!REQUIRED_REGISTRATION || auth) {
-            return HOME_PAGE_ACTIVE ? HOME_ROUTE?.root(STORE_CODE) : STORE_ROUTE?.root(STORE_CODE);
-        } else {
-            return LOGIN_ROUTE?.root(STORE_CODE, 'login');
-        }
-    }, [REQUIRED_REGISTRATION, auth, HOME_PAGE_ACTIVE, STORE_CODE]);
+    // const handleRedirect = useCallback(() => {
+    //     if (!REQUIRED_REGISTRATION || auth) {
+    //         return HOME_PAGE_ACTIVE ? HOME_ROUTE?.root(STORE_CODE) : STORE_ROUTE?.root(STORE_CODE);
+    //     } else {
+    //         return LOGIN_ROUTE?.root(STORE_CODE, 'login');
+    //     }
+    // }, [REQUIRED_REGISTRATION, auth, HOME_PAGE_ACTIVE, STORE_CODE]);
 
     const router = createBrowserRouter([
         {

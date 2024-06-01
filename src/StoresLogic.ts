@@ -103,7 +103,7 @@ const StoresLogic = ({
     useEffect(() => {
         getStorageItem(STORAGE_KEYS?.LANGUAGE_KEY, storedItems => {
             if (storedItems) {
-                setLang(storedItems);
+                setLang(JSON.parse(storedItems));
             } else {
                 setLang(APP_LANGUAGE);
                 setStorageItem(STORAGE_KEYS?.LANGUAGE_KEY, JSON.stringify(APP_LANGUAGE), () => {});
@@ -120,7 +120,7 @@ const StoresLogic = ({
     useEffect(() => {
         getStorageItem(STORAGE_KEYS?.VIEW_MODE_KEY, storedItems => {
             if (storedItems) {
-                setViewMode(storedItems);
+                setViewMode(JSON.parse(storedItems));
             } else {
                 setViewMode(VIEW_MODE);
                 setStorageItem(STORAGE_KEYS?.VIEW_MODE_KEY, JSON.stringify(VIEW_MODE), () => {});
