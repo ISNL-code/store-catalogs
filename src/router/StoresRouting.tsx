@@ -114,6 +114,7 @@ const StoresRouting = () => {
     return (
         <Router basename={'/'}>
             <Routes>
+                <Route path={`/`} element={<div>App</div>} />
                 {REQUIRED_REGISTRATION && !auth && (
                     <>
                         <Route
