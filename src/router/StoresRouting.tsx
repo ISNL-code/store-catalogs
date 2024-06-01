@@ -1,7 +1,7 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import WelcomePage from 'layouts/WelcomeLayout/Welcome';
-import { Suspense, useMemo } from 'react';
-import { ROUTES } from './routes';
+import { Suspense, useCallback, useMemo } from 'react';
+import { HOME_ROUTE, LOGIN_ROUTE, ROUTES, STORE_ROUTE } from './routes';
 import Home from 'layouts/Home/Home';
 import { useAppStorage } from 'hooks/useAppStorage';
 import { useUserApi } from 'api/useUserApi';
@@ -12,12 +12,12 @@ import useImageStorage from 'layouts/hooks/useImageStorage';
 import { useAddToCartDataInterface, useAddToFavoriteDataInterface } from 'types/app_models';
 import { STORE_CONFIG } from 'store_constants/stores_config';
 import HomePage from 'pages/Home/HomePage';
-// import StoresLogic from 'StoresLogic';
+import StoresLogic from 'StoresLogic';
 import { useStoresApi } from 'api/useStoresApi';
 
 const StoresRouting = () => {
-    const { STORE_CODE, OPTIONS, REQUIRED_REGISTRATION, STORE_NAME } = STORE_CONFIG; // eslint-disable-line
-    const { HOME_PAGE_ACTIVE } = OPTIONS; // eslint-disable-line
+    const { STORE_CODE, OPTIONS, REQUIRED_REGISTRATION, STORE_NAME } = STORE_CONFIG;
+    const { HOME_PAGE_ACTIVE } = OPTIONS;
 
     const {
         auth,
@@ -51,7 +51,6 @@ const StoresRouting = () => {
     const favorites: useAddToFavoriteDataInterface = useAddToFavorites({ loadingUser: isFetchingUser });
     const { handleSaveImage, savedImages } = useImageStorage();
 
-    // eslint-disable-next-line
     const memoizedAppLogic = useMemo(
         () => ({
             setAuth,
@@ -69,31 +68,33 @@ const StoresRouting = () => {
         [lang, auth, infoAlert, storeDataRes, currentUserData] // eslint-disable-line
     );
 
-    // StoresLogic(memoizedAppLogic);
+    StoresLogic(memoizedAppLogic);
 
-    // const handleCheckAccess = useCallback(
-    //     (route: string | null) => {
-    //         switch (route) {
-    //             case ROUTES.SECURITY:
-    //                 return Boolean(REQUIRED_REGISTRATION && !auth);
-    //             case ROUTES.HOME:
-    //                 return Boolean(HOME_PAGE_ACTIVE && (!REQUIRED_REGISTRATION || (REQUIRED_REGISTRATION && auth)));
-    //             case ROUTES.STORE:
-    //                 return Boolean(!REQUIRED_REGISTRATION || (REQUIRED_REGISTRATION && auth));
-    //             default:
-    //                 return false;
-    //         }
-    //     },
-    //     [REQUIRED_REGISTRATION, HOME_PAGE_ACTIVE, auth]
-    // );
+    //eslint-disable-next-line
+    const handleCheckAccess = useCallback(
+        (route: string | null) => {
+            switch (route) {
+                case ROUTES.SECURITY:
+                    return Boolean(REQUIRED_REGISTRATION && !auth);
+                case ROUTES.HOME:
+                    return Boolean(HOME_PAGE_ACTIVE && (!REQUIRED_REGISTRATION || (REQUIRED_REGISTRATION && auth)));
+                case ROUTES.STORE:
+                    return Boolean(!REQUIRED_REGISTRATION || (REQUIRED_REGISTRATION && auth));
+                default:
+                    return false;
+            }
+        },
+        [REQUIRED_REGISTRATION, HOME_PAGE_ACTIVE, auth]
+    );
 
-    // const handleRedirect = useCallback(() => {
-    //     if (!REQUIRED_REGISTRATION || auth) {
-    //         return HOME_PAGE_ACTIVE ? HOME_ROUTE?.root(STORE_CODE) : STORE_ROUTE?.root(STORE_CODE);
-    //     } else {
-    //         return LOGIN_ROUTE?.root(STORE_CODE, 'login');
-    //     }
-    // }, [REQUIRED_REGISTRATION, auth, HOME_PAGE_ACTIVE, STORE_CODE]);
+    //eslint-disable-next-line
+    const handleRedirect = useCallback(() => {
+        if (!REQUIRED_REGISTRATION || auth) {
+            return HOME_PAGE_ACTIVE ? HOME_ROUTE?.root(STORE_CODE) : STORE_ROUTE?.root(STORE_CODE);
+        } else {
+            return LOGIN_ROUTE?.root(STORE_CODE, 'login');
+        }
+    }, [REQUIRED_REGISTRATION, auth, HOME_PAGE_ACTIVE, STORE_CODE]);
 
     const router = createBrowserRouter([
         {
