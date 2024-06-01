@@ -1,7 +1,7 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import WelcomePage from 'layouts/WelcomeLayout/Welcome';
-import { Suspense } from 'react';
-import { ROUTES } from './routes';
+import { Suspense, useCallback, useMemo } from 'react';
+import { HOME_ROUTE, LOGIN_ROUTE, ROUTES, STORE_ROUTE } from './routes';
 import Home from 'layouts/Home/Home';
 import { useAppStorage } from 'hooks/useAppStorage';
 import { useUserApi } from 'api/useUserApi';
@@ -12,27 +12,24 @@ import useImageStorage from 'layouts/hooks/useImageStorage';
 import { useAddToCartDataInterface, useAddToFavoriteDataInterface } from 'types/app_models';
 import { STORE_CONFIG } from 'store_constants/stores_config';
 import HomePage from 'pages/Home/HomePage';
+import StoresLogic from 'StoresLogic';
+import { useStoresApi } from 'api/useStoresApi';
 
 const StoresRouting = () => {
-    const {
-        STORE_CODE,
-        // OPTIONS,
-        // REQUIRED_REGISTRATION,
-        STORE_NAME,
-    } = STORE_CONFIG;
-    // const { HOME_PAGE_ACTIVE } = OPTIONS;
+    const { STORE_CODE, OPTIONS, REQUIRED_REGISTRATION, STORE_NAME } = STORE_CONFIG;
+    const { HOME_PAGE_ACTIVE } = OPTIONS;
 
     const {
         auth,
         setAuth,
         lang,
         setLang,
-        // viewMode,
-        // setViewMode,
-        // infoAlert,
-        // setInfoAlert,
+        viewMode,
+        setViewMode,
+        infoAlert,
+        setInfoAlert,
         currentStoreData,
-        // setCurrentStoreData,
+        setCurrentStoreData,
         currentUserData,
         setCurrentUserData,
     } = useAppStorage();
@@ -45,57 +42,57 @@ const StoresRouting = () => {
         storeCode: STORE_CODE,
     });
 
-    // const { data: storeDataRes, isFetching: isStoreLoading } = useStoresApi().useGetStoreByCode({
-    //     code: STORE_CODE,
-    // });
+    const { data: storeDataRes, isFetching: isStoreLoading } = useStoresApi().useGetStoreByCode({
+        code: STORE_CODE,
+    });
 
     const { currentLanguage }: LangResInterface = useGetLanguage({ lang, storeName: STORE_NAME });
     const cart: useAddToCartDataInterface = useAddToCart({ loadingUser: isFetchingUser });
     const favorites: useAddToFavoriteDataInterface = useAddToFavorites({ loadingUser: isFetchingUser });
     const { handleSaveImage, savedImages } = useImageStorage();
 
-    // const memoizedAppLogic = useMemo(
-    //     () => ({
-    //         setAuth,
-    //         setLang,
-    //         setInfoAlert,
-    //         setViewMode,
-    //         setCurrentStoreData,
-    //         userData: { currentUserData, isFetchingUser, setCurrentUserData, fetchUserData, userError },
-    //         lang,
-    //         infoAlert,
-    //         viewMode,
-    //         storeDataRes,
-    //         isStoreLoading,
-    //     }),
-    //     [lang, auth, infoAlert, storeDataRes, currentUserData] // eslint-disable-line
-    // );
+    const memoizedAppLogic = useMemo(
+        () => ({
+            setAuth,
+            setLang,
+            setInfoAlert,
+            setViewMode,
+            setCurrentStoreData,
+            userData: { currentUserData, isFetchingUser, setCurrentUserData, fetchUserData, userError },
+            lang,
+            infoAlert,
+            viewMode,
+            storeDataRes,
+            isStoreLoading,
+        }),
+        [lang, auth, infoAlert, storeDataRes, currentUserData] // eslint-disable-line
+    );
 
-    // StoresLogic(memoizedAppLogic);
+    StoresLogic(memoizedAppLogic);
 
-    // const handleCheckAccess = useCallback(
-    //     (route: string | null) => {
-    //         switch (route) {
-    //             case ROUTES.SECURITY:
-    //                 return Boolean(REQUIRED_REGISTRATION && !auth);
-    //             case ROUTES.HOME:
-    //                 return Boolean(HOME_PAGE_ACTIVE && (!REQUIRED_REGISTRATION || (REQUIRED_REGISTRATION && auth)));
-    //             case ROUTES.STORE:
-    //                 return Boolean(!REQUIRED_REGISTRATION || (REQUIRED_REGISTRATION && auth));
-    //             default:
-    //                 return false;
-    //         }
-    //     },
-    //     [REQUIRED_REGISTRATION, HOME_PAGE_ACTIVE, auth]
-    // );
+    const handleCheckAccess = useCallback(
+        (route: string | null) => {
+            switch (route) {
+                case ROUTES.SECURITY:
+                    return Boolean(REQUIRED_REGISTRATION && !auth);
+                case ROUTES.HOME:
+                    return Boolean(HOME_PAGE_ACTIVE && (!REQUIRED_REGISTRATION || (REQUIRED_REGISTRATION && auth)));
+                case ROUTES.STORE:
+                    return Boolean(!REQUIRED_REGISTRATION || (REQUIRED_REGISTRATION && auth));
+                default:
+                    return false;
+            }
+        },
+        [REQUIRED_REGISTRATION, HOME_PAGE_ACTIVE, auth]
+    );
 
-    // const handleRedirect = useCallback(() => {
-    //     if (!REQUIRED_REGISTRATION || auth) {
-    //         return HOME_PAGE_ACTIVE ? HOME_ROUTE?.root(STORE_CODE) : STORE_ROUTE?.root(STORE_CODE);
-    //     } else {
-    //         return LOGIN_ROUTE?.root(STORE_CODE, 'login');
-    //     }
-    // }, [REQUIRED_REGISTRATION, auth, HOME_PAGE_ACTIVE, STORE_CODE]);
+    const handleRedirect = useCallback(() => {
+        if (!REQUIRED_REGISTRATION || auth) {
+            return HOME_PAGE_ACTIVE ? HOME_ROUTE?.root(STORE_CODE) : STORE_ROUTE?.root(STORE_CODE);
+        } else {
+            return LOGIN_ROUTE?.root(STORE_CODE, 'login');
+        }
+    }, [REQUIRED_REGISTRATION, auth, HOME_PAGE_ACTIVE, STORE_CODE]);
 
     const router = createBrowserRouter([
         {
