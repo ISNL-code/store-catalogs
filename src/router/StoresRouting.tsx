@@ -226,6 +226,10 @@ const StoresRouting = () => {
             path: '/',
             element: <WelcomePage />,
         },
+        {
+            path: '/home',
+            element: <div>HOME</div>,
+        },
     ]);
 
     return <RouterProvider router={router} />;
