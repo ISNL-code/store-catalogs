@@ -23,7 +23,7 @@ const App = () => {
                 {/* <HeadLandingHTML />
                 <LandingModeRouting /> */}
 
-                {/* <HeadStoresHTML /> */}
+                <HeadStoresHTML />
                 <StoresRouting />
             </ThemeProvider>
         </>
