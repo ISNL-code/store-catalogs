@@ -8,9 +8,9 @@ export default function WelcomePage() {
     const { sx } = useDevice();
     const navigate = useNavigate();
 
-    setTimeout(() => {
-        navigate('/home');
-    }, 3000);
+    // setTimeout(() => {
+    //     navigate('/home');
+    // }, 3000);
 
     return (
         <>
@@ -38,10 +38,10 @@ export default function WelcomePage() {
                         animation: `fadeIn 2500ms linear forwards`,
                         transformOrigin: 'center',
                         '@keyframes fadeIn': {
-                            '0%': { transform: 'scaleY(0)', opacity: 1 },
-                            '40%': { transform: 'scaleY(1)', opacity: 1 },
+                            '0%': { transform: 'scaleY(0)' },
+                            '30%': { transform: 'scaleY(1)' },
                             '75%': { transform: 'scaleY(1)', opacity: 1 },
-                            '100%': { transform: 'scaleY(1)', opacity: 0 },
+                            '100%': { opacity: 0 },
                         },
                     }}
                 >
@@ -50,14 +50,14 @@ export default function WelcomePage() {
                             borderRadius: '50%',
                             overflow: 'hidden',
                             border: '1px solid #fff',
-                            width: sx ? 80 : 100,
-                            height: sx ? 80 : 100,
+                            width: sx ? 70 : 100,
+                            height: sx ? 70 : 100,
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'center',
                         }}
                     >
-                        <img src={require('assets/img/logo.png')} style={{ height: sx ? 80 : 100 }} alt="img" />
+                        <img src={require('assets/img/logo.png')} style={{ height: sx ? 70 : 100 }} alt="img" />
                     </Box>
                     <Box>
                         <Typography sx={{ fontSize: sx ? 30 : 48, fontWeight: 700, lineHeight: 1 }}>
