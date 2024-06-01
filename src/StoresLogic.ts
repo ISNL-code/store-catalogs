@@ -3,9 +3,9 @@ import { useIsMount } from 'hooks/useIsMount';
 import { STORE_CONFIG } from 'store_constants/stores_config';
 import axios, { AxiosResponse } from 'axios';
 import { STORAGE_KEYS } from 'constants/local_storage_keys';
-import { STORES_DATA } from 'dataBase/STORES';
+import { STORES_DATA } from 'dataBase/STORES'; // eslint-disable-line
 import { StoreInterface, UserDataInterface } from 'types/app_models';
-import { DEFAULT_VALUES } from 'defaultData/default';
+import { DEFAULT_VALUES } from 'defaultData/default'; // eslint-disable-line
 import { ViewModeType } from 'store_constants/types';
 import { Store_Data_Response_Interface } from 'types/response_models';
 import { QueryObserverResult, RefetchOptions, RefetchQueryFilters } from '@tanstack/react-query';
@@ -33,6 +33,7 @@ interface Props {
     };
 }
 
+// eslint-disable-next-line
 const StoresLogic = ({
     setAuth,
     userData,
@@ -145,23 +146,23 @@ const StoresLogic = ({
         setStorageItem(STORAGE_KEYS?.INFO_ALERT_KEY, JSON.stringify(infoAlert), () => {});
     }, [infoAlert, mount]); // eslint-disable-line
 
-    useEffect(() => {
-        if (!storeDataRes || isStoreLoading) return;
+    // useEffect(() => {
+    //     if (!storeDataRes || isStoreLoading) return;
 
-        const store = storeDataRes?.data;
-        const store_db = STORES_DATA.find(el => el.code === store?.code);
+    //     const store = storeDataRes?.data;
+    //     const store_db = STORES_DATA.find(el => el.code === store?.code);
 
-        const storeData: StoreInterface = {
-            currency: store?.currency || DEFAULT_VALUES?.currency,
-            logo: { path: store?.logo?.path || DEFAULT_VALUES?.logo },
-            supportedLanguages: store?.supportedLanguages,
-            code: store?.code,
-            name: store?.name,
-            managers: store_db?.managers || [],
-        };
+    //     const storeData: StoreInterface = {
+    //         currency: store?.currency || DEFAULT_VALUES?.currency,
+    //         logo: { path: store?.logo?.path || DEFAULT_VALUES?.logo },
+    //         supportedLanguages: store?.supportedLanguages,
+    //         code: store?.code,
+    //         name: store?.name,
+    //         managers: store_db?.managers || [],
+    //     };
 
-        setCurrentStoreData(storeData); // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [storeDataRes]);
+    //     setCurrentStoreData(storeData); // eslint-disable-next-line react-hooks/exhaustive-deps
+    // }, [storeDataRes]);
 };
 
 export default StoresLogic;
