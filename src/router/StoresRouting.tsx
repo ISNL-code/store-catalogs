@@ -37,6 +37,7 @@ import {
 // import Loader from 'components/atoms/Loader/Loader';
 // import useImageStorage from 'layouts/hooks/useImageStorage';
 import WelcomePage from 'layouts/WelcomeLayout/Welcome';
+import { Suspense } from 'react';
 
 const StoresRouting = () => {
     // const { STORE_CODE, OPTIONS, REQUIRED_REGISTRATION, STORE_NAME } = STORE_CONFIG;
@@ -225,12 +226,21 @@ const StoresRouting = () => {
         {
             path: '/',
             element: <WelcomePage />,
-            children: [],
+            errorElement: <div>Error</div>,
         },
         {
             path: '/home',
             index: true,
-            element: <div>HOME</div>,
+            element: (
+                <Suspense fallback={<div>Loading...</div>}>
+                    <div>HOME</div>
+                </Suspense>
+            ),
+        },
+        {
+            path: '/store',
+            index: true,
+            element: <div>STORE</div>,
         },
     ]);
 
