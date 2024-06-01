@@ -12,7 +12,7 @@ import useImageStorage from 'layouts/hooks/useImageStorage';
 import { useAddToCartDataInterface, useAddToFavoriteDataInterface } from 'types/app_models';
 import { STORE_CONFIG } from 'store_constants/stores_config';
 import HomePage from 'pages/Home/HomePage';
-import StoresLogic from 'StoresLogic';
+// import StoresLogic from 'StoresLogic';
 import { useStoresApi } from 'api/useStoresApi';
 
 const StoresRouting = () => {
@@ -51,6 +51,7 @@ const StoresRouting = () => {
     const favorites: useAddToFavoriteDataInterface = useAddToFavorites({ loadingUser: isFetchingUser });
     const { handleSaveImage, savedImages } = useImageStorage();
 
+    // eslint-disable-next-line
     const memoizedAppLogic = useMemo(
         () => ({
             setAuth,
@@ -68,7 +69,7 @@ const StoresRouting = () => {
         [lang, auth, infoAlert, storeDataRes, currentUserData] // eslint-disable-line
     );
 
-    StoresLogic(memoizedAppLogic);
+    // StoresLogic(memoizedAppLogic);
 
     // const handleCheckAccess = useCallback(
     //     (route: string | null) => {
