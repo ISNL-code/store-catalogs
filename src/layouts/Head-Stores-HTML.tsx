@@ -42,7 +42,7 @@ const HeadStoresHTML: React.FC = () => {
                     sizes: '512x512',
                 },
             ],
-            start_url: window.location.origin,
+            start_url: '.',
             display: 'standalone',
             theme_color: '#000',
             background_color: '#000',
