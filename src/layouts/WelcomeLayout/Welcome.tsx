@@ -8,9 +8,9 @@ export default function WelcomePage() {
     const { sx } = useDevice();
     const navigate = useNavigate();
 
-    // setTimeout(() => {
-    //     navigate('/home');
-    // }, 3000);
+    setTimeout(() => {
+        navigate('/home');
+    }, 2500);
 
     return (
         <>
