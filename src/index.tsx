@@ -13,12 +13,12 @@ const queryClient = new QueryClient({
     },
 });
 
-const clearCache = () => {
-    queryClient.removeQueries();
-};
+// const clearCache = () => {
+//     queryClient.removeQueries();
+// };
 
 AuthInterceptor();
-clearCache();
+// clearCache();
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     <QueryClientProvider client={queryClient}>

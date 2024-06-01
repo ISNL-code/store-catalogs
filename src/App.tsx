@@ -9,17 +9,15 @@ const App = () => {
     const { sx } = useDevice();
 
     return (
-        <>
+        <ThemeProvider theme={mainTheme}>
             <Toaster
                 position="top-right"
                 toastOptions={{ style: { width: '100vw', maxWidth: sx ? '100vw' : '' }, duration: 3000 }}
             />
 
-            <ThemeProvider theme={mainTheme}>
-                <HeadStoresHTML />
-                <StoresRouting />
-            </ThemeProvider>
-        </>
+            <HeadStoresHTML />
+            <StoresRouting />
+        </ThemeProvider>
     );
 };
 
