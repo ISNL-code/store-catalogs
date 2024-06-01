@@ -114,6 +114,7 @@ const StoresRouting = () => {
     return (
         <Router>
             <Routes>
+                <Route path="." element={<Navigate to={handleRedirect()} replace />} />
                 <Route
                     path={`${ROUTES?.NEW_PASSWORD}/:storeCode/:tokenId`}
                     element={
