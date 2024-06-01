@@ -4,6 +4,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { useDevice } from 'hooks/useDevice';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { ROUTES } from 'router/routes';
 
 export default function WelcomePage() {
     const { sx } = useDevice();
@@ -11,7 +12,7 @@ export default function WelcomePage() {
 
     useEffect(() => {
         const timeoutId = setTimeout(() => {
-            navigate('/home');
+            navigate(ROUTES?.HOME);
         }, 2500);
 
         return () => clearTimeout(timeoutId);
@@ -62,7 +63,7 @@ export default function WelcomePage() {
                             justifyContent: 'center',
                         }}
                     >
-                        <img src={require('assets/img/logo.png')} style={{ height: sx ? 70 : 100 }} alt="img" />
+                        <img src={require('assets/img/logo.webp')} style={{ height: sx ? 70 : 100 }} alt="img" />
                     </Box>
                     <Box>
                         <Typography sx={{ fontSize: sx ? 30 : 48, fontWeight: 700, lineHeight: 1 }}>
