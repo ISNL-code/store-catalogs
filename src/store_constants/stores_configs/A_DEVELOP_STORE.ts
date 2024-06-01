@@ -14,10 +14,10 @@ export const DEVELOP_STORE = {
     ...ALBERTO_BINI_EU_WS,
     // ...ALBERTO_BINI_KZ_RETAIL,
     // ...ALBERTO_BINI_KZ_WS,
-    ...ALBERTO_BINI_OUTLET,
+    // ...ALBERTO_BINI_OUTLET,
     // ...ALBERTO_BINI_SALES,
-    ...KREMEN_BELTS_MAIN,
-    ...KREMEN_BELTS_SALES,
+    // ...KREMEN_BELTS_MAIN,
+    // ...KREMEN_BELTS_SALES,
     URL: [
         'http://localhost:3000',
         'http://localhost:3001',

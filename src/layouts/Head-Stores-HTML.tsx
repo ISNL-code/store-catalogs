@@ -69,17 +69,28 @@ const HeadStoresHTML: React.FC = () => {
                 <meta name="description" content={STORE_DESCRIPTION} />
                 <meta name="keywords" content={allKeywords} />
                 <link rel="canonical" href={window.location.href} />
+                <meta name="robots" content="index, follow" />
+                <meta name="viewport" content="width=device-width, initial-scale=1" />
+                <meta property="og:type" content="website" />
                 <meta property="og:url" content={window.location.href} />
                 <meta property="og:site_name" content={STORE_NAME} />
                 <meta property="og:title" content={STORE_TITLE} />
                 <meta property="og:image" content={require(`dataBase/images/posters/${STORE_POSTER}`)} />
                 <meta property="og:description" content={STORE_DESCRIPTION} />
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:site" content="@twitterhandle" />
                 <meta name="twitter:title" content={STORE_TITLE} />
                 <meta name="twitter:description" content={STORE_DESCRIPTION} />
                 <meta name="twitter:image" content={require(`dataBase/images/posters/${STORE_POSTER}`)} />
                 <link rel="icon" href={require(`dataBase/images/logos/${STORE_LOGO}`)} />
                 <link rel="apple-touch-icon" href={require(`dataBase/images/logos/${STORE_LOGO}`)} />
                 <link rel="manifest" href={manifestUrl} />
+                <link rel="preconnect" href="https://www.googletagmanager.com" />
+                <link rel="preconnect" href="https://fonts.googleapis.com" />
+                <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+                <link rel="dns-prefetch" href="//www.googletagmanager.com" />
+                <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+                <link rel="dns-prefetch" href="//fonts.gstatic.com" />
                 {Array.isArray(GOOGLE_ANALYTICS_ID) ? (
                     GOOGLE_ANALYTICS_ID.map((id, index) => (
                         <React.Fragment key={index}>
