@@ -7,7 +7,7 @@ import { useOutletContext, useParams } from 'react-router-dom';
 import { ProductDataInterface, ProductVariantInterface } from 'types/app_models';
 import Loader from 'components/atoms/Loader/Loader';
 import Grid from '@mui/material/Unstable_Grid2';
-import ImageComponent, { EmptyImage } from 'components/atoms/Media/Image';
+import ImageComponent from 'components/atoms/Media/Image';
 import { useDevice } from 'hooks/useDevice';
 import { Box } from '@mui/material';
 import AddSizesButtons from './components/AddSizesButtons';
@@ -23,18 +23,19 @@ import { DialogWindowType } from 'layouts/hooks/useFormsApp';
 import { CatalogContextInterface } from 'types/outlet_context_models';
 import { scrollPage } from 'utils/scrollPage';
 import { map_product_card } from 'utils/mappers/product_data';
+import { EmptyImage } from 'components/atoms/Media/EmptyImage';
 
 interface ProductListInterface {
     sizeId: number | null;
     colorId: number;
     productSku: string;
     quantity: number;
-    price: string | number;
+    price: number;
     sku: string;
 }
 
 export interface OrderDataInterface {
-    final_price: string | number;
+    final_price: number;
     productsList: ProductListInterface[];
     delivery: {
         address: string;
@@ -141,12 +142,7 @@ const Cart = () => {
     useEffect(() => {
         if (!orderData.productsList.length) return setFinalPrice(0);
 
-        setFinalPrice(
-            orderData?.productsList.reduce(
-                (acc, el) => Number((el.price as string).replaceAll(',', '')) * Number(el.quantity) + acc,
-                0
-            )
-        );
+        setFinalPrice(orderData?.productsList.reduce((acc, el) => el.price * el.quantity + acc, 0));
     }, [orderData.productsList, cartProducts?.length]);
 
     if (successOrdering)
@@ -183,7 +179,7 @@ const Cart = () => {
                         }}
                         container
                     >
-                        {cartProducts.map(el => {
+                        {cartProducts.map((el, idx) => {
                             return (
                                 <Grid
                                     ref={sliderRef}
@@ -193,8 +189,9 @@ const Cart = () => {
                                         ml: 'auto',
                                         border: xs ? '1px solid #ccc' : '',
                                         overflow: 'hidden',
+                                        height: 'fit-content',
                                     }}
-                                    key={el.id}
+                                    key={idx}
                                 >
                                     <Grid
                                         xs={xs ? 12 : 6}
@@ -206,13 +203,16 @@ const Cart = () => {
                                             borderRight: 'none',
                                             display: 'flex',
                                             flexDirection: 'column',
-                                            justifyContent: 'center',
                                             backgroundColor: Colors?.GRAY_100,
                                             alignItems: 'center',
                                         }}
                                         p={2}
                                     >
-                                        {el?.image ? <ImageComponent imgUrl={el?.image} ref={null} /> : <EmptyImage />}
+                                        {el?.image ? (
+                                            <ImageComponent imgUrl={el?.image} ref={null} height="fit-content" />
+                                        ) : (
+                                            <EmptyImage />
+                                        )}
                                     </Grid>
                                     <Grid
                                         p={2}

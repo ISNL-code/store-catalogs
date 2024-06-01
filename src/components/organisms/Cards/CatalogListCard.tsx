@@ -9,7 +9,7 @@ import Slider from 'react-slick';
 import { ProductDataInterface, ProductVariantInterface } from 'types/app_models';
 import Grid from '@mui/material/Unstable_Grid2';
 import PromoTags from 'components/atoms/PromoTags/PromoTags';
-import ImageComponent, { EmptyImage } from 'components/atoms/Media/Image';
+import ImageComponent from 'components/atoms/Media/Image';
 import CardPrice from 'components/molecules/PricesComponents/CardPrice';
 import CardSkuLabel from 'components/atoms/Labels/CardSkuLabel';
 import SaleTag from 'components/atoms/PromoTags/SaleTag';
@@ -24,6 +24,7 @@ import CardDescriptionComponent from 'components/atoms/DescriptionComponents/Car
 import { SHARE_PATH, STORE_ROUTE } from 'constants/routes';
 import { CatalogContextInterface } from 'types/outlet_context_models';
 import { map_currency_symbol } from 'utils/mappers/currency_symbol';
+import { EmptyImage } from 'components/atoms/Media/EmptyImage';
 
 interface CatalogCardProps {
     modelsVariants: ProductVariantInterface[];
@@ -42,7 +43,7 @@ const CatalogListCard = memo<CatalogCardProps>(
     ({ modelsVariants, name, productId, setProductsList, promoTags, viewMode }) => {
         const WINDOW_WIDTH = useWindowWidth();
         const { OPTIONS, STORE_CODE } = STORE_CONFIG;
-        const { STORE_TYPE, PLAN_OPTIONS, PRODUCT_IMAGE_OPTIONS } = OPTIONS;
+        const { STORE_TYPE, PLAN_OPTIONS, PRODUCT_IMAGE_OPTIONS, CUSTOM_CURRENCY } = OPTIONS;
         const sliderRef = useRef<HTMLImageElement>(null);
         const navigate = useNavigate();
         const { cart, favorites, store }: CatalogContextInterface = useOutletContext();
@@ -54,8 +55,8 @@ const CatalogListCard = memo<CatalogCardProps>(
 
         useEffect(() => {
             if (!modelsVariants?.length) return;
-            const selectedVariant = modelsVariants.find(variant => variant.selected);
-            setShownModel(selectedVariant ? selectedVariant : null);
+            const selectedVariant = modelsVariants.find(variant => variant.selected) || modelsVariants[0];
+            setShownModel(selectedVariant);
         }, [modelsVariants]);
 
         useEffect(() => {
@@ -173,9 +174,9 @@ const CatalogListCard = memo<CatalogCardProps>(
                             <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                                 {PLAN_OPTIONS?.prices && (
                                     <CardPrice
-                                        currency={map_currency_symbol(store?.currency)}
-                                        price={Number(shownModel?.originalPrice)}
-                                        discountPrice={Number(shownModel?.price)}
+                                        currency={map_currency_symbol(CUSTOM_CURRENCY || store?.currency)}
+                                        price={shownModel?.originalPrice}
+                                        discountPrice={shownModel?.price}
                                     />
                                 )}
                                 <ShareButton
@@ -338,10 +339,7 @@ const CatalogListCard = memo<CatalogCardProps>(
                     >
                         <Box>
                             {STORE_TYPE === StoreType.sales && (
-                                <SaleTag
-                                    price={Number(shownModel?.originalPrice)}
-                                    discountPrice={Number(shownModel?.price)}
-                                />
+                                <SaleTag price={shownModel?.originalPrice} discountPrice={shownModel?.price} />
                             )}
                         </Box>
                     </Box>

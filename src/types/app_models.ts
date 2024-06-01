@@ -33,7 +33,7 @@ export interface OrderInterface {
 }
 
 export interface StoreInterface {
-    currency: string | null;
+    currency: string;
     logo: { path: string };
     supportedLanguages: {
         code: string;
@@ -120,7 +120,7 @@ export interface ProductVariantInterface {
     variantSku: string;
     images: ImageInterface[];
     originalPrice: number;
-    price: string;
+    price: number;
     quantity: number;
     selected: boolean;
     colorCode: string;
@@ -133,7 +133,7 @@ export interface ProductDataInterface {
     description: string;
     table_size_img: { imageUrl: string };
     variants: ProductVariantInterface[];
-    originalPrice: string | number;
+    originalPrice: number;
     promoTags: any[];
     productSizes: any[];
     options: {

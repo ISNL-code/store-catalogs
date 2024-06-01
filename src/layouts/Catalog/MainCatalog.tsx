@@ -42,10 +42,12 @@ interface Props {
     };
     viewMode: ViewModeType | null;
     infoAlert: { ws_info: boolean } | null;
-    store: StoreInterface | null;
+    store: StoreInterface;
     favorites: useAddToFavoriteDataInterface;
     cart: useAddToCartDataInterface;
     currentLanguage: LanguageDataInterface;
+    savedImages: { image: File | Blob; imageUrl: string }[];
+    handleSaveImage: (image: { file: File | Blob; imageUrl: string }) => void;
 }
 
 const OutletContainer = ({ context }: { context: CatalogContextInterface }) => {
@@ -66,6 +68,8 @@ export default function MainCatalog({
     favorites,
     cart,
     currentLanguage,
+    handleSaveImage,
+    savedImages,
 }: Props) {
     const { OPTIONS, STORE_CODE } = STORE_CONFIG;
     const { PLAN_OPTIONS } = OPTIONS;
@@ -151,6 +155,8 @@ export default function MainCatalog({
                         handleOpenDialog,
                         handleSetDialogState,
                         dialogState,
+                        handleSaveImage,
+                        savedImages,
 
                         //store data
                         infoAlert,

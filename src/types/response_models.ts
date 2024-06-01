@@ -174,14 +174,14 @@ export interface Product_Data_Response_Interface {
     description: Description_Response_Interface;
     productPrice: {
         id: number;
-        originalPrice: string;
+        originalPrice: number;
         finalPrice: string;
         defaultPrice: boolean;
         discounted: boolean;
         description: null | any;
     };
     finalPrice: string;
-    originalPrice: string;
+    originalPrice: number;
     discounted: boolean;
     image: null | any;
     images: any[];
@@ -267,7 +267,7 @@ interface Inventory {
 
 interface Price {
     id: number;
-    originalPrice: string;
+    originalPrice: number;
     finalPrice: string;
     defaultPrice: boolean;
     discounted: boolean;

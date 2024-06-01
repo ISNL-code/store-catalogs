@@ -4,7 +4,7 @@ import { map_currency_symbol } from 'utils/mappers/currency_symbol';
 
 interface Props {
     currency: string;
-    price: string | number;
+    price: number;
 }
 
 const OrderPrice = ({ currency, price }: Props) => {
@@ -13,13 +13,10 @@ const OrderPrice = ({ currency, price }: Props) => {
         OPTIONS;
     return (
         <Typography variant="h5">
-            {CUSTOM_CURRENCY || map_currency_symbol(currency)}
-            {(
-                Number(price?.toString().replace(/[^0-9.]/g, '')) *
-                SALE_PRICE_MULTIPLICATION *
-                CURRENCY_MULTIPLICATION *
-                RETAIL_PRICE_MULTIPLICATION
-            ).toFixed(2)}
+            {map_currency_symbol(CUSTOM_CURRENCY || currency)}
+            {parseFloat(
+                (price * SALE_PRICE_MULTIPLICATION * CURRENCY_MULTIPLICATION * RETAIL_PRICE_MULTIPLICATION).toFixed(2)
+            )}
         </Typography>
     );
 };

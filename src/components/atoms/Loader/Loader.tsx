@@ -20,6 +20,7 @@ const Loader = ({
 }: LoaderInterface) => {
     return (
         <Box
+            className="AppLoader"
             sx={{
                 position: position,
                 top: 0,

@@ -19,6 +19,8 @@ export interface HomeContextInterface {
     string: Record<string, any>;
     handleOpenDialog;
     handleSetDialogState: Dispatch<SetStateAction<DialogStateInterface>>;
+    savedImages: { image: File | Blob; imageUrl: string }[];
+    handleSaveImage: (image: { file: File | Blob; imageUrl: string }) => void;
     dialogState;
 
     //store data
@@ -66,11 +68,13 @@ export interface CatalogContextInterface {
     handleOpenDialog;
     handleSetDialogState: Dispatch<SetStateAction<DialogStateInterface>>;
     dialogState;
+    savedImages: { image: File | Blob; imageUrl: string }[];
+    handleSaveImage: (image: { file: File | Blob; imageUrl: string }) => void;
 
     //store data
     infoAlert: { ws_info: boolean } | null;
     setInfoAlert: (newInfo: { ws_info: boolean }) => void;
-    store: StoreInterface | null;
+    store: StoreInterface;
 
     // user data
     auth: boolean | null;

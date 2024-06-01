@@ -39,6 +39,8 @@ interface Props {
     cart: useAddToCartDataInterface;
     favorites: useAddToFavoriteDataInterface;
     currentLanguage: LanguageDataInterface;
+    savedImages: { image: File | Blob; imageUrl: string }[];
+    handleSaveImage: (image: { file: File | Blob; imageUrl: string }) => void;
 }
 
 const OutletContainer = ({ context }: { context: HomeContextInterface }) => {
@@ -55,6 +57,8 @@ export default function Home({
     favorites,
     cart,
     currentLanguage,
+    handleSaveImage,
+    savedImages,
 }: Props) {
     const { STORE_CODE, OPTIONS } = STORE_CONFIG;
     const { PLAN_OPTIONS } = OPTIONS;
@@ -106,6 +110,8 @@ export default function Home({
                         handleOpenDialog,
                         dialogState,
                         handleSetDialogState,
+                        handleSaveImage,
+                        savedImages,
 
                         //user data
                         auth: auth,

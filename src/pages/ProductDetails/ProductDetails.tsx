@@ -88,7 +88,7 @@ const ProductDetails = () => {
     };
 
     return (
-        <Box px={appXPadding} pb={footerMenuHeight}>
+        <Box px={appXPadding} sx={{ pb: `${footerMenuHeight}px` }}>
             <InstrumentalSubHeader
                 StartSlot={() => <BackButton nav={STORE_ROUTE?.root(STORE_CODE)} />}
                 EndSlot={() => (
@@ -125,7 +125,7 @@ const ProductDetails = () => {
                         xs={detailsGrid()}
                         sx={{
                             height: '100%',
-                            overflow: 'auto',
+                            overflow: sx ? 'visible' : 'auto',
                             maxHeight: sx
                                 ? ''
                                 : `calc(100vh - ${headerHeight + instrumentalBarHeight + footerMenuHeight}px - 16px)`,

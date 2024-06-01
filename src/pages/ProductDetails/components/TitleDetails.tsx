@@ -34,10 +34,7 @@ const TitleDetails = ({ productDetails, selectedVariant }: Props) => {
                     ))}
                     <Box>
                         {STORE_TYPE === StoreType.sales && (
-                            <SaleTag
-                                price={Number(productDetails?.originalPrice)}
-                                discountPrice={Number(selectedVariant?.price?.replace(/[^0-9.]/g, ''))}
-                            />
+                            <SaleTag price={productDetails?.originalPrice} discountPrice={selectedVariant?.price} />
                         )}
                     </Box>
                 </Box>

@@ -1,8 +1,8 @@
 import { DEFAULT_VALUES } from 'defaultData/default';
 
-export const map_currency_symbol = (currency?: string | null): string => {
-    if (currency === 'USD') return '$';
-    if (currency === 'UAH') return '₴';
-    if (currency === 'EUR') return '€';
+export const map_currency_symbol = (currency: string): string => {
+    if (['USD', '$'].includes(currency)) return '$';
+    if (['UAH', '₴'].includes(currency)) return '₴';
+    if (['EUR', '€'].includes(currency)) return '€';
     return DEFAULT_VALUES?.currency;
 };

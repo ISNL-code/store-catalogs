@@ -2,7 +2,6 @@ import { useProductsApi } from 'api/useProductsApi';
 import { useIsMount } from 'hooks/useIsMount';
 import { useEffect, useState } from 'react';
 import { ProductDataInterface } from 'types/app_models';
-import { useDevice } from 'hooks/useDevice';
 import { map_product_card } from 'utils/mappers/product_data';
 import { scrollPage } from 'utils/scrollPage';
 
@@ -12,9 +11,8 @@ interface Props {
 }
 
 export const useProducts = ({ store, lang }: Props) => {
-    const { sx } = useDevice();
     const mount = useIsMount();
-    const count = sx ? 28 : 35;
+    const count = 35;
 
     const [queryCategories, setQueryCategories] = useState<string[] | []>([]);
     const [currentProductsPage, setCurrentProductsPage] = useState(0);

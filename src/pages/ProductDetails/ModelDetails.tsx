@@ -8,11 +8,15 @@ import DescriptionDetails from './components/DescriptionDetails';
 import PriceDetails from './components/PriceDetails';
 import SizesDetails from './components/SizesDetails';
 import TitleDetails from './components/TitleDetails';
+import Loader from 'components/atoms/Loader/Loader';
 
 const ModelDetails = ({ productDetails, selectedVariant, setSelectedVariant }) => {
     const { OPTIONS } = STORE_CONFIG;
     const { PLAN_OPTIONS } = OPTIONS;
     const { m } = useDevice();
+
+    if (!productDetails) return <Loader type="circular" />;
+
     return (
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: m ? 1.5 : 3 }}>
             <Box>
@@ -52,7 +56,7 @@ const ModelDetails = ({ productDetails, selectedVariant, setSelectedVariant }) =
                 </Box>
             )}
 
-            <Box mb={1}>
+            <Box mb={2}>
                 <DescriptionDetails productDetails={productDetails} />
             </Box>
         </Box>

@@ -28,6 +28,7 @@ import { useAddToCartDataInterface, useAddToFavoriteDataInterface } from 'types/
 import { useAddToCart } from 'layouts/hooks/useAddToCart';
 import { useAddToFavorites } from 'layouts/hooks/useAddToFavorites';
 import Loader from 'components/atoms/Loader/Loader';
+import useImageStorage from 'layouts/hooks/useImageStorage';
 
 const StoresRouting = () => {
     const { STORE_CODE, OPTIONS, REQUIRED_REGISTRATION, STORE_NAME } = STORE_CONFIG;
@@ -63,6 +64,7 @@ const StoresRouting = () => {
     const { currentLanguage }: LangResInterface = useGetLanguage({ lang, storeName: STORE_NAME });
     const cart: useAddToCartDataInterface = useAddToCart({ loadingUser: isFetchingUser });
     const favorites: useAddToFavoriteDataInterface = useAddToFavorites({ loadingUser: isFetchingUser });
+    const { handleSaveImage, savedImages } = useImageStorage();
 
     const memoizedAppLogic = useMemo(
         () => ({
@@ -107,7 +109,7 @@ const StoresRouting = () => {
         }
     }, [REQUIRED_REGISTRATION, auth, HOME_PAGE_ACTIVE, STORE_CODE]);
 
-    if (!storeDataRes) return <Loader type="circular" />;
+    if (!storeDataRes || !currentStoreData) return <Loader type="circular" />;
 
     return (
         <Router>
@@ -179,6 +181,8 @@ const StoresRouting = () => {
                                 cart={cart}
                                 favorites={favorites}
                                 currentLanguage={currentLanguage}
+                                handleSaveImage={handleSaveImage}
+                                savedImages={savedImages}
                             />
                         }
                     >
@@ -212,6 +216,8 @@ const StoresRouting = () => {
                                 cart={cart}
                                 favorites={favorites}
                                 currentLanguage={currentLanguage}
+                                handleSaveImage={handleSaveImage}
+                                savedImages={savedImages}
                             />
                         }
                     >

@@ -59,11 +59,11 @@ const UserOrders = () => {
         <Box p={sx ? 2 : appXPadding} sx={{ pb: `${footerMenuHeight}px` }}>
             {loadingOrders && <Loader />}
             <InstrumentalSubHeader StartSlot={() => <BackButton />} />
-            {orderData?.map(order => {
+            {orderData?.map((order, idx) => {
                 const status = handleGetStatusParams(order?.orderStatus, string);
                 return (
                     <Grid
-                        key={order?.id}
+                        key={idx}
                         pt={1}
                         container
                         xs={12}
@@ -194,18 +194,19 @@ const UserOrders = () => {
                                         </Grid>
                                     )}
                                     <Grid container xs={12}>
-                                        {order?.products?.map(item => {
+                                        {order?.products?.map((item, idx) => {
                                             const sku = item.product.variants.find(
                                                 ({ id }) => id === item.variant
                                             )?.sku;
                                             const size = item.attributes.find(
                                                 item => item.attributeName.toLowerCase() === 'size'
                                             )?.attributeValue;
-                                            const price = item.price;
+                                            const price = item.product?.price;
                                             const totalQuantity = item.orderedQuantity;
 
                                             return (
                                                 <Grid
+                                                    key={idx}
                                                     container
                                                     xs={12}
                                                     sx={{

@@ -25,8 +25,8 @@ const mapDataArray = (data: Product_Data_Response_Interface[]) => {
     const newData: ProductDataInterface[] = data?.map(product => {
         const originalPrice =
             STORE_TYPE === StoreType.sales
-                ? Math.max(...product.variants?.map(el => Number(el.inventory[0]?.price)))
-                : Number(product.price);
+                ? Math.max(...product.variants?.map(el => Number(el.inventory[0]?.price.replace(/[^0-9.]/g, ''))))
+                : product.price;
 
         return {
             id: product.id,
@@ -46,7 +46,7 @@ const mapDataArray = (data: Product_Data_Response_Interface[]) => {
                         variantSku: variant.sku,
                         images: variant.images,
                         originalPrice: originalPrice,
-                        price: variant.inventory[0]?.price,
+                        price: parseFloat(variant.inventory[0]?.price.replace(/[^0-9.]/g, '')),
                         quantity: variant.inventory[0]?.quantity,
                         selected: idx === 0,
                         colorCode: variant.variation.optionValue.code,
