@@ -112,7 +112,7 @@ const StoresRouting = () => {
     if (!storeDataRes || !currentStoreData) return <Loader type="circular" />;
 
     return (
-        <Router basename={HOME_PAGE_ACTIVE ? ROUTES?.HOME : ROUTES?.STORE}>
+        <Router basename={'/'}>
             <Routes>
                 {REQUIRED_REGISTRATION && !auth && (
                     <>
