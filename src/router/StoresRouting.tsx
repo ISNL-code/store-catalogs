@@ -225,9 +225,11 @@ const StoresRouting = () => {
         {
             path: '/',
             element: <WelcomePage />,
+            children: [],
         },
         {
             path: '/home',
+            index: true,
             element: <div>HOME</div>,
         },
     ]);
