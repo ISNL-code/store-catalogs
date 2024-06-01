@@ -1,4 +1,4 @@
-import { Outlet } from 'react-router-dom';
+import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 import { useDevice } from 'hooks/useDevice';
@@ -8,7 +8,7 @@ import { HomeContextInterface } from 'types/outlet_context_models';
 import { STORE_CONFIG } from 'store_constants/stores_config';
 import { useFormsApp } from 'layouts/hooks/useFormsApp';
 import DialogApp from 'layouts/DialogApp';
-import { ROUTES } from 'router/routes';
+import { HOME_ROUTE, ROUTES } from 'router/routes';
 import Loader from 'components/atoms/Loader/Loader';
 import {
     StoreInterface,
@@ -19,6 +19,7 @@ import {
 import { QueryObserverResult, RefetchOptions, RefetchQueryFilters } from '@tanstack/react-query';
 import { AxiosResponse } from 'axios';
 import { LanguageDataInterface } from 'hooks/useGetLanguage';
+import { useEffect } from 'react';
 
 interface Props {
     lang: string;
@@ -59,8 +60,10 @@ export default function Home({
     handleSaveImage,
     savedImages,
 }: Props) {
-    const { OPTIONS } = STORE_CONFIG;
+    const { STORE_CODE, OPTIONS } = STORE_CONFIG;
     const { PLAN_OPTIONS } = OPTIONS;
+    const { storeCode } = useParams();
+    const navigate = useNavigate();
     const { sx } = useDevice();
     const INSTRUMENTAL_BAR_HEIGHT = 36;
     const INSTRUMENTAL_BAR_PADDINGS = sx ? 2 : 4;
@@ -70,6 +73,12 @@ export default function Home({
     const BODY_PADDINGS = sx ? 0 : 4;
     const FOOTER_PADDINGS = sx ? 2 : 4;
     const { activeDialogWindow, handleOpenDialog, dialogState, handleSetDialogState } = useFormsApp();
+
+    useEffect(() => {
+        if (STORE_CODE !== storeCode) {
+            navigate(HOME_ROUTE?.root(STORE_CODE));
+        }
+    }, [storeCode, STORE_CODE, store]); // eslint-disable-line
 
     if (!store) return <Loader type="circular" />;
 

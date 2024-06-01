@@ -13,7 +13,7 @@ import useImageStorage from 'layouts/hooks/useImageStorage';
 import { useAddToCartDataInterface, useAddToFavoriteDataInterface } from 'types/app_models';
 import StoresLogic from 'StoresLogic';
 import { STORE_CONFIG } from 'store_constants/stores_config';
-// import HomePage from 'pages/Home/HomePage';
+import HomePage from 'pages/Home/HomePage';
 
 const StoresRouting = () => {
     const {
@@ -133,18 +133,18 @@ const StoresRouting = () => {
                     />
                 </Suspense>
             ),
-            // children: [
-            //     {
-            //         path: ':storeCode',
-            //         errorElement: <div>Error...</div>,
-            //         loader: () => <div>Loading...</div>,
-            //         element: (
-            //             <Suspense fallback={<div>Loading...</div>}>
-            //                 <HomePage />
-            //             </Suspense>
-            //         ),
-            //     },
-            // ],
+            children: [
+                {
+                    path: ':storeCode',
+                    errorElement: <div>Error...</div>,
+                    loader: () => <div>Loading...</div>,
+                    element: (
+                        <Suspense fallback={<div>Loading...</div>}>
+                            <HomePage />
+                        </Suspense>
+                    ),
+                },
+            ],
         },
     ]);
 
