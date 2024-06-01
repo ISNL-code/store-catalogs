@@ -4,16 +4,9 @@ import { useDevice } from 'hooks/useDevice';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-export default function WelcomePage({ handleRedirect }) {
+export default function WelcomePage() {
     const navigate = useNavigate();
     const { sx } = useDevice();
-
-    useEffect(() => {
-        setTimeout(() => {
-            const path = handleRedirect();
-            navigate(path);
-        }, 500);
-    }, []); // eslint-disable-line
 
     return (
         <>

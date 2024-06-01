@@ -36,7 +36,7 @@ import {
 // import { useAddToFavorites } from 'layouts/hooks/useAddToFavorites';
 // import Loader from 'components/atoms/Loader/Loader';
 // import useImageStorage from 'layouts/hooks/useImageStorage';
-// import WelcomePage from 'layouts/WelcomeLayout/Welcome';
+import WelcomePage from 'layouts/WelcomeLayout/Welcome';
 
 const StoresRouting = () => {
     // const { STORE_CODE, OPTIONS, REQUIRED_REGISTRATION, STORE_NAME } = STORE_CONFIG;
@@ -124,7 +124,7 @@ const StoresRouting = () => {
     // const router = createBrowserRouter([
     //     {
     //         path: '/',
-    //         element: <WelcomePage handleRedirect={handleRedirect} />,
+
     //     },
     //     {
     //         path: `${ROUTES?.HOME}`,
@@ -224,7 +224,7 @@ const StoresRouting = () => {
     const router = createBrowserRouter([
         {
             path: '/',
-            element: <div>App</div>,
+            element: <WelcomePage />,
         },
     ]);
 
