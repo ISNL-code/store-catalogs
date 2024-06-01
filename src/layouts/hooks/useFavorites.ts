@@ -4,7 +4,7 @@ import { ProductDataInterface, useAddToFavoriteDataInterface } from 'types/app_m
 import { map_product_card } from 'utils/mappers/product_data';
 import { Product_Data_Response_Interface } from 'types/response_models';
 import { useLocation } from 'react-router-dom';
-import { STORE_ROUTE } from 'constants/routes';
+import { STORE_ROUTE } from 'router/routes';
 import { STORE_CONFIG } from 'store_constants/stores_config';
 
 interface Props {

@@ -1,7 +1,7 @@
 import { Box } from '@mui/material';
 import ColorIndicatorButton from 'components/atoms/ColorIndicatorButton/ColorIndicatorButton';
 import DetailsSection from 'components/atoms/Sections/DetailsSection';
-import { STORE_ROUTE } from 'constants/routes';
+import { STORE_ROUTE } from 'router/routes';
 import { useDevice } from 'hooks/useDevice';
 import { Dispatch, SetStateAction } from 'react';
 import { useNavigate, useOutletContext } from 'react-router-dom';

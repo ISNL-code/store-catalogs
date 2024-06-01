@@ -18,7 +18,7 @@ import CatalogListCard from 'components/organisms/Cards/CatalogListCard';
 import { useDevice } from 'hooks/useDevice';
 import { STORE_CONFIG } from 'store_constants/stores_config';
 import { ViewModeType } from 'store_constants/types';
-import { STORE_ROUTE } from 'constants/routes';
+import { STORE_ROUTE } from 'router/routes';
 import { useIsMount } from 'hooks/useIsMount';
 import ClearListButton from 'components/molecules/ToolsButtons/ClearListButton';
 import { DialogWindowType } from 'layouts/hooks/useFormsApp';

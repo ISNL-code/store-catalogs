@@ -3,7 +3,7 @@ import Hero from './Hero';
 import { useOutletContext } from 'react-router-dom';
 import { LandingContextInterface } from 'types/outlet_context_models';
 import CallBackButton from 'components/atoms/Buttons/CallBackButton';
-import { LANDING_ROUTE } from 'constants/routes';
+import { LANDING_ROUTE } from 'router/routes';
 import MessageButton from 'components/atoms/Buttons/MessageButton';
 import { DialogWindowType } from 'layouts/hooks/useFormsApp';
 import { Color, Colors } from 'constants/colors';

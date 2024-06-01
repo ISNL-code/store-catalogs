@@ -11,7 +11,7 @@ import { CatalogContextInterface } from 'types/outlet_context_models';
 import { STORE_CONFIG } from 'store_constants/stores_config';
 import { useFormsApp } from 'layouts/hooks/useFormsApp';
 import DialogApp from 'layouts/DialogApp';
-import { ROUTES, STORE_ROUTE } from 'constants/routes';
+import { ROUTES, STORE_ROUTE } from 'router/routes';
 import { ViewModeType } from 'store_constants/types';
 import {
     StoreInterface,

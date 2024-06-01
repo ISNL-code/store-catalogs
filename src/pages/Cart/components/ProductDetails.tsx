@@ -2,7 +2,7 @@ import { Box, Button, Typography } from '@mui/material';
 import Grid from '@mui/material/Unstable_Grid2';
 import { Color } from 'constants/colors';
 import CartModelPrice from 'components/molecules/PricesComponents/CartModelPrice';
-import { STORE_ROUTE } from 'constants/routes';
+import { STORE_ROUTE } from 'router/routes';
 import { Dispatch, SetStateAction } from 'react';
 import { useNavigate, useOutletContext } from 'react-router-dom';
 import { STORE_CONFIG } from 'store_constants/stores_config';

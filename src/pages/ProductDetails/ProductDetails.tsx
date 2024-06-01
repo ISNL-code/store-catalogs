@@ -15,7 +15,7 @@ import { ProductDataInterface } from 'types/app_models';
 import ModelDetails from './ModelDetails';
 import ModelSwiper from './ModelSwiper';
 import { STORE_CONFIG } from 'store_constants/stores_config';
-import { STORE_ROUTE } from 'constants/routes';
+import { STORE_ROUTE } from 'router/routes';
 import { CatalogContextInterface } from 'types/outlet_context_models';
 import { scrollPage } from 'utils/scrollPage';
 import { map_product_card } from 'utils/mappers/product_data';

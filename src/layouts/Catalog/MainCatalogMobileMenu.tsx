@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react';
 import { useWindowWidth } from '@react-hook/window-size';
 import HomeIcon from '@mui/icons-material/Home';
 import { STORE_CONFIG } from 'store_constants/stores_config';
-import { HOME_ROUTE, STORE_ROUTE } from 'constants/routes';
+import { HOME_ROUTE, STORE_ROUTE } from 'router/routes';
 
 const MobileMenu = ({
     appXPadding,

@@ -1,4 +1,4 @@
-import { ROUTES } from 'constants/routes';
+import { ROUTES } from 'router/routes';
 import { useNavigate } from 'react-router-dom';
 
 const useHandleError = () => {

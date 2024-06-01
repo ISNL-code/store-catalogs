@@ -11,7 +11,7 @@ import { StoreInterface, useAddToCartDataInterface, useAddToFavoriteDataInterfac
 import { Color, Colors } from 'constants/colors';
 import { STORE_CONFIG } from 'store_constants/stores_config';
 import HomeIcon from '@mui/icons-material/Home';
-import { HOME_ROUTE, STORE_ROUTE } from 'constants/routes';
+import { HOME_ROUTE, STORE_ROUTE } from 'router/routes';
 
 interface HeaderInterface {
     headerHeight;

@@ -2,7 +2,7 @@ import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 import { useDevice } from 'hooks/useDevice';
 import DialogApp from 'layouts/DialogApp';
-import { ROUTES } from 'constants/routes';
+import { ROUTES } from 'router/routes';
 import { useFormsApp } from 'layouts/hooks/useFormsApp';
 import { Outlet } from 'react-router-dom';
 import LandingHeader from './LandingHeader';

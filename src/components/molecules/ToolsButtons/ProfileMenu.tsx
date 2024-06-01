@@ -14,7 +14,7 @@ import { useDevice } from 'hooks/useDevice';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { STORE_CONFIG } from 'store_constants/stores_config';
 import { DialogWindowType } from 'layouts/hooks/useFormsApp';
-import { STORE_ROUTE } from 'constants/routes';
+import { STORE_ROUTE } from 'router/routes';
 import HeaderNavButton from 'components/atoms/Buttons/HeaderNavButton';
 import MobileNavButton from 'components/atoms/Buttons/MobileNavButton';
 

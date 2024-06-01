@@ -1,4 +1,4 @@
-import { HOME_ROUTE, LANDING_ROUTE, LOGIN_ROUTE, ROUTES, STORE_ROUTE } from 'constants/routes';
+import { HOME_ROUTE, LANDING_ROUTE, LOGIN_ROUTE, ROUTES, STORE_ROUTE } from 'router/routes';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { STORE_CONFIG } from 'store_constants/stores_config';
 

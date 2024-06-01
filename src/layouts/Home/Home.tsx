@@ -8,7 +8,7 @@ import { HomeContextInterface } from 'types/outlet_context_models';
 import { STORE_CONFIG } from 'store_constants/stores_config';
 import { useFormsApp } from 'layouts/hooks/useFormsApp';
 import DialogApp from 'layouts/DialogApp';
-import { HOME_ROUTE, ROUTES } from 'constants/routes';
+import { HOME_ROUTE, ROUTES } from 'router/routes';
 import Loader from 'components/atoms/Loader/Loader';
 import {
     StoreInterface,

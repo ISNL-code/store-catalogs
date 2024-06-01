@@ -63,7 +63,7 @@ export const ERROR_PAGE = {
 
 // ADDITIONAL PATHS
 
-export const SHARE_PATH = {
+export const SHARE_PRODUCT_PATH = {
     share_product_sku: (storeCode, productId, sku) =>
         `${window.location.origin}${STORE_ROUTE?.product(storeCode, productId, sku)}`,
 };

@@ -8,7 +8,7 @@ import axios from 'axios';
 import { TRANSLATED_COUNTRIES } from 'dataBase/COUNTRY_LIST';
 import FormDialog from 'components/organisms/Modals/FormDialog';
 import { DialogWindowType } from 'layouts/hooks/useFormsApp';
-import { ROUTES } from 'constants/routes';
+import { ROUTES } from 'router/routes';
 import { STORAGE_KEYS } from 'constants/local_storage_keys';
 
 const INITIAL_VALUES = {

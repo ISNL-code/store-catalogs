@@ -12,7 +12,7 @@ import { STORE_CONFIG } from 'store_constants/stores_config';
 import Home from 'layouts/Home/Home';
 import HomePage from 'pages/Home/HomePage';
 import InformationPage from 'pages/Information/InformationPage';
-import { HOME_ROUTE, LOGIN_ROUTE, ROUTES, STORE_ROUTE } from 'constants/routes';
+import { HOME_ROUTE, LOGIN_ROUTE, ROUTES, STORE_ROUTE } from 'router/routes';
 import SecurityLayout from 'layouts/Security/Security';
 import NewPassword from 'layouts/Security/NewPassword';
 import PAGE_401 from 'pages/TechPages/401';
@@ -186,7 +186,6 @@ const StoresRouting = () => {
                             />
                         }
                     >
-                        <Route index element={<Navigate to={HOME_ROUTE?.root(STORE_CODE)} replace />} />
                         <Route index path={`${ROUTES?.HOME}/:storeCode`} element={<HomePage />} />
                         <Route path="*" element={<Navigate to={STORE_ROUTE?.root(STORE_CODE)} replace />} />
                     </Route>
@@ -221,7 +220,6 @@ const StoresRouting = () => {
                             />
                         }
                     >
-                        <Route index element={<Navigate to={STORE_ROUTE?.root(STORE_CODE)} replace />} />
                         <Route index path={`${ROUTES?.STORE}/:storeCode`} element={<CatalogPage />} />
                         <Route
                             path={`${ROUTES?.STORE}/:storeCode/product/:productId/model/:modelSku`}

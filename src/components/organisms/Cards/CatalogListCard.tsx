@@ -21,7 +21,7 @@ import CardView from './CardView';
 import GridMediumView from './GridMediumView';
 import { useWindowWidth } from '@react-hook/window-size';
 import CardDescriptionComponent from 'components/atoms/DescriptionComponents/CardDescriptionComponent';
-import { SHARE_PATH, STORE_ROUTE } from 'constants/routes';
+import { SHARE_PRODUCT_PATH, STORE_ROUTE } from 'router/routes';
 import { CatalogContextInterface } from 'types/outlet_context_models';
 import { map_currency_symbol } from 'utils/mappers/currency_symbol';
 import { EmptyImage } from 'components/atoms/Media/EmptyImage';
@@ -181,7 +181,11 @@ const CatalogListCard = memo<CatalogCardProps>(
                                 )}
                                 <ShareButton
                                     isShown
-                                    path={SHARE_PATH?.share_product_sku(STORE_CODE, productId, shownModel?.variantSku)}
+                                    path={SHARE_PRODUCT_PATH?.share_product_sku(
+                                        STORE_CODE,
+                                        productId,
+                                        shownModel?.variantSku
+                                    )}
                                     direction="up"
                                     size={viewMode === ViewModeType?.card ? 'large' : 'small'}
                                 />

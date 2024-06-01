@@ -8,7 +8,7 @@ import HomeImages from './HomeImages';
 import CallBackButton from 'components/atoms/Buttons/CallBackButton';
 import { HomeContextInterface } from 'types/outlet_context_models';
 import { DialogWindowType } from 'layouts/hooks/useFormsApp';
-import { STORE_ROUTE } from 'constants/routes';
+import { STORE_ROUTE } from 'router/routes';
 import { STORE_CONFIG } from 'store_constants/stores_config';
 import { scrollPage } from 'utils/scrollPage';
 

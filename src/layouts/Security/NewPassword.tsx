@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 import HomeHeader from './SecurityHeader';
 import { STORE_CONFIG } from 'store_constants/stores_config';
 import DialogApp from 'layouts/DialogApp';
-import { ROUTES } from 'constants/routes';
+import { ROUTES } from 'router/routes';
 import { DialogWindowType, useFormsApp } from 'layouts/hooks/useFormsApp';
 import { useNavigate, useParams } from 'react-router-dom';
 import Loader from 'components/atoms/Loader/Loader';

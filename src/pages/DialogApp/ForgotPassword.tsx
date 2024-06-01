@@ -5,7 +5,7 @@ import emailFormValidations from 'utils/validation/emailFormValidations';
 import { STORE_CONFIG } from 'store_constants/stores_config';
 import FormDialog from 'components/organisms/Modals/FormDialog';
 import { DialogWindowType } from 'layouts/hooks/useFormsApp';
-import { RESET_PASSWORD_PATH, ROUTES } from 'constants/routes';
+import { RESET_PASSWORD_PATH, ROUTES } from 'router/routes';
 import Loader from 'components/atoms/Loader/Loader';
 
 export default function ForgotPasswordForm({ isOpen, setIsOpen, string, location }) {

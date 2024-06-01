@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Navigate, Route, Routes } from 'react-router-dom';
-import { LANDING_ROUTE, ROUTES } from 'constants/routes';
+import { LANDING_ROUTE, ROUTES } from 'router/routes';
 import PAGE_401 from 'pages/TechPages/401';
 import PAGE_403 from 'pages/TechPages/403';
 import PAGE_404 from 'pages/TechPages/404';

@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { STORAGE_KEYS } from 'constants/local_storage_keys';
-import { ERROR_PAGE } from 'constants/routes';
+import { ERROR_PAGE } from 'router/routes';
 import { STORE_CONFIG } from 'store_constants/stores_config';
 
 const AuthInterceptor = () => {

@@ -6,7 +6,7 @@ import GridViewIcon from '@mui/icons-material/GridView';
 import { STORE_CONFIG } from 'store_constants/stores_config';
 import { useEffect, useState } from 'react';
 import { useWindowWidth } from '@react-hook/window-size';
-import { HOME_ROUTE, STORE_ROUTE } from 'constants/routes';
+import { HOME_ROUTE, STORE_ROUTE } from 'router/routes';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 

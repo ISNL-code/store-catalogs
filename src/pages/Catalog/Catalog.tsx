@@ -21,7 +21,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import { useDevice } from 'hooks/useDevice';
 import { STORE_CONFIG } from 'store_constants/stores_config';
 import { ViewModeType } from 'store_constants/types';
-import { STORE_ROUTE } from 'constants/routes';
+import { STORE_ROUTE } from 'router/routes';
 import { useIsMount } from 'hooks/useIsMount';
 import { scrollPage } from 'utils/scrollPage';
 

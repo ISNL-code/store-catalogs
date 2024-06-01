@@ -6,7 +6,7 @@ import loginFormValidations from 'utils/validation/loginFormValidations';
 import { STORE_CONFIG } from 'store_constants/stores_config';
 import { DialogWindowType } from 'layouts/hooks/useFormsApp';
 import FormDialog from 'components/organisms/Modals/FormDialog';
-import { ROUTES } from 'constants/routes';
+import { ROUTES } from 'router/routes';
 import { STORAGE_KEYS } from 'constants/local_storage_keys';
 
 export default function Login({ isOpen, setIsOpen, string, location, setAuth }) {

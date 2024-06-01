@@ -1,5 +1,5 @@
 import InfoDialog from 'components/organisms/Modals/InfoDialog';
-import { HOME_ROUTE, LOGIN_ROUTE, STORE_ROUTE } from 'constants/routes';
+import { HOME_ROUTE, LOGIN_ROUTE, STORE_ROUTE } from 'router/routes';
 import { useNavigate } from 'react-router-dom';
 import { STORE_CONFIG } from 'store_constants/stores_config';
 
