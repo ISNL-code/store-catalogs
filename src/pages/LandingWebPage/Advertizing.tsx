@@ -1,15 +1,11 @@
-import * as React from 'react';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { useDevice } from 'hooks/useDevice';
 
 export default function Advertizing() {
-    const { sx } = useDevice();
-
     return (
         <Card sx={{ maxWidth: 345 }}>
             <CardMedia sx={{ height: '600px' }} image={require('./img/102.jpg')} title="green iguana" />
