@@ -257,13 +257,6 @@ const FormDialog = ({
 
                                                 item?.onChange(autocomplete || newValue);
                                             }}
-                                            onInputChange={(_e, newValue) => {
-                                                const autocomplete = item?.options?.find(
-                                                    el => el.label === newValue
-                                                )?.value;
-
-                                                item?.onChange(autocomplete || newValue);
-                                            }}
                                             fullWidth
                                             slotProps={{
                                                 popper: {
