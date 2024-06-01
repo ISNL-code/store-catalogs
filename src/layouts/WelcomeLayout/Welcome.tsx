@@ -12,7 +12,7 @@ export default function WelcomePage() {
         setTimeout(() => {
             navigate('/home');
         }, 2000);
-    }, []);
+    }, []); //eslint-disable-line
 
     return (
         <>
