@@ -124,102 +124,108 @@ const StoresRouting = () => {
     const router = createBrowserRouter([
         {
             path: '/',
-            element: <WelcomePage handleRedirect={handleRedirect} />,
-        },
-        {
-            path: `${ROUTES?.HOME}`,
-            action: () => 'POP', // Assign a function to action that returns 'POP'
-            caseSensitive: true,
-            Component: null,
-            ErrorBoundary: null,
-            errorElement: null,
-            handle: () => {},
-            hasErrorBoundary: false,
-            id: 'home-route',
-            loader: () => <div>Loading...</div>,
-            shouldRevalidate: () => false,
-            element: handleCheckAccess(ROUTES?.HOME) ? (
-                <Home
-                    store={currentStoreData}
-                    lang={lang}
-                    setLang={setLang}
-                    auth={auth}
-                    setAuth={setAuth}
-                    userData={{
-                        currentUserData,
-                        isFetchingUser,
-                        setCurrentUserData,
-                        fetchUserData,
-                        userError,
-                    }}
-                    cart={cart}
-                    favorites={favorites}
-                    currentLanguage={currentLanguage}
-                    handleSaveImage={handleSaveImage}
-                    savedImages={savedImages}
-                />
-            ) : (
-                <Navigate to={handleRedirect()} replace />
-            ),
-            children: [
-                {
-                    path: `${ROUTES?.HOME}/:storeCode`,
-                    element: <HomePage />,
-                },
-                {
-                    path: '*',
-                    element: <Navigate to={HOME_ROUTE?.root(STORE_CODE)} replace />,
-                },
-            ],
-        },
-        {
-            path: `${ROUTES?.STORE}`,
-            element: (
-                <Catalog
-                    store={currentStoreData}
-                    lang={lang}
-                    setLang={setLang}
-                    viewMode={viewMode}
-                    setViewMode={setViewMode}
-                    auth={auth}
-                    setAuth={setAuth}
-                    userData={{
-                        currentUserData,
-                        isFetchingUser,
-                        setCurrentUserData,
-                        fetchUserData,
-                        userError,
-                    }}
-                    infoAlert={infoAlert}
-                    setInfoAlert={setInfoAlert}
-                    cart={cart}
-                    favorites={favorites}
-                    currentLanguage={currentLanguage}
-                    handleSaveImage={handleSaveImage}
-                    savedImages={savedImages}
-                />
-            ),
-            children: [
-                {
-                    path: `${ROUTES?.STORE}/:storeCode`,
-                    element: <CatalogPage />,
-                },
-                {
-                    path: '*',
-                    element: <Navigate to={STORE_ROUTE?.root(STORE_CODE)} replace />,
-                },
-            ],
-        },
-        {
-            path: '*',
-            element: (
-                <Navigate
-                    to={REQUIRED_REGISTRATION ? LOGIN_ROUTE?.root(STORE_CODE, 'login') : handleRedirect()}
-                    replace
-                />
-            ),
+            element: <div>App</div>,
         },
     ]);
+    // const router = createBrowserRouter([
+    //     {
+    //         path: '/',
+    //         element: <WelcomePage handleRedirect={handleRedirect} />,
+    //     },
+    //     {
+    //         path: `${ROUTES?.HOME}`,
+    //         action: () => 'POP', // Assign a function to action that returns 'POP'
+    //         caseSensitive: true,
+    //         Component: null,
+    //         ErrorBoundary: null,
+    //         errorElement: null,
+    //         handle: () => {},
+    //         hasErrorBoundary: false,
+    //         id: 'home-route',
+    //         loader: () => <div>Loading...</div>,
+    //         shouldRevalidate: () => false,
+    //         element: handleCheckAccess(ROUTES?.HOME) ? (
+    //             <Home
+    //                 store={currentStoreData}
+    //                 lang={lang}
+    //                 setLang={setLang}
+    //                 auth={auth}
+    //                 setAuth={setAuth}
+    //                 userData={{
+    //                     currentUserData,
+    //                     isFetchingUser,
+    //                     setCurrentUserData,
+    //                     fetchUserData,
+    //                     userError,
+    //                 }}
+    //                 cart={cart}
+    //                 favorites={favorites}
+    //                 currentLanguage={currentLanguage}
+    //                 handleSaveImage={handleSaveImage}
+    //                 savedImages={savedImages}
+    //             />
+    //         ) : (
+    //             <Navigate to={handleRedirect()} replace />
+    //         ),
+    //         children: [
+    //             {
+    //                 path: `${ROUTES?.HOME}/:storeCode`,
+    //                 element: <HomePage />,
+    //             },
+    //             {
+    //                 path: '*',
+    //                 element: <Navigate to={HOME_ROUTE?.root(STORE_CODE)} replace />,
+    //             },
+    //         ],
+    //     },
+    //     {
+    //         path: `${ROUTES?.STORE}`,
+    //         element: (
+    //             <Catalog
+    //                 store={currentStoreData}
+    //                 lang={lang}
+    //                 setLang={setLang}
+    //                 viewMode={viewMode}
+    //                 setViewMode={setViewMode}
+    //                 auth={auth}
+    //                 setAuth={setAuth}
+    //                 userData={{
+    //                     currentUserData,
+    //                     isFetchingUser,
+    //                     setCurrentUserData,
+    //                     fetchUserData,
+    //                     userError,
+    //                 }}
+    //                 infoAlert={infoAlert}
+    //                 setInfoAlert={setInfoAlert}
+    //                 cart={cart}
+    //                 favorites={favorites}
+    //                 currentLanguage={currentLanguage}
+    //                 handleSaveImage={handleSaveImage}
+    //                 savedImages={savedImages}
+    //             />
+    //         ),
+    //         children: [
+    //             {
+    //                 path: `${ROUTES?.STORE}/:storeCode`,
+    //                 element: <CatalogPage />,
+    //             },
+    //             {
+    //                 path: '*',
+    //                 element: <Navigate to={STORE_ROUTE?.root(STORE_CODE)} replace />,
+    //             },
+    //         ],
+    //     },
+    //     {
+    //         path: '*',
+    //         element: (
+    //             <Navigate
+    //                 to={REQUIRED_REGISTRATION ? LOGIN_ROUTE?.root(STORE_CODE, 'login') : handleRedirect()}
+    //                 replace
+    //             />
+    //         ),
+    //     },
+    // ]);
 
     return <RouterProvider router={router} />;
 
