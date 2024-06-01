@@ -103,17 +103,13 @@ const StoresRouting = () => {
         {
             path: '/',
             errorElement: <div>Error...</div>,
-            loader: () => <div>Loading...</div>,
-            element: (
-                <Suspense fallback={<div>Loading...</div>}>
-                    <WelcomePage />
-                </Suspense>
-            ),
+            // loader: () => <div>Loading...</div>,
+            element: <WelcomePage />,
         },
         {
             path: ROUTES?.HOME,
             errorElement: <div>Error...</div>,
-            loader: () => <div>Loading...</div>,
+            // loader: () => <div>Loading...</div>,
             element: (
                 <Suspense fallback={<div>Loading...</div>}>
                     <Home
