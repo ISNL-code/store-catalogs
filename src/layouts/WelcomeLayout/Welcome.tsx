@@ -1,11 +1,8 @@
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 import { useDevice } from 'hooks/useDevice';
-import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 export default function WelcomePage() {
-    const navigate = useNavigate();
     const { sx } = useDevice();
 
     return (
