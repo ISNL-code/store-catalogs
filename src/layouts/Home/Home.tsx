@@ -1,4 +1,4 @@
-import { Outlet, useNavigate, useParams } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 import { useDevice } from 'hooks/useDevice';
@@ -61,8 +61,6 @@ export default function Home({
 }: Props) {
     const { OPTIONS } = STORE_CONFIG;
     const { PLAN_OPTIONS } = OPTIONS;
-    const { storeCode } = useParams();
-    const navigate = useNavigate();
     const { sx } = useDevice();
     const INSTRUMENTAL_BAR_HEIGHT = 36;
     const INSTRUMENTAL_BAR_PADDINGS = sx ? 2 : 4;
