@@ -54,10 +54,13 @@ export function setStorageItem(key: string, value: string): Promise<void> {
     return new Promise((resolve, reject) => {
         try {
             if (isLocalStorageAvailable()) {
+                alert('local');
                 localStorage.setItem(key, value);
             } else if (isSessionStorageAvailable()) {
+                alert('session');
                 sessionStorage.setItem(key, value);
             } else {
+                alert('cooki');
                 setCookie(key, value, 7);
             }
             resolve();
