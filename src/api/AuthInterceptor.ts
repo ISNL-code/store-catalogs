@@ -11,16 +11,11 @@ const AuthInterceptor = () => {
     axios.interceptors.request.use(
         async request => {
             try {
-                const fav = await getStorageItem(STORAGE_KEYS?.FAVORITE_KEY);
-                alert(fav);
                 const storedItems = await getStorageItem(STORAGE_KEYS?.ACCESS_TOKEN_KEY);
-                alert(storedItems);
-                alert('TOKEN');
                 if (storedItems) {
                     request.headers.Authorization = `Bearer ${JSON.parse(storedItems)}`;
                 }
             } catch (error) {
-                alert(error);
                 console.error('Error getting storage item:', error);
             }
             return request;

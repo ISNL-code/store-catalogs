@@ -53,7 +53,7 @@ function isSessionStorageAvailable(): boolean {
 export function setStorageItem(key: string, value: string): Promise<void> {
     return new Promise((resolve, reject) => {
         try {
-            const domain = window.location.hostname; // Получаем текущий домен
+            const domain = window.location.hostname;
             setCookie(key, value, 7, domain);
             resolve();
         } catch (error) {
@@ -68,6 +68,7 @@ export function getStorageItem(key: string): Promise<string | null> {
         try {
             getCookie(key).then(cookieValue => {
                 if (cookieValue !== null) {
+                    alert(cookieValue);
                     resolve(cookieValue);
                 } else if (isLocalStorageAvailable()) {
                     resolve(localStorage.getItem(key));
@@ -87,7 +88,7 @@ export function getStorageItem(key: string): Promise<string | null> {
 export function removeStorageItem(key: string): Promise<void> {
     return new Promise((resolve, reject) => {
         try {
-            const domain = window.location.hostname; // Получаем текущий домен
+            const domain = window.location.hostname;
             eraseCookie(key, domain);
             resolve();
         } catch (error) {
