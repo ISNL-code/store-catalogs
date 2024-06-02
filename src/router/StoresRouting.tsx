@@ -156,32 +156,29 @@ const StoresRouting = () => {
             path: ROUTES?.HOME,
             errorElement: <PAGE_404 />,
             loader: () => <div>Loading...</div>,
-            element: (
-                <Suspense fallback={<div>Loading...</div>}>
-                    <Home
-                        store={currentStoreData}
-                        lang={lang}
-                        setLang={setLang}
-                        auth={auth}
-                        setAuth={setAuth}
-                        userData={{
-                            currentUserData,
-                            isFetchingUser,
-                            setCurrentUserData,
-                            fetchUserData,
-                            userError,
-                        }}
-                        cart={cart}
-                        favorites={favorites}
-                        currentLanguage={currentLanguage}
-                        handleSaveImage={handleSaveImage}
-                        savedImages={savedImages}
-                    />
-                </Suspense>
+            element: handleCheckAccess(ROUTES?.HOME) ? (
+                <Home
+                    store={currentStoreData}
+                    lang={lang}
+                    setLang={setLang}
+                    auth={auth}
+                    setAuth={setAuth}
+                    userData={{
+                        currentUserData,
+                        isFetchingUser,
+                        setCurrentUserData,
+                        fetchUserData,
+                        userError,
+                    }}
+                    cart={cart}
+                    favorites={favorites}
+                    currentLanguage={currentLanguage}
+                    handleSaveImage={handleSaveImage}
+                    savedImages={savedImages}
+                />
+            ) : (
+                <Navigate to={handleRedirect()} replace />
             ),
-            // ) : (
-            //     <Navigate to={handleRedirect()} replace />
-            // ),
             children: [
                 {
                     path: ':storeCode',
