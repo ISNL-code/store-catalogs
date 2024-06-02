@@ -118,9 +118,3 @@ export function removeStorageItem(key: string): Promise<void> {
         }
     });
 }
-
-export function showWarningIfStorageUnavailable() {
-    if (!isLocalStorageAvailable() && !isSessionStorageAvailable()) {
-        alert('Your browser restricts storage access. Please use a different browser for better experience.');
-    }
-}

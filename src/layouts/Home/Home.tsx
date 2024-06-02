@@ -21,6 +21,8 @@ import { LanguageDataInterface } from 'hooks/useGetLanguage';
 import { useEffect } from 'react';
 
 interface Props {
+    apiToken: string | null;
+    setApiToken: (token: string | null) => void;
     lang: string;
     setAuth: (newAuth: boolean) => void;
     setLang: (newLang: string) => void;
@@ -58,6 +60,8 @@ export default function Home({
     currentLanguage,
     handleSaveImage,
     savedImages,
+    apiToken,
+    setApiToken,
 }: Props) {
     const { STORE_CODE, OPTIONS } = STORE_CONFIG;
     const { PLAN_OPTIONS } = OPTIONS;
@@ -150,6 +154,7 @@ export default function Home({
                 handleOpenDialog={handleOpenDialog}
                 setAuth={setAuth}
                 lang={lang}
+                setApiToken={setApiToken}
             />
         </Box>
     );

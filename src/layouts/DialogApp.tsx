@@ -25,6 +25,7 @@ interface Props {
     cart?;
     dialogState?: DialogStateInterface | null;
     lang: string;
+    setApiToken?: (token: string | null) => void;
 }
 
 const DialogApp = ({
@@ -37,6 +38,7 @@ const DialogApp = ({
     cart,
     dialogState,
     lang,
+    setApiToken,
 }: Props) => {
     if (!activeDialogWindow) return null;
 
@@ -50,6 +52,7 @@ const DialogApp = ({
                 setIsOpen={handleOpenDialog}
                 string={string}
                 setAuth={setAuth}
+                setApiToken={setApiToken}
             />
             <ForgotPasswordForm
                 location={location}
@@ -64,6 +67,7 @@ const DialogApp = ({
                 string={string}
                 setAuth={setAuth}
                 lang={lang}
+                setApiToken={setApiToken}
             />
             <QuestionForm
                 isOpen={activeDialogWindow === DialogWindowType?.QUESTION}
@@ -80,11 +84,11 @@ const DialogApp = ({
             {/* <> * confirm modals * </> */}
 
             <Logout
-                location={location}
                 isOpen={activeDialogWindow === DialogWindowType?.LOGOUT}
                 setIsOpen={handleOpenDialog}
                 string={string}
                 setAuth={setAuth}
+                setApiToken={setApiToken}
             />
             <ClearCartConfirm
                 isOpen={activeDialogWindow === DialogWindowType?.CLEAR_CART}

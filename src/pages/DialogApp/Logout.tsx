@@ -2,7 +2,15 @@ import ConfirmDialog from 'components/organisms/Modals/ConfirmDialog';
 import { STORAGE_KEYS } from 'constants/local_storage_keys';
 import { removeStorageItem } from 'utils/storageUtils';
 
-export default function Logout({ isOpen, setIsOpen, string, location, setAuth }) {
+interface Props {
+    setApiToken?: (token: string | null) => void;
+    isOpen;
+    setIsOpen;
+    string;
+    setAuth;
+}
+
+export default function Logout({ isOpen, setIsOpen, string, setAuth, setApiToken }: Props) {
     if (!isOpen) return null;
 
     return (
@@ -28,6 +36,7 @@ export default function Logout({ isOpen, setIsOpen, string, location, setAuth })
                     removeStorageItem(STORAGE_KEYS?.ACCESS_TOKEN_KEY)
                         .then(() => {
                             setAuth(false);
+                            setApiToken && setApiToken(null);
                             setIsOpen(null);
                         })
                         .catch(error => {

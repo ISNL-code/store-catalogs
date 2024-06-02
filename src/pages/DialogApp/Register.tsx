@@ -13,6 +13,7 @@ import { STORAGE_KEYS } from 'constants/local_storage_keys';
 import { setStorageItem } from 'utils/storageUtils';
 
 interface Props {
+    setApiToken?: (token: string | null) => void;
     isOpen: boolean;
     setIsOpen: Dispatch<SetStateAction<DialogWindowType | null>>;
     string: any;
@@ -31,7 +32,7 @@ const INITIAL_VALUES = {
     country: '',
 };
 
-export default function Register({ isOpen, setIsOpen, string, location, setAuth, lang }: Props) {
+export default function Register({ isOpen, setIsOpen, string, location, setAuth, lang, setApiToken }: Props) {
     const { STORE_CODE, STORE_NAME, SUPPORTED_COUNTRIES } = STORE_CONFIG;
 
     const [email, setEmail] = useState('');
@@ -62,6 +63,7 @@ export default function Register({ isOpen, setIsOpen, string, location, setAuth,
             })
                 .then(res => {
                     setStorageItem(STORAGE_KEYS?.ACCESS_TOKEN_KEY, JSON.stringify(res.data.token));
+                    setApiToken && setApiToken(res.data.token);
                     setAuth(true);
                     setIsOpen(null);
                 })

@@ -47,6 +47,8 @@ const StoresRouting = () => {
         setCurrentStoreData,
         currentUserData,
         setCurrentUserData,
+        apiToken,
+        setApiToken,
     } = useAppStorage();
 
     const {
@@ -80,6 +82,8 @@ const StoresRouting = () => {
             viewMode,
             storeDataRes,
             isStoreLoading,
+            apiToken,
+            setApiToken,
         }),
         [lang, auth, infoAlert, storeDataRes, currentUserData] // eslint-disable-line
     );
@@ -133,6 +137,8 @@ const StoresRouting = () => {
                         setAuth={setAuth}
                         store={currentStoreData}
                         currentLanguage={currentLanguage}
+                        apiToken={apiToken}
+                        setApiToken={setApiToken}
                     />
                 </Suspense>
             ) : (
@@ -177,6 +183,8 @@ const StoresRouting = () => {
                         currentLanguage={currentLanguage}
                         handleSaveImage={handleSaveImage}
                         savedImages={savedImages}
+                        apiToken={apiToken}
+                        setApiToken={setApiToken}
                     />
                 </Suspense>
             ) : (
@@ -223,6 +231,8 @@ const StoresRouting = () => {
                         currentLanguage={currentLanguage}
                         handleSaveImage={handleSaveImage}
                         savedImages={savedImages}
+                        apiToken={apiToken}
+                        setApiToken={setApiToken}
                     />
                 </Suspense>
             ) : (

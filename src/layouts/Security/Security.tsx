@@ -18,9 +18,19 @@ interface Props {
     setLang: (newLang: string) => void;
     store: StoreInterface | null;
     currentLanguage: LanguageDataInterface;
+    apiToken: string | null;
+    setApiToken: (token: string | null) => void;
 }
 
-export default function SecurityLayout({ lang, setLang, store, setAuth, currentLanguage }: Props) {
+export default function SecurityLayout({
+    lang,
+    setLang,
+    store,
+    setAuth,
+    currentLanguage,
+    apiToken,
+    setApiToken,
+}: Props) {
     const location = useLocation();
     const navigate = useNavigate();
     const { formType, storeCode } = useParams();
@@ -104,6 +114,7 @@ export default function SecurityLayout({ lang, setLang, store, setAuth, currentL
                 handleOpenDialog={handleOpenDialog}
                 setAuth={setAuth}
                 lang={lang}
+                setApiToken={setApiToken}
             />
         </Box>
     );

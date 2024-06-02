@@ -25,6 +25,8 @@ import { LanguageDataInterface } from 'hooks/useGetLanguage';
 import { useFavorites } from 'layouts/hooks/useFavorites';
 
 interface Props {
+    apiToken: string | null;
+    setApiToken: (token: string | null) => void;
     lang: string;
     setViewMode: (newViewMode: ViewModeType) => void;
     setInfoAlert: (newInfo: { ws_info: boolean }) => void;
@@ -70,6 +72,8 @@ export default function MainCatalog({
     currentLanguage,
     handleSaveImage,
     savedImages,
+    apiToken,
+    setApiToken,
 }: Props) {
     const { OPTIONS, STORE_CODE } = STORE_CONFIG;
     const { PLAN_OPTIONS } = OPTIONS;
@@ -229,6 +233,7 @@ export default function MainCatalog({
                 favorites={favorites}
                 dialogState={dialogState}
                 lang={lang}
+                setApiToken={setApiToken}
             />
         </Box>
     );

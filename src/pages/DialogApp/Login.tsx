@@ -10,7 +10,16 @@ import { ROUTES } from 'router/routes';
 import { STORAGE_KEYS } from 'constants/local_storage_keys';
 import { setStorageItem } from 'utils/storageUtils';
 
-export default function Login({ isOpen, setIsOpen, string, location, setAuth }) {
+interface Props {
+    setApiToken?: (token: string | null) => void;
+    isOpen;
+    setIsOpen;
+    string;
+    location;
+    setAuth;
+}
+
+export default function Login({ isOpen, setIsOpen, string, location, setAuth, setApiToken }: Props) {
     const { STORE_CODE, STORE_NAME } = STORE_CONFIG;
 
     const [email, setEmail] = useState('');
@@ -26,14 +35,10 @@ export default function Login({ isOpen, setIsOpen, string, location, setAuth }) 
             loginCustomer({ ...values, storeCode: STORE_CODE })
                 .then(res => {
                     if (res.data.token) {
-                        setStorageItem(STORAGE_KEYS?.ACCESS_TOKEN_KEY, JSON.stringify(res.data.token))
-                            .then(() => {
-                                setAuth(true);
-                            })
-                            .then(() => {
-                                setIsOpen(null);
-                            })
-                            .catch(() => setIsError(true));
+                        setStorageItem(STORAGE_KEYS?.ACCESS_TOKEN_KEY, JSON.stringify(res.data.token));
+                        setApiToken && setApiToken(res.data.token);
+                        setIsOpen(null);
+                        setAuth(true);
                     }
                 })
                 .catch(() => setIsError(true));
