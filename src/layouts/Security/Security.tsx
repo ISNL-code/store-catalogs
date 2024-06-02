@@ -37,7 +37,10 @@ export default function SecurityLayout({ lang, setLang, store, setAuth, currentL
                 navigate(LOGIN_ROUTE?.root(STORE_CODE, formType));
             }
         }
-    }, [storeCode, STORE_CODE, store]); // eslint-disable-line
+        if (activeDialogWindow !== DialogWindowType?.LOGIN) {
+            navigate(LOGIN_ROUTE?.root(STORE_CODE, 'login'));
+        }
+    }, []); // eslint-disable-line
 
     useEffect(() => {
         if (activeDialogWindow === DialogWindowType?.LOGIN && !location?.pathname.includes('login')) {

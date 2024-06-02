@@ -11,7 +11,7 @@ export const ALBERTO_BINI_KZ_WS = {
     store_name: 'Alberto Bini KZ',
     store_code: 'alberto_bini_europe',
     base_url: 'https://kremen-belts.com/api',
-    app_lang: 'ru',
+    app_lang: 'kz',
     supported_countries: null,
     links: [
         { name: 'Retail', href: 'https://albertobini-kz-retail.netlify.app/store', description: 'Retail', type: 'WEB' },

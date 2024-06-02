@@ -11,7 +11,7 @@ export const ALBERTO_BINI_KZ_RETAIL = {
     store_name: 'Alberto Bini KZ Retail',
     store_code: 'alberto_bini_europe',
     base_url: 'https://kremen-belts.com/api',
-    app_lang: 'ru',
+    app_lang: 'kz',
     supported_countries: null,
     links: [{ name: 'Wholesales', href: 'https://albertobini-kz.com/store', description: 'Wholesale', type: 'WEB' }],
     options: {

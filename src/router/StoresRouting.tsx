@@ -118,20 +118,24 @@ const StoresRouting = () => {
             path: '/',
             errorElement: <PAGE_404 />,
             loader: () => <div>Loading...</div>,
-            element: <WelcomePage />,
+            element: <WelcomePage handleRedirect={handleRedirect} />,
         },
         {
             path: `${ROUTES?.SECURITY}/:storeCode/:formType`,
             errorElement: <PAGE_404 />,
             loader: () => <div>Loading...</div>,
-            element: (
-                <SecurityLayout
-                    lang={lang}
-                    setLang={setLang}
-                    setAuth={setAuth}
-                    store={currentStoreData}
-                    currentLanguage={currentLanguage}
-                />
+            element: handleCheckAccess(ROUTES?.SECURITY) ? (
+                <Suspense fallback={<div>Loading...</div>}>
+                    <SecurityLayout
+                        lang={lang}
+                        setLang={setLang}
+                        setAuth={setAuth}
+                        store={currentStoreData}
+                        currentLanguage={currentLanguage}
+                    />
+                </Suspense>
+            ) : (
+                <Navigate to={handleRedirect()} replace />
             ),
         },
         {
@@ -152,7 +156,7 @@ const StoresRouting = () => {
             path: ROUTES?.HOME,
             errorElement: <PAGE_404 />,
             loader: () => <div>Loading...</div>,
-            element: (
+            element: handleCheckAccess(ROUTES?.HOME) ? (
                 <Suspense fallback={<div>Loading...</div>}>
                     <Home
                         store={currentStoreData}
@@ -174,6 +178,8 @@ const StoresRouting = () => {
                         savedImages={savedImages}
                     />
                 </Suspense>
+            ) : (
+                <Navigate to={handleRedirect()} replace />
             ),
             children: [
                 {
@@ -192,7 +198,7 @@ const StoresRouting = () => {
             path: ROUTES?.STORE,
             errorElement: <PAGE_404 />,
             loader: () => <div>Loading...</div>,
-            element: (
+            element: handleCheckAccess(ROUTES?.STORE) ? (
                 <Suspense fallback={<div>Loading...</div>}>
                     <MainCatalog
                         store={currentStoreData}
@@ -218,7 +224,10 @@ const StoresRouting = () => {
                         savedImages={savedImages}
                     />
                 </Suspense>
+            ) : (
+                <Navigate to={handleRedirect()} replace />
             ),
+
             children: [
                 {
                     path: ':storeCode',
@@ -305,28 +314,44 @@ const StoresRouting = () => {
         {
             path: ROUTES?.PAGE_401,
             loader: () => <div>Loading...</div>,
-            element: <PAGE_401 />,
+            element: (
+                <Suspense fallback={<div>Loading...</div>}>
+                    <PAGE_401 />
+                </Suspense>
+            ),
         },
         {
             path: ROUTES?.PAGE_403,
             loader: () => <div>Loading...</div>,
-            element: <PAGE_403 />,
+            element: (
+                <Suspense fallback={<div>Loading...</div>}>
+                    <PAGE_403 />
+                </Suspense>
+            ),
         },
         {
             path: ROUTES?.PAGE_404,
             loader: () => <div>Loading...</div>,
-            element: <PAGE_404 />,
+            element: (
+                <Suspense fallback={<div>Loading...</div>}>
+                    <PAGE_404 />
+                </Suspense>
+            ),
         },
         {
             path: ROUTES?.PAGE_500,
             loader: () => <div>Loading...</div>,
-            element: <PAGE_500 />,
+            element: (
+                <Suspense fallback={<div>Loading...</div>}>
+                    <PAGE_500 />
+                </Suspense>
+            ),
         },
         {
             path: '*',
             errorElement: <PAGE_404 />,
             loader: () => <div>Loading...</div>,
-            element: <Navigate to="/" replace />,
+            element: <Navigate to={handleRedirect()} replace />,
         },
     ]);
 

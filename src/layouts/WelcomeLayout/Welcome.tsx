@@ -4,19 +4,20 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { useDevice } from 'hooks/useDevice';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ROUTES } from 'router/routes';
 
-export default function WelcomePage() {
+export default function WelcomePage({ handleRedirect }) {
     const { sx } = useDevice();
     const navigate = useNavigate();
 
     useEffect(() => {
         const timeoutId = setTimeout(() => {
-            navigate(ROUTES?.HOME);
+            const startPath = handleRedirect();
+
+            navigate(startPath);
         }, 2500);
 
         return () => clearTimeout(timeoutId);
-    }, [navigate]);
+    }, []); // eslint-disable-line
 
     return (
         <>
