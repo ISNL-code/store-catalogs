@@ -15,6 +15,13 @@ export default function WelcomePage({ handleRedirect }) {
             navigate(startPath);
         }, 3000);
 
+        // Добавляем обработчик события загрузки для гарантии перехода после полной загрузки страницы
+        window.addEventListener('load', () => {
+            clearTimeout(timeoutId);
+            const startPath = handleRedirect();
+            navigate(startPath);
+        });
+
         return () => clearTimeout(timeoutId);
     }, []); // eslint-disable-line
 
