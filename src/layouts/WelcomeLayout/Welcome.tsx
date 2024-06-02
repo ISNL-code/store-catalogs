@@ -2,28 +2,18 @@ import { Typography } from '@mui/material';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 import { useDevice } from 'hooks/useDevice';
-import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export default function WelcomePage({ handleRedirect }) {
     const { sx } = useDevice();
     const navigate = useNavigate();
 
-    useEffect(() => {
-        const timeoutId = setTimeout(() => {
-            const startPath = handleRedirect();
-            navigate(startPath);
-        }, 3000);
+    const redirectToStartPath = () => {
+        const startPath = handleRedirect();
+        navigate(startPath);
+    };
 
-        // Добавляем обработчик события загрузки для гарантии перехода после полной загрузки страницы
-        window.addEventListener('load', () => {
-            clearTimeout(timeoutId);
-            const startPath = handleRedirect();
-            navigate(startPath);
-        });
-
-        return () => clearTimeout(timeoutId);
-    }, []); // eslint-disable-line
+    setTimeout(redirectToStartPath, 3000);
 
     return (
         <>
