@@ -38,18 +38,24 @@ const mainTheme = createTheme({
             textTransform: 'capitalize',
         },
 
-        h1: { fontSize: '72px', lineHeight: 1, fontWeight: 700, fontFamily: 'Roboto' },
-        h2: { fontSize: '24px', lineHeight: 1.1, fontWeight: 500, color: '#000' },
-        h3: { fontSize: '18px', lineHeight: 1.1, fontWeight: 500, color: '#000' }, //
-        h4: { fontSize: '16px', lineHeight: 1.1, fontWeight: 400, color: '#1D1D1D' }, //
-        h5: { fontSize: '14px', lineHeight: 1.1, fontWeight: 600, color: '#161616' },
-        h6: { fontSize: '14px', lineHeight: 1.1, fontWeight: 500, color: '#161616' },
-        body1: { fontSize: '16px', lineHeight: 1.2, fontWeight: 500, color: '#1D1D1D' },
-        body2: { fontSize: '12px', lineHeight: 1.2, fontWeight: 500, color: '#1D1D1D' },
-        overline: { fontSize: '16px', lineHeight: 1.2, fontWeight: 600 },
-        subtitle1: { fontSize: '9px', lineHeight: 1.1, fontWeight: 600 },
-        subtitle2: { fontSize: '12.5px', lineHeight: 1.2, fontWeight: 600, color: 'rgba(0, 0, 0, 0.4)' },
-        caption: { fontSize: '12px', lineHeight: 1, fontWeight: 500, color: '#161616' },
+        h1: { fontSize: '72px', lineHeight: 1, fontWeight: 700, fontFamily: 'sans-serif' },
+        h2: { fontSize: '24px', lineHeight: 1.1, fontWeight: 500, color: '#000', fontFamily: 'sans-serif' },
+        h3: { fontSize: '18px', lineHeight: 1.1, fontWeight: 500, color: '#000', fontFamily: 'sans-serif' }, //
+        h4: { fontSize: '16px', lineHeight: 1.1, fontWeight: 400, color: '#1D1D1D', fontFamily: 'sans-serif' }, //
+        h5: { fontSize: '14px', lineHeight: 1.1, fontWeight: 600, color: '#161616', fontFamily: 'sans-serif' },
+        h6: { fontSize: '14px', lineHeight: 1.1, fontWeight: 500, color: '#161616', fontFamily: 'sans-serif' },
+        body1: { fontSize: '16px', lineHeight: 1.2, fontWeight: 500, color: '#1D1D1D', fontFamily: 'sans-serif' },
+        body2: { fontSize: '12px', lineHeight: 1.2, fontWeight: 500, color: '#1D1D1D', fontFamily: 'sans-serif' },
+        overline: { fontSize: '16px', lineHeight: 1.2, fontWeight: 600, fontFamily: 'sans-serif' },
+        subtitle1: { fontSize: '9px', lineHeight: 1.1, fontWeight: 600, fontFamily: 'sans-serif' },
+        subtitle2: {
+            fontSize: '12.5px',
+            lineHeight: 1.2,
+            fontWeight: 600,
+            color: 'rgba(0, 0, 0, 0.4)',
+            fontFamily: 'sans-serif',
+        },
+        caption: { fontSize: '12px', lineHeight: 1, fontWeight: 500, color: '#161616', fontFamily: 'sans-serif' },
     },
     components: {
         MuiLink: {},

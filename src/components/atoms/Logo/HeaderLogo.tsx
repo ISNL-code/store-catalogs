@@ -14,7 +14,7 @@ interface Props {
 
 const specialWords = ['outlet', 'sale', 'sales', 'discount'];
 
-const HeaderLogo = ({ title, font = 'Roboto', imgUrl, custom = false }: Props) => {
+const HeaderLogo = ({ title, imgUrl, custom = false }: Props) => {
     const handleLogoNavigate = useLogoNavigate();
     const { xxxs } = useDevice();
     const [imgLoaded, setImgLoaded] = useState(false);
@@ -53,7 +53,6 @@ const HeaderLogo = ({ title, font = 'Roboto', imgUrl, custom = false }: Props) =
                 key={index}
                 component="span"
                 sx={{
-                    fontFamily: font,
                     fontSize: xxxs ? 18 : 24,
                     fontWeight: 700,
                     lineHeight: 1,

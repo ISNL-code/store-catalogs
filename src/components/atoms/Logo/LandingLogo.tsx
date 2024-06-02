@@ -48,7 +48,6 @@ const LandingLogo = () => {
             >
                 <Typography
                     sx={{
-                        fontFamily: 'Young Serif',
                         fontSize: sx ? 20 : 28,
                         fontWeight: 600,
                         color: '#161616',
@@ -60,7 +59,6 @@ const LandingLogo = () => {
                 </Typography>
                 <Typography
                     sx={{
-                        fontFamily: 'Young Serif',
                         fontSize: sx ? 20 : 28,
                         fontWeight: 500,
                         color: '#616161c6',
@@ -71,7 +69,6 @@ const LandingLogo = () => {
                 </Typography>
                 <Typography
                     sx={{
-                        fontFamily: 'Young Serif',
                         fontSize: sx ? 20 : 28,
                         fontWeight: 500,
                         color: '#616161c6',
@@ -82,7 +79,6 @@ const LandingLogo = () => {
                 </Typography>
                 <Typography
                     sx={{
-                        fontFamily: 'Young Serif',
                         fontSize: sx ? 20 : 28,
                         fontWeight: 500,
                         color: '#616161c6',
@@ -93,7 +89,6 @@ const LandingLogo = () => {
                 </Typography>
                 <Typography
                     sx={{
-                        fontFamily: 'Young Serif',
                         fontSize: sx ? 20 : 28,
                         fontWeight: 500,
                         color: '#616161c6',
@@ -106,7 +101,7 @@ const LandingLogo = () => {
                 <Typography
                     sx={{
                         ml: 1,
-                        fontFamily: 'Young Serif',
+
                         fontSize: sx ? 20 : 28,
                         fontWeight: 600,
                         color: '#161616',
@@ -118,7 +113,6 @@ const LandingLogo = () => {
                 </Typography>
                 <Typography
                     sx={{
-                        fontFamily: 'Young Serif',
                         fontSize: sx ? 20 : 28,
                         fontWeight: 500,
                         color: '#616161c6',
@@ -129,7 +123,6 @@ const LandingLogo = () => {
                 </Typography>
                 <Typography
                     sx={{
-                        fontFamily: 'Young Serif',
                         fontSize: sx ? 20 : 28,
                         fontWeight: 500,
                         color: '#616161c6',
@@ -140,7 +133,6 @@ const LandingLogo = () => {
                 </Typography>
                 <Typography
                     sx={{
-                        fontFamily: 'Young Serif',
                         fontSize: sx ? 20 : 28,
                         fontWeight: 500,
                         color: '#616161c6',

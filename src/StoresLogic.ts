@@ -9,7 +9,7 @@ import { DEFAULT_VALUES } from 'defaultData/default';
 import { ViewModeType } from 'store_constants/types';
 import { Store_Data_Response_Interface } from 'types/response_models';
 import { QueryObserverResult, RefetchOptions, RefetchQueryFilters } from '@tanstack/react-query';
-import { getStorageItem, removeStorageItem, setStorageItem } from 'utils/storageUtils';
+import { getStorageItem, setStorageItem } from 'utils/storageUtils';
 
 interface Props {
     lang: string;

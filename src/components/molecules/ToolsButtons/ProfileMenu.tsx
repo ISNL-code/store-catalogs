@@ -5,6 +5,7 @@ import {
     Logout as LogoutIcon,
     Login as LoginIcon,
     PhoneCallback as PhoneCallbackIcon,
+    AlternateEmail as AlternateEmailIcon,
 } from '@mui/icons-material';
 import PrivacyTipIcon from '@mui/icons-material/PrivacyTip';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -179,6 +180,7 @@ const ProfileMenu: React.FC<ProfileMenuProps> = ({
                                 pt: sx ? 0 : `${headerHeight}px`,
                                 pb: sx ? `${footerMenuHeight}px` : 0,
                                 borderRadius: sx ? 4 : 0,
+                                minWidth: 280,
                             },
                         }}
                     >
@@ -188,8 +190,15 @@ const ProfileMenu: React.FC<ProfileMenuProps> = ({
                                 p={2}
                                 sx={{
                                     borderBottom: '1px solid #ccc',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    gap: 1,
                                 }}
                             >
+                                <IconButton size="small" sx={{ cursor: 'default' }}>
+                                    <AlternateEmailIcon />
+                                </IconButton>
+
                                 <Typography color="gray" variant="h4">
                                     {user?.currentUserData?.emailAddress}
                                 </Typography>
