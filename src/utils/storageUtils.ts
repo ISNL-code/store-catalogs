@@ -53,8 +53,14 @@ function isSessionStorageAvailable(): boolean {
 export function setStorageItem(key: string, value: string): Promise<void> {
     return new Promise((resolve, reject) => {
         try {
-            const domain = window.location.hostname;
-            setCookie(key, value, 7, domain);
+            if (isLocalStorageAvailable()) {
+                localStorage.setItem(key, value);
+            } else if (isSessionStorageAvailable()) {
+                sessionStorage.setItem(key, value);
+            } else {
+                const domain = window.location.hostname;
+                setCookie(key, value, 7, domain);
+            }
             resolve();
         } catch (error) {
             console.error('Error setting storage item:', error);
@@ -66,18 +72,23 @@ export function setStorageItem(key: string, value: string): Promise<void> {
 export function getStorageItem(key: string): Promise<string | null> {
     return new Promise((resolve, reject) => {
         try {
+            if (isLocalStorageAvailable()) {
+                const localStorageValue = localStorage.getItem(key);
+                if (localStorageValue !== null) {
+                    resolve(localStorageValue);
+                    return;
+                }
+            }
+            if (isSessionStorageAvailable()) {
+                const sessionStorageValue = sessionStorage.getItem(key);
+                if (sessionStorageValue !== null) {
+                    resolve(sessionStorageValue);
+                    return;
+                }
+            }
             getCookie(key).then(cookieValue => {
                 if (cookieValue !== null) {
-                    alert('GET COOKIE');
-                    alert(cookieValue);
-                    alert(window.location.hostname);
                     resolve(cookieValue);
-                } else if (isLocalStorageAvailable()) {
-                    alert('GET LOCAL STORAGE');
-                    resolve(localStorage.getItem(key));
-                    alert('GET SESSION STORAGE');
-                } else if (isSessionStorageAvailable()) {
-                    resolve(sessionStorage.getItem(key));
                 } else {
                     resolve(null);
                 }
@@ -92,8 +103,14 @@ export function getStorageItem(key: string): Promise<string | null> {
 export function removeStorageItem(key: string): Promise<void> {
     return new Promise((resolve, reject) => {
         try {
-            const domain = window.location.hostname;
-            eraseCookie(key, domain);
+            if (isLocalStorageAvailable()) {
+                localStorage.removeItem(key);
+            } else if (isSessionStorageAvailable()) {
+                sessionStorage.removeItem(key);
+            } else {
+                const domain = window.location.hostname;
+                eraseCookie(key, domain);
+            }
             resolve();
         } catch (error) {
             console.error('Error removing storage item:', error);
