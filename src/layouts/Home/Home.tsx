@@ -9,7 +9,6 @@ import { STORE_CONFIG } from 'store_constants/stores_config';
 import { useFormsApp } from 'layouts/hooks/useFormsApp';
 import DialogApp from 'layouts/DialogApp';
 import { HOME_ROUTE, ROUTES } from 'router/routes';
-import Loader from 'components/atoms/Loader/Loader';
 import {
     StoreInterface,
     UserDataInterface,
@@ -79,8 +78,6 @@ export default function Home({
             navigate(HOME_ROUTE?.root(STORE_CODE));
         }
     }, [storeCode, STORE_CODE, store]); // eslint-disable-line
-
-    if (!store) return <Loader type="circular" />;
 
     return (
         <Box display="flex" flexDirection="column" justifyContent="space-between">
