@@ -11,6 +11,8 @@ const AuthInterceptor = () => {
     axios.interceptors.request.use(
         async request => {
             try {
+                const lang = await getStorageItem(STORAGE_KEYS?.LANGUAGE_KEY);
+                alert(lang);
                 const storedItems = await getStorageItem(STORAGE_KEYS?.ACCESS_TOKEN_KEY);
                 alert(storedItems);
                 alert('TOKEN');
