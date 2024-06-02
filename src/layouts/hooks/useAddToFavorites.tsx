@@ -13,22 +13,38 @@ export const useAddToFavorites = ({ loadingUser }: useAddToFavoritesParamsInterf
     useEffect(() => {
         if (loadingUser) return;
 
-        getStorageItem(STORAGE_KEYS?.FAVORITE_KEY, storedItems => {
-            if (storedItems) {
-                setFavoriteItems(JSON.parse(storedItems));
-            } else {
-                removeStorageItem(STORAGE_KEYS?.FAVORITE_KEY, () => {});
+        const fetchFavorites = async () => {
+            try {
+                const storedItems = await getStorageItem(STORAGE_KEYS?.FAVORITE_KEY);
+                if (storedItems) {
+                    setFavoriteItems(JSON.parse(storedItems));
+                } else {
+                    await removeStorageItem(STORAGE_KEYS?.FAVORITE_KEY);
+                }
+            } catch (error) {
+                console.error('Error getting storage item:', error);
             }
-        });
+        };
+
+        fetchFavorites();
     }, [loadingUser]);
 
     useEffect(() => {
         if (loadingUser) return;
-        if (favoriteItems.length) {
-            setStorageItem(STORAGE_KEYS?.FAVORITE_KEY, JSON.stringify(favoriteItems), () => {});
-        } else {
-            removeStorageItem(STORAGE_KEYS?.FAVORITE_KEY, () => {});
-        }
+
+        const updateFavorites = async () => {
+            try {
+                if (favoriteItems.length) {
+                    await setStorageItem(STORAGE_KEYS?.FAVORITE_KEY, JSON.stringify(favoriteItems));
+                } else {
+                    await removeStorageItem(STORAGE_KEYS?.FAVORITE_KEY);
+                }
+            } catch (error) {
+                console.error('Error setting storage item:', error);
+            }
+        };
+
+        updateFavorites();
     }, [favoriteItems, loadingUser]);
 
     const handleSetFavoriteItems = (data: LocalStorageProductInterface) => {

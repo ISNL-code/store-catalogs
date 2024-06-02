@@ -28,7 +28,7 @@ export default function Logout({ isOpen, setIsOpen, string, location, setAuth })
                     { type: 'submit' },
                 ]}
                 onSubmit={() => {
-                    removeStorageItem(STORAGE_KEYS?.ACCESS_TOKEN_KEY, () => {});
+                    removeStorageItem(STORAGE_KEYS?.ACCESS_TOKEN_KEY);
                     navigate(location);
                     setAuth(false);
                     setIsOpen(null);

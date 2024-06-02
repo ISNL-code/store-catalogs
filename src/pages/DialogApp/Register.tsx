@@ -61,7 +61,7 @@ export default function Register({ isOpen, setIsOpen, string, location, setAuth,
                 storeCode: STORE_CODE,
             })
                 .then(res => {
-                    setStorageItem(STORAGE_KEYS?.ACCESS_TOKEN_KEY, JSON.stringify(res.data.token), () => {});
+                    setStorageItem(STORAGE_KEYS?.ACCESS_TOKEN_KEY, JSON.stringify(res.data.token));
                     setAuth(true);
                     setIsOpen(null);
                 })

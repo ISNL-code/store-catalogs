@@ -3,7 +3,7 @@ import { StoreType, ViewModeType } from 'store_constants/types';
 export const ALBERTO_BINI_EU_WS = {
     storage_key: 'ab_eu-ws',
     active: true, // Поле которое запускает магазин true - работает false - остановлен / по тех. причина
-    required_registration: true,
+    required_registration: false,
     URL: ['https://albertobini-brandeurope.com'],
     appStoreUrl: null,
     playMarketUrl: null,

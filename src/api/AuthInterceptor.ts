@@ -9,13 +9,15 @@ const AuthInterceptor = () => {
     axios.defaults.baseURL = BASE_URL;
 
     axios.interceptors.request.use(
-        request => {
-            getStorageItem(STORAGE_KEYS?.ACCESS_TOKEN_KEY, storedItems => {
+        async request => {
+            try {
+                const storedItems = await getStorageItem(STORAGE_KEYS?.ACCESS_TOKEN_KEY);
                 if (storedItems) {
                     request.headers.Authorization = `Bearer ${JSON.parse(storedItems)}`;
                 }
-            });
-
+            } catch (error) {
+                console.error('Error getting storage item:', error);
+            }
             return request;
         },
         error => Promise.reject(error)
@@ -23,7 +25,7 @@ const AuthInterceptor = () => {
 
     axios.interceptors.response.use(
         response => response,
-        error => {
+        async error => {
             if (!error?.response) return Promise.reject(error);
 
             const {
@@ -33,8 +35,12 @@ const AuthInterceptor = () => {
             const isApiUrl = responseURL?.startsWith(process.env.API_URL) ?? false;
 
             if (status === 401 && isApiUrl) {
-                removeStorageItem(STORAGE_KEYS?.ACCESS_TOKEN_KEY, () => {});
-                // window.location.href = ERROR_PAGE?.page_401(); // Uncomment if needed
+                try {
+                    await removeStorageItem(STORAGE_KEYS?.ACCESS_TOKEN_KEY);
+                    // window.location.href = ERROR_PAGE?.page_401(); // Uncomment if needed
+                } catch (error) {
+                    console.error('Error removing storage item:', error);
+                }
             }
 
             // Handle other error statuses

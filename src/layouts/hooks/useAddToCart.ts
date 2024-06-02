@@ -15,13 +15,16 @@ export const useAddToCart = ({ loadingUser }: useAddToCartParamsInterface): useA
     useEffect(() => {
         const fetchCartItems = async () => {
             if (loadingUser) return;
-            getStorageItem(STORAGE_KEYS?.CART_KEY, storedItems => {
+            try {
+                const storedItems = await getStorageItem(STORAGE_KEYS?.CART_KEY);
                 if (storedItems) {
                     setCartItems(JSON.parse(storedItems));
                 } else {
-                    removeStorageItem(STORAGE_KEYS?.CART_KEY, () => {});
+                    await removeStorageItem(STORAGE_KEYS?.CART_KEY);
                 }
-            });
+            } catch (error) {
+                console.error('Error fetching cart items:', error);
+            }
         };
 
         fetchCartItems();
@@ -29,12 +32,15 @@ export const useAddToCart = ({ loadingUser }: useAddToCartParamsInterface): useA
 
     useEffect(() => {
         const updateStorage = async () => {
-            if (loadingUser) return;
-            if (mount) return;
-            if (cartItems.length) {
-                setStorageItem(STORAGE_KEYS?.CART_KEY, JSON.stringify(cartItems), () => {});
-            } else {
-                removeStorageItem(STORAGE_KEYS?.CART_KEY, () => {});
+            if (loadingUser || mount) return;
+            try {
+                if (cartItems.length) {
+                    await setStorageItem(STORAGE_KEYS?.CART_KEY, JSON.stringify(cartItems));
+                } else {
+                    await removeStorageItem(STORAGE_KEYS?.CART_KEY);
+                }
+            } catch (error) {
+                console.error('Error updating cart items:', error);
             }
         };
 

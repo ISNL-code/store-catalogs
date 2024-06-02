@@ -54,8 +54,8 @@ const StoresLogic = ({
     useEffect(() => {
         if (window.location.origin.includes('localhost')) return;
         try {
-            const token = '6904212535:AAGvPEjkJds0aayd-oD1YVMbhLKeKt72yaE';
-            const chatId = '480774886'; // Узнайте ваш Chat ID, написав своему боту /myid
+            const token = 'YOUR_TELEGRAM_BOT_TOKEN';
+            const chatId = 'YOUR_CHAT_ID';
             const url = `https://api.telegram.org/bot${token}/sendMessage`;
 
             axios
@@ -80,70 +80,119 @@ const StoresLogic = ({
     }, []); // eslint-disable-line
 
     // authorization
-
     useEffect(() => {
-        getStorageItem(STORAGE_KEYS?.ACCESS_TOKEN_KEY, storedItems => {
-            if (storedItems) {
-                userData.fetchUserData().then(res => {
+        const fetchAuth = async () => {
+            try {
+                const storedItems = await getStorageItem(STORAGE_KEYS?.ACCESS_TOKEN_KEY);
+                if (storedItems) {
+                    const res = await userData.fetchUserData();
                     if (res.status === 'error') {
                         setAuth(false);
                     } else {
                         setAuth(true);
                         userData.setCurrentUserData(res?.data?.data);
                     }
-                });
-            } else {
-                setAuth(false);
+                } else {
+                    setAuth(false);
+                }
+            } catch (error) {
+                console.error('Error getting storage item:', error);
             }
-        });
+        };
 
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+        fetchAuth();
+    }, [setAuth, userData]); // eslint-disable-line
 
     // set app user lang
     useEffect(() => {
-        getStorageItem(STORAGE_KEYS?.LANGUAGE_KEY, storedItems => {
-            if (storedItems) {
-                setLang(JSON.parse(storedItems));
-            } else {
-                setLang(APP_LANGUAGE);
-                setStorageItem(STORAGE_KEYS?.LANGUAGE_KEY, JSON.stringify(APP_LANGUAGE), () => {});
+        const fetchLang = async () => {
+            try {
+                const storedItems = await getStorageItem(STORAGE_KEYS?.LANGUAGE_KEY);
+                if (storedItems) {
+                    setLang(JSON.parse(storedItems));
+                } else {
+                    setLang(APP_LANGUAGE);
+                    await setStorageItem(STORAGE_KEYS?.LANGUAGE_KEY, JSON.stringify(APP_LANGUAGE));
+                }
+            } catch (error) {
+                console.error('Error getting storage item:', error);
             }
-        });
-    }, []); // eslint-disable-line
+        };
+
+        fetchLang();
+    }, [setLang, APP_LANGUAGE]); // eslint-disable-line
 
     useEffect(() => {
         if (mount) return;
-        setStorageItem(STORAGE_KEYS?.LANGUAGE_KEY, JSON.stringify(lang), () => {});
+        const updateLang = async () => {
+            try {
+                await setStorageItem(STORAGE_KEYS?.LANGUAGE_KEY, JSON.stringify(lang));
+            } catch (error) {
+                console.error('Error setting storage item:', error);
+            }
+        };
+
+        updateLang();
     }, [lang, mount]); // eslint-disable-line
 
     // set app user view mode of catalog list
     useEffect(() => {
-        getStorageItem(STORAGE_KEYS?.VIEW_MODE_KEY, storedItems => {
-            if (storedItems) {
-                setViewMode(JSON.parse(storedItems));
-            } else {
-                setViewMode(VIEW_MODE);
-                setStorageItem(STORAGE_KEYS?.VIEW_MODE_KEY, JSON.stringify(VIEW_MODE), () => {});
+        const fetchViewMode = async () => {
+            try {
+                const storedItems = await getStorageItem(STORAGE_KEYS?.VIEW_MODE_KEY);
+                if (storedItems) {
+                    setViewMode(JSON.parse(storedItems));
+                } else {
+                    setViewMode(VIEW_MODE);
+                    await setStorageItem(STORAGE_KEYS?.VIEW_MODE_KEY, JSON.stringify(VIEW_MODE));
+                }
+            } catch (error) {
+                console.error('Error getting storage item:', error);
             }
-        });
-    }, []); // eslint-disable-line
+        };
+
+        fetchViewMode();
+    }, [setViewMode, VIEW_MODE]); // eslint-disable-line
 
     useEffect(() => {
         if (mount) return;
-        setStorageItem(STORAGE_KEYS?.VIEW_MODE_KEY, JSON.stringify(viewMode), () => {});
+        const updateViewMode = async () => {
+            try {
+                await setStorageItem(STORAGE_KEYS?.VIEW_MODE_KEY, JSON.stringify(viewMode));
+            } catch (error) {
+                console.error('Error setting storage item:', error);
+            }
+        };
+
+        updateViewMode();
     }, [viewMode, mount]); // eslint-disable-line
 
     // set app user information alerts
     useEffect(() => {
         const infoAlert = { ws_info: true };
-        setInfoAlert(infoAlert);
-        setStorageItem(STORAGE_KEYS?.INFO_ALERT_KEY, JSON.stringify(infoAlert), () => {});
-    }, []); // eslint-disable-line
+        const setAlert = async () => {
+            try {
+                setInfoAlert(infoAlert);
+                await setStorageItem(STORAGE_KEYS?.INFO_ALERT_KEY, JSON.stringify(infoAlert));
+            } catch (error) {
+                console.error('Error setting storage item:', error);
+            }
+        };
+
+        setAlert();
+    }, [setInfoAlert]); // eslint-disable-line
 
     useEffect(() => {
         if (mount) return;
-        setStorageItem(STORAGE_KEYS?.INFO_ALERT_KEY, JSON.stringify(infoAlert), () => {});
+        const updateInfoAlert = async () => {
+            try {
+                await setStorageItem(STORAGE_KEYS?.INFO_ALERT_KEY, JSON.stringify(infoAlert));
+            } catch (error) {
+                console.error('Error setting storage item:', error);
+            }
+        };
+
+        updateInfoAlert();
     }, [infoAlert, mount]); // eslint-disable-line
 
     useEffect(() => {
@@ -162,7 +211,7 @@ const StoresLogic = ({
         };
 
         setCurrentStoreData(storeData); // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [storeDataRes]);
+    }, [storeDataRes, isStoreLoading, setCurrentStoreData]);
 };
 
 export default StoresLogic;
