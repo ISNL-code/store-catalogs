@@ -68,11 +68,14 @@ export function getStorageItem(key: string): Promise<string | null> {
         try {
             getCookie(key).then(cookieValue => {
                 if (cookieValue !== null) {
+                    alert('GET COOKIE');
                     alert(cookieValue);
                     alert(window.location.hostname);
                     resolve(cookieValue);
                 } else if (isLocalStorageAvailable()) {
+                    alert('GET LOCAL STORAGE');
                     resolve(localStorage.getItem(key));
+                    alert('GET SESSION STORAGE');
                 } else if (isSessionStorageAvailable()) {
                     resolve(sessionStorage.getItem(key));
                 } else {
