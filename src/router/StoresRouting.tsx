@@ -83,7 +83,7 @@ const StoresRouting = () => {
         }),
         [lang, auth, infoAlert, storeDataRes, currentUserData] // eslint-disable-line
     );
-
+    alert(auth);
     StoresLogic(memoizedAppLogic);
 
     //eslint-disable-next-line
