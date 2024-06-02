@@ -156,7 +156,7 @@ const StoresRouting = () => {
             path: ROUTES?.HOME,
             errorElement: <PAGE_404 />,
             loader: () => <div>Loading...</div>,
-            element: handleCheckAccess(ROUTES?.HOME) ? (
+            element: (
                 <Suspense fallback={<div>Loading...</div>}>
                     <Home
                         store={currentStoreData}
@@ -178,9 +178,10 @@ const StoresRouting = () => {
                         savedImages={savedImages}
                     />
                 </Suspense>
-            ) : (
-                <Navigate to={handleRedirect()} replace />
             ),
+            // ) : (
+            //     <Navigate to={handleRedirect()} replace />
+            // ),
             children: [
                 {
                     path: ':storeCode',
