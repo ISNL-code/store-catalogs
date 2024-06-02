@@ -12,9 +12,8 @@ export default function WelcomePage({ handleRedirect }) {
     useEffect(() => {
         const timeoutId = setTimeout(() => {
             const startPath = handleRedirect();
-
             navigate(startPath);
-        }, 2500);
+        }, 3000);
 
         return () => clearTimeout(timeoutId);
     }, []); // eslint-disable-line
@@ -29,7 +28,7 @@ export default function WelcomePage({ handleRedirect }) {
                     top: 0,
                     left: 0,
                     minWidth: '100vw',
-                    minHeight: '100vh',
+                    minHeight: '90vh',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
@@ -42,7 +41,7 @@ export default function WelcomePage({ handleRedirect }) {
                         alignItems: 'center',
                         justifyContent: 'center',
                         gap: 1,
-                        animation: `fadeIn 2500ms linear forwards`,
+                        animation: `fadeIn 2200ms linear forwards`,
                         transformOrigin: 'center',
                         '@keyframes fadeIn': {
                             '0%': { transform: 'scaleY(0)' },
