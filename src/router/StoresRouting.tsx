@@ -68,6 +68,7 @@ const StoresRouting = () => {
 
     const memoizedAppLogic = useMemo(
         () => ({
+            auth,
             setAuth,
             setLang,
             setInfoAlert,

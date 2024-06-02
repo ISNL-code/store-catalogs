@@ -50,6 +50,7 @@ const HeaderNavButton = ({
                     if (action) action(e);
                     if (!protectedPath && path) navigate(path);
                 }}
+                focusRipple={false}
             >
                 <Badge
                     color="error"

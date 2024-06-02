@@ -12,6 +12,7 @@ import { QueryObserverResult, RefetchOptions, RefetchQueryFilters } from '@tanst
 import { getStorageItem, setStorageItem } from 'utils/storageUtils';
 
 interface Props {
+    auth: boolean | null;
     lang: string;
     viewMode: ViewModeType | null;
     infoAlert: { ws_info: boolean } | null;
@@ -34,6 +35,7 @@ interface Props {
 }
 
 const StoresLogic = ({
+    auth,
     setAuth,
     userData,
     lang,
@@ -101,7 +103,7 @@ const StoresLogic = ({
         };
 
         fetchAuth();
-    }, [setAuth, userData]); // eslint-disable-line
+    }, [auth, userData]); // eslint-disable-line
 
     // set app user lang
     useEffect(() => {
