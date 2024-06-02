@@ -86,6 +86,7 @@ const StoresLogic = ({
         const fetchAuth = async () => {
             try {
                 const storedItems = await getStorageItem(STORAGE_KEYS?.ACCESS_TOKEN_KEY);
+
                 if (storedItems) {
                     const res = await userData.fetchUserData();
                     if (res.status === 'error') {
@@ -103,7 +104,7 @@ const StoresLogic = ({
         };
 
         fetchAuth();
-    }, [auth, userData]); // eslint-disable-line
+    }, []); // eslint-disable-line
 
     // set app user lang
     useEffect(() => {
@@ -122,7 +123,7 @@ const StoresLogic = ({
         };
 
         fetchLang();
-    }, [setLang, APP_LANGUAGE]); // eslint-disable-line
+    }, []); // eslint-disable-line
 
     useEffect(() => {
         if (mount) return;
@@ -154,7 +155,7 @@ const StoresLogic = ({
         };
 
         fetchViewMode();
-    }, [setViewMode, VIEW_MODE]); // eslint-disable-line
+    }, []); // eslint-disable-line
 
     useEffect(() => {
         if (mount) return;
