@@ -69,6 +69,7 @@ export function getStorageItem(key: string): Promise<string | null> {
             getCookie(key).then(cookieValue => {
                 if (cookieValue !== null) {
                     alert(cookieValue);
+                    alert(window.location.hostname);
                     resolve(cookieValue);
                 } else if (isLocalStorageAvailable()) {
                     resolve(localStorage.getItem(key));
