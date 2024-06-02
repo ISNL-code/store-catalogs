@@ -3,6 +3,7 @@ import App from 'App';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import AuthInterceptor from 'api/AuthInterceptor';
 import './index.css';
+import { showWarningIfStorageUnavailable } from 'utils/storageUtils';
 
 const queryClient = new QueryClient({
     defaultOptions: {
@@ -19,6 +20,7 @@ const clearCache = () => {
 
 AuthInterceptor();
 clearCache();
+showWarningIfStorageUnavailable();
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     <QueryClientProvider client={queryClient}>
