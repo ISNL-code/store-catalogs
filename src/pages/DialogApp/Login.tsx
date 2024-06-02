@@ -8,6 +8,7 @@ import { DialogWindowType } from 'layouts/hooks/useFormsApp';
 import FormDialog from 'components/organisms/Modals/FormDialog';
 import { ROUTES } from 'router/routes';
 import { STORAGE_KEYS } from 'constants/local_storage_keys';
+import { setStorageItem } from 'utils/storageUtils';
 
 export default function Login({ isOpen, setIsOpen, string, location, setAuth }) {
     const { STORE_CODE, STORE_NAME } = STORE_CONFIG;
@@ -25,7 +26,7 @@ export default function Login({ isOpen, setIsOpen, string, location, setAuth }) 
             loginCustomer({ ...values, storeCode: STORE_CODE })
                 .then(res => {
                     if (res.data.token) {
-                        localStorage.setItem(STORAGE_KEYS?.ACCESS_TOKEN_KEY, JSON.stringify(res.data.token));
+                        setStorageItem(STORAGE_KEYS?.ACCESS_TOKEN_KEY, JSON.stringify(res.data.token), () => {});
                         setAuth(true);
                         setIsOpen(null);
                     }
