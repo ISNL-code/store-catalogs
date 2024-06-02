@@ -147,7 +147,7 @@ const ConfirmCoupon = ({
                             updateUserData();
                         });
                 })
-                .catch(err => console.log(err));
+                .catch(err => alert(err));
     };
 
     return (
