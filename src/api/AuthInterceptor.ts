@@ -2,6 +2,7 @@ import axios from 'axios';
 import { STORAGE_KEYS } from 'constants/local_storage_keys';
 import { ERROR_PAGE } from 'router/routes';
 import { STORE_CONFIG } from 'store_constants/stores_config';
+import { getStorageItem } from 'utils/storageUtils';
 
 const AuthInterceptor = () => {
     const { BASE_URL } = STORE_CONFIG;
@@ -9,10 +10,12 @@ const AuthInterceptor = () => {
 
     axios.interceptors.request.use(
         request => {
-            const token = localStorage.getItem(STORAGE_KEYS?.ACCESS_TOKEN_KEY);
-            if (token) {
-                request.headers.Authorization = `Bearer ${JSON.parse(token)}`;
-            }
+            getStorageItem(STORAGE_KEYS?.ACCESS_TOKEN_KEY, storedItems => {
+                if (storedItems) {
+                    request.headers.Authorization = `Bearer ${JSON.parse(storedItems)}`;
+                }
+            });
+
             return request;
         },
         error => Promise.reject(error)
