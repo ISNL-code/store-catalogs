@@ -8,20 +8,20 @@ const AuthInterceptor = () => {
     const { BASE_URL } = STORE_CONFIG;
     axios.defaults.baseURL = BASE_URL;
 
-    // axios.interceptors.request.use(
-    //     async request => {
-    //         try {
-    //             const storedItems = await getStorageItem(STORAGE_KEYS?.ACCESS_TOKEN_KEY);
-    //             if (storedItems) {
-    //                 request.headers.Authorization = `Bearer ${JSON.parse(storedItems)}`;
-    //             }
-    //         } catch (error) {
-    //             console.error('Error getting storage item:', error);
-    //         }
-    //         return request;
-    //     },
-    //     error => Promise.reject(error)
-    // );
+    axios.interceptors.request.use(
+        async request => {
+            try {
+                const storedItems = await getStorageItem(STORAGE_KEYS?.ACCESS_TOKEN_KEY);
+                if (storedItems) {
+                    request.headers.Authorization = `Bearer ${JSON.parse(storedItems)}`;
+                }
+            } catch (error) {
+                console.error('Error getting storage item:', error);
+            }
+            return request;
+        },
+        error => Promise.reject(error)
+    );
 
     axios.interceptors.response.use(
         response => response,
