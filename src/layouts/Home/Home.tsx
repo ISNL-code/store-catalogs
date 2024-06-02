@@ -78,7 +78,7 @@ export default function Home({
             navigate(HOME_ROUTE?.root(STORE_CODE));
         }
     }, [storeCode, STORE_CODE, store]); // eslint-disable-line
-
+    alert('home');
     return (
         <Box display="flex" flexDirection="column" justifyContent="space-between">
             <CssBaseline />
