@@ -62,6 +62,7 @@ export default function LandingLayout({ lang, setLang, currentLanguage }: Props)
                 activeDialogWindow={activeDialogWindow}
                 handleOpenDialog={handleOpenDialog}
                 dialogState={dialogState}
+                lang={lang}
             />
         </Box>
     );

@@ -149,6 +149,7 @@ export default function Home({
                 activeDialogWindow={activeDialogWindow}
                 handleOpenDialog={handleOpenDialog}
                 setAuth={setAuth}
+                lang={lang}
             />
         </Box>
     );

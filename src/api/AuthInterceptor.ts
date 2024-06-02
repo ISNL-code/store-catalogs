@@ -2,7 +2,7 @@ import axios from 'axios';
 import { STORAGE_KEYS } from 'constants/local_storage_keys';
 import { ERROR_PAGE } from 'router/routes';
 import { STORE_CONFIG } from 'store_constants/stores_config';
-import { getStorageItem } from 'utils/storageUtils';
+import { getStorageItem, removeStorageItem } from 'utils/storageUtils';
 
 const AuthInterceptor = () => {
     const { BASE_URL } = STORE_CONFIG;
@@ -33,7 +33,7 @@ const AuthInterceptor = () => {
             const isApiUrl = responseURL?.startsWith(process.env.API_URL) ?? false;
 
             if (status === 401 && isApiUrl) {
-                localStorage.removeItem(STORAGE_KEYS?.ACCESS_TOKEN_KEY);
+                removeStorageItem(STORAGE_KEYS?.ACCESS_TOKEN_KEY, () => {});
                 // window.location.href = ERROR_PAGE?.page_401(); // Uncomment if needed
             }
 

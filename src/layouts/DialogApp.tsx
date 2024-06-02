@@ -24,6 +24,7 @@ interface Props {
     favorites?;
     cart?;
     dialogState?: DialogStateInterface | null;
+    lang: string;
 }
 
 const DialogApp = ({
@@ -35,6 +36,7 @@ const DialogApp = ({
     favorites,
     cart,
     dialogState,
+    lang,
 }: Props) => {
     if (!activeDialogWindow) return null;
 
@@ -61,6 +63,7 @@ const DialogApp = ({
                 setIsOpen={handleOpenDialog}
                 string={string}
                 setAuth={setAuth}
+                lang={lang}
             />
             <QuestionForm
                 isOpen={activeDialogWindow === DialogWindowType?.QUESTION}

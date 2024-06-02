@@ -90,6 +90,7 @@ export default function NewPassword({ lang, setLang, setAuth, currentLanguage, s
                 activeDialogWindow={activeDialogWindow}
                 handleOpenDialog={handleOpenDialog}
                 setAuth={setAuth}
+                lang={lang}
             />
         </Box>
     );

@@ -100,6 +100,7 @@ export default function SecurityLayout({ lang, setLang, store, setAuth, currentL
                 activeDialogWindow={activeDialogWindow}
                 handleOpenDialog={handleOpenDialog}
                 setAuth={setAuth}
+                lang={lang}
             />
         </Box>
     );

@@ -14,6 +14,8 @@ import { STORE_CONFIG } from 'store_constants/stores_config';
 import HomePage from 'pages/Home/HomePage';
 import StoresLogic from 'StoresLogic';
 import { useStoresApi } from 'api/useStoresApi';
+import MainCatalog from 'layouts/Catalog/MainCatalog';
+import Catalog from 'pages/Catalog/Catalog';
 
 const StoresRouting = () => {
     const { STORE_CODE, OPTIONS, REQUIRED_REGISTRATION, STORE_NAME } = STORE_CONFIG;
@@ -96,6 +98,8 @@ const StoresRouting = () => {
         }
     }, [REQUIRED_REGISTRATION, auth, HOME_PAGE_ACTIVE, STORE_CODE]);
 
+    if (!currentStoreData) return null;
+
     const router = createBrowserRouter([
         {
             path: '/',
@@ -144,15 +148,17 @@ const StoresRouting = () => {
             ],
         },
         {
-            path: ROUTES?.HOME,
+            path: ROUTES?.STORE,
             errorElement: <div>Error...</div>,
             loader: () => <div>Loading...</div>,
             element: (
                 <Suspense fallback={<div>Loading...</div>}>
-                    <Home
+                    <MainCatalog
                         store={currentStoreData}
                         lang={lang}
                         setLang={setLang}
+                        viewMode={viewMode}
+                        setViewMode={setViewMode}
                         auth={auth}
                         setAuth={setAuth}
                         userData={{
@@ -162,6 +168,8 @@ const StoresRouting = () => {
                             fetchUserData,
                             userError,
                         }}
+                        infoAlert={infoAlert}
+                        setInfoAlert={setInfoAlert}
                         cart={cart}
                         favorites={favorites}
                         currentLanguage={currentLanguage}
@@ -177,7 +185,7 @@ const StoresRouting = () => {
                     loader: () => <div>Loading...</div>,
                     element: (
                         <Suspense fallback={<div>Loading...</div>}>
-                            <HomePage />
+                            <Catalog />
                         </Suspense>
                     ),
                 },
@@ -187,94 +195,132 @@ const StoresRouting = () => {
 
     return <RouterProvider router={router} />;
 
-    // return (
     //     <Router>
-    //         <Routes>
-    //             <Route path={'/'} element={<WelcomePage handleRedirect={handleRedirect} />} />
-    //             {REQUIRED_REGISTRATION && !auth && (
-    //                 <>
-    //                     <Route
-    //                         path={`${ROUTES?.SECURITY}/:storeCode/:formType`}
-    //                         element={
-    //                             <SecurityLayout
-    //                                 lang={lang}
-    //                                 setLang={setLang}
-    //                                 setAuth={setAuth}
-    //                                 store={currentStoreData}
-    //                                 currentLanguage={currentLanguage}
-    //                             />
-    //                         }
-    //                     />
-    //                     <Route
-    //                         path="*"
-    //                         element={
-    //                             <Navigate
-    //                                 to={
-    //                                     REQUIRED_REGISTRATION
-    //                                         ? LOGIN_ROUTE?.root(STORE_CODE, 'login')
-    //                                         : handleRedirect()
-    //                                 }
-    //                                 replace
-    //                             />
-    //                         }
-    //                     />
-    //                 </>
-    //             )}
+    //     <Routes>
+    //         <Route
+    //             path={`${ROUTES?.NEW_PASSWORD}/:storeCode/:tokenId`}
+    //             element={
+    //                 <NewPassword
+    //                     lang={lang}
+    //                     setLang={setLang}
+    //                     setAuth={setAuth}
+    //                     currentLanguage={currentLanguage}
+    //                     store={currentStoreData}
+    //                 />
+    //             }
+    //         />
+    //         <Route path={`${ROUTES?.PAGE_401}`} element={<PAGE_401 />} />
+    //         <Route path={`${ROUTES?.PAGE_403}`} element={<PAGE_403 />} />
+    //         <Route path={`${ROUTES?.PAGE_404}`} element={<PAGE_404 />} />
+    //         <Route path={`${ROUTES?.PAGE_500}`} element={<PAGE_500 />} />
 
-    //             {handleCheckAccess(ROUTES?.HOME) && (
+    //         {REQUIRED_REGISTRATION && !auth && (
+    //             <>
     //                 <Route
-    //                     path={ROUTES?.HOME}
+    //                     path={`${ROUTES?.SECURITY}/:storeCode/:formType`}
     //                     element={
-
+    //                         <SecurityLayout
+    //                             lang={lang}
+    //                             setLang={setLang}
+    //                             setAuth={setAuth}
+    //                             store={currentStoreData}
+    //                             currentLanguage={currentLanguage}
+    //                         />
     //                     }
-    //                 >
-
-    //                     <Route path="*" element={<Navigate to={HOME_ROUTE?.root(STORE_CODE)} replace />} />
-    //                 </Route>
-    //             )}
-
-    //             {handleCheckAccess(ROUTES?.STORE) && (
+    //                 />
     //                 <Route
-    //                     path={ROUTES?.STORE}
+    //                     path="*"
     //                     element={
-
+    //                         <Navigate
+    //                             to={
+    //                                 REQUIRED_REGISTRATION
+    //                                     ? LOGIN_ROUTE?.root(STORE_CODE, 'login')
+    //                                     : handleRedirect()
+    //                             }
+    //                             replace
+    //                         />
     //                     }
-    //                 >
-    //                     <Route path={`${ROUTES?.STORE}/:storeCode`} element={} />
-    //                     <Route
-    //                         path={`${ROUTES?.STORE}/:storeCode/product/:productId/model/:modelSku`}
-    //                         element={<ProductDetailsPage />}
-    //                     />
-    //                     <Route path={`${ROUTES?.STORE}/:storeCode/cart`} element={<CartPage />} />
-    //                     <Route path={`${ROUTES?.STORE}/:storeCode/favorites`} element={<FavoritesPage />} />
-    //                     <Route path={`${ROUTES?.STORE}/:storeCode/info`} element={<InformationPage />} />
-    //                     <Route path={`${ROUTES?.STORE}/:storeCode/profile`} element={<UserProfile />} />
-    //                     <Route path={`${ROUTES?.STORE}/:storeCode/contacts`} element={<ContactsManagePage />} />
-    //                     <Route path={`${ROUTES?.STORE}/:storeCode/orders`} element={<UserOrders />} />
-    //                     <Route path="*" element={<Navigate to={STORE_ROUTE?.root(STORE_CODE)} replace />} />
-    //                 </Route>
-    //             )}
+    //                 />
+    //             </>
+    //         )}
 
+    //         {handleCheckAccess(ROUTES?.HOME) && (
     //             <Route
-    //                 path={`${ROUTES?.NEW_PASSWORD}/:storeCode/:tokenId`}
+    //                 path={ROUTES?.HOME}
     //                 element={
-    //                     <NewPassword
+    //                     <Home
+    //                         store={currentStoreData}
     //                         lang={lang}
     //                         setLang={setLang}
+    //                         auth={auth}
     //                         setAuth={setAuth}
+    //                         userData={{
+    //                             currentUserData,
+    //                             isFetchingUser,
+    //                             setCurrentUserData,
+    //                             fetchUserData,
+    //                             userError,
+    //                         }}
+    //                         cart={cart}
+    //                         favorites={favorites}
     //                         currentLanguage={currentLanguage}
-    //                         store={currentStoreData}
+    //                         handleSaveImage={handleSaveImage}
+    //                         savedImages={savedImages}
     //                     />
     //                 }
-    //             />
-    //             <Route path={`${ROUTES?.PAGE_401}`} element={<PAGE_401 />} />
-    //             <Route path={`${ROUTES?.PAGE_403}`} element={<PAGE_403 />} />
-    //             <Route path={`${ROUTES?.PAGE_404}`} element={<PAGE_404 />} />
-    //             <Route path={`${ROUTES?.PAGE_500}`} element={<PAGE_500 />} />
-    //             <Route path="*" element={<Navigate to={handleRedirect()} replace />} />
-    //         </Routes>
-    //     </Router>
-    // );
+    //             >
+    //                 <Route index path={`${ROUTES?.HOME}/:storeCode`} element={<HomePage />} />
+    //                 <Route path="*" element={<Navigate to={STORE_ROUTE?.root(STORE_CODE)} replace />} />
+    //             </Route>
+    //         )}
+
+    //         {handleCheckAccess(ROUTES?.STORE) && (
+    //             <Route
+    //                 path={ROUTES?.STORE}
+    //                 element={
+    // <Catalog
+    //     store={currentStoreData}
+    //     lang={lang}
+    //     setLang={setLang}
+    //     viewMode={viewMode}
+    //     setViewMode={setViewMode}
+    //     auth={auth}
+    //     setAuth={setAuth}
+    //     userData={{
+    //         currentUserData,
+    //         isFetchingUser,
+    //         setCurrentUserData,
+    //         fetchUserData,
+    //         userError,
+    //     }}
+    //     infoAlert={infoAlert}
+    //     setInfoAlert={setInfoAlert}
+    //     cart={cart}
+    //     favorites={favorites}
+    //     currentLanguage={currentLanguage}
+    //     handleSaveImage={handleSaveImage}
+    //     savedImages={savedImages}
+    // />
+    //                 }
+    //             >
+    //                 <Route index path={`${ROUTES?.STORE}/:storeCode`} element={<CatalogPage />} />
+    //                 <Route
+    //                     path={`${ROUTES?.STORE}/:storeCode/product/:productId/model/:modelSku`}
+    //                     element={<ProductDetailsPage />}
+    //                 />
+    //                 <Route path={`${ROUTES?.STORE}/:storeCode/cart`} element={<CartPage />} />
+    //                 <Route path={`${ROUTES?.STORE}/:storeCode/favorites`} element={<FavoritesPage />} />
+    //                 <Route path={`${ROUTES?.STORE}/:storeCode/info`} element={<InformationPage />} />
+    //                 <Route path={`${ROUTES?.STORE}/:storeCode/profile`} element={<UserProfile />} />
+    //                 <Route path={`${ROUTES?.STORE}/:storeCode/contacts`} element={<ContactsManagePage />} />
+    //                 <Route path={`${ROUTES?.STORE}/:storeCode/orders`} element={<UserOrders />} />
+    //                 <Route path="*" element={<Navigate to={STORE_ROUTE?.root(STORE_CODE)} replace />} />
+    //             </Route>
+    //         )}
+
+    //         <Route path="*" element={<Navigate to={handleRedirect()} replace />} />
+    //     </Routes>
+    // </Router>
 };
 
 export default StoresRouting;

@@ -228,6 +228,7 @@ export default function MainCatalog({
                 cart={cart}
                 favorites={favorites}
                 dialogState={dialogState}
+                lang={lang}
             />
         </Box>
     );

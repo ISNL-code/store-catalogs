@@ -1,5 +1,5 @@
 import { useUserApi } from 'api/useUserApi';
-import { useEffect, useState } from 'react';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import Loader from 'components/atoms/Loader/Loader';
 import { useFormik } from 'formik';
 import registerFormValidation from 'utils/validation/registerFormValidation';
@@ -10,6 +10,16 @@ import FormDialog from 'components/organisms/Modals/FormDialog';
 import { DialogWindowType } from 'layouts/hooks/useFormsApp';
 import { ROUTES } from 'router/routes';
 import { STORAGE_KEYS } from 'constants/local_storage_keys';
+import { setStorageItem } from 'utils/storageUtils';
+
+interface Props {
+    isOpen: boolean;
+    setIsOpen: Dispatch<SetStateAction<DialogWindowType | null>>;
+    string: any;
+    location: string;
+    setAuth: Dispatch<SetStateAction<boolean>>;
+    lang: string;
+}
 
 const INITIAL_VALUES = {
     password: '',
@@ -21,7 +31,7 @@ const INITIAL_VALUES = {
     country: '',
 };
 
-export default function Register({ isOpen, setIsOpen, string, location, setAuth }) {
+export default function Register({ isOpen, setIsOpen, string, location, setAuth, lang }: Props) {
     const { STORE_CODE, STORE_NAME, SUPPORTED_COUNTRIES } = STORE_CONFIG;
 
     const [email, setEmail] = useState('');
@@ -47,11 +57,11 @@ export default function Register({ isOpen, setIsOpen, string, location, setAuth 
                 username: values.email,
                 country: values.country,
                 phone: values.phoneNumber,
-                lang: JSON.parse(localStorage.getItem(STORAGE_KEYS?.LANGUAGE_KEY) || 'en'),
+                lang: lang,
                 storeCode: STORE_CODE,
             })
                 .then(res => {
-                    localStorage.setItem(STORAGE_KEYS?.ACCESS_TOKEN_KEY, JSON.stringify(res.data.token));
+                    setStorageItem(STORAGE_KEYS?.ACCESS_TOKEN_KEY, JSON.stringify(res.data.token), () => {});
                     setAuth(true);
                     setIsOpen(null);
                 })
