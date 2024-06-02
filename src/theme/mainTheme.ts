@@ -58,6 +58,16 @@ const mainTheme = createTheme({
         caption: { fontSize: '12px', lineHeight: 1, fontWeight: 500, color: '#161616', fontFamily: 'Roboto' },
     },
     components: {
+        MuiButton: {
+            defaultProps: {
+                focusRipple: false,
+            },
+        },
+        MuiIconButton: {
+            defaultProps: {
+                focusRipple: false,
+            },
+        },
         MuiLink: {},
         MuiFormHelperText: {
             styleOverrides: {
