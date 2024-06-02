@@ -1,4 +1,5 @@
 import axios, { AxiosResponse } from 'axios';
+import { useOutletContext } from 'react-router-dom';
 
 interface ApiGetParams {
     url: string;
@@ -32,28 +33,40 @@ interface Api {
 }
 
 const useApi = (): Api => {
+    const context: any = useOutletContext();
+
     const get = async ({ url }: ApiGetParams): Promise<AxiosResponse<any>> => {
-        const response = await axios.get(url);
+        const token = context?.apiToken; // Получаем токен из контекста
+        const headers = token ? { Authorization: `Bearer ${token}` } : {}; // Добавляем заголовок с токеном, если он есть
+        const response = await axios.get(url, { headers });
         return response;
     };
 
     const post = async ({ url, body = {} }: ApiPostParams): Promise<AxiosResponse<any>> => {
-        const response = await axios.post(url, body);
+        const token = context?.apiToken;
+        const headers = token ? { Authorization: `Bearer ${token}` } : {};
+        const response = await axios.post(url, body, { headers });
         return response;
     };
 
     const put = async ({ url, body }: ApiPutParams): Promise<AxiosResponse<any>> => {
-        const response = await axios.put(url, body);
+        const token = context?.apiToken;
+        const headers = token ? { Authorization: `Bearer ${token}` } : {};
+        const response = await axios.put(url, body, { headers });
         return response;
     };
 
     const patch = async ({ url, body }: ApiPatchParams): Promise<AxiosResponse<any>> => {
-        const response = await axios.patch(url, body);
+        const token = context?.apiToken;
+        const headers = token ? { Authorization: `Bearer ${token}` } : {};
+        const response = await axios.patch(url, body, { headers });
         return response;
     };
 
     const remove = async ({ url }: ApiDeleteParams): Promise<AxiosResponse<any>> => {
-        const response = await axios.delete(url);
+        const token = context?.apiToken;
+        const headers = token ? { Authorization: `Bearer ${token}` } : {};
+        const response = await axios.delete(url, { headers });
         return response;
     };
 

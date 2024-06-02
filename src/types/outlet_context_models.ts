@@ -28,6 +28,7 @@ export interface HomeContextInterface {
 
     // user data
     auth: boolean | null;
+    apiToken: string | null;
     currentUserData: UserDataInterface | null;
     loadingUserData: boolean;
     updateUserData: <TPageData>(
@@ -78,6 +79,7 @@ export interface CatalogContextInterface {
 
     // user data
     auth: boolean | null;
+    apiToken: string | null;
     currentUserData: UserDataInterface | null;
     loadingUserData: boolean;
     updateUserData: <TPageData>(

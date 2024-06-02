@@ -169,6 +169,7 @@ export default function MainCatalog({
 
                         //user data
                         auth,
+                        apiToken,
                         currentUserData: userData.currentUserData,
                         loadingUserData: userData.isFetchingUser,
                         updateUserData: userData.fetchUserData,

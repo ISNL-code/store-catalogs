@@ -31,6 +31,7 @@ interface Props {
         ) => Promise<QueryObserverResult<AxiosResponse<any, any>, unknown>>;
         userError: any;
     };
+    setApiToken: (token: string | null) => void;
 }
 
 const StoresLogic = ({
@@ -45,6 +46,7 @@ const StoresLogic = ({
     storeDataRes,
     setCurrentStoreData,
     isStoreLoading,
+    setApiToken,
 }: Props) => {
     const mount = useIsMount();
     const { APP_LANGUAGE, USER_OPTIONS, STORE_NAME } = STORE_CONFIG;
@@ -91,6 +93,7 @@ const StoresLogic = ({
                         setAuth(false);
                     } else {
                         setAuth(true);
+                        setApiToken(storedItems);
                         userData.setCurrentUserData(res?.data?.data);
                     }
                 } else {

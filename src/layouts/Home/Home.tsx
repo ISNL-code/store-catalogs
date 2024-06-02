@@ -115,6 +115,7 @@ export default function Home({
                         savedImages,
 
                         //user data
+                        apiToken,
                         auth: auth,
                         currentUserData: userData.currentUserData,
                         loadingUserData: userData.isFetchingUser,

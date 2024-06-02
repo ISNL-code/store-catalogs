@@ -82,7 +82,6 @@ const StoresRouting = () => {
             viewMode,
             storeDataRes,
             isStoreLoading,
-            apiToken,
             setApiToken,
         }),
         [lang, auth, infoAlert, storeDataRes, currentUserData] // eslint-disable-line
@@ -137,7 +136,6 @@ const StoresRouting = () => {
                         setAuth={setAuth}
                         store={currentStoreData}
                         currentLanguage={currentLanguage}
-                        apiToken={apiToken}
                         setApiToken={setApiToken}
                     />
                 </Suspense>
