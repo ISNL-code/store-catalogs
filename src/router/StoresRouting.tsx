@@ -16,6 +16,14 @@ import StoresLogic from 'StoresLogic';
 import { useStoresApi } from 'api/useStoresApi';
 import MainCatalog from 'layouts/Catalog/MainCatalog';
 import Catalog from 'pages/Catalog/Catalog';
+import ProductDetails from 'pages/ProductDetails/ProductDetails';
+import PAGE_404 from 'pages/TechPages/404';
+import Cart from 'pages/Cart/Cart';
+import Favorites from 'pages/Favorites/Favorites';
+import UserOrders from 'pages/Orders/UserOrders';
+import UserProfile from 'pages/Profile/UserProfile';
+import InformationPage from 'pages/Information/InformationPage';
+import ContactsManagePage from 'pages/Contacts/ContactsManagePage';
 
 const StoresRouting = () => {
     const { STORE_CODE, OPTIONS, REQUIRED_REGISTRATION, STORE_NAME } = STORE_CONFIG;
@@ -103,13 +111,13 @@ const StoresRouting = () => {
     const router = createBrowserRouter([
         {
             path: '/',
-            errorElement: <div>Error...</div>,
+            errorElement: <PAGE_404 />,
             loader: () => <div>Loading...</div>,
             element: <WelcomePage />,
         },
         {
             path: ROUTES?.HOME,
-            errorElement: <div>Error...</div>,
+            errorElement: <PAGE_404 />,
             loader: () => <div>Loading...</div>,
             element: (
                 <Suspense fallback={<div>Loading...</div>}>
@@ -137,7 +145,7 @@ const StoresRouting = () => {
             children: [
                 {
                     path: ':storeCode',
-                    errorElement: <div>Error...</div>,
+                    errorElement: <PAGE_404 />,
                     loader: () => <div>Loading...</div>,
                     element: (
                         <Suspense fallback={<div>Loading...</div>}>
@@ -149,7 +157,7 @@ const StoresRouting = () => {
         },
         {
             path: ROUTES?.STORE,
-            errorElement: <div>Error...</div>,
+            errorElement: <PAGE_404 />,
             loader: () => <div>Loading...</div>,
             element: (
                 <Suspense fallback={<div>Loading...</div>}>
@@ -181,11 +189,81 @@ const StoresRouting = () => {
             children: [
                 {
                     path: ':storeCode',
-                    errorElement: <div>Error...</div>,
+                    errorElement: <PAGE_404 />,
                     loader: () => <div>Loading...</div>,
                     element: (
                         <Suspense fallback={<div>Loading...</div>}>
                             <Catalog />
+                        </Suspense>
+                    ),
+                },
+                {
+                    path: ':storeCode/product/:productId/model/:modelSku',
+                    errorElement: <PAGE_404 />,
+                    loader: () => <div>Loading...</div>,
+                    element: (
+                        <Suspense fallback={<div>Loading...</div>}>
+                            <ProductDetails />
+                        </Suspense>
+                    ),
+                },
+                {
+                    path: ':storeCode/cart',
+                    errorElement: <PAGE_404 />,
+                    loader: () => <div>Loading...</div>,
+                    element: (
+                        <Suspense fallback={<div>Loading...</div>}>
+                            <Cart />
+                        </Suspense>
+                    ),
+                },
+                {
+                    path: ':storeCode/favorites',
+                    errorElement: <PAGE_404 />,
+                    loader: () => <div>Loading...</div>,
+                    element: (
+                        <Suspense fallback={<div>Loading...</div>}>
+                            <Favorites />
+                        </Suspense>
+                    ),
+                },
+                {
+                    path: ':storeCode/orders',
+                    errorElement: <PAGE_404 />,
+                    loader: () => <div>Loading...</div>,
+                    element: (
+                        <Suspense fallback={<div>Loading...</div>}>
+                            <UserOrders />
+                        </Suspense>
+                    ),
+                },
+                {
+                    path: ':storeCode/profile',
+                    errorElement: <PAGE_404 />,
+                    loader: () => <div>Loading...</div>,
+                    element: (
+                        <Suspense fallback={<div>Loading...</div>}>
+                            <UserProfile />
+                        </Suspense>
+                    ),
+                },
+                {
+                    path: ':storeCode/info',
+                    errorElement: <PAGE_404 />,
+                    loader: () => <div>Loading...</div>,
+                    element: (
+                        <Suspense fallback={<div>Loading...</div>}>
+                            <InformationPage />
+                        </Suspense>
+                    ),
+                },
+                {
+                    path: ':storeCode/contacts',
+                    errorElement: <PAGE_404 />,
+                    loader: () => <div>Loading...</div>,
+                    element: (
+                        <Suspense fallback={<div>Loading...</div>}>
+                            <ContactsManagePage />
                         </Suspense>
                     ),
                 },
@@ -270,50 +348,6 @@ const StoresRouting = () => {
     //                 }
     //             >
     //                 <Route index path={`${ROUTES?.HOME}/:storeCode`} element={<HomePage />} />
-    //                 <Route path="*" element={<Navigate to={STORE_ROUTE?.root(STORE_CODE)} replace />} />
-    //             </Route>
-    //         )}
-
-    //         {handleCheckAccess(ROUTES?.STORE) && (
-    //             <Route
-    //                 path={ROUTES?.STORE}
-    //                 element={
-    // <Catalog
-    //     store={currentStoreData}
-    //     lang={lang}
-    //     setLang={setLang}
-    //     viewMode={viewMode}
-    //     setViewMode={setViewMode}
-    //     auth={auth}
-    //     setAuth={setAuth}
-    //     userData={{
-    //         currentUserData,
-    //         isFetchingUser,
-    //         setCurrentUserData,
-    //         fetchUserData,
-    //         userError,
-    //     }}
-    //     infoAlert={infoAlert}
-    //     setInfoAlert={setInfoAlert}
-    //     cart={cart}
-    //     favorites={favorites}
-    //     currentLanguage={currentLanguage}
-    //     handleSaveImage={handleSaveImage}
-    //     savedImages={savedImages}
-    // />
-    //                 }
-    //             >
-    //                 <Route index path={`${ROUTES?.STORE}/:storeCode`} element={<CatalogPage />} />
-    //                 <Route
-    //                     path={`${ROUTES?.STORE}/:storeCode/product/:productId/model/:modelSku`}
-    //                     element={<ProductDetailsPage />}
-    //                 />
-    //                 <Route path={`${ROUTES?.STORE}/:storeCode/cart`} element={<CartPage />} />
-    //                 <Route path={`${ROUTES?.STORE}/:storeCode/favorites`} element={<FavoritesPage />} />
-    //                 <Route path={`${ROUTES?.STORE}/:storeCode/info`} element={<InformationPage />} />
-    //                 <Route path={`${ROUTES?.STORE}/:storeCode/profile`} element={<UserProfile />} />
-    //                 <Route path={`${ROUTES?.STORE}/:storeCode/contacts`} element={<ContactsManagePage />} />
-    //                 <Route path={`${ROUTES?.STORE}/:storeCode/orders`} element={<UserOrders />} />
     //                 <Route path="*" element={<Navigate to={STORE_ROUTE?.root(STORE_CODE)} replace />} />
     //             </Route>
     //         )}
