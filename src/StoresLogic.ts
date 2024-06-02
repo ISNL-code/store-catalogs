@@ -1,11 +1,11 @@
 import { useEffect } from 'react';
 import { useIsMount } from 'hooks/useIsMount';
 import { STORE_CONFIG } from 'store_constants/stores_config';
-import axios, { AxiosResponse } from 'axios'; // eslint-disable-line
+import axios, { AxiosResponse } from 'axios';
 import { STORAGE_KEYS } from 'constants/local_storage_keys';
-import { STORES_DATA } from 'dataBase/STORES'; // eslint-disable-line
+import { STORES_DATA } from 'dataBase/STORES';
 import { StoreInterface, UserDataInterface } from 'types/app_models';
-import { DEFAULT_VALUES } from 'defaultData/default'; // eslint-disable-line
+import { DEFAULT_VALUES } from 'defaultData/default';
 import { ViewModeType } from 'store_constants/types';
 import { Store_Data_Response_Interface } from 'types/response_models';
 import { QueryObserverResult, RefetchOptions, RefetchQueryFilters } from '@tanstack/react-query';
@@ -33,7 +33,6 @@ interface Props {
     };
 }
 
-// eslint-disable-next-line
 const StoresLogic = ({
     setAuth,
     userData,
@@ -48,57 +47,58 @@ const StoresLogic = ({
     isStoreLoading,
 }: Props) => {
     const mount = useIsMount();
-    const { APP_LANGUAGE, USER_OPTIONS, STORE_NAME } = STORE_CONFIG; // eslint-disable-line
+    const { APP_LANGUAGE, USER_OPTIONS, STORE_NAME } = STORE_CONFIG;
     const { VIEW_MODE } = USER_OPTIONS;
 
     // visit alert
-    // useEffect(() => {
-    //     if (window.location.origin.includes('localhost')) return;
-    //     try {
-    //         const token = '6904212535:AAGvPEjkJds0aayd-oD1YVMbhLKeKt72yaE';
-    //         const chatId = '480774886'; // Узнайте ваш Chat ID, написав своему боту /myid
-    //         const url = `https://api.telegram.org/bot${token}/sendMessage`;
+    useEffect(() => {
+        if (window.location.origin.includes('localhost')) return;
+        try {
+            const token = '6904212535:AAGvPEjkJds0aayd-oD1YVMbhLKeKt72yaE';
+            const chatId = '480774886'; // Узнайте ваш Chat ID, написав своему боту /myid
+            const url = `https://api.telegram.org/bot${token}/sendMessage`;
 
-    //         axios
-    //             .get('https://ipapi.co/json/')
-    //             .then(response => {
-    //                 const userCountry = response.data.country_name;
-    //                 const userCity = response.data.city;
+            axios
+                .get('https://ipapi.co/json/')
+                .then(response => {
+                    const userCountry = response.data.country_name;
+                    const userCity = response.data.city;
 
-    //                 axios.post(url, {
-    //                     chat_id: chatId,
-    //                     text: `${STORE_NAME} ВХОД ${userCountry}/${userCity}`,
-    //                 });
-    //             })
-    //             .catch(error => {
-    //                 console.error(error);
-    //             });
-    //     } catch (error) {
-    //         console.error(error);
-    //     }
+                    axios.post(url, {
+                        chat_id: chatId,
+                        text: `${STORE_NAME} ВХОД ${userCountry}/${userCity}`,
+                    });
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        } catch (error) {
+            console.error(error);
+        }
 
-    //     return;
-    // }, []); // eslint-disable-line
+        return;
+    }, []); // eslint-disable-line
 
     // authorization
-    const token = localStorage.getItem(STORAGE_KEYS?.ACCESS_TOKEN_KEY);
+
     useEffect(() => {
-        if (token) {
-            //нужна адекватная проверка на валидность токена и рефреш
-            userData.fetchUserData().then(res => {
-                if (res.status === 'error') {
-                    setAuth(false);
-                    removeStorageItem(STORAGE_KEYS?.ACCESS_TOKEN_KEY, () => {});
-                } else {
-                    setAuth(true);
-                    userData.setCurrentUserData(res?.data?.data);
-                }
-            });
-        } else {
-            setAuth(false);
-        }
+        getStorageItem(STORAGE_KEYS?.ACCESS_TOKEN_KEY, storedItems => {
+            if (storedItems) {
+                userData.fetchUserData().then(res => {
+                    if (res.status === 'error') {
+                        setAuth(false);
+                    } else {
+                        setAuth(true);
+                        userData.setCurrentUserData(res?.data?.data);
+                    }
+                });
+            } else {
+                setAuth(false);
+            }
+        });
+
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [token]);
+    }, []);
 
     // set app user lang
     useEffect(() => {
@@ -146,23 +146,23 @@ const StoresLogic = ({
         setStorageItem(STORAGE_KEYS?.INFO_ALERT_KEY, JSON.stringify(infoAlert), () => {});
     }, [infoAlert, mount]); // eslint-disable-line
 
-    // useEffect(() => {
-    //     if (!storeDataRes || isStoreLoading) return;
+    useEffect(() => {
+        if (!storeDataRes || isStoreLoading) return;
 
-    //     const store = storeDataRes?.data;
-    //     const store_db = STORES_DATA.find(el => el.code === store?.code);
+        const store = storeDataRes?.data;
+        const store_db = STORES_DATA.find(el => el.code === store?.code);
 
-    //     const storeData: StoreInterface = {
-    //         currency: store?.currency || DEFAULT_VALUES?.currency,
-    //         logo: { path: store?.logo?.path || DEFAULT_VALUES?.logo },
-    //         supportedLanguages: store?.supportedLanguages,
-    //         code: store?.code,
-    //         name: store?.name,
-    //         managers: store_db?.managers || [],
-    //     };
+        const storeData: StoreInterface = {
+            currency: store?.currency || DEFAULT_VALUES?.currency,
+            logo: { path: store?.logo?.path || DEFAULT_VALUES?.logo },
+            supportedLanguages: store?.supportedLanguages,
+            code: store?.code,
+            name: store?.name,
+            managers: store_db?.managers || [],
+        };
 
-    //     setCurrentStoreData(storeData); // eslint-disable-next-line react-hooks/exhaustive-deps
-    // }, [storeDataRes]);
+        setCurrentStoreData(storeData); // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [storeDataRes]);
 };
 
 export default StoresLogic;
