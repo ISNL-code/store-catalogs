@@ -26,14 +26,15 @@ export default function Login({ isOpen, setIsOpen, string, location, setAuth }) 
             loginCustomer({ ...values, storeCode: STORE_CODE })
                 .then(res => {
                     if (res.data.token) {
-                        setStorageItem(STORAGE_KEYS?.ACCESS_TOKEN_KEY, JSON.stringify(res.data.token));
-                        setAuth(true);
-                        setIsOpen(null);
+                        setStorageItem(STORAGE_KEYS?.ACCESS_TOKEN_KEY, JSON.stringify(res.data.token))
+                            .then(() => {
+                                setAuth(true);
+                                setIsOpen(null);
+                            })
+                            .catch(() => setIsError(true));
                     }
                 })
-                .catch(() => {
-                    setIsError(true);
-                });
+                .catch(() => setIsError(true));
         },
     });
 

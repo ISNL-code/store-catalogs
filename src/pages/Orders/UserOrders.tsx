@@ -1,7 +1,7 @@
 import BackButton from 'components/atoms/Buttons/BackButton';
 import EmptyPage from 'components/atoms/EmptyPage/EmptyPage';
 import InstrumentalSubHeader from 'components/organisms/InstrumentalSubHeader/InstrumentalSubHeader';
-import { useOutletContext, useParams } from 'react-router-dom';
+import { useNavigate, useOutletContext, useParams } from 'react-router-dom';
 import Grid from '@mui/material/Unstable_Grid2';
 import { useDevice } from 'hooks/useDevice';
 import { Button, Typography } from '@mui/material';
@@ -15,13 +15,15 @@ import OrderPrice from 'components/molecules/PricesComponents/OrderPrice';
 import useHandleError from 'hooks/useHandleError';
 import { CatalogContextInterface } from 'types/outlet_context_models';
 import { scrollPage } from 'utils/scrollPage';
+import { ROUTES } from 'router/routes';
 
 const UserOrders = () => {
+    const navigate = useNavigate();
     const handleError = useHandleError();
     const { handleGetStatusParams } = useGetStatusParams();
     const { s } = useDevice();
     const { storeCode } = useParams();
-    const { string, footerMenuHeight, appXPadding }: CatalogContextInterface = useOutletContext();
+    const { string, footerMenuHeight, appXPadding, auth }: CatalogContextInterface = useOutletContext();
     const [orderData, setOrderData] = useState<OrderInterface | any>(null);
     const {
         data: customerOrdersRes,
@@ -36,6 +38,10 @@ const UserOrders = () => {
     useEffect(() => {
         scrollPage(0);
     }, []);
+
+    useEffect(() => {
+        if (!auth) navigate(ROUTES?.STORE);
+    }, [auth]); // eslint-disable-line
 
     useEffect(() => {
         if (loadingOrders) return;

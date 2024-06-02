@@ -1,7 +1,7 @@
 import { Box, Button, TextField, Typography } from '@mui/material';
 import BackButton from 'components/atoms/Buttons/BackButton';
 import InstrumentalSubHeader from 'components/organisms/InstrumentalSubHeader/InstrumentalSubHeader';
-import { useOutletContext, useParams } from 'react-router-dom';
+import { useNavigate, useOutletContext, useParams } from 'react-router-dom';
 import Grid from '@mui/material/Unstable_Grid2';
 import { useDevice } from 'hooks/useDevice';
 import { CatalogContextInterface } from 'types/outlet_context_models';
@@ -10,9 +10,11 @@ import Loader from 'components/atoms/Loader/Loader';
 import { useEffect, useState } from 'react';
 import useHandleError from 'hooks/useHandleError';
 import { scrollPage } from 'utils/scrollPage';
+import { ROUTES } from 'router/routes';
 
 const UserProfile = () => {
     const { sx } = useDevice();
+    const navigate = useNavigate();
     const {
         string,
         currentUserData,
@@ -21,6 +23,7 @@ const UserProfile = () => {
         appXPadding,
         footerMenuHeight,
         userDataError,
+        auth,
     }: CatalogContextInterface = useOutletContext();
     const { storeCode } = useParams();
     const handleError = useHandleError();
@@ -35,6 +38,10 @@ const UserProfile = () => {
     useEffect(() => {
         scrollPage(0);
     }, []);
+
+    useEffect(() => {
+        if (!auth) navigate(ROUTES?.STORE);
+    }, [auth]); // eslint-disable-line
 
     useEffect(() => {
         if (!currentUserData) {

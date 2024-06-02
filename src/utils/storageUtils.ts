@@ -1,11 +1,11 @@
-function setCookie(name: string, value: string, days: number) {
+function setCookie(name: string, value: string, days: number, domain: string) {
     let expires = '';
     if (days) {
         const date = new Date();
         date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
         expires = '; expires=' + date.toUTCString();
     }
-    document.cookie = name + '=' + (value || '') + expires + '; path=/';
+    document.cookie = name + '=' + (value || '') + expires + '; path=/; domain=' + domain;
 }
 
 function getCookie(name: string): Promise<string | null> {
@@ -24,43 +24,37 @@ function getCookie(name: string): Promise<string | null> {
     });
 }
 
-function eraseCookie(name: string) {
-    document.cookie = name + '=; Max-Age=-99999999;';
+function eraseCookie(name: string, domain: string) {
+    document.cookie = name + '=; Max-Age=-99999999; path=/; domain=' + domain;
 }
 
-// function isLocalStorageAvailable(): boolean {
-//     try {
-//         const test = 'test';
-//         localStorage.setItem(test, test);
-//         localStorage.removeItem(test);
-//         return true;
-//     } catch (e) {
-//         return false;
-//     }
-// }
+function isLocalStorageAvailable(): boolean {
+    try {
+        const test = 'test';
+        localStorage.setItem(test, test);
+        localStorage.removeItem(test);
+        return true;
+    } catch (e) {
+        return false;
+    }
+}
 
-// function isSessionStorageAvailable(): boolean {
-//     try {
-//         const test = 'test';
-//         sessionStorage.setItem(test, test);
-//         sessionStorage.removeItem(test);
-//         return true;
-//     } catch (e) {
-//         return false;
-//     }
-// }
+function isSessionStorageAvailable(): boolean {
+    try {
+        const test = 'test';
+        sessionStorage.setItem(test, test);
+        sessionStorage.removeItem(test);
+        return true;
+    } catch (e) {
+        return false;
+    }
+}
 
 export function setStorageItem(key: string, value: string): Promise<void> {
     return new Promise((resolve, reject) => {
         try {
-            setCookie(key, value, 7);
-            // if (isLocalStorageAvailable()) {
-            //     localStorage.setItem(key, value);
-            // } else if (isSessionStorageAvailable()) {
-            //     sessionStorage.setItem(key, value);
-            // } else {
-            //     setCookie(key, value, 7);
-            // }
+            const domain = window.location.hostname; // Получаем текущий домен
+            setCookie(key, value, 7, domain);
             resolve();
         } catch (error) {
             console.error('Error setting storage item:', error);
@@ -72,14 +66,17 @@ export function setStorageItem(key: string, value: string): Promise<void> {
 export function getStorageItem(key: string): Promise<string | null> {
     return new Promise((resolve, reject) => {
         try {
-            getCookie(key).then(resolve);
-            // if (isLocalStorageAvailable()) {
-            //     resolve(localStorage.getItem(key));
-            // } else if (isSessionStorageAvailable()) {
-            //     resolve(sessionStorage.getItem(key));
-            // } else {
-            //     getCookie(key).then(resolve);
-            // }
+            getCookie(key).then(cookieValue => {
+                if (cookieValue !== null) {
+                    resolve(cookieValue);
+                } else if (isLocalStorageAvailable()) {
+                    resolve(localStorage.getItem(key));
+                } else if (isSessionStorageAvailable()) {
+                    resolve(sessionStorage.getItem(key));
+                } else {
+                    resolve(null);
+                }
+            });
         } catch (error) {
             console.error('Error getting storage item:', error);
             reject(error);
@@ -90,14 +87,8 @@ export function getStorageItem(key: string): Promise<string | null> {
 export function removeStorageItem(key: string): Promise<void> {
     return new Promise((resolve, reject) => {
         try {
-            eraseCookie(key);
-            // if (isLocalStorageAvailable()) {
-            //     localStorage.removeItem(key);
-            // } else if (isSessionStorageAvailable()) {
-            //     sessionStorage.removeItem(key);
-            // } else {
-            //     eraseCookie(key);
-            // }
+            const domain = window.location.hostname; // Получаем текущий домен
+            eraseCookie(key, domain);
             resolve();
         } catch (error) {
             console.error('Error removing storage item:', error);
