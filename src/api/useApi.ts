@@ -36,8 +36,8 @@ const useApi = (): Api => {
     const context: any = useOutletContext();
 
     const get = async ({ url }: ApiGetParams): Promise<AxiosResponse<any>> => {
-        const token = context?.apiToken; // Получаем токен из контекста
-        const headers = token ? { Authorization: `Bearer ${token}` } : {}; // Добавляем заголовок с токеном, если он есть
+        const token = context?.apiToken;
+        const headers = token ? { Authorization: `Bearer ${token}` } : {};
         const response = await axios.get(url, { headers });
         return response;
     };
