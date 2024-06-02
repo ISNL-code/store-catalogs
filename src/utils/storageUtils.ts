@@ -28,27 +28,27 @@ function eraseCookie(name: string) {
     document.cookie = name + '=; Max-Age=-99999999;';
 }
 
-function isLocalStorageAvailable(): boolean {
-    try {
-        const test = 'test';
-        localStorage.setItem(test, test);
-        localStorage.removeItem(test);
-        return true;
-    } catch (e) {
-        return false;
-    }
-}
+// function isLocalStorageAvailable(): boolean {
+//     try {
+//         const test = 'test';
+//         localStorage.setItem(test, test);
+//         localStorage.removeItem(test);
+//         return true;
+//     } catch (e) {
+//         return false;
+//     }
+// }
 
-function isSessionStorageAvailable(): boolean {
-    try {
-        const test = 'test';
-        sessionStorage.setItem(test, test);
-        sessionStorage.removeItem(test);
-        return true;
-    } catch (e) {
-        return false;
-    }
-}
+// function isSessionStorageAvailable(): boolean {
+//     try {
+//         const test = 'test';
+//         sessionStorage.setItem(test, test);
+//         sessionStorage.removeItem(test);
+//         return true;
+//     } catch (e) {
+//         return false;
+//     }
+// }
 
 export function setStorageItem(key: string, value: string): Promise<void> {
     return new Promise((resolve, reject) => {
