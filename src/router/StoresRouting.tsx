@@ -145,6 +145,7 @@ const StoresRouting = () => {
         },
     ]);
 
+    if (currentStoreData) alert('Store');
     return <RouterProvider router={router} />;
 
     // return (
