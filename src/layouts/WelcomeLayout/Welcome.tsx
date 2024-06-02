@@ -11,8 +11,7 @@ export default function WelcomePage({ handleRedirect }) {
 
     useEffect(() => {
         const timeoutId = setTimeout(() => {
-            const startPath = handleRedirect();
-            navigate(startPath);
+            navigate('/home/alberto_bini_europe');
         }, 3000);
 
         return () => clearTimeout(timeoutId);
