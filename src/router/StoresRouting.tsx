@@ -1,4 +1,4 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom';
 import WelcomePage from 'layouts/WelcomeLayout/Welcome';
 import { Suspense, useCallback, useMemo } from 'react';
 import { HOME_ROUTE, LOGIN_ROUTE, ROUTES, STORE_ROUTE } from './routes';
@@ -28,6 +28,7 @@ import PAGE_401 from 'pages/TechPages/401';
 import PAGE_403 from 'pages/TechPages/403';
 import PAGE_500 from 'pages/TechPages/500';
 import SecurityLayout from 'layouts/Security/Security';
+import NewPassword from 'layouts/Security/NewPassword';
 
 const StoresRouting = () => {
     const { STORE_CODE, OPTIONS, REQUIRED_REGISTRATION, STORE_NAME } = STORE_CONFIG;
@@ -123,7 +124,29 @@ const StoresRouting = () => {
             path: `${ROUTES?.SECURITY}/:storeCode/:formType`,
             errorElement: <PAGE_404 />,
             loader: () => <div>Loading...</div>,
-            element: <SecurityLayout />,
+            element: (
+                <SecurityLayout
+                    lang={lang}
+                    setLang={setLang}
+                    setAuth={setAuth}
+                    store={currentStoreData}
+                    currentLanguage={currentLanguage}
+                />
+            ),
+        },
+        {
+            path: `${ROUTES?.NEW_PASSWORD}/:storeCode/:tokenId`,
+            errorElement: <PAGE_404 />,
+            loader: () => <div>Loading...</div>,
+            element: (
+                <NewPassword
+                    lang={lang}
+                    setLang={setLang}
+                    setAuth={setAuth}
+                    currentLanguage={currentLanguage}
+                    store={currentStoreData}
+                />
+            ),
         },
         {
             path: ROUTES?.HOME,
@@ -299,28 +322,15 @@ const StoresRouting = () => {
             loader: () => <div>Loading...</div>,
             element: <PAGE_500 />,
         },
+        {
+            path: '*',
+            errorElement: <PAGE_404 />,
+            loader: () => <div>Loading...</div>,
+            element: <Navigate to="/" replace />,
+        },
     ]);
 
     return <RouterProvider router={router} />;
-
-    //     <Router>
-    //     <Routes>
-    //         <Route
-    //             path={`${ROUTES?.NEW_PASSWORD}/:storeCode/:tokenId`}
-    //             element={
-    //                 <NewPassword
-    //                     lang={lang}
-    //                     setLang={setLang}
-    //                     setAuth={setAuth}
-    //                     currentLanguage={currentLanguage}
-    //                     store={currentStoreData}
-    //                 />
-    //             }
-    //         />
-
-    //         <Route path="*" element={<Navigate to={handleRedirect()} replace />} />
-    //     </Routes>
-    // </Router>
 };
 
 export default StoresRouting;

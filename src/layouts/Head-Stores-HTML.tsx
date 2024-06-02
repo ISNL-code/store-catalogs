@@ -12,7 +12,7 @@ const HeadStoresHTML: React.FC = () => {
     const { WEB_HEAD_DATA, STORE_NAME, HTML_LANG } = STORE_CONFIG;
     const { STORE_TITLE, STORE_DESCRIPTION, GOOGLE_ANALYTICS_ID, STORE_LOGO, STORE_POSTER, KEYWORDS } = WEB_HEAD_DATA;
 
-    const [manifestUrl, setManifestUrl] = useState(''); // eslint-disable-line
+    const [manifestUrl, setManifestUrl] = useState('');
 
     const createManifest = () => {
         const manifest = {
@@ -57,6 +57,37 @@ const HeadStoresHTML: React.FC = () => {
     useEffect(() => {
         createManifest();
     }, [STORE_LOGO]); // eslint-disable-line
+
+    useEffect(() => {
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                const swPath = '/serviceWorker.js';
+                fetch(swPath)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error(`ServiceWorker fetch failed with status: ${response.status}`);
+                        }
+                        return response.blob();
+                    })
+                    .then(blob => {
+                        if (blob.type !== 'application/javascript') {
+                            throw new Error(`Unsupported MIME type: ${blob.type}`);
+                        }
+                        navigator.serviceWorker
+                            .register(swPath)
+                            .then(reg => {
+                                console.log('Worker Registered', reg);
+                            })
+                            .catch(err => {
+                                console.error('Error in service worker registration:', err);
+                            });
+                    })
+                    .catch(err => {
+                        console.error('Service worker fetch error:', err);
+                    });
+            });
+        }
+    }, []); // eslint-disable-line
 
     const allKeywords = Object.values(KEYWORDS).join(' | ');
 
