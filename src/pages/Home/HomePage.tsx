@@ -11,10 +11,8 @@ import { DialogWindowType } from 'layouts/hooks/useFormsApp';
 import { STORE_ROUTE } from 'router/routes';
 import { STORE_CONFIG } from 'store_constants/stores_config';
 import { scrollPage } from 'utils/scrollPage';
-import { useWindowHeight } from '@react-hook/window-size';
 
 const HomePage = () => {
-    const WINDOW_HEIGHT = useWindowHeight();
     const { STORE_CODE } = STORE_CONFIG;
     const { appXPadding, footerMenuHeight, string, headerHeight, handleOpenDialog }: HomeContextInterface =
         useOutletContext();
@@ -33,7 +31,7 @@ const HomePage = () => {
             <MessageButton action={() => handleOpenDialog(DialogWindowType?.QUESTION)} />
             <CallBackButton path={STORE_ROUTE?.contacts(STORE_CODE)} />
             <HomeImages />
-            <Grid item container xs={12} mt={-2} sx={{ mb: sx ? WINDOW_HEIGHT : 2 }}>
+            <Grid item container xs={12} mt={-2} sx={{ mb: sx ? '100vh' : 2 }}>
                 <Typography
                     variant="h1"
                     sx={{
