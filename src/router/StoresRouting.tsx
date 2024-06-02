@@ -24,6 +24,10 @@ import UserOrders from 'pages/Orders/UserOrders';
 import UserProfile from 'pages/Profile/UserProfile';
 import InformationPage from 'pages/Information/InformationPage';
 import ContactsManagePage from 'pages/Contacts/ContactsManagePage';
+import PAGE_401 from 'pages/TechPages/401';
+import PAGE_403 from 'pages/TechPages/403';
+import PAGE_500 from 'pages/TechPages/500';
+import SecurityLayout from 'layouts/Security/Security';
 
 const StoresRouting = () => {
     const { STORE_CODE, OPTIONS, REQUIRED_REGISTRATION, STORE_NAME } = STORE_CONFIG;
@@ -114,6 +118,12 @@ const StoresRouting = () => {
             errorElement: <PAGE_404 />,
             loader: () => <div>Loading...</div>,
             element: <WelcomePage />,
+        },
+        {
+            path: `${ROUTES?.SECURITY}/:storeCode/:formType`,
+            errorElement: <PAGE_404 />,
+            loader: () => <div>Loading...</div>,
+            element: <SecurityLayout />,
         },
         {
             path: ROUTES?.HOME,
@@ -269,6 +279,26 @@ const StoresRouting = () => {
                 },
             ],
         },
+        {
+            path: ROUTES?.PAGE_401,
+            loader: () => <div>Loading...</div>,
+            element: <PAGE_401 />,
+        },
+        {
+            path: ROUTES?.PAGE_403,
+            loader: () => <div>Loading...</div>,
+            element: <PAGE_403 />,
+        },
+        {
+            path: ROUTES?.PAGE_404,
+            loader: () => <div>Loading...</div>,
+            element: <PAGE_404 />,
+        },
+        {
+            path: ROUTES?.PAGE_500,
+            loader: () => <div>Loading...</div>,
+            element: <PAGE_500 />,
+        },
     ]);
 
     return <RouterProvider router={router} />;
@@ -287,70 +317,6 @@ const StoresRouting = () => {
     //                 />
     //             }
     //         />
-    //         <Route path={`${ROUTES?.PAGE_401}`} element={<PAGE_401 />} />
-    //         <Route path={`${ROUTES?.PAGE_403}`} element={<PAGE_403 />} />
-    //         <Route path={`${ROUTES?.PAGE_404}`} element={<PAGE_404 />} />
-    //         <Route path={`${ROUTES?.PAGE_500}`} element={<PAGE_500 />} />
-
-    //         {REQUIRED_REGISTRATION && !auth && (
-    //             <>
-    //                 <Route
-    //                     path={`${ROUTES?.SECURITY}/:storeCode/:formType`}
-    //                     element={
-    //                         <SecurityLayout
-    //                             lang={lang}
-    //                             setLang={setLang}
-    //                             setAuth={setAuth}
-    //                             store={currentStoreData}
-    //                             currentLanguage={currentLanguage}
-    //                         />
-    //                     }
-    //                 />
-    //                 <Route
-    //                     path="*"
-    //                     element={
-    //                         <Navigate
-    //                             to={
-    //                                 REQUIRED_REGISTRATION
-    //                                     ? LOGIN_ROUTE?.root(STORE_CODE, 'login')
-    //                                     : handleRedirect()
-    //                             }
-    //                             replace
-    //                         />
-    //                     }
-    //                 />
-    //             </>
-    //         )}
-
-    //         {handleCheckAccess(ROUTES?.HOME) && (
-    //             <Route
-    //                 path={ROUTES?.HOME}
-    //                 element={
-    //                     <Home
-    //                         store={currentStoreData}
-    //                         lang={lang}
-    //                         setLang={setLang}
-    //                         auth={auth}
-    //                         setAuth={setAuth}
-    //                         userData={{
-    //                             currentUserData,
-    //                             isFetchingUser,
-    //                             setCurrentUserData,
-    //                             fetchUserData,
-    //                             userError,
-    //                         }}
-    //                         cart={cart}
-    //                         favorites={favorites}
-    //                         currentLanguage={currentLanguage}
-    //                         handleSaveImage={handleSaveImage}
-    //                         savedImages={savedImages}
-    //                     />
-    //                 }
-    //             >
-    //                 <Route index path={`${ROUTES?.HOME}/:storeCode`} element={<HomePage />} />
-    //                 <Route path="*" element={<Navigate to={STORE_ROUTE?.root(STORE_CODE)} replace />} />
-    //             </Route>
-    //         )}
 
     //         <Route path="*" element={<Navigate to={handleRedirect()} replace />} />
     //     </Routes>
