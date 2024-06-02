@@ -28,7 +28,10 @@ export default function Login({ isOpen, setIsOpen, string, location, setAuth }) 
                     if (res.data.token) {
                         setStorageItem(STORAGE_KEYS?.ACCESS_TOKEN_KEY, JSON.stringify(res.data.token))
                             .then(() => {
+                                alert('AUTH');
                                 setAuth(true);
+                            })
+                            .then(() => {
                                 setIsOpen(null);
                             })
                             .catch(() => setIsError(true));
