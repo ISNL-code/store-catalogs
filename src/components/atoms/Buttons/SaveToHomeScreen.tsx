@@ -6,7 +6,7 @@ const SaveToHomeScreen = () => {
     const { sx } = useDevice();
 
     const showAddToHomeScreenPrompt = () => {
-        if ('share' in navigator && window.matchMedia('(display-mode: standalone)').matches) {
+        if ('share' in navigator) {
             // Show a prompt to add to home screen
             navigator
                 .share({
