@@ -2,23 +2,30 @@ import React from 'react';
 import { Box } from '@mui/material';
 import { AppleIcon } from 'assets/svg/apple_icon';
 
-const SaveToPhonePWA = () => {
-    const handleInstallClick = () => {
-        // Проверяем, поддерживается ли установка PWA в текущем браузере
-        if ('beforeinstallprompt' in window) {
-            // Получаем доступ к событию beforeinstallprompt
-            const installPromptEvent = new Event('beforeinstallprompt');
-            // Диспатчим событие на window, что может вызвать окно установки PWA
-            window.dispatchEvent(installPromptEvent);
+const SaveToHomeScreen = () => {
+    const handleAddToHomeScreenClick = () => {
+        // Проверяем, является ли текущее устройство iOS
+        const isIOS =
+            /iPad|iPhone|iPod/.test(navigator.platform) ||
+            (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+
+        // Показываем инструкции для добавления на домашний экран в зависимости от типа устройства
+        if (isIOS) {
+            // Для iOS
+            alert(
+                'Чтобы добавить приложение на домашний экран, нажмите на значок "Делить" внизу экрана и выберите "Добавить на главный экран".'
+            );
         } else {
-            // Если установка PWA не поддерживается, можно отобразить сообщение об ошибке или предложить альтернативный способ установки
-            alert('Установка PWA не поддерживается в вашем браузере.');
+            // Для других устройств
+            alert(
+                'Чтобы добавить приложение на домашний экран, используйте меню вашего браузера и выберите "Добавить на главный экран".'
+            );
         }
     };
 
     return (
         <Box
-            onClick={handleInstallClick}
+            onClick={handleAddToHomeScreenClick}
             sx={{
                 display: 'flex',
                 zIndex: 2000,
@@ -51,4 +58,4 @@ const SaveToPhonePWA = () => {
     );
 };
 
-export default SaveToPhonePWA;
+export default SaveToHomeScreen;
