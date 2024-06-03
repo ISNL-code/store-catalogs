@@ -62,32 +62,17 @@ const HeadStoresHTML: React.FC = () => {
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
                 const swPath = '/serviceWorker.js';
-                fetch(swPath)
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error(`ServiceWorker fetch failed with status: ${response.status}`);
-                        }
-                        return response.blob();
-                    })
-                    .then(blob => {
-                        if (blob.type !== 'application/javascript') {
-                            throw new Error(`Unsupported MIME type: ${blob.type}`);
-                        }
-                        navigator.serviceWorker
-                            .register(swPath)
-                            .then(reg => {
-                                console.log('Worker Registered', reg);
-                            })
-                            .catch(err => {
-                                console.error('Error in service worker registration:', err);
-                            });
+                navigator.serviceWorker
+                    .register(swPath)
+                    .then(reg => {
+                        console.log('Service Worker registered with scope:', reg.scope);
                     })
                     .catch(err => {
-                        console.error('Service worker fetch error:', err);
+                        console.error('Service Worker registration failed:', err);
                     });
             });
         }
-    }, []); // eslint-disable-line
+    }, []);
 
     const allKeywords = Object.values(KEYWORDS).join(' | ');
 
