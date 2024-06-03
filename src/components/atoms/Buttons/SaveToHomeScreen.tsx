@@ -5,19 +5,17 @@ import { useDevice } from 'hooks/useDevice';
 const SaveToHomeScreen = () => {
     const { sx } = useDevice();
 
-    const showAddToHomeScreenPrompt = () => {
-        if (navigator.share) {
-            navigator
-                .share({
-                    title: document.title,
-                    text: 'Add this app to your home screen!',
-                    url: window.location.href,
-                })
-                .catch(error => console.log('Error sharing', error));
+    function addToHomeScreen() {
+        if (navigator && navigator['standalone']) {
+            alert('Это приложение уже добавлено на главный экран.');
+        } else if (window.matchMedia('(display-mode: standalone)').matches) {
+            alert('Это приложение уже открыто в полноэкранном режиме.');
+        } else if (window.navigator['standalone'] === undefined) {
+            alert('Пожалуйста, добавьте это приложение на главный экран вашего устройства.');
         } else {
-            alert('Your browser does not support the Share API.');
+            alert('Нажмите кнопку "Поделиться" и выберите "Добавить на главный экран".');
         }
-    };
+    }
 
     return (
         <Fab
@@ -29,7 +27,7 @@ const SaveToHomeScreen = () => {
                 bottom: sx ? 80 : 16,
                 backgroundColor: '#ffffffbe',
             }}
-            onClick={showAddToHomeScreenPrompt}
+            onClick={addToHomeScreen}
         >
             <AppleIcon />
         </Fab>
