@@ -1,6 +1,7 @@
 import { Fab } from '@mui/material';
 import { AppleIcon } from 'assets/svg/apple_icon';
 import { useDevice } from 'hooks/useDevice';
+import { useEffect } from 'react';
 
 const SaveToHomeScreen = () => {
     const { sx } = useDevice();

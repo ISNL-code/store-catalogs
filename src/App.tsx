@@ -9,20 +9,14 @@ import { useEffect } from 'react';
 const App = () => {
     const { sx } = useDevice();
     useEffect(() => {
-        function handleNavigation() {
-            // Проверяем, содержит ли URL-адрес параметр share
-            const urlParams = new URLSearchParams(window.location.search);
-            if (urlParams.has('share')) {
-                alert('Пользователь поделился вашим сайтом!');
-            }
+        function handleClick() {
+            alert('Вы совершили клик в браузере!');
         }
 
-        // Добавляем слушатели событий навигации
-        window.addEventListener('popstate', handleNavigation);
+        document.addEventListener('click', handleClick);
 
-        // Очистка слушателей при размонтировании компонента
         return () => {
-            window.removeEventListener('popstate', handleNavigation);
+            document.removeEventListener('click', handleClick);
         };
     }, []);
 
