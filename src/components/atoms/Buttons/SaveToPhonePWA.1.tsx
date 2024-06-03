@@ -2,15 +2,9 @@ import { useEffect, useState } from 'react';
 import { Box } from '@mui/material';
 import { AppleIcon } from 'assets/svg/apple_icon';
 import { useDevice } from 'hooks/useDevice';
+import { BeforeInstallPromptEvent } from './SaveToPhonePWA';
 
-// Определяем тип для события установки PWA
-interface BeforeInstallPromptEvent extends Event {
-    readonly platforms: string[];
-    readonly userChoice: Promise<{ outcome: 'accepted' | 'dismissed' }>;
-    prompt(): Promise<void>;
-}
-
-const SaveToPhonePWA = () => {
+export const SaveToPhonePWA = () => {
     const { s, sx } = useDevice();
     const [deferredPrompt, setDeferredPrompt] = useState<BeforeInstallPromptEvent | null>(null);
 
@@ -44,9 +38,9 @@ const SaveToPhonePWA = () => {
         }
     };
 
-    // if (!deferredPrompt) {
-    //     return null; // Не показываем кнопку, если событие beforeinstallprompt еще не произошло
-    // }
+    if (!deferredPrompt) {
+        return null; // Не показываем кнопку, если событие beforeinstallprompt еще не произошло
+    }
 
     return (
         <Box
@@ -86,5 +80,3 @@ const SaveToPhonePWA = () => {
         </Box>
     );
 };
-
-export default SaveToPhonePWA;

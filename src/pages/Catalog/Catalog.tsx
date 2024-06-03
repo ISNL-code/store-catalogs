@@ -24,7 +24,7 @@ import { ViewModeType } from 'store_constants/types';
 import { STORE_ROUTE } from 'router/routes';
 import { useIsMount } from 'hooks/useIsMount';
 import { scrollPage } from 'utils/scrollPage';
-import SaveToPhonePWA from 'components/atoms/Buttons/SaveToPhonePWA';
+import SaveToPhonePWA from 'components/atoms/Buttons/SaveToPhonePWA.1';
 
 const Catalog = () => {
     const { OPTIONS, STORE_CODE, SIDE_LINKS } = STORE_CONFIG;
