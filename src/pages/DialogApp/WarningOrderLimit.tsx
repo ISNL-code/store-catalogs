@@ -33,6 +33,7 @@ const WarningOrderLimit = ({ isOpen, setIsOpen, string }) => {
                 description={string?.wholesales_ordering_limitation_message}
                 closeAvailable
                 component="warning ordering"
+                content={null}
             />
         </>
     );

@@ -4,6 +4,7 @@ import { HOME_PAGE } from 'dataBase/translations/home_page';
 import { COUNTRIES } from 'dataBase/translations/countries';
 import { LONG_PHRASES } from 'dataBase/translations/long_phrases';
 import { SUPPORTED_APP_LANG } from 'dataBase/translations/supported_app_lang';
+import { APP_INFO } from 'dataBase/translations/app_information';
 
 interface Props {
     lang: string;
@@ -30,6 +31,7 @@ export const useGetLanguage = ({ lang, storeName }: Props): LangResInterface => 
                 ...INFORMATION?.en,
                 ...HOME_PAGE?.en,
                 ...COUNTRIES?.en,
+                ...APP_INFO?.en,
                 hero_text: `An online product catalog is a software solution that allows creating electronic catalogs with product descriptions. It provides features for easy addition of products, classification, description, adding photos, and other important information. Users can organize products into different categories, set up convenient filters, perform searches to simplify navigation. It is often used by companies to create virtual trade catalogs, visualize preliminary projects, online stores, present products at exhibitions, and presentations.`,
                 to: 'to',
                 in: 'in',
@@ -209,6 +211,7 @@ export const useGetLanguage = ({ lang, storeName }: Props): LangResInterface => 
                 ...INFORMATION?.fr,
                 ...HOME_PAGE?.fr,
                 ...COUNTRIES?.fr,
+                ...APP_INFO?.fr,
                 to: 'à',
                 in: 'dans',
                 no_available_sizes: 'Aucune taille disponible',
@@ -387,6 +390,7 @@ export const useGetLanguage = ({ lang, storeName }: Props): LangResInterface => 
                 ...COUNTRIES?.es,
                 ...INFORMATION?.es,
                 ...HOME_PAGE?.es,
+                ...APP_INFO?.es,
                 to: 'a',
                 in: 'en',
                 no_available_sizes: 'No hay tallas disponibles',
@@ -566,6 +570,7 @@ export const useGetLanguage = ({ lang, storeName }: Props): LangResInterface => 
                 ...COUNTRIES?.ua,
                 ...INFORMATION?.ua,
                 ...HOME_PAGE?.ua,
+                ...APP_INFO?.ua,
                 to: 'до',
                 in: 'в',
                 no_available_sizes: 'Немає доступних розмірів',
@@ -744,6 +749,7 @@ export const useGetLanguage = ({ lang, storeName }: Props): LangResInterface => 
                 ...COUNTRIES?.pl,
                 ...INFORMATION?.pl,
                 ...HOME_PAGE?.pl,
+                ...APP_INFO?.pl,
                 to: 'do',
                 in: 'w',
                 no_available_sizes: 'Brak dostępnych rozmiarów',
@@ -922,6 +928,7 @@ export const useGetLanguage = ({ lang, storeName }: Props): LangResInterface => 
                 ...COUNTRIES?.cz,
                 ...INFORMATION?.cz,
                 ...HOME_PAGE?.cz,
+                ...APP_INFO?.cz,
                 to: 'do',
                 in: 'v',
                 no_available_sizes: 'Žádné dostupné velikosti',
@@ -1099,6 +1106,7 @@ export const useGetLanguage = ({ lang, storeName }: Props): LangResInterface => 
                 ...COUNTRIES?.ru,
                 ...INFORMATION?.ru,
                 ...HOME_PAGE?.ru,
+                ...APP_INFO?.ru,
                 to: 'к',
                 in: 'в',
                 no_available_sizes: 'Нет доступных размеров',
@@ -1277,6 +1285,7 @@ export const useGetLanguage = ({ lang, storeName }: Props): LangResInterface => 
                 ...COUNTRIES?.kz,
                 ...INFORMATION?.kz,
                 ...HOME_PAGE?.kz,
+                ...APP_INFO?.kz,
                 to: 'қарай',
                 in: 'iшiнде',
                 no_available_sizes: 'Қол жетімді өлшемдер жоқ',

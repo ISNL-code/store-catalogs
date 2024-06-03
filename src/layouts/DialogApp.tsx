@@ -14,6 +14,7 @@ import ClearFavoritesConfirm from 'pages/DialogApp/ClearFavoritesConfirm';
 import WarningOrderLimit from 'pages/DialogApp/WarningOrderLimit';
 import TableSizeWindow from 'pages/DialogApp/TableSizeWindow';
 import { DialogStateInterface } from 'types/app_models';
+import AppInformationModal from 'pages/DialogApp/AppInformationModal';
 
 interface Props {
     location;
@@ -129,6 +130,12 @@ const DialogApp = ({
 
             <SomethingWentWrong
                 isOpen={activeDialogWindow === DialogWindowType?.WENT_WRONG}
+                setIsOpen={handleOpenDialog}
+                string={string}
+            />
+
+            <AppInformationModal
+                isOpen={activeDialogWindow === DialogWindowType?.APP_INFORMATION}
                 setIsOpen={handleOpenDialog}
                 string={string}
             />

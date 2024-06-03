@@ -13,7 +13,14 @@ export const ALBERTO_BINI_KZ_RETAIL = {
     base_url: 'https://kremen-belts.com/api',
     app_lang: 'kz',
     supported_countries: null,
-    links: [{ name: 'Wholesales', href: 'https://albertobini-kz.com/store', description: 'Wholesale', type: 'WEB' }],
+    links: [
+        {
+            name: 'Wholesales',
+            href: 'https://albertobini-kz.com/store/alberto_bini_europe',
+            description: 'Wholesale',
+            type: 'WEB',
+        },
+    ],
     options: {
         product_image_options: { width: 6, height: 9 },
         main_price_multiplication: 1,

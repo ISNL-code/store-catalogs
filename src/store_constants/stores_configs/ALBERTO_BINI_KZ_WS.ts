@@ -14,7 +14,12 @@ export const ALBERTO_BINI_KZ_WS = {
     app_lang: 'kz',
     supported_countries: null,
     links: [
-        { name: 'Retail', href: 'https://albertobini-kz-retail.netlify.app/store', description: 'Retail', type: 'WEB' },
+        {
+            name: 'Retail',
+            href: 'https://albertobini-kz-retail.netlify.app/store/alberto_bini_europe',
+            description: 'Retail',
+            type: 'WEB',
+        },
     ],
     options: {
         product_image_options: { width: 6, height: 9 },

@@ -1,29 +1,29 @@
 import InfoDialog from 'components/organisms/Modals/InfoDialog';
 
-const SuccessRequest = ({ isOpen, setIsOpen, string }) => {
+const AppInformationModal = ({ isOpen, setIsOpen, string }) => {
     if (!isOpen) return null;
 
     return (
         <>
             <InfoDialog
-                variant="success"
+                variant="info"
                 link={null}
                 string={string}
                 onClose={() => {
                     setIsOpen(null);
                 }}
-                title={null}
+                title={string?.useful_information}
                 fullWidth
                 onSubmit={() => {
                     setIsOpen(null);
                 }}
-                description={string?.request_sended_successfully}
+                description={null}
                 closeAvailable
-                component="success request"
-                content={null}
+                component="content"
+                content={[{ title: string?.save_to_phone, description: string?.save_to_phone_instruction }]}
             />
         </>
     );
 };
 
-export default SuccessRequest;
+export default AppInformationModal;

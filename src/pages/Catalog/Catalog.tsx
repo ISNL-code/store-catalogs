@@ -24,6 +24,7 @@ import { ViewModeType } from 'store_constants/types';
 import { STORE_ROUTE } from 'router/routes';
 import { useIsMount } from 'hooks/useIsMount';
 import { scrollPage } from 'utils/scrollPage';
+import InformationButton from 'components/atoms/Buttons/InformationButton';
 
 const Catalog = () => {
     const { OPTIONS, STORE_CODE, SIDE_LINKS } = STORE_CONFIG;
@@ -104,6 +105,7 @@ const Catalog = () => {
             sx={{ minHeight: scrollPosition || '100%', pb: `${footerMenuHeight}px` }}
         >
             {showTopBtn && <ScrollButton />}
+            <InformationButton />
             {showMobileStoresButton && (
                 <>
                     {PLAN_OPTIONS.appleStore && <AppleStoreButton />}

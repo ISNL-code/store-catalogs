@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import {
     Button,
     DialogActions,
@@ -9,6 +9,7 @@ import {
     IconButton,
     ClickAwayListener,
     Divider,
+    Typography,
 } from '@mui/material';
 import { Color, Colors } from 'constants/colors';
 import CloseIcon from '@mui/icons-material/Close';
@@ -60,7 +61,8 @@ interface Props {
     fullWidth: boolean;
     closeAvailable: boolean;
     onSubmit: () => void;
-    component: 'success request' | 'bad request' | 'warning ordering';
+    component: 'success request' | 'bad request' | 'warning ordering' | 'content';
+    content?: { title: string; description: string }[] | null;
 }
 
 const InfoDialog = ({
@@ -74,6 +76,7 @@ const InfoDialog = ({
     onSubmit,
     component,
     link,
+    content,
 }: Props) => {
     const [open, setOpen] = useState<boolean>(false);
 
@@ -85,7 +88,7 @@ const InfoDialog = ({
     useEffect(() => {
         setOpen(true);
     }, []);
-
+    console.log(component, content);
     return (
         <ClickAwayListener
             onClickAway={() => {
@@ -142,7 +145,7 @@ const InfoDialog = ({
                         )}
                     </Box>
                 </Box>
-                {title && <DialogTitle sx={{ fontSize: 20, color: 'gray', py: 0, my: 0 }}>{title} </DialogTitle>}
+                {title && <DialogTitle sx={{ fontSize: 20, py: 0, my: 2, color: '#000' }}>{title} </DialogTitle>}
                 {component === 'success request' && <SuccessComponent />}
                 {component === 'bad request' && <ErrorComponent />}
                 {component === 'warning ordering' && <WarnComponent />}
@@ -150,6 +153,26 @@ const InfoDialog = ({
                     <DialogContentText sx={{ py: 0, my: 0, px: 3, textAlign: 'center' }}>
                         {description}
                     </DialogContentText>
+                )}
+                {component === 'content' && (
+                    <Box sx={{ px: 3 }}>
+                        {content?.map((el, idx) => {
+                            return (
+                                <Fragment key={idx}>
+                                    <Typography sx={{ color: '#000' }}>
+                                        {idx + 1}
+                                        {'. '}
+                                        {el?.title}
+                                    </Typography>
+                                    <Box pl={2.2} mt={0.5}>
+                                        <Typography sx={{ color: '#3a3a3a', fontSize: 14 }}>
+                                            {el?.description}
+                                        </Typography>
+                                    </Box>
+                                </Fragment>
+                            );
+                        })}
+                    </Box>
                 )}
 
                 <DialogActions sx={{ py: 2, my: 0, px: 3, flexWrap: 'wrap' }}>

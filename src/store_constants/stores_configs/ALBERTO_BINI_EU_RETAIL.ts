@@ -16,7 +16,7 @@ export const ALBERTO_BINI_EU_RETAIL = {
     links: [
         {
             name: 'Wholesales',
-            href: 'https://albertobini-brandeurope.com/store',
+            href: 'https://albertobini-brandeurope.com/store/alberto_bini_europe',
             description: 'Wholesale',
             type: 'WEB',
         },

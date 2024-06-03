@@ -35,6 +35,7 @@ const SomethingWentWrong = ({ isOpen, setIsOpen, string }) => {
                 description={string?.something_went_wrong}
                 closeAvailable
                 component="bad request"
+                content={null}
             />
         </>
     );

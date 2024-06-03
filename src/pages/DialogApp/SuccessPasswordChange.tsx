@@ -33,6 +33,7 @@ const SuccessPasswordChange = ({ isOpen, string }) => {
                 description={string?.password_changed}
                 closeAvailable
                 component="success request"
+                content={null}
             />
         </>
     );

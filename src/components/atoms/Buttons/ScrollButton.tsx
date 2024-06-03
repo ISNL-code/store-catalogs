@@ -8,11 +8,11 @@ const ScrollButton = () => {
 
     return (
         <Fab
-            size="medium"
+            size="small"
             sx={{
                 zIndex: 50,
                 position: 'fixed',
-                left: sx ? '20px' : '40px',
+                left: sx ? '65px' : '85px',
                 bottom: sx ? 80 : 16,
                 backgroundColor: '#ffffffbe',
             }}
