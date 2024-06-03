@@ -13,6 +13,13 @@ interface ShareButtonInterface {
     imagePath?: string;
 }
 
+const fetchImageAsBlob = async url => {
+    const response = await fetch(url);
+    const blob = await response.blob();
+    const file = new File([blob], 'shared_image.jpg', { type: blob.type });
+    return file;
+};
+
 const ShareButton = ({ path, isShown, direction, size, imagePath }: ShareButtonInterface) => {
     const [open, setOpen] = useState(false);
 
@@ -39,6 +46,23 @@ const ShareButton = ({ path, isShown, direction, size, imagePath }: ShareButtonI
         },
     ];
 
+    const handleShare = async () => {
+        try {
+            const files = imagePath ? [await fetchImageAsBlob(imagePath)] : undefined;
+
+            if ('share' in navigator) {
+                await navigator.share({
+                    url: path,
+                    files,
+                });
+            } else {
+                setOpen(true);
+            }
+        } catch (error) {
+            console.error('Error sharing:', error);
+        }
+    };
+
     if (!isShown) return null;
 
     return (
@@ -59,14 +83,7 @@ const ShareButton = ({ path, isShown, direction, size, imagePath }: ShareButtonI
                     }
                     onClose={() => setOpen(false)}
                     onOpen={() => {
-                        if ('share' in navigator) {
-                            navigator.share({
-                                url: path,
-                                files: undefined,
-                            });
-                            return;
-                        }
-                        setOpen(true);
+                        handleShare();
                     }}
                     open={open}
                     FabProps={{
