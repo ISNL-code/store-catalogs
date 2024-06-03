@@ -22,7 +22,9 @@ const SaveToHomeScreen = () => {
                 bottom: sx ? 80 : 16,
                 backgroundColor: '#ffffffbe',
             }}
-            onClick={requestFullScreen}
+            onClick={() => {
+                document.documentElement.addEventListener('click', requestFullScreen, { once: true });
+            }}
         >
             <AppleIcon />
         </Fab>
