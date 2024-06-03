@@ -22,10 +22,6 @@ const HomePage = () => {
         scrollPage(0);
     }, []);
 
-    const variants = num => {
-        return { hidden: { opacity: sx ? 0 : 1, y: sx ? 100 * num : 0 }, visible: { opacity: 1, y: 0 } };
-    };
-
     return (
         <Box p={sx ? 2 : appXPadding} sx={{ pb: `${footerMenuHeight}px` }}>
             <MessageButton action={() => handleOpenDialog(DialogWindowType?.QUESTION)} />
@@ -63,9 +59,9 @@ const HomePage = () => {
                         key={idx}
                         initial="hidden"
                         whileInView="visible"
-                        viewport={{ once: true, amount: 0.5 }}
+                        viewport={{ once: false, amount: 0.1 }}
                         transition={{ duration: 0.5 }}
-                        variants={variants(el)}
+                        variants={{ hidden: { opacity: sx ? 0 : 1, y: sx ? 200 : 0 }, visible: { opacity: 1, y: 0 } }}
                         style={{ maxWidth: '1000px', zIndex: 2 }}
                     >
                         <Grid
