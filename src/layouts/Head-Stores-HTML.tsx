@@ -60,16 +60,16 @@ const HeadStoresHTML: React.FC = () => {
 
     useEffect(() => {
         if (!manifestUrl) return;
-        console.log(manifestUrl);
+
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
                 navigator.serviceWorker
-                    .register('/service-worker.js')
-                    .then(registration => {
-                        console.log('SW registered: ', registration);
+                    .register('/serviceWorker.js', { scope: '/' })
+                    .then(reg => {
+                        console.log('registered', reg);
                     })
-                    .catch(registrationError => {
-                        console.log('SW registration failed: ', registrationError);
+                    .catch(err => {
+                        console.log(err);
                     });
             });
         }
@@ -130,6 +130,20 @@ const HeadStoresHTML: React.FC = () => {
                         </script>
                     </>
                 )}
+                <script>
+                    {`  if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker
+                    .register('./serviceWorker.js')
+                    .then(reg => {
+                        console.log('Worker Registered');
+                    })
+                    .catch(err => {
+                        console.log('Error in service worker registration.');
+                    });
+            });
+        }`}
+                </script>
             </Helmet>
         </HelmetProvider>
     );
