@@ -23,7 +23,7 @@ const SaveToHomeScreen = () => {
                 backgroundColor: '#ffffffbe',
             }}
             onClick={() => {
-                document.documentElement.addEventListener('click', requestFullScreen, { once: true });
+                document.documentElement.addEventListener('touchstart', requestFullScreen, { once: true });
             }}
         >
             <AppleIcon />
