@@ -106,7 +106,7 @@ const PaginationButton: React.FC<PaginationButtonProps> = ({
                 variant="contained"
                 onClick={() => setCurrentPage(page + 1)}
                 color="secondary"
-                disabled={!productsList?.length || page + 1 >= totalPages}
+                disabled={!productsList?.length || page + 1 >= totalPages || loading}
             >
                 {loading ? string?.loading + '...' : string?.load_more}
             </Button>
