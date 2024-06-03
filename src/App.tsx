@@ -4,21 +4,9 @@ import StoresRouting from 'router/StoresRouting';
 import { Toaster } from 'react-hot-toast';
 import { useDevice } from 'hooks/useDevice';
 import HeadStoresHTML from 'layouts/Head-Stores-HTML';
-import { useEffect } from 'react';
 
 const App = () => {
     const { sx } = useDevice();
-    useEffect(() => {
-        function handleNavigation(event) {
-            alert('Произошла навигация браузера!');
-        }
-
-        window.addEventListener('popstate', handleNavigation);
-
-        return () => {
-            window.removeEventListener('popstate', handleNavigation);
-        };
-    }, []);
 
     return (
         <ThemeProvider theme={mainTheme}>
