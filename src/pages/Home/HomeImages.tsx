@@ -4,7 +4,8 @@ import { useDevice } from 'hooks/useDevice';
 import Marquee from 'react-fast-marquee';
 
 const HomeImages = () => {
-    const [height] = useWindowSize(); // Изменили хук
+    const height = Math.max(window.screen.height, window.innerHeight);
+
     const { s } = useDevice();
 
     return (
