@@ -9,14 +9,14 @@ import { useEffect } from 'react';
 const App = () => {
     const { sx } = useDevice();
     useEffect(() => {
-        function handleClick(event) {
-            alert('Вы совершили клик в браузере!');
+        function handleNavigation(event) {
+            alert('Произошла навигация браузера!');
         }
 
-        document.body.addEventListener('click', handleClick);
+        window.addEventListener('popstate', handleNavigation);
 
         return () => {
-            document.body.removeEventListener('click', handleClick);
+            window.removeEventListener('popstate', handleNavigation);
         };
     }, []);
 
