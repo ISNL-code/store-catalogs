@@ -8,18 +8,9 @@ const SaveToHomeScreen = () => {
     const showAddToHomeScreenPrompt = () => {
         if ('share' in navigator) {
             // Show a prompt to add to home screen
-            navigator
-                .share({
-                    title: 'Добавить на домашний экран',
-                    text: 'Установите это приложение на ваш домашний экран для легкого доступа.',
-                    url: window.location.href,
-                })
-                .then(() => {
-                    console.log('Приложение успешно добавлено на главный экран');
-                })
-                .catch(error => {
-                    alert('Ошибка при добавлении приложения на главный экран:');
-                });
+            navigator.share({
+                url: window.location.href,
+            });
         }
     };
 
