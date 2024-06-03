@@ -12,7 +12,7 @@ const SaveToHomeScreen = () => {
                 .share({
                     title: 'Alberto Bini',
                     text: 'Model',
-                    url: `https://sales-nest.app.netlify/store/alberto_bini_europe/product/1419/model/201-0622k`,
+                    url: `https://sales-nest.netlify.app/store/alberto_bini_europe/product/1419/model/201-0622k`,
                 })
                 .then(() => {
                     console.log('Приложение успешно добавлено на главный экран');
