@@ -56,6 +56,7 @@ const ShareButton = ({ path, isShown, direction, size, imagePath }: ShareButtonI
                     files,
                 });
             } else {
+                console.log(files, imagePath);
                 setOpen(true);
             }
         } catch (error) {

@@ -188,6 +188,7 @@ const CatalogListCard = memo<CatalogCardProps>(
                                     )}
                                     direction="up"
                                     size={viewMode === ViewModeType?.card ? 'large' : 'small'}
+                                    imagePath={shownModel?.images ? shownModel?.images[0]?.imageUrl : null}
                                 />
                             </Box>
                         </Box>
