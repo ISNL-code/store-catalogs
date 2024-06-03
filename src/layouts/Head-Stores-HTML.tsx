@@ -130,20 +130,6 @@ const HeadStoresHTML: React.FC = () => {
                         </script>
                     </>
                 )}
-                <script>
-                    {`  if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker
-                    .register('./serviceWorker.js')
-                    .then(reg => {
-                        console.log('Worker Registered');
-                    })
-                    .catch(err => {
-                        console.log('Error in service worker registration.');
-                    });
-            });
-        }`}
-                </script>
             </Helmet>
         </HelmetProvider>
     );
