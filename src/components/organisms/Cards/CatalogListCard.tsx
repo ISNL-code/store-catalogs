@@ -188,14 +188,13 @@ const CatalogListCard = memo<CatalogCardProps>(
                                     )}
                                     direction="up"
                                     size={viewMode === ViewModeType?.card ? 'large' : 'small'}
-                                    imagePath={shownModel?.images ? shownModel?.images[0]?.imageUrl : null}
                                 />
                             </Box>
                         </Box>
                     </Box>
                     <Box
                         sx={{
-                            height: 30,
+                            height: 28,
                             zIndex: 1,
                         }}
                     >
@@ -276,7 +275,7 @@ const CatalogListCard = memo<CatalogCardProps>(
                                 sx={{
                                     display: 'flex',
                                     justifyContent: 'space-between',
-                                    alignItems: 'center',
+                                    alignItems: 'flex-start',
                                     width: '100%',
                                     gap: 0.5,
                                 }}

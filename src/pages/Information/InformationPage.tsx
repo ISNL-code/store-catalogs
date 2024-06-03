@@ -44,10 +44,8 @@ const InformationPage = () => {
                 sx={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', alignItems: 'center' }}
             >
                 <Grid
-                    className="HiddenScroll"
                     container
                     xs={12}
-                    px={sx ? 2 : appXPadding}
                     sx={{
                         overflowY: 'auto',
                         position: 'fixed',
@@ -56,12 +54,13 @@ const InformationPage = () => {
                 >
                     <Grid
                         sx={{
+                            p: 1,
                             minWidth: 'fit-content',
                             display: 'flex',
                             gap: 1,
                             flexWrap: 'nowrap',
                             whiteSpace: 'nowrap',
-                            mt: 0.5,
+                            width: '100vw',
                         }}
                     >
                         {[

@@ -10,17 +10,9 @@ interface ShareButtonInterface {
     isShown: boolean;
     direction: 'up' | 'down' | 'left' | 'right';
     size: 'small' | 'large';
-    imagePath?: string | null;
 }
 
-const fetchImageAsBlob = async url => {
-    const response = await fetch(url);
-    const blob = await response.blob();
-    const file = new File([blob], 'shared_image.jpg', { type: blob.type });
-    return file;
-};
-
-const ShareButton = ({ path, isShown, direction, size, imagePath }: ShareButtonInterface) => {
+const ShareButton = ({ path, isShown, direction, size }: ShareButtonInterface) => {
     const [open, setOpen] = useState(false);
 
     const actions = [
@@ -48,15 +40,11 @@ const ShareButton = ({ path, isShown, direction, size, imagePath }: ShareButtonI
 
     const handleShare = async () => {
         try {
-            const files = imagePath ? [await fetchImageAsBlob(imagePath)] : undefined;
-
             if ('share' in navigator) {
                 await navigator.share({
                     url: path,
-                    files,
                 });
             } else {
-                console.log(files, imagePath);
                 setOpen(true);
             }
         } catch (error) {
