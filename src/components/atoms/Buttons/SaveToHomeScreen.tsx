@@ -1,25 +1,12 @@
-import { Fab } from '@mui/material';
+import { Box, Fab } from '@mui/material';
 import { AppleIcon } from 'assets/svg/apple_icon';
 import { useDevice } from 'hooks/useDevice';
 
 const SaveToHomeScreen = () => {
     const { sx } = useDevice(); // Access device information
 
-    const handleSaveApp = () => {
-        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
-        if (isIOS) {
-            const result = window.confirm('Do you want to add this app to your home screen?');
-            if (result) {
-                // Действие для сохранения приложения на iOS
-                // Тут вы можете вызвать navigation.share() или другие соответствующие действия
-                // Например:
-                // navigation.share({
-                //     title: 'My App',
-                //     text: 'Check out this cool app!',
-                //     url: 'https://example.com/myapp',
-                // });
-            }
-        }
+    const handleSave = () => {
+        window?.navigator?.share();
     };
 
     return (
@@ -33,7 +20,7 @@ const SaveToHomeScreen = () => {
                     bottom: sx ? 80 : 16,
                     backgroundColor: '#ffffffbe',
                 }}
-                onClick={handleSaveApp}
+                onClick={handleSave}
             >
                 <AppleIcon />
             </Fab>
