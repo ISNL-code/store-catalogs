@@ -4,13 +4,13 @@ import Loader from 'components/atoms/Loader/Loader';
 import { useFormik } from 'formik';
 import registerFormValidation from 'utils/validation/registerFormValidation';
 import { STORE_CONFIG } from 'store_constants/stores_config';
-import axios from 'axios';
 import { TRANSLATED_COUNTRIES } from 'dataBase/COUNTRY_LIST';
 import FormDialog from 'components/organisms/Modals/FormDialog';
 import { DialogWindowType } from 'layouts/hooks/useFormsApp';
 import { ROUTES } from 'router/routes';
 import { STORAGE_KEYS } from 'constants/local_storage_keys';
 import { setStorageItem } from 'utils/storageUtils';
+import { telegramSender } from 'utils/telegramSender';
 
 interface Props {
     setApiToken?: (token: string | null) => void;
@@ -68,18 +68,10 @@ export default function Register({ isOpen, setIsOpen, string, location, setAuth,
                     setIsOpen(null);
                 })
                 .then(_ => {
-                    try {
-                        const token = '6904212535:AAGvPEjkJds0aayd-oD1YVMbhLKeKt72yaE';
-                        const chatId = '480774886'; // Узнайте ваш Chat ID, написав своему боту /myid
-                        const url = `https://api.telegram.org/bot${token}/sendMessage`;
-
-                        axios.post(url, {
-                            chat_id: chatId,
-                            text: `${STORE_NAME} Регистрация страна:${values.country}, пользователь:${values.email} `,
-                        });
-                    } catch (error) {
-                        console.error('Error sending message:', error);
-                    }
+                    telegramSender({
+                        action: `REGISTRATION`,
+                        contacts: `email: ${values.email}, phone: ${values.phoneNumber}`,
+                    });
                 })
                 .catch(_err => {
                     setIsError(true);

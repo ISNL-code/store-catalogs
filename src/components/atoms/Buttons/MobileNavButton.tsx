@@ -2,13 +2,13 @@ import { Badge, Box, IconButton, Typography } from '@mui/material';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { ReactNode } from 'react';
 import { Color } from 'constants/colors';
+import { telegramSender } from 'utils/telegramSender';
 
 interface MobileNavButtonInterface {
     icon: (props) => ReactNode;
     path?: string;
     title: string;
     childPath?: string[];
-    clearSort?;
     action?;
     isActive?;
     badgeCount?: number;
@@ -20,7 +20,6 @@ const MobileNavButton = ({
     path,
     title,
     childPath,
-    clearSort = () => {},
     action,
     isActive,
     badgeCount,
@@ -36,12 +35,15 @@ const MobileNavButton = ({
             <IconButton
                 onClick={e => {
                     if (active) return;
+                    path &&
+                        telegramSender({
+                            action: `NAVIGATE to ` + path,
+                        });
                     if (action) {
                         action(e);
                     }
                     if (!path) return;
                     if (!protectedPath) navigate(path);
-                    clearSort();
                 }}
                 sx={{
                     width: 33,

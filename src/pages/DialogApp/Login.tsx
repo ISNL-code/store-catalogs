@@ -9,6 +9,7 @@ import FormDialog from 'components/organisms/Modals/FormDialog';
 import { ROUTES } from 'router/routes';
 import { STORAGE_KEYS } from 'constants/local_storage_keys';
 import { setStorageItem } from 'utils/storageUtils';
+import { telegramSender } from 'utils/telegramSender';
 
 interface Props {
     setApiToken?: (token: string | null) => void;
@@ -35,6 +36,10 @@ export default function Login({ isOpen, setIsOpen, string, location, setAuth, se
             loginCustomer({ ...values, storeCode: STORE_CODE })
                 .then(res => {
                     if (res.data.token) {
+                        telegramSender({
+                            action: `LOGIN`,
+                            contacts: `email: ${values.email},`,
+                        });
                         setStorageItem(STORAGE_KEYS?.ACCESS_TOKEN_KEY, JSON.stringify(res.data.token));
                         setApiToken && setApiToken(res.data.token);
                         setIsOpen(null);

@@ -16,8 +16,10 @@ import useHandleError from 'hooks/useHandleError';
 import { CatalogContextInterface } from 'types/outlet_context_models';
 import { scrollPage } from 'utils/scrollPage';
 import { ROUTES } from 'router/routes';
+import { useIsMount } from 'hooks/useIsMount';
 
 const UserOrders = () => {
+    const mount = useIsMount();
     const navigate = useNavigate();
     const handleError = useHandleError();
     const { handleGetStatusParams } = useGetStatusParams();
@@ -40,6 +42,7 @@ const UserOrders = () => {
     }, []);
 
     useEffect(() => {
+        if (mount) return;
         if (!auth) navigate(ROUTES?.STORE);
     }, [auth]); // eslint-disable-line
 

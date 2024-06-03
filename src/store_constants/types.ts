@@ -21,6 +21,7 @@ export interface STORE_CONFIG_Interface {
     SUPPORTED_COUNTRIES: { code: string; country: string }[] | null; // use for limitation of supported countries
     HTML_LANG: string; // web html lang
     SIDE_LINKS: { name: string; href: string; description: string }[] | [];
+    TELEGRAM_SENDER: boolean; // use for telegram send events
     OPTIONS: {
         PRODUCT_IMAGE_OPTIONS: { width: number; height: number }; // use for identification of product image size
         MAIN_PRICE_MULTIPLICATION: number; // use in custom catalogs for multiple main prices

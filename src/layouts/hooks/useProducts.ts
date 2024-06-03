@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { ProductDataInterface } from 'types/app_models';
 import { map_product_card } from 'utils/mappers/product_data';
 import { scrollPage } from 'utils/scrollPage';
+import { telegramSender } from 'utils/telegramSender';
 
 interface Props {
     store: string;
@@ -83,7 +84,11 @@ export const useProducts = ({ store, lang }: Props) => {
     }, [currentProductsPage]); // eslint-disable-line
 
     const handleSetProductsPage = (val: number) => {
+        telegramSender({
+            action: `LOAD MORE PRODUCTS`,
+        });
         if (totalPages <= currentProductsPage) return;
+
         setCurrentProductsPage(val);
     };
 

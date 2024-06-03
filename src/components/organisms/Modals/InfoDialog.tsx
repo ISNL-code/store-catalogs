@@ -88,7 +88,7 @@ const InfoDialog = ({
     useEffect(() => {
         setOpen(true);
     }, []);
-    console.log(component, content);
+
     return (
         <ClickAwayListener
             onClickAway={() => {

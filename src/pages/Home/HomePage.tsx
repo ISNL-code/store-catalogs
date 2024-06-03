@@ -11,12 +11,14 @@ import { STORE_ROUTE } from 'router/routes';
 import { STORE_CONFIG } from 'store_constants/stores_config';
 import { scrollPage } from 'utils/scrollPage';
 import InformationButton from 'components/atoms/Buttons/InformationButton';
+import { telegramSender } from 'utils/telegramSender';
 
 const HomePage = () => {
     const navigate = useNavigate();
 
     const { STORE_CODE, SIDE_LINKS } = STORE_CONFIG;
-    const { appXPadding, footerMenuHeight, string, handleOpenDialog }: HomeContextInterface = useOutletContext();
+    const { appXPadding, footerMenuHeight, string, handleOpenDialog, currentUserData }: HomeContextInterface =
+        useOutletContext();
     const { sx } = useDevice();
 
     useEffect(() => {
@@ -28,16 +30,32 @@ const HomePage = () => {
         if (el === 2) {
             const link = SIDE_LINKS?.find(el => el?.description === 'Wholesale')?.href || null;
             if (link) {
+                telegramSender({
+                    action: `GO_TO_RETAILER`,
+                    userEmail: currentUserData?.emailAddress || '',
+                });
                 window.open(link);
             } else {
+                telegramSender({
+                    action: `NAV_TO_CATALOG`,
+                    userEmail: currentUserData?.emailAddress || '',
+                });
                 navigate(`${STORE_ROUTE?.root(STORE_CODE)}`);
             }
         }
         if (el === 3) {
             const link = SIDE_LINKS?.find(el => el?.description === 'Retail')?.href || null;
             if (link) {
+                telegramSender({
+                    action: `GO_TO_WHOLESALE`,
+                    userEmail: currentUserData?.emailAddress || '',
+                });
                 window.open(link);
             } else {
+                telegramSender({
+                    action: `NAV_TO_CATALOG`,
+                    userEmail: currentUserData?.emailAddress || '',
+                });
                 navigate(`${STORE_ROUTE?.root(STORE_CODE)}`);
             }
         }
@@ -49,7 +67,7 @@ const HomePage = () => {
             <CallBackButton path={STORE_ROUTE?.contacts(STORE_CODE)} />
             <InformationButton />
             <HomeImages />
-            <Grid item container xs={12} mt={-2}>
+            <Grid item container xs={12} mt={-2} mb={2}>
                 <Typography
                     variant="h1"
                     sx={{
@@ -77,7 +95,7 @@ const HomePage = () => {
                     <Grid
                         item
                         px={sx ? 2 : 4}
-                        py={sx ? 1 : 1.75}
+                        py={2}
                         xs={12}
                         mt={1.2}
                         sx={{
@@ -87,26 +105,25 @@ const HomePage = () => {
                             position: 'relative',
                         }}
                     >
-                        {isShown && (
-                            <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                                <Typography sx={{ color: '#000', zIndex: 1, fontSize: sx ? 23 : 32 }}>
-                                    {string?.[`customer_title_${idx + 1}`]}
-                                </Typography>
-                                {(el === 2 || el === 3) && (
-                                    <Button
-                                        size="small"
-                                        variant="contained"
-                                        sx={{ height: 30, width: 200 }}
-                                        onClick={() => {
-                                            handleNavigate(el);
-                                        }}
-                                    >
-                                        {el === 2 && string?.wholesale_catalog + ' ' + string?.catalog}
-                                        {el === 3 && string?.retail_catalog + ' ' + string?.catalog}
-                                    </Button>
-                                )}
-                            </Box>
-                        )}
+                        <Box mb={2} sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                            <Typography sx={{ color: '#000', zIndex: 1, fontSize: sx ? 18 : 32 }}>
+                                {string?.[`customer_title_${idx + 1}`]}
+                            </Typography>
+                            {isShown && (el === 2 || el === 3) && (
+                                <Button
+                                    size="small"
+                                    variant="contained"
+                                    sx={{ height: 30, width: sx ? 120 : 140, fontSize: sx ? 10 : 12 }}
+                                    onClick={() => {
+                                        handleNavigate(el);
+                                    }}
+                                >
+                                    {el === 2 && string?.wholesale_catalog + ' ' + string?.catalog}
+                                    {el === 3 && string?.retail_catalog + ' ' + string?.catalog}
+                                </Button>
+                            )}
+                        </Box>
+
                         <Typography sx={{ color: '#2c2c2c', zIndex: 1, fontWeight: 500, fontSize: sx ? 15 : 22 }}>
                             {string?.[`customer_description_${idx + 1}`]}
                         </Typography>

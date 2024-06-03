@@ -18,6 +18,7 @@ import { DialogWindowType } from 'layouts/hooks/useFormsApp';
 import { STORE_ROUTE } from 'router/routes';
 import HeaderNavButton from 'components/atoms/Buttons/HeaderNavButton';
 import MobileNavButton from 'components/atoms/Buttons/MobileNavButton';
+import { telegramSender } from 'utils/telegramSender';
 
 interface ProfileMenuProps {
     string: any;
@@ -208,7 +209,12 @@ const ProfileMenu: React.FC<ProfileMenuProps> = ({
                             <Item
                                 key={idx}
                                 name={name}
-                                onClick={onClick}
+                                onClick={() => {
+                                    onClick();
+                                    telegramSender({
+                                        action: `PROFILE_NAV ` + name,
+                                    });
+                                }}
                                 icon={icon}
                                 anchor={anchor}
                                 visible={visible}

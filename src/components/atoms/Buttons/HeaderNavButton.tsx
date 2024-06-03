@@ -2,6 +2,7 @@ import { Badge, IconButton, Typography } from '@mui/material';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { ReactNode } from 'react';
 import { Color, Colors } from 'constants/colors';
+import { telegramSender } from 'utils/telegramSender';
 
 interface HeaderNavButtonInterface {
     icon: () => ReactNode;
@@ -49,6 +50,10 @@ const HeaderNavButton = ({
                 onClick={e => {
                     if (action) action(e);
                     if (!protectedPath && path) navigate(path);
+                    path &&
+                        telegramSender({
+                            action: `NAVIGATE to ` + path,
+                        });
                 }}
             >
                 <Badge

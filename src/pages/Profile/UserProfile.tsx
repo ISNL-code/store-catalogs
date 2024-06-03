@@ -11,8 +11,10 @@ import { useEffect, useState } from 'react';
 import useHandleError from 'hooks/useHandleError';
 import { scrollPage } from 'utils/scrollPage';
 import { ROUTES } from 'router/routes';
+import { useIsMount } from 'hooks/useIsMount';
 
 const UserProfile = () => {
+    const mount = useIsMount();
     const { sx } = useDevice();
     const navigate = useNavigate();
     const {
@@ -40,6 +42,7 @@ const UserProfile = () => {
     }, []);
 
     useEffect(() => {
+        if (mount) return;
         if (!auth) navigate(ROUTES?.STORE);
     }, [auth]); // eslint-disable-line
 
@@ -59,7 +62,7 @@ const UserProfile = () => {
     }, [currentUserData, userDataError]); // eslint-disable-line
 
     return (
-        <Box p={sx ? 2 : appXPadding} sx={{ pb: footerMenuHeight }}>
+        <Box p={sx ? 2 : appXPadding} sx={{ pb: `${footerMenuHeight}px ` }}>
             {isLoading && <Loader />}
             <InstrumentalSubHeader
                 StartSlot={() => <BackButton />}

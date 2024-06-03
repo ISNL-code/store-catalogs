@@ -6,11 +6,11 @@ import { useOutletContext, useParams } from 'react-router-dom';
 import { CatalogContextInterface } from 'types/outlet_context_models';
 import { OrderDataInterface } from '../Cart';
 import { useState } from 'react';
-import axios from 'axios';
 import CouponPrice from 'components/molecules/PricesComponents/CouponPrice';
 import { STORE_CONFIG } from 'store_constants/stores_config';
 import { useUserApi } from 'api/useUserApi';
 import { DialogWindowType } from 'layouts/hooks/useFormsApp';
+import { telegramSender } from 'utils/telegramSender';
 
 interface Props {
     createOrder;
@@ -29,7 +29,7 @@ const ConfirmCoupon = ({
     setOrderData,
     loadCreateOrder,
 }: Props) => {
-    const { STORE_NAME, OPTIONS } = STORE_CONFIG;
+    const { OPTIONS } = STORE_CONFIG;
     const { MIN_ITEMS_TO_BUY } = OPTIONS;
     const { storeCode } = useParams();
     const {
@@ -110,16 +110,7 @@ const ConfirmCoupon = ({
                 },
             })
                 .then(() => {
-                    try {
-                        const token = '6904212535:AAGvPEjkJds0aayd-oD1YVMbhLKeKt72yaE';
-                        const chatId = '480774886'; // Узнайте ваш Chat ID, написав своему боту /myid
-                        const url = `https://api.telegram.org/bot${token}/sendMessage`;
-
-                        axios.post(url, {
-                            chat_id: chatId,
-                            text: `${STORE_NAME} Заказ`,
-                        });
-                    } catch (error) {}
+                    telegramSender({ action: `ORDER-APP`, userEmail: currentUserData?.emailAddress || '' });
 
                     cart?.handleClearCartItems([...new Set(orderData?.productsList.map(item => item?.productSku))]);
                     setOrderData(prev => {
@@ -297,6 +288,9 @@ const ConfirmCoupon = ({
                         variant="contained"
                         sx={{ width: '100%' }}
                         onClick={() => {
+                            telegramSender({
+                                action: `TRY TO CONFIRM ORDER`,
+                            });
                             handleConfirmOrder();
                         }}
                     >

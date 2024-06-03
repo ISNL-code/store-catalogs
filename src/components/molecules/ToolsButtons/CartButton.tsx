@@ -15,7 +15,8 @@ const CartButton = ({ isShown, action, selected }: CartButtonInterface) => {
     if (isShown)
         return (
             <Button
-                onClick={() => {
+                onClick={e => {
+                    e.stopPropagation();
                     action();
                 }}
                 size="medium"

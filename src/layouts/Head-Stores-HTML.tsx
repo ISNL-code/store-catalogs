@@ -66,7 +66,7 @@ const HeadStoresHTML: React.FC = () => {
                 navigator.serviceWorker
                     .register('/serviceWorker.js', { scope: '/' })
                     .then(reg => {
-                        console.log('registered', reg);
+                        console.log('registered serviceWorker');
                     })
                     .catch(err => {
                         console.log(err);

@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useIsMount } from 'hooks/useIsMount';
 import { STORE_CONFIG } from 'store_constants/stores_config';
-import axios, { AxiosResponse } from 'axios';
+import { AxiosResponse } from 'axios';
 import { STORAGE_KEYS } from 'constants/local_storage_keys';
 import { STORES_DATA } from 'dataBase/STORES';
 import { StoreInterface, UserDataInterface } from 'types/app_models';
@@ -10,9 +10,11 @@ import { ViewModeType } from 'store_constants/types';
 import { Store_Data_Response_Interface } from 'types/response_models';
 import { QueryObserverResult, RefetchOptions, RefetchQueryFilters } from '@tanstack/react-query';
 import { getStorageItem, setStorageItem } from 'utils/storageUtils';
+import { telegramSender } from 'utils/telegramSender';
 
 interface Props {
     lang: string;
+    auth: boolean | null;
     viewMode: ViewModeType | null;
     infoAlert: { ws_info: boolean } | null;
     storeDataRes?: AxiosResponse<Store_Data_Response_Interface, any>;
@@ -31,11 +33,13 @@ interface Props {
         ) => Promise<QueryObserverResult<AxiosResponse<any, any>, unknown>>;
         userError: any;
     };
+    apiToken: string | null;
     setApiToken: (token: string | null) => void;
 }
 
 const StoresLogic = ({
     setAuth,
+    auth,
     userData,
     lang,
     setLang,
@@ -47,36 +51,16 @@ const StoresLogic = ({
     setCurrentStoreData,
     isStoreLoading,
     setApiToken,
+    apiToken,
 }: Props) => {
     const mount = useIsMount();
-    const { APP_LANGUAGE, USER_OPTIONS, STORE_NAME } = STORE_CONFIG;
+    const { APP_LANGUAGE, USER_OPTIONS } = STORE_CONFIG;
     const { VIEW_MODE } = USER_OPTIONS;
 
     // visit alert
     useEffect(() => {
         if (window.location.origin.includes('localhost')) return;
-        try {
-            const token = 'YOUR_TELEGRAM_BOT_TOKEN';
-            const chatId = 'YOUR_CHAT_ID';
-            const url = `https://api.telegram.org/bot${token}/sendMessage`;
-
-            axios
-                .get('https://ipapi.co/json/')
-                .then(response => {
-                    const userCountry = response.data.country_name;
-                    const userCity = response.data.city;
-
-                    axios.post(url, {
-                        chat_id: chatId,
-                        text: `${STORE_NAME} ВХОД ${userCountry}/${userCity}`,
-                    });
-                })
-                .catch(error => {
-                    console.error(error);
-                });
-        } catch (error) {
-            console.error(error);
-        }
+        telegramSender({ action: `VISIT-APP` });
 
         return;
     }, []); // eslint-disable-line
@@ -88,14 +72,21 @@ const StoresLogic = ({
                 const storedItems = await getStorageItem(STORAGE_KEYS?.ACCESS_TOKEN_KEY);
 
                 if (storedItems) {
-                    const res = await userData.fetchUserData();
-                    if (res.status === 'error') {
-                        setAuth(false);
-                    } else {
-                        setAuth(true);
-                        setApiToken(storedItems);
-                        userData.setCurrentUserData(res?.data?.data);
-                    }
+                    userData
+                        .fetchUserData()
+                        .then(res => {
+                            if (res.status === 'error') {
+                                setAuth(false);
+                            } else {
+                                setAuth(true);
+                                setApiToken(storedItems);
+                                userData.setCurrentUserData(res?.data?.data);
+                            }
+                        })
+                        .catch(err => {
+                            setAuth(false);
+                            console.log(err);
+                        });
                 } else {
                     setAuth(false);
                 }
@@ -106,6 +97,37 @@ const StoresLogic = ({
 
         fetchAuth();
     }, []); // eslint-disable-line
+
+    useEffect(() => {
+        if (!auth) return;
+        const fetchAuth = async () => {
+            try {
+                const storedItems = await getStorageItem(STORAGE_KEYS?.ACCESS_TOKEN_KEY);
+
+                if (storedItems || apiToken) {
+                    userData
+                        .fetchUserData()
+                        .then(res => {
+                            if (res.status === 'error') {
+                                setAuth(false);
+                            } else {
+                                userData.setCurrentUserData(res?.data?.data);
+                            }
+                        })
+                        .catch(err => {
+                            setAuth(false);
+                            console.log(err);
+                        });
+                } else {
+                    setAuth(false);
+                }
+            } catch (error) {
+                console.error('Error getting storage item:', error);
+            }
+        };
+
+        fetchAuth();
+    }, [auth]); // eslint-disable-line
 
     // set app user lang
     useEffect(() => {

@@ -1,5 +1,6 @@
 import InfoDialog from 'components/organisms/Modals/InfoDialog';
 import { STORE_CONFIG } from 'store_constants/stores_config';
+import { telegramSender } from 'utils/telegramSender';
 
 const WarningOrderLimit = ({ isOpen, setIsOpen, string }) => {
     const { SIDE_LINKS } = STORE_CONFIG;
@@ -16,6 +17,9 @@ const WarningOrderLimit = ({ isOpen, setIsOpen, string }) => {
                         ? {
                               name: string?.retail_catalog,
                               action: () => {
+                                  telegramSender({
+                                      action: `GO TO RETAIL FROM CART`,
+                                  });
                                   window.open(linkURL, '_blank');
                               },
                           }

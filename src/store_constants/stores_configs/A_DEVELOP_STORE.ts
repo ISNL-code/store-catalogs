@@ -10,9 +10,9 @@ import { ALBERTO_BINI_KZ_RETAIL } from './ALBERTO_BINI_KZ_RETAIL'; // eslint-dis
 
 export const DEVELOP_STORE = {
     ...ALBERTO_BINI_MAIN,
-    // ...ALBERTO_BINI_EU_RETAIL,
-    // ...ALBERTO_BINI_EU_WS,
-    // ...ALBERTO_BINI_KZ_RETAIL,
+    ...ALBERTO_BINI_EU_RETAIL,
+    ...ALBERTO_BINI_EU_WS,
+    ...ALBERTO_BINI_KZ_RETAIL,
     ...ALBERTO_BINI_KZ_WS,
     // ...ALBERTO_BINI_OUTLET,
     // ...ALBERTO_BINI_SALES,
@@ -24,4 +24,5 @@ export const DEVELOP_STORE = {
         'https://sales-nest-dev.netlify.app',
         'https://sales-nest.netlify.app',
     ],
+    telegram_sender: false,
 };

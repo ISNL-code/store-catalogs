@@ -25,6 +25,7 @@ import { SHARE_PRODUCT_PATH, STORE_ROUTE } from 'router/routes';
 import { CatalogContextInterface } from 'types/outlet_context_models';
 import { map_currency_symbol } from 'utils/mappers/currency_symbol';
 import { EmptyImage } from 'components/atoms/Media/EmptyImage';
+import { telegramSender } from 'utils/telegramSender';
 
 interface CatalogCardProps {
     modelsVariants: ProductVariantInterface[];
@@ -78,6 +79,9 @@ const CatalogListCard = memo<CatalogCardProps>(
                         cursor: 'pointer',
                     }}
                     onClick={() => {
+                        telegramSender({
+                            action: `GO TO MODEL DETAILS`,
+                        });
                         navigate(STORE_ROUTE?.product(STORE_CODE, productId, shownModel?.variantSku));
                     }}
                 >

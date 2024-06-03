@@ -13,9 +13,10 @@ export const ALBERTO_BINI_EU_WS = {
     base_url: 'https://kremen-belts.com/api',
     app_lang: 'en',
     supported_countries: null,
+    telegram_sender: true,
     links: [
         {
-            name: 'Retail',
+            name: 'AB Retail',
             href: 'https://albertobini-brandeurope-retail.netlify.app/store/alberto_bini_europe',
             description: 'Retail',
             type: 'WEB',

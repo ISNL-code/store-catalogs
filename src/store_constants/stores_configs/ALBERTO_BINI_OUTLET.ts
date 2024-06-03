@@ -13,6 +13,7 @@ export const ALBERTO_BINI_OUTLET = {
     base_url: 'https://kremen-belts.com/api',
     app_lang: 'ua',
     supported_countries: [{ code: 'UA', country: 'ukraine' }],
+    telegram_sender: true,
     links: [],
     options: {
         product_image_options: { width: 6, height: 9 },
