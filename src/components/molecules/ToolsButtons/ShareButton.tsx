@@ -10,9 +10,10 @@ interface ShareButtonInterface {
     isShown: boolean;
     direction: 'up' | 'down' | 'left' | 'right';
     size: 'small' | 'large';
+    imagePath?: string;
 }
 
-const ShareButton = ({ path, isShown, direction, size }: ShareButtonInterface) => {
+const ShareButton = ({ path, isShown, direction, size, imagePath }: ShareButtonInterface) => {
     const [open, setOpen] = useState(false);
 
     const actions = [
