@@ -1,11 +1,9 @@
-import React from 'react';
-import { Box } from '@mui/material';
+import { Fab } from '@mui/material';
 import { AppleIcon } from 'assets/svg/apple_icon';
-import { Color } from 'constants/colors';
 import { useDevice } from 'hooks/useDevice';
 
 const SaveToHomeScreen = () => {
-    const { sx, s } = useDevice();
+    const { sx } = useDevice();
 
     const handleAddToHomeScreenClick = () => {
         if ('beforeinstallprompt' in window) {
@@ -20,39 +18,19 @@ const SaveToHomeScreen = () => {
     };
 
     return (
-        <Box
-            onClick={handleAddToHomeScreenClick}
+        <Fab
+            size="medium"
             sx={{
-                width: sx ? 'fit-content' : 140,
-                zIndex: 2000,
+                zIndex: 50,
                 position: 'fixed',
-                right: sx ? '20px' : '36px',
+                left: sx ? '80px' : '40px',
                 bottom: sx ? 80 : 16,
-                border: sx ? 'none' : '1px solid ',
-                borderColor: Color?.SUCCESS,
-                backgroundColor: sx ? 'none' : Color?.SUCCESS,
-                opacity: 0.75,
-                borderRadius: 50,
-                p: s ? 0 : 0.25,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                cursor: 'pointer',
+                backgroundColor: '#ffffffbe',
             }}
+            onClick={handleAddToHomeScreenClick}
         >
-            <Box
-                sx={{
-                    backgroundColor: '#ffffff',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    width: 30,
-                    height: 30,
-                }}
-            >
-                <AppleIcon />
-            </Box>
-        </Box>
+            <AppleIcon />
+        </Fab>
     );
 };
 
