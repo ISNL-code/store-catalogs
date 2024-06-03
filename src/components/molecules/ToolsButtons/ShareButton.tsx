@@ -10,7 +10,7 @@ interface ShareButtonInterface {
     isShown: boolean;
     direction: 'up' | 'down' | 'left' | 'right';
     size: 'small' | 'large';
-    imagePath?: string;
+    imagePath?: string | null;
 }
 
 const fetchImageAsBlob = async url => {
