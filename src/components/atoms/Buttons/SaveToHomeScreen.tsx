@@ -5,29 +5,20 @@ import { useDevice } from 'hooks/useDevice';
 const SaveToHomeScreen = () => {
     const { sx } = useDevice(); // Access device information
 
-    const handleClick = () => {
-        // Progressive Web App (PWA) approach (if applicable)
-        if ('beforeinstallprompt' in window) {
-            let deferredPrompt;
-            window.addEventListener('beforeinstallprompt', event => {
-                event.preventDefault(); // Prevent default behavior
-                deferredPrompt = event;
-            });
-
-            const installApp = async () => {
-                if (deferredPrompt) {
-                    deferredPrompt.prompt();
-                    const { outcome } = await deferredPrompt.userChoice;
-                    deferredPrompt = null; // Reset deferredPrompt
-                    if (outcome === 'accepted') {
-                        console.log('App installed successfully!');
-                    } else {
-                        console.log('User declined to install the app.');
-                    }
-                }
-            };
-
-            return installApp; // Return the function for potential chaining
+    const handleSaveApp = () => {
+        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+        if (isIOS) {
+            const result = window.confirm('Do you want to add this app to your home screen?');
+            if (result) {
+                // Действие для сохранения приложения на iOS
+                // Тут вы можете вызвать navigation.share() или другие соответствующие действия
+                // Например:
+                // navigation.share({
+                //     title: 'My App',
+                //     text: 'Check out this cool app!',
+                //     url: 'https://example.com/myapp',
+                // });
+            }
         }
     };
 
@@ -42,7 +33,7 @@ const SaveToHomeScreen = () => {
                     bottom: sx ? 80 : 16,
                     backgroundColor: '#ffffffbe',
                 }}
-                onClick={handleClick}
+                onClick={handleSaveApp}
             >
                 <AppleIcon />
             </Fab>
