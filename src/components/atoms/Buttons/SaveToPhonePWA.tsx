@@ -12,45 +12,22 @@ interface BeforeInstallPromptEvent extends Event {
 
 const SaveToPhonePWA = () => {
     const { s, sx } = useDevice();
-    const [deferredPrompt, setDeferredPrompt] = useState<BeforeInstallPromptEvent | null>(null);
 
-    useEffect(() => {
-        const handler = (e: Event) => {
-            const event = e as BeforeInstallPromptEvent;
-            // Предотвращаем отображение стандартного диалога установки
-            event.preventDefault();
-            // Сохраняем событие для последующего использования
-            setDeferredPrompt(event);
-        };
-
-        window.addEventListener('beforeinstallprompt', handler as unknown as EventListener);
-
-        return () => window.removeEventListener('beforeinstallprompt', handler as unknown as EventListener);
-    }, []);
-
-    const handleInstallClick = () => {
-        if (deferredPrompt) {
-            // Показываем диалог установки PWA
-            deferredPrompt.prompt();
-            // Обрабатываем выбор пользователя
-            deferredPrompt.userChoice.then(choiceResult => {
-                if (choiceResult.outcome === 'accepted') {
-                    console.log('User accepted the install prompt');
-                } else {
-                    console.log('User dismissed the install prompt');
-                }
-                setDeferredPrompt(null);
-            });
+    function addToHomeScreen() {
+        if (navigator && navigator['standalone']) {
+            alert('Это приложение уже добавлено на главный экран.');
+        } else if (window.matchMedia('(display-mode: standalone)').matches) {
+            alert('Это приложение уже открыто в полноэкранном режиме.');
+        } else if (window.navigator['standalone'] === undefined) {
+            alert('Пожалуйста, добавьте это приложение на главный экран вашего устройства.');
+        } else {
+            alert('Нажмите кнопку "Поделиться" и выберите "Добавить на главный экран".');
         }
-    };
-
-    // if (!deferredPrompt) {
-    //     return null; // Не показываем кнопку, если событие beforeinstallprompt еще не произошло
-    // }
+    }
 
     return (
         <Box
-            onClick={handleInstallClick}
+            onClick={addToHomeScreen}
             sx={{
                 display: 'flex',
                 zIndex: 2000,
