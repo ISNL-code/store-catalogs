@@ -5,19 +5,20 @@ import { useDevice } from 'hooks/useDevice';
 const SaveToHomeScreen = () => {
     const { sx } = useDevice();
 
-    const handleAddToHomeScreenClick = () => {
-        if ('share' in navigator) {
+    const showAddToHomeScreenPrompt = () => {
+        if ('share' in navigator && window.matchMedia('(display-mode: standalone)').matches) {
+            // Show a prompt to add to home screen
             navigator
                 .share({
-                    title: 'Alberto Bini',
-                    text: 'Model',
-                    url: `https://sales-nest.netlify.app/store/alberto_bini_europe/product/1419/model/201-0622k`,
+                    title: 'Добавить на домашний экран',
+                    text: 'Установите это приложение на ваш домашний экран для легкого доступа.',
+                    url: window.location.href,
                 })
                 .then(() => {
                     console.log('Приложение успешно добавлено на главный экран');
                 })
                 .catch(error => {
-                    console.error('Ошибка при добавлении приложения на главный экран:', error);
+                    alert(error);
                 });
         }
     };
@@ -33,7 +34,7 @@ const SaveToHomeScreen = () => {
                     bottom: sx ? 80 : 16,
                     backgroundColor: '#ffffffbe',
                 }}
-                onClick={handleAddToHomeScreenClick}
+                onClick={showAddToHomeScreenPrompt}
             >
                 <AppleIcon />
             </Fab>
