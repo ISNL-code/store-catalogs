@@ -6,13 +6,22 @@ const SaveToHomeScreen = () => {
     const { sx } = useDevice();
 
     const handleAddToHomeScreenClick = () => {
-        if ('beforeinstallprompt' in window) {
-            const promptEvent = (window as any).beforeinstallprompt;
-
-            if (promptEvent) {
-                promptEvent.prompt();
-            }
+        // Проверяем, доступно ли добавление на главный экран
+        if ('share' in navigator) {
+            navigator
+                .share({
+                    title: 'Название вашего приложения',
+                    text: 'Описание вашего приложения',
+                    url: 'URL вашего приложения',
+                })
+                .then(() => {
+                    console.log('Приложение успешно добавлено на главный экран');
+                })
+                .catch(error => {
+                    console.error('Ошибка при добавлении приложения на главный экран:', error);
+                });
         } else {
+            // Если функция share не поддерживается, можно показать другие варианты, например, отображение инструкции для пользователя
             alert('Добавление на главный экран не поддерживается в вашем браузере.');
         }
     };
