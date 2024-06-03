@@ -1,5 +1,4 @@
 import { Box } from '@mui/material';
-import { useWindowSize } from '@react-hook/window-size';
 import { useDevice } from 'hooks/useDevice';
 import Marquee from 'react-fast-marquee';
 
