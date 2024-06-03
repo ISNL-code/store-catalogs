@@ -135,4 +135,4 @@ const HeadStoresHTML: React.FC = () => {
     );
 };
 
-export HeadStoresHTML;
+export default HeadStoresHTML;
