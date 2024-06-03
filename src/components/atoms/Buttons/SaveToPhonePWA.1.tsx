@@ -44,9 +44,9 @@ const SaveToPhonePWA = () => {
         }
     };
 
-    // if (!deferredPrompt) {
-    //     return null; // Не показываем кнопку, если событие beforeinstallprompt еще не произошло
-    // }
+    if (!deferredPrompt) {
+        return null; // Не показываем кнопку, если событие beforeinstallprompt еще не произошло
+    }
 
     return (
         <Box
