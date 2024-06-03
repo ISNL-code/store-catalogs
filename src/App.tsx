@@ -34,6 +34,17 @@ const App = () => {
                 handleNavigatorMethod(methodName, navigator[methodName]);
             }
         }
+
+        // Добавляем обработчики событий к элементам на вашем сайте,
+        // которые вызывают методы навигатора
+        const someButton = document.getElementById('someButton');
+        if (someButton) {
+            someButton.addEventListener('click', () => {
+                // Вызовите методы навигатора здесь
+                // Например:
+                navigator.share({ title: 'Test', text: 'Hello', url: 'https://example.com' });
+            });
+        }
     }, []); // Эффект выполняется только один раз при загрузке компонента
 
     return (
