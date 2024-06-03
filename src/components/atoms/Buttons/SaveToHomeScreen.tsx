@@ -1,4 +1,4 @@
-import { Box, Fab } from '@mui/material';
+import { Fab } from '@mui/material';
 import { AppleIcon } from 'assets/svg/apple_icon';
 import { useDevice } from 'hooks/useDevice';
 
