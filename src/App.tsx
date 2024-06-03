@@ -9,11 +9,11 @@ import { useEffect } from 'react';
 const App = () => {
     const { sx } = useDevice();
     useEffect(() => {
-        function handleNavigation(event) {
-            // Проверяем, является ли событие навигацией
-            if (event.type === 'popstate') {
-                // Ваш код здесь, например, вывод алерта
-                alert('Была выполнена навигация браузера!');
+        function handleNavigation() {
+            // Проверяем, содержит ли URL-адрес параметр share
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.has('share')) {
+                alert('Пользователь поделился вашим сайтом!');
             }
         }
 
@@ -24,7 +24,7 @@ const App = () => {
         return () => {
             window.removeEventListener('popstate', handleNavigation);
         };
-    }, []); // Пустой массив зависимостей означает, что эффект будет запущен только после первого рендера
+    }, []);
 
     return (
         <ThemeProvider theme={mainTheme}>
