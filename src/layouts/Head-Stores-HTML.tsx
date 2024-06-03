@@ -20,24 +20,24 @@ const HeadStoresHTML: React.FC = () => {
             name: `Create ${STORE_NAME} sample`,
             icons: [
                 {
-                    src: require(`dataBase/images/logos/${STORE_LOGO}`).default,
+                    src: require(`dataBase/images/logos/${STORE_LOGO}`),
                     sizes: '64x64 32x32 24x24 16x16',
                     type: 'image/x-icon',
                 },
                 {
-                    src: require(`dataBase/images/logos/${STORE_LOGO}`).default,
+                    src: require(`dataBase/images/logos/${STORE_LOGO}`),
                     type: 'image/png',
                     sizes: '192x192',
                     purpose: 'maskable',
                 },
                 {
-                    src: require(`dataBase/images/logos/${STORE_LOGO}`).default,
+                    src: require(`dataBase/images/logos/${STORE_LOGO}`),
                     type: 'image/png',
                     sizes: '192x192',
                     purpose: 'any',
                 },
                 {
-                    src: require(`dataBase/images/logos/${STORE_LOGO}`).default,
+                    src: require(`dataBase/images/logos/${STORE_LOGO}`),
                     type: 'image/png',
                     sizes: '512x512',
                 },
@@ -88,13 +88,13 @@ const HeadStoresHTML: React.FC = () => {
                 <meta property="og:url" content={window.location.href} />
                 <meta property="og:site_name" content={STORE_NAME} />
                 <meta property="og:title" content={STORE_TITLE} />
-                <meta property="og:image" content={require(`dataBase/images/posters/${STORE_POSTER}`).default} />
+                <meta property="og:image" content={require(`dataBase/images/posters/${STORE_POSTER}`)} />
                 <meta property="og:description" content={STORE_DESCRIPTION} />
                 <meta name="twitter:title" content={STORE_TITLE} />
                 <meta name="twitter:description" content={STORE_DESCRIPTION} />
-                <meta name="twitter:image" content={require(`dataBase/images/posters/${STORE_POSTER}`).default} />
-                <link rel="icon" href={require(`dataBase/images/logos/${STORE_LOGO}`).default} />
-                <link rel="apple-touch-icon" href={require(`dataBase/images/logos/${STORE_LOGO}`).default} />
+                <meta name="twitter:image" content={require(`dataBase/images/posters/${STORE_POSTER}`)} />
+                <link rel="icon" href={require(`dataBase/images/logos/${STORE_LOGO}`)} />
+                <link rel="apple-touch-icon" href={require(`dataBase/images/logos/${STORE_LOGO}`)} />
                 <link rel="manifest" href={manifestUrl} />
                 {Array.isArray(GOOGLE_ANALYTICS_ID) ? (
                     GOOGLE_ANALYTICS_ID.map((id, index) => (
@@ -135,4 +135,4 @@ const HeadStoresHTML: React.FC = () => {
     );
 };
 
-export default HeadStoresHTML;
+export HeadStoresHTML;
