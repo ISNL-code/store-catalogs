@@ -23,7 +23,7 @@ const DetailsPriceDefault = ({ price }: Props) => {
     return (
         <Box sx={{ display: 'flex' }}>
             <Typography sx={{ color: Colors?.GRAY_900, fontSize: 20 }}>
-                {map_currency_symbol(CUSTOM_CURRENCY || store?.currency)}
+                {CUSTOM_CURRENCY || map_currency_symbol(store?.currency)}
                 {parseFloat(
                     (
                         price *

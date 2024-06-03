@@ -25,7 +25,7 @@ const DetailsPriceSales = ({ price, discountPrice }: Props) => {
         <>
             <Box sx={{ display: 'flex' }}>
                 <Typography sx={{ color: Color.ERROR, fontSize: 20, fontWeight: 700 }}>
-                    {map_currency_symbol(CUSTOM_CURRENCY || store?.currency)}
+                    {CUSTOM_CURRENCY || map_currency_symbol(store?.currency)}
                     {parseFloat(
                         (
                             discountPrice *
@@ -37,7 +37,7 @@ const DetailsPriceSales = ({ price, discountPrice }: Props) => {
                 </Typography>
                 /
                 <Typography sx={{ color: Colors?.GRAY_900, fontSize: 18, textDecoration: 'line-through' }}>
-                    {map_currency_symbol(CUSTOM_CURRENCY || store?.currency)}
+                    {CUSTOM_CURRENCY || map_currency_symbol(CUSTOM_CURRENCY || store?.currency)}
                     {parseFloat(
                         (
                             price *

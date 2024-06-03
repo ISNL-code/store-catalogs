@@ -43,7 +43,7 @@ const CatalogListCard = memo<CatalogCardProps>(
     ({ modelsVariants, name, productId, setProductsList, promoTags, viewMode }) => {
         const WINDOW_WIDTH = useWindowWidth();
         const { OPTIONS, STORE_CODE } = STORE_CONFIG;
-        const { STORE_TYPE, PLAN_OPTIONS, PRODUCT_IMAGE_OPTIONS, CUSTOM_CURRENCY } = OPTIONS;
+        const { STORE_TYPE, PLAN_OPTIONS, PRODUCT_IMAGE_OPTIONS } = OPTIONS;
         const sliderRef = useRef<HTMLImageElement>(null);
         const navigate = useNavigate();
         const { cart, favorites, store }: CatalogContextInterface = useOutletContext();
@@ -174,7 +174,7 @@ const CatalogListCard = memo<CatalogCardProps>(
                             <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                                 {PLAN_OPTIONS?.prices && (
                                     <CardPrice
-                                        currency={map_currency_symbol(CUSTOM_CURRENCY || store?.currency)}
+                                        currency={map_currency_symbol(store?.currency)}
                                         price={shownModel?.originalPrice}
                                         discountPrice={shownModel?.price}
                                     />

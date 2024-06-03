@@ -13,7 +13,7 @@ const OrderPrice = ({ currency, price }: Props) => {
         OPTIONS;
     return (
         <Typography variant="h5">
-            {map_currency_symbol(CUSTOM_CURRENCY || currency)}
+            {CUSTOM_CURRENCY || map_currency_symbol(currency)}
             {parseFloat(
                 (price * SALE_PRICE_MULTIPLICATION * CURRENCY_MULTIPLICATION * RETAIL_PRICE_MULTIPLICATION).toFixed(2)
             )}
