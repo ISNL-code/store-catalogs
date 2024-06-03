@@ -1,5 +1,5 @@
-import { Box, CircularProgress, LinearProgress, Stack, Typography } from '@mui/material';
-import { Color, Colors } from 'constants/colors';
+import { Box, CircularProgress, Typography } from '@mui/material';
+import { Color } from 'constants/colors';
 
 interface LoaderInterface {
     height?: string;
@@ -7,7 +7,7 @@ interface LoaderInterface {
     title?: string;
     defaultHeight?: string;
     position?: string;
-    type?: 'both' | 'circular' | 'linear';
+    isShown?: boolean;
 }
 
 const Loader = ({
@@ -15,9 +15,11 @@ const Loader = ({
     zIndex = 5000,
     title = '',
     defaultHeight,
-    position = 'absolute',
-    type = 'both',
+    position = 'fixed',
+    isShown = true,
 }: LoaderInterface) => {
+    if (!isShown) return null;
+
     return (
         <Box
             className="AppLoader"
@@ -35,31 +37,6 @@ const Loader = ({
                 flexDirection: 'column',
             }}
         >
-            {(type === 'both' || type === 'linear') && (
-                <Stack
-                    sx={{
-                        width: '100%',
-                        color: 'grey.500',
-                        position: 'fixed',
-                        top: `${50 - 2}px`,
-                        height: '4px',
-                        zIndex: 5000,
-                    }}
-                    spacing={2}
-                >
-                    <LinearProgress
-                        color="inherit"
-                        sx={{
-                            width: '100%',
-                            color: Colors?.GRAY_500,
-                            position: 'fixed',
-                            top: `${50 - 2}px`,
-                            height: '3px',
-                            zIndex: 5000,
-                        }}
-                    />
-                </Stack>
-            )}
             {title && (
                 <Typography
                     color="secondary"
@@ -68,34 +45,33 @@ const Loader = ({
                     {title}
                 </Typography>
             )}
-            {(type === 'both' || type === 'circular') && (
+
+            <Box
+                sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    position: 'relative',
+                    filter: 'grayscale(100%)',
+                }}
+            >
+                <CircularProgress size={95} thickness={2} sx={{ color: Color?.SECONDARY }} />
                 <Box
                     sx={{
+                        position: 'absolute',
+                        overflow: 'hidden',
+                        height: 80,
+                        width: 80,
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        position: 'relative',
-                        filter: 'grayscale(100%)',
+                        borderRadius: '50%',
+                        opacity: 0.3,
                     }}
                 >
-                    <CircularProgress size={95} thickness={2} sx={{ color: Color?.SECONDARY }} />
-                    <Box
-                        sx={{
-                            position: 'absolute',
-                            overflow: 'hidden',
-                            height: 80,
-                            width: 80,
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            borderRadius: '50%',
-                            opacity: 0.3,
-                        }}
-                    >
-                        <img src={require('assets/img/logo.png')} style={{ height: 80 }} alt="img" />
-                    </Box>
+                    <img src={require('assets/img/logo.png')} style={{ height: 80 }} alt="img" />
                 </Box>
-            )}
+            </Box>
         </Box>
     );
 };

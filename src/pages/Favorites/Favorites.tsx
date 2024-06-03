@@ -104,7 +104,7 @@ const Favorites = () => {
                     {PLAN_OPTIONS.playMarket && <PlayMarketButton />}
                 </>
             )}
-            {isLoadingFavorites && <Loader position="fixed" type="circular" />}
+            {isLoadingFavorites && <Loader />}
             {PLAN_OPTIONS.contacts && <CallBackButton path={STORE_ROUTE.contacts(STORE_CODE)} />}
             <InstrumentalSubHeader
                 StartSlot={() => (

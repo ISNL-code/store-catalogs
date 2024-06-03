@@ -55,7 +55,7 @@ export default function NewPassword({ lang, setLang, setAuth, currentLanguage, s
         }
     }, [verifyTokenResult]); // eslint-disable-line
 
-    if (!store || isFetching) return <Loader type="circular" title={currentLanguage?.string?.security_check} />;
+    if (!store || isFetching) return <Loader title={currentLanguage?.string?.security_check} />;
 
     return (
         <Box>

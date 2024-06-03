@@ -24,6 +24,7 @@ import { ViewModeType } from 'store_constants/types';
 import { STORE_ROUTE } from 'router/routes';
 import { useIsMount } from 'hooks/useIsMount';
 import { scrollPage } from 'utils/scrollPage';
+import SaveToPhonePWA from 'components/atoms/Buttons/SaveToPhonePWA';
 
 const Catalog = () => {
     const { OPTIONS, STORE_CODE, SIDE_LINKS } = STORE_CONFIG;
@@ -109,7 +110,8 @@ const Catalog = () => {
                     {PLAN_OPTIONS.playMarket && <PlayMarketButton />}
                 </>
             )}
-            {isLoadingProducts && <Loader position="fixed" type="circular" />}
+            <SaveToPhonePWA />
+            {isLoadingProducts && <Loader isShown={currentProductsPage === 0} />}
             {PLAN_OPTIONS.contacts && <CallBackButton path={STORE_ROUTE.contacts(STORE_CODE)} />}
             <InstrumentalSubHeader
                 StartSlot={() => (

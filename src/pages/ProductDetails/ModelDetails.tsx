@@ -15,7 +15,7 @@ const ModelDetails = ({ productDetails, selectedVariant, setSelectedVariant }) =
     const { PLAN_OPTIONS } = OPTIONS;
     const { m } = useDevice();
 
-    if (!productDetails) return <Loader type="circular" />;
+    if (!productDetails) return <Loader />;
 
     return (
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: m ? 1.5 : 3 }}>
