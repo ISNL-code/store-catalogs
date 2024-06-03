@@ -60,9 +60,8 @@ const ShareButton = ({ path, isShown, direction, size }: ShareButtonInterface) =
                     onOpen={() => {
                         if ('share' in navigator) {
                             navigator.share({
-                                title: 'Alberto Bini',
-                                text: 'Model',
-                                url: `https://sales-nest.netlify.app/store/alberto_bini_europe/product/1419/model/201-0622k`,
+                                url: path,
+                                files: undefined,
                             });
                             return;
                         }
