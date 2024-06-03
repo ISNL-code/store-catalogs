@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Box } from '@mui/material';
 import { AppleIcon } from 'assets/svg/apple_icon';
 import { useDevice } from 'hooks/useDevice';
@@ -10,29 +10,29 @@ interface BeforeInstallPromptEvent extends Event {
     prompt(): Promise<void>;
 }
 
-const SaveToPhonePWA = () => {
+const SaveToPhonePWA: React.FC = () => {
     const { s, sx } = useDevice();
     const [deferredPrompt, setDeferredPrompt] = useState<BeforeInstallPromptEvent | null>(null);
+    const [isPWAInstallable, setPWAInstallable] = useState(false);
 
     useEffect(() => {
         const handler = (e: Event) => {
             const event = e as BeforeInstallPromptEvent;
-            // Предотвращаем отображение стандартного диалога установки
             event.preventDefault();
-            // Сохраняем событие для последующего использования
             setDeferredPrompt(event);
+            setPWAInstallable(true);
         };
 
-        window.addEventListener('beforeinstallprompt', handler as unknown as EventListener);
+        window.addEventListener('beforeinstallprompt', handler);
 
-        return () => window.removeEventListener('beforeinstallprompt', handler as unknown as EventListener);
+        return () => {
+            window.removeEventListener('beforeinstallprompt', handler);
+        };
     }, []);
 
     const handleInstallClick = () => {
         if (deferredPrompt) {
-            // Показываем диалог установки PWA
             deferredPrompt.prompt();
-            // Обрабатываем выбор пользователя
             deferredPrompt.userChoice.then(choiceResult => {
                 if (choiceResult.outcome === 'accepted') {
                     console.log('User accepted the install prompt');
@@ -44,7 +44,7 @@ const SaveToPhonePWA = () => {
         }
     };
 
-    if (!deferredPrompt) {
+    if (!isPWAInstallable) {
         return null; // Не показываем кнопку, если событие beforeinstallprompt еще не произошло
     }
 

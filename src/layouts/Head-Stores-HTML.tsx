@@ -61,14 +61,13 @@ const HeadStoresHTML: React.FC = () => {
     useEffect(() => {
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                const swPath = '/serviceWorker.js';
                 navigator.serviceWorker
-                    .register(swPath)
-                    .then(reg => {
-                        console.log('Service Worker registered with scope:', reg.scope);
+                    .register('/service-worker.js')
+                    .then(registration => {
+                        console.log('SW registered: ', registration);
                     })
-                    .catch(err => {
-                        console.error('Service Worker registration failed:', err);
+                    .catch(registrationError => {
+                        console.log('SW registration failed: ', registrationError);
                     });
             });
         }
