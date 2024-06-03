@@ -59,6 +59,8 @@ const HeadStoresHTML: React.FC = () => {
     }, [STORE_LOGO]); // eslint-disable-line
 
     useEffect(() => {
+        if (!manifestUrl) return;
+        console.log(manifestUrl);
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
                 navigator.serviceWorker
@@ -71,7 +73,7 @@ const HeadStoresHTML: React.FC = () => {
                     });
             });
         }
-    }, []);
+    }, [manifestUrl]);
 
     const allKeywords = Object.values(KEYWORDS).join(' | ');
 
