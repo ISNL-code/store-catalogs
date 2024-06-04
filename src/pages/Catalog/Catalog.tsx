@@ -95,8 +95,9 @@ const Catalog = () => {
                 scrollPage(scrollPosition - (instrumentalBarHeight + headerHeight + getGridSpacing().padding * 8));
                 setScrollPosition(0);
             }, 50);
-        } else scrollPage(0);
-    }, [scrollPosition]); // eslint-disable-line
+            return;
+        }
+    }, []); // eslint-disable-line
 
     return (
         <Box

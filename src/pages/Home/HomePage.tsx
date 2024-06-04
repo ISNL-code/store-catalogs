@@ -17,8 +17,7 @@ const HomePage = () => {
     const navigate = useNavigate();
 
     const { STORE_CODE, SIDE_LINKS } = STORE_CONFIG;
-    const { appXPadding, footerMenuHeight, string, handleOpenDialog, currentUserData }: HomeContextInterface =
-        useOutletContext();
+    const { appXPadding, footerMenuHeight, string, handleOpenDialog }: HomeContextInterface = useOutletContext();
     const { sx } = useDevice();
 
     useEffect(() => {
@@ -31,14 +30,12 @@ const HomePage = () => {
             const link = SIDE_LINKS?.find(el => el?.description === 'Wholesale')?.href || null;
             if (link) {
                 telegramSender({
-                    action: `GO_TO_RETAILER`,
-                    userEmail: currentUserData?.emailAddress || '',
+                    action: `HOME ====> RETAILER`,
                 });
                 window.open(link);
             } else {
                 telegramSender({
-                    action: `NAV_TO_CATALOG`,
-                    userEmail: currentUserData?.emailAddress || '',
+                    action: `HOME ====> CATALOG`,
                 });
                 navigate(`${STORE_ROUTE?.root(STORE_CODE)}`);
             }
@@ -47,14 +44,12 @@ const HomePage = () => {
             const link = SIDE_LINKS?.find(el => el?.description === 'Retail')?.href || null;
             if (link) {
                 telegramSender({
-                    action: `GO_TO_WHOLESALE`,
-                    userEmail: currentUserData?.emailAddress || '',
+                    action: `HOME ====> WHOLESALES`,
                 });
                 window.open(link);
             } else {
                 telegramSender({
-                    action: `NAV_TO_CATALOG`,
-                    userEmail: currentUserData?.emailAddress || '',
+                    action: `HOME ====> CATALOG`,
                 });
                 navigate(`${STORE_ROUTE?.root(STORE_CODE)}`);
             }

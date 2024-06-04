@@ -18,7 +18,7 @@ const WarningOrderLimit = ({ isOpen, setIsOpen, string }) => {
                               name: string?.retail_catalog,
                               action: () => {
                                   telegramSender({
-                                      action: `GO TO RETAIL FROM CART`,
+                                      action: `CART => RETAIL`,
                                   });
                                   window.open(linkURL, '_blank');
                               },

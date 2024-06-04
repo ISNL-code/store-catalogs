@@ -84,12 +84,14 @@ const Favorites = () => {
     }, []); // eslint-disable-line
 
     useEffect(() => {
-        if (scrollPosition)
+        if (scrollPosition) {
             setTimeout(() => {
                 scrollPage(scrollPosition - (instrumentalBarHeight + headerHeight + getGridSpacing().padding * 8));
                 setScrollPosition(0);
             }, 50);
-    }, [scrollPosition]); // eslint-disable-line
+            return;
+        }
+    }, []); // eslint-disable-line
 
     return (
         <Box

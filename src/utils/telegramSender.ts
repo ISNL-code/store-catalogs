@@ -3,7 +3,7 @@ import { STORE_CONFIG } from 'store_constants/stores_config';
 
 const { STORE_NAME, TELEGRAM_SENDER } = STORE_CONFIG;
 
-export const telegramSender = ({ action, contacts = '', text = '', userEmail = '' }) => {
+export const telegramSender = ({ action, contacts = '', text = '' }) => {
     if (!TELEGRAM_SENDER) return;
 
     try {
@@ -24,9 +24,7 @@ export const telegramSender = ({ action, contacts = '', text = '', userEmail = '
                         ' ' +
                         `${contacts ? ` - (contacts) ${contacts}` : ''}` +
                         ' ' +
-                        `${text ? ` - (text) ${text}` : ''}` +
-                        ' ' +
-                        `${userEmail ? ` - (USER) ${userEmail}` : ''}`,
+                        `${text ? ` - (text) ${text}` : ''}`,
                 });
             })
             .catch(error => {

@@ -9,6 +9,7 @@ import { useWindowWidth } from '@react-hook/window-size';
 import { HOME_ROUTE, STORE_ROUTE } from 'router/routes';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { telegramSender } from 'utils/telegramSender';
 
 const HomeMobileMenu = ({
     appXPadding,
@@ -68,6 +69,11 @@ const HomeMobileMenu = ({
                         title={string?.catalog}
                         icon={p => <GridViewIcon {...p} />}
                         childPath={['product']}
+                        action={() => {
+                            telegramSender({
+                                action: `HOME ====> CATALOG`,
+                            });
+                        }}
                     />
                     {withFavorites && (
                         <MobileNavButton

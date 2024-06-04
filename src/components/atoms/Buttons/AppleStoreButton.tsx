@@ -2,7 +2,6 @@ import { Box } from '@mui/material';
 import { AppleIcon } from 'assets/svg/apple_icon';
 import { STORE_CONFIG } from 'store_constants/stores_config';
 import { useDevice } from 'hooks/useDevice';
-import { telegramSender } from 'utils/telegramSender';
 
 const AppleStoreButton = () => {
     const { APP_STORE_URL } = STORE_CONFIG;
@@ -30,9 +29,7 @@ const AppleStoreButton = () => {
                     boxShadow:
                         '0px 3px 5px -1px rgb(0 0 0 / 20%), 0px 6px 10px 0px rgb(0 0 0 / 14%), 0px 1px 18px 0px rgb(0 0 0 / 12%)',
                 }}
-                onClick={() => {
-                    telegramSender({ action: `HELPER BUTTON` });
-                }}
+                onClick={() => {}}
             >
                 <Box
                     sx={{

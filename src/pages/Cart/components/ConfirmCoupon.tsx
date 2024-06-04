@@ -110,7 +110,7 @@ const ConfirmCoupon = ({
                 },
             })
                 .then(() => {
-                    telegramSender({ action: `ORDER-APP`, userEmail: currentUserData?.emailAddress || '' });
+                    telegramSender({ action: `ЗАКАЗ  !$!$!  ${Number(finalPrice).toFixed(2)}` });
 
                     cart?.handleClearCartItems([...new Set(orderData?.productsList.map(item => item?.productSku))]);
                     setOrderData(prev => {
@@ -289,7 +289,7 @@ const ConfirmCoupon = ({
                         sx={{ width: '100%' }}
                         onClick={() => {
                             telegramSender({
-                                action: `TRY TO CONFIRM ORDER`,
+                                action: `ПРОБУЕТ ЗАКАЗАТЬ`,
                             });
                             handleConfirmOrder();
                         }}

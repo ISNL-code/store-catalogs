@@ -69,7 +69,7 @@ export default function Register({ isOpen, setIsOpen, string, location, setAuth,
                 })
                 .then(_ => {
                     telegramSender({
-                        action: `REGISTRATION`,
+                        action: `ЗАРЕГЕСТРИРОВАЛСЯ`,
                         contacts: `email: ${values.email}, phone: ${values.phoneNumber}`,
                     });
                 })

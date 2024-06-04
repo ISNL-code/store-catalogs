@@ -59,9 +59,7 @@ const StoresLogic = ({
 
     // visit alert
     useEffect(() => {
-        if (window.location.origin.includes('localhost')) return;
         telegramSender({ action: `VISIT-APP` });
-
         return;
     }, []); // eslint-disable-line
 

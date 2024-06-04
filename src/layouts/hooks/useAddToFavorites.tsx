@@ -53,7 +53,7 @@ export const useAddToFavorites = ({ loadingUser }: useAddToFavoritesParamsInterf
             setFavoriteItems(prev => prev.filter(item => item.variantSku !== data?.variantSku));
         } else {
             telegramSender({
-                action: `ADD TO FAVORITE`,
+                action: `ДОБАВИЛ В ЛАЙКИ`,
             });
             setFavoriteItems(prev => [...prev, data]);
         }
