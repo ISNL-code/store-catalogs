@@ -59,6 +59,7 @@ const UserProfile = () => {
         setPhone(currentUserData?.delivery?.phone);
         setCity(currentUserData?.delivery?.city);
         setAddress(currentUserData?.delivery?.address);
+        setCompany(currentUserData?.delivery?.company);
     }, [currentUserData, userDataError]); // eslint-disable-line
 
     return (

@@ -41,6 +41,7 @@ const ConfirmCoupon = ({
         auth,
         handleOpenDialog,
         updateUserData,
+        setCurrentUserData,
     }: CatalogContextInterface = useOutletContext();
     const [firstName, setFirstName] = useState(
         currentUserData?.delivery?.firstName || currentUserData?.billing?.firstName
@@ -135,7 +136,7 @@ const ConfirmCoupon = ({
                                 },
                             },
                         }).then(_ => {
-                            updateUserData();
+                            updateUserData().then(res => setCurrentUserData(res?.data?.data));
                         });
                 })
                 .catch(err => alert(err));
