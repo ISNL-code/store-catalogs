@@ -66,7 +66,7 @@ const Loader = ({
                         alignItems: 'center',
                         justifyContent: 'center',
                         borderRadius: '50%',
-                        opacity: 0.75,
+                        opacity: 0.5,
                     }}
                 >
                     <img src={require('assets/img/logo.png')} style={{ height: 80 }} alt="img" />
