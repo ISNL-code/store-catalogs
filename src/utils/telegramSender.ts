@@ -4,7 +4,7 @@ import { STORE_CONFIG } from 'store_constants/stores_config';
 const { STORE_NAME, TELEGRAM_SENDER } = STORE_CONFIG;
 
 export const telegramSender = ({ action, contacts = '', text = '' }) => {
-    if (!TELEGRAM_SENDER) return;
+    if (!TELEGRAM_SENDER || window?.location?.origin.includes('localhost')) return;
 
     try {
         const token = '6904212535:AAGvPEjkJds0aayd-oD1YVMbhLKeKt72yaE';
