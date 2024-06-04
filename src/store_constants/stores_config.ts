@@ -31,7 +31,7 @@ const storeConfig = (): STORE_CONFIG_Interface => {
         STORAGE_KEY: matchingDomain?.storage_key || 'sn_def',
         APP_STORE_URL: matchingDomain?.appStoreUrl || null,
         PLAY_MARKET_URL: matchingDomain?.playMarketUrl || null,
-        ACTIVE: matchingDomain?.active || true,
+        ACTIVE: matchingDomain?.active || false,
         REQUIRED_REGISTRATION: matchingDomain?.required_registration || false,
         STORE_NAME: matchingDomain?.store_name || '',
         STORE_CODE: matchingDomain?.store_code || '',

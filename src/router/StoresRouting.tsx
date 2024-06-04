@@ -31,7 +31,7 @@ import SecurityLayout from 'layouts/Security/Security';
 import NewPassword from 'layouts/Security/NewPassword';
 
 const StoresRouting = () => {
-    const { STORE_CODE, OPTIONS, REQUIRED_REGISTRATION, STORE_NAME } = STORE_CONFIG;
+    const { STORE_CODE, OPTIONS, REQUIRED_REGISTRATION, STORE_NAME, ACTIVE } = STORE_CONFIG;
     const { HOME_PAGE_ACTIVE } = OPTIONS;
 
     const {
@@ -118,252 +118,270 @@ const StoresRouting = () => {
 
     if (!currentStoreData) return null;
 
-    const router = createBrowserRouter([
-        {
-            path: '/',
-            errorElement: <PAGE_404 />,
-            loader: () => <div>Loading...</div>,
-            element: <WelcomePage handleRedirect={handleRedirect} />,
-        },
-        {
-            path: `${ROUTES?.SECURITY}/:storeCode/:formType`,
-            errorElement: <PAGE_404 />,
-            loader: () => <div>Loading...</div>,
-            element: handleCheckAccess(ROUTES?.SECURITY) ? (
-                <Suspense fallback={<div>Loading...</div>}>
-                    <SecurityLayout
-                        lang={lang}
-                        setLang={setLang}
-                        setAuth={setAuth}
-                        store={currentStoreData}
-                        currentLanguage={currentLanguage}
-                        setApiToken={setApiToken}
-                    />
-                </Suspense>
-            ) : (
-                <Navigate to={handleRedirect()} replace />
-            ),
-        },
-        {
-            path: `${ROUTES?.NEW_PASSWORD}/:storeCode/:tokenId`,
-            errorElement: <PAGE_404 />,
-            loader: () => <div>Loading...</div>,
-            element: (
-                <NewPassword
-                    lang={lang}
-                    setLang={setLang}
-                    setAuth={setAuth}
-                    currentLanguage={currentLanguage}
-                    store={currentStoreData}
-                />
-            ),
-        },
-        {
-            path: ROUTES?.HOME,
-            errorElement: <PAGE_404 />,
-            loader: () => <div>Loading...</div>,
-            element: handleCheckAccess(ROUTES?.HOME) ? (
-                <Suspense fallback={<div>Loading...</div>}>
-                    <Home
-                        store={currentStoreData}
-                        lang={lang}
-                        setLang={setLang}
-                        auth={auth}
-                        setAuth={setAuth}
-                        userData={{
-                            currentUserData,
-                            isFetchingUser,
-                            setCurrentUserData,
-                            fetchUserData,
-                            userError,
-                        }}
-                        cart={cart}
-                        favorites={favorites}
-                        currentLanguage={currentLanguage}
-                        handleSaveImage={handleSaveImage}
-                        savedImages={savedImages}
-                        apiToken={apiToken}
-                        setApiToken={setApiToken}
-                    />
-                </Suspense>
-            ) : (
-                <Navigate to={handleRedirect()} replace />
-            ),
-            children: [
-                {
-                    path: ':storeCode',
-                    errorElement: <PAGE_404 />,
-                    loader: () => <div>Loading...</div>,
-                    element: (
-                        <Suspense fallback={<div>Loading...</div>}>
-                            <HomePage />
-                        </Suspense>
-                    ),
-                },
-            ],
-        },
-        {
-            path: ROUTES?.STORE,
-            errorElement: <PAGE_404 />,
-            loader: () => <div>Loading...</div>,
-            element: handleCheckAccess(ROUTES?.STORE) ? (
-                <Suspense fallback={<div>Loading...</div>}>
-                    <MainCatalog
-                        store={currentStoreData}
-                        lang={lang}
-                        setLang={setLang}
-                        viewMode={viewMode}
-                        setViewMode={setViewMode}
-                        auth={auth}
-                        setAuth={setAuth}
-                        userData={{
-                            currentUserData,
-                            isFetchingUser,
-                            setCurrentUserData,
-                            fetchUserData,
-                            userError,
-                        }}
-                        infoAlert={infoAlert}
-                        setInfoAlert={setInfoAlert}
-                        cart={cart}
-                        favorites={favorites}
-                        currentLanguage={currentLanguage}
-                        handleSaveImage={handleSaveImage}
-                        savedImages={savedImages}
-                        apiToken={apiToken}
-                        setApiToken={setApiToken}
-                    />
-                </Suspense>
-            ) : (
-                <Navigate to={handleRedirect()} replace />
-            ),
+    let router;
 
-            children: [
-                {
-                    path: ':storeCode',
-                    errorElement: <PAGE_404 />,
-                    loader: () => <div>Loading...</div>,
-                    element: (
-                        <Suspense fallback={<div>Loading...</div>}>
-                            <Catalog />
-                        </Suspense>
-                    ),
-                },
-                {
-                    path: ':storeCode/product/:productId/model/:modelSku',
-                    errorElement: <PAGE_404 />,
-                    loader: () => <div>Loading...</div>,
-                    element: (
-                        <Suspense fallback={<div>Loading...</div>}>
-                            <ProductDetails />
-                        </Suspense>
-                    ),
-                },
-                {
-                    path: ':storeCode/cart',
-                    errorElement: <PAGE_404 />,
-                    loader: () => <div>Loading...</div>,
-                    element: (
-                        <Suspense fallback={<div>Loading...</div>}>
-                            <Cart />
-                        </Suspense>
-                    ),
-                },
-                {
-                    path: ':storeCode/favorites',
-                    errorElement: <PAGE_404 />,
-                    loader: () => <div>Loading...</div>,
-                    element: (
-                        <Suspense fallback={<div>Loading...</div>}>
-                            <Favorites />
-                        </Suspense>
-                    ),
-                },
-                {
-                    path: ':storeCode/orders',
-                    errorElement: <PAGE_404 />,
-                    loader: () => <div>Loading...</div>,
-                    element: (
-                        <Suspense fallback={<div>Loading...</div>}>
-                            <UserOrders />
-                        </Suspense>
-                    ),
-                },
-                {
-                    path: ':storeCode/profile',
-                    errorElement: <PAGE_404 />,
-                    loader: () => <div>Loading...</div>,
-                    element: (
-                        <Suspense fallback={<div>Loading...</div>}>
-                            <UserProfile />
-                        </Suspense>
-                    ),
-                },
-                {
-                    path: ':storeCode/info',
-                    errorElement: <PAGE_404 />,
-                    loader: () => <div>Loading...</div>,
-                    element: (
-                        <Suspense fallback={<div>Loading...</div>}>
-                            <InformationPage />
-                        </Suspense>
-                    ),
-                },
-                {
-                    path: ':storeCode/contacts',
-                    errorElement: <PAGE_404 />,
-                    loader: () => <div>Loading...</div>,
-                    element: (
-                        <Suspense fallback={<div>Loading...</div>}>
-                            <ContactsManagePage />
-                        </Suspense>
-                    ),
-                },
-            ],
-        },
-        {
-            path: ROUTES?.PAGE_401,
-            loader: () => <div>Loading...</div>,
-            element: (
-                <Suspense fallback={<div>Loading...</div>}>
-                    <PAGE_401 />
-                </Suspense>
-            ),
-        },
-        {
-            path: ROUTES?.PAGE_403,
-            loader: () => <div>Loading...</div>,
-            element: (
-                <Suspense fallback={<div>Loading...</div>}>
-                    <PAGE_403 />
-                </Suspense>
-            ),
-        },
-        {
-            path: ROUTES?.PAGE_404,
-            loader: () => <div>Loading...</div>,
-            element: (
-                <Suspense fallback={<div>Loading...</div>}>
-                    <PAGE_404 />
-                </Suspense>
-            ),
-        },
-        {
-            path: ROUTES?.PAGE_500,
-            loader: () => <div>Loading...</div>,
-            element: (
-                <Suspense fallback={<div>Loading...</div>}>
-                    <PAGE_500 />
-                </Suspense>
-            ),
-        },
-        {
-            path: '*',
-            errorElement: <PAGE_404 />,
-            loader: () => <div>Loading...</div>,
-            element: <Navigate to={handleRedirect()} replace />,
-        },
-    ]);
+    if (ACTIVE) {
+        router = createBrowserRouter([
+            {
+                path: '/',
+                errorElement: <PAGE_404 />,
+                loader: () => <div>Loading...</div>,
+                element: <WelcomePage handleRedirect={handleRedirect} />,
+            },
+            {
+                path: `${ROUTES?.SECURITY}/:storeCode/:formType`,
+                errorElement: <PAGE_404 />,
+                loader: () => <div>Loading...</div>,
+                element: handleCheckAccess(ROUTES?.SECURITY) ? (
+                    <Suspense fallback={<div>Loading...</div>}>
+                        <SecurityLayout
+                            lang={lang}
+                            setLang={setLang}
+                            setAuth={setAuth}
+                            store={currentStoreData}
+                            currentLanguage={currentLanguage}
+                            setApiToken={setApiToken}
+                        />
+                    </Suspense>
+                ) : (
+                    <Navigate to={handleRedirect()} replace />
+                ),
+            },
+            {
+                path: `${ROUTES?.NEW_PASSWORD}/:storeCode/:tokenId`,
+                errorElement: <PAGE_404 />,
+                loader: () => <div>Loading...</div>,
+                element: (
+                    <NewPassword
+                        lang={lang}
+                        setLang={setLang}
+                        setAuth={setAuth}
+                        currentLanguage={currentLanguage}
+                        store={currentStoreData}
+                    />
+                ),
+            },
+            {
+                path: ROUTES?.HOME,
+                errorElement: <PAGE_404 />,
+                loader: () => <div>Loading...</div>,
+                element: handleCheckAccess(ROUTES?.HOME) ? (
+                    <Suspense fallback={<div>Loading...</div>}>
+                        <Home
+                            store={currentStoreData}
+                            lang={lang}
+                            setLang={setLang}
+                            auth={auth}
+                            setAuth={setAuth}
+                            userData={{
+                                currentUserData,
+                                isFetchingUser,
+                                setCurrentUserData,
+                                fetchUserData,
+                                userError,
+                            }}
+                            cart={cart}
+                            favorites={favorites}
+                            currentLanguage={currentLanguage}
+                            handleSaveImage={handleSaveImage}
+                            savedImages={savedImages}
+                            apiToken={apiToken}
+                            setApiToken={setApiToken}
+                        />
+                    </Suspense>
+                ) : (
+                    <Navigate to={handleRedirect()} replace />
+                ),
+                children: [
+                    {
+                        path: ':storeCode',
+                        errorElement: <PAGE_404 />,
+                        loader: () => <div>Loading...</div>,
+                        element: (
+                            <Suspense fallback={<div>Loading...</div>}>
+                                <HomePage />
+                            </Suspense>
+                        ),
+                    },
+                ],
+            },
+            {
+                path: ROUTES?.STORE,
+                errorElement: <PAGE_404 />,
+                loader: () => <div>Loading...</div>,
+                element: handleCheckAccess(ROUTES?.STORE) ? (
+                    <Suspense fallback={<div>Loading...</div>}>
+                        <MainCatalog
+                            store={currentStoreData}
+                            lang={lang}
+                            setLang={setLang}
+                            viewMode={viewMode}
+                            setViewMode={setViewMode}
+                            auth={auth}
+                            setAuth={setAuth}
+                            userData={{
+                                currentUserData,
+                                isFetchingUser,
+                                setCurrentUserData,
+                                fetchUserData,
+                                userError,
+                            }}
+                            infoAlert={infoAlert}
+                            setInfoAlert={setInfoAlert}
+                            cart={cart}
+                            favorites={favorites}
+                            currentLanguage={currentLanguage}
+                            handleSaveImage={handleSaveImage}
+                            savedImages={savedImages}
+                            apiToken={apiToken}
+                            setApiToken={setApiToken}
+                        />
+                    </Suspense>
+                ) : (
+                    <Navigate to={handleRedirect()} replace />
+                ),
+
+                children: [
+                    {
+                        path: ':storeCode',
+                        errorElement: <PAGE_404 />,
+                        loader: () => <div>Loading...</div>,
+                        element: (
+                            <Suspense fallback={<div>Loading...</div>}>
+                                <Catalog />
+                            </Suspense>
+                        ),
+                    },
+                    {
+                        path: ':storeCode/product/:productId/model/:modelSku',
+                        errorElement: <PAGE_404 />,
+                        loader: () => <div>Loading...</div>,
+                        element: (
+                            <Suspense fallback={<div>Loading...</div>}>
+                                <ProductDetails />
+                            </Suspense>
+                        ),
+                    },
+                    {
+                        path: ':storeCode/cart',
+                        errorElement: <PAGE_404 />,
+                        loader: () => <div>Loading...</div>,
+                        element: (
+                            <Suspense fallback={<div>Loading...</div>}>
+                                <Cart />
+                            </Suspense>
+                        ),
+                    },
+                    {
+                        path: ':storeCode/favorites',
+                        errorElement: <PAGE_404 />,
+                        loader: () => <div>Loading...</div>,
+                        element: (
+                            <Suspense fallback={<div>Loading...</div>}>
+                                <Favorites />
+                            </Suspense>
+                        ),
+                    },
+                    {
+                        path: ':storeCode/orders',
+                        errorElement: <PAGE_404 />,
+                        loader: () => <div>Loading...</div>,
+                        element: (
+                            <Suspense fallback={<div>Loading...</div>}>
+                                <UserOrders />
+                            </Suspense>
+                        ),
+                    },
+                    {
+                        path: ':storeCode/profile',
+                        errorElement: <PAGE_404 />,
+                        loader: () => <div>Loading...</div>,
+                        element: (
+                            <Suspense fallback={<div>Loading...</div>}>
+                                <UserProfile />
+                            </Suspense>
+                        ),
+                    },
+                    {
+                        path: ':storeCode/info',
+                        errorElement: <PAGE_404 />,
+                        loader: () => <div>Loading...</div>,
+                        element: (
+                            <Suspense fallback={<div>Loading...</div>}>
+                                <InformationPage />
+                            </Suspense>
+                        ),
+                    },
+                    {
+                        path: ':storeCode/contacts',
+                        errorElement: <PAGE_404 />,
+                        loader: () => <div>Loading...</div>,
+                        element: (
+                            <Suspense fallback={<div>Loading...</div>}>
+                                <ContactsManagePage />
+                            </Suspense>
+                        ),
+                    },
+                ],
+            },
+            {
+                path: ROUTES?.PAGE_401,
+                loader: () => <div>Loading...</div>,
+                element: (
+                    <Suspense fallback={<div>Loading...</div>}>
+                        <PAGE_401 />
+                    </Suspense>
+                ),
+            },
+            {
+                path: ROUTES?.PAGE_403,
+                loader: () => <div>Loading...</div>,
+                element: (
+                    <Suspense fallback={<div>Loading...</div>}>
+                        <PAGE_403 />
+                    </Suspense>
+                ),
+            },
+            {
+                path: ROUTES?.PAGE_404,
+                loader: () => <div>Loading...</div>,
+                element: (
+                    <Suspense fallback={<div>Loading...</div>}>
+                        <PAGE_404 />
+                    </Suspense>
+                ),
+            },
+            {
+                path: ROUTES?.PAGE_500,
+                loader: () => <div>Loading...</div>,
+                element: (
+                    <Suspense fallback={<div>Loading...</div>}>
+                        <PAGE_500 />
+                    </Suspense>
+                ),
+            },
+            {
+                path: '*',
+                errorElement: <PAGE_404 />,
+                loader: () => <div>Loading...</div>,
+                element: <Navigate to={handleRedirect()} replace />,
+            },
+        ]);
+    } else
+        router = createBrowserRouter([
+            {
+                path: '/',
+                errorElement: <PAGE_404 />,
+                loader: () => <div>Loading...</div>,
+                element: <PAGE_500 />,
+            },
+            {
+                path: '*',
+                errorElement: <PAGE_500 />,
+                loader: () => <div>Loading...</div>,
+                element: <Navigate to={'/'} replace />,
+            },
+        ]);
 
     return <RouterProvider router={router} />;
 };
