@@ -75,6 +75,44 @@ const HeadStoresHTML: React.FC = () => {
         }
     }, [manifestUrl]);
 
+    useEffect(() => {
+        if (Array.isArray(GOOGLE_ANALYTICS_ID)) {
+            GOOGLE_ANALYTICS_ID.forEach(id => {
+                const script = document.createElement('script');
+                script.src = `https://www.googletagmanager.com/gtag/js?id=${id}`;
+                script.async = true;
+                document.head.appendChild(script);
+
+                const configScript = document.createElement('script');
+                configScript.innerHTML = `
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag() {
+                        dataLayer.push(arguments);
+                    }
+                    gtag("js", new Date());
+                    gtag("config", "${id}");
+                `;
+                document.head.appendChild(configScript);
+            });
+        } else {
+            const script = document.createElement('script');
+            script.src = `https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ANALYTICS_ID}`;
+            script.async = true;
+            document.head.appendChild(script);
+
+            const configScript = document.createElement('script');
+            configScript.innerHTML = `
+                window.dataLayer = window.dataLayer || [];
+                function gtag() {
+                    dataLayer.push(arguments);
+                }
+                gtag("js", new Date());
+                gtag("config", "${GOOGLE_ANALYTICS_ID}");
+            `;
+            document.head.appendChild(configScript);
+        }
+    }, [GOOGLE_ANALYTICS_ID]);
+
     const allKeywords = Object.values(KEYWORDS).join(' | ');
 
     return (
@@ -96,40 +134,6 @@ const HeadStoresHTML: React.FC = () => {
                 <link rel="icon" href={require(`dataBase/images/logos/${STORE_LOGO}`)} />
                 <link rel="apple-touch-icon" href={require(`dataBase/images/logos/${STORE_LOGO}`)} />
                 <link rel="manifest" href={manifestUrl} />
-                {Array.isArray(GOOGLE_ANALYTICS_ID) ? (
-                    GOOGLE_ANALYTICS_ID.map((id, index) => (
-                        <React.Fragment key={index}>
-                            <script async src={`https://www.googletagmanager.com/gtag/js?id=${id}`}></script>
-                            <script>
-                                {`
-                                    window.dataLayer = window.dataLayer || [];
-                                    function gtag() {
-                                        dataLayer.push(arguments);
-                                    }
-                                    gtag('js', new Date());
-                                    gtag('config', '${id}');
-                                `}
-                            </script>
-                        </React.Fragment>
-                    ))
-                ) : (
-                    <>
-                        <script
-                            async
-                            src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ANALYTICS_ID}`}
-                        ></script>
-                        <script>
-                            {`
-                                window.dataLayer = window.dataLayer || [];
-                                function gtag() {
-                                    dataLayer.push(arguments);
-                                }
-                                gtag('js', new Date());
-                                gtag('config', '${GOOGLE_ANALYTICS_ID}');
-                            `}
-                        </script>
-                    </>
-                )}
             </Helmet>
         </HelmetProvider>
     );
