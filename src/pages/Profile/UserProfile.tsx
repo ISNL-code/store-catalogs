@@ -30,7 +30,7 @@ const UserProfile = () => {
     const { storeCode } = useParams();
     const handleError = useHandleError();
     const { mutateAsync: updateProfile, isLoading } = useUserApi().useCustomerProfileUpdate({ storeCode });
-    const [firstName, setFirstName] = useState(currentUserData?.delivery?.firstName);
+    const [firstNameDelivery, setFirstNameDelivery] = useState(currentUserData?.delivery?.firstName);
     const [lastName, setLastName] = useState(currentUserData?.delivery?.lastName);
     const [phone, setPhone] = useState(currentUserData?.delivery?.phone);
     const [city, setCity] = useState(currentUserData?.delivery?.city);
@@ -54,7 +54,7 @@ const UserProfile = () => {
                 updateUserData();
             }
         }
-        setFirstName(currentUserData?.delivery?.firstName);
+        setFirstNameDelivery(currentUserData?.delivery?.firstName);
         setLastName(currentUserData?.delivery?.lastName);
         setPhone(currentUserData?.delivery?.phone);
         setCity(currentUserData?.delivery?.city);
@@ -75,7 +75,7 @@ const UserProfile = () => {
                             updateProfile({
                                 data: {
                                     delivery: {
-                                        firstName,
+                                        firstName: firstNameDelivery,
                                         lastName,
                                         city,
                                         phone,
@@ -147,9 +147,9 @@ const UserProfile = () => {
                     <Grid xs={12}>
                         <TextField
                             InputLabelProps={{ shrink: true }}
-                            value={firstName || ''}
+                            value={firstNameDelivery || ''}
                             onChange={e => {
-                                setFirstName(e?.target?.value);
+                                setFirstNameDelivery(e?.target?.value);
                             }}
                             size="small"
                             label={string?.first_name}
