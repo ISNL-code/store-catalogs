@@ -76,7 +76,6 @@ const StoresLogic = ({
                             if (res.status === 'error') {
                                 setAuth(false);
                             } else {
-                                console.log('AUTH1');
                                 setAuth(true);
                                 setApiToken(storedItems);
                                 userData.setCurrentUserData(res?.data?.data);
