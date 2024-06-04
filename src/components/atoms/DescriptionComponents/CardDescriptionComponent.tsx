@@ -1,13 +1,13 @@
 import { Box, Typography } from '@mui/material';
 import StyledTooltip from 'components/molecules/StyledComponents/StyledTooltip';
 
-const CardDescriptionComponent = ({ title }) => {
+const CardDescriptionComponent = ({ title }: { title: string }) => {
     return (
         <Box sx={{ flexShrink: 1, flexBasis: 'auto', overflow: 'hidden' }}>
             <StyledTooltip title={title} position="top-start">
                 <Box
                     sx={{
-                        height: 38, // Высота 2х строк в вашем случае
+                        height: 38,
                         overflow: 'hidden',
                         textOverflow: 'ellipsis',
                         cursor: 'default',
@@ -18,10 +18,10 @@ const CardDescriptionComponent = ({ title }) => {
                         sx={{
                             fontSize: 12,
                             fontWeight: 500,
-                            whiteSpace: 'normal', // Вернемся к обычному поведению переноса слов
+                            whiteSpace: 'normal',
                             overflow: 'hidden',
-                            display: '-webkit-box', // Для поддержки Safari
-                            WebkitLineClamp: 2, // Ограничение числа строк
+                            display: '-webkit-box',
+                            WebkitLineClamp: 2,
                             WebkitBoxOrient: 'vertical',
                         }}
                     >

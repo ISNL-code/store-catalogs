@@ -68,7 +68,13 @@ const mainTheme = createTheme({
                 focusRipple: false,
             },
         },
-        MuiLink: {},
+        MuiInputLabel: {
+            styleOverrides: {
+                root: {
+                    color: 'rgba(0, 0, 0, 0.4)',
+                },
+            },
+        },
         MuiFormHelperText: {
             styleOverrides: {
                 root: {

@@ -10,8 +10,6 @@ export const useUserApi = () => {
         useMutation(
             ({
                 emailAddress,
-                firstName,
-                lastName,
                 password,
                 username,
                 country,
@@ -20,8 +18,6 @@ export const useUserApi = () => {
                 storeCode,
             }: {
                 emailAddress: string;
-                firstName: string;
-                lastName: string;
                 password: string;
                 username: string;
                 country: string;
@@ -34,14 +30,15 @@ export const useUserApi = () => {
                     body: {
                         billing: {
                             country: country,
-                            firstName: firstName,
-                            lastName: lastName,
+                            emailAddress: emailAddress,
+                            firstName: emailAddress,
+                            lastName: emailAddress,
                             phone: phone,
                         },
                         emailAddress: emailAddress,
-                        firstName: firstName,
+                        firstName: emailAddress,
+                        lastName: emailAddress,
                         language: lang,
-                        lastName: lastName,
                         password: password,
                         username: username,
                     },

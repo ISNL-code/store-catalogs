@@ -7,7 +7,7 @@ interface DefaultValuesInterface {
 }
 
 export const DEFAULT_VALUES: DefaultValuesInterface = {
-    logo: require('assets/img/logo.png'),
+    logo: require('assets/img/logo.webp'),
     currency: '¤',
     view_mode: ViewModeType?.card,
 };

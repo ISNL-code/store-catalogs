@@ -26,9 +26,6 @@ const INITIAL_VALUES = {
     password: '',
     email: '',
     phoneNumber: '',
-    confirmPassword: '',
-    firstName: '',
-    lastName: '',
     country: '',
 };
 
@@ -38,10 +35,7 @@ export default function Register({ isOpen, setIsOpen, string, location, setAuth,
     const [email, setEmail] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
     const [password, setPassword] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
     const [isError, setIsError] = useState(false);
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
     const [country, setCountry] = useState('');
 
     const { mutateAsync: register, isLoading } = useUserApi().useCustomerRegister();
@@ -52,26 +46,25 @@ export default function Register({ isOpen, setIsOpen, string, location, setAuth,
         onSubmit: values => {
             register({
                 emailAddress: values.email,
-                firstName: values.firstName,
-                lastName: values.lastName,
                 password: values.password,
                 username: values.email,
                 country: values.country,
                 phone: values.phoneNumber,
-                lang: lang,
+                lang: 'en',
                 storeCode: STORE_CODE,
             })
                 .then(res => {
-                    setStorageItem(STORAGE_KEYS?.ACCESS_TOKEN_KEY, JSON.stringify(res.data.token));
-                    setApiToken && setApiToken(res.data.token);
-                    setAuth(true);
-                    setIsOpen(null);
-                })
-                .then(_ => {
-                    telegramSender({
-                        action: `ЗАРЕГЕСТРИРОВАЛСЯ`,
-                        contacts: `email: ${values.email}, phone: ${values.phoneNumber}`,
-                    });
+                    if (res.data.token) {
+                        setStorageItem(STORAGE_KEYS?.ACCESS_TOKEN_KEY, JSON.stringify(res.data.token));
+                        setApiToken && setApiToken(res.data.token);
+                        setAuth(true);
+                        setIsOpen(null);
+                        telegramSender({
+                            action: `ЗАРЕГЕСТРИРОВАЛСЯ`,
+                            contacts: `email: ${values.email}, phone: ${values.phoneNumber}`,
+                        });
+                    }
+                    return res;
                 })
                 .catch(_err => {
                     setIsError(true);
@@ -84,23 +77,17 @@ export default function Register({ isOpen, setIsOpen, string, location, setAuth,
             password,
             email,
             phoneNumber,
-            confirmPassword,
-            firstName,
-            lastName,
             country,
         });
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [password, email, phoneNumber, confirmPassword, firstName, lastName, country]);
+    }, [password, email, phoneNumber, country]);
 
     const setInitialValue = () => {
         formik.resetForm();
         setIsError(false);
         setEmail('');
         setPassword('');
-        setConfirmPassword('');
         setPhoneNumber('');
-        setFirstName('');
-        setLastName('');
         setPhoneNumber('');
         setCountry('');
     };
@@ -158,36 +145,6 @@ export default function Register({ isOpen, setIsOpen, string, location, setAuth,
                         onChange: val => setPassword(val),
                         error: Boolean(formik.errors.password && formik.touched.password),
                         helperText: string?.[formik.errors.password ? formik.errors.password : ''] || '',
-                        trim: false,
-                    },
-                    {
-                        component: 'textfield',
-                        type: 'password',
-                        label: string?.confirm_password,
-                        value: confirmPassword || '',
-                        onChange: val => setConfirmPassword(val),
-                        error: Boolean(formik.errors.confirmPassword && formik.touched.confirmPassword),
-                        helperText: string?.[formik.errors.confirmPassword ? formik.errors.confirmPassword : ''] || '',
-                        trim: false,
-                    },
-                    {
-                        component: 'textfield',
-                        type: 'text',
-                        label: string?.first_name,
-                        value: firstName || '',
-                        onChange: val => setFirstName(val),
-                        error: Boolean(formik.errors.firstName && formik.touched.firstName),
-                        helperText: string?.[formik.errors.firstName ? formik.errors.firstName : ''] || '',
-                        trim: false,
-                    },
-                    {
-                        component: 'textfield',
-                        type: 'text',
-                        label: string?.last_name,
-                        value: lastName || '',
-                        onChange: val => setLastName(val),
-                        error: Boolean(formik.errors.lastName && formik.touched.lastName),
-                        helperText: string?.[formik.errors.lastName ? formik.errors.lastName : ''] || '',
                         trim: false,
                     },
                     {

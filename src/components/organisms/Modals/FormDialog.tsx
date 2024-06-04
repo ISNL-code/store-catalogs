@@ -17,7 +17,6 @@ import {
 } from '@mui/material';
 import { Color, Colors } from 'constants/colors';
 import CloseIcon from '@mui/icons-material/Close';
-import { StyledTextField } from 'components/molecules/StyledComponents/StyledTextField';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import RefreshIcon from '@mui/icons-material/Refresh';
@@ -190,7 +189,7 @@ const FormDialog = ({
                             if (item?.component === 'textfield')
                                 return (
                                     <Box key={idx} pt={1}>
-                                        <StyledTextField
+                                        <TextField
                                             value={item?.value || ''}
                                             onChange={e => {
                                                 if (item?.trim) {

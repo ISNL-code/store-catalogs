@@ -55,12 +55,13 @@ export function setStorageItem(key: string, value: string): Promise<void> {
         try {
             if (isLocalStorageAvailable()) {
                 localStorage.setItem(key, value);
-            } else if (isSessionStorageAvailable()) {
-                sessionStorage.setItem(key, value);
-            } else {
-                const domain = window.location.hostname;
-                setCookie(key, value, 7, domain);
             }
+            if (isSessionStorageAvailable()) {
+                sessionStorage.setItem(key, value);
+            }
+            const domain = window.location.hostname;
+            setCookie(key, value, 7, domain);
+
             resolve();
         } catch (error) {
             console.error('Error setting storage item:', error);
@@ -105,12 +106,13 @@ export function removeStorageItem(key: string): Promise<void> {
         try {
             if (isLocalStorageAvailable()) {
                 localStorage.removeItem(key);
-            } else if (isSessionStorageAvailable()) {
-                sessionStorage.removeItem(key);
-            } else {
-                const domain = window.location.hostname;
-                eraseCookie(key, domain);
             }
+            if (isSessionStorageAvailable()) {
+                sessionStorage.removeItem(key);
+            }
+            const domain = window.location.hostname;
+            eraseCookie(key, domain);
+
             resolve();
         } catch (error) {
             console.error('Error removing storage item:', error);
