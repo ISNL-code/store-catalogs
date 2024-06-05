@@ -7,7 +7,6 @@ import { useOutletContext, useParams } from 'react-router-dom';
 import { ProductDataInterface, ProductVariantInterface } from 'types/app_models';
 import Loader from 'components/atoms/Loader/Loader';
 import Grid from '@mui/material/Unstable_Grid2';
-import ImageComponent from 'components/atoms/Media/Image';
 import { useDevice } from 'hooks/useDevice';
 import { Box } from '@mui/material';
 import AddSizesButtons from './components/AddSizesButtons';
@@ -209,7 +208,13 @@ const Cart = () => {
                                         p={2}
                                     >
                                         {el?.image ? (
-                                            <ImageComponent imgUrl={el?.image} ref={null} height="fit-content" />
+                                            <img
+                                                src={el?.image}
+                                                style={{
+                                                    width: '100%',
+                                                }}
+                                                alt="Loading..."
+                                            />
                                         ) : (
                                             <EmptyImage />
                                         )}

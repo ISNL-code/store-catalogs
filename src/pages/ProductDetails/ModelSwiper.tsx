@@ -4,7 +4,6 @@ import { useOutletContext, useParams } from 'react-router-dom';
 import { useDevice } from 'hooks/useDevice';
 import { CatalogContextInterface } from 'types/outlet_context_models';
 import FullScreenSwiper from './FullScreenSwiper';
-import ImageComponent from 'components/atoms/Media/Image';
 import { useWindowWidth } from '@react-hook/window-size';
 import { useIsMount } from 'hooks/useIsMount';
 import { STORE_CONFIG } from 'store_constants/stores_config';
@@ -27,7 +26,6 @@ const ModelSwiper = ({ images }) => {
         const imageRef = useRef<HTMLImageElement>(null);
         const [sliderHeight, setSliderHeight] = useState<number | null>(memoHeight);
         const [maxHeight, setMaxHeight] = useState<number | null>(memoHeight);
-        const [isLoading, setIsLoading] = useState(false);
 
         useEffect(() => {
             if (mount) return;
@@ -40,12 +38,12 @@ const ModelSwiper = ({ images }) => {
             };
             if (sliderRef?.current?.clientWidth) setSliderHeight(calcSlideHeight());
 
-            if (imageRef?.current?.clientHeight || !isLoading)
+            if (imageRef?.current?.clientHeight)
                 setTimeout(() => {
                     setMaxHeight(imageRef?.current?.clientHeight as number);
                     imageRef?.current?.clientHeight && setMemoHeight(imageRef?.current?.clientHeight as number);
                 }, 200);
-        }, [isLoading, imageRef?.current?.clientHeight]); // eslint-disable-line
+        }, [imageRef?.current?.clientHeight]); // eslint-disable-line
 
         const memoizedSlide = useMemo(
             () => (
@@ -72,7 +70,14 @@ const ModelSwiper = ({ images }) => {
                             transition: 'all 150ms linear',
                         }}
                     >
-                        <ImageComponent ref={imageRef} imgUrl={imageUrl} loadControl={bool => setIsLoading(bool)} />
+                        <img
+                            key={idx}
+                            src={imageUrl}
+                            style={{
+                                width: '100%',
+                            }}
+                            alt="Loading..."
+                        />
                     </Box>
                 </Box>
             ),
@@ -87,7 +92,6 @@ const ModelSwiper = ({ images }) => {
         const imageRef = useRef<HTMLImageElement>(null);
         const [sliderHeight, setSliderHeight] = useState<number | null>(memoHeight);
         const [maxHeight, setMaxHeight] = useState<number | null>(memoHeight);
-        const [isLoading, setIsLoading] = useState(false);
 
         useEffect(() => {
             if (mount) return;
@@ -100,12 +104,12 @@ const ModelSwiper = ({ images }) => {
             };
             if (sliderRef?.current?.clientWidth) setSliderHeight(calcSlideHeight());
 
-            if (imageRef?.current?.clientHeight || !isLoading)
+            if (imageRef?.current?.clientHeight)
                 setTimeout(() => {
                     setMaxHeight(imageRef?.current?.clientHeight as number);
                     imageRef?.current?.clientHeight && setMemoHeight(imageRef?.current?.clientHeight as number);
                 }, 250);
-        }, [isLoading, imageRef?.current?.clientHeight]); // eslint-disable-line
+        }, [imageRef?.current?.clientHeight]); // eslint-disable-line
 
         const memoizedSlide = useMemo(
             () => (
@@ -132,7 +136,14 @@ const ModelSwiper = ({ images }) => {
                             transition: 'all 100ms linear',
                         }}
                     >
-                        <ImageComponent ref={imageRef} imgUrl={imageUrl} loadControl={bool => setIsLoading(bool)} />
+                        <img
+                            key={idx}
+                            src={imageUrl}
+                            style={{
+                                width: '100%',
+                            }}
+                            alt="Loading..."
+                        />
                     </Box>
                 </Box>
             ),

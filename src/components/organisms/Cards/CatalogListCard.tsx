@@ -9,7 +9,6 @@ import Slider from 'react-slick';
 import { ProductDataInterface, ProductVariantInterface } from 'types/app_models';
 import Grid from '@mui/material/Unstable_Grid2';
 import PromoTags from 'components/atoms/PromoTags/PromoTags';
-import ImageComponent from 'components/atoms/Media/Image';
 import CardPrice from 'components/molecules/PricesComponents/CardPrice';
 import CardSkuLabel from 'components/atoms/Labels/CardSkuLabel';
 import SaleTag from 'components/atoms/PromoTags/SaleTag';
@@ -51,8 +50,6 @@ const CatalogListCard = memo<CatalogCardProps>(
         const colorsBoxRef = useRef(null);
         const [shownModel, setShownModel] = useState<ProductVariantInterface | null>(null);
         const [sliderHeight, setSliderHeight] = useState<number | string>(0);
-
-        const absentProduct = Boolean(!shownModel?.quantity);
 
         useEffect(() => {
             if (!modelsVariants?.length) return;
@@ -108,20 +105,14 @@ const CatalogListCard = memo<CatalogCardProps>(
                                             >
                                                 {shownModel?.images?.map(({ imageUrl }, idx) => {
                                                     return (
-                                                        <Grid
+                                                        <img
                                                             key={idx}
-                                                            xs={12}
-                                                            sx={{
-                                                                opacity: absentProduct ? 0.5 : 1,
-                                                                flexGrow: 1,
+                                                            src={imageUrl}
+                                                            style={{
+                                                                width: '100%',
                                                             }}
-                                                        >
-                                                            <ImageComponent
-                                                                imgUrl={imageUrl}
-                                                                ref={null}
-                                                                height={sliderHeight}
-                                                            />
-                                                        </Grid>
+                                                            alt="Loading..."
+                                                        />
                                                     );
                                                 })}
                                             </Slider>
@@ -136,19 +127,13 @@ const CatalogListCard = memo<CatalogCardProps>(
                                 {shownModel?.images?.length ? (
                                     <>
                                         {Boolean(sliderHeight) && (
-                                            <Grid
-                                                xs={12}
-                                                sx={{
-                                                    opacity: absentProduct ? 0.5 : 1,
-                                                    flexGrow: 1,
+                                            <img
+                                                src={shownModel?.images[0]?.imageUrl}
+                                                style={{
+                                                    width: '100%',
                                                 }}
-                                            >
-                                                <ImageComponent
-                                                    imgUrl={shownModel?.images[0]?.imageUrl}
-                                                    ref={null}
-                                                    height={sliderHeight}
-                                                />
-                                            </Grid>
+                                                alt="Loading..."
+                                            />
                                         )}
                                     </>
                                 ) : (

@@ -2,7 +2,7 @@ import { StoreType, ViewModeType } from 'store_constants/types';
 
 export const ALBERTO_BINI_OUTLET = {
     storage_key: 'ab_ua-o',
-    active: false,
+    active: true,
     required_registration: false,
     URL: ['https://alberto-bini-outlet.netlify.app'],
     appStoreUrl: null,

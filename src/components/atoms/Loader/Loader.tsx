@@ -55,7 +55,7 @@ const Loader = ({
                     filter: 'grayscale(100%)',
                 }}
             >
-                <CircularProgress size={95} thickness={2} sx={{ color: Color?.SECONDARY }} />
+                <CircularProgress size={85} thickness={2} sx={{ color: Color?.SECONDARY }} />
                 <Box
                     sx={{
                         position: 'absolute',
