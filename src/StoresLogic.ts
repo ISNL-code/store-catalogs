@@ -165,7 +165,7 @@ const StoresLogic = ({
             try {
                 const storedItems = await getStorageItem(STORAGE_KEYS?.VIEW_MODE_KEY);
                 if (storedItems) {
-                    setViewMode(JSON.parse(storedItems));
+                    setViewMode(ViewModeType[JSON.parse(storedItems)]);
                 } else {
                     setViewMode(VIEW_MODE);
                     await setStorageItem(STORAGE_KEYS?.VIEW_MODE_KEY, JSON.stringify(VIEW_MODE));
@@ -179,10 +179,10 @@ const StoresLogic = ({
     }, []); // eslint-disable-line
 
     useEffect(() => {
-        if (mount) return;
+        if (mount || !viewMode) return;
         const updateViewMode = async () => {
             try {
-                await setStorageItem(STORAGE_KEYS?.VIEW_MODE_KEY, JSON.stringify(viewMode));
+                await setStorageItem(STORAGE_KEYS?.VIEW_MODE_KEY, JSON.stringify(ViewModeType[viewMode]));
             } catch (error) {
                 console.error('Error setting storage item:', error);
             }

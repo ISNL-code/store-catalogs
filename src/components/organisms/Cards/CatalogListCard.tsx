@@ -25,6 +25,7 @@ import { CatalogContextInterface } from 'types/outlet_context_models';
 import { map_currency_symbol } from 'utils/mappers/currency_symbol';
 import { EmptyImage } from 'components/atoms/Media/EmptyImage';
 import { telegramSender } from 'utils/telegramSender';
+import ImageComponent from 'components/atoms/Media/Image';
 
 interface CatalogCardProps {
     modelsVariants: ProductVariantInterface[];
@@ -100,21 +101,12 @@ const CatalogListCard = memo<CatalogCardProps>(
                                                 prevArrow={<SamplePrevArrow />}
                                                 lazyLoad={true}
                                                 style={{
-                                                    height: sliderHeight || 1,
+                                                    height: sliderHeight || 0.1,
                                                 }}
                                             >
-                                                {shownModel?.images?.map(({ imageUrl }, idx) => {
-                                                    return (
-                                                        <img
-                                                            key={idx}
-                                                            src={imageUrl}
-                                                            style={{
-                                                                width: '100%',
-                                                            }}
-                                                            alt="Loading..."
-                                                        />
-                                                    );
-                                                })}
+                                                {shownModel?.images?.map(({ imageUrl }, idx) => (
+                                                    <ImageComponent key={idx} imageUrl={imageUrl} />
+                                                ))}
                                             </Slider>
                                         )}
                                     </>
@@ -127,13 +119,7 @@ const CatalogListCard = memo<CatalogCardProps>(
                                 {shownModel?.images?.length ? (
                                     <>
                                         {Boolean(sliderHeight) && (
-                                            <img
-                                                src={shownModel?.images[0]?.imageUrl}
-                                                style={{
-                                                    width: '100%',
-                                                }}
-                                                alt="Loading..."
-                                            />
+                                            <ImageComponent imageUrl={shownModel?.images[0]?.imageUrl} />
                                         )}
                                     </>
                                 ) : (

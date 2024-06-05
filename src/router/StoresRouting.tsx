@@ -85,7 +85,7 @@ const StoresRouting = () => {
             apiToken,
             setApiToken,
         }),
-        [lang, auth, infoAlert, storeDataRes, currentUserData] // eslint-disable-line
+        [lang, auth, infoAlert, storeDataRes, currentUserData, viewMode] // eslint-disable-line
     );
 
     StoresLogic(memoizedAppLogic);
