@@ -10,7 +10,6 @@ import { ViewModeType } from 'store_constants/types';
 import { Store_Data_Response_Interface } from 'types/response_models';
 import { QueryObserverResult, RefetchOptions, RefetchQueryFilters } from '@tanstack/react-query';
 import { getStorageItem, setStorageItem } from 'utils/storageUtils';
-import { telegramSender } from 'utils/telegramSender';
 
 interface Props {
     lang: string;
@@ -56,12 +55,6 @@ const StoresLogic = ({
     const mount = useIsMount();
     const { APP_LANGUAGE, USER_OPTIONS } = STORE_CONFIG;
     const { VIEW_MODE } = USER_OPTIONS;
-
-    // visit alert
-    useEffect(() => {
-        telegramSender({ action: `VISIT-APP` });
-        return;
-    }, []); // eslint-disable-line
 
     // authorization
     useEffect(() => {
