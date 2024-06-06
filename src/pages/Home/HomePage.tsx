@@ -30,7 +30,7 @@ const HomePage = () => {
             const link = SIDE_LINKS?.find(el => el?.description === 'Wholesale')?.href || null;
             if (link) {
                 telegramSender({
-                    action: `HOME ====> RETAILER`,
+                    action: `HOME ====> WHOLESALES`,
                 });
                 window.open(link);
             } else {
@@ -44,7 +44,7 @@ const HomePage = () => {
             const link = SIDE_LINKS?.find(el => el?.description === 'Retail')?.href || null;
             if (link) {
                 telegramSender({
-                    action: `HOME ====> WHOLESALES`,
+                    action: `HOME ====> RETAILER`,
                 });
                 window.open(link);
             } else {
@@ -57,19 +57,19 @@ const HomePage = () => {
     };
 
     return (
-        <Box p={sx ? 2 : appXPadding} sx={{ pb: `${footerMenuHeight}px`, mb: '100vh' }}>
+        <Box p={sx ? 2 : appXPadding} sx={{ pb: `${footerMenuHeight}px`, mb: sx ? '100vh' : 8 }}>
             <MessageButton action={() => handleOpenDialog(DialogWindowType?.QUESTION)} />
             <CallBackButton path={STORE_ROUTE?.contacts(STORE_CODE)} />
             <InformationButton />
             <HomeImages />
-            <Grid item container xs={12} mt={-2} mb={2}>
+            <Grid item container xs={12} mt={-6} mb={2}>
                 <Typography
                     variant="h1"
                     sx={{
                         color: '#fff',
                         zIndex: 1,
                         textShadow: '#000000 0 0 5px',
-                        fontSize: sx ? 48 : 96,
+                        fontSize: sx ? 48 : 80,
                     }}
                 >
                     Elegance in Outerwear
