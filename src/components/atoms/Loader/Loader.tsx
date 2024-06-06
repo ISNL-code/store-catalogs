@@ -56,21 +56,6 @@ const Loader = ({
                 }}
             >
                 <CircularProgress size={85} thickness={2} sx={{ color: Color?.SECONDARY }} />
-                <Box
-                    sx={{
-                        position: 'absolute',
-                        overflow: 'hidden',
-                        height: 80,
-                        width: 80,
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        borderRadius: '50%',
-                        opacity: 0.5,
-                    }}
-                >
-                    <img src={require('assets/img/logo.webp')} style={{ height: 80 }} alt="img" />
-                </Box>
             </Box>
         </Box>
     );
