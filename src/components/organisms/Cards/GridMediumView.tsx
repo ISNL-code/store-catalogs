@@ -1,14 +1,19 @@
 import { Box } from '@mui/material';
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useOutletContext } from 'react-router-dom';
 import { useDevice } from 'hooks/useDevice';
 import Grid from '@mui/material/Unstable_Grid2';
 import { Colors } from 'constants/colors';
 
-const GridMediumView = ({ SliderComponent, CardDetails, CardDecoration, opacity, ...rest }) => {
+const GridMediumView = ({ SliderComponent, CardDetails, CardDecoration, ...rest }) => {
     const cardRef = useRef<HTMLElement>(null);
     const { setScrollPosition }: any = useOutletContext();
     const { sm, sx, mx, m, l } = useDevice();
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        setTimeout(() => setLoading(false), 100);
+    }, []);
 
     const getGridValue = () => {
         if (sm) return 6;
@@ -24,7 +29,7 @@ const GridMediumView = ({ SliderComponent, CardDetails, CardDecoration, opacity,
             // container
             xs={getGridValue()}
             sx={{
-                opacity: opacity ? 1 : 0,
+                opacity: loading ? 0 : 1,
             }}
             {...rest}
         >

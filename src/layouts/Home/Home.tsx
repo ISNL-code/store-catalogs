@@ -19,6 +19,7 @@ import { QueryObserverResult, RefetchOptions, RefetchQueryFilters } from '@tanst
 import { AxiosResponse } from 'axios';
 import { LanguageDataInterface } from 'hooks/useGetLanguage';
 import { useEffect } from 'react';
+import Loader from 'components/atoms/Loader/Loader';
 
 interface Props {
     apiToken: string | null;
@@ -82,6 +83,8 @@ export default function Home({
             navigate(HOME_ROUTE?.root(STORE_CODE));
         }
     }, [storeCode, STORE_CODE, store]); // eslint-disable-line
+
+    if (!store) return <Loader />;
 
     return (
         <Box display="flex" flexDirection="column" justifyContent="space-between">

@@ -1,5 +1,5 @@
 import { Box } from '@mui/material';
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useOutletContext } from 'react-router-dom';
 import { useDevice } from 'hooks/useDevice';
 import Grid from '@mui/material/Unstable_Grid2';
@@ -9,6 +9,11 @@ const CardView = ({ SliderComponent, CardDetails, CardDecoration, opacity, ...re
     const cardRef = useRef<HTMLElement>(null);
     const { setScrollPosition }: any = useOutletContext();
     const { sm, sx, mx, l } = useDevice();
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        setTimeout(() => setLoading(false), 100);
+    }, []);
 
     const getGridValue = () => {
         if (sm) return 12;
@@ -19,7 +24,7 @@ const CardView = ({ SliderComponent, CardDetails, CardDecoration, opacity, ...re
     };
 
     return (
-        <Grid xs={getGridValue()} sx={{ opacity: opacity ? 1 : 0 }} {...rest}>
+        <Grid xs={getGridValue()} sx={{ opacity: loading ? 0 : 1 }} {...rest}>
             <Box
                 ref={cardRef}
                 sx={{

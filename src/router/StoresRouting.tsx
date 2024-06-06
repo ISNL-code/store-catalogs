@@ -116,8 +116,6 @@ const StoresRouting = () => {
         }
     }, [REQUIRED_REGISTRATION, auth, HOME_PAGE_ACTIVE, STORE_CODE]);
 
-    if (!currentStoreData) return null;
-
     let router;
 
     if (ACTIVE) {

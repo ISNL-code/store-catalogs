@@ -7,6 +7,7 @@ import FullScreenSwiper from './FullScreenSwiper';
 import { useWindowWidth } from '@react-hook/window-size';
 import { useIsMount } from 'hooks/useIsMount';
 import { STORE_CONFIG } from 'store_constants/stores_config';
+import ImageComponent from 'components/atoms/Media/Image';
 
 const ModelSwiper = ({ images }) => {
     const { modelSku } = useParams();
@@ -70,14 +71,7 @@ const ModelSwiper = ({ images }) => {
                             transition: 'all 150ms linear',
                         }}
                     >
-                        <img
-                            key={idx}
-                            src={imageUrl}
-                            style={{
-                                width: '100%',
-                            }}
-                            alt="Loading..."
-                        />
+                        <ImageComponent key={idx} imageUrl={imageUrl} />
                     </Box>
                 </Box>
             ),
@@ -136,14 +130,7 @@ const ModelSwiper = ({ images }) => {
                             transition: 'all 100ms linear',
                         }}
                     >
-                        <img
-                            key={idx}
-                            src={imageUrl}
-                            style={{
-                                width: '100%',
-                            }}
-                            alt="Loading..."
-                        />
+                        <ImageComponent key={idx} imageUrl={imageUrl} />
                     </Box>
                 </Box>
             ),

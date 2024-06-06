@@ -18,18 +18,15 @@ const ImageComponent = ({ imageUrl }) => {
                     setImgLoaded(!event?.bubbles);
                 }}
             />
-
-            <CircularProgress
-                sx={{
-                    color: Color?.PRIMARY,
-                    position: 'absolute',
-                    top: 100,
-                    left: '42%',
-                    transform: 'translateX(-150%)',
-                    opacity: imgLoaded ? 0 : 1,
-                }}
-                thickness={2}
-            />
+            <div style={{ left: '50%', top: '50%', transform: 'translate(-50%,-50%)', position: 'absolute' }}>
+                <CircularProgress
+                    sx={{
+                        color: Color?.PRIMARY,
+                        opacity: imgLoaded ? 0 : 1,
+                    }}
+                    thickness={1}
+                />
+            </div>
         </div>
     );
 };

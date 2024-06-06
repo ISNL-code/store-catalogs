@@ -23,6 +23,7 @@ import { QueryObserverResult, RefetchOptions, RefetchQueryFilters } from '@tanst
 import { AxiosResponse } from 'axios';
 import { LanguageDataInterface } from 'hooks/useGetLanguage';
 import { useFavorites } from 'layouts/hooks/useFavorites';
+import Loader from 'components/atoms/Loader/Loader';
 
 interface Props {
     apiToken: string | null;
@@ -44,7 +45,7 @@ interface Props {
     };
     viewMode: ViewModeType | null;
     infoAlert: { ws_info: boolean } | null;
-    store: StoreInterface;
+    store: StoreInterface | null;
     favorites: useAddToFavoriteDataInterface;
     cart: useAddToCartDataInterface;
     currentLanguage: LanguageDataInterface;
@@ -126,6 +127,8 @@ export default function MainCatalog({
     const memoizedHandleOpenDialog = useCallback(handleOpenDialog, []); // eslint-disable-line
     const memoizedSetLang = useCallback(setLang, []); // eslint-disable-line
     const memoizedSetAuth = useCallback(setAuth, []); // eslint-disable-line
+
+    if (!store) return <Loader />;
 
     return (
         <Box display="flex" flexDirection="column" justifyContent="space-between">

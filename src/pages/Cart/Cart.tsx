@@ -23,6 +23,7 @@ import { CatalogContextInterface } from 'types/outlet_context_models';
 import { scrollPage } from 'utils/scrollPage';
 import { map_product_card } from 'utils/mappers/product_data';
 import { EmptyImage } from 'components/atoms/Media/EmptyImage';
+import ImageComponent from 'components/atoms/Media/Image';
 
 interface ProductListInterface {
     sizeId: number | null;
@@ -207,17 +208,7 @@ const Cart = () => {
                                         }}
                                         p={2}
                                     >
-                                        {el?.image ? (
-                                            <img
-                                                src={el?.image}
-                                                style={{
-                                                    width: '100%',
-                                                }}
-                                                alt="Loading..."
-                                            />
-                                        ) : (
-                                            <EmptyImage />
-                                        )}
+                                        {el?.image ? <ImageComponent imageUrl={el?.image} /> : <EmptyImage />}
                                     </Grid>
                                     <Grid
                                         p={2}

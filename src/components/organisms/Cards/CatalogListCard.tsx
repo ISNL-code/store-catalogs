@@ -351,7 +351,6 @@ const CatalogListCard = memo<CatalogCardProps>(
                         SliderComponent={SliderComponent}
                         CardDetails={CardDetails}
                         CardDecoration={CardDecoration}
-                        opacity={Boolean(sliderHeight)}
                     />
                 )}
                 {Boolean(viewMode === ViewModeType?.card) && (
