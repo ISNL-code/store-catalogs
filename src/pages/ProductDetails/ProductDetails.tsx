@@ -9,7 +9,7 @@ import SkuSearch from 'components/molecules/ToolsButtons/SkuSearch';
 import InstrumentalSubHeader from 'components/organisms/InstrumentalSubHeader/InstrumentalSubHeader';
 import { useDevice } from 'hooks/useDevice';
 import { useIsMount } from 'hooks/useIsMount';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import { useOutletContext, useParams } from 'react-router-dom';
 import { ProductDataInterface } from 'types/app_models';
 import ModelDetails from './ModelDetails';
@@ -20,7 +20,7 @@ import { CatalogContextInterface } from 'types/outlet_context_models';
 import { scrollPage } from 'utils/scrollPage';
 import { map_product_card } from 'utils/mappers/product_data';
 
-interface SelectedVarianInterface {
+interface SelectedVariantInterface {
     images?: any[];
 }
 
@@ -32,7 +32,7 @@ const ProductDetails = () => {
         useOutletContext();
     const { modelSku, storeCode, productId } = useParams();
     const [productDetails, setProductDetails] = useState<ProductDataInterface | null>(null);
-    const [selectedVariant, setSelectedVariant] = useState<SelectedVarianInterface | undefined | null>(null);
+    const [selectedVariant, setSelectedVariant] = useState<SelectedVariantInterface | undefined | null>(null);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -43,49 +43,41 @@ const ProductDetails = () => {
         data: productRes,
         isFetching: loadProduct,
         refetch: updateModel,
-    } = useProductsApi().useGetProductByID({ id: productId, lang: lang, storeCode });
+    } = useProductsApi().useGetProductByID({ id: productId, lang, storeCode });
 
     useEffect(() => {
-        if (!productRes || loadProduct) return;
-        const newData: ProductDataInterface | null = map_product_card?.details_card(productRes?.data?.products);
-        setProductDetails(newData);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [productRes, modelSku]);
+        if (productRes && !loadProduct) {
+            const newData: ProductDataInterface | null = map_product_card?.details_card(productRes?.data?.products);
+            setProductDetails(newData);
+        }
+    }, [productRes, loadProduct]);
 
     useEffect(() => {
-        if (mount) return;
-        updateModel();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [lang, productId]);
+        if (!mount) {
+            updateModel();
+        }
+    }, [lang, productId, mount, updateModel]);
 
     useEffect(() => {
-        if (loadProduct) return;
-        if (!loading) return;
-        setTimeout(() => {
-            setLoading(false);
-        }, 250);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [loadProduct]);
+        if (loadProduct && loading) {
+            setTimeout(() => {
+                setLoading(false);
+            }, 250);
+        }
+    }, [loadProduct, loading]);
 
     useEffect(() => {
-        if (!productDetails) return;
-
-        setSelectedVariant(
-            productDetails?.variants?.find(product => product.variantSku === modelSku?.replaceAll('_', '/'))
-        );
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [productDetails]);
+        if (productDetails) {
+            setSelectedVariant(
+                productDetails?.variants?.find(product => product.variantSku === modelSku?.replaceAll('_', '/'))
+            );
+        }
+    }, [productDetails, modelSku]);
 
     const { sx, ls } = useDevice();
 
-    const swiperGrid = () => {
-        if (sx) return 12;
-        return 4;
-    };
-    const detailsGrid = () => {
-        if (sx) return 12;
-        return 8;
-    };
+    const swiperGrid = useMemo(() => (sx ? 12 : 4), [sx]);
+    const detailsGrid = useMemo(() => (sx ? 12 : 8), [sx]);
 
     return (
         <Box px={appXPadding} sx={{ pb: `${footerMenuHeight}px` }}>
@@ -109,7 +101,7 @@ const ProductDetails = () => {
                     <Grid
                         mt={-10}
                         pt={10}
-                        xs={swiperGrid()}
+                        xs={swiperGrid}
                         sx={{
                             overflow: 'auto',
                             '&::-webkit-scrollbar': {
@@ -117,12 +109,12 @@ const ProductDetails = () => {
                             },
                         }}
                     >
-                        <ModelSwiper images={selectedVariant?.images} />
+                        <ModelSwiper images={selectedVariant?.images || []} />
                     </Grid>
                     <Grid
                         px={2}
                         pt={2}
-                        xs={detailsGrid()}
+                        xs={detailsGrid}
                         sx={{
                             height: '100%',
                             overflow: sx ? 'visible' : 'auto',

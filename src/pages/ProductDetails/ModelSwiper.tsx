@@ -1,6 +1,6 @@
 import { Box } from '@mui/material';
 import { Fragment, useEffect, useMemo, useRef, useState } from 'react';
-import { useOutletContext, useParams } from 'react-router-dom';
+import { useOutletContext } from 'react-router-dom';
 import { useDevice } from 'hooks/useDevice';
 import { CatalogContextInterface } from 'types/outlet_context_models';
 import FullScreenSwiper from './FullScreenSwiper';
@@ -10,7 +10,6 @@ import { STORE_CONFIG } from 'store_constants/stores_config';
 import ImageComponent from 'components/atoms/Media/Image';
 
 const ModelSwiper = ({ images }) => {
-    const { modelSku } = useParams();
     const { OPTIONS } = STORE_CONFIG;
     const { PRODUCT_IMAGE_OPTIONS } = OPTIONS;
     const WINDOW_WIDTH = useWindowWidth();
@@ -22,36 +21,34 @@ const ModelSwiper = ({ images }) => {
     const { sx } = useDevice();
     const [slide, setSlide] = useState(0);
 
+    const calculateHeight = (element: number) => {
+        return (element / PRODUCT_IMAGE_OPTIONS.width) * PRODUCT_IMAGE_OPTIONS.height;
+    };
+
     const SlideHorizontal = ({ imageUrl, idx }) => {
-        const sliderRef = useRef<HTMLImageElement>(null);
-        const imageRef = useRef<HTMLImageElement>(null);
+        const sliderRef = useRef<HTMLDivElement>(null);
         const [sliderHeight, setSliderHeight] = useState<number | null>(memoHeight);
-        const [maxHeight, setMaxHeight] = useState<number | null>(memoHeight);
 
         useEffect(() => {
             if (mount) return;
 
-            const calcSlideHeight = () => {
-                return (
-                    ((sliderRef?.current?.clientWidth || 1) / PRODUCT_IMAGE_OPTIONS?.width) *
-                    PRODUCT_IMAGE_OPTIONS?.height
-                );
-            };
-            if (sliderRef?.current?.clientWidth) setSliderHeight(calcSlideHeight());
+            if (sliderRef?.current?.clientWidth && sliderRef.current.clientWidth > 0) {
+                setSliderHeight(calculateHeight(sliderRef.current.clientWidth));
+            }
 
-            if (imageRef?.current?.clientHeight)
+            if (sliderRef?.current?.clientHeight && sliderRef.current.clientHeight > 0) {
                 setTimeout(() => {
-                    setMaxHeight(imageRef?.current?.clientHeight as number);
-                    imageRef?.current?.clientHeight && setMemoHeight(imageRef?.current?.clientHeight as number);
+                    setMemoHeight(sliderRef?.current?.clientHeight || null);
                 }, 200);
-        }, [imageRef?.current?.clientHeight]); // eslint-disable-line
+            }
+        }, [sliderRef.current?.clientWidth, sliderRef.current?.clientHeight]); // eslint-disable-line
 
-        const memoizedSlide = useMemo(
+        return useMemo(
             () => (
                 <Box
                     ref={sliderRef}
                     sx={{
-                        minWidth: images?.length === 1 ? '100%' : (WINDOW_WIDTH / 3) * 2,
+                        minWidth: images.length === 1 ? '100%' : (WINDOW_WIDTH / 3) * 2,
                         width: 'auto',
                         overflow: 'hidden',
                         display: 'flex',
@@ -67,7 +64,7 @@ const ModelSwiper = ({ images }) => {
                     <Box
                         sx={{
                             height: sliderHeight,
-                            maxHeight: maxHeight || sliderHeight,
+                            maxHeight: memoHeight || sliderHeight,
                             transition: 'all 150ms linear',
                         }}
                     >
@@ -75,37 +72,29 @@ const ModelSwiper = ({ images }) => {
                     </Box>
                 </Box>
             ),
-            [maxHeight] // eslint-disable-line
+            [sliderHeight] // eslint-disable-line
         );
-
-        return memoizedSlide;
     };
 
     const SlideVertical = ({ imageUrl, idx }) => {
-        const sliderRef = useRef<HTMLImageElement>(null);
-        const imageRef = useRef<HTMLImageElement>(null);
+        const sliderRef = useRef<HTMLDivElement>(null);
         const [sliderHeight, setSliderHeight] = useState<number | null>(memoHeight);
-        const [maxHeight, setMaxHeight] = useState<number | null>(memoHeight);
 
         useEffect(() => {
             if (mount) return;
 
-            const calcSlideHeight = () => {
-                return (
-                    ((sliderRef?.current?.clientWidth || 1) / PRODUCT_IMAGE_OPTIONS?.width) *
-                    PRODUCT_IMAGE_OPTIONS?.height
-                );
-            };
-            if (sliderRef?.current?.clientWidth) setSliderHeight(calcSlideHeight());
+            if (sliderRef?.current?.clientWidth && sliderRef.current.clientWidth > 0) {
+                setSliderHeight(calculateHeight(sliderRef.current.clientWidth));
+            }
 
-            if (imageRef?.current?.clientHeight)
+            if (sliderRef?.current?.clientHeight && sliderRef.current.clientHeight > 0) {
                 setTimeout(() => {
-                    setMaxHeight(imageRef?.current?.clientHeight as number);
-                    imageRef?.current?.clientHeight && setMemoHeight(imageRef?.current?.clientHeight as number);
-                }, 250);
-        }, [imageRef?.current?.clientHeight]); // eslint-disable-line
+                    setMemoHeight(sliderRef?.current?.clientHeight || null);
+                }, 200);
+            }
+        }, [sliderRef.current?.clientWidth, sliderRef.current?.clientHeight]); // eslint-disable-line
 
-        const memoizedSlide = useMemo(
+        return useMemo(
             () => (
                 <Box
                     ref={sliderRef}
@@ -126,7 +115,7 @@ const ModelSwiper = ({ images }) => {
                     <Box
                         sx={{
                             height: sliderHeight,
-                            maxHeight: maxHeight || sliderHeight,
+                            maxHeight: memoHeight || sliderHeight,
                             transition: 'all 100ms linear',
                         }}
                     >
@@ -134,46 +123,40 @@ const ModelSwiper = ({ images }) => {
                     </Box>
                 </Box>
             ),
-            [maxHeight] // eslint-disable-line
+            [sliderHeight] // eslint-disable-line
         );
-
-        return memoizedSlide;
     };
 
     const verticalSwiper = useMemo(() => {
         return (
             <Box pt={1}>
-                {images?.map(({ imageUrl }, idx) => {
-                    return (
-                        <Fragment key={idx}>
-                            <SlideVertical imageUrl={imageUrl} idx={idx} />
-                        </Fragment>
-                    );
-                })}
+                {images?.map(({ imageUrl }, idx) => (
+                    <Fragment key={idx}>
+                        <SlideVertical imageUrl={imageUrl} idx={idx} />
+                    </Fragment>
+                ))}
             </Box>
         );
-    }, [images?.length, headerHeight, instrumentalBarHeight, footerMenuHeight, modelSku, WINDOW_WIDTH]); // eslint-disable-line
+    }, [images, WINDOW_WIDTH]); // eslint-disable-line
 
     const horizontalSwiper = useMemo(() => {
         return (
             <Box
-                p={images?.length <= 1 ? 2 : 1}
+                p={images.length <= 1 ? 2 : 1}
                 sx={{
                     display: 'flex',
                     flexDirection: 'row',
                     gap: 1,
                 }}
             >
-                {images?.map(({ imageUrl }, idx) => {
-                    return (
-                        <Fragment key={idx}>
-                            <SlideHorizontal imageUrl={imageUrl} idx={idx} />
-                        </Fragment>
-                    );
-                })}
+                {images?.map(({ imageUrl }, idx) => (
+                    <Fragment key={idx}>
+                        <SlideHorizontal imageUrl={imageUrl} idx={idx} />
+                    </Fragment>
+                ))}
             </Box>
         );
-    }, [images, headerHeight, instrumentalBarHeight, footerMenuHeight, WINDOW_WIDTH, modelSku]); // eslint-disable-line
+    }, [images, WINDOW_WIDTH]); // eslint-disable-line
 
     return (
         <>
