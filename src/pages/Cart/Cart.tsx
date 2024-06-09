@@ -155,7 +155,7 @@ const Cart = () => {
 
     return (
         <Box className="CartPageContainer" p={sx ? 2 : appXPadding} sx={{ pb: `calc(${footerMenuHeight}px + 16px)` }}>
-            {(loadCreateOrder || loadProducts) && <Loader position="fixed" />}
+            {(loadCreateOrder || loadProducts) && <Loader />}
 
             <InstrumentalSubHeader
                 StartSlot={() => <></>}

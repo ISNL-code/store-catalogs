@@ -32,7 +32,7 @@ const LoadMoreButton = () => {
     if (!(!productsList?.length || totalPages === page + 1))
         return (
             <>
-                {loadProducts && <Loader position="fixed" />}
+                {loadProducts && <Loader />}
                 <Box
                     ref={ref}
                     my={1.5}

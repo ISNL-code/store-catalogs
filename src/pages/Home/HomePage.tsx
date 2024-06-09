@@ -77,27 +77,33 @@ const HomePage = () => {
             </Grid>
 
             <Box
+                className="HiddenScroll"
                 mb={1}
                 sx={{
-                    flexWrap: 'wrap',
+                    flexWrap: 'nowrap',
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'flex-start',
-                    maxWidth: '1000px',
+                    maxWidth: '900px',
+                    height: '90vh', // Устанавливаем фиксированную высоту
+                    overflowY: 'scroll', // Добавляем вертикальную прокрутку
+                    position: 'relative', // Добавляем позиционирование для псевдоэлемента
+                    gap: 1,
                 }}
             >
                 {[1, 2, 3, 4, 5].map((el, idx) => (
                     <Grid
+                        key={idx} // Добавляем key для каждого элемента списка
                         item
                         px={sx ? 2 : 4}
                         py={2}
                         xs={12}
-                        mt={1.2}
                         sx={{
                             backgroundColor: '#ffffff78',
                             zIndex: 2,
                             borderRadius: 1,
                             position: 'relative',
+                            '&:last-child': { mb: 200 },
                         }}
                     >
                         <Box mb={2} sx={{ display: 'flex', justifyContent: 'space-between' }}>

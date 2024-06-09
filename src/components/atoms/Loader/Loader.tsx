@@ -1,62 +1,55 @@
-import { Box, CircularProgress, Typography } from '@mui/material';
+import { useEffect } from 'react';
+import { Box, Typography } from '@mui/material';
 import { Color } from 'constants/colors';
+import { MutatingDots } from 'react-loader-spinner';
 
 interface LoaderInterface {
-    height?: string;
-    zIndex?: number;
-    title?: string;
-    defaultHeight?: string;
-    position?: string;
     isShown?: boolean;
+    title?: string;
 }
 
-const Loader = ({
-    height = '90vh',
-    zIndex = 5000,
-    title = '',
-    defaultHeight,
-    position = 'fixed',
-    isShown = true,
-}: LoaderInterface) => {
-    if (!isShown) return null;
+const Loader = ({ isShown = true, title = '' }: LoaderInterface) => {
+    useEffect(() => {
+        if (isShown) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'auto';
+        }
+
+        // Cleanup function to reset the overflow style when component unmounts
+        return () => {
+            document.body.style.overflow = 'auto';
+        };
+    }, [isShown]);
+
+    if (!isShown) return null; // Return null instead of false
 
     return (
         <Box
-            className="AppLoader"
             sx={{
-                position: position,
+                position: 'fixed',
                 top: 0,
                 left: 0,
-                width: '100%',
-                height: height,
-                minHeight: defaultHeight ? defaultHeight : 0,
+                width: '100vw',
+                height: '100vh',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                zIndex: zIndex,
+                zIndex: 5000,
+                opacity: 0.95,
                 flexDirection: 'column',
+                gap: 1.5,
+                backgroundColor: '#00000039',
             }}
         >
-            {title && (
-                <Typography
-                    color="secondary"
-                    sx={{ textAlign: 'center', mb: 1, maxWidth: 350, backgroundColor: 'white' }}
-                >
-                    {title}
-                </Typography>
-            )}
-
-            <Box
-                sx={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    position: 'relative',
-                    filter: 'grayscale(100%)',
-                }}
-            >
-                <CircularProgress size={85} thickness={2} sx={{ color: Color?.SECONDARY }} />
-            </Box>
+            <MutatingDots
+                height="120"
+                width="120"
+                color={Color?.PRIMARY}
+                secondaryColor={Color?.PRIMARY_DARK}
+                visible={isShown}
+            />
+            {title && <Typography color="primary">{title}</Typography>}
         </Box>
     );
 };
