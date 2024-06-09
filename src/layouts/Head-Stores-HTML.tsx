@@ -77,7 +77,7 @@ const HeadStoresHTML: React.FC = () => {
     }, [manifestUrl]);
 
     useEffect(() => {
-        const analytics = () => {
+        const google_analytics = () => {
             const script = document.createElement('script');
             script.src = `https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ANALYTICS_ID}`;
             script.async = true;
@@ -95,9 +95,9 @@ const HeadStoresHTML: React.FC = () => {
             document.head.appendChild(configScript);
         };
 
-        analytics();
+        google_analytics();
 
-        const ads = () => {
+        const ads_analytics = () => {
             const script = document.createElement('script');
             script.src = `https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ADS_ID}`;
             script.async = true;
@@ -115,44 +115,8 @@ const HeadStoresHTML: React.FC = () => {
             document.head.appendChild(configScript);
         };
 
-        ads();
-
-        const ads1 = () => {
-            const script = document.createElement('script');
-            script.src = `https://www.googletagmanager.com/gtag/js?id=G-5EKVQYRR8P`;
-            script.async = true;
-            document.head.appendChild(script);
-
-            const configScript = document.createElement('script');
-            configScript.innerHTML = `
-                window.dataLayer = window.dataLayer || [];
-                function gtag() {
-                    dataLayer.push(arguments);
-                }
-                gtag("js", new Date());
-                gtag("config", "G-5EKVQYRR8P");
-            `;
-            document.head.appendChild(configScript);
-        };
-    }, [GOOGLE_ANALYTICS_ID]);
-
-    const ads3 = () => {
-        const script = document.createElement('script');
-        script.src = `https://www.googletagmanager.com/gtag/js?id=G-5EKVQYRR8P`;
-        script.async = true;
-        document.head.appendChild(script);
-
-        const configScript = document.createElement('script');
-        configScript.innerHTML = `
-            window.dataLayer = window.dataLayer || [];
-            function gtag() {
-                dataLayer.push(arguments);
-            }
-            gtag("js", new Date());
-            gtag("config", "G-5EKVQYRR8P");
-        `;
-        document.head.appendChild(configScript);
-    };
+        ads_analytics();
+    }, [GOOGLE_ANALYTICS_ID]); // eslint-disable-line
 
     const allKeywords = Object.values(KEYWORDS).join(' | ');
 
