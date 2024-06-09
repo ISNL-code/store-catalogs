@@ -58,6 +58,7 @@ export const KREMEN_BELTS_SALES = {
         store_title: ' Kremen Belts Оптовий Каталог | Kremen Belts Wholesales Catalog',
         store_description: `Ласкаво просимо до Kremen Belts — вашого найкращого джерела стильних ременів та аксесуарів! | Welcome to Kremen Belts — your ultimate source for stylish belts and accessories!`,
         google_analytics_id: 'G-7G98583PY1',
+        google_ads_id: '',
         store_logo: 'kremen_belts_logo.png',
         store_poster: 'belts.jpeg',
         keywords: {},

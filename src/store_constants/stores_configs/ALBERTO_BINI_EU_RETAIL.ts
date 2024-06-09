@@ -57,7 +57,8 @@ export const ALBERTO_BINI_EU_RETAIL = {
     web_head_data: {
         store_title: 'Alberto Bini Catalog',
         store_description: `Welcome to Alberto Bini — the world of exquisite women's outerwear! Explore our wide selection of high-quality stylish coats, trenches, and jackets. Immerse yourself in unique style and comfort with Alberto Bini!`,
-        google_analytics_id: ['G-FSCN3VRY6E', 'AW-16545719098'],
+        google_analytics_id: 'G-FSCN3VRY6E',
+        google_ads_id: '',
         store_logo: 'alberto_bini_logo.png',
         store_poster: 'alb.jpeg',
         keywords: {

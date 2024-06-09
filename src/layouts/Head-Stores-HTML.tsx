@@ -10,7 +10,8 @@ declare global {
 
 const HeadStoresHTML: React.FC = () => {
     const { WEB_HEAD_DATA, STORE_NAME, HTML_LANG } = STORE_CONFIG;
-    const { STORE_TITLE, STORE_DESCRIPTION, GOOGLE_ANALYTICS_ID, STORE_LOGO, STORE_POSTER, KEYWORDS } = WEB_HEAD_DATA;
+    const { STORE_TITLE, STORE_DESCRIPTION, GOOGLE_ANALYTICS_ID, GOOGLE_ADS_ID, STORE_LOGO, STORE_POSTER, KEYWORDS } =
+        WEB_HEAD_DATA;
 
     const [manifestUrl, setManifestUrl] = useState('');
 
@@ -76,25 +77,7 @@ const HeadStoresHTML: React.FC = () => {
     }, [manifestUrl]);
 
     useEffect(() => {
-        if (Array.isArray(GOOGLE_ANALYTICS_ID)) {
-            GOOGLE_ANALYTICS_ID.forEach(id => {
-                const script = document.createElement('script');
-                script.src = `https://www.googletagmanager.com/gtag/js?id=${id}`;
-                script.async = true;
-                document.head.appendChild(script);
-
-                const configScript = document.createElement('script');
-                configScript.innerHTML = `
-                    window.dataLayer = window.dataLayer || [];
-                    function gtag() {
-                        dataLayer.push(arguments);
-                    }
-                    gtag("js", new Date());
-                    gtag("config", "${id}");
-                `;
-                document.head.appendChild(configScript);
-            });
-        } else {
+        const analytics = () => {
             const script = document.createElement('script');
             script.src = `https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ANALYTICS_ID}`;
             script.async = true;
@@ -110,8 +93,66 @@ const HeadStoresHTML: React.FC = () => {
                 gtag("config", "${GOOGLE_ANALYTICS_ID}");
             `;
             document.head.appendChild(configScript);
-        }
+        };
+
+        analytics();
+
+        const ads = () => {
+            const script = document.createElement('script');
+            script.src = `https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ADS_ID}`;
+            script.async = true;
+            document.head.appendChild(script);
+
+            const configScript = document.createElement('script');
+            configScript.innerHTML = `
+                window.dataLayer = window.dataLayer || [];
+                function gtag() {
+                    dataLayer.push(arguments);
+                }
+                gtag("js", new Date());
+                gtag("config", "${GOOGLE_ADS_ID}");
+            `;
+            document.head.appendChild(configScript);
+        };
+
+        ads();
+
+        const ads1 = () => {
+            const script = document.createElement('script');
+            script.src = `https://www.googletagmanager.com/gtag/js?id=G-5EKVQYRR8P`;
+            script.async = true;
+            document.head.appendChild(script);
+
+            const configScript = document.createElement('script');
+            configScript.innerHTML = `
+                window.dataLayer = window.dataLayer || [];
+                function gtag() {
+                    dataLayer.push(arguments);
+                }
+                gtag("js", new Date());
+                gtag("config", "G-5EKVQYRR8P");
+            `;
+            document.head.appendChild(configScript);
+        };
     }, [GOOGLE_ANALYTICS_ID]);
+
+    const ads3 = () => {
+        const script = document.createElement('script');
+        script.src = `https://www.googletagmanager.com/gtag/js?id=G-5EKVQYRR8P`;
+        script.async = true;
+        document.head.appendChild(script);
+
+        const configScript = document.createElement('script');
+        configScript.innerHTML = `
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+            gtag("js", new Date());
+            gtag("config", "G-5EKVQYRR8P");
+        `;
+        document.head.appendChild(configScript);
+    };
 
     const allKeywords = Object.values(KEYWORDS).join(' | ');
 
