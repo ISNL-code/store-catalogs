@@ -78,7 +78,7 @@ const CatalogListCard = memo<CatalogCardProps>(
                     }}
                     onClick={() => {
                         telegramSender({
-                            action: `GO TO MODEL DETAILS`,
+                            action: `GO TO MODEL DETAILS ${shownModel?.variantSku}`,
                         });
                         navigate(STORE_ROUTE?.product(STORE_CODE, productId, shownModel?.variantSku));
                     }}
