@@ -27,7 +27,7 @@ export const ALBERTO_BINI_KZ_RETAIL = {
         main_price_multiplication: 1,
         sale_price_multiplication: 1,
         currency_multiplication: 480,
-        retail_price_multiplication: 2.2,
+        retail_price_multiplication: 1.7,
         custom_currency: '₸',
         min_items_to_buy: 1,
         store_type: StoreType?.default,

@@ -27,7 +27,7 @@ export const ALBERTO_BINI_EU_RETAIL = {
         main_price_multiplication: 1,
         sale_price_multiplication: 1,
         currency_multiplication: 1,
-        retail_price_multiplication: 2.25,
+        retail_price_multiplication: 1.7,
         min_items_to_buy: 1,
         custom_currency: null,
         store_type: StoreType?.default,
