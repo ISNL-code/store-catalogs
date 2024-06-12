@@ -57,8 +57,9 @@ export const ALBERTO_BINI_KZ_RETAIL = {
     web_head_data: {
         store_title: 'Alberto Bini розничный каталог',
         store_description: `Добро пожаловать в мир изысканной женской верхней одежды от Alberto Bini! Ознакомьтесь с нашим широким ассортиментом стильных и качественных пальто, тренчей и курток. Погрузитесь в уникальный стиль и комфорт с Alberto Bini!`,
-        google_analytics_id: 'G-6MGSF1BQDN',
-        google_ads_id: '',
+        google_analytics_id: 'G-SPMQE8GHGM',
+        google_ads_id: 'AW-16545719098',
+        conversion_id: 'moafCJ7O0qoZELrGztE9',
         store_logo: 'alberto_bini_logo.png',
         store_poster: 'alb.jpeg',
         keywords: {

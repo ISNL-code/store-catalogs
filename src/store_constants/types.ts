@@ -59,6 +59,7 @@ export interface STORE_CONFIG_Interface {
         STORE_DESCRIPTION: string;
         GOOGLE_ANALYTICS_ID: string;
         GOOGLE_ADS_ID: string;
+        CONVERSION_ID: string;
         STORE_LOGO: string;
         STORE_POSTER: string;
         KEYWORDS: {};

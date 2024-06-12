@@ -60,12 +60,55 @@ export interface CartProductInterface {
 }
 
 const Cart = () => {
-    const { OPTIONS } = STORE_CONFIG;
+    const { OPTIONS, WEB_HEAD_DATA } = STORE_CONFIG;
     const { PLAN_OPTIONS } = OPTIONS;
     const sliderRef = useRef<HTMLImageElement>(null);
     const { sx, xs } = useDevice();
     const { storeCode } = useParams();
     const mount = useIsMount();
+
+    useEffect(() => {
+        // Создание элемента скрипта для события конверсии
+        const conversionScript = document.createElement('script');
+        conversionScript.innerHTML = `
+            gtag('event', 'conversion', {
+                send_to: '${WEB_HEAD_DATA?.GOOGLE_ADS_ID}/${WEB_HEAD_DATA?.CONVERSION_ID}',
+                value: 1.0,
+                currency: 'UAH',
+                transaction_id: ''
+            });
+        `;
+
+        // Создание элемента скрипта для отслеживания события конверсии при клике на ссылку или кнопку
+        const conversionReportScript = document.createElement('script');
+        conversionReportScript.innerHTML = `
+            function gtag_report_conversion(url) {
+                var callback = function () {
+                    if (typeof url != 'undefined') {
+                        window.location = url;
+                    }
+                };
+                gtag('event', 'conversion', {
+                    send_to: '${WEB_HEAD_DATA?.GOOGLE_ADS_ID}/${WEB_HEAD_DATA?.CONVERSION_ID}',
+                    value: 1.0,
+                    currency: 'UAH',
+                    transaction_id: '',
+                    event_callback: callback
+                });
+                return false;
+            }
+        `;
+
+        // Добавление скриптов в head документа
+        document.head.appendChild(conversionScript);
+        document.head.appendChild(conversionReportScript);
+
+        // Функция очистки (удаления) скриптов при размонтировании компонента
+        return () => {
+            document.head.removeChild(conversionScript);
+            document.head.removeChild(conversionReportScript);
+        };
+    }, []); // eslint-disable-line
 
     const {
         cart,
