@@ -10,8 +10,6 @@ import { CatalogContextInterface } from 'types/outlet_context_models';
 import TransitionBox from 'components/atoms/Transitions/TransitionBox';
 import Grid from '@mui/material/Unstable_Grid2';
 import CallBackButton from 'components/atoms/Buttons/CallBackButton';
-import AppleStoreButton from 'components/atoms/Buttons/AppleStoreButton';
-import PlayMarketButton from 'components/atoms/Buttons/PlayMarketButton';
 import SideLink from 'components/atoms/Buttons/SideLink';
 import ViewModeButton from 'components/molecules/ToolsButtons/ViewModeButton';
 import CatalogListCard from 'components/organisms/Cards/CatalogListCard';
@@ -23,6 +21,7 @@ import { useIsMount } from 'hooks/useIsMount';
 import ClearListButton from 'components/molecules/ToolsButtons/ClearListButton';
 import { DialogWindowType } from 'layouts/hooks/useFormsApp';
 import { scrollPage } from 'utils/scrollPage';
+import MessageButton from 'components/atoms/Buttons/MessageButton';
 
 const Favorites = () => {
     const { OPTIONS, STORE_CODE, SIDE_LINKS } = STORE_CONFIG;
@@ -44,7 +43,6 @@ const Favorites = () => {
         favorites,
     }: CatalogContextInterface = useOutletContext();
     const [showTopBtn, setShowTopBtn] = useState(false);
-    const [showMobileStoresButton, setShowMobileStoresButton] = useState(true);
 
     const getGridSpacing = () => {
         let spacing;
@@ -69,10 +67,8 @@ const Favorites = () => {
         const handleScroll = () => {
             if (window.scrollY > 500) {
                 setShowTopBtn(true);
-                setShowMobileStoresButton(false);
             } else {
                 setShowTopBtn(false);
-                setShowMobileStoresButton(true);
             }
         };
 
@@ -100,13 +96,9 @@ const Favorites = () => {
             sx={{ minHeight: scrollPosition || '100%', pb: `${footerMenuHeight}px` }}
         >
             {showTopBtn && <ScrollButton />}
-            {showMobileStoresButton && (
-                <>
-                    {PLAN_OPTIONS.appleStore && <AppleStoreButton />}
-                    {PLAN_OPTIONS.playMarket && <PlayMarketButton />}
-                </>
-            )}
             {isLoadingFavorites && <Loader />}
+
+            {PLAN_OPTIONS?.feedback && <MessageButton action={() => handleOpenDialog(DialogWindowType?.QUESTION)} />}
             {PLAN_OPTIONS.contacts && <CallBackButton path={STORE_ROUTE.contacts(STORE_CODE)} />}
             <InstrumentalSubHeader
                 StartSlot={() => (

@@ -11,8 +11,6 @@ import { CatalogContextInterface } from 'types/outlet_context_models';
 import TransitionBox from 'components/atoms/Transitions/TransitionBox';
 import Grid from '@mui/material/Unstable_Grid2';
 import CallBackButton from 'components/atoms/Buttons/CallBackButton';
-import AppleStoreButton from 'components/atoms/Buttons/AppleStoreButton';
-import PlayMarketButton from 'components/atoms/Buttons/PlayMarketButton';
 import PaginationButton from 'components/atoms/Buttons/PaginationButton';
 import SideLink from 'components/atoms/Buttons/SideLink';
 import ViewModeButton from 'components/molecules/ToolsButtons/ViewModeButton';
@@ -25,6 +23,8 @@ import { STORE_ROUTE } from 'router/routes';
 import { useIsMount } from 'hooks/useIsMount';
 import { scrollPage } from 'utils/scrollPage';
 import InformationButton from 'components/atoms/Buttons/InformationButton';
+import MessageButton from 'components/atoms/Buttons/MessageButton';
+import { DialogWindowType } from 'layouts/hooks/useFormsApp';
 
 const Catalog = () => {
     const { OPTIONS, STORE_CODE, SIDE_LINKS } = STORE_CONFIG;
@@ -48,9 +48,9 @@ const Catalog = () => {
         viewMode,
         infoAlert,
         setInfoAlert,
+        handleOpenDialog,
     }: CatalogContextInterface = useOutletContext();
     const [showTopBtn, setShowTopBtn] = useState(false);
-    const [showMobileStoresButton, setShowMobileStoresButton] = useState(true);
     const [open, setOpen] = useState(infoAlert?.ws_info);
 
     const getGridSpacing = () => {
@@ -75,10 +75,8 @@ const Catalog = () => {
         const handleScroll = () => {
             if (window.scrollY > 500) {
                 setShowTopBtn(true);
-                setShowMobileStoresButton(false);
             } else {
                 setShowTopBtn(false);
-                setShowMobileStoresButton(true);
             }
         };
 
@@ -107,13 +105,9 @@ const Catalog = () => {
         >
             {showTopBtn && <ScrollButton />}
             <InformationButton />
-            {showMobileStoresButton && (
-                <>
-                    {PLAN_OPTIONS.appleStore && <AppleStoreButton />}
-                    {PLAN_OPTIONS.playMarket && <PlayMarketButton />}
-                </>
-            )}
+
             {isLoadingProducts && <Loader isShown={currentProductsPage === 0} />}
+            {PLAN_OPTIONS?.feedback && <MessageButton action={() => handleOpenDialog(DialogWindowType?.QUESTION)} />}
             {PLAN_OPTIONS.contacts && <CallBackButton path={STORE_ROUTE.contacts(STORE_CODE)} />}
             <InstrumentalSubHeader
                 StartSlot={() => (

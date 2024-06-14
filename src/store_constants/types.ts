@@ -38,20 +38,12 @@ export interface STORE_CONFIG_Interface {
             prices: boolean;
             sizes: boolean;
             contacts: boolean;
+            feedback: boolean;
             categories: boolean;
             productShare: boolean;
             cart: boolean;
             favorites: boolean;
-            video: boolean;
             tableSizes: boolean;
-            platformAvailable: boolean;
-            appleStore: boolean;
-            playMarket: boolean;
-            admins: number;
-            products: number;
-            productModels: number;
-            photos: number;
-            videos: null | number;
         };
     };
     WEB_HEAD_DATA: {
