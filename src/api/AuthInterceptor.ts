@@ -28,13 +28,9 @@ const AuthInterceptor = () => {
         async error => {
             if (!error?.response) return Promise.reject(error);
 
-            const {
-                status,
-                request: { responseURL },
-            } = error.response;
-            const isApiUrl = responseURL?.startsWith(BASE_URL) ?? false;
+            const { status } = error.response;
 
-            if (status === 401 && isApiUrl) {
+            if (status === 401) {
                 try {
                     await removeStorageItem(STORAGE_KEYS?.ACCESS_TOKEN_KEY);
                     // window.location.href = ERROR_PAGE?.page_401(); // Uncomment if needed
