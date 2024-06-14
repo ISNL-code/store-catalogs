@@ -16,6 +16,7 @@ interface Props {
 const TableSizeDialog = ({ string, onClose, closeAvailable, onSubmit, dialogState }: Props) => {
     const { sx } = useDevice();
     const [open, setOpen] = useState<boolean>(false);
+    const [imgLoaded, setImgLoaded] = useState(false);
 
     const handleClose = () => {
         setOpen(false);
@@ -35,7 +36,7 @@ const TableSizeDialog = ({ string, onClose, closeAvailable, onSubmit, dialogStat
             touchEvent={false}
         >
             <Dialog
-                sx={{ zIndex: 4500, width: '100vw' }}
+                sx={{ zIndex: 4500, width: '100vw', opacity: imgLoaded ? 1 : 0 }}
                 BackdropProps={{ style: { zIndex: 5000 } }}
                 open={open}
                 onClose={() => {
@@ -62,7 +63,10 @@ const TableSizeDialog = ({ string, onClose, closeAvailable, onSubmit, dialogStat
                     <img
                         style={{ width: 'auto', maxHeight: sx ? '55vh' : '75vh' }} // Set image width to 100% of content area
                         src={dialogState?.imageUrl}
-                        alt="Broken Img"
+                        alt="Loading..."
+                        onLoad={event => {
+                            setImgLoaded(!event?.bubbles);
+                        }}
                     />
                 </DialogContent>
                 <DialogActions sx={{ py: 2, my: 0, px: 3, flexWrap: 'wrap' }}>
