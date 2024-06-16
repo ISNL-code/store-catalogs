@@ -30,7 +30,7 @@ export default function SecurityLayout({ lang, setLang, store, setAuth, currentL
     const HEADER_HEIGHT = 50;
     const HEADER_PADDINGS = sx ? 2 : 4;
 
-    const { activeDialogWindow, handleOpenDialog } = useFormsApp();
+    const { activeDialogWindow, handleOpenDialog, handleSetDialogState } = useFormsApp();
 
     useEffect(() => {
         if (storeCode) {
@@ -106,6 +106,7 @@ export default function SecurityLayout({ lang, setLang, store, setAuth, currentL
                 setAuth={setAuth}
                 lang={lang}
                 setApiToken={setApiToken}
+                handleSetDialogState={handleSetDialogState}
             />
         </Box>
     );

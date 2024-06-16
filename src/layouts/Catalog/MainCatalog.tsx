@@ -238,6 +238,7 @@ export default function MainCatalog({
                 dialogState={dialogState}
                 lang={lang}
                 setApiToken={setApiToken}
+                handleSetDialogState={handleSetDialogState}
             />
         </Box>
     );

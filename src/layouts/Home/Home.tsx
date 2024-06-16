@@ -159,6 +159,7 @@ export default function Home({
                 setAuth={setAuth}
                 lang={lang}
                 setApiToken={setApiToken}
+                handleSetDialogState={handleSetDialogState}
             />
         </Box>
     );

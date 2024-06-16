@@ -29,7 +29,7 @@ export default function NewPassword({ lang, setLang, setAuth, currentLanguage, s
     const HEADER_HEIGHT = 50;
     const HEADER_PADDINGS = sx ? 2 : 4;
 
-    const { activeDialogWindow, handleOpenDialog } = useFormsApp();
+    const { activeDialogWindow, handleOpenDialog, handleSetDialogState } = useFormsApp();
     const {
         data: verifyTokenResult,
         isFetching,
@@ -91,6 +91,7 @@ export default function NewPassword({ lang, setLang, setAuth, currentLanguage, s
                 handleOpenDialog={handleOpenDialog}
                 setAuth={setAuth}
                 lang={lang}
+                handleSetDialogState={handleSetDialogState}
             />
         </Box>
     );

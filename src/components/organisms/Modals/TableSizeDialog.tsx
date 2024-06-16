@@ -1,10 +1,9 @@
 import { useEffect, useState } from 'react';
-import { Button, DialogActions, Dialog } from '@mui/material';
-import { Colors } from 'constants/colors';
+import { Dialog, ClickAwayListener, Box, IconButton, CircularProgress } from '@mui/material';
+import { Color, Colors } from 'constants/colors';
 import DialogContent from '@mui/material/DialogContent';
-import { useDevice } from 'hooks/useDevice';
 import { DialogStateInterface } from 'types/app_models';
-import Loader from 'components/atoms/Loader/Loader';
+import CloseIcon from '@mui/icons-material/Close';
 
 interface Props {
     string; // Assuming `string` is used for the close button text
@@ -15,13 +14,13 @@ interface Props {
 }
 
 const TableSizeDialog = ({ string, onClose, closeAvailable, onSubmit, dialogState }: Props) => {
-    const { sx } = useDevice();
     const [open, setOpen] = useState<boolean>(false);
     const [imgLoaded, setImgLoaded] = useState(false);
 
     const handleClose = () => {
         setOpen(false);
         onClose();
+        setImgLoaded(false);
     };
 
     useEffect(() => {
@@ -30,47 +29,89 @@ const TableSizeDialog = ({ string, onClose, closeAvailable, onSubmit, dialogStat
 
     return (
         <>
-            {!imgLoaded && <Loader />}
-            <Dialog
-                sx={{ zIndex: 4500, width: '100vw', opacity: imgLoaded ? 1 : 0 }}
-                BackdropProps={{ style: { zIndex: 5000 } }}
-                open={open}
-                onClose={() => {
+            {!imgLoaded && (
+                <CircularProgress
+                    sx={{
+                        color: Color?.PRIMARY,
+                        zIndex: 5000,
+                        position: 'fixed',
+                        top: '50%',
+                        left: '46%',
+
+                        p: 0,
+                        m: 0,
+                    }}
+                    thickness={2}
+                />
+            )}
+
+            <ClickAwayListener
+                onClickAway={() => {
                     if (closeAvailable) handleClose();
                 }}
-                hideBackdrop
-                PaperProps={{
-                    component: 'form',
-                    onSubmit: (event: React.FormEvent<HTMLFormElement>) => {
-                        event.preventDefault();
-                        onSubmit();
-                    },
-                    sx: {
-                        borderRadius: 4,
-                        overflow: 'hidden',
-                        border: `0.5px solid ${Colors?.GRAY_300}`,
-                        width: 'fit-content',
-                        maxWidth: '98vw',
-                        m: 0,
-                    },
-                }}
+                mouseEvent={false}
+                touchEvent={false}
             >
-                <DialogContent sx={{ p: 0 }}>
-                    <img
-                        style={{ width: 'auto', maxHeight: sx ? '55vh' : '75vh', maxWidth: '100%' }}
-                        src={dialogState?.imageUrl}
-                        alt="Loading..."
-                        onLoad={event => {
-                            setImgLoaded(!event?.bubbles);
+                <>
+                    <Dialog
+                        sx={{
+                            zIndex: 4500,
+                            opacity: imgLoaded ? 1 : 0,
                         }}
-                    />
-                </DialogContent>
-                <DialogActions sx={{ py: 2, my: 0, px: 3, flexWrap: 'wrap' }}>
-                    <Button variant="contained" type="submit">
-                        {string?.close}
-                    </Button>
-                </DialogActions>
-            </Dialog>
+                        open={open}
+                        onClose={() => {
+                            if (closeAvailable) handleClose();
+                        }}
+                        PaperProps={{
+                            sx: {
+                                borderRadius: 4,
+                                overflow: 'hidden',
+                                border: `0.5px solid ${Colors?.GRAY_300}`,
+                                mx: 0.5,
+                            },
+                        }}
+                    >
+                        <Box sx={{ display: 'flex', justifyContent: 'flex-end', flexGrow: 1, width: '100%' }}>
+                            {closeAvailable && (
+                                <IconButton
+                                    sx={{
+                                        backgroundColor: Colors?.WHITE,
+                                        '&:hover': { backgroundColor: Colors?.WHITE },
+                                        width: 26,
+                                        height: 26,
+                                        display: 'flex',
+                                        justifyContent: 'center',
+                                        border: '1px solid #ccc',
+                                        m: 1,
+                                    }}
+                                    onClick={() => {
+                                        handleClose();
+                                    }}
+                                >
+                                    <CloseIcon sx={{ fontSize: 16 }} />
+                                </IconButton>
+                            )}
+                        </Box>
+                        <DialogContent
+                            sx={{
+                                p: 0,
+                                display: 'flex',
+                                alignItems: 'baseline',
+                                justifyContent: 'center',
+                            }}
+                        >
+                            <img
+                                style={{ maxWidth: '100vw', width: '100%' }}
+                                src={dialogState?.imageUrl}
+                                alt="Loading..."
+                                onLoad={event => {
+                                    setImgLoaded(!event?.bubbles);
+                                }}
+                            />
+                        </DialogContent>
+                    </Dialog>
+                </>
+            </ClickAwayListener>
         </>
     );
 };

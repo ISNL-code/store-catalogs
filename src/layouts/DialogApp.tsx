@@ -15,6 +15,7 @@ import WarningOrderLimit from 'pages/DialogApp/WarningOrderLimit';
 import TableSizeWindow from 'pages/DialogApp/TableSizeWindow';
 import { DialogStateInterface } from 'types/app_models';
 import AppInformationModal from 'pages/DialogApp/AppInformationModal';
+import { Dispatch, SetStateAction } from 'react';
 
 interface Props {
     location;
@@ -25,6 +26,7 @@ interface Props {
     favorites?;
     cart?;
     dialogState?: DialogStateInterface | null;
+    handleSetDialogState: Dispatch<SetStateAction<DialogStateInterface | null>>;
     lang: string;
     setApiToken?: (token: string | null) => void;
 }
@@ -38,6 +40,7 @@ const DialogApp = ({
     favorites,
     cart,
     dialogState,
+    handleSetDialogState,
     lang,
     setApiToken,
 }: Props) => {
@@ -147,6 +150,7 @@ const DialogApp = ({
                 setIsOpen={handleOpenDialog}
                 string={string}
                 dialogState={dialogState}
+                handleSetDialogState={handleSetDialogState}
             />
         </>
     );
