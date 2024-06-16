@@ -4,18 +4,18 @@ import { useOutletContext } from 'react-router-dom';
 import { useDevice } from 'hooks/useDevice';
 import { Color } from 'constants/colors';
 
-const MessageButton = ({ from = 'catalog', action }) => {
+const MessageButton = ({ action }) => {
     const { string }: any = useOutletContext();
     const { sx, s } = useDevice();
 
     return (
         <Box
             sx={{
-                width: sx ? 'fit-content' : 140,
+                width: sx ? 'fit-content' : 125,
                 zIndex: 2000,
                 position: 'fixed',
-                right: sx ? '80px' : '36px',
-                bottom: sx ? 80 : 70,
+                right: sx ? '72px' : '36px',
+                bottom: sx ? 80 : 62,
                 border: sx ? 'none' : '1px solid',
                 borderColor: Color.PRIMARY,
                 backgroundColor: sx ? 'none' : Color.PRIMARY,
@@ -33,22 +33,24 @@ const MessageButton = ({ from = 'catalog', action }) => {
         >
             {!sx && (
                 <Typography
-                    m={0.75}
-                    sx={{ fontSize: 12, fontWeight: '700', color: '#fff', minWidth: 80, textAlign: 'center' }}
+                    m={0.4}
+                    sx={{ fontSize: 11, fontWeight: '700', color: '#fff', minWidth: 80, textAlign: 'center' }}
                 >
                     {string?.message}
                 </Typography>
             )}
             <Fab
-                size={sx || from === 'landing' ? 'medium' : 'small'}
+                size={sx ? 'medium' : 'small'}
                 sx={{
                     p: 2,
                     backgroundColor: '#ffffff',
                     border: '1px solid #ccc',
                     boxShadow: `0 0 5px 2px ${Color.PRIMARY}`,
+                    maxHeight: sx ? 45 : 30,
+                    maxWidth: sx ? 45 : 30,
                 }}
             >
-                <SendIcon color="primary" />
+                <SendIcon color="primary" fontSize={sx ? 'medium' : 'small'} />
             </Fab>
         </Box>
     );

@@ -13,7 +13,7 @@ const CallBackButton = ({ animated = false, path }) => {
     return (
         <Box
             sx={{
-                width: sx ? 'fit-content' : 140,
+                width: sx ? 'fit-content' : 125,
                 zIndex: 2000,
                 position: 'fixed',
                 right: sx ? '20px' : '36px',
@@ -36,8 +36,8 @@ const CallBackButton = ({ animated = false, path }) => {
         >
             {!sx && (
                 <Typography
-                    m={0.75}
-                    sx={{ fontSize: 12, fontWeight: '700', color: '#fff', minWidth: 80, textAlign: 'center' }}
+                    m={0.4}
+                    sx={{ fontSize: 11, fontWeight: '700', color: '#fff', minWidth: 80, textAlign: 'center' }}
                 >
                     {string?.contacts}
                 </Typography>
@@ -49,6 +49,8 @@ const CallBackButton = ({ animated = false, path }) => {
                     backgroundColor: Colors?.WHITE,
                     border: '1px solid #ccc',
                     boxShadow: `0 0 5px 2px ${Color.SUCCESS}`,
+                    maxHeight: sx ? 45 : 30,
+                    maxWidth: sx ? 45 : 30,
                     animation: animated ? `fadeIn 4s infinite ease` : '',
                     '@keyframes fadeIn': {
                         '0%': { transform: 'translate(2px,2px)' },
