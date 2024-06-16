@@ -54,14 +54,14 @@ const TableSizeDialog = ({ string, onClose, closeAvailable, onSubmit, dialogStat
                         overflow: 'hidden',
                         border: `0.5px solid ${Colors?.GRAY_300}`,
                         width: 'fit-content',
-                        maxWidth: '90vw',
+                        maxWidth: '98vw',
                         m: 0,
                     },
                 }}
             >
                 <DialogContent sx={{ p: 0 }}>
                     <img
-                        style={{ width: 'auto', maxHeight: sx ? '55vh' : '75vh' }} // Set image width to 100% of content area
+                        style={{ width: 'auto', maxHeight: sx ? '55vh' : '75vh', maxWidth: '100%' }}
                         src={dialogState?.imageUrl}
                         alt="Loading..."
                         onLoad={event => {

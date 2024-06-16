@@ -38,11 +38,9 @@ const SizesDetails = ({ productDetails, isShown }: Props) => {
                                     <Box
                                         sx={{
                                             width: 'fit-content',
-                                            borderRadius: 1,
                                             overflow: 'hidden',
                                             display: 'flex',
                                             flexWrap: 'wrap',
-                                            border: '1px solid #ccc',
                                         }}
                                     >
                                         {productDetails?.productSizes?.map(({ code, id, name }) => (
@@ -72,8 +70,9 @@ const SizesDetails = ({ productDetails, isShown }: Props) => {
                                     sx={{
                                         border: `2px solid ${Color?.PRIMARY}`,
                                         borderRadius: '8px',
-                                        px: 3,
+                                        px: 1,
                                         height: 'fit-content',
+                                        minWidth: 'fit-content',
                                     }}
                                     startIcon={
                                         <StraightenIcon color="primary" fontSize="small" sx={{ fontSize: 18 }} />
