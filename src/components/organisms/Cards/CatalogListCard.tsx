@@ -1,4 +1,4 @@
-import { Box } from '@mui/material';
+import { Box, IconButton } from '@mui/material';
 import ShareButton from 'components/molecules/ToolsButtons/ShareButton';
 import { Dispatch, SetStateAction, memo, useEffect, useRef, useState } from 'react';
 import { useNavigate, useOutletContext } from 'react-router-dom';
@@ -13,7 +13,7 @@ import CardPrice from 'components/molecules/PricesComponents/CardPrice';
 import CardSkuLabel from 'components/atoms/Labels/CardSkuLabel';
 import SaleTag from 'components/atoms/PromoTags/SaleTag';
 import { STORE_CONFIG } from 'store_constants/stores_config';
-import { Colors } from 'constants/colors';
+import { Color, Colors } from 'constants/colors';
 import { SampleNextArrow, SamplePrevArrow } from '../../atoms/Elements/SliderArrows';
 import { StoreType, ViewModeType } from 'store_constants/types';
 import CardView from './CardView';
@@ -26,6 +26,8 @@ import { map_currency_symbol } from 'utils/mappers/currency_symbol';
 import { EmptyImage } from 'components/atoms/Media/EmptyImage';
 import { telegramSender } from 'utils/telegramSender';
 import ImageComponent from 'components/atoms/Media/Image';
+import { DialogWindowType } from 'layouts/hooks/useFormsApp';
+import StraightenIcon from '@mui/icons-material/Straighten';
 
 interface CatalogCardProps {
     modelsVariants: ProductVariantInterface[];
@@ -38,16 +40,18 @@ interface CatalogCardProps {
         code?: string;
     }[];
     viewMode;
+    sizesImage: string;
 }
 
 const CatalogListCard = memo<CatalogCardProps>(
-    ({ modelsVariants, name, productId, setProductsList, promoTags, viewMode }) => {
+    ({ modelsVariants, name, productId, setProductsList, promoTags, viewMode, sizesImage }) => {
         const WINDOW_WIDTH = useWindowWidth();
         const { OPTIONS, STORE_CODE } = STORE_CONFIG;
         const { STORE_TYPE, PLAN_OPTIONS, PRODUCT_IMAGE_OPTIONS } = OPTIONS;
         const sliderRef = useRef<HTMLImageElement>(null);
         const navigate = useNavigate();
-        const { cart, favorites, store }: CatalogContextInterface = useOutletContext();
+        const { cart, favorites, store, handleOpenDialog, handleSetDialogState }: CatalogContextInterface =
+            useOutletContext();
         const colorsBoxRef = useRef(null);
         const [shownModel, setShownModel] = useState<ProductVariantInterface | null>(null);
         const [sliderHeight, setSliderHeight] = useState<number | string>(0);
@@ -154,16 +158,22 @@ const CatalogListCard = memo<CatalogCardProps>(
                                         discountPrice={shownModel?.price}
                                     />
                                 )}
-                                <ShareButton
-                                    isShown
-                                    path={SHARE_PRODUCT_PATH?.share_product_sku(
-                                        STORE_CODE,
-                                        productId,
-                                        shownModel?.variantSku
-                                    )}
-                                    direction="up"
-                                    size={viewMode === ViewModeType?.card ? 'large' : 'small'}
-                                />
+                                {PLAN_OPTIONS?.tableSizes && sizesImage && (
+                                    <IconButton
+                                        onClick={() => {
+                                            handleOpenDialog(DialogWindowType?.TABLE_SIZE);
+                                            handleSetDialogState({
+                                                imageUrl: sizesImage,
+                                            });
+                                        }}
+                                        size="small"
+                                        sx={{
+                                            border: `1px solid ${Color?.PRIMARY}`,
+                                        }}
+                                    >
+                                        <StraightenIcon color="primary" fontSize="small" sx={{ fontSize: 18 }} />
+                                    </IconButton>
+                                )}
                             </Box>
                         </Box>
                     </Box>
@@ -321,6 +331,15 @@ const CatalogListCard = memo<CatalogCardProps>(
                                 <SaleTag price={shownModel?.originalPrice} discountPrice={shownModel?.price} />
                             )}
                         </Box>
+                    </Box>
+
+                    <Box sx={{ position: 'absolute', bottom: 8, right: 8, zIndex: 1 }}>
+                        <ShareButton
+                            isShown
+                            path={SHARE_PRODUCT_PATH?.share_product_sku(STORE_CODE, productId, shownModel?.variantSku)}
+                            direction="up"
+                            size={viewMode === ViewModeType?.card ? 'large' : 'small'}
+                        />
                     </Box>
 
                     <Box sx={{ position: 'absolute', top: 8, right: 8, zIndex: 1, display: 'flex', gap: 0.5 }}>

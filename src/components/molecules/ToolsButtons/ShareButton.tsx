@@ -88,7 +88,7 @@ const ShareButton = ({ path, isShown, direction, size }: ShareButtonInterface) =
                     }}
                     sx={{
                         ...(direction === 'up' ? { bottom: 0 } : { top: 0 }),
-                        left: size === 'small' ? '-55%' : '-75%',
+                        left: size === 'small' ? '-40%' : '-75%',
                         position: 'absolute',
                         zIndex: 100,
                     }}

@@ -22,6 +22,7 @@ import ClearListButton from 'components/molecules/ToolsButtons/ClearListButton';
 import { DialogWindowType } from 'layouts/hooks/useFormsApp';
 import { scrollPage } from 'utils/scrollPage';
 import MessageButton from 'components/atoms/Buttons/MessageButton';
+import { ProductDataInterface } from 'types/app_models';
 
 const Favorites = () => {
     const { OPTIONS, STORE_CODE, SIDE_LINKS } = STORE_CONFIG;
@@ -129,7 +130,7 @@ const Favorites = () => {
                 <Box sx={{ minHeight: scrollPosition || '100%' }}>
                     <TransitionBox dependency={mount} time={250}>
                         <Grid className="CatalogList" container spacing={getGridSpacing()?.spacing}>
-                            {favoritesList.map((product, idx) => (
+                            {favoritesList.map((product: ProductDataInterface, idx) => (
                                 <CatalogListCard
                                     key={idx}
                                     modelsVariants={product?.variants}
@@ -137,6 +138,7 @@ const Favorites = () => {
                                     productId={product?.id}
                                     promoTags={product?.promoTags}
                                     viewMode={viewMode}
+                                    sizesImage={product?.table_size_img?.imageUrl}
                                 />
                             ))}
                         </Grid>

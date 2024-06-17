@@ -25,6 +25,7 @@ import { scrollPage } from 'utils/scrollPage';
 import InformationButton from 'components/atoms/Buttons/InformationButton';
 import MessageButton from 'components/atoms/Buttons/MessageButton';
 import { DialogWindowType } from 'layouts/hooks/useFormsApp';
+import { ProductDataInterface } from 'types/app_models';
 
 const Catalog = () => {
     const { OPTIONS, STORE_CODE, SIDE_LINKS } = STORE_CONFIG;
@@ -158,7 +159,7 @@ const Catalog = () => {
                             </Collapse>
                         )}
                         <Grid className="CatalogList" container spacing={getGridSpacing()?.spacing}>
-                            {productsList.map((product, idx) => (
+                            {productsList.map((product: ProductDataInterface, idx) => (
                                 <CatalogListCard
                                     key={idx}
                                     modelsVariants={product?.variants}
@@ -167,6 +168,7 @@ const Catalog = () => {
                                     setProductsList={setProductsList}
                                     promoTags={product?.promoTags}
                                     viewMode={viewMode}
+                                    sizesImage={product?.table_size_img?.imageUrl}
                                 />
                             ))}
                         </Grid>
