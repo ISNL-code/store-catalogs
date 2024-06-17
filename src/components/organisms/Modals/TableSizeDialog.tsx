@@ -37,7 +37,6 @@ const TableSizeDialog = ({ string, onClose, closeAvailable, onSubmit, dialogStat
                         position: 'fixed',
                         top: '50%',
                         left: '46%',
-
                         p: 0,
                         m: 0,
                     }}
@@ -68,30 +67,33 @@ const TableSizeDialog = ({ string, onClose, closeAvailable, onSubmit, dialogStat
                                 overflow: 'hidden',
                                 border: `0.5px solid ${Colors?.GRAY_300}`,
                                 mx: 0.5,
+                                position: 'relative',
                             },
                         }}
                     >
-                        <Box sx={{ display: 'flex', justifyContent: 'flex-end', flexGrow: 1, width: '100%' }}>
-                            {closeAvailable && (
-                                <IconButton
-                                    sx={{
-                                        backgroundColor: Colors?.WHITE,
-                                        '&:hover': { backgroundColor: Colors?.WHITE },
-                                        width: 26,
-                                        height: 26,
-                                        display: 'flex',
-                                        justifyContent: 'center',
-                                        border: '1px solid #ccc',
-                                        m: 1,
-                                    }}
-                                    onClick={() => {
-                                        handleClose();
-                                    }}
-                                >
-                                    <CloseIcon sx={{ fontSize: 16 }} />
-                                </IconButton>
-                            )}
-                        </Box>
+                        {closeAvailable && (
+                            <IconButton
+                                sx={{
+                                    backgroundColor: Colors?.WHITE,
+                                    '&:hover': { backgroundColor: Colors?.WHITE },
+
+                                    display: 'flex',
+                                    justifyContent: 'center',
+                                    border: '1px solid #ccc',
+                                    m: 1,
+                                    position: 'absolute',
+                                    right: 0,
+                                    top: 0,
+                                }}
+                                onClick={() => {
+                                    handleClose();
+                                }}
+                                size="medium"
+                            >
+                                <CloseIcon sx={{ fontSize: 24 }} />
+                            </IconButton>
+                        )}
+
                         <DialogContent
                             sx={{
                                 p: 0,
