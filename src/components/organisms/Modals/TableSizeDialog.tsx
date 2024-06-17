@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Dialog, ClickAwayListener, Box, IconButton, CircularProgress } from '@mui/material';
+import { Dialog, ClickAwayListener, IconButton, CircularProgress } from '@mui/material';
 import { Color, Colors } from 'constants/colors';
 import DialogContent from '@mui/material/DialogContent';
 import { DialogStateInterface } from 'types/app_models';
