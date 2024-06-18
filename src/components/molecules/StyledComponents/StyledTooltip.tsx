@@ -7,7 +7,19 @@ interface Props {
     children: JSX.Element;
     maxWidth?: number;
     hidden?: boolean;
-    position?: 'bottom-end' | 'top' | 'top-start' | 'left';
+    position?:
+        | 'top'
+        | 'top-start'
+        | 'top-end'
+        | 'right'
+        | 'right-end'
+        | 'right-start'
+        | 'left'
+        | 'left-start'
+        | 'left-end'
+        | 'bottom'
+        | 'bottom-start'
+        | 'bottom-end';
 }
 
 const StyledTooltip = ({
@@ -52,7 +64,7 @@ const StyledTooltip = ({
                     sx: {
                         color: '#fff',
                         '&:before': {
-                            border: '1px solid ',
+                            border: '1px solid',
                             borderColor: Colors?.GRAY_500,
                         },
                     },

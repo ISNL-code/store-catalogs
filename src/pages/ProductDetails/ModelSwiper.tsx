@@ -160,12 +160,14 @@ const ModelSwiper = ({ images }) => {
 
     return (
         <>
-            <FullScreenSwiper
-                images={images}
-                setFullScreen={setFullScreenMode}
-                fullScreenMode={fullScreenMode}
-                slide={slide}
-            />
+            {fullScreenMode && (
+                <FullScreenSwiper
+                    images={images}
+                    setFullScreen={setFullScreenMode}
+                    fullScreenMode={fullScreenMode}
+                    slide={slide}
+                />
+            )}
             <Box
                 sx={{
                     maxHeight: `calc(100vh - ${headerHeight + instrumentalBarHeight + footerMenuHeight}px - 8px)`,

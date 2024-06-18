@@ -62,7 +62,7 @@ interface Props {
     closeAvailable: boolean;
     onSubmit: () => void;
     component: 'success request' | 'bad request' | 'warning ordering' | 'content';
-    content?: { title: string; description: string }[] | null;
+    content?: { title: string; description: string; link: string | null }[] | null;
 }
 
 const InfoDialog = ({
@@ -155,10 +155,10 @@ const InfoDialog = ({
                     </DialogContentText>
                 )}
                 {component === 'content' && (
-                    <Box sx={{ px: 3 }}>
+                    <Box sx={{ px: 3, display: 'flex', flexDirection: 'column', gap: 1 }}>
                         {content?.map((el, idx) => {
                             return (
-                                <Fragment key={idx}>
+                                <Box key={idx}>
                                     <Typography sx={{ color: '#000' }}>
                                         {idx + 1}
                                         {'. '}
@@ -169,7 +169,33 @@ const InfoDialog = ({
                                             {el?.description}
                                         </Typography>
                                     </Box>
-                                </Fragment>
+                                    {el?.link && (
+                                        <IconButton
+                                            onMouseDown={() => window.open(el?.link ? el?.link : '', '_blank')}
+                                            component="span"
+                                            size="small"
+                                            sx={{
+                                                '&:hover': { backgroundColor: Colors?.WHITE },
+                                                display: 'flex',
+                                                alignItems: 'center',
+                                            }}
+                                        >
+                                            <LinkIcon sx={{ color: Color.PRIMARY, fontSize: 24, fontWeight: 700 }} />
+                                            <span
+                                                style={{
+                                                    color: Color.PRIMARY,
+                                                    fontSize: 12,
+                                                    fontWeight: 700,
+                                                    whiteSpace: 'nowrap',
+                                                    overflow: 'hidden',
+                                                    textOverflow: 'ellipsis',
+                                                }}
+                                            >
+                                                Sales Nest E-Catalogs
+                                            </span>
+                                        </IconButton>
+                                    )}
+                                </Box>
                             );
                         })}
                     </Box>

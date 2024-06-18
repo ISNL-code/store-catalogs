@@ -30,7 +30,7 @@ interface Res {
 export const useFormsApp = (): Res => {
     const [activeDialogWindow, seActiveDialogWindow] = useState<DialogWindowType | null>(null);
     const [dialogState, setDialogState] = useState<DialogStateInterface | null>(null);
-    console.log(dialogState);
+
     const handleOpenDialog = modalType => {
         if (modalType === null) {
             seActiveDialogWindow(null);

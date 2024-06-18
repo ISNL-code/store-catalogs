@@ -20,7 +20,14 @@ const AppInformationModal = ({ isOpen, setIsOpen, string }) => {
                 description={null}
                 closeAvailable
                 component="content"
-                content={[{ title: string?.save_to_phone, description: string?.save_to_phone_instruction }]}
+                content={[
+                    { title: string?.save_to_phone, description: string?.save_to_phone_instruction, link: null },
+                    {
+                        title: string?.request_e_catalog,
+                        description: string?.request_e_catalog_instruction,
+                        link: 'https://salesnestonlinecatalog.com',
+                    },
+                ]}
             />
         </>
     );

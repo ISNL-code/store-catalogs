@@ -86,12 +86,7 @@ const ProductDetails = () => {
                 EndSlot={() => (
                     <Box sx={{ display: 'flex', gap: 0.75 }}>
                         <SkuSearch />
-                        <ShareButton
-                            path={window.location.href}
-                            isShown={PLAN_OPTIONS.productShare}
-                            direction="down"
-                            size="large"
-                        />
+                        <ShareButton path={window.location.href} isShown={PLAN_OPTIONS.productShare} />
                     </Box>
                 )}
             />

@@ -2,11 +2,11 @@ import { CircularProgress } from '@mui/material';
 import { Color } from 'constants/colors';
 import { useState } from 'react';
 
-const ImageComponent = ({ imageUrl }) => {
+const ImageComponent = ({ imageUrl, wrapperHeight = '100%' }: { imageUrl; wrapperHeight? }) => {
     const [imgLoaded, setImgLoaded] = useState(false);
 
     return (
-        <div style={{ height: '100%', position: 'relative', width: '100%' }}>
+        <div style={{ height: wrapperHeight, width: '100%', flexGrow: 1, position: 'relative' }}>
             <img
                 src={imageUrl}
                 style={{
@@ -18,15 +18,30 @@ const ImageComponent = ({ imageUrl }) => {
                     setImgLoaded(!event?.bubbles);
                 }}
             />
-            <div style={{ left: '50%', top: '50%', transform: 'translate(-50%,-50%)', position: 'absolute' }}>
-                <CircularProgress
-                    sx={{
-                        color: Color?.PRIMARY,
-                        opacity: imgLoaded ? 0 : 1,
+            {!imgLoaded && (
+                <div
+                    style={{
+                        height: wrapperHeight,
+                        width: '100%',
+                        left: '50%',
+                        top: '50%',
+                        transform: 'translate(-50%,-50%)',
+                        position: 'absolute',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
                     }}
-                    thickness={1}
-                />
-            </div>
+                >
+                    <CircularProgress
+                        sx={{
+                            position: 'static',
+                            color: Color?.PRIMARY,
+                            opacity: imgLoaded ? 0 : 1,
+                        }}
+                        thickness={1}
+                    />
+                </div>
+            )}
         </div>
     );
 };

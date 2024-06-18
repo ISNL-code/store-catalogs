@@ -4,10 +4,10 @@ import StyledTooltip from 'components/molecules/StyledComponents/StyledTooltip';
 const CardDescriptionComponent = ({ title }: { title: string }) => {
     return (
         <Box sx={{ flexShrink: 1, flexBasis: 'auto', overflow: 'hidden' }}>
-            <StyledTooltip title={title} position="top-start">
+            <StyledTooltip title={title} position="bottom-end">
                 <Box
                     sx={{
-                        height: 38,
+                        height: 27,
                         overflow: 'hidden',
                         textOverflow: 'ellipsis',
                         cursor: 'default',

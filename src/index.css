@@ -69,13 +69,23 @@ code {
     width: 0;
 }
 
-.slick-dots {
-    bottom: 15px;
+ul.slick-dots {
+    bottom: 0px;
+    background: #ffffff59;
+    align-items: center;
+    display: flex;
+    margin: 0;
+    padding: 0;
 }
+
 .slick-dots li {
-    width: 10px;
-    height: 10px;
+    width: 15px;
+    height: 0;
+    margin: 0;
+    padding: 0;
+    top: -5px;
 }
+
 h1,
 h2,
 h3,

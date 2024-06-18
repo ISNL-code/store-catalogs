@@ -18,6 +18,7 @@ import { DialogWindowType } from 'layouts/hooks/useFormsApp';
 import { STORE_ROUTE } from 'router/routes';
 import HeaderNavButton from 'components/atoms/Buttons/HeaderNavButton';
 import MobileNavButton from 'components/atoms/Buttons/MobileNavButton';
+import ShopIcon from '@mui/icons-material/Shop';
 
 interface ProfileMenuProps {
     string: any;
@@ -101,6 +102,12 @@ const ProfileMenu: React.FC<ProfileMenuProps> = ({
             icon: <PrivacyTipIcon />,
             name: string.info,
             visible: INFORMATION_PAGE_ACTIVE,
+        },
+        {
+            onClick: () => window?.open('https://salesnestonlinecatalog.com'),
+            icon: <ShopIcon />,
+            name: 'Sales Nest E-Catalogs',
+            visible: true,
         },
         {
             onClick: () => handleOpenDialog(DialogWindowType.LOGOUT),

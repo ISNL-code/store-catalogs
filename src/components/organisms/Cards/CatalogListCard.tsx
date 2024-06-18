@@ -109,7 +109,11 @@ const CatalogListCard = memo<CatalogCardProps>(
                                                 }}
                                             >
                                                 {shownModel?.images?.map(({ imageUrl }, idx) => (
-                                                    <ImageComponent key={idx} imageUrl={imageUrl} />
+                                                    <ImageComponent
+                                                        key={idx}
+                                                        imageUrl={imageUrl}
+                                                        wrapperHeight={sliderHeight}
+                                                    />
                                                 ))}
                                             </Slider>
                                         )}
@@ -337,8 +341,6 @@ const CatalogListCard = memo<CatalogCardProps>(
                         <ShareButton
                             isShown
                             path={SHARE_PRODUCT_PATH?.share_product_sku(STORE_CODE, productId, shownModel?.variantSku)}
-                            direction="up"
-                            size={viewMode === ViewModeType?.card ? 'large' : 'small'}
                         />
                     </Box>
 
