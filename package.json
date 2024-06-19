@@ -3,6 +3,7 @@
     "version": "0.1.0",
     "private": true,
     "dependencies": {
+        "@emotion/styled": "^11.11.5",
         "@fontsource/roboto": "^5.0.8",
         "@mui/icons-material": "^5.11.0",
         "@mui/material": "^5.15.20",
