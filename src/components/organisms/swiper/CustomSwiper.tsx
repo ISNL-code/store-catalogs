@@ -5,6 +5,7 @@ import { SampleNextArrow, SamplePrevArrow } from 'components/atoms/Elements/Slid
 import SwiperImage from './SwiperImage';
 import { Color } from 'constants/colors';
 import { useSwipeable } from 'react-swipeable';
+import { useIsMount } from 'hooks/useIsMount';
 
 interface CustomSwiperProps {
     slides: any[];
@@ -12,6 +13,7 @@ interface CustomSwiperProps {
 }
 
 const CustomSwiper: React.FC<CustomSwiperProps> = ({ slides, wrapperHeight }) => {
+    const mount = useIsMount();
     const [index, setIndex] = useState(0);
     const [direction, setDirection] = useState<'left' | 'right' | null>(null);
 
@@ -26,9 +28,23 @@ const CustomSwiper: React.FC<CustomSwiperProps> = ({ slides, wrapperHeight }) =>
     };
 
     const transitions = useTransition(index, {
-        from: { opacity: 0, transform: direction === 'right' ? 'translate3d(100%,0,0)' : 'translate3d(-100%,0,0)' },
+        from: {
+            opacity: 0,
+            transform: mount
+                ? 'translate3d(0,0,0)'
+                : direction === 'right'
+                ? 'translate3d(100%,0,0)'
+                : 'translate3d(-100%,0,0)',
+        },
         enter: { opacity: 1, transform: 'translate3d(0%,0,0)' },
-        leave: { opacity: 0, transform: direction === 'right' ? 'translate3d(-100%,0,0)' : 'translate3d(100%,0,0)' },
+        leave: {
+            opacity: 0,
+            transform: mount
+                ? 'translate3d(0,0,0)'
+                : direction === 'right'
+                ? 'translate3d(-100%,0,0)'
+                : 'translate3d(100%,0,0)',
+        },
     });
 
     const handleDotClick = (newIndex: number) => {
