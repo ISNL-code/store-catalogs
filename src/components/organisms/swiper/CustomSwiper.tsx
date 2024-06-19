@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import { SampleNextArrow, SamplePrevArrow } from 'components/atoms/Elements/SliderArrows';
 import SwiperImage from './SwiperImage';
 import { Color } from 'constants/colors';
+import { useSwipeable } from 'react-swipeable';
 
 interface CustomSwiperProps {
     slides: any[];
@@ -36,8 +37,15 @@ const CustomSwiper: React.FC<CustomSwiperProps> = ({ slides, wrapperHeight }) =>
         setIndex(newIndex);
     };
 
+    const handlers = useSwipeable({
+        onSwipedLeft: () => goToNextSlide(),
+        onSwipedRight: () => goToPrevSlide(),
+        preventScrollOnSwipe: true,
+        trackMouse: true,
+    });
+
     return (
-        <Box sx={{ position: 'relative', height: wrapperHeight, overflow: 'hidden' }}>
+        <Box sx={{ position: 'relative', height: wrapperHeight, overflow: 'hidden' }} {...handlers}>
             {transitions((style, idx) => (
                 <animated.div
                     key={idx}
