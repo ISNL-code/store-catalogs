@@ -58,9 +58,6 @@
     },
     "devDependencies": {
         "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
-        "@types/chrome": "^0.0.268",
-        "fork-ts-checker-webpack-plugin": "^9.0.2",
-        "react-dev-utils": "^12.0.1",
-        "typescript": "^5.4.5"
+        "@types/chrome": "^0.0.268"
     }
 }
