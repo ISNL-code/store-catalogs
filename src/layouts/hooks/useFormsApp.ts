@@ -18,6 +18,7 @@ export enum DialogWindowType {
     WARNING_ORDERING_LIMIT = 'warning_order_limit',
     TABLE_SIZE = 'table size',
     APP_INFORMATION = 'app_information',
+    PRICING = 'pricing',
 }
 
 interface Res {

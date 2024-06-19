@@ -1,6 +1,7 @@
 export interface DialogStateInterface {
     imageUrl?: string;
     note?: string;
+    variantSku?: string;
 }
 
 export interface LocalStorageProductInterface {

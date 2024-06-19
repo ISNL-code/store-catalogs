@@ -1,4 +1,4 @@
-import { Box, IconButton } from '@mui/material';
+import { Box, Button, IconButton } from '@mui/material';
 import ShareButton from 'components/molecules/ToolsButtons/ShareButton';
 import { Dispatch, SetStateAction, memo, useEffect, useRef, useState } from 'react';
 import { useNavigate, useOutletContext } from 'react-router-dom';
@@ -27,6 +27,7 @@ import ImageComponent from 'components/atoms/Media/Image';
 import { DialogWindowType } from 'layouts/hooks/useFormsApp';
 import StraightenIcon from '@mui/icons-material/Straighten';
 import CustomSwiper from '../swiper/CustomSwiper';
+import StyledTooltip from 'components/molecules/StyledComponents/StyledTooltip';
 
 interface CatalogCardProps {
     modelsVariants: ProductVariantInterface[];
@@ -49,7 +50,7 @@ const CatalogListCard = memo<CatalogCardProps>(
         const { STORE_TYPE, PLAN_OPTIONS, PRODUCT_IMAGE_OPTIONS } = OPTIONS;
         const sliderRef = useRef<HTMLImageElement>(null);
         const navigate = useNavigate();
-        const { cart, favorites, store, handleOpenDialog, handleSetDialogState }: CatalogContextInterface =
+        const { cart, favorites, store, handleOpenDialog, handleSetDialogState, string }: CatalogContextInterface =
             useOutletContext();
         const colorsBoxRef = useRef(null);
         const [shownModel, setShownModel] = useState<ProductVariantInterface | null>(null);
@@ -140,7 +141,7 @@ const CatalogListCard = memo<CatalogCardProps>(
                                 backgroundColor: Colors?.GRAY_100,
                             }}
                         >
-                            <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                            <Box sx={{ display: 'flex', justifyContent: 'space-between', height: 30 }}>
                                 {PLAN_OPTIONS?.prices && (
                                     <CardPrice
                                         currency={map_currency_symbol(store?.currency)}
@@ -148,21 +149,54 @@ const CatalogListCard = memo<CatalogCardProps>(
                                         discountPrice={shownModel?.price}
                                     />
                                 )}
-                                {PLAN_OPTIONS?.tableSizes && sizesImage && (
-                                    <IconButton
-                                        onClick={() => {
-                                            handleOpenDialog(DialogWindowType?.TABLE_SIZE);
-                                            handleSetDialogState({
-                                                imageUrl: sizesImage,
-                                            });
-                                        }}
-                                        size="small"
-                                        sx={{
-                                            border: `1px solid ${Color?.PRIMARY}`,
-                                        }}
+                                {!PLAN_OPTIONS?.prices && (
+                                    <StyledTooltip
+                                        title={string?.click_here_to_ask_for_wholesale_pricing_information}
+                                        position="top-start"
+                                        maxWidth={200}
                                     >
-                                        <StraightenIcon color="primary" fontSize="small" sx={{ fontSize: 18 }} />
-                                    </IconButton>
+                                        <Button
+                                            onClick={() => {
+                                                handleOpenDialog(DialogWindowType?.PRICING);
+                                                handleSetDialogState({ variantSku: shownModel?.variantSku });
+                                            }}
+                                            color="error"
+                                            variant="outlined"
+                                            size="small"
+                                            sx={{
+                                                py: 0,
+                                                px: 1,
+                                                fontSize: 11,
+                                                lineHeight: 1,
+                                                height: 25,
+                                                borderRadius: 4,
+                                                borderWidth: 2,
+                                                fontWeight: 700,
+                                                '&:hover': { borderWidth: 2 },
+                                            }}
+                                        >
+                                            {string?.get_pricing}
+                                        </Button>
+                                    </StyledTooltip>
+                                )}
+                                {PLAN_OPTIONS?.tableSizes && sizesImage && (
+                                    <Box>
+                                        <IconButton
+                                            onClick={() => {
+                                                handleOpenDialog(DialogWindowType?.TABLE_SIZE);
+                                                handleSetDialogState({
+                                                    imageUrl: sizesImage,
+                                                });
+                                            }}
+                                            size="small"
+                                            sx={{
+                                                border: `1px solid ${Color?.PRIMARY}`,
+                                                ml: 'auto',
+                                            }}
+                                        >
+                                            <StraightenIcon color="primary" fontSize="small" sx={{ fontSize: 18 }} />
+                                        </IconButton>
+                                    </Box>
                                 )}
                             </Box>
                         </Box>

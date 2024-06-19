@@ -14,6 +14,8 @@ import {
     TextField,
     Divider,
     Typography,
+    FormControlLabel,
+    Checkbox,
 } from '@mui/material';
 import { Color, Colors } from 'constants/colors';
 import CloseIcon from '@mui/icons-material/Close';
@@ -48,10 +50,10 @@ interface Props {
     error: { text: string; shown: boolean } | null;
     fields:
         | {
-              type: 'text' | 'tel' | 'number' | 'password' | 'email';
-              component: 'textfield' | 'autocomplete';
+              type: 'text' | 'tel' | 'number' | 'password' | 'email' | 'checkbox';
+              component: 'textfield' | 'autocomplete' | 'checkbox';
               label: string | null;
-              value: string | null;
+              value: string | boolean | null;
               onChange: (val) => void;
               error?: string | boolean | null;
               helperText: string | null;
@@ -173,7 +175,9 @@ const FormDialog = ({
                     </Box>
                 </Box>
                 {title && (
-                    <DialogTitle sx={{ fontSize: 20, color: 'gray', pb: description ? 0 : 2 }}>{title} </DialogTitle>
+                    <DialogTitle sx={{ fontSize: 18, color: Color?.SECONDARY_DARK, pb: description ? 0 : 2 }}>
+                        {title}{' '}
+                    </DialogTitle>
                 )}
                 {description && (
                     <DialogContentText sx={{ px: 3, pt: 3, pb: buttons ? 0 : 3 }}>{description}</DialogContentText>
@@ -186,6 +190,19 @@ const FormDialog = ({
                 {fields?.length && (
                     <DialogContent sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
                         {fields?.map((item, idx) => {
+                            if (item?.component === 'checkbox')
+                                return (
+                                    <FormControlLabel
+                                        control={
+                                            <Checkbox
+                                                checked={item?.value as boolean}
+                                                onChange={event => item?.onChange(event?.target?.checked)}
+                                                color="primary"
+                                            />
+                                        }
+                                        label={item?.label}
+                                    />
+                                );
                             if (item?.component === 'textfield')
                                 return (
                                     <Box key={idx} pt={1}>
@@ -236,7 +253,7 @@ const FormDialog = ({
                                             isOptionEqualToValue={(option, value) => option === value || value === ''}
                                             size="small"
                                             disablePortal
-                                            value={item?.value}
+                                            value={item?.value as string}
                                             options={item.options?.map(el => el.value)}
                                             getOptionLabel={option =>
                                                 item?.options?.find(el => el.value === option)?.label || ''

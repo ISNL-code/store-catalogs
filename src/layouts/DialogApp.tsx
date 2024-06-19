@@ -16,6 +16,7 @@ import TableSizeWindow from 'pages/DialogApp/TableSizeWindow';
 import { DialogStateInterface } from 'types/app_models';
 import AppInformationModal from 'pages/DialogApp/AppInformationModal';
 import { Dispatch, SetStateAction } from 'react';
+import PricingForm from 'pages/DialogApp/PricingForm';
 
 interface Props {
     location;
@@ -75,6 +76,12 @@ const DialogApp = ({
             />
             <QuestionForm
                 isOpen={activeDialogWindow === DialogWindowType?.QUESTION}
+                setIsOpen={handleOpenDialog}
+                string={string}
+                dialogState={dialogState}
+            />
+            <PricingForm
+                isOpen={activeDialogWindow === DialogWindowType?.PRICING}
                 setIsOpen={handleOpenDialog}
                 string={string}
                 dialogState={dialogState}
