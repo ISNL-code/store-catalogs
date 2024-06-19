@@ -73,8 +73,37 @@ export default function Register({ isOpen, setIsOpen, string, location, setAuth,
                         contacts: `email: ${values.email}, phone: ${values.phoneNumber}`,
                     });
                 })
-                .catch(_err => {
-                    setIsError(true);
+                .catch(err => {
+                    console.log(err?.response?.data?.message);
+                    // временно переводим страну регистрации на украину
+                    if (err?.response?.data?.message?.includes('Unsuported country code')) {
+                        register({
+                            emailAddress: values.email,
+                            firstName: values.firstName,
+                            lastName: values.lastName,
+                            password: values.password,
+                            username: values.email,
+                            country: 'UA',
+                            phone: values.phoneNumber,
+                            lang: lang,
+                            storeCode: STORE_CODE,
+                        })
+                            .then(res => {
+                                setStorageItem(STORAGE_KEYS?.ACCESS_TOKEN_KEY, JSON.stringify(res.data.token));
+                                setApiToken && setApiToken(res.data.token);
+                                setAuth(true);
+                                setIsOpen(null);
+                            })
+                            .then(_ => {
+                                telegramSender({
+                                    action: `ЗАРЕГЕСТРИРОВАЛСЯ`,
+                                    contacts: `email: ${values.email}, phone: ${values.phoneNumber}`,
+                                });
+                            })
+                            .catch(err => {
+                                setIsError(true);
+                            });
+                    } else setIsError(true);
                 });
         },
     });

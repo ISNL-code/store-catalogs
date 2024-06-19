@@ -1,14 +1,12 @@
 import { Box } from '@mui/material';
 import { AppleIcon } from 'assets/svg/apple_icon';
-import { STORE_CONFIG } from 'store_constants/stores_config';
 import { useDevice } from 'hooks/useDevice';
 
 const AppleStoreButton = () => {
-    const { APP_STORE_URL } = STORE_CONFIG;
     const { s, sx } = useDevice();
 
     return (
-        <a href={APP_STORE_URL || ''}>
+        <a href={''}>
             <Box
                 sx={{
                     display: 'flex',

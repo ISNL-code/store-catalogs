@@ -5,8 +5,6 @@ export const ALBERTO_BINI_OUTLET = {
     active: true,
     required_registration: false,
     URL: ['https://alberto-bini-outlet.netlify.app'],
-    appStoreUrl: null,
-    playMarketUrl: null,
     web_lang: 'uk', // html lang
     store_name: 'Alberto Bini OUTLET',
     store_code: 'ALBERTO_BINI_SALES',

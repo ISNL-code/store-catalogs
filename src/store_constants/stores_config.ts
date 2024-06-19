@@ -1,5 +1,7 @@
+import { ALBERTO_BINI_EU_OUTLET } from './stores_configs/ALBERTO_BINI_EU_OUTLET';
 import { ALBERTO_BINI_EU_RETAIL } from './stores_configs/ALBERTO_BINI_EU_RETAIL';
 import { ALBERTO_BINI_EU_WS } from './stores_configs/ALBERTO_BINI_EU_WS';
+import { ALBERTO_BINI_KZ_OUTLET } from './stores_configs/ALBERTO_BINI_KZ_OUTLET';
 import { ALBERTO_BINI_KZ_RETAIL } from './stores_configs/ALBERTO_BINI_KZ_RETAIL';
 import { ALBERTO_BINI_KZ_WS } from './stores_configs/ALBERTO_BINI_KZ_WS';
 import { ALBERTO_BINI_MAIN } from './stores_configs/ALBERTO_BINI_MAIN';
@@ -17,7 +19,9 @@ const stores = [
     ALBERTO_BINI_KZ_WS,
     ALBERTO_BINI_EU_WS,
     ALBERTO_BINI_EU_RETAIL,
+    ALBERTO_BINI_EU_OUTLET,
     ALBERTO_BINI_KZ_RETAIL,
+    ALBERTO_BINI_KZ_OUTLET,
     KREMEN_BELTS_MAIN,
     ALBERTO_BINI_SALES,
     KREMEN_BELTS_SALES,
@@ -29,8 +33,6 @@ const storeConfig = (): STORE_CONFIG_Interface => {
 
     return {
         STORAGE_KEY: matchingDomain?.storage_key || 'sn_def',
-        APP_STORE_URL: matchingDomain?.appStoreUrl || null,
-        PLAY_MARKET_URL: matchingDomain?.playMarketUrl || null,
         ACTIVE: matchingDomain?.active || false,
         REQUIRED_REGISTRATION: matchingDomain?.required_registration || false,
         STORE_NAME: matchingDomain?.store_name || '',

@@ -54,46 +54,46 @@ const HomePage = () => {
                 navigate(`${STORE_ROUTE?.root(STORE_CODE)}`);
             }
         }
+        if (el === 4) {
+            const link = SIDE_LINKS?.find(el => el?.description === 'Outlet')?.href || null;
+            if (link) {
+                telegramSender({
+                    action: `HOME ====> Outlet`,
+                });
+                window.open(link);
+            } else {
+                telegramSender({
+                    action: `HOME ====> CATALOG`,
+                });
+                navigate(`${STORE_ROUTE?.root(STORE_CODE)}`);
+            }
+        }
     };
 
     return (
-        <Box p={sx ? 2 : appXPadding} sx={{ pb: `${footerMenuHeight}px`, mb: sx ? '100vh' : 8 }}>
+        <Box p={sx ? 2 : appXPadding} sx={{ pb: `${footerMenuHeight}px` }}>
             <MessageButton action={() => handleOpenDialog(DialogWindowType?.QUESTION)} />
             <CallBackButton path={STORE_ROUTE?.contacts(STORE_CODE)} />
             <InformationButton />
             <HomeImages />
-            <Grid item container xs={12} mt={-6} mb={2}>
-                <Typography
-                    variant="h1"
-                    sx={{
-                        color: '#fff',
-                        zIndex: 1,
-                        textShadow: '#000000 0 0 5px',
-                        fontSize: sx ? 48 : 80,
-                    }}
-                >
-                    Elegance in Outerwear
-                </Typography>
-            </Grid>
-
             <Box
                 className="HiddenScroll"
-                mb={1}
+                mt={-5}
                 sx={{
                     flexWrap: 'nowrap',
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'flex-start',
                     maxWidth: '900px',
-                    height: '90vh', // Устанавливаем фиксированную высоту
-                    overflowY: 'scroll', // Добавляем вертикальную прокрутку
-                    position: 'relative', // Добавляем позиционирование для псевдоэлемента
+                    height: '90vh',
+                    overflowY: 'scroll',
+                    position: 'relative',
                     gap: 1,
                 }}
             >
-                {[1, 2, 3, 4, 5].map((el, idx) => (
+                {[1, 2, 3, 4, 5, 6].map((el, idx) => (
                     <Grid
-                        key={idx} // Добавляем key для каждого элемента списка
+                        key={idx}
                         item
                         px={sx ? 2 : 4}
                         py={2}
@@ -103,14 +103,14 @@ const HomePage = () => {
                             zIndex: 2,
                             borderRadius: 1,
                             position: 'relative',
-                            '&:last-child': { mb: 200 },
+                            '&:last-child': { mb: sx ? '100vh' : 0 },
                         }}
                     >
-                        <Box mb={2} sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                            <Typography sx={{ color: '#000', zIndex: 1, fontSize: sx ? 18 : 32 }}>
+                        <Box mb={0.5} sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                            <Typography sx={{ color: '#000', zIndex: 1, fontSize: sx ? 18 : 26, fontWeight: 700 }}>
                                 {string?.[`customer_title_${idx + 1}`]}
                             </Typography>
-                            {isShown && (el === 2 || el === 3) && (
+                            {isShown && (el === 2 || el === 3 || el === 4) && (
                                 <Button
                                     size="small"
                                     variant="contained"
@@ -121,11 +121,12 @@ const HomePage = () => {
                                 >
                                     {el === 2 && string?.wholesale_catalog + ' ' + string?.catalog}
                                     {el === 3 && string?.retail_catalog + ' ' + string?.catalog}
+                                    {el === 4 && 'Outlet'}
                                 </Button>
                             )}
                         </Box>
 
-                        <Typography sx={{ color: '#2c2c2c', zIndex: 1, fontWeight: 500, fontSize: sx ? 15 : 22 }}>
+                        <Typography sx={{ color: '#2c2c2c', zIndex: 1, fontWeight: 500, fontSize: sx ? 15 : 18 }}>
                             {string?.[`customer_description_${idx + 1}`]}
                         </Typography>
                     </Grid>

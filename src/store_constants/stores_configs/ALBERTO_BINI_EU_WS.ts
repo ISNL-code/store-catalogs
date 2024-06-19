@@ -5,8 +5,6 @@ export const ALBERTO_BINI_EU_WS = {
     active: true, // Поле которое запускает магазин true - работает false - остановлен / по тех. причина
     required_registration: false,
     URL: ['https://albertobini-brandeurope.com'],
-    appStoreUrl: null,
-    playMarketUrl: null,
     web_lang: 'en', // html lang
     store_name: 'Alberto Bini Europe',
     store_code: 'alberto_bini_europe',
@@ -16,9 +14,15 @@ export const ALBERTO_BINI_EU_WS = {
     telegram_sender: true,
     links: [
         {
-            name: 'AB Retail',
-            href: 'https://albertobini-brandeurope-retail.netlify.app/store/alberto_bini_europe',
+            name: 'Retail',
+            href: 'https://albertobini-brandeurope-retail.netlify.app/store/ALBERTO_BINI',
             description: 'Retail',
+            type: 'WEB',
+        },
+        {
+            name: 'Outlet',
+            href: 'https://albertobini-brandeurope-outlet.netlify.app/store/ALBERTO_BINI_SALES',
+            description: 'Outlet',
             type: 'WEB',
         },
     ],

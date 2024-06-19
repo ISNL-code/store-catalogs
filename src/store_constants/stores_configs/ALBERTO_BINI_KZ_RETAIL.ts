@@ -2,23 +2,27 @@ import { StoreType, ViewModeType } from 'store_constants/types';
 
 export const ALBERTO_BINI_KZ_RETAIL = {
     storage_key: 'ab_kz-rt',
-    active: true, // Поле которое запускает магазин true - работает false - остановлен / по тех. причина
+    active: true,
     required_registration: false,
     URL: ['https://albertobini-kz-retail.netlify.app'],
-    appStoreUrl: null,
-    playMarketUrl: null,
     web_lang: 'ru', // html lang
     store_name: 'Alberto Bini KZ Retail',
-    store_code: 'alberto_bini_europe',
+    store_code: 'ALBERTO_BINI',
     base_url: 'https://kremen-belts.com/api',
-    app_lang: 'kz',
+    app_lang: 'ru',
     supported_countries: null,
     telegram_sender: true,
     links: [
         {
-            name: 'AB Wholesales',
+            name: 'Wholesales',
             href: 'https://albertobini-kz.com/store/alberto_bini_europe',
             description: 'Wholesale',
+            type: 'WEB',
+        },
+        {
+            name: 'Outlet',
+            href: 'https://albertobini-kz-outlet.netlify.app/store/ALBERTO_BINI_SALES',
+            description: 'Outlet',
             type: 'WEB',
         },
     ],
@@ -49,7 +53,7 @@ export const ALBERTO_BINI_KZ_RETAIL = {
     web_head_data: {
         store_title: 'Alberto Bini розничный каталог',
         store_description: `Добро пожаловать в мир изысканной женской верхней одежды от Alberto Bini! Ознакомьтесь с нашим широким ассортиментом стильных и качественных пальто, тренчей и курток. Погрузитесь в уникальный стиль и комфорт с Alberto Bini!`,
-        google_analytics_id: 'G-SPMQE8GHGM',
+        google_analytics_id: 'G-NFQK29FTWM',
         google_ads_id: 'AW-16545719098',
         conversion_id: 'moafCJ7O0qoZELrGztE9',
         store_logo: 'alberto_bini_logo.png',

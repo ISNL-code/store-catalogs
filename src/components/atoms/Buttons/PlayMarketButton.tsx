@@ -1,14 +1,12 @@
 import { Box } from '@mui/material';
 import { GoogleIcon } from 'assets/svg/google_icon';
-import { STORE_CONFIG } from 'store_constants/stores_config';
 import { useDevice } from 'hooks/useDevice';
 
 const PlayMarketButton = () => {
-    const { PLAY_MARKET_URL } = STORE_CONFIG;
     const { s, sx } = useDevice();
 
     return (
-        <a href={PLAY_MARKET_URL || ''}>
+        <a href={''}>
             <Box
                 sx={{
                     display: 'flex',

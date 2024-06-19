@@ -5,20 +5,24 @@ export const ALBERTO_BINI_EU_RETAIL = {
     active: true, // Поле которое запускает магазин true - работает false - остановлен / по тех. причина
     required_registration: false,
     URL: ['https://albertobini-brandeurope-retail.netlify.app'],
-    appStoreUrl: null,
-    playMarketUrl: null,
     web_lang: 'en', // html lang
     store_name: 'Alberto Bini EU Retail',
-    store_code: 'alberto_bini_europe',
+    store_code: 'ALBERTO_BINI',
     base_url: 'https://kremen-belts.com/api',
     app_lang: 'en',
     supported_countries: null,
     telegram_sender: true,
     links: [
         {
-            name: 'AB Wholesales',
+            name: 'Wholesales',
             href: 'https://albertobini-brandeurope.com/store/alberto_bini_europe',
             description: 'Wholesale',
+            type: 'WEB',
+        },
+        {
+            name: 'Outlet',
+            href: 'https://albertobini-brandeurope-outlet.netlify.app/store/ALBERTO_BINI_SALES',
+            description: 'Outlet',
             type: 'WEB',
         },
     ],

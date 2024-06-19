@@ -16,21 +16,21 @@ const SideLink = ({ name, href }: Props) => {
             sx={{
                 display: 'flex',
                 alignItems: 'center',
-                border: `1px solid ${Color.PRIMARY}`,
+                border: `2px solid ${Color.PRIMARY}`,
                 borderRadius: 8,
                 backgroundColor: Colors?.WHITE,
-                padding: '0 8px 0 4px',
+                cursor: 'pointer',
             }}
             onMouseDown={() => window.open(href, '_blank')}
+            pr={1}
+            pl={0.25}
+            py={0}
         >
-            <IconButton
-                component="span"
-                size="small"
-                sx={{ width: 28, height: 20, p: 0.25, '&:hover': { backgroundColor: Colors?.WHITE } }}
-            >
-                <LinkIcon sx={{ color: Color.PRIMARY, fontSize: 24, fontWeight: 700 }} />
+            <IconButton component="span" size="small" sx={{ '&:hover': { backgroundColor: Colors?.WHITE }, p: 0 }}>
+                <LinkIcon sx={{ color: Color.PRIMARY, fontSize: 22, fontWeight: 700 }} />
             </IconButton>
-            <span
+            <Box
+                component="span"
                 style={{
                     color: Color.PRIMARY,
                     fontSize: sx ? 12 : 15,
@@ -41,7 +41,7 @@ const SideLink = ({ name, href }: Props) => {
                 }}
             >
                 {name}
-            </span>
+            </Box>
         </Box>
     );
 };

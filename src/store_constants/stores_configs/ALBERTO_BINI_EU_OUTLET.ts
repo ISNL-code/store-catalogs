@@ -1,26 +1,39 @@
 import { StoreType, ViewModeType } from 'store_constants/types';
 
-export const ALBERTO_BINI_MAIN = {
-    storage_key: 'ab_ua-ws',
+export const ALBERTO_BINI_EU_OUTLET = {
+    storage_key: 'ab_eu-outlet',
     active: true, // Поле которое запускает магазин true - работает false - остановлен / по тех. причина
     required_registration: false,
-    URL: ['https://alberto-bini.netlify.app'],
-    web_lang: 'uk', // html lang
-    store_name: 'Alberto Bini',
-    store_code: 'ALBERTO_BINI',
+    URL: ['https://albertobini-brandeurope-outlet.netlify.app'],
+    web_lang: 'en', // html lang
+    store_name: 'Alberto Bini EU Outlet',
+    store_code: 'ALBERTO_BINI_SALES',
     base_url: 'https://kremen-belts.com/api',
-    app_lang: 'ua',
-    supported_countries: [{ code: 'UA', country: 'ukraine' }],
+    app_lang: 'en',
+    supported_countries: null,
     telegram_sender: true,
-    links: [],
+    links: [
+        {
+            name: 'Wholesales',
+            href: 'https://albertobini-brandeurope.com/store/alberto_bini_europe',
+            description: 'Wholesale',
+            type: 'WEB',
+        },
+        {
+            name: 'Retail',
+            href: 'https://albertobini-brandeurope-retail.netlify.app/store/ALBERTO_BINI',
+            description: 'Retail',
+            type: 'WEB',
+        },
+    ],
     options: {
         product_image_options: { width: 6, height: 9 },
         main_price_multiplication: 1,
         sale_price_multiplication: 1,
         currency_multiplication: 1,
-        retail_price_multiplication: 1,
-        custom_currency: '$',
+        retail_price_multiplication: 1.5,
         min_items_to_buy: 1,
+        custom_currency: null,
         store_type: StoreType?.default,
         home_page_active: true,
         informative_page_active: true,
@@ -38,11 +51,11 @@ export const ALBERTO_BINI_MAIN = {
         },
     },
     web_head_data: {
-        store_title: 'Alberto Bini Wholesales Catalog | Alberto Bini Оптовий Каталог',
-        store_description: `Ласкаво просимо до Alberto Bini — світу вишуканого жіночого верхнього одягу! Дослідіть наш широкий вибір високоякісних стильних пальт, тренчів та курток. Погрузіться в унікальний стиль та комфорт з Alberto Bini!  Welcome to Alberto Bini — the world of exquisite women's outerwear! Explore our wide selection of high-quality stylish coats, trenches, and jackets. Immerse yourself in unique style and comfort with Alberto Bini!`,
-        google_analytics_id: 'G-C4TDRX7K5V',
-        google_ads_id: '',
-        conversion_id: '',
+        store_title: 'Alberto Bini Catalog',
+        store_description: `Welcome to Alberto Bini — the world of exquisite women's outerwear! Explore our wide selection of high-quality stylish coats, trenches, and jackets. Immerse yourself in unique style and comfort with Alberto Bini!`,
+        google_analytics_id: 'G-SPMQE8GHGM',
+        google_ads_id: 'AW-16545719098',
+        conversion_id: 'moafCJ7O0qoZELrGztE9',
         store_logo: 'alberto_bini_logo.png',
         store_poster: 'alb.jpeg',
         keywords: {

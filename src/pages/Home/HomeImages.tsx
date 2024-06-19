@@ -8,8 +8,15 @@ const HomeImages = () => {
     const { s } = useDevice();
 
     return (
-        <Box sx={{ position: 'fixed', top: 0, left: 0, zIndex: 0 }}>
-            <Box style={{ overflow: 'hidden', height: height, background: '#ccc', maxWidth: '100vw' }}>
+        <Box sx={{ position: 'fixed', top: 0, left: 0, zIndex: 0, overflow: 'hidden' }}>
+            <Box
+                style={{
+                    overflow: 'hidden',
+                    height: height,
+                    background: '#ccc',
+                    maxWidth: '100vw',
+                }}
+            >
                 <Marquee loop={0} speed={75} gradient gradientColor="#6666664e" gradientWidth={s ? 100 : 300}>
                     <img
                         style={{ maxHeight: height, overflow: 'hidden' }}

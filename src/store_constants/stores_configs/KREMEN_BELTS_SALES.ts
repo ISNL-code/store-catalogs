@@ -5,8 +5,6 @@ export const KREMEN_BELTS_SALES = {
     active: true,
     required_registration: false,
     URL: ['https://kremen-belts-sales.netlify.app'],
-    appStoreUrl: null,
-    playMarketUrl: null,
     web_lang: 'uk', // html lang
     store_name: 'Kremen Belts Sales',
     store_code: 'kremen_belts_sales',
