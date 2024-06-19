@@ -5,7 +5,6 @@ import { useNavigate, useOutletContext } from 'react-router-dom';
 import ColorIndicatorButton from 'components/atoms/ColorIndicatorButton/ColorIndicatorButton';
 import CartButton from 'components/molecules/ToolsButtons/CartButton';
 import FavoritesButton from 'components/molecules/ToolsButtons/FavoritesButton';
-import Slider from 'react-slick';
 import { ProductDataInterface, ProductVariantInterface } from 'types/app_models';
 import Grid from '@mui/material/Unstable_Grid2';
 import PromoTags from 'components/atoms/PromoTags/PromoTags';
@@ -14,7 +13,6 @@ import CardSkuLabel from 'components/atoms/Labels/CardSkuLabel';
 import SaleTag from 'components/atoms/PromoTags/SaleTag';
 import { STORE_CONFIG } from 'store_constants/stores_config';
 import { Color, Colors } from 'constants/colors';
-import { SampleNextArrow, SamplePrevArrow } from '../../atoms/Elements/SliderArrows';
 import { StoreType, ViewModeType } from 'store_constants/types';
 import CardView from './CardView';
 import GridMediumView from './GridMediumView';
@@ -28,6 +26,7 @@ import { telegramSender } from 'utils/telegramSender';
 import ImageComponent from 'components/atoms/Media/Image';
 import { DialogWindowType } from 'layouts/hooks/useFormsApp';
 import StraightenIcon from '@mui/icons-material/Straighten';
+import CustomSwiper from '../swiper/CustomSwiper';
 
 interface CatalogCardProps {
     modelsVariants: ProductVariantInterface[];
@@ -99,23 +98,10 @@ const CatalogListCard = memo<CatalogCardProps>(
                                 {shownModel?.images?.length ? (
                                     <>
                                         {Boolean(sliderHeight) && (
-                                            <Slider
-                                                dots={true}
-                                                nextArrow={<SampleNextArrow />}
-                                                prevArrow={<SamplePrevArrow />}
-                                                lazyLoad={true}
-                                                style={{
-                                                    height: sliderHeight || 0.1,
-                                                }}
-                                            >
-                                                {shownModel?.images?.map(({ imageUrl }, idx) => (
-                                                    <ImageComponent
-                                                        key={idx}
-                                                        imageUrl={imageUrl}
-                                                        wrapperHeight={sliderHeight}
-                                                    />
-                                                ))}
-                                            </Slider>
+                                            <CustomSwiper
+                                                slides={shownModel?.images?.map(({ imageUrl }) => imageUrl) || []}
+                                                wrapperHeight={sliderHeight}
+                                            />
                                         )}
                                     </>
                                 ) : (
