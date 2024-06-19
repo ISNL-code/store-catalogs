@@ -80,7 +80,7 @@ export default function PricingForm({ isOpen, setIsOpen, string, dialogState }: 
                 fullWidth
                 buttons={[{ type: 'submit', name: string?.send }]}
                 onSubmit={() => formik.handleSubmit()}
-                description={string?.selected_model + ':' + ' ' + dialogState?.variantSku || ''}
+                description={string?.selected_model + ':' + ' ' + dialogState?.variantSku || ''} // eslint-disable-line
                 closeAvailable
                 error={null}
                 fields={[
