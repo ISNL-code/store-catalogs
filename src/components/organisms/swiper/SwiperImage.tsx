@@ -35,7 +35,7 @@ const ImageComponent: React.FC<ImageComponentProps> = ({ imageUrl, wrapperHeight
                     style={{
                         width: '100%',
                         opacity: imgLoaded ? 1 : 0,
-                        transition: 'opacity 0.3s ease-in-out',
+                        transition: 'opacity 0.25s ease-in-out',
                     }}
                     alt="Loading..."
                     onLoad={event => {

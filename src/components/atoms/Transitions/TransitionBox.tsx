@@ -1,26 +1,34 @@
 import { Box } from '@mui/material';
 import { useEffect, useState } from 'react';
+import Loader from '../Loader/Loader';
+import { useDevice } from 'hooks/useDevice';
 
-const TransitionBox = ({ children, dependency, time = 0 }) => {
+const TransitionBox = ({ children, dependency, time = 50 }) => {
+    const { sx } = useDevice();
     const [opacity, setOpacity] = useState(0);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         if (dependency) {
             setOpacity(0);
         } else {
-            setOpacity(1);
+            setTimeout(() => setOpacity(1), time);
+            setLoading(false);
         }
-    }, [dependency, time]); // eslint-disable-line
+    }, [dependency]); // eslint-disable-line
 
     return (
-        <Box
-            sx={{
-                opacity: opacity,
-                transition: `opacity ${time.toString()}ms linear`,
-            }}
-        >
-            {children}
-        </Box>
+        <>
+            {loading && !sx && <Loader />}
+            <Box
+                sx={{
+                    opacity: opacity,
+                    transition: `opacity ${time.toString()}ms linear`,
+                }}
+            >
+                {children}
+            </Box>
+        </>
     );
 };
 

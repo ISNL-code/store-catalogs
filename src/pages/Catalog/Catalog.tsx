@@ -90,10 +90,13 @@ const Catalog = () => {
 
     useEffect(() => {
         if (scrollPosition) {
-            setTimeout(() => {
-                scrollPage(scrollPosition - (instrumentalBarHeight + headerHeight + getGridSpacing().padding * 8));
-                setScrollPosition(0);
-            }, 50);
+            setTimeout(
+                () => {
+                    scrollPage(scrollPosition - (instrumentalBarHeight + headerHeight + getGridSpacing().padding * 8));
+                    setScrollPosition(0);
+                },
+                sx ? 50 : 100
+            );
             return;
         }
     }, []); // eslint-disable-line
@@ -102,7 +105,7 @@ const Catalog = () => {
         <Box
             pt={getGridSpacing().padding}
             px={getGridSpacing().padding}
-            sx={{ minHeight: scrollPosition || '100%', pb: `${footerMenuHeight}px` }}
+            sx={{ minHeight: scrollPosition || '100vh', pb: `${footerMenuHeight}px` }}
         >
             {showTopBtn && <ScrollButton />}
             <InformationButton />
@@ -130,7 +133,7 @@ const Catalog = () => {
             />
             {productsList?.length ? (
                 <Box sx={{ minHeight: scrollPosition || '100%' }}>
-                    <TransitionBox dependency={mount} time={250}>
+                    <TransitionBox dependency={mount} time={sx ? 0 : 1}>
                         {MIN_ITEMS_TO_BUY > 1 && (
                             <Collapse in={open}>
                                 <Box mb={2}>

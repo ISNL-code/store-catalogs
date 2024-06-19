@@ -91,6 +91,7 @@ const CustomSwiper: React.FC<CustomSwiperProps> = ({ slides, wrapperHeight }) =>
                     justifyContent: 'center',
                     alignItems: 'center',
                     width: '100%',
+                    minHeight: 30,
                 }}
             >
                 {slides.map((_, slideIndex) => (
