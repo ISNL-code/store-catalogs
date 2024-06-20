@@ -103,13 +103,13 @@ const Favorites = () => {
             {PLAN_OPTIONS.contacts && <CallBackButton path={STORE_ROUTE.contacts(STORE_CODE)} />}
             <InstrumentalSubHeader
                 StartSlot={() => (
-                    <>
+                    <Box sx={{ display: 'flex', gap: 0.5 }}>
                         {SIDE_LINKS.map(({ name, href }) => (
-                            <Box sx={{ display: 'flex' }} key={href}>
+                            <Box sx={{ display: 'inline' }} key={href}>
                                 <SideLink name={name} href={href} />
                             </Box>
                         ))}
-                    </>
+                    </Box>
                 )}
                 EndSlot={() => (
                     <Box sx={{ display: 'flex', gap: 0.75 }}>
