@@ -116,7 +116,7 @@ const TableSizeDialog = ({ string, onClose, closeAvailable, onSubmit, dialogStat
                                 >
                                     {string?.available_sizes}
                                 </Typography>
-                                <Box sx={{ display: 'flex', justifyContent: 'center', pb: 0.5, gap: 0.25 }}>
+                                <Box sx={{ display: 'flex', pb: 0.5, gap: 0.25 }}>
                                     {dialogState?.availableSizes?.map((el, idx) => (
                                         <SizesIndicatorButton
                                             key={idx}
