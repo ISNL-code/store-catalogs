@@ -1,6 +1,7 @@
 export interface DialogStateInterface {
     imageUrl?: string;
     note?: string;
+    availableSizes?: { name?: string; code?: string }[];
     variantSku?: string;
 }
 

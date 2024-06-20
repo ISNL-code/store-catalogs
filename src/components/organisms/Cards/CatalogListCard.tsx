@@ -41,10 +41,11 @@ interface CatalogCardProps {
     }[];
     viewMode;
     sizesImage: string;
+    productSizes;
 }
 
 const CatalogListCard = memo<CatalogCardProps>(
-    ({ modelsVariants, name, productId, setProductsList, promoTags, viewMode, sizesImage }) => {
+    ({ modelsVariants, name, productId, setProductsList, promoTags, viewMode, sizesImage, productSizes }) => {
         const WINDOW_WIDTH = useWindowWidth();
         const { OPTIONS, STORE_CODE } = STORE_CONFIG;
         const { STORE_TYPE, PLAN_OPTIONS, PRODUCT_IMAGE_OPTIONS } = OPTIONS;
@@ -186,6 +187,9 @@ const CatalogListCard = memo<CatalogCardProps>(
                                                 handleOpenDialog(DialogWindowType?.TABLE_SIZE);
                                                 handleSetDialogState({
                                                     imageUrl: sizesImage,
+                                                    availableSizes: productSizes?.map(({ code, name }) => {
+                                                        return { name, code };
+                                                    }),
                                                 });
                                             }}
                                             size="small"

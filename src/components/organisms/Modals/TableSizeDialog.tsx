@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
-import { Dialog, ClickAwayListener, IconButton, CircularProgress } from '@mui/material';
+import { Dialog, ClickAwayListener, IconButton, CircularProgress, Box, Typography } from '@mui/material';
 import { Color, Colors } from 'constants/colors';
 import DialogContent from '@mui/material/DialogContent';
 import { DialogStateInterface } from 'types/app_models';
 import CloseIcon from '@mui/icons-material/Close';
+import SizesIndicatorButton from 'components/atoms/SizesIndicatorButton/SizesIndicatorButton';
+import { useDevice } from 'hooks/useDevice';
 
 interface Props {
     string; // Assuming `string` is used for the close button text
@@ -16,6 +18,7 @@ interface Props {
 const TableSizeDialog = ({ string, onClose, closeAvailable, onSubmit, dialogState }: Props) => {
     const [open, setOpen] = useState<boolean>(false);
     const [imgLoaded, setImgLoaded] = useState(false);
+    const { sm } = useDevice();
 
     const handleClose = () => {
         setOpen(false);
@@ -88,12 +91,44 @@ const TableSizeDialog = ({ string, onClose, closeAvailable, onSubmit, dialogStat
                                 onClick={() => {
                                     handleClose();
                                 }}
-                                size="medium"
+                                size="small"
                             >
-                                <CloseIcon sx={{ fontSize: 24 }} />
+                                <CloseIcon sx={{ fontSize: 20 }} />
                             </IconButton>
                         )}
-
+                        <Box
+                            sx={{
+                                width: '100%',
+                                backgroundColor: Color?.PRIMARY_LIGHT,
+                            }}
+                        >
+                            <Box sx={{ width: 'fit-content', px: 1 }}>
+                                <Typography
+                                    sx={{
+                                        color: Color?.SECONDARY_DARK,
+                                        my: 0.25,
+                                        fontSize: 12,
+                                        fontWeight: 700,
+                                        backgroundColor: Colors?.WHITE,
+                                        width: 'fit-content',
+                                        borderRadius: 1,
+                                    }}
+                                >
+                                    {string?.available_sizes}
+                                </Typography>
+                                <Box sx={{ display: 'flex', justifyContent: 'center', pb: 0.5, gap: 0.25 }}>
+                                    {dialogState?.availableSizes?.map((el, idx) => (
+                                        <SizesIndicatorButton
+                                            key={idx}
+                                            size={sm ? 28 : 38}
+                                            selected={false}
+                                            disabled={true}
+                                            label={el?.name || el?.code || ''}
+                                        />
+                                    ))}
+                                </Box>
+                            </Box>
+                        </Box>
                         <DialogContent
                             sx={{
                                 p: 0,

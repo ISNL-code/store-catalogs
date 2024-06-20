@@ -64,7 +64,12 @@ const SizesDetails = ({ productDetails, isShown }: Props) => {
                                 <Button
                                     onClick={() => {
                                         handleOpenDialog(DialogWindowType?.TABLE_SIZE);
-                                        handleSetDialogState({ imageUrl: productDetails?.table_size_img?.imageUrl });
+                                        handleSetDialogState({
+                                            imageUrl: productDetails?.table_size_img?.imageUrl,
+                                            availableSizes: productDetails?.productSizes?.map(({ code, name }) => {
+                                                return { name, code };
+                                            }),
+                                        });
                                     }}
                                     size="small"
                                     sx={{

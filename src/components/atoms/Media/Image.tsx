@@ -6,7 +6,18 @@ const ImageComponent = ({ imageUrl, wrapperHeight = '100%' }: { imageUrl; wrappe
     const [imgLoaded, setImgLoaded] = useState(false);
 
     return (
-        <div style={{ height: wrapperHeight, width: '100%', flexGrow: 1, position: 'relative' }}>
+        <div
+            style={{
+                height: wrapperHeight,
+                width: '100%',
+                flexGrow: 1,
+                position: 'relative',
+                overflow: 'hidden',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+            }}
+        >
             <img
                 src={imageUrl}
                 style={{
