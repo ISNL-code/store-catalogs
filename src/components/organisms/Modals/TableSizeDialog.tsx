@@ -106,7 +106,9 @@ const TableSizeDialog = ({ string, onClose, closeAvailable, onSubmit, dialogStat
                                 <Typography
                                     sx={{
                                         color: Color?.SECONDARY_DARK,
+                                        py: 0.25,
                                         my: 0.25,
+                                        px: 0.5,
                                         fontSize: 12,
                                         fontWeight: 700,
                                         backgroundColor: Colors?.WHITE,
