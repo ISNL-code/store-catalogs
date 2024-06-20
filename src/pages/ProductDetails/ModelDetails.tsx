@@ -13,7 +13,7 @@ import Loader from 'components/atoms/Loader/Loader';
 const ModelDetails = ({ productDetails, selectedVariant, setSelectedVariant }) => {
     const { OPTIONS } = STORE_CONFIG;
     const { PLAN_OPTIONS } = OPTIONS;
-    const { m } = useDevice();
+    const { m, sx } = useDevice();
 
     if (!productDetails) return <Loader />;
 
@@ -30,8 +30,8 @@ const ModelDetails = ({ productDetails, selectedVariant, setSelectedVariant }) =
                 />
             </Box>
 
-            {PLAN_OPTIONS?.prices && (
-                <Box sx={{ display: 'flex', gap: 1 }}>
+            <Box sx={{ display: 'flex', gap: 1 }}>
+                {PLAN_OPTIONS?.prices && (
                     <Box sx={{ width: '100%' }}>
                         <PriceDetails
                             productDetails={productDetails}
@@ -39,11 +39,13 @@ const ModelDetails = ({ productDetails, selectedVariant, setSelectedVariant }) =
                             isShown={PLAN_OPTIONS?.prices}
                         />
                     </Box>
-                    <Box sx={{ width: '100%' }}>
-                        <ArticleDetails isShown={PLAN_OPTIONS?.prices} />
-                    </Box>
+                )}
+
+                <Box sx={{ width: '100%' }}>
+                    <ArticleDetails />
                 </Box>
-            )}
+            </Box>
+
             <Box>
                 <ActionSection
                     selectedVariant={selectedVariant}

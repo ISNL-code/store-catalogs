@@ -55,6 +55,7 @@ const InformationPage = () => {
                     <Grid
                         sx={{
                             p: 1,
+                            px: sx ? 1 : 4,
                             minWidth: 'fit-content',
                             display: 'flex',
                             gap: 1,
