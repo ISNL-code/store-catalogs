@@ -13,7 +13,7 @@ import Loader from 'components/atoms/Loader/Loader';
 const ModelDetails = ({ productDetails, selectedVariant, setSelectedVariant }) => {
     const { OPTIONS } = STORE_CONFIG;
     const { PLAN_OPTIONS } = OPTIONS;
-    const { m, sx } = useDevice();
+    const { m } = useDevice();
 
     if (!productDetails) return <Loader />;
 

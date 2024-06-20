@@ -7,7 +7,6 @@ import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import { ProductVariantInterface } from 'types/app_models';
 import { STORE_CONFIG } from 'store_constants/stores_config';
 import { CatalogContextInterface } from 'types/outlet_context_models';
-import { useDevice } from 'hooks/useDevice';
 
 interface Props {
     selectedVariant: ProductVariantInterface;
@@ -15,7 +14,6 @@ interface Props {
 }
 
 const ActionSection = ({ isShown, selectedVariant }: Props) => {
-    const { sx } = useDevice();
     const { OPTIONS, STORE_CODE } = STORE_CONFIG;
     const { PLAN_OPTIONS } = OPTIONS;
     const { string, cart, favorites }: CatalogContextInterface = useOutletContext();
