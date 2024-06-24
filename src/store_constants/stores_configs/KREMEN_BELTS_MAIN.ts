@@ -34,14 +34,14 @@ export const KREMEN_BELTS_MAIN = {
         custom_logo: false,
         plan_options: {
             prices: true,
-            sizes: true,
+            sizes: false,
             contacts: true,
             feedback: false,
             categories: true,
             productShare: true,
             cart: true,
             favorites: true,
-            tableSizes: true,
+            tableSizes: false,
         },
     },
     web_head_data: {
