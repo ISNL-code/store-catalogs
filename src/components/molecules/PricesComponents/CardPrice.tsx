@@ -6,10 +6,11 @@ import { StoreType } from 'store_constants/types';
 interface Props {
     currency: string;
     price?: number;
+    originalPrice?: number;
     discountPrice?: number;
 }
 
-const CardPrice = ({ currency, price, discountPrice }: Props) => {
+const CardPrice = ({ currency, originalPrice, price, discountPrice }: Props) => {
     const { OPTIONS } = STORE_CONFIG;
     const { STORE_TYPE } = OPTIONS;
     return (
@@ -19,7 +20,7 @@ const CardPrice = ({ currency, price, discountPrice }: Props) => {
                     <CardPriceDefault currency={currency} price={price} />
                 )}
                 {Boolean(STORE_TYPE === StoreType.sales) && discountPrice && price && (
-                    <CardPriceSales currency={currency} price={price} discountPrice={discountPrice} />
+                    <CardPriceSales currency={currency} originalPrice={originalPrice} discountPrice={discountPrice} />
                 )}
             </>
         </>

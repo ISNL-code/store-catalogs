@@ -15,7 +15,11 @@ const PriceDetails = ({ productDetails, isShown, selectedVariant }: Props) => {
     if (isShown)
         return (
             <DetailsSection label={string?.price}>
-                <DetailsPrice price={productDetails.originalPrice} discountPrice={selectedVariant?.price} />
+                <DetailsPrice
+                    originalPrice={productDetails.originalPrice}
+                    price={selectedVariant?.price}
+                    discountPrice={selectedVariant?.price}
+                />
             </DetailsSection>
         );
     return null;

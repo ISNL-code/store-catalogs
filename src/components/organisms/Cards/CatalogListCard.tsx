@@ -146,7 +146,8 @@ const CatalogListCard = memo<CatalogCardProps>(
                                 {PLAN_OPTIONS?.prices && (
                                     <CardPrice
                                         currency={map_currency_symbol(store?.currency)}
-                                        price={shownModel?.originalPrice}
+                                        originalPrice={shownModel?.originalPrice}
+                                        price={shownModel?.price}
                                         discountPrice={shownModel?.price}
                                     />
                                 )}

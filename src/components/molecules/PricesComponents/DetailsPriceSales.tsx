@@ -6,11 +6,11 @@ import { CatalogContextInterface } from 'types/outlet_context_models';
 import { map_currency_symbol } from 'utils/mappers/currency_symbol';
 
 interface Props {
-    price: number;
+    originalPrice: number;
     discountPrice: number;
 }
 
-const DetailsPriceSales = ({ price, discountPrice }: Props) => {
+const DetailsPriceSales = ({ originalPrice, discountPrice }: Props) => {
     const { store }: CatalogContextInterface = useOutletContext();
     const { OPTIONS } = STORE_CONFIG;
     const {
@@ -40,7 +40,7 @@ const DetailsPriceSales = ({ price, discountPrice }: Props) => {
                     {CUSTOM_CURRENCY || map_currency_symbol(CUSTOM_CURRENCY || store?.currency)}
                     {parseFloat(
                         (
-                            price *
+                            originalPrice *
                             RETAIL_PRICE_MULTIPLICATION *
                             CURRENCY_MULTIPLICATION *
                             MAIN_PRICE_MULTIPLICATION

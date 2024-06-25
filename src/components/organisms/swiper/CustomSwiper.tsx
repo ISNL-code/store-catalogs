@@ -77,8 +77,12 @@ const CustomSwiper: React.FC<CustomSwiperProps> = ({ slides, wrapperHeight }) =>
                     <SwiperImage imageUrl={slides[idx]} wrapperHeight={wrapperHeight} />
                 </animated.div>
             ))}
-            <SamplePrevArrow onClick={goToPrevSlide} />
-            <SampleNextArrow onClick={goToNextSlide} />
+            {slides?.length > 1 && (
+                <>
+                    <SamplePrevArrow onClick={goToPrevSlide} />
+                    <SampleNextArrow onClick={goToNextSlide} />
+                </>
+            )}
 
             <Box
                 py={1}
@@ -94,25 +98,26 @@ const CustomSwiper: React.FC<CustomSwiperProps> = ({ slides, wrapperHeight }) =>
                     minHeight: 30,
                 }}
             >
-                {slides.map((_, slideIndex) => (
-                    <span
-                        key={slideIndex}
-                        style={{
-                            width: slideIndex === index ? '12px' : '8px',
-                            height: slideIndex === index ? '12px' : '8px',
-                            borderRadius: '50%',
-                            backgroundColor: slideIndex === index ? Color.PRIMARY : Color.SECONDARY,
-                            margin: '0 5px',
-                            cursor: 'pointer',
-                            border: '2px solid #ffffff',
-                            transition: 'all 0.5s ease-in-out',
-                        }}
-                        onClick={e => {
-                            e?.stopPropagation();
-                            handleDotClick(slideIndex);
-                        }}
-                    />
-                ))}
+                {slides?.length > 1 &&
+                    slides.map((_, slideIndex) => (
+                        <span
+                            key={slideIndex}
+                            style={{
+                                width: slideIndex === index ? '12px' : '8px',
+                                height: slideIndex === index ? '12px' : '8px',
+                                borderRadius: '50%',
+                                backgroundColor: slideIndex === index ? Color.PRIMARY : Color.SECONDARY,
+                                margin: '0 5px',
+                                cursor: 'pointer',
+                                border: '2px solid #ffffff',
+                                transition: 'all 0.5s ease-in-out',
+                            }}
+                            onClick={e => {
+                                e?.stopPropagation();
+                                handleDotClick(slideIndex);
+                            }}
+                        />
+                    ))}
             </Box>
         </Box>
     );

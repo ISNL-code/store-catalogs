@@ -204,13 +204,13 @@ const UserOrders = () => {
                                     )}
                                     <Grid container xs={12}>
                                         {order?.products?.map((item, idx) => {
-                                            const sku = item.product.variants.find(
+                                            const sku = item.product?.variants?.find(
                                                 ({ id }) => id === item.variant
                                             )?.sku;
                                             const size = item.attributes.find(
                                                 item => item.attributeName.toLowerCase() === 'size'
                                             )?.attributeValue;
-                                            const price = item.product?.price;
+                                            const price = item?.price.replace(/[^0-9.]/g, '');
                                             const totalQuantity = item.orderedQuantity;
 
                                             return (
@@ -239,9 +239,7 @@ const UserOrders = () => {
                                                                 {string?.vendor_code}:
                                                             </Typography>
                                                         )}
-                                                        <Typography variant="h5">
-                                                            {sku || string?.deleted_by_owner}
-                                                        </Typography>
+                                                        <Typography variant="h5">{sku || 'n/a'}</Typography>
                                                     </Grid>
                                                     <Grid
                                                         xs={s ? 12 : 3}

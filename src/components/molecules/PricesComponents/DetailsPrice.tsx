@@ -6,9 +6,10 @@ import DetailsPriceSales from './DetailsPriceSales';
 interface Props {
     price: number;
     discountPrice: number;
+    originalPrice: number;
 }
 
-const DetailsPrice = ({ price, discountPrice }: Props) => {
+const DetailsPrice = ({ price, discountPrice, originalPrice }: Props) => {
     const { OPTIONS } = STORE_CONFIG;
     const { STORE_TYPE } = OPTIONS;
 
@@ -17,7 +18,7 @@ const DetailsPrice = ({ price, discountPrice }: Props) => {
             <>
                 {Boolean(STORE_TYPE !== StoreType.sales) && <DetailsPriceDefault price={price} />}
                 {Boolean(STORE_TYPE === StoreType.sales) && (
-                    <DetailsPriceSales price={price} discountPrice={discountPrice} />
+                    <DetailsPriceSales originalPrice={originalPrice} discountPrice={discountPrice} />
                 )}
             </>
         </>
