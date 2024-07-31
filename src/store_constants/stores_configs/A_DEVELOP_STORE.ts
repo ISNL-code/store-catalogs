@@ -27,7 +27,7 @@ export const DEVELOP_STORE = {
         'http://localhost:3001',
         'https://sales-nest-dev.netlify.app',
         'https://sales-nest.netlify.app',
-        'https://dev-sn.netlify.app/',
+        'https://dev-sn.netlify.app',
     ],
     // telegram_sender: !window?.location?.origin.includes('localhost'),
     // telegram_sender: true,
