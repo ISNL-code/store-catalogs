@@ -56,6 +56,28 @@ const HeadStoresHTML: React.FC = () => {
     };
 
     useEffect(() => {
+        const metaTag = document.querySelector('meta[property="og:image"]');
+        if (metaTag) {
+            metaTag.setAttribute('content', `/dataBase/images/posters/${STORE_POSTER}`);
+        } else {
+            const newMetaTag = document.createElement('meta');
+            newMetaTag.setAttribute('property', 'og:image');
+            newMetaTag.setAttribute('content', `/dataBase/images/posters/${STORE_POSTER}`);
+            document.head.appendChild(newMetaTag);
+        }
+
+        const twitterMetaTag = document.querySelector('meta[name="twitter:image"]');
+        if (twitterMetaTag) {
+            twitterMetaTag.setAttribute('content', `/dataBase/images/posters/${STORE_POSTER}`);
+        } else {
+            const newTwitterMetaTag = document.createElement('meta');
+            newTwitterMetaTag.setAttribute('name', 'twitter:image');
+            newTwitterMetaTag.setAttribute('content', `/dataBase/images/posters/${STORE_POSTER}`);
+            document.head.appendChild(newTwitterMetaTag);
+        }
+    }, [STORE_POSTER]);
+
+    useEffect(() => {
         createManifest();
     }, [STORE_LOGO]); // eslint-disable-line
 
@@ -131,14 +153,18 @@ const HeadStoresHTML: React.FC = () => {
                 <meta property="og:url" content={window.location.href} />
                 <meta property="og:site_name" content={STORE_NAME} />
                 <meta property="og:title" content={STORE_TITLE} />
-                <meta property="og:image" content={require(`dataBase/images/posters/${STORE_POSTER}`)} />
                 <meta property="og:description" content={STORE_DESCRIPTION} />
                 <meta name="twitter:title" content={STORE_TITLE} />
                 <meta name="twitter:description" content={STORE_DESCRIPTION} />
+                <link rel="manifest" href={manifestUrl} />
+                <meta property="og:image" content={`/dataBase/images/posters/${STORE_POSTER}`} />
+                <meta name="twitter:image" content={`/dataBase/images/posters/${STORE_POSTER}`} />
+                <link rel="icon" href={`/dataBase/images/logos/${STORE_LOGO}`} />
+                <link rel="apple-touch-icon" href={`/dataBase/images/logos/${STORE_LOGO}`} />
+                {/* <meta property="og:image" content={require(`dataBase/images/posters/${STORE_POSTER}`)} />
                 <meta name="twitter:image" content={require(`dataBase/images/posters/${STORE_POSTER}`)} />
                 <link rel="icon" href={require(`dataBase/images/logos/${STORE_LOGO}`)} />
-                <link rel="apple-touch-icon" href={require(`dataBase/images/logos/${STORE_LOGO}`)} />
-                <link rel="manifest" href={manifestUrl} />
+                <link rel="apple-touch-icon" href={require(`dataBase/images/logos/${STORE_LOGO}`)} /> */}
             </Helmet>
         </HelmetProvider>
     );
