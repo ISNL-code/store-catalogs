@@ -110,7 +110,7 @@ const HomePage = () => {
                             <Typography sx={{ color: '#000', zIndex: 1, fontSize: sx ? 18 : 26, fontWeight: 700 }}>
                                 {string?.[`customer_title_${idx + 1}`]}
                             </Typography>
-                            {isShown && (el === 2 || el === 3 || el === 4) && (
+                            {isShown && el === 2 && (
                                 <Button
                                     size="small"
                                     variant="contained"
@@ -120,8 +120,6 @@ const HomePage = () => {
                                     }}
                                 >
                                     {el === 2 && string?.wholesale_catalog + ' ' + string?.catalog}
-                                    {el === 3 && string?.retail_catalog + ' ' + string?.catalog}
-                                    {el === 4 && 'Outlet'}
                                 </Button>
                             )}
                         </Box>

@@ -5,7 +5,7 @@ export const ALBERTO_BINI_KZ_WS = {
     active: true, // Поле которое запускает магазин true - работает false - остановлен / по тех. причина
     required_registration: false,
     URL: ['https://albertobini-kz.com'],
-    web_lang: 'ru', // html lang
+    web_lang: 'kz', // html lang
     store_name: 'Alberto Bini KZ',
     store_code: 'alberto_bini_europe',
     base_url: 'https://kremen-belts.com/api',
@@ -13,18 +13,18 @@ export const ALBERTO_BINI_KZ_WS = {
     supported_countries: null,
     telegram_sender: true,
     links: [
-        {
-            name: 'Retail',
-            href: 'https://albertobini-kz-retail.netlify.app/store/alberto_bini_europe',
-            description: 'Retail',
-            type: 'WEB',
-        },
-        {
-            name: 'Outlet',
-            href: 'https://albertobini-kz-outlet.netlify.app/store/ALBERTO_BINI_SALES',
-            description: 'Outlet',
-            type: 'WEB',
-        },
+        // {
+        //     name: 'Retail',
+        //     href: 'https://albertobini-kz-retail.netlify.app/store/alberto_bini_europe',
+        //     description: 'Retail',
+        //     type: 'WEB',
+        // },
+        // {
+        //     name: 'Outlet',
+        //     href: 'https://albertobini-kz-outlet.netlify.app/store/ALBERTO_BINI_SALES',
+        //     description: 'Outlet',
+        //     type: 'WEB',
+        // },
     ],
     options: {
         product_image_options: { width: 6, height: 9 },
@@ -39,13 +39,13 @@ export const ALBERTO_BINI_KZ_WS = {
         informative_page_active: true,
         custom_logo: true,
         plan_options: {
-            prices: false,
+            prices: true,
             sizes: true,
             contacts: true,
             feedback: true,
             categories: true,
             productShare: true,
-            cart: false,
+            cart: true,
             favorites: true,
             tableSizes: true,
         },

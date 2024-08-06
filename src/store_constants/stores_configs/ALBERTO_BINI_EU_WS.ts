@@ -13,18 +13,18 @@ export const ALBERTO_BINI_EU_WS = {
     supported_countries: null,
     telegram_sender: true,
     links: [
-        {
-            name: 'Retail',
-            href: 'https://albertobini-brandeurope-retail.netlify.app/store/ALBERTO_BINI',
-            description: 'Retail',
-            type: 'WEB',
-        },
-        {
-            name: 'Outlet',
-            href: 'https://albertobini-brandeurope-outlet.netlify.app/store/ALBERTO_BINI_SALES',
-            description: 'Outlet',
-            type: 'WEB',
-        },
+        // {
+        //     name: 'Retail',
+        //     href: 'https://albertobini-brandeurope-retail.netlify.app/store/ALBERTO_BINI',
+        //     description: 'Retail',
+        //     type: 'WEB',
+        // },
+        // {
+        //     name: 'Outlet',
+        //     href: 'https://albertobini-brandeurope-outlet.netlify.app/store/ALBERTO_BINI_SALES',
+        //     description: 'Outlet',
+        //     type: 'WEB',
+        // },
     ],
     options: {
         product_image_options: { width: 6, height: 9 },
@@ -39,13 +39,13 @@ export const ALBERTO_BINI_EU_WS = {
         informative_page_active: true,
         custom_logo: true,
         plan_options: {
-            prices: false,
+            prices: true,
             sizes: true,
             contacts: true,
             feedback: true,
             categories: true,
             productShare: true,
-            cart: false,
+            cart: true,
             favorites: true,
             tableSizes: true,
         },
