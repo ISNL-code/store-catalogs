@@ -165,10 +165,10 @@ const HeadStoresHTML: React.FC = () => {
                 <meta name="twitter:title" content={STORE_TITLE} />
                 <meta name="twitter:description" content={STORE_DESCRIPTION} />
                 <link rel="manifest" href={manifestUrl} />
-                <meta property="og:image" content={require(`dataBase/images/posters/${STORE_POSTER}`)} />
+                {/* <meta property="og:image" content={require(`dataBase/images/posters/${STORE_POSTER}`)} />
                 <meta name="twitter:image" content={require(`dataBase/images/posters/${STORE_POSTER}`)} />
                 <link rel="icon" href={require(`dataBase/images/logos/${STORE_LOGO}`)} />
-                <link rel="apple-touch-icon" href={require(`dataBase/images/logos/${STORE_LOGO}`)} />
+                <link rel="apple-touch-icon" href={require(`dataBase/images/logos/${STORE_LOGO}`)} /> */}
             </Helmet>
         </HelmetProvider>
     );
