@@ -9,9 +9,17 @@ declare global {
 }
 
 const HeadStoresHTML: React.FC = () => {
-    const { WEB_HEAD_DATA, STORE_NAME, HTML_LANG } = STORE_CONFIG;
-    const { STORE_TITLE, STORE_DESCRIPTION, GOOGLE_ANALYTICS_ID, GOOGLE_ADS_ID, STORE_LOGO, STORE_POSTER, KEYWORDS } =
-        WEB_HEAD_DATA;
+    const { WEB_HEAD_DATA, STORE_NAME, HTML_LANG } = STORE_CONFIG; // eslint-disable-line
+
+    const {
+        STORE_TITLE, // eslint-disable-line
+        STORE_DESCRIPTION, // eslint-disable-line
+        GOOGLE_ANALYTICS_ID,
+        GOOGLE_ADS_ID,
+        STORE_LOGO,
+        STORE_POSTER, // eslint-disable-line
+        KEYWORDS,
+    } = WEB_HEAD_DATA; // eslint-disable-line
 
     const [manifestUrl, setManifestUrl] = useState('');
 
@@ -55,27 +63,27 @@ const HeadStoresHTML: React.FC = () => {
         setManifestUrl(manifestURL);
     };
 
-    useEffect(() => {
-        const metaTag = document.querySelector('meta[property="og:image"]');
-        if (metaTag) {
-            metaTag.setAttribute('content', `/dataBase/images/posters/${STORE_POSTER}`);
-        } else {
-            const newMetaTag = document.createElement('meta');
-            newMetaTag.setAttribute('property', 'og:image');
-            newMetaTag.setAttribute('content', `/dataBase/images/posters/${STORE_POSTER}`);
-            document.head.appendChild(newMetaTag);
-        }
+    // useEffect(() => {
+    //     const metaTag = document.querySelector('meta[property="og:image"]');
+    //     if (metaTag) {
+    //         metaTag.setAttribute('content', `/dataBase/images/posters/${STORE_POSTER}`);
+    //     } else {
+    //         const newMetaTag = document.createElement('meta');
+    //         newMetaTag.setAttribute('property', 'og:image');
+    //         newMetaTag.setAttribute('content', `/dataBase/images/posters/${STORE_POSTER}`);
+    //         document.head.appendChild(newMetaTag);
+    //     }
 
-        const twitterMetaTag = document.querySelector('meta[name="twitter:image"]');
-        if (twitterMetaTag) {
-            twitterMetaTag.setAttribute('content', `/dataBase/images/posters/${STORE_POSTER}`);
-        } else {
-            const newTwitterMetaTag = document.createElement('meta');
-            newTwitterMetaTag.setAttribute('name', 'twitter:image');
-            newTwitterMetaTag.setAttribute('content', `/dataBase/images/posters/${STORE_POSTER}`);
-            document.head.appendChild(newTwitterMetaTag);
-        }
-    }, [STORE_POSTER]);
+    //     const twitterMetaTag = document.querySelector('meta[name="twitter:image"]');
+    //     if (twitterMetaTag) {
+    //         twitterMetaTag.setAttribute('content', `/dataBase/images/posters/${STORE_POSTER}`);
+    //     } else {
+    //         const newTwitterMetaTag = document.createElement('meta');
+    //         newTwitterMetaTag.setAttribute('name', 'twitter:image');
+    //         newTwitterMetaTag.setAttribute('content', `/dataBase/images/posters/${STORE_POSTER}`);
+    //         document.head.appendChild(newTwitterMetaTag);
+    //     }
+    // }, [STORE_POSTER]);
 
     useEffect(() => {
         createManifest();
@@ -140,12 +148,12 @@ const HeadStoresHTML: React.FC = () => {
         ads_analytics();
     }, [GOOGLE_ANALYTICS_ID]); // eslint-disable-line
 
-    const allKeywords = Object.values(KEYWORDS).join(' | ');
+    const allKeywords = Object.values(KEYWORDS).join(' | '); // eslint-disable-line
 
     return (
         <HelmetProvider>
             <Helmet>
-                <html lang={HTML_LANG} translate="no" />
+                {/* <html lang={HTML_LANG} translate="no" />
                 <title>{STORE_TITLE}</title>
                 <meta name="description" content={STORE_DESCRIPTION} />
                 <meta name="keywords" content={allKeywords} />
@@ -160,7 +168,7 @@ const HeadStoresHTML: React.FC = () => {
                 <meta property="og:image" content={`/dataBase/images/posters/${STORE_POSTER}`} />
                 <meta name="twitter:image" content={`/dataBase/images/posters/${STORE_POSTER}`} />
                 <link rel="icon" href={`/dataBase/images/logos/${STORE_LOGO}`} />
-                <link rel="apple-touch-icon" href={`/dataBase/images/logos/${STORE_LOGO}`} />
+                <link rel="apple-touch-icon" href={`/dataBase/images/logos/${STORE_LOGO}`} /> */}
                 {/* <meta property="og:image" content={require(`dataBase/images/posters/${STORE_POSTER}`)} />
                 <meta name="twitter:image" content={require(`dataBase/images/posters/${STORE_POSTER}`)} />
                 <link rel="icon" href={require(`dataBase/images/logos/${STORE_LOGO}`)} />
