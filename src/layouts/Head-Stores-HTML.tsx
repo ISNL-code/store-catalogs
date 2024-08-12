@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { HelmetProvider, Helmet } from 'react-helmet-async';
+// import { HelmetProvider, Helmet } from 'react-helmet-async';
 import { STORE_CONFIG } from 'store_constants/stores_config';
 
 declare global {
@@ -150,32 +150,34 @@ const HeadStoresHTML: React.FC = () => {
 
     const allKeywords = Object.values(KEYWORDS).join(' | '); // eslint-disable-line
 
-    return (
-        <HelmetProvider>
-            <Helmet>
-                {/* <html lang={HTML_LANG} translate="no" />
-                <title>{STORE_TITLE}</title>
-                <meta name="description" content={STORE_DESCRIPTION} />
-                <meta name="keywords" content={allKeywords} />
-                <link rel="canonical" href={window.location.href} />
-                <meta property="og:url" content={window.location.href} />
-                <meta property="og:site_name" content={STORE_NAME} />
-                <meta property="og:title" content={STORE_TITLE} />
-                <meta property="og:description" content={STORE_DESCRIPTION} />
-                <meta name="twitter:title" content={STORE_TITLE} />
-                <meta name="twitter:description" content={STORE_DESCRIPTION} />
-                <link rel="manifest" href={manifestUrl} />
-                <meta property="og:image" content={`/dataBase/images/posters/${STORE_POSTER}`} />
-                <meta name="twitter:image" content={`/dataBase/images/posters/${STORE_POSTER}`} />
-                <link rel="icon" href={`/dataBase/images/logos/${STORE_LOGO}`} />
-                <link rel="apple-touch-icon" href={`/dataBase/images/logos/${STORE_LOGO}`} /> */}
-                {/* <meta property="og:image" content={require(`dataBase/images/posters/${STORE_POSTER}`)} />
-                <meta name="twitter:image" content={require(`dataBase/images/posters/${STORE_POSTER}`)} />
-                <link rel="icon" href={require(`dataBase/images/logos/${STORE_LOGO}`)} />
-                <link rel="apple-touch-icon" href={require(`dataBase/images/logos/${STORE_LOGO}`)} /> */}
-            </Helmet>
-        </HelmetProvider>
-    );
+    return <></>;
+
+    // return (
+    //     <HelmetProvider>
+    //         <Helmet>
+    //             {/* <html lang={HTML_LANG} translate="no" />
+    //             <title>{STORE_TITLE}</title>
+    //             <meta name="description" content={STORE_DESCRIPTION} />
+    //             <meta name="keywords" content={allKeywords} />
+    //             <link rel="canonical" href={window.location.href} />
+    //             <meta property="og:url" content={window.location.href} />
+    //             <meta property="og:site_name" content={STORE_NAME} />
+    //             <meta property="og:title" content={STORE_TITLE} />
+    //             <meta property="og:description" content={STORE_DESCRIPTION} />
+    //             <meta name="twitter:title" content={STORE_TITLE} />
+    //             <meta name="twitter:description" content={STORE_DESCRIPTION} />
+    //             <link rel="manifest" href={manifestUrl} />
+    //             <meta property="og:image" content={`/dataBase/images/posters/${STORE_POSTER}`} />
+    //             <meta name="twitter:image" content={`/dataBase/images/posters/${STORE_POSTER}`} />
+    //             <link rel="icon" href={`/dataBase/images/logos/${STORE_LOGO}`} />
+    //             <link rel="apple-touch-icon" href={`/dataBase/images/logos/${STORE_LOGO}`} /> */}
+    //             {/* <meta property="og:image" content={require(`dataBase/images/posters/${STORE_POSTER}`)} />
+    //             <meta name="twitter:image" content={require(`dataBase/images/posters/${STORE_POSTER}`)} />
+    //             <link rel="icon" href={require(`dataBase/images/logos/${STORE_LOGO}`)} />
+    //             <link rel="apple-touch-icon" href={require(`dataBase/images/logos/${STORE_LOGO}`)} /> */}
+    //         </Helmet>
+    //     </HelmetProvider>
+    // );
 };
 
 export default HeadStoresHTML;

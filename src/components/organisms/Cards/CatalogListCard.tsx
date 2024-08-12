@@ -83,7 +83,7 @@ const CatalogListCard = memo<CatalogCardProps>(
                     }}
                     onClick={() => {
                         telegramSender({
-                            action: `GO TO MODEL DETAILS ${shownModel?.variantSku}`,
+                            action: `GO TO MODEL DETAILS  ${window.location.origin}/store/${STORE_CODE}/product/${shownModel?.productId}/model/${shownModel?.variantSku}`,
                         });
                         navigate(STORE_ROUTE?.product(STORE_CODE, productId, shownModel?.variantSku));
                     }}

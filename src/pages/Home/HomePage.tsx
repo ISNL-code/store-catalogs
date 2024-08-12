@@ -11,7 +11,6 @@ import { STORE_ROUTE } from 'router/routes';
 import { STORE_CONFIG } from 'store_constants/stores_config';
 import { scrollPage } from 'utils/scrollPage';
 import InformationButton from 'components/atoms/Buttons/InformationButton';
-import { telegramSender } from 'utils/telegramSender';
 
 const HomePage = () => {
     const navigate = useNavigate();
@@ -29,42 +28,24 @@ const HomePage = () => {
         if (el === 2) {
             const link = SIDE_LINKS?.find(el => el?.description === 'Wholesale')?.href || null;
             if (link) {
-                telegramSender({
-                    action: `HOME ====> WHOLESALES`,
-                });
                 window.open(link);
             } else {
-                telegramSender({
-                    action: `HOME ====> CATALOG`,
-                });
                 navigate(`${STORE_ROUTE?.root(STORE_CODE)}`);
             }
         }
         if (el === 3) {
             const link = SIDE_LINKS?.find(el => el?.description === 'Retail')?.href || null;
             if (link) {
-                telegramSender({
-                    action: `HOME ====> RETAILER`,
-                });
                 window.open(link);
             } else {
-                telegramSender({
-                    action: `HOME ====> CATALOG`,
-                });
                 navigate(`${STORE_ROUTE?.root(STORE_CODE)}`);
             }
         }
         if (el === 4) {
             const link = SIDE_LINKS?.find(el => el?.description === 'Outlet')?.href || null;
             if (link) {
-                telegramSender({
-                    action: `HOME ====> Outlet`,
-                });
                 window.open(link);
             } else {
-                telegramSender({
-                    action: `HOME ====> CATALOG`,
-                });
                 navigate(`${STORE_ROUTE?.root(STORE_CODE)}`);
             }
         }

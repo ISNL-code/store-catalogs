@@ -12,8 +12,6 @@ import { Color, Colors } from 'constants/colors';
 import { STORE_CONFIG } from 'store_constants/stores_config';
 import HomeIcon from '@mui/icons-material/Home';
 import { HOME_ROUTE, STORE_ROUTE } from 'router/routes';
-import { telegramSender } from 'utils/telegramSender';
-
 interface HeaderInterface {
     headerHeight;
     appXPadding;
@@ -89,11 +87,6 @@ const Header = ({
                         icon={() => <GridViewIcon />}
                         isShown={!sx}
                         childPath={['product']}
-                        action={() => {
-                            telegramSender({
-                                action: `STORE ====> CATALOG`,
-                            });
-                        }}
                     />
 
                     {PLAN_OPTIONS?.favorites && (
