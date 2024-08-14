@@ -2,7 +2,7 @@ import { StoreType, ViewModeType } from 'store_constants/types';
 
 export const ALBERTO_BINI_SALES = {
     storage_key: 'ab_ua-wss',
-    active: false,
+    active: true,
     required_registration: false,
     URL: ['https://alberto-bini-sales.netlify.app'],
     web_lang: 'uk', // html lang

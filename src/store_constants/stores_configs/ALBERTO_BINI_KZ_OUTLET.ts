@@ -2,7 +2,7 @@ import { StoreType, ViewModeType } from 'store_constants/types';
 
 export const ALBERTO_BINI_KZ_OUTLET = {
     storage_key: 'ab_kz-outlet',
-    active: false,
+    active: true,
     required_registration: false,
     URL: ['https://albertobini-kz-oulet.netlify.app'],
     web_lang: 'ru', // html lang
