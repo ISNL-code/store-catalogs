@@ -59,8 +59,11 @@ const CatalogListCard = memo<CatalogCardProps>(
 
         useEffect(() => {
             telegramSender({
-                action: `ЗАШЕЛ НА ЛИСТИНГ`,
+                action: `ЗАШЕЛ НА ЛИСТИНГ ${window.location.origin}`,
             });
+        }, []);
+
+        useEffect(() => {
             if (!modelsVariants?.length) return;
             const selectedVariant = modelsVariants.find(variant => variant.selected) || modelsVariants[0];
             setShownModel(selectedVariant);
