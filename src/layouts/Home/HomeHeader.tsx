@@ -12,6 +12,7 @@ import { STORE_CONFIG } from 'store_constants/stores_config';
 import ProfileMenu from 'components/molecules/ToolsButtons/ProfileMenu';
 import GridViewIcon from '@mui/icons-material/GridView';
 import { HOME_ROUTE, STORE_ROUTE } from 'router/routes';
+import { telegramSender } from 'utils/telegramSender';
 
 interface HeaderInterface {
     headerHeight;
@@ -89,6 +90,11 @@ const HomeHeader = ({
                         isShown={!sx}
                         isActive={location.pathname.includes('details')}
                         childPath={['product']}
+                        action={() => {
+                            telegramSender({
+                                action: `ЗАШЕЛ НА ЛИСТИНГ ${window.location.origin}`,
+                            });
+                        }}
                     />
                     {PLAN_OPTIONS?.favorites && (
                         <HeaderNavButton
