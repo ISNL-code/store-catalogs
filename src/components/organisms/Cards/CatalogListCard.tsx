@@ -58,6 +58,9 @@ const CatalogListCard = memo<CatalogCardProps>(
         const [sliderHeight, setSliderHeight] = useState<number | string>(0);
 
         useEffect(() => {
+            telegramSender({
+                action: `ЗАШЕЛ НА ЛИСТИНГ`,
+            });
             if (!modelsVariants?.length) return;
             const selectedVariant = modelsVariants.find(variant => variant.selected) || modelsVariants[0];
             setShownModel(selectedVariant);
