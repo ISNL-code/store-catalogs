@@ -22,15 +22,12 @@ export const ALBERTO_BINI_EU_KZ_DB = {
     ],
     managers: [
         {
-            firstName: 'Alberto Bini Manager',
+            firstName: 'Manager',
             lastName: '',
             emailAddress: 'salesnest.info@gmail.com',
             options: { manager: true },
             contacts: {
                 emailAddress: 'salesnest.info@gmail.com',
-                phone: '+380983080085',
-                viber: '+380983080085',
-                whatsapp: '+380983080085',
                 telegram: 'SNBusinessApp',
             },
         },
