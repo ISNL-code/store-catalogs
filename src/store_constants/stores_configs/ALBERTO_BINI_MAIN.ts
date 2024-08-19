@@ -23,6 +23,7 @@ export const ALBERTO_BINI_MAIN = {
         store_type: StoreType?.default,
         home_page_active: true,
         informative_page_active: true,
+        custom_currency: null,
         custom_logo: true,
         plan_options: {
             prices: true,

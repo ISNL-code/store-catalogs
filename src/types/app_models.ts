@@ -50,11 +50,11 @@ export interface StoreInterface {
         emailAddress: string;
         options: { manager: boolean };
         contacts: {
-            emailAddress: string;
-            phone: string;
-            viber: string;
-            whatsapp: string;
-            telegram: string;
+            emailAddress?: string;
+            phone?: string;
+            viber?: string;
+            whatsapp?: string;
+            telegram?: string;
         };
     }[];
 }
