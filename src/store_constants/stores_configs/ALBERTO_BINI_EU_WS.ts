@@ -6,7 +6,7 @@ export const ALBERTO_BINI_EU_WS = {
     required_registration: false,
     URL: ['https://albertobini-brandeurope.com'],
     web_lang: 'en', // html lang
-    store_name: 'АБ ЕВРОПА',
+    store_name: 'Alberto Bini Europe',
     store_code: 'alberto_bini_europe',
     base_url: 'https://kremen-belts.com/api',
     app_lang: 'en',
@@ -33,8 +33,8 @@ export const ALBERTO_BINI_EU_WS = {
         currency_multiplication: 1,
         retail_price_multiplication: 1,
         custom_currency: null,
-        min_items_to_buy: 1,
-        store_type: StoreType?.sales,
+        min_items_to_buy: 10,
+        store_type: StoreType?.wholesales,
         home_page_active: true,
         informative_page_active: true,
         custom_logo: true,
@@ -53,7 +53,7 @@ export const ALBERTO_BINI_EU_WS = {
     web_head_data: {
         store_title: 'Alberto Bini Wholesales Catalog',
         store_description: `Welcome to Alberto Bini — the world of exquisite women's outerwear! Explore our wide selection of high-quality stylish coats, trenches, and jackets. Immerse yourself in unique style and comfort with Alberto Bini!`,
-        google_analytics_id: 'G-C4TDRX7K5V',
+        google_analytics_id: 'G-SPMQE8GHGM',
         google_ads_id: 'AW-16545719098',
         conversion_id: 'moafCJ7O0qoZELrGztE9',
         store_logo: 'alberto_bini_logo.png',
