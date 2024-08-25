@@ -23,20 +23,34 @@ const DetailsPriceSales = ({ originalPrice, discountPrice }: Props) => {
 
     return (
         <>
-            <Box sx={{ display: 'flex' }}>
-                <Typography sx={{ color: Color.ERROR, fontSize: 20, fontWeight: 700 }}>
-                    {CUSTOM_CURRENCY || map_currency_symbol(store?.currency)}
-                    {parseFloat(
-                        (
-                            discountPrice *
-                            SALE_PRICE_MULTIPLICATION *
-                            CURRENCY_MULTIPLICATION *
-                            RETAIL_PRICE_MULTIPLICATION
-                        ).toFixed(2)
-                    )}
-                </Typography>
-                /
-                <Typography sx={{ color: Colors?.GRAY_900, fontSize: 18, textDecoration: 'line-through' }}>
+            {originalPrice !== discountPrice ? (
+                <Box sx={{ display: 'flex' }}>
+                    <Typography sx={{ color: Color.ERROR, fontSize: 20, fontWeight: 700 }}>
+                        {CUSTOM_CURRENCY || map_currency_symbol(store?.currency)}
+                        {parseFloat(
+                            (
+                                discountPrice *
+                                SALE_PRICE_MULTIPLICATION *
+                                CURRENCY_MULTIPLICATION *
+                                RETAIL_PRICE_MULTIPLICATION
+                            ).toFixed(2)
+                        )}
+                    </Typography>
+                    /
+                    <Typography sx={{ color: Colors?.GRAY_900, fontSize: 18, textDecoration: 'line-through' }}>
+                        {CUSTOM_CURRENCY || map_currency_symbol(CUSTOM_CURRENCY || store?.currency)}
+                        {parseFloat(
+                            (
+                                originalPrice *
+                                RETAIL_PRICE_MULTIPLICATION *
+                                CURRENCY_MULTIPLICATION *
+                                MAIN_PRICE_MULTIPLICATION
+                            ).toFixed(2)
+                        )}
+                    </Typography>
+                </Box>
+            ) : (
+                <Typography sx={{ color: Colors?.GRAY_900, fontSize: 18 }}>
                     {CUSTOM_CURRENCY || map_currency_symbol(CUSTOM_CURRENCY || store?.currency)}
                     {parseFloat(
                         (
@@ -47,7 +61,7 @@ const DetailsPriceSales = ({ originalPrice, discountPrice }: Props) => {
                         ).toFixed(2)
                     )}
                 </Typography>
-            </Box>
+            )}
         </>
     );
 };
