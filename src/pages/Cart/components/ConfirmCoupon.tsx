@@ -289,9 +289,6 @@ const ConfirmCoupon = ({
                         variant="contained"
                         sx={{ width: '100%' }}
                         onClick={() => {
-                            telegramSender({
-                                action: `ПРОБУЕТ ЗАКАЗАТЬ`,
-                            });
                             handleConfirmOrder();
                         }}
                     >

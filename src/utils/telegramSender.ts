@@ -20,7 +20,7 @@ export const telegramSender = ({ action, contacts = '', text = '' }) => {
                 axios.post(url, {
                     chat_id: chatId,
                     text:
-                        `${action} - ${STORE_NAME} - ${userCountry + '/' + userCity} ` +
+                        `${userCountry + '/' + userCity} - ${action} - ${STORE_NAME} ` +
                         ' ' +
                         `${contacts ? ` - (contacts) ${contacts}` : ''}` +
                         ' ' +

@@ -71,7 +71,7 @@ const HomeMobileMenu = ({
                         childPath={['product']}
                         action={() => {
                             telegramSender({
-                                action: `ЗАШЕЛ НА ЛИСТИНГ ${window.location.origin}`,
+                                action: `ЗАШЕЛ НА ЛИСТИНГ`,
                             });
                         }}
                     />
