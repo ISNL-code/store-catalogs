@@ -4,14 +4,14 @@ import { STORAGE_KEYS } from 'constants/local_storage_keys';
 import { getStorageItem, removeStorageItem, setStorageItem } from 'utils/storageUtils';
 import { useIsMount } from 'hooks/useIsMount';
 import { telegramSender } from 'utils/telegramSender';
-import { useParams } from 'react-router-dom';
+import { STORE_CONFIG } from 'store_constants/stores_config';
 
 interface useAddToCartParamsInterface {
     loadingUser: boolean;
 }
 
 export const useAddToCart = ({ loadingUser }: useAddToCartParamsInterface): useAddToCartDataInterface => {
-    const { storeCode } = useParams();
+    const { STORE_CODE } = STORE_CONFIG;
     const mount = useIsMount();
     const [cartItems, setCartItems] = useState<LocalStorageProductInterface[]>([]);
 
@@ -55,7 +55,7 @@ export const useAddToCart = ({ loadingUser }: useAddToCartParamsInterface): useA
             setCartItems(prev => prev.filter(item => item.variantSku !== data?.variantSku));
         } else {
             telegramSender({
-                action: `ДОБАВИЛ В КОРЗИНУ  ${window.location.origin}/store/${storeCode}/product/${data?.productId}/model/${data?.variantSku}`,
+                action: `ДОБАВИЛ В КОРЗИНУ  ${window.location.origin}/store/${STORE_CODE}/product/${data?.productId}/model/${data?.variantSku}`,
             });
             setCartItems(prev => [...prev, data]);
         }

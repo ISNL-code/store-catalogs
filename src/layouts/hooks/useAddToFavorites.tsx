@@ -3,14 +3,14 @@ import { LocalStorageProductInterface, useAddToFavoriteDataInterface } from 'typ
 import { STORAGE_KEYS } from 'constants/local_storage_keys';
 import { getStorageItem, removeStorageItem, setStorageItem } from 'utils/storageUtils';
 import { telegramSender } from 'utils/telegramSender';
-import { useParams } from 'react-router-dom';
+import { STORE_CONFIG } from 'store_constants/stores_config';
 
 interface useAddToFavoritesParamsInterface {
     loadingUser: boolean;
 }
 
 export const useAddToFavorites = ({ loadingUser }: useAddToFavoritesParamsInterface): useAddToFavoriteDataInterface => {
-    const { storeCode } = useParams();
+    const { STORE_CODE } = STORE_CONFIG;
     const [favoriteItems, setFavoriteItems] = useState<LocalStorageProductInterface[]>([]);
 
     useEffect(() => {
@@ -55,7 +55,7 @@ export const useAddToFavorites = ({ loadingUser }: useAddToFavoritesParamsInterf
             setFavoriteItems(prev => prev.filter(item => item.variantSku !== data?.variantSku));
         } else {
             telegramSender({
-                action: `ДОБАВИЛ В ЛАЙКИ  ${window.location.origin}/store/${storeCode}/product/${data?.productId}/model/${data?.variantSku}`,
+                action: `ДОБАВИЛ В ЛАЙКИ  ${window.location.origin}/store/${STORE_CODE}/product/${data?.productId}/model/${data?.variantSku}`,
             });
             setFavoriteItems(prev => [...prev, data]);
         }
