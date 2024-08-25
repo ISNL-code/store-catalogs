@@ -6,7 +6,7 @@ export const ALBERTO_BINI_SALES = {
     required_registration: false,
     URL: ['https://alberto-bini-sales.netlify.app'],
     web_lang: 'uk', // html lang
-    store_name: 'Alberto Bini SALES',
+    store_name: 'АБ ОПТ СТОКОВЫЙ',
     store_code: 'ALBERTO_BINI_SALES',
     base_url: 'https://kremen-belts.com/api',
     app_lang: 'ua',
@@ -24,7 +24,7 @@ export const ALBERTO_BINI_SALES = {
         store_type: StoreType?.sales,
         home_page_active: true,
         informative_page_active: true,
-        custom_logo: false,
+        custom_logo: true,
         plan_options: {
             prices: true,
             sizes: true,

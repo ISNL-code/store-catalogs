@@ -6,7 +6,7 @@ export const ALBERTO_BINI_MAIN = {
     required_registration: false,
     URL: ['https://alberto-bini.netlify.app'],
     web_lang: 'uk', // html lang
-    store_name: 'Alberto Bini',
+    store_name: 'АБ ОСНОВНОЙ',
     store_code: 'ALBERTO_BINI',
     base_url: 'https://kremen-belts.com/api',
     app_lang: 'ua',

@@ -27,8 +27,11 @@ export const ALBERTO_BINI_EU_KZ_DB = {
             emailAddress: 'salesnest.info@gmail.com',
             options: { manager: true },
             contacts: {
-                emailAddress: 'salesnest.info@gmail.com',
-                telegram: 'SNBusinessApp',
+                emailAddress: '',
+                phone: '+380983080085',
+                viber: '+380983080085',
+                whatsapp: '+380983080085',
+                telegram: 'Albertobiniopt',
             },
         },
     ],

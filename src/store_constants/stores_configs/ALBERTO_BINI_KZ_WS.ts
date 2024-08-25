@@ -6,7 +6,7 @@ export const ALBERTO_BINI_KZ_WS = {
     required_registration: false,
     URL: ['https://albertobini-kz.com'],
     web_lang: 'kz', // html lang
-    store_name: 'Alberto Bini KZ',
+    store_name: 'АБ КАЗАХСТАН',
     store_code: 'alberto_bini_europe',
     base_url: 'https://kremen-belts.com/api',
     app_lang: 'kz',
@@ -19,12 +19,6 @@ export const ALBERTO_BINI_KZ_WS = {
         //     description: 'Retail',
         //     type: 'WEB',
         // },
-        // {
-        //     name: 'Outlet',
-        //     href: 'https://albertobini-kz-outlet.netlify.app/store/ALBERTO_BINI_SALES',
-        //     description: 'Outlet',
-        //     type: 'WEB',
-        // },
     ],
     options: {
         product_image_options: { width: 6, height: 9 },
@@ -33,8 +27,8 @@ export const ALBERTO_BINI_KZ_WS = {
         currency_multiplication: 480,
         retail_price_multiplication: 1,
         custom_currency: '₸',
-        min_items_to_buy: 10,
-        store_type: StoreType?.wholesales,
+        min_items_to_buy: 1,
+        store_type: StoreType?.sales,
         home_page_active: true,
         informative_page_active: true,
         custom_logo: true,
@@ -53,8 +47,8 @@ export const ALBERTO_BINI_KZ_WS = {
     web_head_data: {
         store_title: 'Alberto Bini Оптовый каталог | Alberto Bini Wholesales Catalog',
         store_description: `Добро пожаловать в мир изысканной женской верхней одежды от Alberto Bini! Ознакомьтесь с нашим широким ассортиментом стильных и качественных пальто, тренчей и курток. Погрузитесь в уникальный стиль и комфорт с Alberto Bini! | Қош келдіңіз Alberto Bini - жарлы жігерлі әйелдер үшін қонақтардың еліне! Біздің жанындағы көбінесе мол, артық өлшемдердің қолайлы қызметті көптық кепіл таңбаларын, тренчи, және жакеттерді зерттеңіз. Alberto Bini менің ерекше стильім мен комфорттық көріңіз! | Welcome to Alberto Bini — the world of exquisite women's outerwear! Explore our wide selection of high-quality stylish coats, trenches, and jackets. Immerse yourself in unique style and comfort with Alberto Bini!`,
-        google_analytics_id: 'G-NFQK29FTWM',
-        google_ads_id: 'AW-16545719098',
+        google_analytics_id: 'G-C4TDRX7K5V',
+        google_ads_id: '',
         conversion_id: 'moafCJ7O0qoZELrGztE9',
         store_logo: 'alberto_bini_logo.png',
         store_poster: 'alb.jpeg',
