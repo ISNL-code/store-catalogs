@@ -25,16 +25,16 @@ export const ALBERTO_BINI_MAIN_DB = {
     ],
     managers: [
         {
-            firstName: 'Alberto Bini Manager',
+            firstName: 'Менеджер з продажiв',
             lastName: '',
             emailAddress: '',
             options: { manager: true },
             contacts: {
                 emailAddress: '',
-                phone: '+380983080085',
-                viber: '+380983080085',
-                whatsapp: '+380983080085',
-                telegram: 'Albertobiniopt',
+                phone: '+30977212362',
+                viber: '+30977212362',
+                whatsapp: '+30977212362',
+                telegram: 'Truba_makeup',
             },
         },
     ],
