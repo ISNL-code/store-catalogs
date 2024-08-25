@@ -4,7 +4,7 @@ export const YULIA_TRUBA_MAIN = {
     storage_key: 'ab_yt-ws',
     active: true, // Поле которое запускает магазин true - работает false - остановлен / по тех. причина
     required_registration: false,
-    URL: ['https://alberto-bini-store.netlify.app/'],
+    URL: ['https://alberto-bini-store.netlify.app'],
     web_lang: 'uk', // html lang
     store_name: 'ЮЛЯ ТРУБА',
     store_code: 'ALBERTO_BINI',
