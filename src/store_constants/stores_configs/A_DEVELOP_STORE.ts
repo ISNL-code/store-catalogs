@@ -12,6 +12,7 @@ export const DEVELOP_STORE = {
     ...ALBERTO_BINI_OUTLET,
     // ...ALBERTO_BINI_SALES,
     ...YULIA_TRUBA_MAIN,
+
     URL: ['http://localhost:3000', 'http://localhost:3001'],
     // telegram_sender: !window?.location?.origin.includes('localhost'),
     telegram_sender: true,
