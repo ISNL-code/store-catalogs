@@ -26,6 +26,7 @@ export const ALBERTO_BINI_KZ_RETAIL = {
             type: 'WEB',
         },
     ],
+    managers: null,
     options: {
         product_image_options: { width: 6, height: 9 },
         main_price_multiplication: 1,

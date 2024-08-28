@@ -13,6 +13,7 @@ export const ALBERTO_BINI_EU_RETAIL = {
     supported_countries: null,
     telegram_sender: true,
     links: [],
+    managers: null,
     options: {
         product_image_options: { width: 6, height: 9 },
         main_price_multiplication: 1,

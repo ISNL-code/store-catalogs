@@ -20,6 +20,21 @@ export interface STORE_CONFIG_Interface {
     HTML_LANG: string; // web html lang
     SIDE_LINKS: { name: string; href: string; description: string }[] | [];
     TELEGRAM_SENDER: boolean; // use for telegram send events
+    MANAGERS?:
+        | {
+              firstName: string;
+              lastName: string;
+              emailAddress: string;
+              options: { manager: boolean };
+              contacts: {
+                  emailAddress: string;
+                  phone: string;
+                  viber: string;
+                  whatsapp: string;
+                  telegram: string;
+              };
+          }[]
+        | null;
     OPTIONS: {
         PRODUCT_IMAGE_OPTIONS: { width: number; height: number }; // use for identification of product image size
         MAIN_PRICE_MULTIPLICATION: number; // use in custom catalogs for multiple main prices

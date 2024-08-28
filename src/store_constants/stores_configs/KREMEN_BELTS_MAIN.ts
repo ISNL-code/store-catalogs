@@ -20,6 +20,7 @@ export const KREMEN_BELTS_MAIN = {
             type: 'WEB',
         },
     ],
+    managers: null,
     options: {
         product_image_options: { width: 4, height: 3 },
         main_price_multiplication: 1,

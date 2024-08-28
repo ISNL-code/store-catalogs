@@ -13,6 +13,21 @@ export const ALBERTO_BINI_MAIN = {
     supported_countries: [{ code: 'UA', country: 'ukraine' }],
     telegram_sender: true,
     links: [],
+    managers: [
+        {
+            firstName: 'Alberto Bini Manager',
+            lastName: '',
+            emailAddress: '',
+            options: { manager: true },
+            contacts: {
+                emailAddress: '',
+                phone: '+380983080085',
+                viber: '+380983080085',
+                whatsapp: '+380983080085',
+                telegram: 'Albertobiniopt',
+            },
+        },
+    ],
     options: {
         product_image_options: { width: 6, height: 9 },
         main_price_multiplication: 1,
