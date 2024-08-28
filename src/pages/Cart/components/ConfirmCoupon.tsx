@@ -53,6 +53,7 @@ const ConfirmCoupon = ({
     const [city, setCity] = useState(currentUserData?.delivery?.city || currentUserData?.billing?.city);
     const [address, setAddress] = useState(currentUserData?.delivery?.address || currentUserData?.billing?.address);
     const [company, setCompany] = useState(currentUserData?.delivery?.company || currentUserData?.billing?.company);
+    const [promoCode, setPromoCode] = useState('');
 
     const handleConfirmOrder = () => {
         if (!auth) {
@@ -111,7 +112,9 @@ const ConfirmCoupon = ({
                 },
             })
                 .then(() => {
-                    telegramSender({ action: `ЗАКАЗ  !$!$!  ${Number(finalPrice).toFixed(2)}` });
+                    telegramSender({
+                        action: `ЗАКАЗ  !$!$!  ${Number(finalPrice).toFixed(2)} PROMO_CODE:${promoCode}`,
+                    });
 
                     cart?.handleClearCartItems([...new Set(orderData?.productsList.map(item => item?.productSku))]);
                     setOrderData(prev => {
@@ -161,7 +164,7 @@ const ConfirmCoupon = ({
                         InputLabelProps={{ shrink: true }}
                         fullWidth
                         size="small"
-                        label={string?.first_name}
+                        label={string?.first_name + '*'}
                         sx={{
                             '& label': {
                                 color: '#898B9B',
@@ -178,7 +181,7 @@ const ConfirmCoupon = ({
                         InputLabelProps={{ shrink: true }}
                         fullWidth
                         size="small"
-                        label={string?.last_name}
+                        label={string?.last_name + '*'}
                         sx={{
                             '& label': {
                                 color: '#898B9B',
@@ -195,7 +198,7 @@ const ConfirmCoupon = ({
                         InputLabelProps={{ shrink: true }}
                         fullWidth
                         size="small"
-                        label={string?.phone_number}
+                        label={string?.phone_number + '*'}
                         sx={{
                             '& label': {
                                 color: '#898B9B',
@@ -212,7 +215,7 @@ const ConfirmCoupon = ({
                         InputLabelProps={{ shrink: true }}
                         fullWidth
                         size="small"
-                        label={string?.city}
+                        label={string?.city + '*'}
                         sx={{
                             '& label': {
                                 color: '#898B9B',
@@ -229,7 +232,7 @@ const ConfirmCoupon = ({
                         InputLabelProps={{ shrink: true }}
                         fullWidth
                         size="small"
-                        label={string?.delivery_address}
+                        label={string?.delivery_address + '*'}
                         sx={{
                             '& label': {
                                 color: '#898B9B',
@@ -265,6 +268,36 @@ const ConfirmCoupon = ({
                             />
                         }
                         label={string?.save_delivery_info}
+                    />
+                </Grid>
+                <Grid xs={12}>
+                    <TextField
+                        value={company || ''}
+                        onChange={e => {
+                            setPromoCode(e?.target?.value);
+                        }}
+                        InputLabelProps={{ shrink: true }}
+                        fullWidth
+                        size="small"
+                        placeholder="PROMO CODE"
+                        sx={{
+                            '& .MuiOutlinedInput-root': {
+                                borderRadius: 2,
+                                border: '2px solid green', // основная зелёная обводка
+                                '& fieldset': {
+                                    border: 'none', // убираем стандартную обводку
+                                },
+                                '&:hover fieldset': {
+                                    border: 'none', // убираем обводку при наведении
+                                },
+                                '&.Mui-focused fieldset': {
+                                    border: 'none', // убираем обводку при фокусе
+                                },
+                            },
+                            '& label': {
+                                color: '#898B9B',
+                            },
+                        }}
                     />
                 </Grid>
                 <Grid
