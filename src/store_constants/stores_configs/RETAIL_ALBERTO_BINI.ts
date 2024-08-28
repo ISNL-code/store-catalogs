@@ -4,7 +4,7 @@ export const RETAIL_ALBERTO_BINI = {
     storage_key: 'ab_ua-rt_my',
     active: true, // Поле которое запускает магазин true - работает false - остановлен / по тех. причина
     required_registration: false,
-    URL: ['https://alberto-bini.netlify.app'],
+    URL: ['https://alb-retail.netlify.app'],
     web_lang: 'uk', // html lang
     store_name: 'АБ RETAIL_MY',
     store_code: 'ALBERTO_BINI',
@@ -13,7 +13,21 @@ export const RETAIL_ALBERTO_BINI = {
     supported_countries: [{ code: 'UA', country: 'ukraine' }],
     telegram_sender: true,
     links: [],
-    managers: null,
+    managers: [
+        {
+            firstName: 'Менеджер з продажiв',
+            lastName: '',
+            emailAddress: '',
+            options: { manager: true },
+            contacts: {
+                emailAddress: '',
+                phone: '+380665738771',
+                viber: '',
+                whatsapp: '',
+                telegram: 'SNBusinessApp',
+            },
+        },
+    ],
     options: {
         product_image_options: { width: 6, height: 9 },
         main_price_multiplication: 1,
