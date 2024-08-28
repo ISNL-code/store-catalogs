@@ -272,7 +272,7 @@ const ConfirmCoupon = ({
                 </Grid>
                 <Grid xs={12}>
                     <TextField
-                        value={company || ''}
+                        value={promoCode || ''}
                         onChange={e => {
                             setPromoCode(e?.target?.value);
                         }}
