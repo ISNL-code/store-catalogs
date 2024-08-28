@@ -21,7 +21,7 @@ export const RETAIL_ALBERTO_BINI = {
             options: { manager: true },
             contacts: {
                 emailAddress: '',
-                phone: '+380665738771',
+                phone: '+380668652127',
                 viber: '',
                 whatsapp: '',
                 telegram: 'SNBusinessApp',
