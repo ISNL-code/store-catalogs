@@ -15,8 +15,10 @@ import EmptyPage from 'components/atoms/EmptyPage/EmptyPage';
 import Grid from '@mui/material/Unstable_Grid2';
 import CardItem from 'components/atoms/Sections/CardItem';
 import { scrollPage } from 'utils/scrollPage';
+import { STORE_CONFIG } from 'store_constants/stores_config';
 
 const ContactsManagePage = () => {
+    const { MANAGERS } = STORE_CONFIG;
     const { store, string, footerMenuHeight, appXPadding }: CatalogContextInterface = useOutletContext();
     const { sm, sx } = useDevice();
 
@@ -26,11 +28,13 @@ const ContactsManagePage = () => {
 
     if (!store?.managers?.length) return <EmptyPage />;
 
+    const managers = MANAGERS || store?.managers;
+
     return (
         <Box p={sx ? 2 : appXPadding} sx={{ pb: `${footerMenuHeight}px` }}>
             <InstrumentalSubHeader StartSlot={() => <BackButton />} />
 
-            {store?.managers.map((manager, idx) => {
+            {managers.map((manager, idx) => {
                 return (
                     <Grid key={idx} container xs={12} my={2}>
                         <CardItem>
