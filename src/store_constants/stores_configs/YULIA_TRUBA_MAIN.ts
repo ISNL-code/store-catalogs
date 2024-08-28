@@ -13,7 +13,21 @@ export const YULIA_TRUBA_MAIN = {
     supported_countries: [{ code: 'UA', country: 'ukraine' }],
     telegram_sender: true,
     links: [],
-    managers: null,
+    managers: [
+        {
+            firstName: 'Менеджер з продажiв',
+            lastName: '',
+            emailAddress: '',
+            options: { manager: true },
+            contacts: {
+                emailAddress: '',
+                phone: '+30977212362',
+                viber: '+30977212362',
+                whatsapp: '+30977212362',
+                telegram: 'Truba_makeup',
+            },
+        },
+    ],
     options: {
         product_image_options: { width: 6, height: 9 },
         main_price_multiplication: 1,
