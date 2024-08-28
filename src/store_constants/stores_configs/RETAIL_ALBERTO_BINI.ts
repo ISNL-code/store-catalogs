@@ -1,6 +1,6 @@
 import { StoreType, ViewModeType } from 'store_constants/types';
 
-export const ALBERTO_BINI_MAIN = {
+export const RETAIL_ALBERTO_BINI = {
     storage_key: 'ab_ua-rt_my',
     active: true, // Поле которое запускает магазин true - работает false - остановлен / по тех. причина
     required_registration: false,
