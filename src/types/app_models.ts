@@ -134,6 +134,7 @@ export interface ProductDataInterface {
     name: string;
     description: string;
     table_size_img: { imageUrl: string };
+    discounted: boolean;
     variants: ProductVariantInterface[];
     originalPrice: number;
     promoTags: any[];

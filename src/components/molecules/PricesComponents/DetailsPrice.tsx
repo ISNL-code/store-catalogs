@@ -1,5 +1,3 @@
-import { STORE_CONFIG } from 'store_constants/stores_config';
-import { StoreType } from 'store_constants/types';
 import DetailsPriceDefault from './DetailsPriceDefault';
 import DetailsPriceSales from './DetailsPriceSales';
 
@@ -7,19 +5,15 @@ interface Props {
     price: number;
     discountPrice: number;
     originalPrice: number;
+    discounted: boolean;
 }
 
-const DetailsPrice = ({ price, discountPrice, originalPrice }: Props) => {
-    const { OPTIONS } = STORE_CONFIG;
-    const { STORE_TYPE } = OPTIONS;
-
+const DetailsPrice = ({ price, discountPrice, originalPrice, discounted }: Props) => {
     return (
         <>
             <>
-                {Boolean(STORE_TYPE !== StoreType.sales) && <DetailsPriceDefault price={price} />}
-                {Boolean(STORE_TYPE === StoreType.sales) && (
-                    <DetailsPriceSales originalPrice={originalPrice} discountPrice={discountPrice} />
-                )}
+                {!discounted && <DetailsPriceDefault price={price} />}
+                {discounted && <DetailsPriceSales originalPrice={originalPrice} discountPrice={discountPrice} />}
             </>
         </>
     );
