@@ -4,7 +4,7 @@ export const RETAIL_ALBERTO_BINI = {
     storage_key: 'ab_ua-rt_my',
     active: true, // Поле которое запускает магазин true - работает false - остановлен / по тех. причина
     required_registration: false,
-    URL: ['https://alb-retail.netlify.app'],
+    URL: ['https://albertobini-brandeurope.com'],
     web_lang: 'uk', // html lang
     store_name: 'АБ RETAIL_MY',
     store_code: 'ALBERTO_BINI',

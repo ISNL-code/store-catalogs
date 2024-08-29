@@ -4,7 +4,7 @@ export const ALBERTO_BINI_EU_WS = {
     storage_key: 'ab_eu-ws',
     active: true, // Поле которое запускает магазин true - работает false - остановлен / по тех. причина
     required_registration: false,
-    URL: ['https://albertobini-brandeurope.com'],
+    URL: ['https://albertobini-brandeurope.netlify.app'],
     web_lang: 'en', // html lang
     store_name: 'АБ ЕВРОПА',
     store_code: 'alberto_bini_europe',
