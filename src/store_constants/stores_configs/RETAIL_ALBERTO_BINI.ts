@@ -38,7 +38,7 @@ export const RETAIL_ALBERTO_BINI = {
         store_type: StoreType?.sales,
         home_page_active: true,
         informative_page_active: true,
-        custom_currency: null,
+        custom_currency: '₴',
         custom_logo: true,
         plan_options: {
             prices: true,
