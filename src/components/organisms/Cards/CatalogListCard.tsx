@@ -42,10 +42,21 @@ interface CatalogCardProps {
     viewMode;
     sizesImage: string;
     productSizes;
+    discounted: boolean;
 }
 
 const CatalogListCard = memo<CatalogCardProps>(
-    ({ modelsVariants, name, productId, setProductsList, promoTags, viewMode, sizesImage, productSizes }) => {
+    ({
+        modelsVariants,
+        name,
+        productId,
+        setProductsList,
+        promoTags,
+        viewMode,
+        sizesImage,
+        productSizes,
+        discounted,
+    }) => {
         const WINDOW_WIDTH = useWindowWidth();
         const { OPTIONS, STORE_CODE } = STORE_CONFIG;
         const { STORE_TYPE, PLAN_OPTIONS, PRODUCT_IMAGE_OPTIONS } = OPTIONS;
@@ -149,6 +160,7 @@ const CatalogListCard = memo<CatalogCardProps>(
                                         originalPrice={shownModel?.originalPrice}
                                         price={shownModel?.price}
                                         discountPrice={shownModel?.price}
+                                        discounted={discounted}
                                     />
                                 )}
                                 {!PLAN_OPTIONS?.prices && (
@@ -356,7 +368,7 @@ const CatalogListCard = memo<CatalogCardProps>(
                         }}
                     >
                         <Box>
-                            {STORE_TYPE === StoreType.sales && (
+                            {STORE_TYPE === StoreType.sales && discounted && (
                                 <SaleTag price={shownModel?.originalPrice} discountPrice={shownModel?.price} />
                             )}
                         </Box>

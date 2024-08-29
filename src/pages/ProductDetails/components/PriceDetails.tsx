@@ -19,6 +19,7 @@ const PriceDetails = ({ productDetails, isShown, selectedVariant }: Props) => {
                     originalPrice={productDetails.originalPrice}
                     price={selectedVariant?.price}
                     discountPrice={selectedVariant?.price}
+                    discounted={productDetails?.discounted}
                 />
             </DetailsSection>
         );

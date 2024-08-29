@@ -35,6 +35,7 @@ const mapDataArray = (data: Product_Data_Response_Interface[]) => {
             productSku: product?.sku,
             table_size_img: product?.image,
             options: product?.options,
+            discounted: product.variants?.some(el => el?.sku === '0-ORIGINAL_PRICE'),
             variants: product.variants
                 .sort((a, b) => a.sortOrder - b.sortOrder)
                 .filter(el => (STORE_TYPE === StoreType.sales ? el.images.length : true))

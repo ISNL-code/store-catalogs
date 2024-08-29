@@ -173,6 +173,7 @@ const Catalog = () => {
                                     viewMode={viewMode}
                                     sizesImage={product?.table_size_img?.imageUrl}
                                     productSizes={product?.productSizes}
+                                    discounted={product?.discounted}
                                 />
                             ))}
                         </Grid>

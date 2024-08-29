@@ -9,8 +9,15 @@ import PriceDetails from './components/PriceDetails';
 import SizesDetails from './components/SizesDetails';
 import TitleDetails from './components/TitleDetails';
 import Loader from 'components/atoms/Loader/Loader';
+import { ProductDataInterface } from 'types/app_models';
 
-const ModelDetails = ({ productDetails, selectedVariant, setSelectedVariant }) => {
+interface Props {
+    productDetails: ProductDataInterface | null;
+    selectedVariant;
+    setSelectedVariant;
+}
+
+const ModelDetails = ({ productDetails, selectedVariant, setSelectedVariant }: Props) => {
     const { OPTIONS } = STORE_CONFIG;
     const { PLAN_OPTIONS } = OPTIONS;
     const { m } = useDevice();
