@@ -46,14 +46,14 @@ const CatalogPromoAlert = () => {
                         <IconButton
                             aria-label="close"
                             color="inherit"
-                            size="medium"
+                            size={'small'}
                             onClick={() => {
                                 handleOpenDialog(DialogWindowType.REGISTER);
                                 telegramSender({ action: `РЕГИСТРАЦИЯ С ПРОМО` });
                             }}
-                            sx={{ my: sx ? 0 : -1 }}
+                            sx={{ border: '1px solid #fff' }}
                         >
-                            <LoginIcon sx={{ fontSize: 32 }} />
+                            <LoginIcon sx={{ fontSize: sx ? 32 : 18 }} />
                         </IconButton>
                     }
                 >
