@@ -17,6 +17,8 @@ export const LONG_PHRASES = {
             'Please enter your email address. You will receive a link to create a new password via email.',
         an_email_with_a_link_has_been_sent_to_your_email: 'An email with a link has been sent to your email',
         min_purchase: 'Minimum Purchase Requirement',
+        not_required_data_filling: `Filling out the form is optional—we'll reach out to you regardless. However, providing your details would be a great help in speeding up your order.`,
+        size_selection_is_only_available_during_checkout: `In this section, you can see the sizes available for this model. You can easily select the one you need during checkout.`,
     },
     fr: {
         something_went_wrong: 'Un problème est survenu, veuillez réessayer plus tard !',
@@ -34,6 +36,8 @@ export const LONG_PHRASES = {
         wholesales_ordering_limitation_message: `Veuillez noter qu'un achat minimum de 10 unités est requis pour chaque commande dans notre catalogue de gros. Les commandes de moins de 10 unités ne peuvent pas être traitées via ce catalogue. Pour des quantités plus petites, veuillez consulter notre catalogue de détail.`,
         manger_will_contact_message:
             'Notre gestionnaire vous contactera sous peu pour vous fournir des informations détaillées concernant votre achat.',
+        not_required_data_filling: `Remplir le formulaire est facultatif—nous vous contacterons de toute façon. Cependant, fournir vos coordonnées serait un grand atout pour accélérer votre commande.`,
+        size_selection_is_only_available_during_checkout: `Dans cette section, vous pouvez voir les tailles disponibles pour ce modèle. Vous pourrez facilement choisir celle qui vous convient lors de la finalisation de votre commande.`,
     },
     es: {
         something_went_wrong: 'Algo salió mal, ¡intenta de nuevo más tarde!',
@@ -53,6 +57,8 @@ export const LONG_PHRASES = {
             'Tenga en cuenta que se requiere una compra mínima de 10 unidades por cada pedido en nuestro catálogo mayorista. No se pueden procesar pedidos de menos de 10 unidades a través de este catálogo. Para cantidades menores, por favor consulte nuestro catálogo minorista.',
         manger_will_contact_message:
             'Nuestro gerente se pondrá en contacto con usted en breve para proporcionarle información detallada sobre su compra.',
+        not_required_data_filling: `Rellenar el formulario es opcional; nos pondremos en contacto con usted de todos modos. Sin embargo, proporcionar sus datos sería de gran ayuda para agilizar su pedido.`,
+        size_selection_is_only_available_during_checkout: `En esta sección, puede ver los tamaños disponibles para este modelo. Podrá seleccionar fácilmente el que necesita durante el proceso de compra.`,
     },
     ua: {
         something_went_wrong: 'Щось пішло не так, будь ласка, спробуйте пізніше!',
@@ -70,6 +76,8 @@ export const LONG_PHRASES = {
         wholesales_ordering_limitation_message:
             'Зверніть увагу, що мінімальний обсяг замовлення у нашому оптовому каталозі становить 10 одиниць. Замовлення на меншу кількість одиниць не можуть бути оброблені через цей каталог. Для придбання меншої кількості, будь ласка, зверніться до нашого роздрібного каталогу.',
         manger_will_contact_message: `Наш менеджер зв'яжеться з вами найближчим часом, щоб надати детальну інформацію щодо вашої покупки.`,
+        not_required_data_filling: `Заповнювати форму не обов’язково—ми все одно зв'яжемося з вами. Однак надання ваших даних буде великим плюсом для прискорення виконання замовлення.`,
+        size_selection_is_only_available_during_checkout: `У цьому розділі ви бачите доступні для цієї моделі розміри. Вибрати потрібний вам розмір ви зможете легко під час оформлення замовлення.`,
     },
     pl: {
         something_went_wrong: 'Coś poszło nie tak, spróbuj ponownie później!',
@@ -88,6 +96,8 @@ export const LONG_PHRASES = {
             'Prosimy zwrócić uwagę, że minimalne zamówienie w naszym katalogu hurtowym wynosi 10 sztuk. Zamówienia na mniejszą liczbę sztuk nie mogą być realizowane przez ten katalog. Dla mniejszych ilości prosimy odwiedzić nasz katalog detaliczny.',
         manger_will_contact_message:
             'Nasz menedżer skontaktuje się z Państwem wkrótce, aby udzielić szczegółowych informacji dotyczących Państwa zakupu.',
+        not_required_data_filling: `Wypełnienie formularza jest opcjonalne—skontaktujemy się z Tobą w każdym przypadku. Jednak podanie danych znacznie przyspieszy realizację zamówienia.`,
+        size_selection_is_only_available_during_checkout: `W tej sekcji możesz zobaczyć dostępne rozmiary dla tego modelu. Wybrany rozmiar z łatwością wybierzesz przy składaniu zamówienia.`,
     },
     cz: {
         something_went_wrong: 'Něco se pokazilo, zkuste to prosím později!',
@@ -106,6 +116,8 @@ export const LONG_PHRASES = {
             'Upozorňujeme, že minimální objednávka v našem velkoobchodním katalogu je 10 kusů. Objednávky na menší počet kusů nemohou být zpracovány prostřednictvím tohoto katalogu. Pro menší množství navštivte prosím náš maloobchodní katalog.',
         manger_will_contact_message:
             'Náš manažer se s vámi brzy spojí, aby vám poskytl podrobné informace o vašem nákupu.',
+        not_required_data_filling: `Vyplnění formuláře je nepovinné—ozveme se vám tak jako tak. Nicméně poskytnutí vašich údajů by velmi pomohlo urychlit vaši objednávku.`,
+        size_selection_is_only_available_during_checkout: `V této části můžete vidět dostupné velikosti pro tento model. Vybrat tu správnou si můžete snadno při dokončení objednávky.`,
     },
     ru: {
         something_went_wrong: 'Что-то пошло не так, пожалуйста, попробуйте позже!',
@@ -125,6 +137,8 @@ export const LONG_PHRASES = {
         manger_will_contact_message:
             'Наш менеджер свяжется с вами в ближайшее время, чтобы предоставить подробную информацию о вашей покупке.',
         an_email_with_a_link_has_been_sent_to_your_email: 'На ваш адрес электронной почты отправлено письмо со ссылкой',
+        not_required_data_filling: `Заполнение формы не обязательно—мы все равно с вами свяжемся. Однако предоставление ваших данных значительно ускорит выполнение заказа.`,
+        size_selection_is_only_available_during_checkout: `В этом разделе вы видите доступные для этой модели размеры. Выбрать нужный вам размер вы сможете легко при оформлении заказа.`,
     },
     kz: {
         something_went_wrong: 'Бір нәрсе дұрыс болмады, кейінірек қайталап көріңіз!',
@@ -143,5 +157,7 @@ export const LONG_PHRASES = {
             'Назар аударыңыз, біздің бөлшек сауда каталогымыздан тапсырыс беру үшін ең аз дегенде 10 бірлік сатып алу қажет. 10 бірліктен аз тапсырыстар осы каталог арқылы өңделмейді. Аз мөлшерде сатып алу үшін біздің көтерме сауда каталогымызға өтіңіз.',
         manger_will_contact_message:
             'Біздің менеджер жақын арада сізбен байланыса алады, сатып алуға қатысты толық ақпаратты ұсыну үшін.',
+        not_required_data_filling: `Форманы толтыру міндетті емес—біз сізбен бәрібір хабарласамыз. Алайда, мәліметтеріңізді беру тапсырысыңызды жылдамдатуға үлкен көмек болар еді.`,
+        size_selection_is_only_available_during_checkout: `Бұл бөлімде осы үлгіге қолжетімді өлшемдерді көре аласыз. Сізге қажетті өлшемді тапсырыс беру кезінде оңай таңдай аласыз.`,
     },
 };

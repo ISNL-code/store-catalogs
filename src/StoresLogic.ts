@@ -184,34 +184,6 @@ const StoresLogic = ({
         updateViewMode();
     }, [viewMode, mount]); // eslint-disable-line
 
-    // set app user information alerts
-    useEffect(() => {
-        const infoAlert = { ws_info: true };
-        const setAlert = async () => {
-            try {
-                setInfoAlert(infoAlert);
-                await setStorageItem(STORAGE_KEYS?.INFO_ALERT_KEY, JSON.stringify(infoAlert));
-            } catch (error) {
-                console.error('Error setting storage item:', error);
-            }
-        };
-
-        setAlert();
-    }, [setInfoAlert]); // eslint-disable-line
-
-    useEffect(() => {
-        if (mount) return;
-        const updateInfoAlert = async () => {
-            try {
-                await setStorageItem(STORAGE_KEYS?.INFO_ALERT_KEY, JSON.stringify(infoAlert));
-            } catch (error) {
-                console.error('Error setting storage item:', error);
-            }
-        };
-
-        updateInfoAlert();
-    }, [infoAlert, mount]); // eslint-disable-line
-
     useEffect(() => {
         if (!storeDataRes || isStoreLoading) return;
 

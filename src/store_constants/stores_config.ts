@@ -45,6 +45,7 @@ const storeConfig = (): STORE_CONFIG_Interface => {
         TELEGRAM_SENDER: matchingDomain?.telegram_sender || false,
         MANAGERS: matchingDomain?.managers || null,
         OPTIONS: {
+            TELEGRAM_BOT: matchingDomain?.options?.telegram_bot || null,
             PRODUCT_IMAGE_OPTIONS: matchingDomain?.options?.product_image_options || { width: 1, height: 1 },
             MAIN_PRICE_MULTIPLICATION: matchingDomain?.options?.main_price_multiplication || 1,
             SALE_PRICE_MULTIPLICATION: matchingDomain?.options?.sale_price_multiplication || 1,
@@ -79,6 +80,7 @@ const storeConfig = (): STORE_CONFIG_Interface => {
             KEYWORDS: matchingDomain?.web_head_data?.keywords || {},
         },
         USER_OPTIONS: { VIEW_MODE: matchingDomain?.user_options?.view_mode || ViewModeType?.card },
+        ALERTS: matchingDomain?.alerts || [],
     };
 };
 

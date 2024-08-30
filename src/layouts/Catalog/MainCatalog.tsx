@@ -166,7 +166,7 @@ export default function MainCatalog({
                         savedImages,
 
                         //store data
-                        infoAlert,
+
                         store,
                         setInfoAlert,
 

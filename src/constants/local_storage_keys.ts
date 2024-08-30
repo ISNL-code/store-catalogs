@@ -7,5 +7,4 @@ export const STORAGE_KEYS = {
     FAVORITE_KEY: `${STORAGE_KEY}-fav`,
     CART_KEY: `${STORAGE_KEY}-cart`,
     VIEW_MODE_KEY: `${STORAGE_KEY}-v-mode`,
-    INFO_ALERT_KEY: `${STORAGE_KEY}-alert`,
 };

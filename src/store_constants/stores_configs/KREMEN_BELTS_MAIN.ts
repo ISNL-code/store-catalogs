@@ -22,6 +22,7 @@ export const KREMEN_BELTS_MAIN = {
     ],
     managers: null,
     options: {
+        telegram_bot: null,
         product_image_options: { width: 4, height: 3 },
         main_price_multiplication: 1,
         sale_price_multiplication: 1,
@@ -56,4 +57,5 @@ export const KREMEN_BELTS_MAIN = {
         keywords: {},
     },
     user_options: { view_mode: ViewModeType?.card },
+    alerts: [],
 };

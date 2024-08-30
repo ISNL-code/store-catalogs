@@ -28,6 +28,12 @@ export const ALBERTO_BINI_EU_WS = {
     ],
     managers: null,
     options: {
+        telegram_bot: [
+            {
+                token: '6904212535:AAGvPEjkJds0aayd-oD1YVMbhLKeKt72yaE',
+                chatId: '480774886',
+            },
+        ],
         product_image_options: { width: 6, height: 9 },
         main_price_multiplication: 1,
         sale_price_multiplication: 1,
@@ -71,4 +77,5 @@ export const ALBERTO_BINI_EU_WS = {
         },
     },
     user_options: { view_mode: ViewModeType?.card },
+    alerts: [],
 };

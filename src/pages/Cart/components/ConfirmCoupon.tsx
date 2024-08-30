@@ -148,10 +148,10 @@ const ConfirmCoupon = ({
     return (
         <CardItem>
             <Box p={2} sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
-                <Grid xs={12} sx={{ display: 'flex', alignItems: 'center', gap: 0.25, mb: 2 }}>
+                <Grid mb={2} xs={12}>
                     <Typography variant="h3">{string?.delivery_information}</Typography>
-                    <Typography variant="h6" sx={{ color: 'red', textTransform: 'lowercase' }}>
-                        ({string?.not_required})
+                    <Typography variant="h6" sx={{ color: 'red' }}>
+                        ({string?.not_required_data_filling})
                     </Typography>
                 </Grid>
 
