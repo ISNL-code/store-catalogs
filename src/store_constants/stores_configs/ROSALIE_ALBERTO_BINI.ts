@@ -31,7 +31,7 @@ export const ROSALIE_ALBERTO_BINI = {
     options: {
         telegram_bot: [
             {
-                token: '6904212535:AAGvPEjkJds0aayd-oD1YVMbhLKeKt72yaE',
+                token: '7115237316:AAFgbrVadLWMkPt3TEdmravEa37jO9N3WSQ',
                 chatId: '480774886',
             },
         ],
