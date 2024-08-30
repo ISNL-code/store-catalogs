@@ -43,18 +43,20 @@ const CatalogPromoAlert = () => {
                         background: Color?.SUCCESS,
                     }}
                     action={
-                        <IconButton
-                            aria-label="close"
-                            color="inherit"
-                            size={'small'}
-                            onClick={() => {
-                                handleOpenDialog(DialogWindowType.REGISTER);
-                                telegramSender({ action: `РЕГИСТРАЦИЯ С ПРОМО` });
-                            }}
-                            sx={{ border: '1px solid #fff' }}
-                        >
-                            <LoginIcon sx={{ fontSize: sx ? 32 : 18 }} />
-                        </IconButton>
+                        <Box sx={{ height: '100%', display: 'flex', alignItems: 'center' }}>
+                            <IconButton
+                                aria-label="close"
+                                color="inherit"
+                                size={'small'}
+                                onClick={() => {
+                                    handleOpenDialog(DialogWindowType.REGISTER);
+                                    telegramSender({ action: `РЕГИСТРАЦИЯ С ПРОМО` });
+                                }}
+                                sx={{ border: '1px solid #fff' }}
+                            >
+                                <LoginIcon sx={{ fontSize: sx ? 24 : 18 }} />
+                            </IconButton>
+                        </Box>
                     }
                 >
                     {string?.registration_promo}
