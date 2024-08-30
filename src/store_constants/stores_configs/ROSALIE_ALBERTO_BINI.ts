@@ -4,7 +4,7 @@ export const ROSALIE_ALBERTO_BINI = {
     storage_key: 'ab_ua-md',
     active: true, // Поле которое запускает магазин true - работает false - остановлен / по тех. причина
     required_registration: false,
-    URL: ['https://albertobini-md.com'],
+    URL: ['https://albertobini-md.netlify.app'],
     web_lang: 'ru', // html lang
     store_name: 'ALBERTO BINI ROSALIE',
     store_code: 'ALBERTO_BINI',
