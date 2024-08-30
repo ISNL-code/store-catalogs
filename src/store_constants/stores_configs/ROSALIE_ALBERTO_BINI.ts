@@ -1,30 +1,30 @@
-import { AppAlertNameType, AppAlertSubjectType, StoreType, ViewModeType } from 'store_constants/types';
+import { StoreType, ViewModeType } from 'store_constants/types';
 
-export const RETAIL_ALBERTO_BINI = {
-    storage_key: 'ab_ua-rt_my',
+export const ROSALIE_ALBERTO_BINI = {
+    storage_key: 'ab_ua-md',
     active: true, // Поле которое запускает магазин true - работает false - остановлен / по тех. причина
     required_registration: false,
-    URL: ['https://albertobini-brandeurope.com'],
-    web_lang: 'uk', // html lang
-    store_name: 'АБ RETAIL_MY',
+    URL: ['https://albertobini-md.com'],
+    web_lang: 'ru', // html lang
+    store_name: 'ALBERTO BINI ROSALIE',
     store_code: 'ALBERTO_BINI',
     base_url: 'https://kremen-belts.com/api',
-    app_lang: 'ua',
+    app_lang: 'ru',
     supported_countries: [{ code: 'UA', country: 'ukraine' }],
     telegram_sender: true,
     links: [],
     managers: [
         {
-            firstName: 'Менеджер з продажiв',
+            firstName: 'Менеджер',
             lastName: '',
             emailAddress: '',
             options: { manager: true },
             contacts: {
-                emailAddress: '',
-                phone: '+380668652127',
+                emailAddress: 'rodica.rada23@gmail.com',
+                phone: '+373-60447897',
                 viber: '',
                 whatsapp: '',
-                telegram: 'SNBusinessApp',
+                telegram: '',
             },
         },
     ],
@@ -38,13 +38,13 @@ export const RETAIL_ALBERTO_BINI = {
         product_image_options: { width: 6, height: 9 },
         main_price_multiplication: 1,
         sale_price_multiplication: 1,
-        currency_multiplication: 40,
-        retail_price_multiplication: 1.9,
+        currency_multiplication: 20,
+        retail_price_multiplication: 2.2,
         min_items_to_buy: 1,
         store_type: StoreType?.sales,
         home_page_active: true,
         informative_page_active: true,
-        custom_currency: '₴',
+        custom_currency: 'MDL',
         custom_logo: true,
         plan_options: {
             prices: true,
@@ -78,7 +78,5 @@ export const RETAIL_ALBERTO_BINI = {
         },
     },
     user_options: { view_mode: ViewModeType?.card },
-    alerts: [
-        { name: AppAlertNameType?.REGISTRATION, description: '', subject: AppAlertSubjectType?.PROMO, active: true },
-    ],
+    alerts: [],
 };
