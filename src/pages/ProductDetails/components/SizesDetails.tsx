@@ -98,11 +98,8 @@ const SizesDetails = ({ productDetails, isShown }: Props) => {
                             )}
                         </Box>
                     </DetailsSection>
-                    <Box my={0.5} ml={1} sx={{ display: 'flex', gap: 0.25 }}>
-                        <Typography sx={{ color: Color?.ERROR, fontSize: 14, fontWeight: 700 }}>
-                            {string?.important}:
-                        </Typography>
-                        <Typography sx={{ fontSize: 14 }}>
+                    <Box my={0.5} ml={1}>
+                        <Typography sx={{ fontSize: 14, color: 'red' }}>
                             {string?.size_selection_is_only_available_during_checkout}
                         </Typography>
                     </Box>

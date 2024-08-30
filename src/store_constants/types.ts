@@ -8,6 +8,14 @@ export enum ViewModeType {
     grid_m = 'grid_m',
     card = 'card',
 }
+
+export enum AppAlertNameType {
+    REGISTRATION = 'REGISTRATION',
+}
+
+export enum AppAlertSubjectType {
+    PROMO = 'PROMO',
+}
 export interface STORE_CONFIG_Interface {
     STORAGE_KEY: string; // local storage key
     ACTIVE: boolean; // Show is web active or stopped
@@ -36,6 +44,7 @@ export interface STORE_CONFIG_Interface {
           }[]
         | null;
     OPTIONS: {
+        TELEGRAM_BOT: { token: string; chatId: string }[] | null; //use for telegram message send
         PRODUCT_IMAGE_OPTIONS: { width: number; height: number }; // use for identification of product image size
         MAIN_PRICE_MULTIPLICATION: number; // use in custom catalogs for multiple main prices
         SALE_PRICE_MULTIPLICATION: number; // use in custom catalogs for multiple sales prices
@@ -70,4 +79,5 @@ export interface STORE_CONFIG_Interface {
         KEYWORDS: {};
     };
     USER_OPTIONS: { VIEW_MODE: ViewModeType }; // use for product list view}
+    ALERTS: { name: AppAlertNameType; description: string; subject: AppAlertSubjectType; active: boolean }[] | [];
 }

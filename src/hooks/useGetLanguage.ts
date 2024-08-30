@@ -5,6 +5,7 @@ import { COUNTRIES } from 'dataBase/translations/countries';
 import { LONG_PHRASES } from 'dataBase/translations/long_phrases';
 import { SUPPORTED_APP_LANG } from 'dataBase/translations/supported_app_lang';
 import { APP_INFO } from 'dataBase/translations/app_information';
+import { ADDITIONAL } from 'dataBase/translations/additional';
 
 interface Props {
     lang: string;
@@ -32,6 +33,7 @@ export const useGetLanguage = ({ lang, storeName }: Props): LangResInterface => 
                 ...HOME_PAGE?.en,
                 ...COUNTRIES?.en,
                 ...APP_INFO?.en,
+                ...ADDITIONAL.en,
                 click_here_to_ask_for_wholesale_pricing_information:
                     'Click here to ask for wholesale pricing information',
                 get_pricing: 'Get pricing',
@@ -204,7 +206,7 @@ export const useGetLanguage = ({ lang, storeName }: Props): LangResInterface => 
                 save_delivery_info: 'Save delivery info',
                 available_sizes: 'Available sizes',
                 important: 'Important',
-                size_selection_is_only_available_during_checkout: 'Size selection is only available during checkout.',
+
                 copied_to_clipboard: 'Copied to clipboard',
                 security_check: 'Security check',
             },
@@ -218,6 +220,7 @@ export const useGetLanguage = ({ lang, storeName }: Props): LangResInterface => 
                 ...HOME_PAGE?.fr,
                 ...COUNTRIES?.fr,
                 ...APP_INFO?.fr,
+                ...ADDITIONAL.fr,
                 click_here_to_ask_for_wholesale_pricing_information:
                     'Cliquez ici pour demander des informations sur les prix de gros',
                 get_pricing: 'Obtenir les prix',
@@ -388,8 +391,7 @@ export const useGetLanguage = ({ lang, storeName }: Props): LangResInterface => 
                 save_delivery_info: 'Enregistrer les informations de livraison',
                 available_sizes: 'Tailles disponibles',
                 important: 'Important',
-                size_selection_is_only_available_during_checkout:
-                    'La sélection des tailles est disponible uniquement lors du paiement.',
+
                 copied_to_clipboard: 'Copié dans le presse-papiers',
                 security_check: 'Vérification de sécurité',
             },
@@ -403,6 +405,7 @@ export const useGetLanguage = ({ lang, storeName }: Props): LangResInterface => 
                 ...INFORMATION?.es,
                 ...HOME_PAGE?.es,
                 ...APP_INFO?.es,
+                ...ADDITIONAL.es,
                 click_here_to_ask_for_wholesale_pricing_information:
                     'Haga clic aquí para solicitar información sobre precios al por mayor',
                 get_pricing: 'Obtener precios',
@@ -574,8 +577,7 @@ export const useGetLanguage = ({ lang, storeName }: Props): LangResInterface => 
                 save_delivery_info: 'Guardar información de entrega',
                 available_sizes: 'Tamaños disponibles',
                 important: 'Importante',
-                size_selection_is_only_available_during_checkout:
-                    'La selección de tamaños solo está disponible durante el pago.',
+
                 copied_to_clipboard: 'Copiado al portapapeles',
                 security_check: 'Verificación de seguridad',
             },
@@ -589,6 +591,7 @@ export const useGetLanguage = ({ lang, storeName }: Props): LangResInterface => 
                 ...INFORMATION?.ua,
                 ...HOME_PAGE?.ua,
                 ...APP_INFO?.ua,
+                ...ADDITIONAL.ua,
                 click_here_to_ask_for_wholesale_pricing_information:
                     'Клiкнiть тут, щоб запитати інформацію про оптові ціни',
                 get_pricing: 'Отримати ціни',
@@ -760,8 +763,7 @@ export const useGetLanguage = ({ lang, storeName }: Props): LangResInterface => 
                 save_delivery_info: 'Зберегти інформацію про доставку',
                 available_sizes: 'Доступні розміри',
                 important: 'Важливо',
-                size_selection_is_only_available_during_checkout:
-                    'Вибір розміру доступний лише під час оформлення замовлення.',
+
                 copied_to_clipboard: 'Скопійовано до буферу обміну',
                 security_check: 'Перевірка безпеки',
             },
@@ -775,6 +777,7 @@ export const useGetLanguage = ({ lang, storeName }: Props): LangResInterface => 
                 ...INFORMATION?.pl,
                 ...HOME_PAGE?.pl,
                 ...APP_INFO?.pl,
+                ...ADDITIONAL.pl,
                 click_here_to_ask_for_wholesale_pricing_information:
                     'Kliknij tutaj, aby zapytać o informacje dotyczące cen hurtowych',
                 get_pricing: 'Zdobądź ceny',
@@ -946,8 +949,7 @@ export const useGetLanguage = ({ lang, storeName }: Props): LangResInterface => 
                 save_delivery_info: 'Zapisz informacje o dostawie',
                 available_sizes: 'Dostępne rozmiary',
                 important: 'Ważne',
-                size_selection_is_only_available_during_checkout:
-                    'Wybór rozmiaru jest możliwy tylko podczas finalizacji zamówienia.',
+
                 copied_to_clipboard: 'Skopiowane do schowka',
                 security_check: 'Kontrola bezpieczeństwa',
             },
@@ -961,6 +963,7 @@ export const useGetLanguage = ({ lang, storeName }: Props): LangResInterface => 
                 ...INFORMATION?.cz,
                 ...HOME_PAGE?.cz,
                 ...APP_INFO?.cz,
+                ...ADDITIONAL.cz,
                 click_here_to_ask_for_wholesale_pricing_information:
                     'Klikněte zde pro požádání o informace o velkoobchodních cenách',
                 get_pricing: 'Získat ceny',
@@ -1132,7 +1135,7 @@ export const useGetLanguage = ({ lang, storeName }: Props): LangResInterface => 
                 save_delivery_info: 'Uložit informace o doručení',
                 available_sizes: 'Dostupné velikosti',
                 important: 'Důležité',
-                size_selection_is_only_available_during_checkout: 'Výběr velikosti je možný pouze při placení.',
+
                 copied_to_clipboard: 'Zkopírováno do schránky',
                 security_check: 'Bezpečnostní kontrola',
             },
@@ -1146,6 +1149,7 @@ export const useGetLanguage = ({ lang, storeName }: Props): LangResInterface => 
                 ...INFORMATION?.ru,
                 ...HOME_PAGE?.ru,
                 ...APP_INFO?.ru,
+                ...ADDITIONAL.ru,
                 click_here_to_ask_for_wholesale_pricing_information:
                     'Нажмите здесь, чтобы запросить информацию о оптовых ценах',
                 get_pricing: 'Получить цены',
@@ -1317,8 +1321,7 @@ export const useGetLanguage = ({ lang, storeName }: Props): LangResInterface => 
                 save_delivery_info: 'Сохранить информацию о доставке',
                 available_sizes: 'Доступные размеры',
                 important: 'Важно',
-                size_selection_is_only_available_during_checkout:
-                    'Выбор размера доступен только при оформлении заказа.',
+
                 copied_to_clipboard: 'Скопировано в буфер обмена',
                 security_check: 'Проверка безопасности',
             },
@@ -1332,6 +1335,7 @@ export const useGetLanguage = ({ lang, storeName }: Props): LangResInterface => 
                 ...INFORMATION?.kz,
                 ...HOME_PAGE?.kz,
                 ...APP_INFO?.kz,
+                ...ADDITIONAL.kz,
                 click_here_to_ask_for_wholesale_pricing_information:
                     'Опттық бағалар туралы ақпарат алу үшін мұнда басыңыз',
                 get_pricing: 'Бағаларды алу',
@@ -1504,7 +1508,7 @@ export const useGetLanguage = ({ lang, storeName }: Props): LangResInterface => 
                 save_delivery_info: 'Жеткізу туралы ақпаратты сақтау',
                 available_sizes: 'Қолжетімді өлшемдер',
                 important: 'Маңызды',
-                size_selection_is_only_available_during_checkout: 'Өлшемді тек тапсырыс беру кезінде таңдауға болады.',
+
                 copied_to_clipboard: 'Буферге көшірілді',
                 security_check: 'Қауіпсіздік тексеру',
             },

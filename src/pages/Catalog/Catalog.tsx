@@ -1,4 +1,4 @@
-import { Alert, Box, Collapse, IconButton } from '@mui/material';
+import { Box } from '@mui/material';
 import Loader from 'components/atoms/Loader/Loader';
 import { useEffect, useState } from 'react';
 import { useOutletContext } from 'react-router-dom';
@@ -15,7 +15,6 @@ import PaginationButton from 'components/atoms/Buttons/PaginationButton';
 import SideLink from 'components/atoms/Buttons/SideLink';
 import ViewModeButton from 'components/molecules/ToolsButtons/ViewModeButton';
 import CatalogListCard from 'components/organisms/Cards/CatalogListCard';
-import CloseIcon from '@mui/icons-material/Close';
 import { useDevice } from 'hooks/useDevice';
 import { STORE_CONFIG } from 'store_constants/stores_config';
 import { ViewModeType } from 'store_constants/types';
@@ -26,10 +25,12 @@ import InformationButton from 'components/atoms/Buttons/InformationButton';
 import MessageButton from 'components/atoms/Buttons/MessageButton';
 import { DialogWindowType } from 'layouts/hooks/useFormsApp';
 import { ProductDataInterface } from 'types/app_models';
+import CatalogPromoAlert from 'components/molecules/Alerts/CatalogPromo';
+import WholeSalesAlert from 'components/molecules/Alerts/WholeSales';
 
 const Catalog = () => {
     const { OPTIONS, STORE_CODE, SIDE_LINKS } = STORE_CONFIG;
-    const { PLAN_OPTIONS, MIN_ITEMS_TO_BUY } = OPTIONS;
+    const { PLAN_OPTIONS } = OPTIONS;
     const { sx } = useDevice();
     const mount = useIsMount();
     const {
@@ -45,14 +46,10 @@ const Catalog = () => {
         currentProductsPage,
         totalProductsPages,
         footerMenuHeight,
-        string,
         viewMode,
-        infoAlert,
-        setInfoAlert,
         handleOpenDialog,
     }: CatalogContextInterface = useOutletContext();
     const [showTopBtn, setShowTopBtn] = useState(false);
-    const [open, setOpen] = useState(infoAlert?.ws_info);
 
     const getGridSpacing = () => {
         let spacing;
@@ -134,33 +131,8 @@ const Catalog = () => {
             {productsList?.length ? (
                 <Box sx={{ minHeight: scrollPosition || '100%' }}>
                     <TransitionBox dependency={mount} time={sx ? 0 : 1}>
-                        {MIN_ITEMS_TO_BUY > 1 && (
-                            <Collapse in={open}>
-                                <Box mb={2}>
-                                    <Alert
-                                        variant="standard"
-                                        severity="info"
-                                        color="warning"
-                                        sx={{ fontSize: sx ? 14 : 18 }}
-                                        action={
-                                            <IconButton
-                                                aria-label="close"
-                                                color="inherit"
-                                                size="small"
-                                                onClick={() => {
-                                                    setInfoAlert({ ...infoAlert, ws_info: false });
-                                                    setOpen(false);
-                                                }}
-                                            >
-                                                <CloseIcon fontSize="inherit" />
-                                            </IconButton>
-                                        }
-                                    >
-                                        {string?.wholesales_ordering_limitation_message}
-                                    </Alert>
-                                </Box>
-                            </Collapse>
-                        )}
+                        <WholeSalesAlert />
+                        {true && <CatalogPromoAlert />}
                         <Grid className="CatalogList" container spacing={getGridSpacing()?.spacing}>
                             {productsList.map((product: ProductDataInterface, idx) => (
                                 <CatalogListCard

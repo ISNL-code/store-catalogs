@@ -1,4 +1,4 @@
-import { StoreType, ViewModeType } from 'store_constants/types';
+import { AppAlertNameType, AppAlertSubjectType, StoreType, ViewModeType } from 'store_constants/types';
 
 export const ALBERTO_BINI_SALES = {
     storage_key: 'ab_ua-wss',
@@ -15,6 +15,12 @@ export const ALBERTO_BINI_SALES = {
     links: [],
     managers: null,
     options: {
+        telegram_bot: [
+            {
+                token: '6904212535:AAGvPEjkJds0aayd-oD1YVMbhLKeKt72yaE',
+                chatId: '480774886',
+            },
+        ],
         product_image_options: { width: 6, height: 9 },
         main_price_multiplication: 1,
         sale_price_multiplication: 1,
@@ -58,4 +64,7 @@ export const ALBERTO_BINI_SALES = {
         },
     },
     user_options: { view_mode: ViewModeType?.card },
+    alerts: [
+        { name: AppAlertNameType?.REGISTRATION, description: '', subject: AppAlertSubjectType?.PROMO, active: true },
+    ],
 };
