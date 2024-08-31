@@ -29,7 +29,7 @@ export const ALBERTO_BINI_KZ_WS = {
             },
             {
                 token: '7501048516:AAFGRXP3nw7z0UWr4t-Dvz_oFt_98CFXX2k',
-                chatId: '480774886',
+                chatId: '6221489796',
             },
         ],
         product_image_options: { width: 6, height: 9 },
