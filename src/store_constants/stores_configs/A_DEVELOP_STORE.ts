@@ -9,12 +9,12 @@ import { ROSALIE_ALBERTO_BINI } from './ROSALIE_ALBERTO_BINI'; // eslint-disable
 
 export const DEVELOP_STORE = {
     ...ALBERTO_BINI_MAIN,
-    ...ALBERTO_BINI_EU_WS,
-    ...ALBERTO_BINI_KZ_WS,
-    ...ALBERTO_BINI_OUTLET,
+    // ...ALBERTO_BINI_EU_WS,
+    // ...ALBERTO_BINI_KZ_WS,
+    // ...ALBERTO_BINI_OUTLET,
     // ...ALBERTO_BINI_SALES,
-    ...YULIA_TRUBA_MAIN,
-    ...RETAIL_ALBERTO_BINI,
+    // ...YULIA_TRUBA_MAIN,
+    // ...RETAIL_ALBERTO_BINI,
     // ...ROSALIE_ALBERTO_BINI,
     URL: ['http://localhost:3000', 'http://localhost:3001'],
     // telegram_sender: !window?.location?.origin.includes('localhost'),

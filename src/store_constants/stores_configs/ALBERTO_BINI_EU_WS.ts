@@ -33,6 +33,10 @@ export const ALBERTO_BINI_EU_WS = {
                 token: '6904212535:AAGvPEjkJds0aayd-oD1YVMbhLKeKt72yaE',
                 chatId: '480774886',
             },
+            {
+                token: '7501048516:AAFGRXP3nw7z0UWr4t-Dvz_oFt_98CFXX2k',
+                chatId: '480774886',
+            },
         ],
         product_image_options: { width: 6, height: 9 },
         main_price_multiplication: 1,
