@@ -34,10 +34,6 @@ export const RETAIL_ALBERTO_BINI = {
                 token: '7115237316:AAFgbrVadLWMkPt3TEdmravEa37jO9N3WSQ',
                 chatId: '480774886',
             },
-            {
-                token: '7115237316:AAFgbrVadLWMkPt3TEdmravEa37jO9N3WSQ',
-                chatId: '480774886',
-            },
         ],
         product_image_options: { width: 6, height: 9 },
         main_price_multiplication: 1,
