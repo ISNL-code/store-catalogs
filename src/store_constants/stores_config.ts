@@ -28,6 +28,7 @@ const storeConfig = (): STORE_CONFIG_Interface => {
     return {
         STORAGE_KEY: matchingDomain?.storage_key || 'sn_def',
         ACTIVE: matchingDomain?.active || false,
+        STATUS: matchingDomain?.status || null,
         REQUIRED_REGISTRATION: matchingDomain?.required_registration || false,
         STORE_NAME: matchingDomain?.store_name || '',
         STORE_CODE: matchingDomain?.store_code || '',

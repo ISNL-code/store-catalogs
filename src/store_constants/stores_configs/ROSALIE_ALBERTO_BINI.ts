@@ -3,6 +3,7 @@ import { StoreType, ViewModeType } from 'store_constants/types';
 export const ROSALIE_ALBERTO_BINI = {
     storage_key: 'ab_ua-md',
     active: true, // Поле которое запускает магазин true - работает false - остановлен / по тех. причина
+    status: null,
     required_registration: false,
     URL: ['https://albertobini-md.netlify.app'],
     web_lang: 'ru', // html lang

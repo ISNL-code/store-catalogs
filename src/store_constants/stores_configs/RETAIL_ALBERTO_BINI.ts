@@ -3,11 +3,13 @@ import { AppAlertNameType, AppAlertSubjectType, StoreType, ViewModeType } from '
 export const RETAIL_ALBERTO_BINI = {
     storage_key: 'ab_ua-rt_my',
     active: true, // Поле которое запускает магазин true - работает false - остановлен / по тех. причина
+    status: null,
     required_registration: false,
     URL: ['https://albertobini-brandeurope.com'],
     web_lang: 'uk', // html lang
     store_name: 'АБ RETAIL_MY',
-    store_code: 'ALBERTO_BINI',
+    store_code: 'albertobini_retailer',
+    // store_code: 'ALBERTO_BINI',
     base_url: 'https://kremen-belts.com/api',
     app_lang: 'ua',
     supported_countries: [{ code: 'UA', country: 'ukraine' }],
@@ -38,8 +40,8 @@ export const RETAIL_ALBERTO_BINI = {
         product_image_options: { width: 6, height: 9 },
         main_price_multiplication: 1,
         sale_price_multiplication: 1,
-        currency_multiplication: 40,
-        retail_price_multiplication: 1.9,
+        currency_multiplication: 1,
+        retail_price_multiplication: 1,
         min_items_to_buy: 1,
         store_type: StoreType?.sales,
         home_page_active: true,
