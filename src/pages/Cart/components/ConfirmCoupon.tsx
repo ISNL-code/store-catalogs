@@ -57,6 +57,11 @@ const ConfirmCoupon = ({
 
     const handleConfirmOrder = () => {
         if (!auth) {
+            telegramSender({
+                action: `ПРОБУЕТ ЗАКАЗАТЬ БЕЗ РЕГИСТРАЦИИ  !$!$!  ${Number(finalPrice).toFixed(2)} PROMO_CODE:${
+                    promoCode || 'НЕ ЗАПОЛНИЛ ПРОМО'
+                }`,
+            });
             handleOpenDialog(DialogWindowType?.LOGIN);
             return;
         }
@@ -113,7 +118,9 @@ const ConfirmCoupon = ({
             })
                 .then(() => {
                     telegramSender({
-                        action: `ЗАКАЗ  !$!$!  ${Number(finalPrice).toFixed(2)} PROMO_CODE:${promoCode}`,
+                        action: `ЗАКАЗ  !$!$!  ${Number(finalPrice).toFixed(2)} PROMO_CODE:${
+                            promoCode || 'НЕ ЗАПОЛНИЛ ПРОМО'
+                        }`,
                     });
 
                     cart?.handleClearCartItems([...new Set(orderData?.productsList.map(item => item?.productSku))]);
