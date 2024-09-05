@@ -14,7 +14,34 @@ export const ALBERTO_BINI_SALES = {
     supported_countries: [{ code: 'UA', country: 'ukraine' }],
     telegram_sender: true,
     links: [],
-    managers: null,
+    managers: [
+        {
+            firstName: 'Natalya',
+            lastName: '',
+            emailAddress: 'natalya9899@gmail.com',
+            options: { manager: true },
+            contacts: {
+                emailAddress: 'natalya9899@gmail.com',
+                phone: '+380961234858',
+                viber: '+380961234858',
+                whatsapp: '+380961234858',
+                telegram: '',
+            },
+        },
+        {
+            firstName: 'Manager 2',
+            lastName: '',
+            emailAddress: '',
+            options: { manager: true },
+            contacts: {
+                emailAddress: '',
+                phone: '+380983080085',
+                viber: '+380983080085',
+                whatsapp: '+380983080085',
+                telegram: 'Albertobiniopt',
+            },
+        },
+    ],
     options: {
         telegram_bot: [
             {
