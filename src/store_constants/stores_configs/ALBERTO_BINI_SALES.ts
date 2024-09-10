@@ -2,7 +2,7 @@ import { StoreType, ViewModeType } from 'store_constants/types';
 
 export const ALBERTO_BINI_SALES = {
     storage_key: 'ab_ua-wss',
-    active: true,
+    active: false,
     status: null,
     required_registration: false,
     URL: ['https://alberto-bini-sales.netlify.app'],
@@ -47,10 +47,6 @@ export const ALBERTO_BINI_SALES = {
             {
                 token: '6904212535:AAGvPEjkJds0aayd-oD1YVMbhLKeKt72yaE',
                 chatId: '480774886',
-            },
-            {
-                token: '7501048516:AAFGRXP3nw7z0UWr4t-Dvz_oFt_98CFXX2k',
-                chatId: '6221489796',
             },
         ],
         product_image_options: { width: 6, height: 9 },
