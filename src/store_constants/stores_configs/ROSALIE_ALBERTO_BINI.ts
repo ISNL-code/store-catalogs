@@ -11,7 +11,7 @@ export const ROSALIE_ALBERTO_BINI = {
     store_code: 'ALBERTO_BINI',
     base_url: 'https://kremen-belts.com/api',
     app_lang: 'ru',
-    supported_countries: [{ code: 'UA', country: 'ukraine' }],
+    supported_countries: null,
     telegram_sender: true,
     links: [],
     managers: [

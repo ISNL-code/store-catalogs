@@ -1,4 +1,4 @@
-import { AppAlertNameType, AppAlertSubjectType, StoreType, ViewModeType } from 'store_constants/types';
+import { StoreType, ViewModeType } from 'store_constants/types';
 
 export const RETAIL_ALBERTO_BINI = {
     storage_key: 'ab_ua-rt_my',
@@ -12,7 +12,7 @@ export const RETAIL_ALBERTO_BINI = {
     // store_code: 'ALBERTO_BINI',
     base_url: 'https://kremen-belts.com/api',
     app_lang: 'ua',
-    supported_countries: [{ code: 'UA', country: 'ukraine' }],
+    supported_countries: null,
     telegram_sender: true,
     links: [],
     managers: [
@@ -80,7 +80,5 @@ export const RETAIL_ALBERTO_BINI = {
         },
     },
     user_options: { view_mode: ViewModeType?.card },
-    alerts: [
-        { name: AppAlertNameType?.REGISTRATION, description: '', subject: AppAlertSubjectType?.PROMO, active: true },
-    ],
+    alerts: [],
 };

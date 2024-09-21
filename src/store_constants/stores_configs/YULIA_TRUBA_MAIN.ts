@@ -11,7 +11,7 @@ export const YULIA_TRUBA_MAIN = {
     store_code: 'albertobini_retailer',
     base_url: 'https://kremen-belts.com/api',
     app_lang: 'ua',
-    supported_countries: [{ code: 'UA', country: 'ukraine' }],
+    supported_countries: null,
     telegram_sender: true,
     links: [],
     managers: [
