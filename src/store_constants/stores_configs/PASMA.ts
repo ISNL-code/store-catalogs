@@ -7,7 +7,7 @@ export const PASMA = {
     required_registration: false,
     URL: ['https://passma-design.netlify.app'],
     web_lang: 'uk', // html lang
-    store_name: 'Passma Design',
+    store_name: 'Pasma Design',
     store_code: 'pasma_design',
     // store_code: 'ALBERTO_BINI',
     base_url: 'https://kremen-belts.com/api',
