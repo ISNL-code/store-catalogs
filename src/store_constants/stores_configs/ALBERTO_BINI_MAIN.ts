@@ -2,9 +2,8 @@ import { StoreType, ViewModeType } from 'store_constants/types';
 
 export const ALBERTO_BINI_MAIN = {
     storage_key: 'ab_ua-ws',
-    active: true, // Поле которое запускает магазин true - работает false - остановлен / по тех. причина
-    // status: 'Технiчне обслуговування', // показывает пока что в телеграме статус или причину почему каталог не работает
-    status: null,
+    active: false, // Поле которое запускает магазин true - работает false - остановлен / по тех. причина
+    status: 'Технiчне обслуговування', // показывает пока что в телеграме статус или причину почему каталог не работает
     required_registration: false,
     URL: ['https://alberto-bini.netlify.app'],
     web_lang: 'uk', // html lang
@@ -48,6 +47,10 @@ export const ALBERTO_BINI_MAIN = {
             {
                 token: '6904212535:AAGvPEjkJds0aayd-oD1YVMbhLKeKt72yaE',
                 chatId: '480774886',
+            },
+            {
+                token: '7501048516:AAFGRXP3nw7z0UWr4t-Dvz_oFt_98CFXX2k',
+                chatId: '6221489796',
             },
         ],
         product_image_options: { width: 6, height: 9 },
