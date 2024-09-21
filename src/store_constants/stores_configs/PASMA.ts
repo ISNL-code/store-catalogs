@@ -5,7 +5,7 @@ export const PASMA = {
     active: true, // Поле которое запускает магазин true - работает false - остановлен / по тех. причина
     status: null,
     required_registration: false,
-    URL: ['https://passma-design.netlify.app'],
+    URL: ['https://pasma-design.netlify.app'],
     web_lang: 'uk', // html lang
     store_name: 'Pasma Design',
     store_code: 'pasma_design',
