@@ -8,7 +8,7 @@ export const YULIA_TRUBA_MAIN = {
     URL: ['https://alberto-bini-store.netlify.app'],
     web_lang: 'uk', // html lang
     store_name: 'ЮЛЯ ТРУБА',
-    store_code: 'ALBERTO_BINI',
+    store_code: 'albertobini_retailer',
     base_url: 'https://kremen-belts.com/api',
     app_lang: 'ua',
     supported_countries: [{ code: 'UA', country: 'ukraine' }],
