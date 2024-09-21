@@ -22,7 +22,6 @@ import { SHARE_PRODUCT_PATH, STORE_ROUTE } from 'router/routes';
 import { CatalogContextInterface } from 'types/outlet_context_models';
 import { map_currency_symbol } from 'utils/mappers/currency_symbol';
 import { EmptyImage } from 'components/atoms/Media/EmptyImage';
-import { telegramSender } from 'utils/telegramSender';
 import ImageComponent from 'components/atoms/Media/Image';
 import { DialogWindowType } from 'layouts/hooks/useFormsApp';
 import StraightenIcon from '@mui/icons-material/Straighten';
@@ -93,9 +92,6 @@ const CatalogListCard = memo<CatalogCardProps>(
                         cursor: 'pointer',
                     }}
                     onClick={() => {
-                        telegramSender({
-                            action: `GO TO MODEL DETAILS  ${window.location.origin}/store/${STORE_CODE}/product/${shownModel?.productId}/model/${shownModel?.variantSku}`,
-                        });
                         navigate(STORE_ROUTE?.product(STORE_CODE, productId, shownModel?.variantSku));
                     }}
                 >

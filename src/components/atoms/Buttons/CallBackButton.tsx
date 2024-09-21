@@ -3,7 +3,6 @@ import PhoneCallbackIcon from '@mui/icons-material/PhoneCallback';
 import { useNavigate, useOutletContext } from 'react-router-dom';
 import { useDevice } from 'hooks/useDevice';
 import { Color, Colors } from 'constants/colors';
-import { telegramSender } from 'utils/telegramSender';
 
 const CallBackButton = ({ animated = false, path }) => {
     const { string }: any = useOutletContext();
@@ -30,7 +29,6 @@ const CallBackButton = ({ animated = false, path }) => {
                 cursor: 'pointer',
             }}
             onClick={() => {
-                telegramSender({ action: `GO TO CONTACTS` });
                 navigate(path);
             }}
         >
