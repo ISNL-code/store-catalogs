@@ -29,19 +29,23 @@ const CardSkuLabel = ({ sku }: Props) => {
                 flexShrink: 0,
                 maxWidth: 80,
                 cursor: 'copy',
+                textOverflow: 'ellipsis',
+                overflow: 'hidden',
             }}
         >
             <StyledTooltip title={`${string?.vendor_code}: ${sku}`} position="left">
                 <Typography
+                    px={1}
                     sx={{
                         color: 'gray',
                         whiteSpace: 'nowrap',
                         overflow: 'hidden',
                         textOverflow: 'ellipsis',
                         fontSize: 11,
+                        maxWidth: 75,
                     }}
                 >
-                    {sku}
+                    {`${sku}`} {/* Длинный текст */}
                 </Typography>
             </StyledTooltip>
         </Box>
