@@ -1,7 +1,5 @@
 import { ALBERTO_BINI_MAIN } from './ALBERTO_BINI_MAIN'; // eslint-disable-line
 import { ALBERTO_BINI_EU_WS } from './ALBERTO_BINI_EU_WS'; // eslint-disable-line
-import { ALBERTO_BINI_KZ_WS } from './ALBERTO_BINI_KZ_WS'; // eslint-disable-line
-import { ALBERTO_BINI_OUTLET } from './ALBERTO_BINI_OUTLET'; // eslint-disable-line
 import { ALBERTO_BINI_SALES } from './ALBERTO_BINI_SALES'; // eslint-disable-line
 import { YULIA_TRUBA_MAIN } from './YULIA_TRUBA_MAIN'; // eslint-disable-line
 import { RETAIL_ALBERTO_BINI } from './RETAIL_ALBERTO_BINI'; // eslint-disable-line
