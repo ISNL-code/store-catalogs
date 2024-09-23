@@ -1,4 +1,4 @@
-import { AppAlertNameType, AppAlertSubjectType, StoreType, ViewModeType } from 'store_constants/types';
+import { StoreType, ViewModeType } from 'store_constants/types';
 
 export const ALBERTO_BINI_SALES = {
     storage_key: 'ab_ua-wss',
@@ -65,6 +65,6 @@ export const ALBERTO_BINI_SALES = {
     },
     user_options: { view_mode: ViewModeType?.card },
     alerts: [
-        { name: AppAlertNameType?.REGISTRATION, description: '', subject: AppAlertSubjectType?.PROMO, active: true },
+        // { name: AppAlertNameType?.REGISTRATION, description: '', subject: AppAlertSubjectType?.PROMO, active: true },
     ],
 };

@@ -1,11 +1,5 @@
-import { ALBERTO_BINI_EU_OUTLET } from './stores_configs/ALBERTO_BINI_EU_OUTLET';
-import { ALBERTO_BINI_EU_RETAIL } from './stores_configs/ALBERTO_BINI_EU_RETAIL';
 import { ALBERTO_BINI_EU_WS } from './stores_configs/ALBERTO_BINI_EU_WS';
-import { ALBERTO_BINI_KZ_OUTLET } from './stores_configs/ALBERTO_BINI_KZ_OUTLET';
-import { ALBERTO_BINI_KZ_RETAIL } from './stores_configs/ALBERTO_BINI_KZ_RETAIL';
-import { ALBERTO_BINI_KZ_WS } from './stores_configs/ALBERTO_BINI_KZ_WS';
 import { ALBERTO_BINI_MAIN } from './stores_configs/ALBERTO_BINI_MAIN';
-import { ALBERTO_BINI_OUTLET } from './stores_configs/ALBERTO_BINI_OUTLET';
 import { ALBERTO_BINI_SALES } from './stores_configs/ALBERTO_BINI_SALES';
 import { DEVELOP_STORE } from './stores_configs/A_DEVELOP_STORE';
 import { KREMEN_BELTS_MAIN } from './stores_configs/KREMEN_BELTS_MAIN';
@@ -14,14 +8,8 @@ import { StoreType, STORE_CONFIG_Interface, ViewModeType } from './types';
 
 const stores = [
     DEVELOP_STORE,
-    ALBERTO_BINI_OUTLET,
     ALBERTO_BINI_MAIN,
-    ALBERTO_BINI_KZ_WS,
     ALBERTO_BINI_EU_WS,
-    ALBERTO_BINI_EU_RETAIL,
-    ALBERTO_BINI_EU_OUTLET,
-    ALBERTO_BINI_KZ_RETAIL,
-    ALBERTO_BINI_KZ_OUTLET,
     KREMEN_BELTS_MAIN,
     ALBERTO_BINI_SALES,
     KREMEN_BELTS_SALES,
