@@ -2,8 +2,8 @@ import { StoreType, ViewModeType } from 'store_constants/types';
 
 export const ALBERTO_BINI_EU_WS = {
     storage_key: 'ab_eu-ws',
-    active: true, // Поле которое запускает магазин true - работает false - остановлен / по тех. причина
-    status: 'Технiчне обслуговування', // показывает пока что в телеграме статус или причину почему каталог не работает
+    active: false, // Поле которое запускает магазин true - работает false - остановлен / по тех. причина
+    status: 'Payment await', // показывает пока что в телеграме статус или причину почему каталог не работает
     required_registration: false,
     URL: ['https://albertobini-brand.netlify.app'],
     web_lang: 'en', // html lang
