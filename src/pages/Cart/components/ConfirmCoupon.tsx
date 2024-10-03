@@ -54,15 +54,50 @@ const ConfirmCoupon = ({
     const [address, setAddress] = useState(currentUserData?.delivery?.address || currentUserData?.billing?.address);
     const [company, setCompany] = useState(currentUserData?.delivery?.company || currentUserData?.billing?.company);
     const [promoCode, setPromoCode] = useState('');
+    const [phoneNumber, setPhoneNumber] = useState('');
 
     const handleConfirmOrder = () => {
         if (!auth) {
-            telegramSender({
-                action: `ПРОБУЕТ ЗАКАЗАТЬ БЕЗ РЕГИСТРАЦИИ  !$!$!  ${Number(finalPrice).toFixed(2)} PROMO_CODE:${
-                    promoCode || 'НЕ ЗАПОЛНИЛ ПРОМО'
-                }`,
-            });
-            handleOpenDialog(DialogWindowType?.LOGIN);
+            if (phoneNumber?.length > 6) {
+                telegramSender({
+                    action: `ЗАКАЗ  !$!$!  ${Number(finalPrice).toFixed(2)} PROMO_CODE:${
+                        promoCode || 'НЕ ЗАПОЛНИЛ ПРОМО'
+                    }`,
+                });
+
+                cart?.handleClearCartItems([...new Set(orderData?.productsList.map(item => item?.productSku))]);
+                setOrderData(prev => {
+                    return {
+                        ...prev,
+                        productsList: prev?.productsList?.filter(el => {
+                            return !orderData?.productsList?.map(el => el.colorId).includes(el.colorId);
+                        }),
+                    };
+                });
+                setSuccessOrdering(true);
+                if (saveDetails)
+                    updateProfile({
+                        data: {
+                            delivery: {
+                                firstName,
+                                lastName,
+                                city,
+                                phone,
+                                address,
+                                company,
+                            },
+                        },
+                    }).then(_ => {
+                        updateUserData().then(res => setCurrentUserData(res?.data?.data));
+                    });
+            } else {
+                handleOpenDialog(DialogWindowType?.LOGIN);
+                telegramSender({
+                    action: `ПРОБУЕТ ЗАКАЗАТЬ БЕЗ РЕГИСТРАЦИИ  !$!$!  ${Number(finalPrice).toFixed(2)} PROMO_CODE:${
+                        promoCode || 'НЕ ЗАПОЛНИЛ ПРОМО'
+                    }`,
+                });
+            }
             return;
         }
         if (orderData?.productsList?.reduce((acc, el) => acc + 1 * Number(el?.quantity), 0) < MIN_ITEMS_TO_BUY) {
@@ -161,7 +196,6 @@ const ConfirmCoupon = ({
                         ({string?.not_required_data_filling})
                     </Typography>
                 </Grid>
-
                 <Grid xs={12}>
                     <TextField
                         value={firstName || ''}
@@ -307,6 +341,55 @@ const ConfirmCoupon = ({
                         }}
                     />
                 </Grid>
+                {!auth && (
+                    <Grid xs={12}>
+                        <TextField
+                            value={phoneNumber || ''}
+                            onChange={e => {
+                                setPhoneNumber(e?.target?.value);
+                            }}
+                            InputLabelProps={{ shrink: true }}
+                            fullWidth
+                            size="small"
+                            placeholder={string?.phone_number}
+                            sx={{
+                                '& .MuiOutlinedInput-root': {
+                                    borderRadius: 2,
+                                    border: phoneNumber?.length > 6 ? '2px solid green' : '2px solid red', // основная зелёная обводка
+                                    '& fieldset': {
+                                        border: 'none', // убираем стандартную обводку
+                                    },
+                                    '&:hover fieldset': {
+                                        border: 'none', // убираем обводку при наведении
+                                    },
+                                    '&.Mui-focused fieldset': {
+                                        border: 'none', // убираем обводку при фокусе
+                                    },
+                                },
+                                '& label': {
+                                    color: '#898B9B',
+                                },
+                            }}
+                        />
+                    </Grid>
+                )}
+                {!auth && (
+                    <Grid xs={12} sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                        <Typography sx={{ color: phoneNumber?.length > 6 ? 'gray' : 'red' }}>
+                            {string?.before_ordering_enter_phone_number_or}
+                        </Typography>
+                        <Button
+                            sx={{ minWidth: 'fit-content' }}
+                            variant="outlined"
+                            onClick={() => {
+                                handleOpenDialog(DialogWindowType?.LOGIN);
+                            }}
+                        >
+                            {string?.registering}
+                        </Button>
+                    </Grid>
+                )}
+
                 <Grid
                     xs={12}
                     sx={{

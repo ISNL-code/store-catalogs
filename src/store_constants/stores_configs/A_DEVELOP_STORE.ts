@@ -13,7 +13,7 @@ export const DEVELOP_STORE = {
     // ...ALBERTO_BINI_OUTLET,
     // ...ALBERTO_BINI_SALES,
     // ...YULIA_TRUBA_MAIN,
-    // ...RETAIL_ALBERTO_BINI,
+    ...RETAIL_ALBERTO_BINI,
     // ...PASMA,
     // ...ROSALIE_ALBERTO_BINI,
     URL: ['http://localhost:3000', 'http://localhost:3001'],

@@ -1,6 +1,9 @@
 export const LONG_PHRASES = {
     en: {
+        before_ordering_enter_phone_number_or: 'Before ordering, please enter your phone number or',
+        registering: 'Register',
         something_went_wrong: 'Something went wrong, please try again',
+
         question_form_message:
             'If you have any questions or difficulties, please do not hesitate to contact us. We will make every effort to respond to you as quickly as possible.',
         call_back_messageA:
@@ -21,6 +24,8 @@ export const LONG_PHRASES = {
         size_selection_is_only_available_during_checkout: `In this section, you can see the sizes available for this model. You can easily select the one you need during checkout.`,
     },
     fr: {
+        before_ordering_enter_phone_number_or: 'Avant de commander, veuillez entrer votre numéro de téléphone ou',
+        registering: 'inscrire',
         something_went_wrong: 'Un problème est survenu, veuillez réessayer plus tard !',
         question_form_message: `Si vous avez des questions ou des difficultés, n'hésitez pas à nous contacter. Nous ferons tout notre possible pour vous répondre dans les plus brefs délais.`,
         call_back_messageA:
@@ -40,6 +45,9 @@ export const LONG_PHRASES = {
         size_selection_is_only_available_during_checkout: `Dans cette section, vous pouvez voir les tailles disponibles pour ce modèle. Vous pourrez facilement choisir celle qui vous convient lors de la finalisation de votre commande.`,
     },
     es: {
+        before_ordering_enter_phone_number_or: 'Antes de ordenar, por favor ingrese su número de teléfono o',
+        registering: 'Registrarse',
+
         something_went_wrong: 'Algo salió mal, ¡intenta de nuevo más tarde!',
         question_form_message:
             'Si tienes alguna pregunta o dificultad, no dudes en contactarnos. Haremos todo lo posible para responder lo más rápido posible.',
@@ -61,6 +69,10 @@ export const LONG_PHRASES = {
         size_selection_is_only_available_during_checkout: `En esta sección, puede ver los tamaños disponibles para este modelo. Podrá seleccionar fácilmente el que necesita durante el proceso de compra.`,
     },
     ua: {
+        before_ordering_enter_phone_number_or:
+            'Перед оформленням замовлення, будь ласка, введіть свій номер телефону або',
+        registering: 'Зареєструйтеся',
+
         something_went_wrong: 'Щось пішло не так, будь ласка, спробуйте пізніше!',
         question_form_message:
             'Якщо у вас виникли питання або труднощі, будь ласка, не соромтеся звертатися до нас. Ми докладемо всіх зусиль, щоб відповісти вам якомога швидше.',
@@ -80,6 +92,9 @@ export const LONG_PHRASES = {
         size_selection_is_only_available_during_checkout: `У цьому розділі ви бачите доступні для цієї моделі розміри. Вибрати потрібний вам розмір ви зможете легко під час оформлення замовлення.`,
     },
     pl: {
+        before_ordering_enter_phone_number_or: 'Przed zamówieniem proszę podać swój numer telefonu lub',
+        registering: 'Zarejestruj się',
+
         something_went_wrong: 'Coś poszło nie tak, spróbuj ponownie później!',
         question_form_message:
             'Jeśli masz jakiekolwiek pytania lub problemy, prosimy o kontakt. Dołożymy wszelkich starań, aby odpowiedzieć jak najszybciej.',
@@ -100,6 +115,9 @@ export const LONG_PHRASES = {
         size_selection_is_only_available_during_checkout: `W tej sekcji możesz zobaczyć dostępne rozmiary dla tego modelu. Wybrany rozmiar z łatwością wybierzesz przy składaniu zamówienia.`,
     },
     cz: {
+        before_ordering_enter_phone_number_or: 'Před objednáním zadejte své telefonní číslo nebo',
+        registering: 'Zaregistrovat se',
+
         something_went_wrong: 'Něco se pokazilo, zkuste to prosím později!',
         question_form_message:
             'Pokud máte jakékoli dotazy nebo potíže, neváhejte nás kontaktovat. Uděláme vše pro to, abychom vám odpověděli co nejdříve.',
@@ -120,6 +138,9 @@ export const LONG_PHRASES = {
         size_selection_is_only_available_during_checkout: `V této části můžete vidět dostupné velikosti pro tento model. Vybrat tu správnou si můžete snadno při dokončení objednávky.`,
     },
     ru: {
+        before_ordering_enter_phone_number_or: 'Перед оформлением заказа введите номер телефона или',
+        registering: 'Зарегистрироваться',
+
         something_went_wrong: 'Что-то пошло не так, пожалуйста, попробуйте позже!',
         question_form_message:
             'Если у вас есть вопросы или трудности, не стесняйтесь обращаться к нам. Мы сделаем все возможное, чтобы ответить вам как можно скорее.',
@@ -141,6 +162,9 @@ export const LONG_PHRASES = {
         size_selection_is_only_available_during_checkout: `В этом разделе вы видите доступные для этой модели размеры. Выбрать нужный вам размер вы сможете легко при оформлении заказа.`,
     },
     kz: {
+        before_ordering_enter_phone_number_or: 'Тапсырыс бермес бұрын телефон нөміріңізді енгізіңіз немесе',
+        registering: 'Тіркелу',
+
         something_went_wrong: 'Бір нәрсе дұрыс болмады, кейінірек қайталап көріңіз!',
         question_form_message:
             'Егер сізде сұрақтар немесе қиындықтар туындаса, бізге хабарласудан тартынбаңыз. Біз сізге мүмкіндігінше тез жауап беруге барлық күш-жігерімізді саламыз.',
