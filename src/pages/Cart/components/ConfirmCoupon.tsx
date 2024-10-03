@@ -62,7 +62,9 @@ const ConfirmCoupon = ({
                 telegramSender({
                     action: `ЗАКАЗ  !$!$!  ${Number(finalPrice).toFixed(2)} PROMO_CODE:${
                         promoCode || 'НЕ ЗАПОЛНИЛ ПРОМО'
-                    }`,
+                    } telephone:${phoneNumber} articules:${orderData.productsList
+                        .map(item => item?.productSku)
+                        .join(',')}`,
                 });
 
                 cart?.handleClearCartItems([...new Set(orderData?.productsList.map(item => item?.productSku))]);
