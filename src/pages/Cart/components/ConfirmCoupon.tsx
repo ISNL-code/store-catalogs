@@ -95,7 +95,7 @@ const ConfirmCoupon = ({
                 telegramSender({
                     action: `ПРОБУЕТ ЗАКАЗАТЬ БЕЗ РЕГИСТРАЦИИ  !$!$!  ${Number(finalPrice).toFixed(2)} PROMO_CODE:${
                         promoCode || 'НЕ ЗАПОЛНИЛ ПРОМО'
-                    }`,
+                    } telephone:${phoneNumber}`,
                 });
             }
             return;
