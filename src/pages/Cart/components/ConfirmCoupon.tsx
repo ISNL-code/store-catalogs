@@ -61,21 +61,21 @@ const ConfirmCoupon = ({
             if (phoneNumber?.length > 6) {
                 telegramSender({
                     action: `
-                    ЗАКАЗ БЕЗ РЕГИСТРАЦИИ
+                    ЗАКАЗ БЕЗ РЕГИСТРАЦИИ (С уважением от вашего раба)
                     
-                    !$!$!  ${Number(finalPrice).toFixed(2)}
-                    PROMO_CODE: ${promoCode || 'НЕ ЗАПОЛНИЛ ПРОМО'} 
-                    telephone: ${phoneNumber}
-                    articules: ${orderData.productsList.map(item => item?.productSku).join(', ')}
+                !$!$!  ${Number(finalPrice).toFixed(2)}
+                PROMO_CODE: ${promoCode || 'НЕ ЗАПОЛНИЛ ПРОМО'} 
+                telephone: ${phoneNumber}
+                articules: ${orderData.productsList.map(item => item?.productSku).join(', ')}
 
-                    ДОСТАВКА:
+                ДОСТАВКА:
 
-                    ИМЯ: ${firstName || 'НЕ ЗАПОЛНИЛ '}
-                    ФАМИЛИЯ: ${lastName || 'НЕ ЗАПОЛНИЛ '}
-                    НОМЕР ПОЛУЧАТЕЛЯ: ${phone || 'НЕ ЗАПОЛНИЛ '} 
-                    ГОРОД: ${city || 'НЕ ЗАПОЛНИЛ '} 
-                    АДРЕСС ДОСТАВКИ (НП): ${address || 'НЕ ЗАПОЛНИЛ '} 
-                    КОМПАНИЯ: ${company || 'НЕ ЗАПОЛНИЛ '}`,
+                ИМЯ: ${firstName || 'НЕ ЗАПОЛНИЛ '}
+                ФАМИЛИЯ: ${lastName || 'НЕ ЗАПОЛНИЛ '}
+                НОМЕР ПОЛУЧАТЕЛЯ: ${phone || 'НЕ ЗАПОЛНИЛ '} 
+                ГОРОД: ${city || 'НЕ ЗАПОЛНИЛ '} 
+                АДРЕСС ДОСТАВКИ (НП): ${address || 'НЕ ЗАПОЛНИЛ '} 
+                КОМПАНИЯ: ${company || 'НЕ ЗАПОЛНИЛ '}`,
                 });
 
                 cart?.handleClearCartItems([...new Set(orderData?.productsList.map(item => item?.productSku))]);
