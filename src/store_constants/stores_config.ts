@@ -19,8 +19,8 @@ const stores = [
     RETAIL_ALBERTO_BINI,
     ROSALIE_ALBERTO_BINI,
     PASMA,
-    ALBERTO_BINI_KZ_EUR_WS,
     ALBERTO_BINI_KZ_WS,
+    ALBERTO_BINI_KZ_EUR_WS,
 ];
 
 const storeConfig = (): STORE_CONFIG_Interface => {
