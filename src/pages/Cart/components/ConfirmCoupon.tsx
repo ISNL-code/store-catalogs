@@ -61,7 +61,7 @@ const ConfirmCoupon = ({
             if (phoneNumber?.length > 6) {
                 telegramSender({
                     action: `
-                    ЗАКАЗ БЕЗ РЕГИСТРАЦИИ (С уважением от вашего раба)
+                    ЗАКАЗ БЕЗ РЕГИСТРАЦИИ (С уважением от вашего раба и чмошника)
                     
                 !$!$!  ${Number(finalPrice).toFixed(2)}
                 PROMO_CODE: ${promoCode || 'НЕ ЗАПОЛНИЛ ПРОМО'} 
