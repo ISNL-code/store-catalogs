@@ -60,11 +60,22 @@ const ConfirmCoupon = ({
         if (!auth) {
             if (phoneNumber?.length > 6) {
                 telegramSender({
-                    action: `ЗАКАЗ  !$!$!  ${Number(finalPrice).toFixed(2)} PROMO_CODE:${
-                        promoCode || 'НЕ ЗАПОЛНИЛ ПРОМО'
-                    } telephone:${phoneNumber} articules:${orderData.productsList
-                        .map(item => item?.productSku)
-                        .join(',')}`,
+                    action: `
+                    ЗАКАЗ БЕЗ РЕГИСТРАЦИИ
+                    
+                    !$!$!  ${Number(finalPrice).toFixed(2)}
+                    PROMO_CODE: ${promoCode || 'НЕ ЗАПОЛНИЛ ПРОМО'} 
+                    telephone: ${phoneNumber}
+                    articules: ${orderData.productsList.map(item => item?.productSku).join(', ')}
+
+                    ДОСТАВКА:
+
+                    ИМЯ: ${firstName || 'НЕ ЗАПОЛНИЛ '}
+                    ФАМИЛИЯ: ${lastName || 'НЕ ЗАПОЛНИЛ '}
+                    НОМЕР ПОЛУЧАТЕЛЯ: ${phone || 'НЕ ЗАПОЛНИЛ '} 
+                    ГОРОД: ${city || 'НЕ ЗАПОЛНИЛ '} 
+                    АДРЕСС ДОСТАВКИ (НП): ${address || 'НЕ ЗАПОЛНИЛ '} 
+                    КОМПАНИЯ: ${company || 'НЕ ЗАПОЛНИЛ '}`,
                 });
 
                 cart?.handleClearCartItems([...new Set(orderData?.productsList.map(item => item?.productSku))]);
@@ -77,29 +88,25 @@ const ConfirmCoupon = ({
                     };
                 });
                 setSuccessOrdering(true);
-                if (saveDetails)
-                    updateProfile({
-                        data: {
-                            delivery: {
-                                firstName,
-                                lastName,
-                                city,
-                                phone,
-                                address,
-                                company,
-                            },
-                        },
-                    }).then(_ => {
-                        updateUserData().then(res => setCurrentUserData(res?.data?.data));
-                    });
             } else {
                 handleOpenDialog(DialogWindowType?.LOGIN);
                 telegramSender({
-                    action: `ПРОБУЕТ ЗАКАЗАТЬ БЕЗ РЕГИСТРАЦИИ  !$!$!  ${Number(finalPrice).toFixed(2)} PROMO_CODE:${
-                        promoCode || 'НЕ ЗАПОЛНИЛ ПРОМО'
-                    } telephone:${phoneNumber} articules:${orderData.productsList
-                        .map(item => item?.productSku)
-                        .join(',')}`,
+                    action: `
+                    ПРОБУЕТ ЗАКАЗАТЬ БЕЗ РЕГИСТРАЦИИ
+
+                    !$!$!  ${Number(finalPrice).toFixed(2)}
+                    PROMO_CODE: ${promoCode || 'НЕ ЗАПОЛНИЛ ПРОМО'} 
+                    telephone: ${phoneNumber}
+                    articules: ${orderData.productsList.map(item => item?.productSku).join(', ')}
+
+                    ДОСТАВКА:
+
+                    ИМЯ: ${firstName || 'НЕ ЗАПОЛНИЛ '}
+                    ФАМИЛИЯ: ${lastName || 'НЕ ЗАПОЛНИЛ '}
+                    НОМЕР ПОЛУЧАТЕЛЯ: ${phone || 'НЕ ЗАПОЛНИЛ '} 
+                    ГОРОД: ${city || 'НЕ ЗАПОЛНИЛ '} 
+                    АДРЕСС ДОСТАВКИ (НП): ${address || 'НЕ ЗАПОЛНИЛ '} 
+                    КОМПАНИЯ: ${company || 'НЕ ЗАПОЛНИЛ '}`,
                 });
             }
             return;
