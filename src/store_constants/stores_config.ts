@@ -1,4 +1,5 @@
 import { ALBERTO_BINI_EU_WS } from './stores_configs/ALBERTO_BINI_EU_WS';
+import { ALBERTO_BINI_KZ_EUR_WS } from './stores_configs/ALBERTO_BINI_KZ_EUR_WS';
 import { ALBERTO_BINI_MAIN } from './stores_configs/ALBERTO_BINI_MAIN';
 import { ALBERTO_BINI_SALES } from './stores_configs/ALBERTO_BINI_SALES';
 import { DEVELOP_STORE } from './stores_configs/A_DEVELOP_STORE';
@@ -17,6 +18,7 @@ const stores = [
     RETAIL_ALBERTO_BINI,
     ROSALIE_ALBERTO_BINI,
     PASMA,
+    ALBERTO_BINI_KZ_EUR_WS,
 ];
 
 const storeConfig = (): STORE_CONFIG_Interface => {
