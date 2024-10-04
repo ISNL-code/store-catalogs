@@ -10,7 +10,7 @@ const PAGE_500 = () => {
         if (STATUS) telegramSender({ action: STATUS });
     }, []); //eslint-disable-line
 
-    return <ErrorComponent code="500" title="SERVER ERROR" withLink={false} />;
+    return <ErrorComponent code="69" title="SERVER ERROR" withLink={false} />;
 };
 
 export default PAGE_500;
