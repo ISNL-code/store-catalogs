@@ -6,7 +6,6 @@ import { ALBERTO_BINI_SALES } from './stores_configs/ALBERTO_BINI_SALES';
 import { DEVELOP_STORE } from './stores_configs/A_DEVELOP_STORE';
 import { PASMA } from './stores_configs/PASMA';
 import { RETAIL_ALBERTO_BINI } from './stores_configs/RETAIL_ALBERTO_BINI';
-import { ROSALIE_ALBERTO_BINI } from './stores_configs/ROSALIE_ALBERTO_BINI';
 import { YULIA_TRUBA_MAIN } from './stores_configs/YULIA_TRUBA_MAIN';
 import { StoreType, STORE_CONFIG_Interface, ViewModeType } from './types';
 
@@ -17,7 +16,6 @@ const stores = [
     ALBERTO_BINI_SALES,
     YULIA_TRUBA_MAIN,
     RETAIL_ALBERTO_BINI,
-    ROSALIE_ALBERTO_BINI,
     PASMA,
     ALBERTO_BINI_KZ_WS,
     ALBERTO_BINI_KZ_EUR_WS,

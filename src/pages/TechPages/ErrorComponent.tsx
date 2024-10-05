@@ -11,9 +11,10 @@ interface Props {
     code: string;
     title: string;
     withLink: boolean;
+    status?: string | null;
 }
 
-const ErrorComponent = ({ code, title, withLink }: Props) => {
+const ErrorComponent = ({ code, title, withLink, status }: Props) => {
     const navigate = useNavigate();
     const { sx } = useDevice();
     const { STORE_NAME } = STORE_CONFIG;
@@ -79,6 +80,21 @@ const ErrorComponent = ({ code, title, withLink }: Props) => {
                         }}
                     >
                         {title}
+                    </Typography>
+                </Box>
+                <Box mt={1} sx={{ display: 'flex', color: Color?.ERROR, gap: 1 }}>
+                    <Typography
+                        sx={{
+                            fontSize: 18,
+                            backgroundColor: Colors?.WHITE,
+                            fontWeight: 700,
+                            lineHeight: 1,
+                            m: 0,
+                            color: Colors?.RED_300,
+                            gap: 1,
+                        }}
+                    >
+                        {status}
                     </Typography>
                 </Box>
                 {withLink && (

@@ -3,7 +3,6 @@ import { ALBERTO_BINI_EU_WS } from './ALBERTO_BINI_EU_WS'; // eslint-disable-lin
 import { ALBERTO_BINI_SALES } from './ALBERTO_BINI_SALES'; // eslint-disable-line
 import { YULIA_TRUBA_MAIN } from './YULIA_TRUBA_MAIN'; // eslint-disable-line
 import { RETAIL_ALBERTO_BINI } from './RETAIL_ALBERTO_BINI'; // eslint-disable-line
-import { ROSALIE_ALBERTO_BINI } from './ROSALIE_ALBERTO_BINI'; // eslint-disable-line
 import { PASMA } from './PASMA'; // eslint-disable-line
 import { ALBERTO_BINI_KZ_WS } from './ALBERTO_BINI_KZ_WS'; // eslint-disable-line
 import { ALBERTO_BINI_KZ_EUR_WS } from './ALBERTO_BINI_KZ_EUR_WS'; // eslint-disable-line
@@ -17,7 +16,6 @@ export const DEVELOP_STORE = {
     // ...YULIA_TRUBA_MAIN,
     ...RETAIL_ALBERTO_BINI,
     // ...PASMA,
-    // ...ROSALIE_ALBERTO_BINI,
     ...ALBERTO_BINI_KZ_WS,
     ...ALBERTO_BINI_KZ_EUR_WS,
     URL: ['http://localhost:3000', 'http://localhost:3001'],

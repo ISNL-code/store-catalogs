@@ -3,7 +3,7 @@ import { StoreType, ViewModeType } from 'store_constants/types';
 export const ALBERTO_BINI_KZ_WS = {
     storage_key: 'ab_kz-ws',
     active: false, // Поле которое запускает магазин true - работает false - остановлен / по тех. причина
-    status: 'Очiкування оплати', // показывает пока что в телеграме статус или причину почему каталог не работает
+    status: 'Увага! Цей сайт припинив своє існування.', // показывает пока что в телеграме статус или причину почему каталог не работает
     required_registration: false,
     URL: ['https://albertobini-kz.com'],
     web_lang: 'kz', // html lang
@@ -34,10 +34,10 @@ export const ALBERTO_BINI_KZ_WS = {
                 token: '6904212535:AAGvPEjkJds0aayd-oD1YVMbhLKeKt72yaE',
                 chatId: '480774886',
             },
-            {
-                token: '7501048516:AAFGRXP3nw7z0UWr4t-Dvz_oFt_98CFXX2k',
-                chatId: '6221489796',
-            },
+            // {
+            //     token: '7501048516:AAFGRXP3nw7z0UWr4t-Dvz_oFt_98CFXX2k',
+            //     chatId: '6221489796',
+            // },
         ],
         product_image_options: { width: 6, height: 9 },
         main_price_multiplication: 1,
