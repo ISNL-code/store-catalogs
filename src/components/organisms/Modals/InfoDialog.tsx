@@ -191,7 +191,7 @@ const InfoDialog = ({
                                                     textOverflow: 'ellipsis',
                                                 }}
                                             >
-                                                Sales Nest E-Catalogs
+                                                Cocktail E-Catalogs
                                             </span>
                                         </IconButton>
                                     )}

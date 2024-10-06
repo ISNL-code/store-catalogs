@@ -106,7 +106,7 @@ const ProfileMenu: React.FC<ProfileMenuProps> = ({
         {
             onClick: () => window?.open('https://salesnestonlinecatalog.com'),
             icon: <ShopIcon />,
-            name: 'Sales Nest E-Catalogs',
+            name: 'Cocktail E-Catalogs',
             visible: true,
         },
         {
