@@ -10,7 +10,7 @@ export default function WelcomePage({ handleRedirect }) {
 
     const redirectToStartPath = () => {
         const startPath = handleRedirect();
-        navigate(startPath);
+        // navigate(startPath);
     };
 
     setTimeout(redirectToStartPath, 3000);
@@ -64,7 +64,7 @@ export default function WelcomePage({ handleRedirect }) {
                     </Box>
                     <Box>
                         <Typography sx={{ fontSize: sx ? 30 : 48, fontWeight: 700, lineHeight: 1 }}>
-                            SALES NEST
+                            COCKTAIL
                         </Typography>
                         <Typography color="secondary" sx={{ fontSize: sx ? 34 : 54, fontWeight: 700, lineHeight: 1 }}>
                             CATALOGS

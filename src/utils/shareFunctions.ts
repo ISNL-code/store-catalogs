@@ -22,7 +22,7 @@ export const shareOnViber = (url: string) => {
 };
 
 export const shareOnEmail = (url: string) => {
-    const subject = 'Sales Nest Catalogs Link';
+    const subject = 'Cocktail Catalogs Link';
     const body = `I thought you might find this interesting:\n\n${url}`;
     const mailtoUrl = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     openInNewWindow(mailtoUrl);
