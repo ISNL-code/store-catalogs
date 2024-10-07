@@ -53,14 +53,14 @@ export default function WelcomePage({ handleRedirect }) {
                             borderRadius: '50%',
                             overflow: 'hidden',
                             border: '1px solid #fff',
-                            width: sx ? 70 : 100,
-                            height: sx ? 70 : 100,
+                            width: sx ? 80 : 100,
+                            height: sx ? 80 : 100,
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'center',
                         }}
                     >
-                        <img src={require('assets/img/logo.webp')} style={{ height: sx ? 70 : 100 }} alt="img" />
+                        <img src={require('assets/img/logo.webp')} style={{ height: sx ? 80 : 100 }} alt="img" />
                     </Box>
                     <Box
                         sx={{
@@ -80,7 +80,7 @@ export default function WelcomePage({ handleRedirect }) {
                             <Typography
                                 sx={{
                                     fontFamily: 'Young Serif',
-                                    fontSize: sx ? 23 : 40,
+                                    fontSize: sx ? 32 : 48,
                                     fontWeight: 600,
                                     // color: Color?.PRIMARY,
                                     textShadow: '#0000006a 0 0 2px',
@@ -92,7 +92,7 @@ export default function WelcomePage({ handleRedirect }) {
                             <Typography
                                 sx={{
                                     fontFamily: 'Young Serif',
-                                    fontSize: sx ? 23 : 40,
+                                    fontSize: sx ? 32 : 48,
                                     fontWeight: 500,
                                     color: '#268eca',
                                     textShadow: '#043f61 0 0 2.25px',
@@ -103,7 +103,7 @@ export default function WelcomePage({ handleRedirect }) {
                             <Typography
                                 sx={{
                                     fontFamily: 'Young Serif',
-                                    fontSize: sx ? 23 : 40,
+                                    fontSize: sx ? 32 : 48,
                                     fontWeight: 500,
                                     color: '#2c4974',
                                     textShadow: '#043f61 0 0 2.25px',
@@ -114,7 +114,7 @@ export default function WelcomePage({ handleRedirect }) {
                             <Typography
                                 sx={{
                                     fontFamily: 'Young Serif',
-                                    fontSize: sx ? 23 : 40,
+                                    fontSize: sx ? 32 : 48,
                                     fontWeight: 500,
                                     // color: '#2c4974',
                                     textShadow: '#043f61 0 0 2.25px',
@@ -125,7 +125,7 @@ export default function WelcomePage({ handleRedirect }) {
                             <Typography
                                 sx={{
                                     fontFamily: 'Young Serif',
-                                    fontSize: sx ? 23 : 40,
+                                    fontSize: sx ? 32 : 48,
                                     fontWeight: 500,
                                     color: '#f5cb56',
                                     textShadow: '#000000 0 0 3.25px',
@@ -136,7 +136,7 @@ export default function WelcomePage({ handleRedirect }) {
                             <Typography
                                 sx={{
                                     fontFamily: 'Young Serif',
-                                    fontSize: sx ? 23 : 40,
+                                    fontSize: sx ? 32 : 48,
                                     fontWeight: 500,
                                     // color: '#2c4974',
                                     textShadow: '#043f61 0 0 2.25px',
@@ -147,7 +147,7 @@ export default function WelcomePage({ handleRedirect }) {
                             <Typography
                                 sx={{
                                     fontFamily: 'Young Serif',
-                                    fontSize: sx ? 23 : 40,
+                                    fontSize: sx ? 32 : 48,
                                     fontWeight: 500,
                                     color: '#2c4974',
                                     textShadow: '#043f61 0 0 2.25px',
@@ -158,7 +158,7 @@ export default function WelcomePage({ handleRedirect }) {
                             <Typography
                                 sx={{
                                     fontFamily: 'Young Serif',
-                                    fontSize: sx ? 23 : 40,
+                                    fontSize: sx ? 32 : 48,
                                     fontWeight: 500,
                                     color: '#2c4974',
                                     textShadow: '#043f61 0 0 2.25px',
@@ -196,13 +196,11 @@ export default function WelcomePage({ handleRedirect }) {
                         >
                             <Typography
                                 sx={{
-                                    ml: 1,
                                     fontFamily: 'Young Serif',
-                                    fontSize: sx ? 23 : 40,
+                                    fontSize: sx ? 32 : 46,
                                     fontWeight: 600,
                                     // color: Color?.PRIMARY,
                                     textShadow: '#0000006a 0 0 2px',
-                                    mr: 0.1,
                                 }}
                             >
                                 C
@@ -210,7 +208,7 @@ export default function WelcomePage({ handleRedirect }) {
                             <Typography
                                 sx={{
                                     fontFamily: 'Young Serif',
-                                    fontSize: sx ? 23 : 40,
+                                    fontSize: sx ? 32 : 46,
                                     fontWeight: 500,
                                     color: '#2c4974',
                                     textShadow: '#043f61 0 0 2.25px',
@@ -221,7 +219,7 @@ export default function WelcomePage({ handleRedirect }) {
                             <Typography
                                 sx={{
                                     fontFamily: 'Young Serif',
-                                    fontSize: sx ? 23 : 40,
+                                    fontSize: sx ? 32 : 46,
                                     fontWeight: 500,
                                     color: '#f5cb56',
                                     textShadow: '#000000 0 0 3.25px',
@@ -232,7 +230,7 @@ export default function WelcomePage({ handleRedirect }) {
                             <Typography
                                 sx={{
                                     fontFamily: 'Young Serif',
-                                    fontSize: sx ? 23 : 40,
+                                    fontSize: sx ? 32 : 46,
                                     fontWeight: 500,
                                     color: '#2c4974',
                                     textShadow: '#043f61 0 0 2.25px',
@@ -243,7 +241,7 @@ export default function WelcomePage({ handleRedirect }) {
                             <Typography
                                 sx={{
                                     fontFamily: 'Young Serif',
-                                    fontSize: sx ? 23 : 40,
+                                    fontSize: sx ? 32 : 46,
                                     fontWeight: 500,
                                     // color: Color?.PRIMARY,
                                     textShadow: '#0000006a 0 0 2px',
@@ -254,7 +252,7 @@ export default function WelcomePage({ handleRedirect }) {
                             <Typography
                                 sx={{
                                     fontFamily: 'Young Serif',
-                                    fontSize: sx ? 23 : 40,
+                                    fontSize: sx ? 32 : 46,
                                     fontWeight: 500,
                                     color: '#268eca',
                                     textShadow: '#043f61 0 0 2.25px',
@@ -265,7 +263,7 @@ export default function WelcomePage({ handleRedirect }) {
                             <Typography
                                 sx={{
                                     fontFamily: 'Young Serif',
-                                    fontSize: sx ? 23 : 40,
+                                    fontSize: sx ? 32 : 46,
                                     fontWeight: 500,
                                     // color: '#2c4974',
                                     textShadow: '#043f61 0 0 2.25px',
@@ -276,7 +274,7 @@ export default function WelcomePage({ handleRedirect }) {
                             <Typography
                                 sx={{
                                     fontFamily: 'Young Serif',
-                                    fontSize: sx ? 23 : 40,
+                                    fontSize: sx ? 32 : 46,
                                     fontWeight: 500,
                                     color: '#2c4974',
                                     textShadow: '#043f61 0 0 2.25px',
