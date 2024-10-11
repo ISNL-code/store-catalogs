@@ -61,12 +61,15 @@ const ConfirmCoupon = ({
             if (phoneNumber?.length > 6) {
                 telegramSender({
                     action: `
-                    ЗАКАЗ БЕЗ РЕГИСТРАЦИИ (С уважением от вашего раба и чмошника)
+                    ЗАКАЗ БЕЗ РЕГИСТРАЦИИ 
                     
                 !$!$!  ${Number(finalPrice).toFixed(2)}
                 PROMO_CODE: ${promoCode || 'НЕ ЗАПОЛНИЛ ПРОМО'} 
                 telephone: ${phoneNumber}
-                articules: ${orderData.productsList.map(item => item?.productSku).join(', ')}
+                модель:
+                ${orderData.productsList
+                    .map(item => `${'арт: ' + item?.productSku + ' р: ' + item?.sizeLabel + '*' + item?.quantity}`)
+                    .join(', ')}
 
                 ДОСТАВКА:
 
@@ -419,7 +422,9 @@ const ConfirmCoupon = ({
                 </Grid>
                 <Grid xs={12}>
                     <Button
-                        disabled={!orderData?.productsList?.length || loadCreateOrder}
+                        disabled={
+                            !orderData?.productsList?.length || loadCreateOrder || (!auth && phoneNumber?.length < 7)
+                        }
                         variant="contained"
                         sx={{ width: '100%' }}
                         onClick={() => {

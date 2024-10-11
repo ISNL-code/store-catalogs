@@ -32,6 +32,7 @@ interface ProductListInterface {
     quantity: number;
     price: number;
     sku: string;
+    sizeLabel?: string;
 }
 
 export interface OrderDataInterface {
