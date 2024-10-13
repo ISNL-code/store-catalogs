@@ -7,7 +7,7 @@ export const ALBERTO_BINI_OPT = {
     required_registration: false,
     URL: ['https://albertobini-opt.netlify.app'],
     web_lang: 'uk', // html lang
-    store_name: 'АБ ОСНОВНОЙ',
+    store_name: 'АБ ОСНОВНОЙ - ЦЕНЫ',
     store_code: 'ALBERTO_BINI',
     base_url: 'https://kremen-belts.com/api',
     app_lang: 'ua',
