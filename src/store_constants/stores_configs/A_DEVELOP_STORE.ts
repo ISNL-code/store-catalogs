@@ -6,6 +6,7 @@ import { RETAIL_ALBERTO_BINI } from './RETAIL_ALBERTO_BINI'; // eslint-disable-l
 import { PASMA } from './PASMA'; // eslint-disable-line
 import { ALBERTO_BINI_KZ_WS } from './ALBERTO_BINI_KZ_WS'; // eslint-disable-line
 import { ALBERTO_BINI_KZ_EUR_WS } from './ALBERTO_BINI_KZ_EUR_WS'; // eslint-disable-line
+import { ALBERTO_BINI_OPT } from './ALBERTO_BINI_OPT'; // eslint-disable-line
 
 export const DEVELOP_STORE = {
     ...ALBERTO_BINI_MAIN,
@@ -18,6 +19,7 @@ export const DEVELOP_STORE = {
     // ...PASMA,
     // ...ALBERTO_BINI_KZ_WS,
     // ...ALBERTO_BINI_KZ_EUR_WS,
+    ...ALBERTO_BINI_OPT,
     URL: ['http://localhost:3000', 'http://localhost:3001'],
     // telegram_sender: !window?.location?.origin.includes('localhost'),
     telegram_sender: true,
