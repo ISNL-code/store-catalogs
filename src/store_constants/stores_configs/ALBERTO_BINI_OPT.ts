@@ -1,11 +1,11 @@
 import { StoreType, ViewModeType } from 'store_constants/types';
 
 export const ALBERTO_BINI_OPT = {
-    storage_key: 'ab_ua-ws',
+    storage_key: 'ab_ua-ws-opt',
     active: true, // Поле которое запускает магазин true - работает false - остановлен / по тех. причина
     status: 'Увага! Цей сайт припинив своє існування.', // показывает пока что в телеграме статус или причину почему каталог не работает
     required_registration: false,
-    URL: ['https://albertobini-opt.netlify.app/'],
+    URL: ['https://albertobini-opt.netlify.app'],
     web_lang: 'uk', // html lang
     store_name: 'АБ ОСНОВНОЙ',
     store_code: 'ALBERTO_BINI',
