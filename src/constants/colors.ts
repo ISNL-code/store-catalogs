@@ -8,6 +8,7 @@ export enum Colors {
     GRAY_500 = 'rgb(200, 200, 200)',
     GRAY_900 = '#505050',
     RED_300 = '#f88d8d',
+    RED = '#da0e0e',
     WHITE = '#fff',
     WHITE_10 = '#ffffff21',
     BLACK = '#000',

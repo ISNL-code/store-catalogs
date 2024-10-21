@@ -14,9 +14,9 @@ const PromoTags = ({ value, action = () => {}, disabled = false, code, adaptive 
         borderGradientColor1,
         borderGradientColor2
     ) => ({
-        border: viewMode === ViewModeType?.grid_m && adaptive ? `1px solid ${color}` : `2px solid ${color}`,
-        background: `linear-gradient(135deg, ${gradientColor1} 60%, ${gradientColor2}) padding-box, 
-                     linear-gradient(90deg, ${borderGradientColor1} 70%, ${borderGradientColor2}) border-box`,
+        border: viewMode === ViewModeType?.grid_m && adaptive ? `1px solid ${color}` : `1px solid ${color}`,
+        background: `linear-gradient(135deg, ${gradientColor1} 50%, ${gradientColor2}) padding-box, 
+                     linear-gradient(90deg, ${borderGradientColor1} 60%, ${borderGradientColor2}) border-box`,
         fontSize: code.includes('%') ? 12 : undefined,
     });
 
@@ -32,20 +32,41 @@ const PromoTags = ({ value, action = () => {}, disabled = false, code, adaptive 
                 return generateBorderStyle('#dbd06d', '#e2ad1a', '#f5b8b8', '#997e08dc', '#eaf5b8');
             case 'spring':
                 return generateBorderStyle('#46b406', '#53bb17', '#b0dba1', '#216606dc', '#8ee079');
+            case 'sale':
+                return generateBorderStyle('#da0e0e', '#da0e0e', '#f7cdcd', '#ff6767dc', '#c45d5d');
             default:
                 return generateBorderStyle('#b60dae', '#b60dae', '#cfd2e9', '#b60dae', '#b8bcf5');
         }
     };
 
+    const getTextColor = () => {
+        switch (code.toLowerCase()) {
+            case 'new':
+                return Colors?.WHITE;
+            case 'top':
+                return Colors?.WHITE;
+            case 'winter':
+                return Colors?.WHITE;
+            case 'autumn':
+                return Colors?.WHITE;
+            case 'spring':
+                return Colors?.WHITE;
+            case 'sale':
+                return Colors?.WHITE;
+            default:
+                return Colors?.WHITE;
+        }
+    };
+
     return (
         <Box
-            px={0.5}
-            py={1.15}
+            px={viewMode === ViewModeType?.grid_m && adaptive ? 0.25 : 0.35}
+            py={1}
             sx={{
                 height: viewMode === ViewModeType?.grid_m && adaptive ? 18 : 25,
                 maxWidth: viewMode === ViewModeType?.grid_m && adaptive ? 55 : 75,
                 minWidth: viewMode === ViewModeType?.grid_m && adaptive ? 50 : 70,
-                borderRadius: 4,
+                borderRadius: 3,
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -57,14 +78,15 @@ const PromoTags = ({ value, action = () => {}, disabled = false, code, adaptive 
         >
             <Typography
                 sx={{
-                    color: Colors?.WHITE,
+                    color: getTextColor(),
                     whiteSpace: 'nowrap',
                     overflow: 'hidden',
                     textOverflow: 'ellipsis',
-                    fontSize: viewMode === ViewModeType?.grid_m && adaptive ? 9 : 11,
+                    fontSize: viewMode === ViewModeType?.grid_m && adaptive ? 9 : 10,
                     cursor: 'default',
                     fontWeight: 700,
                     lineHeight: 1,
+                    letterSpacing: 0.01,
                 }}
             >
                 {value || '----'}
