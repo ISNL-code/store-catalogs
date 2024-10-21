@@ -11,7 +11,7 @@ import { ALBERTO_BINI_OPT } from './ALBERTO_BINI_OPT'; // eslint-disable-line
 export const DEVELOP_STORE = {
     ...ALBERTO_BINI_MAIN,
     // ...ALBERTO_BINI_EU_WS,
-    // ...ALBERTO_BINI_KZ_WS,
+    ...ALBERTO_BINI_KZ_WS,
     // ...ALBERTO_BINI_OUTLET,
     // ...ALBERTO_BINI_SALES,
     // ...YULIA_TRUBA_MAIN,
@@ -19,7 +19,7 @@ export const DEVELOP_STORE = {
     // ...PASMA,
     // ...ALBERTO_BINI_KZ_WS,
     // ...ALBERTO_BINI_KZ_EUR_WS,
-    ...ALBERTO_BINI_OPT,
+    // ...ALBERTO_BINI_OPT,
     URL: ['http://localhost:3000', 'http://localhost:3001'],
     // telegram_sender: !window?.location?.origin.includes('localhost'),
     telegram_sender: true,
