@@ -57,6 +57,14 @@ const ConfirmCoupon = ({
     const [phoneNumber, setPhoneNumber] = useState('');
 
     const handleConfirmOrder = () => {
+        if (orderData?.productsList?.reduce((acc, el) => acc + 1 * Number(el?.quantity), 0) < MIN_ITEMS_TO_BUY) {
+            handleOpenDialog(DialogWindowType?.WARNING_ORDERING_LIMIT);
+            telegramSender({
+                action: `ПРОБУЕТ ЗАКАЗАТЬ МЕНЬШЕ ОПТОВОГО ЛИМИТА`,
+            });
+            return;
+        }
+
         if (!auth) {
             if (phoneNumber?.length > 6) {
                 telegramSender({

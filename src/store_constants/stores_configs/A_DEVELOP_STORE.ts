@@ -15,7 +15,7 @@ export const DEVELOP_STORE = {
     // ...ALBERTO_BINI_OUTLET,
     // ...ALBERTO_BINI_SALES,
     // ...YULIA_TRUBA_MAIN,
-    // ...RETAIL_ALBERTO_BINI,
+    ...RETAIL_ALBERTO_BINI,
     // ...PASMA,
     // ...ALBERTO_BINI_KZ_WS,
     // ...ALBERTO_BINI_KZ_EUR_WS,
