@@ -107,7 +107,7 @@ const Catalog = () => {
             sx={{ minHeight: scrollPosition || '100vh', pb: `${footerMenuHeight}px` }}
         >
             {showTopBtn && <ScrollButton />}
-            <Box sx={{ position: 'fixed', bottom: 16, left: 32, zIndex: 10 }}>
+            <Box sx={{ position: 'fixed', bottom: sx ? 70 : 16, left: sx ? 16 : 32, zIndex: 10 }}>
                 <Box sx={{ position: 'relative' }}>
                     <CocktailButton
                         logoUrl={mainLogo}
