@@ -22,11 +22,11 @@ const CocktailButton = ({ path, logoUrl, text }: Props) => {
                 sx={{
                     zIndex: 5000,
                     position: 'relative',
-                    width: text ? (sx ? 100 : 120) : sx ? 90 : 110,
-                    height: text ? (sx ? 100 : 120) : sx ? 90 : 110,
+                    width: text ? (sx ? 70 : 90) : sx ? 74 : 110,
+                    height: text ? (sx ? 70 : 90) : sx ? 74 : 110,
                     background: Colors?.GRAY_300,
                     borderRadius: '50%',
-                    boxShadow: '0 0 2px 4px rgba(0, 0, 0, 0.247)',
+                    boxShadow: '0 0 4px 3px rgba(0, 0, 0, 0.164)',
                     '&::before': {
                         content: '""',
                         position: 'absolute',
@@ -42,7 +42,7 @@ const CocktailButton = ({ path, logoUrl, text }: Props) => {
                         width: '100%',
                         height: '100%',
                         backgroundImage: `url(${logoUrl})`,
-                        backgroundSize: sx ? 80 : 95,
+                        backgroundSize: sx ? 70 : 68,
                         backgroundRepeat: 'no-repeat',
                         backgroundPosition: 'center',
                     }}
@@ -53,13 +53,13 @@ const CocktailButton = ({ path, logoUrl, text }: Props) => {
                                 key={index}
                                 sx={{
                                     position: 'absolute',
-                                    left: sx ? 70 : 61,
+                                    left: sx ? 36 : 46,
                                     top: 0,
                                     transform: `rotate(${(index / array.length) * 190 + 270}deg)`,
-                                    transformOrigin: sx ? '0 70px' : '0 61px',
+                                    transformOrigin: sx ? '0 36px' : '0 46px',
                                     fontFamily: 'Roboto',
                                     fontWeight: 400,
-                                    fontSize: sx ? 12 : 12,
+                                    fontSize: sx ? 10 : 10,
                                     color: Colors?.BLACK,
                                     textShadow: '#000000 0 0 2px',
                                 }}

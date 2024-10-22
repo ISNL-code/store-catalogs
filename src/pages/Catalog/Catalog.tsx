@@ -27,6 +27,8 @@ import { DialogWindowType } from 'layouts/hooks/useFormsApp';
 import { ProductDataInterface } from 'types/app_models';
 import CatalogPromoAlert from 'components/molecules/Alerts/CatalogPromo';
 import WholeSalesAlert from 'components/molecules/Alerts/WholeSales';
+import CocktailButton from 'components/atoms/Buttons/CocktailButton';
+import mainLogo from 'assets/img/logo.webp';
 
 const Catalog = () => {
     const { OPTIONS, STORE_CODE, SIDE_LINKS } = STORE_CONFIG;
@@ -105,7 +107,16 @@ const Catalog = () => {
             sx={{ minHeight: scrollPosition || '100vh', pb: `${footerMenuHeight}px` }}
         >
             {showTopBtn && <ScrollButton />}
-            <InformationButton />
+            <Box sx={{ position: 'fixed', bottom: sx ? 75 : 16, left: sx ? '' : 32, zIndex: 10 }}>
+                <Box sx={{ position: 'relative' }}>
+                    <CocktailButton
+                        logoUrl={mainLogo}
+                        path="https://cocktail-catalogs-shop.com"
+                        text={sx ? '' : 'Cocktail Shop'}
+                        relocate
+                    />
+                </Box>
+            </Box>
 
             {isLoadingProducts && <Loader isShown={currentProductsPage === 0} />}
             {PLAN_OPTIONS?.feedback && <MessageButton action={() => handleOpenDialog(DialogWindowType?.QUESTION)} />}
