@@ -7,6 +7,7 @@ interface Props {
     path: string;
     logoUrl: string;
     text: string;
+    relocate: boolean;
 }
 
 const CocktailButton = ({ path, logoUrl, text }: Props) => {
@@ -19,9 +20,10 @@ const CocktailButton = ({ path, logoUrl, text }: Props) => {
                 onClick={() => navigate(path)}
                 className="sway" // Добавляем класс для анимации
                 sx={{
+                    zIndex: 5000,
                     position: 'relative',
-                    width: text ? (sx ? 140 : 160) : sx ? 120 : 135,
-                    height: text ? (sx ? 140 : 160) : sx ? 120 : 135,
+                    width: text ? (sx ? 100 : 120) : sx ? 90 : 110,
+                    height: text ? (sx ? 100 : 120) : sx ? 90 : 110,
                     background: Colors?.GRAY_300,
                     borderRadius: '50%',
                     boxShadow: '0 0 2px 4px rgba(0, 0, 0, 0.247)',
@@ -40,7 +42,7 @@ const CocktailButton = ({ path, logoUrl, text }: Props) => {
                         width: '100%',
                         height: '100%',
                         backgroundImage: `url(${logoUrl})`,
-                        backgroundSize: sx ? 110 : 125,
+                        backgroundSize: sx ? 80 : 95,
                         backgroundRepeat: 'no-repeat',
                         backgroundPosition: 'center',
                     }}
@@ -51,13 +53,13 @@ const CocktailButton = ({ path, logoUrl, text }: Props) => {
                                 key={index}
                                 sx={{
                                     position: 'absolute',
-                                    left: sx ? 70 : 80,
+                                    left: sx ? 70 : 61,
                                     top: 0,
                                     transform: `rotate(${(index / array.length) * 190 + 270}deg)`,
-                                    transformOrigin: sx ? '0 70px' : '0 80px',
+                                    transformOrigin: sx ? '0 70px' : '0 61px',
                                     fontFamily: 'Roboto',
                                     fontWeight: 400,
-                                    fontSize: sx ? 14 : 16,
+                                    fontSize: sx ? 12 : 12,
                                     color: Colors?.BLACK,
                                     textShadow: '#000000 0 0 2px',
                                 }}

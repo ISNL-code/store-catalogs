@@ -10,8 +10,8 @@ import { DialogWindowType } from 'layouts/hooks/useFormsApp';
 import { STORE_ROUTE } from 'router/routes';
 import { STORE_CONFIG } from 'store_constants/stores_config';
 import { scrollPage } from 'utils/scrollPage';
-import InformationButton from 'components/atoms/Buttons/InformationButton';
 import CocktailButton from 'components/atoms/Buttons/CocktailButton';
+import mainLogo from 'assets/img/logo.webp';
 
 const HomePage = () => {
     const navigate = useNavigate();
@@ -56,8 +56,15 @@ const HomePage = () => {
         <Box p={sx ? 2 : appXPadding} sx={{ pb: `${footerMenuHeight}px` }}>
             <MessageButton action={() => handleOpenDialog(DialogWindowType?.QUESTION)} />
             <CallBackButton path={STORE_ROUTE?.contacts(STORE_CODE)} />
-            <Box sx={{ position: 'fixed', bottom: 10, left: 10 }}>
-                <CocktailButton logoUrl="" path="" text="qwerty" />
+            <Box sx={{ position: 'fixed', bottom: 16, left: 32, zIndex: 10 }}>
+                <Box sx={{ position: 'relative' }}>
+                    <CocktailButton
+                        logoUrl={mainLogo}
+                        path="https://cocktail-catalogs-shop.com"
+                        text="Cocktail Shop"
+                        relocate
+                    />
+                </Box>
             </Box>
             <HomeImages />
             <Box
