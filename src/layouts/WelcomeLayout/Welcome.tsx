@@ -109,7 +109,7 @@ export default function WelcomePage({ handleRedirect }) {
                                     textShadow: '#043f61 0 0 2.25px',
                                 }}
                             >
-                                C
+                                c
                             </Typography>
                             <Typography
                                 sx={{
@@ -120,7 +120,7 @@ export default function WelcomePage({ handleRedirect }) {
                                     textShadow: '#043f61 0 0 2.25px',
                                 }}
                             >
-                                K
+                                k
                             </Typography>
                             <Typography
                                 sx={{
@@ -131,7 +131,7 @@ export default function WelcomePage({ handleRedirect }) {
                                     textShadow: '#000000 0 0 3.25px',
                                 }}
                             >
-                                T
+                                t
                             </Typography>
                             <Typography
                                 sx={{
@@ -142,7 +142,7 @@ export default function WelcomePage({ handleRedirect }) {
                                     textShadow: '#043f61 0 0 2.25px',
                                 }}
                             >
-                                A
+                                a
                             </Typography>
                             <Typography
                                 sx={{
@@ -164,7 +164,7 @@ export default function WelcomePage({ handleRedirect }) {
                                     textShadow: '#043f61 0 0 2.25px',
                                 }}
                             >
-                                L
+                                l
                             </Typography>
 
                             <Box
@@ -214,7 +214,7 @@ export default function WelcomePage({ handleRedirect }) {
                                     textShadow: '#043f61 0 0 2.25px',
                                 }}
                             >
-                                A
+                                a
                             </Typography>
                             <Typography
                                 sx={{
@@ -225,7 +225,7 @@ export default function WelcomePage({ handleRedirect }) {
                                     textShadow: '#000000 0 0 3.25px',
                                 }}
                             >
-                                T
+                                t
                             </Typography>
                             <Typography
                                 sx={{
@@ -236,7 +236,7 @@ export default function WelcomePage({ handleRedirect }) {
                                     textShadow: '#043f61 0 0 2.25px',
                                 }}
                             >
-                                A
+                                a
                             </Typography>
                             <Typography
                                 sx={{
@@ -247,7 +247,7 @@ export default function WelcomePage({ handleRedirect }) {
                                     textShadow: '#0000006a 0 0 2px',
                                 }}
                             >
-                                L
+                                l
                             </Typography>
                             <Typography
                                 sx={{
@@ -269,7 +269,7 @@ export default function WelcomePage({ handleRedirect }) {
                                     textShadow: '#043f61 0 0 2.25px',
                                 }}
                             >
-                                G
+                                g
                             </Typography>
                             <Typography
                                 sx={{
@@ -280,7 +280,7 @@ export default function WelcomePage({ handleRedirect }) {
                                     textShadow: '#043f61 0 0 2.25px',
                                 }}
                             >
-                                S
+                                s
                             </Typography>
                         </Box>
                     </Box>

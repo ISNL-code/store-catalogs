@@ -10,7 +10,9 @@ import { DialogWindowType } from 'layouts/hooks/useFormsApp';
 import { STORE_ROUTE } from 'router/routes';
 import { STORE_CONFIG } from 'store_constants/stores_config';
 import { scrollPage } from 'utils/scrollPage';
-import InformationButton from 'components/atoms/Buttons/InformationButton';
+import CocktailButton from 'components/atoms/Buttons/CocktailButton';
+import mainLogo from 'assets/img/logo.webp';
+import { telegramSender } from 'utils/telegramSender';
 
 const HomePage = () => {
     const { STORE_CODE } = STORE_CONFIG;
@@ -25,7 +27,18 @@ const HomePage = () => {
         <Box p={sx ? 2 : appXPadding} sx={{ pb: `${footerMenuHeight}px` }}>
             <MessageButton action={() => handleOpenDialog(DialogWindowType?.QUESTION)} />
             <CallBackButton path={STORE_ROUTE?.contacts(STORE_CODE)} />
-            <InformationButton />
+            <Box sx={{ position: 'fixed', bottom: sx ? 70 : 16, left: sx ? 16 : 32, zIndex: 10 }}>
+                <Box sx={{ position: 'relative' }}>
+                    <CocktailButton
+                        logoUrl={mainLogo}
+                        text={sx ? '' : 'Cocktail Shop'}
+                        externalUrl="https://cocktail-catalogs-shop.com"
+                        sendBotMessage={() => {
+                            telegramSender({ action: `КЛИК ПО ССЫЛКЕ КОКТЕЙЛЬ от ${STORE_CODE}` });
+                        }}
+                    />
+                </Box>
+            </Box>
             <HomeImages />
             <Box
                 className="HiddenScroll"
