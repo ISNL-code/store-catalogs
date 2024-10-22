@@ -17,8 +17,10 @@ const CocktailButton = ({ path, logoUrl, text, externalUrl, sendBotMessage }: Pr
 
     const handleClick = () => {
         if (externalUrl) {
-            window.location.href = externalUrl; // Редирект на внешний URL
             sendBotMessage && sendBotMessage();
+            setTimeout(() => {
+                window.location.href = externalUrl; // Редирект на внешний URL
+            }, 0);
         } else if (path) {
             navigate(path); // Навигация по внутреннему маршруту
         }
