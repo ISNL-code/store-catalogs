@@ -21,7 +21,6 @@ import { ViewModeType } from 'store_constants/types';
 import { STORE_ROUTE } from 'router/routes';
 import { useIsMount } from 'hooks/useIsMount';
 import { scrollPage } from 'utils/scrollPage';
-import InformationButton from 'components/atoms/Buttons/InformationButton';
 import MessageButton from 'components/atoms/Buttons/MessageButton';
 import { DialogWindowType } from 'layouts/hooks/useFormsApp';
 import { ProductDataInterface } from 'types/app_models';
@@ -29,6 +28,7 @@ import CatalogPromoAlert from 'components/molecules/Alerts/CatalogPromo';
 import WholeSalesAlert from 'components/molecules/Alerts/WholeSales';
 import CocktailButton from 'components/atoms/Buttons/CocktailButton';
 import mainLogo from 'assets/img/logo.webp';
+import { telegramSender } from 'utils/telegramSender';
 
 const Catalog = () => {
     const { OPTIONS, STORE_CODE, SIDE_LINKS } = STORE_CONFIG;
@@ -107,13 +107,15 @@ const Catalog = () => {
             sx={{ minHeight: scrollPosition || '100vh', pb: `${footerMenuHeight}px` }}
         >
             {showTopBtn && <ScrollButton />}
-            <Box sx={{ position: 'fixed', bottom: sx ? 75 : 16, left: sx ? '' : 32, zIndex: 10 }}>
+            <Box sx={{ position: 'fixed', bottom: 16, left: 32, zIndex: 10 }}>
                 <Box sx={{ position: 'relative' }}>
                     <CocktailButton
                         logoUrl={mainLogo}
-                        path="https://cocktail-catalogs-shop.com"
                         text={sx ? '' : 'Cocktail Shop'}
-                        relocate
+                        externalUrl="https://cocktail-catalogs-shop.com"
+                        sendBotMessage={() => {
+                            telegramSender({ action: `КЛИК ПО ССЫЛКЕ КОКТЕЙЛЬ от ${STORE_CODE}` });
+                        }}
                     />
                 </Box>
             </Box>

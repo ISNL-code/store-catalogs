@@ -12,6 +12,7 @@ import { STORE_CONFIG } from 'store_constants/stores_config';
 import { scrollPage } from 'utils/scrollPage';
 import CocktailButton from 'components/atoms/Buttons/CocktailButton';
 import mainLogo from 'assets/img/logo.webp';
+import { telegramSender } from 'utils/telegramSender';
 
 const HomePage = () => {
     const navigate = useNavigate();
@@ -60,9 +61,11 @@ const HomePage = () => {
                 <Box sx={{ position: 'relative' }}>
                     <CocktailButton
                         logoUrl={mainLogo}
-                        path="https://cocktail-catalogs-shop.com"
-                        text="Cocktail Shop"
-                        relocate
+                        text={sx ? '' : 'Cocktail Shop'}
+                        externalUrl="https://cocktail-catalogs-shop.com"
+                        sendBotMessage={() => {
+                            telegramSender({ action: `КЛИК ПО ССЫЛКЕ КОКТЕЙЛЬ от ${STORE_CODE}` });
+                        }}
                     />
                 </Box>
             </Box>

@@ -4,20 +4,30 @@ import { useDevice } from 'hooks/useDevice';
 import { useNavigate } from 'react-router-dom';
 
 interface Props {
-    path: string;
+    path?: string;
     logoUrl: string;
     text: string;
-    relocate: boolean;
+    externalUrl?: string; // Новый проп для внешнего URL
+    sendBotMessage?: () => void;
 }
 
-const CocktailButton = ({ path, logoUrl, text }: Props) => {
+const CocktailButton = ({ path, logoUrl, text, externalUrl, sendBotMessage }: Props) => {
     const { sx } = useDevice();
     const navigate = useNavigate();
+
+    const handleClick = () => {
+        if (externalUrl) {
+            window.location.href = externalUrl; // Редирект на внешний URL
+            sendBotMessage && sendBotMessage();
+        } else if (path) {
+            navigate(path); // Навигация по внутреннему маршруту
+        }
+    };
 
     return (
         <>
             <Box
-                onClick={() => navigate(path)}
+                onClick={handleClick}
                 className="sway" // Добавляем класс для анимации
                 sx={{
                     zIndex: 5000,
