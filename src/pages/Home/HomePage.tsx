@@ -11,6 +11,7 @@ import { STORE_ROUTE } from 'router/routes';
 import { STORE_CONFIG } from 'store_constants/stores_config';
 import { scrollPage } from 'utils/scrollPage';
 import InformationButton from 'components/atoms/Buttons/InformationButton';
+import CocktailButton from 'components/atoms/Buttons/CocktailButton';
 
 const HomePage = () => {
     const navigate = useNavigate();
@@ -55,7 +56,9 @@ const HomePage = () => {
         <Box p={sx ? 2 : appXPadding} sx={{ pb: `${footerMenuHeight}px` }}>
             <MessageButton action={() => handleOpenDialog(DialogWindowType?.QUESTION)} />
             <CallBackButton path={STORE_ROUTE?.contacts(STORE_CODE)} />
-            <InformationButton />
+            <Box sx={{ position: 'fixed', bottom: 10, left: 10 }}>
+                <CocktailButton logoUrl="" path="" text="qwerty" />
+            </Box>
             <HomeImages />
             <Box
                 className="HiddenScroll"
