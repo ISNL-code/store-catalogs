@@ -1,12 +1,9 @@
-import { Typography } from '@mui/material';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 import WelcomeLogo from 'components/atoms/Logo/WelcomeLogo';
-import { useDevice } from 'hooks/useDevice';
 import { useNavigate } from 'react-router-dom';
 
 export default function WelcomePage({ handleRedirect }) {
-    const { sx } = useDevice();
     const navigate = useNavigate();
 
     const redirectToStartPath = () => {
