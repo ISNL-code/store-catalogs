@@ -172,21 +172,23 @@ const FilterCategories = ({ isShown }) => {
     };
 
     const getCategories = categories => {
-        return categories?.map(el => {
-            return (
-                <Fragment key={el.id}>
-                    <CategoryItem
-                        title={el.description.title}
-                        depth={el.depth}
-                        id={el.id}
-                        root={!el.parent}
-                        children={el.children}
-                        rootID={el.parent?.id}
-                    />
-                    {!!el.children.length && getCategories(el.children)}
-                </Fragment>
-            );
-        });
+        return categories
+            ?.sort((a, b) => a.description.title.localeCompare(b.description.title)) // Сортируем по title
+            .map(el => {
+                return (
+                    <Fragment key={el.id}>
+                        <CategoryItem
+                            title={el.description.title}
+                            depth={el.depth}
+                            id={el.id}
+                            root={!el.parent}
+                            children={el.children}
+                            rootID={el.parent?.id}
+                        />
+                        {!!el.children.length && getCategories(el.children)}
+                    </Fragment>
+                );
+            });
     };
 
     if (!isShown) return null;
