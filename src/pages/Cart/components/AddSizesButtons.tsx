@@ -53,6 +53,7 @@ const AddSizesButtons = ({ data, setOrderData }: Props) => {
                                                             quantity: 1,
                                                             price: data?.variant?.price,
                                                             sku: data?.variant?.productSku,
+                                                            sizeLabel: el?.description?.name,
                                                         },
                                                     ],
                                                 };

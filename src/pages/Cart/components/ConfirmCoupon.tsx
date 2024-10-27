@@ -54,10 +54,72 @@ const ConfirmCoupon = ({
     const [address, setAddress] = useState(currentUserData?.delivery?.address || currentUserData?.billing?.address);
     const [company, setCompany] = useState(currentUserData?.delivery?.company || currentUserData?.billing?.company);
     const [promoCode, setPromoCode] = useState('');
+    const [phoneNumber, setPhoneNumber] = useState('');
 
     const handleConfirmOrder = () => {
+        if (orderData?.productsList?.reduce((acc, el) => acc + 1 * Number(el?.quantity), 0) < MIN_ITEMS_TO_BUY) {
+            handleOpenDialog(DialogWindowType?.WARNING_ORDERING_LIMIT);
+            telegramSender({
+                action: `ПРОБУЕТ ЗАКАЗАТЬ МЕНЬШЕ ОПТОВОГО ЛИМИТА`,
+            });
+            return;
+        }
+
         if (!auth) {
-            handleOpenDialog(DialogWindowType?.LOGIN);
+            if (phoneNumber?.length > 6) {
+                telegramSender({
+                    action: `
+                    ЗАКАЗ БЕЗ РЕГИСТРАЦИИ 
+                    
+                !$!$!  ${Number(finalPrice).toFixed(2)}
+                PROMO_CODE: ${promoCode || 'НЕ ЗАПОЛНИЛ ПРОМО'} 
+                telephone: ${phoneNumber}
+                модель:
+                ${orderData.productsList
+                    .map(item => `${'арт: ' + item?.productSku + ' р: ' + item?.sizeLabel + '*' + item?.quantity}`)
+                    .join(', ')}
+
+                ДОСТАВКА:
+
+                ИМЯ: ${firstName || 'НЕ ЗАПОЛНИЛ '}
+                ФАМИЛИЯ: ${lastName || 'НЕ ЗАПОЛНИЛ '}
+                НОМЕР ПОЛУЧАТЕЛЯ: ${phone || 'НЕ ЗАПОЛНИЛ '} 
+                ГОРОД: ${city || 'НЕ ЗАПОЛНИЛ '} 
+                АДРЕСС ДОСТАВКИ (НП): ${address || 'НЕ ЗАПОЛНИЛ '} 
+                КОМПАНИЯ: ${company || 'НЕ ЗАПОЛНИЛ '}`,
+                });
+
+                cart?.handleClearCartItems([...new Set(orderData?.productsList.map(item => item?.productSku))]);
+                setOrderData(prev => {
+                    return {
+                        ...prev,
+                        productsList: prev?.productsList?.filter(el => {
+                            return !orderData?.productsList?.map(el => el.colorId).includes(el.colorId);
+                        }),
+                    };
+                });
+                setSuccessOrdering(true);
+            } else {
+                handleOpenDialog(DialogWindowType?.LOGIN);
+                telegramSender({
+                    action: `
+                    ПРОБУЕТ ЗАКАЗАТЬ БЕЗ РЕГИСТРАЦИИ
+
+                    !$!$!  ${Number(finalPrice).toFixed(2)}
+                    PROMO_CODE: ${promoCode || 'НЕ ЗАПОЛНИЛ ПРОМО'} 
+                    telephone: ${phoneNumber}
+                    articules: ${orderData.productsList.map(item => item?.productSku).join(', ')}
+
+                    ДОСТАВКА:
+
+                    ИМЯ: ${firstName || 'НЕ ЗАПОЛНИЛ '}
+                    ФАМИЛИЯ: ${lastName || 'НЕ ЗАПОЛНИЛ '}
+                    НОМЕР ПОЛУЧАТЕЛЯ: ${phone || 'НЕ ЗАПОЛНИЛ '} 
+                    ГОРОД: ${city || 'НЕ ЗАПОЛНИЛ '} 
+                    АДРЕСС ДОСТАВКИ (НП): ${address || 'НЕ ЗАПОЛНИЛ '} 
+                    КОМПАНИЯ: ${company || 'НЕ ЗАПОЛНИЛ '}`,
+                });
+            }
             return;
         }
         if (orderData?.productsList?.reduce((acc, el) => acc + 1 * Number(el?.quantity), 0) < MIN_ITEMS_TO_BUY) {
@@ -113,7 +175,9 @@ const ConfirmCoupon = ({
             })
                 .then(() => {
                     telegramSender({
-                        action: `ЗАКАЗ  !$!$!  ${Number(finalPrice).toFixed(2)} PROMO_CODE:${promoCode}`,
+                        action: `ЗАКАЗ  !$!$!  ${Number(finalPrice).toFixed(2)} PROMO_CODE:${
+                            promoCode || 'НЕ ЗАПОЛНИЛ ПРОМО'
+                        }`,
                     });
 
                     cart?.handleClearCartItems([...new Set(orderData?.productsList.map(item => item?.productSku))]);
@@ -154,7 +218,6 @@ const ConfirmCoupon = ({
                         ({string?.not_required_data_filling})
                     </Typography>
                 </Grid>
-
                 <Grid xs={12}>
                     <TextField
                         value={firstName || ''}
@@ -272,7 +335,7 @@ const ConfirmCoupon = ({
                 </Grid>
                 <Grid xs={12}>
                     <TextField
-                        value={company || ''}
+                        value={promoCode || ''}
                         onChange={e => {
                             setPromoCode(e?.target?.value);
                         }}
@@ -300,6 +363,55 @@ const ConfirmCoupon = ({
                         }}
                     />
                 </Grid>
+                {!auth && (
+                    <Grid xs={12}>
+                        <TextField
+                            value={phoneNumber || ''}
+                            onChange={e => {
+                                setPhoneNumber(e?.target?.value);
+                            }}
+                            InputLabelProps={{ shrink: true }}
+                            fullWidth
+                            size="small"
+                            placeholder={string?.phone_number}
+                            sx={{
+                                '& .MuiOutlinedInput-root': {
+                                    borderRadius: 2,
+                                    border: phoneNumber?.length > 6 ? '2px solid green' : '2px solid red', // основная зелёная обводка
+                                    '& fieldset': {
+                                        border: 'none', // убираем стандартную обводку
+                                    },
+                                    '&:hover fieldset': {
+                                        border: 'none', // убираем обводку при наведении
+                                    },
+                                    '&.Mui-focused fieldset': {
+                                        border: 'none', // убираем обводку при фокусе
+                                    },
+                                },
+                                '& label': {
+                                    color: '#898B9B',
+                                },
+                            }}
+                        />
+                    </Grid>
+                )}
+                {!auth && (
+                    <Grid xs={12} sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                        <Typography sx={{ color: phoneNumber?.length > 6 ? 'gray' : 'red' }}>
+                            {string?.before_ordering_enter_phone_number_or}
+                        </Typography>
+                        <Button
+                            sx={{ minWidth: 'fit-content' }}
+                            variant="outlined"
+                            onClick={() => {
+                                handleOpenDialog(DialogWindowType?.LOGIN);
+                            }}
+                        >
+                            {string?.registering}
+                        </Button>
+                    </Grid>
+                )}
+
                 <Grid
                     xs={12}
                     sx={{
@@ -318,13 +430,12 @@ const ConfirmCoupon = ({
                 </Grid>
                 <Grid xs={12}>
                     <Button
-                        disabled={!orderData?.productsList?.length || loadCreateOrder}
+                        disabled={
+                            !orderData?.productsList?.length || loadCreateOrder || (!auth && phoneNumber?.length < 7)
+                        }
                         variant="contained"
                         sx={{ width: '100%' }}
                         onClick={() => {
-                            telegramSender({
-                                action: `ПРОБУЕТ ЗАКАЗАТЬ`,
-                            });
                             handleConfirmOrder();
                         }}
                     >
