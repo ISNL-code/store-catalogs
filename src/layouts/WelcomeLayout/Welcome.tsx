@@ -1,16 +1,19 @@
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 import WelcomeLogo from 'components/atoms/Logo/WelcomeLogo';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export default function WelcomePage({ handleRedirect }) {
+    const [isLoading, setIsLoading] = useState(true);
     const navigate = useNavigate();
 
     const redirectToStartPath = () => {
         const startPath = handleRedirect();
         navigate(startPath);
     };
-
+    setTimeout(() => setIsLoading(false), 300);
+    if (isLoading) return <></>;
     setTimeout(redirectToStartPath, 3000);
 
     return (
