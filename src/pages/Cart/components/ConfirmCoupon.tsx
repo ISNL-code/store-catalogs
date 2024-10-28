@@ -30,7 +30,7 @@ const ConfirmCoupon = ({
     loadCreateOrder,
 }: Props) => {
     const { OPTIONS } = STORE_CONFIG;
-    const { MIN_ITEMS_TO_BUY } = OPTIONS;
+    const { MIN_ITEMS_TO_BUY, NO_REG_ORDER } = OPTIONS;
     const { storeCode } = useParams();
     const {
         string,
@@ -66,7 +66,7 @@ const ConfirmCoupon = ({
         }
 
         if (!auth) {
-            if (phoneNumber?.length > 6) {
+            if (phoneNumber?.length > 6 && NO_REG_ORDER) {
                 telegramSender({
                     action: `
                     ЗАКАЗ БЕЗ РЕГИСТРАЦИИ 
@@ -214,7 +214,7 @@ const ConfirmCoupon = ({
             <Box p={2} sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
                 <Grid mb={2} xs={12}>
                     <Typography variant="h3">{string?.delivery_information}</Typography>
-                    <Typography variant="h6" sx={{ color: 'red' }}>
+                    <Typography mt={1} variant="h6" sx={{ color: 'red' }}>
                         ({string?.not_required_data_filling})
                     </Typography>
                 </Grid>
@@ -363,7 +363,7 @@ const ConfirmCoupon = ({
                         }}
                     />
                 </Grid>
-                {!auth && (
+                {!auth && NO_REG_ORDER && (
                     <Grid xs={12}>
                         <TextField
                             value={phoneNumber || ''}
@@ -395,7 +395,7 @@ const ConfirmCoupon = ({
                         />
                     </Grid>
                 )}
-                {!auth && (
+                {!auth && NO_REG_ORDER && (
                     <Grid xs={12} sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                         <Typography sx={{ color: phoneNumber?.length > 6 ? 'gray' : 'red' }}>
                             {string?.before_ordering_enter_phone_number_or}
@@ -431,7 +431,9 @@ const ConfirmCoupon = ({
                 <Grid xs={12}>
                     <Button
                         disabled={
-                            !orderData?.productsList?.length || loadCreateOrder || (!auth && phoneNumber?.length < 7)
+                            !orderData?.productsList?.length ||
+                            loadCreateOrder ||
+                            (!auth && phoneNumber?.length < 7 && NO_REG_ORDER)
                         }
                         variant="contained"
                         sx={{ width: '100%' }}

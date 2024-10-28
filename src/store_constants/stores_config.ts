@@ -33,6 +33,7 @@ const storeConfig = (): STORE_CONFIG_Interface => {
         TELEGRAM_SENDER: matchingDomain?.telegram_sender || false,
         MANAGERS: matchingDomain?.managers || null,
         OPTIONS: {
+            NO_REG_ORDER: matchingDomain?.options?.no_reg_order || false,
             TELEGRAM_BOT: matchingDomain?.options?.telegram_bot || null,
             PRODUCT_IMAGE_OPTIONS: matchingDomain?.options?.product_image_options || { width: 1, height: 1 },
             MAIN_PRICE_MULTIPLICATION: matchingDomain?.options?.main_price_multiplication || 1,

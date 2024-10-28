@@ -2,7 +2,7 @@ import { StoreType, ViewModeType } from 'store_constants/types';
 
 export const KREMEN_BELTS_SALES = {
     storage_key: 'kb_ua-wss',
-    active: true,
+    active: false,
     required_registration: false,
     URL: ['https://kremen-belts-sales.netlify.app'],
     web_lang: 'uk', // html lang
@@ -22,6 +22,7 @@ export const KREMEN_BELTS_SALES = {
     ],
     managers: null,
     options: {
+        no_reg_order: false,
         telegram_bot: null,
         product_image_options: { width: 3, height: 2 },
         main_price_multiplication: 1,

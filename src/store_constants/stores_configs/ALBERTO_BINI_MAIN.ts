@@ -29,6 +29,7 @@ export const ALBERTO_BINI_MAIN = {
         },
     ],
     options: {
+        no_reg_order: true,
         telegram_bot: [
             {
                 token: '6904212535:AAGvPEjkJds0aayd-oD1YVMbhLKeKt72yaE',

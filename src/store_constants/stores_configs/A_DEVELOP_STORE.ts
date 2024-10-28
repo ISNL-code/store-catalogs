@@ -8,7 +8,7 @@ export const DEVELOP_STORE = {
     ...ALBERTO_BINI_MAIN,
     // ...ALBERTO_BINI_EU_WS,
     // ...ALBERTO_BINI_SALES,
-    // ...KREMEN_BELTS_MAIN,
+    ...KREMEN_BELTS_MAIN,
     // ...KREMEN_BELTS_SALES,
     URL: [
         'http://localhost:3000',
