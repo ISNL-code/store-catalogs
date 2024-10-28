@@ -3,7 +3,7 @@ import { StoreType, ViewModeType } from 'store_constants/types';
 export const ALBERTO_BINI_SALES = {
     storage_key: 'ab_ua-wss',
     active: false, // Поле которое запускает магазин true - работает false - остановлен / по тех. причина
-    status: 'Заборгованнiсть по оплатi', // показывает пока что в телеграме статус или причину почему каталог не работает
+    status: 'Заборгованість по оплаті, поки власник шукає кошти — відвідайте наш сайт',
     required_registration: false,
     URL: ['https://alberto-bini-sales.netlify.app'],
     web_lang: 'uk', // html lang
