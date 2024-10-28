@@ -31,6 +31,7 @@ export const PASMA = {
         },
     ],
     options: {
+        no_reg_order: true,
         telegram_bot: [
             {
                 token: '7115237316:AAFgbrVadLWMkPt3TEdmravEa37jO9N3WSQ',

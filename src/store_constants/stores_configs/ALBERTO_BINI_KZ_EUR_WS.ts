@@ -3,7 +3,7 @@ import { StoreType, ViewModeType } from 'store_constants/types';
 export const ALBERTO_BINI_KZ_EUR_WS = {
     storage_key: 'ab_kz-wssss',
     active: false, // Поле которое запускает магазин true - работает false - остановлен / по тех. причина
-    status: 'Увага! Цей сайт припинив своє існування.', // показывает пока что в телеграме статус или причину почему каталог не работает
+    status: 'Заборгованість по оплаті, поки власник шукає кошти — відвідайте наш сайт',
     required_registration: false,
     URL: ['https://albertobini-kz.netlify.app'],
     web_lang: 'kz', // html lang
@@ -29,6 +29,7 @@ export const ALBERTO_BINI_KZ_EUR_WS = {
     ],
     managers: null,
     options: {
+        no_reg_order: true,
         telegram_bot: [
             {
                 token: '6904212535:AAGvPEjkJds0aayd-oD1YVMbhLKeKt72yaE',
