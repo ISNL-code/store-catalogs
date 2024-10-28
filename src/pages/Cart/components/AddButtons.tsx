@@ -2,7 +2,6 @@ import RemoveIcon from '@mui/icons-material/Remove';
 import AddIcon from '@mui/icons-material/Add';
 import { Box, Fab, TextField } from '@mui/material';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
-import { useIsMount } from 'hooks/useIsMount';
 import { CartProductInterface, OrderDataInterface } from '../Cart';
 
 interface Props {
@@ -11,11 +10,9 @@ interface Props {
 }
 
 const AddButtons = ({ setOrderData, data }: Props) => {
-    const mount = useIsMount();
     const [value, setValue] = useState(1);
 
     useEffect(() => {
-        if (mount) return;
         setOrderData(prev => {
             return {
                 ...prev,
@@ -32,7 +29,7 @@ const AddButtons = ({ setOrderData, data }: Props) => {
                 ],
             };
         }); // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [mount]);
+    }, []);
 
     return (
         <Box sx={{ display: 'flex', gap: 1 }} my={1}>
