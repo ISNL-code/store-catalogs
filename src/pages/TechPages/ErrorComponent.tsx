@@ -6,9 +6,6 @@ import ForwardIcon from '@mui/icons-material/Forward';
 import { Color, Colors } from 'constants/colors';
 import { useDevice } from 'hooks/useDevice';
 import { useNavigate } from 'react-router-dom';
-import CocktailButton from 'components/atoms/Buttons/CocktailButton';
-import { telegramSender } from 'utils/telegramSender';
-import mainLogo from 'assets/img/logo.webp';
 
 interface Props {
     code: string;
@@ -54,17 +51,6 @@ const ErrorComponent = ({ code, title, withLink, status }: Props) => {
                     opacity: 0.97,
                 }}
             >
-                <Box sx={{ position: 'absolute', right: '5%', top: '15%' }}>
-                    <CocktailButton
-                        text="Cocktail Shop"
-                        size={{ small: 96, large: 100, imgSmall: 70, imgLarge: 76, textSmall: 48, textLarge: 50 }}
-                        logoUrl={mainLogo}
-                        externalUrl="https://cocktail-catalogs-shop.com"
-                        sendBotMessage={() => {
-                            telegramSender({ action: `500 КЛИК ПО ССЫЛКЕ КОКТЕЙЛЬ от ${STORE_NAME}` });
-                        }}
-                    />
-                </Box>
                 <ErrorOutlineIcon sx={{ position: 'absolute', top: 5, left: 5, color: Color?.ERROR, fontSize: 48 }} />
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
                     <Typography

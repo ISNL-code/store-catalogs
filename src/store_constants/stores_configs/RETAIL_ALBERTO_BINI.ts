@@ -2,8 +2,8 @@ import { StoreType, ViewModeType } from 'store_constants/types';
 
 export const RETAIL_ALBERTO_BINI = {
     storage_key: 'ab_ua-rt_my',
-    active: true, // Поле которое запускает магазин true - работает false - остановлен / по тех. причина
-    status: null,
+    active: false, // Поле которое запускает магазин true - работает false - остановлен / по тех. причина
+    status: 'Технiчнi роботи',
     required_registration: false,
     URL: ['https://albertobini-brandeurope.com'],
     web_lang: 'uk', // html lang
