@@ -24,11 +24,9 @@ const ErrorComponent = ({ code, title, withLink, status }: Props) => {
                 height: '100vh',
                 width: '100vw',
                 display: 'flex',
-                alignItems: 'center',
+                alignItems: 'flex-end',
                 justifyContent: 'center',
-                backgroundImage: sx
-                    ? `url(${require('assets/img/error_mob.webp')})`
-                    : `url(${require('assets/img/error_desc.webp')})`,
+                backgroundImage: sx ? `url(${require('./1.jpg')})` : `url(${require('./1.jpg')})`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
                 left: 0,
