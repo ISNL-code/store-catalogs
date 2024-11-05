@@ -13,12 +13,12 @@ export const KREMEN_BELTS_MAIN = {
     supported_countries: [{ code: 'UA', country: 'ukraine' }],
     telegram_sender: false,
     links: [
-        {
-            name: 'Kremen Belts Sales',
-            href: 'https://kremen-belts-sales.netlify.app/store',
-            description: 'Sales',
-            type: 'WEB',
-        },
+        // {
+        //     name: 'Kremen Belts Sales',
+        //     href: 'https://kremen-belts-sales.netlify.app/store',
+        //     description: 'Sales',
+        //     type: 'WEB',
+        // },
     ],
     managers: null,
     options: {
