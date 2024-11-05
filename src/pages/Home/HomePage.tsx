@@ -2,9 +2,7 @@ import { useEffect } from 'react';
 import { Box, Typography, Grid } from '@mui/material';
 import { useDevice } from 'hooks/useDevice';
 import { useOutletContext } from 'react-router-dom';
-import MessageButton from 'components/atoms/Buttons/MessageButton';
 import HomeImages from './HomeImages';
-import CallBackButton from 'components/atoms/Buttons/CallBackButton';
 import { HomeContextInterface } from 'types/outlet_context_models';
 import { DialogWindowType } from 'layouts/hooks/useFormsApp';
 import { STORE_ROUTE } from 'router/routes';
@@ -13,6 +11,8 @@ import { scrollPage } from 'utils/scrollPage';
 import CocktailButton from 'components/atoms/Buttons/CocktailButton';
 import mainLogo from 'assets/img/logo.webp';
 import { telegramSender } from 'utils/telegramSender';
+import MessageButton from 'components/molecules/ToolsButtons/MessageButton';
+import CallBackButton from 'components/molecules/ToolsButtons/CallBackButton';
 
 const HomePage = () => {
     const { STORE_CODE } = STORE_CONFIG;
