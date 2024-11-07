@@ -52,9 +52,41 @@ const StoresLogic = ({
     const { APP_LANGUAGE, USER_OPTIONS } = STORE_CONFIG;
     const { VIEW_MODE } = USER_OPTIONS;
 
+    // authorization
+    useEffect(() => {
+        const fetchAuth = async () => {
+            try {
+                const storedItems = await getStorageItem(STORAGE_KEYS?.ACCESS_TOKEN_KEY);
+
+                if (storedItems) {
+                    userData
+                        .fetchUserData()
+                        .then(res => {
+                            if (res.status === 'error') {
+                                setAuth(false);
+                            } else {
+                                setAuth(true);
+                                setApiToken(storedItems);
+                                userData.setCurrentUserData(res?.data?.data);
+                            }
+                        })
+                        .catch(err => {
+                            setAuth(false);
+                            console.log(err);
+                        });
+                } else {
+                    setAuth(false);
+                }
+            } catch (error) {
+                console.error('Error getting storage item:', error);
+            }
+        };
+
+        fetchAuth();
+    }, []); // eslint-disable-line
+
     useEffect(() => {
         if (!auth) return;
-        console.log(auth);
         const fetchAuth = async () => {
             try {
                 const storedItems = await getStorageItem(STORAGE_KEYS?.ACCESS_TOKEN_KEY);
