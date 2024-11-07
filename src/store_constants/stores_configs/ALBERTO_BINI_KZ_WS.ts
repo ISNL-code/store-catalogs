@@ -5,7 +5,7 @@ export const ALBERTO_BINI_KZ_WS = {
     active: true, // Поле которое запускает магазин true - работает false - остановлен / по тех. причина
     status: null,
     required_registration: false,
-    URL: ['https://albertobini-kz.com'],
+    URL: ['https://albertobini-kz.com', 'https://albertobini-kz.netlify.app/'],
     web_lang: 'kz', // html lang
     store_name: 'Alberto Bini KZ',
     store_code: 'alberto_bini_europe',
