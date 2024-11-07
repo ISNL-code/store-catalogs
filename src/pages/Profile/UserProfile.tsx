@@ -51,6 +51,7 @@ const UserProfile = () => {
             if (userDataError) {
                 return handleError(userDataError);
             } else {
+                console.log('user_profile');
                 updateUserData();
             }
         }

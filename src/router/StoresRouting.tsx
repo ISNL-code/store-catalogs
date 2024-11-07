@@ -57,6 +57,7 @@ const StoresRouting = () => {
         error: userError,
     } = useUserApi().useGetUserData({
         storeCode: STORE_CODE,
+        auth,
     });
 
     const { data: storeDataRes, isFetching: isStoreLoading } = useStoresApi().useGetStoreByCode({
@@ -73,12 +74,10 @@ const StoresRouting = () => {
             auth,
             setAuth,
             setLang,
-            setInfoAlert,
             setViewMode,
             setCurrentStoreData,
             userData: { currentUserData, isFetchingUser, setCurrentUserData, fetchUserData, userError },
             lang,
-            infoAlert,
             viewMode,
             storeDataRes,
             isStoreLoading,

@@ -203,6 +203,7 @@ const ConfirmCoupon = ({
                                 },
                             },
                         }).then(_ => {
+                            console.log('user_profile');
                             updateUserData().then(res => setCurrentUserData(res?.data?.data));
                         });
                 })

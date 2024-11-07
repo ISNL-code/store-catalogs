@@ -8,7 +8,6 @@ export const ALBERTO_BINI_EU_WS = {
     web_lang: 'en', // html lang
     store_name: 'Alberto Bini Europe',
     store_code: 'alberto_bini_europe',
-    base_url: 'https://kremen-belts.com/api',
     app_lang: 'en',
     supported_countries: null,
     telegram_sender: true,

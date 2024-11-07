@@ -22,7 +22,6 @@ export interface STORE_CONFIG_Interface {
     REQUIRED_REGISTRATION: boolean; // use for stores with required registration
     STORE_NAME: string; // Real store name
     STORE_CODE: string; // use for get current store data
-    BASE_URL: string; // use for auth interceptor
     APP_LANGUAGE: string; // init app language
     SUPPORTED_COUNTRIES: { code: string; country: string }[] | null; // use for limitation of supported countries
     HTML_LANG: string; // web html lang

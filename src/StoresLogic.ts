@@ -15,12 +15,10 @@ interface Props {
     lang: string;
     auth: boolean | null;
     viewMode: ViewModeType | null;
-    infoAlert: { ws_info: boolean } | null;
     storeDataRes?: AxiosResponse<Store_Data_Response_Interface, any>;
     setCurrentStoreData: (newData: StoreInterface) => void;
     isStoreLoading: boolean;
     setViewMode: (newViewMode: ViewModeType) => void;
-    setInfoAlert: (newInfo: { ws_info: boolean }) => void;
     setAuth: (newAuth: boolean) => void;
     setLang: (newLang: string) => void;
     userData: {
@@ -42,8 +40,6 @@ const StoresLogic = ({
     userData,
     lang,
     setLang,
-    infoAlert,
-    setInfoAlert,
     viewMode,
     setViewMode,
     storeDataRes,
@@ -56,41 +52,9 @@ const StoresLogic = ({
     const { APP_LANGUAGE, USER_OPTIONS } = STORE_CONFIG;
     const { VIEW_MODE } = USER_OPTIONS;
 
-    // authorization
-    useEffect(() => {
-        const fetchAuth = async () => {
-            try {
-                const storedItems = await getStorageItem(STORAGE_KEYS?.ACCESS_TOKEN_KEY);
-
-                if (storedItems) {
-                    userData
-                        .fetchUserData()
-                        .then(res => {
-                            if (res.status === 'error') {
-                                setAuth(false);
-                            } else {
-                                setAuth(true);
-                                setApiToken(storedItems);
-                                userData.setCurrentUserData(res?.data?.data);
-                            }
-                        })
-                        .catch(err => {
-                            setAuth(false);
-                            console.log(err);
-                        });
-                } else {
-                    setAuth(false);
-                }
-            } catch (error) {
-                console.error('Error getting storage item:', error);
-            }
-        };
-
-        fetchAuth();
-    }, []); // eslint-disable-line
-
     useEffect(() => {
         if (!auth) return;
+        console.log(auth);
         const fetchAuth = async () => {
             try {
                 const storedItems = await getStorageItem(STORAGE_KEYS?.ACCESS_TOKEN_KEY);

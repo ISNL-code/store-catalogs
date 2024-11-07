@@ -58,7 +58,7 @@ export const useProductsApi = () => {
             ['get-product-by-id'],
             () =>
                 get({
-                    url: `/v2/products/?lang=${lang}&store=${storeCode}&productIds=${id}&origin=customer&count=1000`,
+                    url: `/v2/products?lang=${lang}&store=${storeCode}&productIds=${id}&origin=customer&count=1000`,
                 }),
             { enabled: !!lang }
         );

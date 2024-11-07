@@ -8,7 +8,6 @@ export const KREMEN_BELTS_SALES = {
     web_lang: 'uk', // html lang
     store_name: 'Kremen Belts Sales',
     store_code: 'kremen_belts_sales',
-    base_url: 'https://kremen-belts.com/api',
     app_lang: 'ua',
     supported_countries: [{ code: 'UA', country: 'ukraine' }],
     telegram_sender: false,
