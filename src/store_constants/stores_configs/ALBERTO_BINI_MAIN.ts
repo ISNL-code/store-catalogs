@@ -44,6 +44,7 @@ export const ALBERTO_BINI_MAIN = {
     options: {
         no_reg_order: true,
         telegram_bot: [
+            //MY ALB
             {
                 token: '8118561264:AAFxhkoULSi9abzaTt9nHNFM6RCfBbBUV1M',
                 chatId: '480774886',
@@ -61,12 +62,13 @@ export const ALBERTO_BINI_MAIN = {
                     'add_cart',
                 ],
             },
+            //LENA ALB
             {
                 chatId: '6227152193',
                 token: '7926269233:AAFOApI-YISLrblBEfrogo22aiBuf_QV5gQ',
                 items: [
                     // 'cart',
-                    'listing',
+                    // 'listing',
                     // 'cocktail',
                     // 'register',
                     // 'feedback_form',
@@ -78,21 +80,22 @@ export const ALBERTO_BINI_MAIN = {
                     // 'add_cart',
                 ],
             },
+            //NATASHA ALB
             {
                 token: '7501048516:AAFGRXP3nw7z0UWr4t-Dvz_oFt_98CFXX2k',
                 chatId: '6221489796',
                 items: [
-                    // 'cart',
+                    'cart',
                     'listing',
                     // 'cocktail',
-                    // 'register',
+                    'register',
                     // 'feedback_form',
                     // 'price_request',
-                    // 'login',
+                    'login',
                     'order',
                     'error',
                     // 'add_favorites',
-                    // 'add_cart',
+                    'add_cart',
                 ],
             },
         ],
@@ -101,7 +104,7 @@ export const ALBERTO_BINI_MAIN = {
         sale_price_multiplication: 1,
         currency_multiplication: 1,
         retail_price_multiplication: 1,
-        min_items_to_buy: 10,
+        min_items_to_buy: 5,
         store_type: StoreType?.sales,
         home_page_active: true,
         informative_page_active: true,
