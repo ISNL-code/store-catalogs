@@ -114,7 +114,7 @@ const Catalog = () => {
                         text={sx ? '' : 'Cocktail Shop'}
                         externalUrl="https://cocktail-catalogs-shop.com"
                         sendBotMessage={() => {
-                            telegramSender({ action: `КЛИК ПО ССЫЛКЕ КОКТЕЙЛЬ от ${STORE_CODE}` });
+                            telegramSender({ action: `КЛИК ПО ССЫЛКЕ КОКТЕЙЛЬ от ${STORE_CODE}`, name: 'cocktail' });
                         }}
                     />
                 </Box>

@@ -55,7 +55,8 @@ export const useAddToFavorites = ({ loadingUser }: useAddToFavoritesParamsInterf
             setFavoriteItems(prev => prev.filter(item => item.variantSku !== data?.variantSku));
         } else {
             telegramSender({
-                action: `ДОБАВИЛ В ЛАЙКИ  ${window.location.origin}/store/${STORE_CODE}/product/${data?.productId}/model/${data?.variantSku}`,
+                action: `ДОБАВИЛ В ЛАЙКИ ${data?.variantSku}`,
+                name: 'add_favorites',
             });
             setFavoriteItems(prev => [...prev, data]);
         }

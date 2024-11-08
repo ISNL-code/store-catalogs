@@ -51,6 +51,7 @@ export const useUserApi = () => {
 
     const useGetUserData = ({
         storeCode,
+        auth,
     }): UseQueryResult<AxiosResponse<User_Data_Response_Interface, any>, unknown> => {
         return useQuery(
             ['get-user-profile'],
@@ -59,7 +60,7 @@ export const useUserApi = () => {
                 get({
                     url: `v1/auth/customer/profile?store=${storeCode}`,
                 }),
-            { enabled: false, retry: false }
+            { enabled: Boolean(auth), retry: false }
         );
     };
 

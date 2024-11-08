@@ -55,7 +55,8 @@ export const useAddToCart = ({ loadingUser }: useAddToCartParamsInterface): useA
             setCartItems(prev => prev.filter(item => item.variantSku !== data?.variantSku));
         } else {
             telegramSender({
-                action: `ДОБАВИЛ В КОРЗИНУ  ${window.location.origin}/store/${STORE_CODE}/product/${data?.productId}/model/${data?.variantSku}`,
+                action: `ДОБАВИЛ В КОРЗИНУ ${data?.variantSku}`,
+                name: 'add_cart',
             });
             setCartItems(prev => [...prev, data]);
         }

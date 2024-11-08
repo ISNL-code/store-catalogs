@@ -1,12 +1,11 @@
 import axios from 'axios';
 import { STORAGE_KEYS } from 'constants/local_storage_keys';
 import { ERROR_PAGE } from 'router/routes';
-import { STORE_CONFIG } from 'store_constants/stores_config';
 import { getStorageItem, removeStorageItem } from 'utils/storageUtils';
 
 const AuthInterceptor = () => {
-    const { BASE_URL } = STORE_CONFIG;
-    axios.defaults.baseURL = BASE_URL;
+    // Устанавливаем baseURL на основе переменной окружения
+    axios.defaults.baseURL = process.env.REACT_APP_BASE_URL;
 
     axios.interceptors.request.use(
         async request => {

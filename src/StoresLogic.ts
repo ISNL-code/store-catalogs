@@ -15,12 +15,10 @@ interface Props {
     lang: string;
     auth: boolean | null;
     viewMode: ViewModeType | null;
-    infoAlert: { ws_info: boolean } | null;
     storeDataRes?: AxiosResponse<Store_Data_Response_Interface, any>;
     setCurrentStoreData: (newData: StoreInterface) => void;
     isStoreLoading: boolean;
     setViewMode: (newViewMode: ViewModeType) => void;
-    setInfoAlert: (newInfo: { ws_info: boolean }) => void;
     setAuth: (newAuth: boolean) => void;
     setLang: (newLang: string) => void;
     userData: {
@@ -42,8 +40,6 @@ const StoresLogic = ({
     userData,
     lang,
     setLang,
-    infoAlert,
-    setInfoAlert,
     viewMode,
     setViewMode,
     storeDataRes,
@@ -58,6 +54,7 @@ const StoresLogic = ({
 
     // authorization
     useEffect(() => {
+        if (mount) return;
         const fetchAuth = async () => {
             try {
                 const storedItems = await getStorageItem(STORAGE_KEYS?.ACCESS_TOKEN_KEY);
@@ -87,7 +84,7 @@ const StoresLogic = ({
         };
 
         fetchAuth();
-    }, []); // eslint-disable-line
+    }, [mount]); // eslint-disable-line
 
     useEffect(() => {
         if (!auth) return;

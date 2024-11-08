@@ -30,7 +30,6 @@ const storeConfig = (): STORE_CONFIG_Interface => {
         REQUIRED_REGISTRATION: matchingDomain?.required_registration || false,
         STORE_NAME: matchingDomain?.store_name || '',
         STORE_CODE: matchingDomain?.store_code || '',
-        BASE_URL: matchingDomain?.base_url || '',
         APP_LANGUAGE: matchingDomain?.app_lang || 'en',
         HTML_LANG: matchingDomain?.web_lang || 'en',
         SUPPORTED_COUNTRIES: matchingDomain?.supported_countries || null,

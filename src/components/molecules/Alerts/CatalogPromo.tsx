@@ -6,7 +6,6 @@ import { useState } from 'react';
 import { useOutletContext } from 'react-router-dom';
 import { CatalogContextInterface } from 'types/outlet_context_models';
 import { DialogWindowType } from 'layouts/hooks/useFormsApp';
-import { telegramSender } from 'utils/telegramSender';
 import { STORE_CONFIG } from 'store_constants/stores_config';
 import { Color } from 'constants/colors';
 import { AppAlertNameType } from 'store_constants/types';
@@ -43,20 +42,16 @@ const CatalogPromoAlert = () => {
                         background: Color?.SUCCESS,
                     }}
                     action={
-                        <Box sx={{ height: '100%', display: 'flex', alignItems: 'center' }}>
-                            <IconButton
-                                aria-label="close"
-                                color="inherit"
-                                size={'small'}
-                                onClick={() => {
-                                    handleOpenDialog(DialogWindowType.REGISTER);
-                                    telegramSender({ action: `РЕГИСТРАЦИЯ С ПРОМО` });
-                                }}
-                                sx={{ border: '1px solid #fff' }}
-                            >
-                                <LoginIcon sx={{ fontSize: sx ? 24 : 18 }} />
-                            </IconButton>
-                        </Box>
+                        <IconButton
+                            aria-label="close"
+                            color="inherit"
+                            size="small"
+                            onClick={() => {
+                                handleOpenDialog(DialogWindowType.REGISTER);
+                            }}
+                        >
+                            <LoginIcon fontSize="inherit" />
+                        </IconButton>
                     }
                 >
                     {string?.registration_promo}

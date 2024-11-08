@@ -9,7 +9,6 @@ export const ALBERTO_BINI_MAIN = {
     web_lang: 'uk', // html lang
     store_name: 'АБ ОСНОВНОЙ',
     store_code: 'ALBERTO_BINI',
-    base_url: 'https://kremen-belts.com/api',
     app_lang: 'ua',
     supported_countries: [{ code: 'UA', country: 'ukraine' }],
     telegram_sender: true,
@@ -46,8 +45,36 @@ export const ALBERTO_BINI_MAIN = {
         no_reg_order: true,
         telegram_bot: [
             {
-                token: '6904212535:AAGvPEjkJds0aayd-oD1YVMbhLKeKt72yaE',
+                token: '8118561264:AAFxhkoULSi9abzaTt9nHNFM6RCfBbBUV1M',
                 chatId: '480774886',
+                items: [
+                    'cart',
+                    'listing',
+                    'cocktail',
+                    'register',
+                    'feedback_form',
+                    'price_request',
+                    'login',
+                    'order',
+                    'add_favorites',
+                    'add_cart',
+                ],
+            },
+            {
+                chatId: '6227152193',
+                token: '7926269233:AAFOApI-YISLrblBEfrogo22aiBuf_QV5gQ',
+                items: [
+                    // 'cart',
+                    'listing',
+                    // 'cocktail',
+                    // 'register',
+                    // 'feedback_form',
+                    // 'price_request',
+                    // 'login',
+                    'order',
+                    // 'add_favorites',
+                    // 'add_cart',
+                ],
             },
             {
                 token: '7501048516:AAFGRXP3nw7z0UWr4t-Dvz_oFt_98CFXX2k',

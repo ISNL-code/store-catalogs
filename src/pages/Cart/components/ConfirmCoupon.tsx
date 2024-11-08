@@ -61,6 +61,7 @@ const ConfirmCoupon = ({
             handleOpenDialog(DialogWindowType?.WARNING_ORDERING_LIMIT);
             telegramSender({
                 action: `ПРОБУЕТ ЗАКАЗАТЬ МЕНЬШЕ ОПТОВОГО ЛИМИТА`,
+                name: 'order',
             });
             return;
         }
@@ -87,6 +88,7 @@ const ConfirmCoupon = ({
                 ГОРОД: ${city || 'НЕ ЗАПОЛНИЛ '} 
                 АДРЕСС ДОСТАВКИ (НП): ${address || 'НЕ ЗАПОЛНИЛ '} 
                 КОМПАНИЯ: ${company || 'НЕ ЗАПОЛНИЛ '}`,
+                    name: 'order',
                 });
 
                 cart?.handleClearCartItems([...new Set(orderData?.productsList.map(item => item?.productSku))]);
@@ -118,6 +120,7 @@ const ConfirmCoupon = ({
                     ГОРОД: ${city || 'НЕ ЗАПОЛНИЛ '} 
                     АДРЕСС ДОСТАВКИ (НП): ${address || 'НЕ ЗАПОЛНИЛ '} 
                     КОМПАНИЯ: ${company || 'НЕ ЗАПОЛНИЛ '}`,
+                    name: 'order',
                 });
             }
             return;
@@ -178,6 +181,7 @@ const ConfirmCoupon = ({
                         action: `ЗАКАЗ  !$!$!  ${Number(finalPrice).toFixed(2)} PROMO_CODE:${
                             promoCode || 'НЕ ЗАПОЛНИЛ ПРОМО'
                         }`,
+                        name: 'order',
                     });
 
                     cart?.handleClearCartItems([...new Set(orderData?.productsList.map(item => item?.productSku))]);
@@ -203,6 +207,7 @@ const ConfirmCoupon = ({
                                 },
                             },
                         }).then(_ => {
+                            console.log('user_profile');
                             updateUserData().then(res => setCurrentUserData(res?.data?.data));
                         });
                 })

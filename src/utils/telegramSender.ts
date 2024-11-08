@@ -3,9 +3,11 @@ import { STORE_CONFIG } from 'store_constants/stores_config';
 
 const { STORE_NAME, TELEGRAM_SENDER, OPTIONS } = STORE_CONFIG;
 
-export const telegramSender = ({ action, contacts = '', text = '' }) => {
+export const telegramSender = ({ action, name, contacts = '', text = '' }) => {
     if (!TELEGRAM_SENDER) return;
+
     OPTIONS?.TELEGRAM_BOT?.forEach(bot => {
+        if (!bot?.items?.includes(name)) return;
         try {
             const token = bot?.token;
             const chatId = bot?.chatId;
