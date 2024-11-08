@@ -93,6 +93,7 @@ const HomeHeader = ({
                         action={() => {
                             telegramSender({
                                 action: `ЗАШЕЛ НА ЛИСТИНГ ${window.location.origin}`,
+                                name: 'listing',
                             });
                         }}
                     />

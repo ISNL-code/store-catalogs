@@ -6,7 +6,6 @@ import { useState } from 'react';
 import { useOutletContext } from 'react-router-dom';
 import { CatalogContextInterface } from 'types/outlet_context_models';
 import { DialogWindowType } from 'layouts/hooks/useFormsApp';
-import { telegramSender } from 'utils/telegramSender';
 import { STORE_CONFIG } from 'store_constants/stores_config';
 import { Color } from 'constants/colors';
 import { AppAlertNameType } from 'store_constants/types';
@@ -49,7 +48,6 @@ const CatalogPromoAlert = () => {
                             size="small"
                             onClick={() => {
                                 handleOpenDialog(DialogWindowType.REGISTER);
-                                telegramSender({ action: `РЕГИСТРАЦИЯ С ПРОМО` });
                             }}
                         >
                             <LoginIcon fontSize="inherit" />

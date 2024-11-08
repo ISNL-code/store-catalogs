@@ -35,6 +35,7 @@ export default function QuestionForm({ isOpen, setIsOpen, string }: Props) {
             handleClose();
             telegramSender({
                 action: `ФОРМА ОБРАТНОЙ СВЯЗИ`,
+                name: 'feedback_form',
                 contacts: `email:${values.email}, other_contacts: ${values.contacts}`,
                 text: `question: ${values.question}`,
             });

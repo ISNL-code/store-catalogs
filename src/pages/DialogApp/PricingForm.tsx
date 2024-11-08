@@ -37,6 +37,7 @@ export default function PricingForm({ isOpen, setIsOpen, string, dialogState }: 
             handleClose();
             telegramSender({
                 action: `Запрос Цены`,
+                name: 'price_request',
                 contacts: `| email:${values.email}, other_contacts: ${values.contacts}`,
                 text: `| comment: ${values.comment} || Want to know all prices: ${values.allPrices}`,
             });

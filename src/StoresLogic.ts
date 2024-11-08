@@ -54,6 +54,7 @@ const StoresLogic = ({
 
     // authorization
     useEffect(() => {
+        if (mount) return;
         const fetchAuth = async () => {
             try {
                 const storedItems = await getStorageItem(STORAGE_KEYS?.ACCESS_TOKEN_KEY);
@@ -83,7 +84,7 @@ const StoresLogic = ({
         };
 
         fetchAuth();
-    }, []); // eslint-disable-line
+    }, [mount]); // eslint-disable-line
 
     useEffect(() => {
         if (!auth) return;

@@ -22,7 +22,24 @@ export const KREMEN_BELTS_MAIN = {
     managers: null,
     options: {
         no_reg_order: false,
-        telegram_bot: null,
+        telegram_bot: [
+            {
+                token: '8118561264:AAFxhkoULSi9abzaTt9nHNFM6RCfBbBUV1M',
+                chatId: '480774886',
+                items: [
+                    // 'cart',
+                    'listing',
+                    // 'cocktail',
+                    // 'register',
+                    // 'feedback_form',
+                    // 'price_request',
+                    // 'login',
+                    'order',
+                    // 'add_favorites',
+                    // 'add_cart',
+                ],
+            },
+        ],
         product_image_options: { width: 4, height: 3 },
         main_price_multiplication: 1,
         sale_price_multiplication: 1,

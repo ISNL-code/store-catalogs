@@ -54,6 +54,7 @@ export const useAddToCart = ({ loadingUser }: useAddToCartParamsInterface): useA
         } else {
             telegramSender({
                 action: `ДОБАВИЛ В КОРЗИНУ ${data?.variantSku}`,
+                name: 'add_cart',
             });
             setCartItems(prev => [...prev, data]);
         }

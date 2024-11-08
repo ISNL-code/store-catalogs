@@ -44,7 +44,7 @@ export interface STORE_CONFIG_Interface {
         | null;
     OPTIONS: {
         NO_REG_ORDER: boolean;
-        TELEGRAM_BOT: { token: string; chatId: string }[] | null; //use for telegram message send
+        TELEGRAM_BOT: { token: string; chatId: string; items: string[] }[] | null; //use for telegram message send
         PRODUCT_IMAGE_OPTIONS: { width: number; height: number }; // use for identification of product image size
         MAIN_PRICE_MULTIPLICATION: number; // use in custom catalogs for multiple main prices
         SALE_PRICE_MULTIPLICATION: number; // use in custom catalogs for multiple sales prices

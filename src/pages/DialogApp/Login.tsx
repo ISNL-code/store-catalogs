@@ -38,6 +38,7 @@ export default function Login({ isOpen, setIsOpen, string, location, setAuth, se
                     if (res.data.token) {
                         telegramSender({
                             action: `LOGIN`,
+                            name: 'login',
                             contacts: `email: ${values.email},`,
                         });
                         setStorageItem(STORAGE_KEYS?.ACCESS_TOKEN_KEY, JSON.stringify(res.data.token));
