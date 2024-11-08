@@ -4,14 +4,12 @@ import { STORAGE_KEYS } from 'constants/local_storage_keys';
 import { getStorageItem, removeStorageItem, setStorageItem } from 'utils/storageUtils';
 import { useIsMount } from 'hooks/useIsMount';
 import { telegramSender } from 'utils/telegramSender';
-import { STORE_CONFIG } from 'store_constants/stores_config';
 
 interface useAddToCartParamsInterface {
     loadingUser: boolean;
 }
 
 export const useAddToCart = ({ loadingUser }: useAddToCartParamsInterface): useAddToCartDataInterface => {
-    const { STORE_CODE } = STORE_CONFIG;
     const mount = useIsMount();
     const [cartItems, setCartItems] = useState<LocalStorageProductInterface[]>([]);
 

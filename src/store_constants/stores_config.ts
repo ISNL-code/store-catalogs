@@ -1,4 +1,3 @@
-import { ALBERTO_BINI_EU_WS } from './stores_configs/ALBERTO_BINI_EU_WS';
 import { ALBERTO_BINI_KZ_WS } from './stores_configs/ALBERTO_BINI_KZ_WS';
 import { ALBERTO_BINI_MAIN } from './stores_configs/ALBERTO_BINI_MAIN';
 import { ALBERTO_BINI_SALES } from './stores_configs/ALBERTO_BINI_SALES';
@@ -11,7 +10,6 @@ import { StoreType, STORE_CONFIG_Interface, ViewModeType } from './types';
 const stores = [
     DEVELOP_STORE,
     ALBERTO_BINI_MAIN,
-    ALBERTO_BINI_EU_WS,
     ALBERTO_BINI_SALES,
     YULIA_TRUBA_MAIN,
     RETAIL_ALBERTO_BINI,

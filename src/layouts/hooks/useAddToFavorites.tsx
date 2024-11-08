@@ -3,14 +3,12 @@ import { LocalStorageProductInterface, useAddToFavoriteDataInterface } from 'typ
 import { STORAGE_KEYS } from 'constants/local_storage_keys';
 import { getStorageItem, removeStorageItem, setStorageItem } from 'utils/storageUtils';
 import { telegramSender } from 'utils/telegramSender';
-import { STORE_CONFIG } from 'store_constants/stores_config';
 
 interface useAddToFavoritesParamsInterface {
     loadingUser: boolean;
 }
 
 export const useAddToFavorites = ({ loadingUser }: useAddToFavoritesParamsInterface): useAddToFavoriteDataInterface => {
-    const { STORE_CODE } = STORE_CONFIG;
     const [favoriteItems, setFavoriteItems] = useState<LocalStorageProductInterface[]>([]);
 
     useEffect(() => {
