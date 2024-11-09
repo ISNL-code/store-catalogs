@@ -47,7 +47,7 @@ const BlackFriday = ({ price, discountPrice }) => {
             <Box
                 sx={{
                     position: 'absolute',
-                    right: 6,
+                    left: 6,
                     bottom: 5,
                     zIndex: 1000,
                     width: 44,

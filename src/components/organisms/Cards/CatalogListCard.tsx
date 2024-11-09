@@ -371,7 +371,7 @@ const CatalogListCard = memo<CatalogCardProps>(
                         }}
                     >
                         <Box>
-                            {STORE_TYPE === StoreType.sales && discounted && (
+                            {false && STORE_TYPE === StoreType.sales && discounted && (
                                 <>
                                     <SaleTag price={shownModel?.originalPrice} discountPrice={shownModel?.price} />
                                 </>
