@@ -16,10 +16,9 @@ const BlackFriday = ({ price, discountPrice }) => {
                     top: 0,
                     zIndex: 1,
                     width: 22,
-                    height: 180,
+                    height: '100%',
                     background: 'linear-gradient(135deg, #ff0000 10%, #000000 80%)',
-                    borderBottomLeftRadius: 12,
-                    borderBottomRightRadius: 12,
+
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
@@ -42,18 +41,18 @@ const BlackFriday = ({ price, discountPrice }) => {
                         fontWeight: 500,
                     }}
                 >
-                    Black Friday
+                    Black _ Friday
                 </Typography>
             </Box>
             <Box
                 sx={{
                     position: 'absolute',
-                    right: 0,
-                    top: 155,
-                    zIndex: 1,
+                    right: 6,
+                    bottom: 5,
+                    zIndex: 1000,
                     width: 44,
                     height: 28,
-                    background: 'linear-gradient(25deg, #a0a0a0 10%, #000000 70%)',
+                    background: 'linear-gradient(25deg, #a0a0a0 10%, #000000 50%)',
                     borderRadius: 2,
                     display: 'flex',
                     alignItems: 'center',
@@ -65,7 +64,7 @@ const BlackFriday = ({ price, discountPrice }) => {
                         '0%': { opacity: 0 },
                         '100%': { opacity: 1 },
                     },
-                    borderBottomRightRadius: 0,
+                    border: '2px solid #fff',
                 }}
             >
                 <Typography
