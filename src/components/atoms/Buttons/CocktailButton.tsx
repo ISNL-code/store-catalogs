@@ -32,8 +32,8 @@ const CocktailButton = ({ path, logoUrl, text, externalUrl, sendBotMessage }: Pr
                 sx={{
                     zIndex: 5000,
                     position: 'relative',
-                    width: 90,
-                    height: 90,
+                    width: 76,
+                    height: 76,
                     background: Colors.GRAY_300,
                     borderRadius: '50%',
                     boxShadow: '0 0 4px 3px rgba(0, 0, 0, 0.164)',
@@ -54,7 +54,7 @@ const CocktailButton = ({ path, logoUrl, text, externalUrl, sendBotMessage }: Pr
                         width: '100%',
                         height: '100%',
                         backgroundImage: `url(${logoUrl})`,
-                        backgroundSize: 65,
+                        backgroundSize: 54,
                         backgroundRepeat: 'no-repeat',
                         backgroundPosition: 'center',
                     }}
@@ -65,13 +65,13 @@ const CocktailButton = ({ path, logoUrl, text, externalUrl, sendBotMessage }: Pr
                                 key={index}
                                 sx={{
                                     position: 'absolute',
-                                    left: 46,
+                                    left: 38,
                                     top: 0,
-                                    transform: `rotate(${(index / array.length) * 190 + 270}deg)`,
-                                    transformOrigin: `0 ${46}px`,
+                                    transform: `rotate(${(index / array.length) * 190 + 280}deg)`,
+                                    transformOrigin: `0 ${39}px`,
                                     fontFamily: 'Roboto',
                                     fontWeight: 500,
-                                    fontSize: 12,
+                                    fontSize: 10,
                                     color: Colors.BLACK,
                                     textShadow: '#000000 0 0 2px',
                                 }}
