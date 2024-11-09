@@ -27,6 +27,7 @@ import { DialogWindowType } from 'layouts/hooks/useFormsApp';
 import StraightenIcon from '@mui/icons-material/Straighten';
 import CustomSwiper from '../swiper/CustomSwiper';
 import StyledTooltip from 'components/molecules/StyledComponents/StyledTooltip';
+import BlackFriday from './BlackFriday';
 
 interface CatalogCardProps {
     modelsVariants: ProductVariantInterface[];
@@ -328,7 +329,6 @@ const CatalogListCard = memo<CatalogCardProps>(
             return (
                 <>
                     {!sliderHeight && <Box sx={{ height: '100vh' }}></Box>}
-
                     <Box
                         sx={{
                             position: 'absolute',
@@ -353,6 +353,13 @@ const CatalogListCard = memo<CatalogCardProps>(
                             </Box>
                         )}
                     </Box>
+                    <Box>
+                        {STORE_TYPE === StoreType.sales && discounted && (
+                            <>
+                                <BlackFriday price={shownModel?.originalPrice} discountPrice={shownModel?.price} />
+                            </>
+                        )}
+                    </Box>
                     <Box
                         sx={{
                             position: 'absolute',
@@ -365,18 +372,18 @@ const CatalogListCard = memo<CatalogCardProps>(
                     >
                         <Box>
                             {STORE_TYPE === StoreType.sales && discounted && (
-                                <SaleTag price={shownModel?.originalPrice} discountPrice={shownModel?.price} />
+                                <>
+                                    <SaleTag price={shownModel?.originalPrice} discountPrice={shownModel?.price} />
+                                </>
                             )}
                         </Box>
                     </Box>
-
                     <Box sx={{ position: 'absolute', bottom: 8, right: 8, zIndex: 1 }}>
                         <ShareButton
                             isShown
                             path={SHARE_PRODUCT_PATH?.share_product_sku(STORE_CODE, productId, shownModel?.variantSku)}
                         />
                     </Box>
-
                     <Box sx={{ position: 'absolute', top: 8, right: 8, zIndex: 1, display: 'flex', gap: 0.5 }}>
                         <FavoritesButton
                             isShown={PLAN_OPTIONS?.favorites}
