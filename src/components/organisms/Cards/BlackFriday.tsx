@@ -4,6 +4,8 @@ import { Box, Typography } from '@mui/material';
 const BlackFriday = ({ price, discountPrice }) => {
     const discountPercentage = Math.floor(((price - discountPrice) / price) * 100);
 
+    if (!discountPercentage) return null;
+
     return (
         <>
             <Box

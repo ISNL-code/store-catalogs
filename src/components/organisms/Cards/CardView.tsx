@@ -21,7 +21,6 @@ const CardView = ({ SliderComponent, CardDetails, CardDecoration, opacity, ...re
         if (mx) return 4;
         if (l) return 3;
         return 2.4;
-        ///
     };
 
     return (
