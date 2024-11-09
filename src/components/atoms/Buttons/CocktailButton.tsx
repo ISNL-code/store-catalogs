@@ -1,28 +1,16 @@
 import { Box, Typography } from '@mui/material';
 import { Color, Colors } from 'constants/colors';
-import { useDevice } from 'hooks/useDevice';
 import { useNavigate } from 'react-router-dom';
-
-interface Size {
-    small?: number;
-    large?: number;
-    imgSmall?: number;
-    imgLarge?: number;
-    textSmall?: number;
-    textLarge?: number;
-}
 
 interface Props {
     path?: string;
     logoUrl: string;
     text?: string;
     externalUrl?: string;
-    size?: Size;
     sendBotMessage?: () => void;
 }
 
-const CocktailButton = ({ path, logoUrl, text, externalUrl, size = {}, sendBotMessage }: Props) => {
-    const { sx } = useDevice();
+const CocktailButton = ({ path, logoUrl, text, externalUrl, sendBotMessage }: Props) => {
     const navigate = useNavigate();
 
     const handleClick = () => {
@@ -44,20 +32,8 @@ const CocktailButton = ({ path, logoUrl, text, externalUrl, size = {}, sendBotMe
                 sx={{
                     zIndex: 5000,
                     position: 'relative',
-                    width: text
-                        ? sx
-                            ? size.small ?? 70
-                            : size.large ?? 90
-                        : sx
-                        ? size.small ?? 74
-                        : size.large ?? 110,
-                    height: text
-                        ? sx
-                            ? size.small ?? 70
-                            : size.large ?? 90
-                        : sx
-                        ? size.small ?? 74
-                        : size.large ?? 110,
+                    width: 90,
+                    height: 90,
                     background: Colors.GRAY_300,
                     borderRadius: '50%',
                     boxShadow: '0 0 4px 3px rgba(0, 0, 0, 0.164)',
@@ -78,15 +54,7 @@ const CocktailButton = ({ path, logoUrl, text, externalUrl, size = {}, sendBotMe
                         width: '100%',
                         height: '100%',
                         backgroundImage: `url(${logoUrl})`,
-                        backgroundSize: `${
-                            text
-                                ? sx
-                                    ? size?.imgSmall || 70
-                                    : size?.imgLarge || 68
-                                : sx
-                                ? size?.imgSmall || 70
-                                : size?.imgLarge || 90
-                        }px`,
+                        backgroundSize: 65,
                         backgroundRepeat: 'no-repeat',
                         backgroundPosition: 'center',
                     }}
@@ -97,13 +65,13 @@ const CocktailButton = ({ path, logoUrl, text, externalUrl, size = {}, sendBotMe
                                 key={index}
                                 sx={{
                                     position: 'absolute',
-                                    left: sx ? size.textSmall ?? 36 : size.textLarge ?? 46,
+                                    left: 46,
                                     top: 0,
                                     transform: `rotate(${(index / array.length) * 190 + 270}deg)`,
-                                    transformOrigin: sx ? `0 ${size.textSmall ?? 36}px` : `0 ${size.textLarge ?? 46}px`,
+                                    transformOrigin: `0 ${46}px`,
                                     fontFamily: 'Roboto',
-                                    fontWeight: 400,
-                                    fontSize: 10,
+                                    fontWeight: 500,
+                                    fontSize: 12,
                                     color: Colors.BLACK,
                                     textShadow: '#000000 0 0 2px',
                                 }}

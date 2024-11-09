@@ -49,7 +49,7 @@ const BlackFriday = ({ price, discountPrice }) => {
                     position: 'absolute',
                     left: 6,
                     bottom: 5,
-                    zIndex: 1000,
+                    zIndex: 1,
                     width: 44,
                     height: 28,
                     background: 'linear-gradient(25deg, #a0a0a0 10%, #000000 50%)',
