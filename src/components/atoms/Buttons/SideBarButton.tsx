@@ -20,7 +20,7 @@ const SideBarButton = ({ action, color, positionRight, positionBottom, title, ic
     return (
         <Box
             sx={{
-                width: isHovered && !sx ? 100 : 45,
+                width: isHovered && !sx ? 100 : 40,
                 minWidth: 'fit-content',
                 zIndex: 2000,
                 position: 'fixed',
@@ -71,8 +71,8 @@ const SideBarButton = ({ action, color, positionRight, positionBottom, title, ic
                         backgroundColor: Colors?.WHITE,
                         border: '1px solid #ccc',
                         boxShadow: `0 0 5px 2px ${color}`,
-                        height: 45,
-                        width: 45,
+                        height: 40,
+                        width: 40,
                         transition: 'transform 250ms ease', // Плавный переход для кнопки
                     }}
                 >

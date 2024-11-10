@@ -13,7 +13,7 @@ const MessageButton = ({ action }) => {
             action={() => action()}
             color={Color?.PRIMARY}
             positionRight={sx ? 12 : 12}
-            positionBottom={sx ? 80 : 12}
+            positionBottom={sx ? 72 : 12}
             title={string?.message}
             icon={<SendIcon color="primary" />}
         />

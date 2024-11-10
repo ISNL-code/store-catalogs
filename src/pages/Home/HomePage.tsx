@@ -31,7 +31,7 @@ const HomePage = () => {
                 <Box sx={{ position: 'relative' }}>
                     <CocktailButton
                         logoUrl={mainLogo}
-                        text={sx ? '' : 'Cocktail Shop'}
+                        text={'Cocktail Shop'}
                         externalUrl="https://cocktail-catalogs-shop.com"
                         sendBotMessage={() => {
                             telegramSender({ action: `КЛИК ПО ССЫЛКЕ КОКТЕЙЛЬ от ${STORE_CODE}'`, name: 'cocktail' });
