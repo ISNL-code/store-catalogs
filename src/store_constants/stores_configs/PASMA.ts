@@ -33,6 +33,7 @@ export const PASMA = {
     options: {
         no_reg_order: true,
         telegram_bot: [
+            //ALB RETAILER
             {
                 token: '7115237316:AAFgbrVadLWMkPt3TEdmravEa37jO9N3WSQ',
                 chatId: '480774886',
