@@ -23,6 +23,9 @@ import { scrollPage } from 'utils/scrollPage';
 import { ProductDataInterface } from 'types/app_models';
 import MessageButton from 'components/molecules/ToolsButtons/MessageButton';
 import CallBackButton from 'components/molecules/ToolsButtons/CallBackButton';
+import CocktailButton from 'components/atoms/Buttons/CocktailButton';
+import mainLogo from 'assets/img/logo.webp';
+import { telegramSender } from 'utils/telegramSender';
 
 const Favorites = () => {
     const { OPTIONS, STORE_CODE, SIDE_LINKS } = STORE_CONFIG;
@@ -97,8 +100,19 @@ const Favorites = () => {
             sx={{ minHeight: scrollPosition || '100%', pb: `${footerMenuHeight}px` }}
         >
             {showTopBtn && <ScrollButton />}
+            <Box sx={{ position: 'fixed', bottom: sx ? 70 : 16, left: sx ? 16 : 32, zIndex: 10 }}>
+                <Box sx={{ position: 'relative' }}>
+                    <CocktailButton
+                        logoUrl={mainLogo}
+                        text={'Cocktail Shop'}
+                        externalUrl="https://cocktail-catalogs-shop.com"
+                        sendBotMessage={() => {
+                            telegramSender({ action: `КЛИК ПО ССЫЛКЕ КОКТЕЙЛЬ от ${STORE_CODE}`, name: 'cocktail' });
+                        }}
+                    />
+                </Box>
+            </Box>
             {isLoadingFavorites && <Loader />}
-
             {PLAN_OPTIONS?.feedback && <MessageButton action={() => handleOpenDialog(DialogWindowType?.QUESTION)} />}
             {PLAN_OPTIONS.contacts && <CallBackButton path={STORE_ROUTE.contacts(STORE_CODE)} />}
             <InstrumentalSubHeader

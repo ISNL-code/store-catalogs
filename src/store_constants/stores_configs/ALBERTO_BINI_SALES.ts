@@ -7,16 +7,44 @@ export const ALBERTO_BINI_SALES = {
     required_registration: false,
     URL: ['https://alberto-bini-sales.netlify.app'],
     web_lang: 'uk', // html lang
-    store_name: 'Alberto Bini SALES',
+    store_name: 'АБ ОПТ СТОКОВЫЙ',
     store_code: 'ALBERTO_BINI_SALES',
     app_lang: 'ua',
     supported_countries: [{ code: 'UA', country: 'ukraine' }],
     telegram_sender: true,
     links: [],
-    managers: null,
+    managers: [
+        {
+            firstName: 'Natalya',
+            lastName: '',
+            emailAddress: 'natalya9899@gmail.com',
+            options: { manager: true },
+            contacts: {
+                emailAddress: 'natalya9899@gmail.com',
+                phone: '+380961234858',
+                viber: '+380961234858',
+                whatsapp: '+380961234858',
+                telegram: '',
+            },
+        },
+        {
+            firstName: 'Manager 2',
+            lastName: '',
+            emailAddress: '',
+            options: { manager: true },
+            contacts: {
+                emailAddress: '',
+                phone: '+380983080085',
+                viber: '+380983080085',
+                whatsapp: '+380983080085',
+                telegram: 'Albertobiniopt',
+            },
+        },
+    ],
     options: {
         no_reg_order: true,
         telegram_bot: [
+            //MY ALB
             {
                 token: '8118561264:AAFxhkoULSi9abzaTt9nHNFM6RCfBbBUV1M',
                 chatId: '480774886',
@@ -29,23 +57,44 @@ export const ALBERTO_BINI_SALES = {
                     'price_request',
                     'login',
                     'order',
+                    'error',
                     'add_favorites',
                     'add_cart',
                 ],
             },
+            //LENA ALB
             {
                 chatId: '6227152193',
                 token: '7926269233:AAFOApI-YISLrblBEfrogo22aiBuf_QV5gQ',
                 items: [
+                    // 'cart',
+                    // 'listing',
+                    // 'cocktail',
+                    // 'register',
+                    // 'feedback_form',
+                    // 'price_request',
+                    // 'login',
+                    'order',
+                    'error',
+                    // 'add_favorites',
+                    // 'add_cart',
+                ],
+            },
+            //NATASHA ALB
+            {
+                token: '7501048516:AAFGRXP3nw7z0UWr4t-Dvz_oFt_98CFXX2k',
+                chatId: '6221489796',
+                items: [
                     'cart',
                     'listing',
-                    'cocktail',
+                    // 'cocktail',
                     'register',
-                    'feedback_form',
-                    'price_request',
+                    // 'feedback_form',
+                    // 'price_request',
                     'login',
                     'order',
-                    'add_favorites',
+                    'error',
+                    // 'add_favorites',
                     'add_cart',
                 ],
             },
@@ -60,7 +109,7 @@ export const ALBERTO_BINI_SALES = {
         store_type: StoreType?.sales,
         home_page_active: true,
         informative_page_active: true,
-        custom_logo: false,
+        custom_logo: true,
         plan_options: {
             prices: true,
             sizes: true,
@@ -74,8 +123,8 @@ export const ALBERTO_BINI_SALES = {
         },
     },
     web_head_data: {
-        store_title: 'Alberto Bini Wholesales Catalog | Alberto Bini Оптовий Каталог',
-        store_description: `Ласкаво просимо до Alberto Bini — світу вишуканого жіночого верхнього одягу! Дослідіть наш широкий вибір високоякісних стильних пальт, тренчів та курток. Погрузіться в унікальний стиль та комфорт з Alberto Bini!  Welcome to Alberto Bini — the world of exquisite women's outerwear! Explore our wide selection of high-quality stylish coats, trenches, and jackets. Immerse yourself in unique style and comfort with Alberto Bini!`,
+        store_title: 'Alberto Bini Catalog | Alberto Bini Каталог',
+        store_description: `Ласкаво просимо до Alberto Bini — світу вишуканого жіночого верхнього одягу! Дослідіть наш широкий вибір високоякісних стильних пальт, тренчів та курток. Погрузіться в унікальний стиль та комфорт з Alberto Bini! Welcome to Alberto Bini — the world of exquisite women's outerwear! Explore our wide selection of high-quality stylish coats, trenches, and jackets. Immerse yourself in unique style and comfort with Alberto Bini!`,
         google_analytics_id: 'G-C4TDRX7K5V',
         google_ads_id: '',
         conversion_id: '',
@@ -92,8 +141,7 @@ export const ALBERTO_BINI_SALES = {
             fr: "vêtements d'extérieur pour femmes, en gros, au détail, bons prix, haute qualité, vente dans le monde entier",
         },
     },
+
     user_options: { view_mode: ViewModeType?.card },
-    alerts: [
-        // { name: AppAlertNameType?.REGISTRATION, description: '', subject: AppAlertSubjectType?.PROMO, active: true },
-    ],
+    alerts: [],
 };

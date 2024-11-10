@@ -34,7 +34,6 @@ const CardView = ({ SliderComponent, CardDetails, CardDecoration, opacity, ...re
                     display: 'flex',
                     flexDirection: 'column',
                     justifyContent: 'space-between',
-                    position: 'relative',
                     backgroundColor: Colors?.GRAY_300,
                     border: '1px solid',
                     borderColor: Colors?.GRAY_300,

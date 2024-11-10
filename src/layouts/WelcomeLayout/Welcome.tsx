@@ -1,8 +1,8 @@
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 import WelcomeLogo from 'components/atoms/Logo/WelcomeLogo';
-import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
 export default function WelcomePage({ handleRedirect }) {
     const [isLoading, setIsLoading] = useState(true);

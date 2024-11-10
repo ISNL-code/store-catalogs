@@ -83,7 +83,7 @@ export default function Login({ isOpen, setIsOpen, string, location, setAuth, se
                     setPassword('');
                     setEmail('');
                 }}
-                title={string?.login + ' ' + string?.in + ' ' + `"${STORE_NAME}"` + ' ' + string?.catalog} // eslint-disable-line
+                title={string?.login + ' ' + string?.in + ' ' + string?.catalog} // eslint-disable-line
                 fullWidth
                 buttons={[
                     {
