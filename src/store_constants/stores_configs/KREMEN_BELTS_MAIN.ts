@@ -11,33 +11,15 @@ export const KREMEN_BELTS_MAIN = {
     app_lang: 'ua',
     supported_countries: [{ code: 'UA', country: 'ukraine' }],
     telegram_sender: false,
-    links: [
-        // {
-        //     name: 'Kremen Belts Sales',
-        //     href: 'https://kremen-belts-sales.netlify.app/store',
-        //     description: 'Sales',
-        //     type: 'WEB',
-        // },
-    ],
     managers: null,
     options: {
         no_reg_order: true,
         telegram_bot: [
+            //ALB RETAILER
             {
-                token: '8118561264:AAFxhkoULSi9abzaTt9nHNFM6RCfBbBUV1M',
+                token: '7115237316:AAFgbrVadLWMkPt3TEdmravEa37jO9N3WSQ',
                 chatId: '480774886',
-                items: [
-                    // 'cart',
-                    'listing',
-                    // 'cocktail',
-                    // 'register',
-                    // 'feedback_form',
-                    // 'price_request',
-                    // 'login',
-                    'order',
-                    // 'add_favorites',
-                    // 'add_cart',
-                ],
+                items: ['listing', 'cocktail', 'register', 'feedback_form', 'price_request', 'login', `order`],
             },
         ],
         product_image_options: { width: 4, height: 3 },
@@ -55,7 +37,7 @@ export const KREMEN_BELTS_MAIN = {
             prices: true,
             sizes: false,
             contacts: true,
-            feedback: false,
+            feedback: true,
             categories: true,
             productShare: true,
             cart: true,

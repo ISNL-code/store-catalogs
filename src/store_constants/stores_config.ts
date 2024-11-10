@@ -2,20 +2,10 @@ import { ALBERTO_BINI_KZ_WS } from './stores_configs/ALBERTO_BINI_KZ_WS';
 import { ALBERTO_BINI_MAIN } from './stores_configs/ALBERTO_BINI_MAIN';
 import { ALBERTO_BINI_SALES } from './stores_configs/ALBERTO_BINI_SALES';
 import { DEVELOP_STORE } from './stores_configs/A_DEVELOP_STORE';
-import { PASMA } from './stores_configs/PASMA';
 import { RETAIL_ALBERTO_BINI } from './stores_configs/RETAIL_ALBERTO_BINI';
-import { YULIA_TRUBA_MAIN } from './stores_configs/YULIA_TRUBA_MAIN';
 import { StoreType, STORE_CONFIG_Interface, ViewModeType } from './types';
 
-const stores = [
-    DEVELOP_STORE,
-    ALBERTO_BINI_MAIN,
-    ALBERTO_BINI_SALES,
-    YULIA_TRUBA_MAIN,
-    RETAIL_ALBERTO_BINI,
-    PASMA,
-    ALBERTO_BINI_KZ_WS,
-];
+const stores = [DEVELOP_STORE, ALBERTO_BINI_MAIN, ALBERTO_BINI_SALES, RETAIL_ALBERTO_BINI, ALBERTO_BINI_KZ_WS];
 
 const storeConfig = (): STORE_CONFIG_Interface => {
     const currentUrl = window.location.origin;
@@ -31,7 +21,6 @@ const storeConfig = (): STORE_CONFIG_Interface => {
         APP_LANGUAGE: matchingDomain?.app_lang || 'en',
         HTML_LANG: matchingDomain?.web_lang || 'en',
         SUPPORTED_COUNTRIES: matchingDomain?.supported_countries || null,
-        SIDE_LINKS: matchingDomain?.links || [],
         TELEGRAM_SENDER: matchingDomain?.telegram_sender || false,
         MANAGERS: matchingDomain?.managers || null,
         OPTIONS: {

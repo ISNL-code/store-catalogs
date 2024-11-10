@@ -24,13 +24,14 @@ import { AxiosResponse } from 'axios';
 import { LanguageDataInterface } from 'hooks/useGetLanguage';
 import { useFavorites } from 'layouts/hooks/useFavorites';
 import Loader from 'components/atoms/Loader/Loader';
+import { telegramSender } from 'utils/telegramSender';
+import { useIsMount } from 'hooks/useIsMount';
 
 interface Props {
     apiToken: string | null;
     setApiToken: (token: string | null) => void;
     lang: string;
     setViewMode: (newViewMode: ViewModeType) => void;
-    setInfoAlert: (newInfo: { ws_info: boolean }) => void;
     setAuth: (newAuth: boolean) => void;
     setLang: (newLang: string) => void;
     auth: boolean | null;
@@ -44,7 +45,6 @@ interface Props {
         userError: any;
     };
     viewMode: ViewModeType | null;
-    infoAlert: { ws_info: boolean } | null;
     store: StoreInterface | null;
     favorites: useAddToFavoriteDataInterface;
     cart: useAddToCartDataInterface;
@@ -61,12 +61,10 @@ export default function MainCatalog({
     setLang,
     setAuth,
     setViewMode,
-    setInfoAlert,
     lang,
     auth,
     userData,
     viewMode,
-    infoAlert,
     store,
     favorites,
     cart,
@@ -107,6 +105,8 @@ export default function MainCatalog({
         store: STORE_CODE,
     });
 
+    const mount = useIsMount();
+
     const { isLoadingFavorites, favoritesList, fetchFavoriteProducts } = useFavorites({
         lang,
         store: STORE_CODE,
@@ -117,6 +117,14 @@ export default function MainCatalog({
         lang,
         store: STORE_CODE,
     });
+
+    useEffect(() => {
+        if (mount) return;
+        telegramSender({
+            action: `ЗАШЕЛ НА ЛИСТИНГ ${window.location.origin}`,
+            name: 'listing',
+        });
+    }, [mount]);
 
     useEffect(() => {
         if (STORE_CODE !== storeCode) {
@@ -168,7 +176,6 @@ export default function MainCatalog({
                         //store data
 
                         store,
-                        setInfoAlert,
 
                         //user data
                         auth,

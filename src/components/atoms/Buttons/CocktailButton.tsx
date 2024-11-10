@@ -1,33 +1,16 @@
 import { Box, Typography } from '@mui/material';
 import { Color, Colors } from 'constants/colors';
-import { useNavigate } from 'react-router-dom';
 
 interface Props {
-    path?: string;
     logoUrl: string;
-    text?: string;
-    externalUrl?: string;
-    sendBotMessage?: () => void;
 }
 
-const CocktailButton = ({ path, logoUrl, text, externalUrl, sendBotMessage }: Props) => {
-    const navigate = useNavigate();
-
-    const handleClick = () => {
-        if (externalUrl) {
-            sendBotMessage && sendBotMessage();
-            setTimeout(() => {
-                window.location.href = externalUrl;
-            }, 0);
-        } else if (path) {
-            navigate(path);
-        }
-    };
+const CocktailButton = ({ logoUrl }: Props) => {
+    //     window.location.href = "https://cocktail-catalogs-shop.com";
 
     return (
         <>
             <Box
-                onClick={handleClick}
                 className="sway"
                 sx={{
                     zIndex: 5000,
@@ -59,26 +42,25 @@ const CocktailButton = ({ path, logoUrl, text, externalUrl, sendBotMessage }: Pr
                         backgroundPosition: 'center',
                     }}
                 >
-                    {text &&
-                        Array.from(text).map((char, index, array) => (
-                            <Typography
-                                key={index}
-                                sx={{
-                                    position: 'absolute',
-                                    left: 38,
-                                    top: 0,
-                                    transform: `rotate(${(index / array.length) * 190 + 280}deg)`,
-                                    transformOrigin: `0 ${39}px`,
-                                    fontFamily: 'Roboto',
-                                    fontWeight: 500,
-                                    fontSize: 10,
-                                    color: Colors.BLACK,
-                                    textShadow: '#000000 0 0 2px',
-                                }}
-                            >
-                                {char}
-                            </Typography>
-                        ))}
+                    {Array.from('Cocktail Shop').map((char, index, array) => (
+                        <Typography
+                            key={'Cocktail Shop'}
+                            sx={{
+                                position: 'absolute',
+                                left: 38,
+                                top: 0,
+                                transform: `rotate(${(index / array.length) * 190 + 280}deg)`,
+                                transformOrigin: `0 ${39}px`,
+                                fontFamily: 'Roboto',
+                                fontWeight: 500,
+                                fontSize: 10,
+                                color: Colors.BLACK,
+                                textShadow: '#000000 0 0 2px',
+                            }}
+                        >
+                            {char}
+                        </Typography>
+                    ))}
                 </Box>
             </Box>
             <style>

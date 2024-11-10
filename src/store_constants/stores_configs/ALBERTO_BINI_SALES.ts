@@ -12,7 +12,6 @@ export const ALBERTO_BINI_SALES = {
     app_lang: 'ua',
     supported_countries: [{ code: 'UA', country: 'ukraine' }],
     telegram_sender: true,
-    links: [],
     managers: [
         {
             firstName: 'Natalya',
@@ -28,7 +27,7 @@ export const ALBERTO_BINI_SALES = {
             },
         },
         {
-            firstName: 'Manager 2',
+            firstName: 'Elena',
             lastName: '',
             emailAddress: '',
             options: { manager: true },
@@ -67,17 +66,8 @@ export const ALBERTO_BINI_SALES = {
                 chatId: '6227152193',
                 token: '7926269233:AAFOApI-YISLrblBEfrogo22aiBuf_QV5gQ',
                 items: [
-                    // 'cart',
-                    // 'listing',
-                    // 'cocktail',
-                    // 'register',
-                    // 'feedback_form',
-                    // 'price_request',
-                    // 'login',
-                    'order',
-                    'error',
-                    // 'add_favorites',
-                    // 'add_cart',
+                    'listing',
+                    // 'cocktail', 'register', 'feedback_form', 'price_request', 'login', `order`
                 ],
             },
             //NATASHA ALB
@@ -85,17 +75,8 @@ export const ALBERTO_BINI_SALES = {
                 token: '7501048516:AAFGRXP3nw7z0UWr4t-Dvz_oFt_98CFXX2k',
                 chatId: '6221489796',
                 items: [
-                    'cart',
-                    'listing',
-                    // 'cocktail',
-                    'register',
-                    // 'feedback_form',
-                    // 'price_request',
-                    'login',
-                    'order',
-                    'error',
-                    // 'add_favorites',
-                    'add_cart',
+                    // 'listing', 'cocktail', 'register', 'feedback_form', 'price_request', 'login',
+                    `order`,
                 ],
             },
         ],

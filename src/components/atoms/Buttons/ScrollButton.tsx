@@ -13,7 +13,7 @@ const ScrollButton = () => {
                 zIndex: 50,
                 position: 'fixed',
                 left: sx ? 12 : '36px',
-                bottom: sx ? 154 : 120,
+                bottom: sx ? 154 : 110,
                 backgroundColor: '#ffffffbe',
             }}
             onClick={() => scrollPage(0, 'smooth')}

@@ -13,7 +13,6 @@ import Grid from '@mui/material/Unstable_Grid2';
 import MessageButton from 'components/molecules/ToolsButtons/MessageButton';
 import CallBackButton from 'components/molecules/ToolsButtons/CallBackButton';
 import PaginationButton from 'components/atoms/Buttons/PaginationButton';
-import SideLink from 'components/atoms/Buttons/SideLink';
 import ViewModeButton from 'components/molecules/ToolsButtons/ViewModeButton';
 import CatalogListCard from 'components/organisms/Cards/CatalogListCard';
 import { useDevice } from 'hooks/useDevice';
@@ -28,10 +27,9 @@ import CatalogPromoAlert from 'components/molecules/Alerts/CatalogPromo';
 import WholeSalesAlert from 'components/molecules/Alerts/WholeSales';
 import CocktailButton from 'components/atoms/Buttons/CocktailButton';
 import mainLogo from 'assets/img/logo.webp';
-import { telegramSender } from 'utils/telegramSender';
 
 const Catalog = () => {
-    const { OPTIONS, STORE_CODE, SIDE_LINKS } = STORE_CONFIG;
+    const { OPTIONS, STORE_CODE } = STORE_CONFIG;
     const { PLAN_OPTIONS } = OPTIONS;
     const { sx } = useDevice();
     const mount = useIsMount();
@@ -109,14 +107,7 @@ const Catalog = () => {
             {showTopBtn && <ScrollButton />}
             <Box sx={{ position: 'fixed', bottom: sx ? 70 : 16, left: sx ? 16 : 32, zIndex: 10 }}>
                 <Box sx={{ position: 'relative' }}>
-                    <CocktailButton
-                        logoUrl={mainLogo}
-                        text={'Cocktail Shop'}
-                        externalUrl="https://cocktail-catalogs-shop.com"
-                        sendBotMessage={() => {
-                            telegramSender({ action: `КЛИК ПО ССЫЛКЕ КОКТЕЙЛЬ от ${STORE_CODE}`, name: 'cocktail' });
-                        }}
-                    />
+                    <CocktailButton logoUrl={mainLogo} />
                 </Box>
             </Box>
 
@@ -124,15 +115,6 @@ const Catalog = () => {
             {PLAN_OPTIONS?.feedback && <MessageButton action={() => handleOpenDialog(DialogWindowType?.QUESTION)} />}
             {PLAN_OPTIONS.contacts && <CallBackButton path={STORE_ROUTE.contacts(STORE_CODE)} />}
             <InstrumentalSubHeader
-                StartSlot={() => (
-                    <Box sx={{ display: 'flex', gap: 0.5 }}>
-                        {SIDE_LINKS.map(({ name, href }) => (
-                            <Box sx={{ display: 'inline' }} key={href}>
-                                <SideLink name={name} href={href} />
-                            </Box>
-                        ))}
-                    </Box>
-                )}
                 EndSlot={() => (
                     <Box sx={{ display: 'flex', gap: 0.75 }}>
                         <ViewModeButton />

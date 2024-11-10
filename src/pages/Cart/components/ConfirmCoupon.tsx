@@ -59,8 +59,27 @@ const ConfirmCoupon = ({
     const handleConfirmOrder = () => {
         if (orderData?.productsList?.reduce((acc, el) => acc + 1 * Number(el?.quantity), 0) < MIN_ITEMS_TO_BUY) {
             handleOpenDialog(DialogWindowType?.WARNING_ORDERING_LIMIT);
+
             telegramSender({
-                action: `ПРОБУЕТ ЗАКАЗАТЬ МЕНЬШЕ ОПТОВОГО ЛИМИТА`,
+                action: `
+                ПРОБУЕТ ЗАКАЗАТЬ МЕНЬШЕ ОПТОВОГО ЛИМИТА
+                
+            !$!$!  ${Number(finalPrice).toFixed(2)}
+            PROMO_CODE: ${promoCode || 'НЕ ЗАПОЛНИЛ ПРОМО'} 
+            telephone: ${phoneNumber}
+            модель:
+            ${orderData.productsList
+                .map(item => `${'арт: ' + item?.productSku + ' р: ' + item?.sizeLabel + '*' + item?.quantity}`)
+                .join(', ')}
+
+            ДОСТАВКА:
+
+            ИМЯ: ${firstName || 'НЕ ЗАПОЛНИЛ '}
+            ФАМИЛИЯ: ${lastName || 'НЕ ЗАПОЛНИЛ '}
+            НОМЕР ПОЛУЧАТЕЛЯ: ${phone || 'НЕ ЗАПОЛНИЛ '} 
+            ГОРОД: ${city || 'НЕ ЗАПОЛНИЛ '} 
+            АДРЕСС ДОСТАВКИ (НП): ${address || 'НЕ ЗАПОЛНИЛ '} 
+            КОМПАНИЯ: ${company || 'НЕ ЗАПОЛНИЛ '}`,
                 name: 'order',
             });
             return;
@@ -105,21 +124,24 @@ const ConfirmCoupon = ({
                 handleOpenDialog(DialogWindowType?.LOGIN);
                 telegramSender({
                     action: `
-                    ПРОБУЕТ ЗАКАЗАТЬ БЕЗ РЕГИСТРАЦИИ
+                    ПРОБУЕТ ЗАКАЗАТЬ БЕЗ РЕГИСТРАЦИИ 
+                    
+                !$!$!  ${Number(finalPrice).toFixed(2)}
+                PROMO_CODE: ${promoCode || 'НЕ ЗАПОЛНИЛ ПРОМО'} 
+                telephone: ${phoneNumber}
+                модель:
+                ${orderData.productsList
+                    .map(item => `${'арт: ' + item?.productSku + ' р: ' + item?.sizeLabel + '*' + item?.quantity}`)
+                    .join(', ')}
 
-                    !$!$!  ${Number(finalPrice).toFixed(2)}
-                    PROMO_CODE: ${promoCode || 'НЕ ЗАПОЛНИЛ ПРОМО'} 
-                    telephone: ${phoneNumber}
-                    articules: ${orderData.productsList.map(item => item?.productSku).join(', ')}
+                ДОСТАВКА:
 
-                    ДОСТАВКА:
-
-                    ИМЯ: ${firstName || 'НЕ ЗАПОЛНИЛ '}
-                    ФАМИЛИЯ: ${lastName || 'НЕ ЗАПОЛНИЛ '}
-                    НОМЕР ПОЛУЧАТЕЛЯ: ${phone || 'НЕ ЗАПОЛНИЛ '} 
-                    ГОРОД: ${city || 'НЕ ЗАПОЛНИЛ '} 
-                    АДРЕСС ДОСТАВКИ (НП): ${address || 'НЕ ЗАПОЛНИЛ '} 
-                    КОМПАНИЯ: ${company || 'НЕ ЗАПОЛНИЛ '}`,
+                ИМЯ: ${firstName || 'НЕ ЗАПОЛНИЛ '}
+                ФАМИЛИЯ: ${lastName || 'НЕ ЗАПОЛНИЛ '}
+                НОМЕР ПОЛУЧАТЕЛЯ: ${phone || 'НЕ ЗАПОЛНИЛ '} 
+                ГОРОД: ${city || 'НЕ ЗАПОЛНИЛ '} 
+                АДРЕСС ДОСТАВКИ (НП): ${address || 'НЕ ЗАПОЛНИЛ '} 
+                КОМПАНИЯ: ${company || 'НЕ ЗАПОЛНИЛ '}`,
                     name: 'order',
                 });
             }
@@ -178,9 +200,25 @@ const ConfirmCoupon = ({
             })
                 .then(() => {
                     telegramSender({
-                        action: `ЗАКАЗ  !$!$!  ${Number(finalPrice).toFixed(2)} PROMO_CODE:${
-                            promoCode || 'НЕ ЗАПОЛНИЛ ПРОМО'
-                        }`,
+                        action: `
+                        ЛОГИН +  ЗАКАЗА 
+                        
+                    !$!$!  ${Number(finalPrice).toFixed(2)}
+                    PROMO_CODE: ${promoCode || 'НЕ ЗАПОЛНИЛ ПРОМО'} 
+                    telephone: ${phoneNumber}
+                    модель:
+                    ${orderData.productsList
+                        .map(item => `${'арт: ' + item?.productSku + ' р: ' + item?.sizeLabel + '*' + item?.quantity}`)
+                        .join(', ')}
+    
+                    ДОСТАВКА:
+    
+                    ИМЯ: ${firstName || 'НЕ ЗАПОЛНИЛ '}
+                    ФАМИЛИЯ: ${lastName || 'НЕ ЗАПОЛНИЛ '}
+                    НОМЕР ПОЛУЧАТЕЛЯ: ${phone || 'НЕ ЗАПОЛНИЛ '} 
+                    ГОРОД: ${city || 'НЕ ЗАПОЛНИЛ '} 
+                    АДРЕСС ДОСТАВКИ (НП): ${address || 'НЕ ЗАПОЛНИЛ '} 
+                    КОМПАНИЯ: ${company || 'НЕ ЗАПОЛНИЛ '}`,
                         name: 'order',
                     });
 

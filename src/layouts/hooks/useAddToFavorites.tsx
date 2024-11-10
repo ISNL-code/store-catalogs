@@ -2,8 +2,6 @@ import { useEffect, useState } from 'react';
 import { LocalStorageProductInterface, useAddToFavoriteDataInterface } from 'types/app_models';
 import { STORAGE_KEYS } from 'constants/local_storage_keys';
 import { getStorageItem, removeStorageItem, setStorageItem } from 'utils/storageUtils';
-import { telegramSender } from 'utils/telegramSender';
-
 interface useAddToFavoritesParamsInterface {
     loadingUser: boolean;
 }
@@ -52,10 +50,6 @@ export const useAddToFavorites = ({ loadingUser }: useAddToFavoritesParamsInterf
         if (favoriteItems?.find(item => item?.variantSku === data?.variantSku)) {
             setFavoriteItems(prev => prev.filter(item => item.variantSku !== data?.variantSku));
         } else {
-            telegramSender({
-                action: `ДОБАВИЛ В ЛАЙКИ ${data?.variantSku}`,
-                name: 'add_favorites',
-            });
             setFavoriteItems(prev => [...prev, data]);
         }
     };

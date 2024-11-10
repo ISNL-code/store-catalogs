@@ -3,7 +3,6 @@ import { useIsMount } from 'hooks/useIsMount';
 import { STORE_CONFIG } from 'store_constants/stores_config';
 import { AxiosResponse } from 'axios';
 import { STORAGE_KEYS } from 'constants/local_storage_keys';
-import { STORES_DATA } from 'dataBase/STORES';
 import { StoreInterface, UserDataInterface } from 'types/app_models';
 import { DEFAULT_VALUES } from 'defaultData/default';
 import { ViewModeType } from 'store_constants/types';
@@ -185,7 +184,6 @@ const StoresLogic = ({
         if (!storeDataRes || isStoreLoading) return;
 
         const store = storeDataRes?.data;
-        const store_db = STORES_DATA.find(el => el.code === store?.code);
 
         const storeData: StoreInterface = {
             currency: store?.currency || DEFAULT_VALUES?.currency,
@@ -193,7 +191,6 @@ const StoresLogic = ({
             supportedLanguages: store?.supportedLanguages,
             code: store?.code,
             name: store?.name,
-            managers: store_db?.managers || [],
         };
 
         setCurrentStoreData(storeData); // eslint-disable-next-line react-hooks/exhaustive-deps

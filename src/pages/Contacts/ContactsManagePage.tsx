@@ -11,7 +11,6 @@ import InstrumentalSubHeader from 'components/organisms/InstrumentalSubHeader/In
 import BackButton from 'components/atoms/Buttons/BackButton';
 import { useDevice } from 'hooks/useDevice';
 import { CatalogContextInterface } from 'types/outlet_context_models';
-import EmptyPage from 'components/atoms/EmptyPage/EmptyPage';
 import Grid from '@mui/material/Unstable_Grid2';
 import CardItem from 'components/atoms/Sections/CardItem';
 import { scrollPage } from 'utils/scrollPage';
@@ -19,22 +18,18 @@ import { STORE_CONFIG } from 'store_constants/stores_config';
 
 const ContactsManagePage = () => {
     const { MANAGERS } = STORE_CONFIG;
-    const { store, string, footerMenuHeight, appXPadding }: CatalogContextInterface = useOutletContext();
+    const { string, footerMenuHeight, appXPadding }: CatalogContextInterface = useOutletContext();
     const { sm, sx } = useDevice();
 
     useEffect(() => {
         scrollPage(0);
     }, []);
 
-    if (!store?.managers?.length) return <EmptyPage />;
-
-    const managers = MANAGERS || store?.managers;
-
     return (
         <Box p={sx ? 2 : appXPadding} sx={{ pb: `${footerMenuHeight}px` }}>
             <InstrumentalSubHeader StartSlot={() => <BackButton />} />
 
-            {managers.map((manager, idx) => {
+            {MANAGERS?.map((manager, idx) => {
                 return (
                     <Grid key={idx} container xs={12} my={2}>
                         <CardItem>

@@ -36,7 +36,7 @@ const InstrumentalSubHeader = ({ StartSlot, EndSlot }: InstrumentalBarInterface)
                 overflow: 'visible',
             }}
         >
-            {StartSlot && <Box>{StartSlot()}</Box>}
+            {StartSlot ? <Box>{StartSlot()}</Box> : <Box></Box>}
 
             {EndSlot && (
                 <Box>

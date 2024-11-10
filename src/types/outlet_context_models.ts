@@ -73,7 +73,6 @@ export interface CatalogContextInterface {
     handleSaveImage: (image: { file: File | Blob; imageUrl: string }) => void;
 
     //store data
-    setInfoAlert: (newInfo: { ws_info: boolean }) => void;
     store: StoreInterface;
 
     // user data

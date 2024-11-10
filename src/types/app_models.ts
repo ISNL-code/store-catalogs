@@ -44,7 +44,7 @@ export interface StoreInterface {
     code: string;
     name: string;
     // need to add backend now from hard code
-    managers: {
+    managers?: {
         firstName: string;
         lastName: string;
         emailAddress: string;

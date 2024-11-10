@@ -41,8 +41,6 @@ const StoresRouting = () => {
         setLang,
         viewMode,
         setViewMode,
-        infoAlert,
-        setInfoAlert,
         currentStoreData,
         setCurrentStoreData,
         currentUserData,
@@ -84,7 +82,7 @@ const StoresRouting = () => {
             apiToken,
             setApiToken,
         }),
-        [lang, auth, infoAlert, storeDataRes, currentUserData, viewMode] // eslint-disable-line
+        [lang, auth, storeDataRes, currentUserData, viewMode] // eslint-disable-line
     );
 
     StoresLogic(memoizedAppLogic);
@@ -223,8 +221,6 @@ const StoresRouting = () => {
                                 fetchUserData,
                                 userError,
                             }}
-                            infoAlert={infoAlert}
-                            setInfoAlert={setInfoAlert}
                             cart={cart}
                             favorites={favorites}
                             currentLanguage={currentLanguage}

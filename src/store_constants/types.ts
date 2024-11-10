@@ -26,7 +26,6 @@ export interface STORE_CONFIG_Interface {
     APP_LANGUAGE: string; // init app language
     SUPPORTED_COUNTRIES: { code: string; country: string }[] | null; // use for limitation of supported countries
     HTML_LANG: string; // web html lang
-    SIDE_LINKS: { name: string; href: string; description: string }[] | [];
     TELEGRAM_SENDER: boolean; // use for telegram send events
     MANAGERS?:
         | {
