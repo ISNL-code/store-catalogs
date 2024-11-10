@@ -1,52 +1,41 @@
 import { StoreType, ViewModeType } from 'store_constants/types';
 
-export const ALBERTO_BINI_MAIN = {
-    storage_key: 'ab_ua-ws',
+export const RETAIL_ALBERTO_BINI = {
+    storage_key: 'ab_ua-rt_my',
     active: true, // Поле которое запускает магазин true - работает false - остановлен / по тех. причина
-    status: null,
+    status: 'Технiчнi роботи',
     required_registration: false,
-    URL: ['https://alberto-bini.netlify.app'],
+    URL: ['https://albertobini-brandeurope.com'],
     web_lang: 'uk', // html lang
-    store_name: 'АБ ОСНОВНОЙ',
-    store_code: 'ALBERTO_BINI',
+    store_name: 'АБ RETAIL_MY',
+    store_code: 'albertobini_retailer',
+    // store_code: 'ALBERTO_BINI',
+    base_url: 'https://kremen-belts.com/api',
     app_lang: 'ua',
-    supported_countries: [{ code: 'UA', country: 'ukraine' }],
+    supported_countries: null,
     telegram_sender: true,
     links: [],
     managers: [
         {
-            firstName: 'Natalya',
-            lastName: '',
-            emailAddress: 'natalya9899@gmail.com',
-            options: { manager: true },
-            contacts: {
-                emailAddress: 'natalya9899@gmail.com',
-                phone: '+380961234858',
-                viber: '+380961234858',
-                whatsapp: '+380961234858',
-                telegram: '',
-            },
-        },
-        {
-            firstName: 'Manager 2',
+            firstName: 'Менеджер з продажiв',
             lastName: '',
             emailAddress: '',
             options: { manager: true },
             contacts: {
                 emailAddress: '',
-                phone: '+380983080085',
-                viber: '+380983080085',
-                whatsapp: '+380983080085',
-                telegram: 'Albertobiniopt',
+                phone: '+380668652127',
+                viber: '',
+                whatsapp: '',
+                telegram: 'SNBusinessApp',
             },
         },
     ],
     options: {
         no_reg_order: true,
         telegram_bot: [
-            //MY ALB
+            //ALB RETAILER
             {
-                token: '8118561264:AAFxhkoULSi9abzaTt9nHNFM6RCfBbBUV1M',
+                token: '7115237316:AAFgbrVadLWMkPt3TEdmravEa37jO9N3WSQ',
                 chatId: '480774886',
                 items: [
                     'cart',
@@ -62,53 +51,17 @@ export const ALBERTO_BINI_MAIN = {
                     'add_cart',
                 ],
             },
-            //LENA ALB
-            {
-                chatId: '6227152193',
-                token: '7926269233:AAFOApI-YISLrblBEfrogo22aiBuf_QV5gQ',
-                items: [
-                    // 'cart',
-                    // 'listing',
-                    // 'cocktail',
-                    // 'register',
-                    // 'feedback_form',
-                    // 'price_request',
-                    // 'login',
-                    'order',
-                    'error',
-                    // 'add_favorites',
-                    // 'add_cart',
-                ],
-            },
-            //NATASHA ALB
-            {
-                token: '7501048516:AAFGRXP3nw7z0UWr4t-Dvz_oFt_98CFXX2k',
-                chatId: '6221489796',
-                items: [
-                    'cart',
-                    'listing',
-                    // 'cocktail',
-                    'register',
-                    // 'feedback_form',
-                    // 'price_request',
-                    'login',
-                    'order',
-                    'error',
-                    // 'add_favorites',
-                    'add_cart',
-                ],
-            },
         ],
         product_image_options: { width: 6, height: 9 },
         main_price_multiplication: 1,
         sale_price_multiplication: 1,
         currency_multiplication: 1,
         retail_price_multiplication: 1,
-        min_items_to_buy: 5,
+        min_items_to_buy: 1,
         store_type: StoreType?.sales,
         home_page_active: true,
         informative_page_active: true,
-        custom_currency: '$',
+        custom_currency: '₴',
         custom_logo: true,
         plan_options: {
             prices: true,

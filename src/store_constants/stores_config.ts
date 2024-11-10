@@ -1,11 +1,21 @@
+import { ALBERTO_BINI_KZ_WS } from './stores_configs/ALBERTO_BINI_KZ_WS';
 import { ALBERTO_BINI_MAIN } from './stores_configs/ALBERTO_BINI_MAIN';
 import { ALBERTO_BINI_SALES } from './stores_configs/ALBERTO_BINI_SALES';
 import { DEVELOP_STORE } from './stores_configs/A_DEVELOP_STORE';
-import { KREMEN_BELTS_MAIN } from './stores_configs/KREMEN_BELTS_MAIN';
-import { KREMEN_BELTS_SALES } from './stores_configs/KREMEN_BELTS_SALES';
+import { PASMA } from './stores_configs/PASMA';
+import { RETAIL_ALBERTO_BINI } from './stores_configs/RETAIL_ALBERTO_BINI';
+import { YULIA_TRUBA_MAIN } from './stores_configs/YULIA_TRUBA_MAIN';
 import { StoreType, STORE_CONFIG_Interface, ViewModeType } from './types';
 
-const stores = [DEVELOP_STORE, ALBERTO_BINI_MAIN, KREMEN_BELTS_MAIN, ALBERTO_BINI_SALES, KREMEN_BELTS_SALES];
+const stores = [
+    DEVELOP_STORE,
+    ALBERTO_BINI_MAIN,
+    ALBERTO_BINI_SALES,
+    YULIA_TRUBA_MAIN,
+    RETAIL_ALBERTO_BINI,
+    PASMA,
+    ALBERTO_BINI_KZ_WS,
+];
 
 const storeConfig = (): STORE_CONFIG_Interface => {
     const currentUrl = window.location.origin;
@@ -14,6 +24,7 @@ const storeConfig = (): STORE_CONFIG_Interface => {
     return {
         STORAGE_KEY: matchingDomain?.storage_key || 'sn_def',
         ACTIVE: matchingDomain?.active || false,
+        STATUS: matchingDomain?.status || null,
         REQUIRED_REGISTRATION: matchingDomain?.required_registration || false,
         STORE_NAME: matchingDomain?.store_name || '',
         STORE_CODE: matchingDomain?.store_code || '',

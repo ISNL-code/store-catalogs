@@ -19,6 +19,7 @@ export enum AppAlertSubjectType {
 export interface STORE_CONFIG_Interface {
     STORAGE_KEY: string; // local storage key
     ACTIVE: boolean; // Show is web active or stopped
+    STATUS?: string | null;
     REQUIRED_REGISTRATION: boolean; // use for stores with required registration
     STORE_NAME: string; // Real store name
     STORE_CODE: string; // use for get current store data

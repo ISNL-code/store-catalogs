@@ -1,46 +1,33 @@
 import { StoreType, ViewModeType } from 'store_constants/types';
 
-export const ALBERTO_BINI_MAIN = {
-    storage_key: 'ab_ua-ws',
+export const ALBERTO_BINI_KZ_WS = {
+    storage_key: 'ab_kz-ws',
     active: true, // Поле которое запускает магазин true - работает false - остановлен / по тех. причина
     status: null,
     required_registration: false,
-    URL: ['https://alberto-bini.netlify.app'],
-    web_lang: 'uk', // html lang
-    store_name: 'АБ ОСНОВНОЙ',
-    store_code: 'ALBERTO_BINI',
-    app_lang: 'ua',
-    supported_countries: [{ code: 'UA', country: 'ukraine' }],
+    URL: ['https://albertobini-kz.com', 'https://albertobini-kz.netlify.app'],
+    web_lang: 'kz', // html lang
+    store_name: 'Alberto Bini KZ',
+    store_code: 'alberto_bini_europe',
+    base_url: 'https://kremen-belts.com/api',
+    app_lang: 'kz',
+    supported_countries: null,
     telegram_sender: true,
-    links: [],
-    managers: [
-        {
-            firstName: 'Natalya',
-            lastName: '',
-            emailAddress: 'natalya9899@gmail.com',
-            options: { manager: true },
-            contacts: {
-                emailAddress: 'natalya9899@gmail.com',
-                phone: '+380961234858',
-                viber: '+380961234858',
-                whatsapp: '+380961234858',
-                telegram: '',
-            },
-        },
-        {
-            firstName: 'Manager 2',
-            lastName: '',
-            emailAddress: '',
-            options: { manager: true },
-            contacts: {
-                emailAddress: '',
-                phone: '+380983080085',
-                viber: '+380983080085',
-                whatsapp: '+380983080085',
-                telegram: 'Albertobiniopt',
-            },
-        },
+    links: [
+        // {
+        //     name: 'Retail',
+        //     href: 'https://albertobini-kz-retail.netlify.app/store/alberto_bini_europe',
+        //     description: 'Retail',
+        //     type: 'WEB',
+        // },
+        // {
+        //     name: 'Outlet',
+        //     href: 'https://albertobini-kz-outlet.netlify.app/store/ALBERTO_BINI_SALES',
+        //     description: 'Outlet',
+        //     type: 'WEB',
+        // },
     ],
+    managers: null,
     options: {
         no_reg_order: true,
         telegram_bot: [
@@ -104,11 +91,11 @@ export const ALBERTO_BINI_MAIN = {
         sale_price_multiplication: 1,
         currency_multiplication: 1,
         retail_price_multiplication: 1,
-        min_items_to_buy: 5,
+        custom_currency: '$',
+        min_items_to_buy: 1,
         store_type: StoreType?.sales,
         home_page_active: true,
         informative_page_active: true,
-        custom_currency: '$',
         custom_logo: true,
         plan_options: {
             prices: true,
@@ -123,11 +110,11 @@ export const ALBERTO_BINI_MAIN = {
         },
     },
     web_head_data: {
-        store_title: 'Alberto Bini Catalog | Alberto Bini Каталог',
-        store_description: `Ласкаво просимо до Alberto Bini — світу вишуканого жіночого верхнього одягу! Дослідіть наш широкий вибір високоякісних стильних пальт, тренчів та курток. Погрузіться в унікальний стиль та комфорт з Alberto Bini! Welcome to Alberto Bini — the world of exquisite women's outerwear! Explore our wide selection of high-quality stylish coats, trenches, and jackets. Immerse yourself in unique style and comfort with Alberto Bini!`,
-        google_analytics_id: 'G-C4TDRX7K5V',
-        google_ads_id: '',
-        conversion_id: '',
+        store_title: 'Alberto Bini Оптовый каталог | Alberto Bini Wholesales Catalog',
+        store_description: `Добро пожаловать в мир изысканной женской верхней одежды от Alberto Bini! Ознакомьтесь с нашим широким ассортиментом стильных и качественных пальто, тренчей и курток. Погрузитесь в уникальный стиль и комфорт с Alberto Bini! | Қош келдіңіз Alberto Bini - жарлы жігерлі әйелдер үшін қонақтардың еліне! Біздің жанындағы көбінесе мол, артық өлшемдердің қолайлы қызметті көптық кепіл таңбаларын, тренчи, және жакеттерді зерттеңіз. Alberto Bini менің ерекше стильім мен комфорттық көріңіз! | Welcome to Alberto Bini — the world of exquisite women's outerwear! Explore our wide selection of high-quality stylish coats, trenches, and jackets. Immerse yourself in unique style and comfort with Alberto Bini!`,
+        google_analytics_id: 'G-NFQK29FTWM',
+        google_ads_id: 'AW-16545719098',
+        conversion_id: 'moafCJ7O0qoZELrGztE9',
         store_logo: 'alberto_bini_logo.png',
         store_poster: 'alb.jpeg',
         keywords: {
@@ -141,7 +128,6 @@ export const ALBERTO_BINI_MAIN = {
             fr: "vêtements d'extérieur pour femmes, en gros, au détail, bons prix, haute qualité, vente dans le monde entier",
         },
     },
-
     user_options: { view_mode: ViewModeType?.card },
     alerts: [],
 };

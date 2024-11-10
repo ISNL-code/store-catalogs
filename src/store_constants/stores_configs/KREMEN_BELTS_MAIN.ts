@@ -21,7 +21,7 @@ export const KREMEN_BELTS_MAIN = {
     ],
     managers: null,
     options: {
-        no_reg_order: false,
+        no_reg_order: true,
         telegram_bot: [
             {
                 token: '8118561264:AAFxhkoULSi9abzaTt9nHNFM6RCfBbBUV1M',
