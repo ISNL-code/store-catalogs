@@ -11,7 +11,7 @@ export const LONG_PHRASES = {
         call_back_messageB: 'You can contact us in any messenger available or by phone.',
         call_back_messageC: 'Thank you for your interest in our online catalogue!',
         wholesales_ordering_limitation_message:
-            'Please note that a minimum purchase of 10 units is required for each order from our wholesale catalog. Orders for fewer than 10 units cannot be processed through this catalog. For smaller quantities, please refer to our retail catalog.',
+            'Please note that a minimum purchase of 5 units is required for each order from our wholesale catalog. Orders for fewer than 10 units cannot be processed through this catalog. For smaller quantities, please refer to our retail catalog.',
         user_with_this_email_not_found: 'User with this email not found',
         manger_will_contact_message:
             'Our manager will be in touch with you shortly to provide detailed information regarding your purchase.',
@@ -38,7 +38,7 @@ export const LONG_PHRASES = {
             'Veuillez entrer votre adresse e-mail. Vous recevrez un lien pour créer un nouveau mot de passe par e-mail.',
         user_with_this_email_not_found: 'Utilisateur avec cet email introuvable',
         an_email_with_a_link_has_been_sent_to_your_email: 'Un email avec un lien a été envoyé à votre email',
-        wholesales_ordering_limitation_message: `Veuillez noter qu'un achat minimum de 10 unités est requis pour chaque commande dans notre catalogue de gros. Les commandes de moins de 10 unités ne peuvent pas être traitées via ce catalogue. Pour des quantités plus petites, veuillez consulter notre catalogue de détail.`,
+        wholesales_ordering_limitation_message: `Veuillez noter qu'un achat minimum de 5 unités est requis pour chaque commande dans notre catalogue de gros. Les commandes de moins de 10 unités ne peuvent pas être traitées via ce catalogue. Pour des quantités plus petites, veuillez consulter notre catalogue de détail.`,
         manger_will_contact_message:
             'Notre gestionnaire vous contactera sous peu pour vous fournir des informations détaillées concernant votre achat.',
         not_required_data_filling: `Remplir le formulaire est facultatif—nous vous contacterons de toute façon. Cependant, fournir vos coordonnées serait un grand atout pour accélérer votre commande.`,
@@ -62,7 +62,7 @@ export const LONG_PHRASES = {
         an_email_with_a_link_has_been_sent_to_your_email:
             'Se ha enviado un correo electrónico con un enlace a su correo electrónico',
         wholesales_ordering_limitation_message:
-            'Tenga en cuenta que se requiere una compra mínima de 10 unidades por cada pedido en nuestro catálogo mayorista. No se pueden procesar pedidos de menos de 10 unidades a través de este catálogo. Para cantidades menores, por favor consulte nuestro catálogo minorista.',
+            'Tenga en cuenta que se requiere una compra mínima de 5 unidades por cada pedido en nuestro catálogo mayorista. No se pueden procesar pedidos de menos de 10 unidades a través de este catálogo. Para cantidades menores, por favor consulte nuestro catálogo minorista.',
         manger_will_contact_message:
             'Nuestro gerente se pondrá en contacto con usted en breve para proporcionarle información detallada sobre su compra.',
         not_required_data_filling: `Rellenar el formulario es opcional; nos pondremos en contacto con usted de todos modos. Sin embargo, proporcionar sus datos sería de gran ayuda para agilizar su pedido.`,
@@ -86,7 +86,7 @@ export const LONG_PHRASES = {
         an_email_with_a_link_has_been_sent_to_your_email: 'На Вашу електронну пошту надіслано листа з посиланням',
         user_with_this_email_not_found: 'Користувача з такою електронною поштою не знайдено',
         wholesales_ordering_limitation_message:
-            'Зверніть увагу, що мінімальний обсяг замовлення у нашому оптовому каталозі становить 10 одиниць. Замовлення на меншу кількість одиниць не можуть бути оброблені через цей каталог. Для придбання меншої кількості, будь ласка, зверніться до нашого роздрібного каталогу.',
+            'Зверніть увагу, що мінімальний обсяг замовлення у нашому оптовому каталозі становить 5 одиниць. Замовлення на меншу кількість одиниць не можуть бути оброблені через цей каталог. Для придбання меншої кількості, будь ласка, зверніться до нашого роздрібного каталогу.',
         manger_will_contact_message: `Наш менеджер зв'яжеться з вами найближчим часом, щоб надати детальну інформацію щодо вашої покупки.`,
         not_required_data_filling: `Заповнювати форму не обов’язково—ми все одно зв'яжемося з вами. Однак надання ваших даних буде великим плюсом для прискорення виконання замовлення.`,
         size_selection_is_only_available_during_checkout: `У цьому розділі ви бачите доступні для цієї моделі розміри. Вибрати потрібний вам розмір ви зможете легко під час оформлення замовлення.`,
@@ -108,7 +108,7 @@ export const LONG_PHRASES = {
         user_with_this_email_not_found: 'Nie znaleziono użytkownika z tym adresem e-mail',
         an_email_with_a_link_has_been_sent_to_your_email: 'E-mail z linkiem został wysłany na Twój adres e-mail',
         wholesales_ordering_limitation_message:
-            'Prosimy zwrócić uwagę, że minimalne zamówienie w naszym katalogu hurtowym wynosi 10 sztuk. Zamówienia na mniejszą liczbę sztuk nie mogą być realizowane przez ten katalog. Dla mniejszych ilości prosimy odwiedzić nasz katalog detaliczny.',
+            'Prosimy zwrócić uwagę, że minimalne zamówienie w naszym katalogu hurtowym wynosi 5 sztuk. Zamówienia na mniejszą liczbę sztuk nie mogą być realizowane przez ten katalog. Dla mniejszych ilości prosimy odwiedzić nasz katalog detaliczny.',
         manger_will_contact_message:
             'Nasz menedżer skontaktuje się z Państwem wkrótce, aby udzielić szczegółowych informacji dotyczących Państwa zakupu.',
         not_required_data_filling: `Wypełnienie formularza jest opcjonalne—skontaktujemy się z Tobą w każdym przypadku. Jednak podanie danych znacznie przyspieszy realizację zamówienia.`,
@@ -131,7 +131,7 @@ export const LONG_PHRASES = {
         user_with_this_email_not_found: 'Uživatel s tímto e-mailem nebyl nalezen',
         an_email_with_a_link_has_been_sent_to_your_email: 'Na váš e-mail byl odeslán e-mail s odkazem',
         wholesales_ordering_limitation_message:
-            'Upozorňujeme, že minimální objednávka v našem velkoobchodním katalogu je 10 kusů. Objednávky na menší počet kusů nemohou být zpracovány prostřednictvím tohoto katalogu. Pro menší množství navštivte prosím náš maloobchodní katalog.',
+            'Upozorňujeme, že minimální objednávka v našem velkoobchodním katalogu je 5 kusů. Objednávky na menší počet kusů nemohou být zpracovány prostřednictvím tohoto katalogu. Pro menší množství navštivte prosím náš maloobchodní katalog.',
         manger_will_contact_message:
             'Náš manažer se s vámi brzy spojí, aby vám poskytl podrobné informace o vašem nákupu.',
         not_required_data_filling: `Vyplnění formuláře je nepovinné—ozveme se vám tak jako tak. Nicméně poskytnutí vašich údajů by velmi pomohlo urychlit vaši objednávku.`,
@@ -154,7 +154,7 @@ export const LONG_PHRASES = {
             'Пожалуйста, введите Ваш адрес электронной почты. Вы получите ссылку для создания нового пароля по электронной почте.',
         user_with_this_email_not_found: 'Пользователь с этим адресом электронной почты не найден',
         wholesales_ordering_limitation_message:
-            'Обратите внимание, что минимальный объем заказа в нашем оптовом каталоге составляет 10 единиц. Заказы на меньшее количество единиц не могут быть обработаны через этот каталог. Для покупки меньшего количества, пожалуйста, обратитесь к нашему розничному каталогу.',
+            'Обратите внимание, что минимальный объем заказа в нашем оптовом каталоге составляет 5 единиц. Заказы на меньшее количество единиц не могут быть обработаны через этот каталог. Для покупки меньшего количества, пожалуйста, обратитесь к нашему розничному каталогу.',
         manger_will_contact_message:
             'Наш менеджер свяжется с вами в ближайшее время, чтобы предоставить подробную информацию о вашей покупке.',
         an_email_with_a_link_has_been_sent_to_your_email: 'На ваш адрес электронной почты отправлено письмо со ссылкой',
@@ -178,7 +178,7 @@ export const LONG_PHRASES = {
         user_with_this_email_not_found: 'Бұл электрондық поштамен пайдаланушы табылған жоқ',
         an_email_with_a_link_has_been_sent_to_your_email: 'Сіздің электрондық поштаңызға сілтеме бар хат жіберілді',
         wholesales_ordering_limitation_message:
-            'Назар аударыңыз, біздің бөлшек сауда каталогымыздан тапсырыс беру үшін ең аз дегенде 10 бірлік сатып алу қажет. 10 бірліктен аз тапсырыстар осы каталог арқылы өңделмейді. Аз мөлшерде сатып алу үшін біздің көтерме сауда каталогымызға өтіңіз.',
+            'Назар аударыңыз, біздің бөлшек сауда каталогымыздан тапсырыс беру үшін ең аз дегенде 5 бірлік сатып алу қажет. 10 бірліктен аз тапсырыстар осы каталог арқылы өңделмейді. Аз мөлшерде сатып алу үшін біздің көтерме сауда каталогымызға өтіңіз.',
         manger_will_contact_message:
             'Біздің менеджер жақын арада сізбен байланыса алады, сатып алуға қатысты толық ақпаратты ұсыну үшін.',
         not_required_data_filling: `Форманы толтыру міндетті емес—біз сізбен бәрібір хабарласамыз. Алайда, мәліметтеріңізді беру тапсырысыңызды жылдамдатуға үлкен көмек болар еді.`,
