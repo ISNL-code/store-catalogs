@@ -2,10 +2,18 @@ import { ALBERTO_BINI_KZ_WS } from './stores_configs/ALBERTO_BINI_KZ_WS';
 import { ALBERTO_BINI_MAIN } from './stores_configs/ALBERTO_BINI_MAIN';
 import { ALBERTO_BINI_SALES } from './stores_configs/ALBERTO_BINI_SALES';
 import { DEVELOP_STORE } from './stores_configs/A_DEVELOP_STORE';
+import { KREMEN_BELTS_MAIN } from './stores_configs/KREMEN_BELTS_MAIN';
 import { RETAIL_ALBERTO_BINI } from './stores_configs/RETAIL_ALBERTO_BINI';
 import { StoreType, STORE_CONFIG_Interface, ViewModeType } from './types';
 
-const stores = [DEVELOP_STORE, ALBERTO_BINI_MAIN, ALBERTO_BINI_SALES, RETAIL_ALBERTO_BINI, ALBERTO_BINI_KZ_WS];
+const stores = [
+    DEVELOP_STORE,
+    ALBERTO_BINI_MAIN,
+    ALBERTO_BINI_SALES,
+    RETAIL_ALBERTO_BINI,
+    ALBERTO_BINI_KZ_WS,
+    KREMEN_BELTS_MAIN,
+];
 
 const storeConfig = (): STORE_CONFIG_Interface => {
     const currentUrl = window.location.origin;
