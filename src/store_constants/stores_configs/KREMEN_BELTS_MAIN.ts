@@ -11,7 +11,7 @@ export const KREMEN_BELTS_MAIN = {
     store_code: 'DEFAULT',
     app_lang: 'ua',
     supported_countries: [{ code: 'UA', country: 'ukraine' }],
-    telegram_sender: false,
+    telegram_sender: true,
     managers: null,
     options: {
         no_reg_order: true,
