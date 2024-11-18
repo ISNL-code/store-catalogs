@@ -13,5 +13,5 @@ export const DEVELOP_STORE = {
 
     URL: ['http://localhost:3000', 'http://localhost:3001'],
 
-    telegram_sender: true,
+    // telegram_sender: true,
 };

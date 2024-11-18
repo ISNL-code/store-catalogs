@@ -14,15 +14,8 @@ export const KREMEN_BELTS_MAIN = {
     telegram_sender: true,
     managers: null,
     options: {
-        no_reg_order: true,
-        telegram_bot: [
-            //ALB RETAILER
-            {
-                token: '7115237316:AAFgbrVadLWMkPt3TEdmravEa37jO9N3WSQ',
-                chatId: '480774886',
-                items: ['listing', 'cocktail', 'register', 'feedback_form', 'price_request', 'login', `order`],
-            },
-        ],
+        no_reg_order: false,
+        telegram_bot: null,
         product_image_options: { width: 4, height: 3 },
         main_price_multiplication: 1,
         sale_price_multiplication: 1,
