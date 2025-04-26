@@ -5,7 +5,7 @@ export const KREMEN_BELTS_MAIN = {
     active: true,
     status: null,
     required_registration: false,
-    URL: ['https://kremen-belts.netlify.app'],
+    URL: ['https://kremen-belt.netlify.app'],
     web_lang: 'uk', // html lang
     store_name: 'Kremen Belts',
     store_code: 'DEFAULT',
