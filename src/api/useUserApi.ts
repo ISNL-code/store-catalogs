@@ -79,7 +79,7 @@ export const useUserApi = () => {
         useMutation(
             ({ username, resetLink, storeCode }: { username: string; resetLink: string; storeCode: string }) => {
                 return post({
-                    url: `v1/customer/password/reset/request?store=${storeCode}`,
+                    url: `v1/customer/password/reset/request`,
                     body: {
                         returnUrl: resetLink,
                         username: username,
