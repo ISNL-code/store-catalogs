@@ -26,6 +26,7 @@ import { useFavorites } from 'layouts/hooks/useFavorites';
 import Loader from 'components/atoms/Loader/Loader';
 import { telegramSender } from 'utils/telegramSender';
 import { useIsMount } from 'hooks/useIsMount';
+import { useLangSearchParam } from 'hooks/useLangSearchParam';
 
 interface Props {
     apiToken: string | null;
@@ -104,6 +105,8 @@ export default function MainCatalog({
         lang,
         store: STORE_CODE,
     });
+
+    useLangSearchParam();
 
     const mount = useIsMount();
 
