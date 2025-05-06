@@ -106,22 +106,11 @@ const StoresRouting = () => {
 
     //eslint-disable-next-line
     const handleRedirect = useCallback(() => {
-        const lang = new URLSearchParams(window.location.search).get('lang');
-
-        const basePath =
-            !REQUIRED_REGISTRATION || auth
-                ? HOME_PAGE_ACTIVE
-                    ? HOME_ROUTE?.root(STORE_CODE)
-                    : STORE_ROUTE?.root(STORE_CODE)
-                : LOGIN_ROUTE?.root(STORE_CODE, 'login');
-
-        if (lang) {
-            const url = new URL(basePath, window.location.origin);
-            url.searchParams.set('lang', lang);
-            return url.pathname + url.search;
+        if (!REQUIRED_REGISTRATION || auth) {
+            return HOME_PAGE_ACTIVE ? HOME_ROUTE?.root(STORE_CODE) : STORE_ROUTE?.root(STORE_CODE);
+        } else {
+            return LOGIN_ROUTE?.root(STORE_CODE, 'login');
         }
-
-        return basePath;
     }, [REQUIRED_REGISTRATION, auth, HOME_PAGE_ACTIVE, STORE_CODE]);
 
     let router;
