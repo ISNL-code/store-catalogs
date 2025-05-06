@@ -120,12 +120,24 @@ const StoresLogic = ({
     useEffect(() => {
         const fetchLang = async () => {
             try {
+                const url = new URL(window.location.href);
+                const urlParams = url.searchParams;
+                const langFromUrl = urlParams.get('lang');
                 const storedItems = await getStorageItem(STORAGE_KEYS?.LANGUAGE_KEY);
-                if (storedItems) {
-                    setLang(JSON.parse(storedItems));
+
+                if (langFromUrl) {
+                    setLang(langFromUrl);
+                    await setStorageItem(STORAGE_KEYS?.LANGUAGE_KEY, JSON.stringify(langFromUrl));
+                } else if (storedItems) {
+                    const parsedLang = JSON.parse(storedItems);
+                    setLang(parsedLang);
+                    urlParams.set('lang', parsedLang);
+                    window.history.replaceState({}, '', url.toString());
                 } else {
                     setLang(APP_LANGUAGE);
                     await setStorageItem(STORAGE_KEYS?.LANGUAGE_KEY, JSON.stringify(APP_LANGUAGE));
+                    urlParams.set('lang', APP_LANGUAGE);
+                    window.history.replaceState({}, '', url.toString());
                 }
             } catch (error) {
                 console.error('Error getting storage item:', error);
@@ -137,11 +149,20 @@ const StoresLogic = ({
 
     useEffect(() => {
         if (mount) return;
+
         const updateLang = async () => {
             try {
                 await setStorageItem(STORAGE_KEYS?.LANGUAGE_KEY, JSON.stringify(lang));
+
+                const url = new URL(window.location.href);
+                const currentLangInUrl = url.searchParams.get('lang');
+
+                if (currentLangInUrl !== lang) {
+                    url.searchParams.set('lang', lang);
+                    window.history.replaceState({}, '', url.toString());
+                }
             } catch (error) {
-                console.error('Error setting storage item:', error);
+                console.error('Error setting language or updating URL:', error);
             }
         };
 

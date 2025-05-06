@@ -25,8 +25,6 @@ import { DialogWindowType } from 'layouts/hooks/useFormsApp';
 import { ProductDataInterface } from 'types/app_models';
 import CatalogPromoAlert from 'components/molecules/Alerts/CatalogPromo';
 import WholeSalesAlert from 'components/molecules/Alerts/WholeSales';
-import CocktailButton from 'components/atoms/Buttons/CocktailButton';
-import mainLogo from 'assets/img/logo.webp';
 
 const Catalog = () => {
     const { OPTIONS, STORE_CODE } = STORE_CONFIG;
@@ -105,11 +103,6 @@ const Catalog = () => {
             sx={{ minHeight: scrollPosition || '100vh', pb: `${footerMenuHeight}px` }}
         >
             {showTopBtn && <ScrollButton />}
-            <Box sx={{ position: 'fixed', bottom: sx ? 70 : 16, left: sx ? 16 : 32, zIndex: 10 }}>
-                <Box sx={{ position: 'relative' }}>
-                    <CocktailButton logoUrl={mainLogo} />
-                </Box>
-            </Box>
 
             {isLoadingProducts && <Loader isShown={currentProductsPage === 0} />}
             {PLAN_OPTIONS?.feedback && <MessageButton action={() => handleOpenDialog(DialogWindowType?.QUESTION)} />}

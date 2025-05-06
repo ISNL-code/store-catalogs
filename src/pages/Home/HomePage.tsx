@@ -8,8 +8,6 @@ import { DialogWindowType } from 'layouts/hooks/useFormsApp';
 import { STORE_ROUTE } from 'router/routes';
 import { STORE_CONFIG } from 'store_constants/stores_config';
 import { scrollPage } from 'utils/scrollPage';
-import CocktailButton from 'components/atoms/Buttons/CocktailButton';
-import mainLogo from 'assets/img/logo.webp';
 import MessageButton from 'components/molecules/ToolsButtons/MessageButton';
 import CallBackButton from 'components/molecules/ToolsButtons/CallBackButton';
 
@@ -26,11 +24,7 @@ const HomePage = () => {
         <Box p={sx ? 2 : appXPadding} sx={{ pb: `${footerMenuHeight}px` }}>
             <MessageButton action={() => handleOpenDialog(DialogWindowType?.QUESTION)} />
             <CallBackButton path={STORE_ROUTE?.contacts(STORE_CODE)} />
-            <Box sx={{ position: 'fixed', bottom: sx ? 70 : 16, left: sx ? 16 : 32, zIndex: 10 }}>
-                <Box sx={{ position: 'relative' }}>
-                    <CocktailButton logoUrl={mainLogo} />
-                </Box>
-            </Box>
+
             <HomeImages />
             <Box
                 className="HiddenScroll"
