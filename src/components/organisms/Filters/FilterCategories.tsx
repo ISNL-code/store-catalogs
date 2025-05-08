@@ -23,7 +23,7 @@ const FilterCategories = ({ isShown }) => {
     const { string, categoriesList, queryCategories, setQueryCategories }: CatalogContextInterface = useOutletContext();
     const [filters, setFilters] = useState<any>([]);
     const [showFilters, setShowFilters] = useState(false);
-
+    console.log(queryCategories);
     useEffect(() => {
         setFilters(queryCategories);
     }, [showFilters]); // eslint-disable-line

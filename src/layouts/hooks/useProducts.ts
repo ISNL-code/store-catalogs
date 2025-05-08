@@ -40,7 +40,7 @@ export const useProducts = ({ store, lang }: Props) => {
     useEffect(() => {
         const catParams = searchParams.getAll('cat[]');
         if (catParams.length) {
-            setQueryCategories(catParams);
+            setQueryCategories(catParams.map(el => JSON.parse(el)));
         }
     }, []); // eslint-disable-line
 
