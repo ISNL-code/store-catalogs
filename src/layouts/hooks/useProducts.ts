@@ -1,6 +1,7 @@
 import { useProductsApi } from 'api/useProductsApi';
 import { useIsMount } from 'hooks/useIsMount';
 import { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { ProductDataInterface } from 'types/app_models';
 import { map_product_card } from 'utils/mappers/product_data';
 import { scrollPage } from 'utils/scrollPage';
@@ -20,6 +21,7 @@ export const useProducts = ({ store, lang }: Props) => {
     const [totalCount, setTotalCount] = useState(0);
     const [currentCount, setCurrentCount] = useState(0);
     const [totalPages, setTotalPages] = useState(0);
+    const [searchParams, setSearchParams] = useSearchParams(); // 👈 search params
 
     const {
         data: productGetData,
@@ -33,6 +35,28 @@ export const useProducts = ({ store, lang }: Props) => {
         page: currentProductsPage,
         categories: queryCategories,
     });
+
+    // 1️⃣ При первом монтировании взять категории из URL
+    useEffect(() => {
+        const catParams = searchParams.getAll('cat[]');
+        if (catParams.length) {
+            setQueryCategories(catParams);
+        }
+    }, []); // eslint-disable-line
+
+    // 2️⃣ При изменении queryCategories обновить URL
+    useEffect(() => {
+        const params = new URLSearchParams(searchParams);
+        params.delete('cat[]');
+
+        if (queryCategories.length) {
+            queryCategories.forEach(id => {
+                params.append('cat[]', id);
+            });
+        }
+
+        setSearchParams(params);
+    }, [queryCategories]); // eslint-disable-line
 
     useEffect(() => {
         if (!productGetData) return;
