@@ -5,7 +5,7 @@ export const RETAIL_ALBERTO_BINI = {
     active: true, // Поле которое запускает магазин true - работает false - остановлен / по тех. причина
     status: 'Технiчнi роботи',
     required_registration: false,
-    URL: ['https://albertobini-brandeurope.com'],
+    URL: ['https://albertobini-brandeurope.com', 'https://test-shop-alb.netlify.app'],
     web_lang: 'uk', // html lang
     store_name: 'АБ RETAIL_MY',
     store_code: 'albertobini_retailer',
