@@ -11,8 +11,22 @@ export const KREMEN_BELTS_MAIN = {
     store_code: 'DEFAULT',
     app_lang: 'ua',
     supported_countries: [{ code: 'UA', country: 'ukraine' }],
-    telegram_sender: true,
-    managers: null,
+    telegram_sender: false,
+    managers: [
+        {
+            firstName: 'Sergiy',
+            lastName: '',
+            emailAddress: 'kremen.katalog@gmail.com',
+            options: { manager: true },
+            contacts: {
+                emailAddress: 'kremen.katalog@gmail.com',
+                phone: '+380660355716',
+                viber: '+380660355716',
+                whatsapp: '+380660355716',
+                telegram: '',
+            },
+        },
+    ],
     options: {
         no_reg_order: false,
         telegram_bot: null,
